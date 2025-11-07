@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+     <!--Let browser know website is optimized for mobile-->
+     <meta name="viewport" charset='utf-8' content="initial-scale=1.0, width=device-width"/>
+
+    <title id="title">google embed</title>
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+   
+    <link href="../../stylesheets/color.css" rel="stylesheet" type="text/css"/> 
+    <link rel="stylesheet" href="../../stylesheets/vertical.css">
+
+    
+
+</head>
+
+<body>
+          
+  
+  
+  <div class="horizontal-left-right-flex-container">
+
+    
+
+    <div id='flex_1' class="vertical-width-undefined-no-border map-box"  style="width: 600px; height: 800px;">
+
+
+      
+      
+        <span>
+            <img src="../../public/images/paypal.svg" alt="paypal.svg" height="20" width="20"/>
+            <img src="../../public/images/visa.svg" alt="visa.svg" height="20" width="30"/>
+            <img src="../../public/images/mastercard.svg" alt="mastercard.svg" height="20" width="30"/>
+            
+
+            
+            <input type='text' id='googlemap-key-input' placeholder="unrestricted google api key"/>
+            <button type='button' id='googlemap-button'>Start</button>
+
+            
+         
+        </span>
+        
+
+
+      <div>
+        <span id="layer-info-vertical">Layer Name</span>
+        <span id="feature-on-map" hidden>...</span>
+        <span id="total-feature"   hidden>...</span>
+        <input id='pac-input' type='search' placeholder='common name,zipcode,address'/> 
+        <input type="checkbox" id="show_traffic_checkbox" name="show_traffic_checkbox"  hidden />
+        <label for="show_traffic_checkbox"   hidden>ShowTraffic</label>
+        <span id="lat-lng-zoom"   hidden>...</span>
+        <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"   hidden></input>
+        <label for="overlay_opacity_range" id='overlay_opacity_label'hidden></label>
+        <button type="button" id = "panToCurrent_geolocation_button">my.loc.</button>
+
+        
+        <button type="button" id = "zoomToLayer_button">Zoom2Layer</button>
+      </div>
+
+
+    <div> 
+      <a target="_blank" href="https://developers.google.com/maps/documentation/places/web-service/place-types">CategoryList</a>
+      <input type='text' id='category-input' placeholder="e.g. night_club,bar" />
+      <span>*primary-type*</span>
+      </div>
+
+
+     <div>
+      <label for="circle_radius_range">CircleRadius:</label>
+      <input style="width: 100px;" type="range" id="circle_radius_range" name="circle_radius_range" min="0" max="500" />
+      <label id="circle_radius_value_label"></label>
+      <label id="circle_radius_unit_label">m</label>
+    </div>
+
+      <!-- too much info, too busy
+      <div> 
+        <span id='manual_radius_div'></span>
+        <span style="font-size: 12.6px; font-style: italic;">Google limit max circle radius 50,000m(30mi)</span>
+      </div>
+      -->
+
+      <div>
+          <span>POI Total</span>
+          <span id="poi_total">...</span>
+          <button id='download_csv_button'>Download POI .CSV</button> 
+          <button id='download_poi_button'>Download POI .geojson</button>
+          <button id='start_over_button'>Clear</button>  
+        </div>
+
+   
+
+    <!--  *** *** *** *** *** *** ***  build in scroll to top popup info window *** *** *** *** *** *** *** **** -->
+    <div id='info_outline'>
+      <!--  can't be 100% width, otherwise scroll bar show up 
+      <button id='close_info_outline_panel' class="setting-button"> 
+        Close &times;
+      </button>
+      -->
+
+      <span id='info-window-div'></span>
+    
+    </div>  
+    <!--  *** *** *** end *** *** *** ***  build in scroll to top popup info window *** *** *** *** *** *** *** **** -->
+
+
+    
+
+     
+    </div>
+   
+    <div class="flex-container">
+      <div class='map-box'>
+        <div id="map" style="height:800px;"></div>
+      </div>
+    </div>
+
+  </div>
+      
+  <script src="../../js/lib/parse-address/parse-address.min.js" type="text/javascript"></script>
+
+  <script src="../../js/lib/papaparse.js" type="text/javascript"></script>
+  
+  <script src="../../js/lib/proj4/dist/proj4.js"></script>
+  <script src="../../js/lib/wkt.js"></script>
+  <script src="../../js/lib/reproject/dist/reproject.js"></script>
+  <script src="../../js/lib/wellknown/wellknown.js"></script>
+
+
+  <script   src="../../js/lib/arcgis-to-geojson-utils/dist/arcgis-to-geojson.js"></script> 
+  <script   src="../../js/lib/turf/turf.min.js"></script>
+      
+  <script src="../../js/lib/stack.js"></script>  
+  <script src="../../js/arcgis/arcgis_common.js" type="text/javascript"></script>
+
+  <script src="../../js/datahub.io/embed/share/share_for_all.js" type="text/javascript"></script>
+  <!-- default.js must load befor common_share.js -->
+  <script src="../../js/gateway/google-poi/draw-x4/default.js" type="text/javascript"></script>
+  <script src="../../js/gateway/google-poi/draw-x4/helper.js" type="text/javascript"></script>
+  <script src="../../js/gateway/google-poi/draw-x4/common_share.js" type="text/javascript"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,104 @@
+
+
+
+
+
+/* -------- ---------- autocomplete --------  ------*/
+
+      /*  https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_autocomplete  */
+
+               /*the container must be positioned relative:*/
+               .autocomplete {
+                position: relative;
+                display: inline-block;
+                width: 96%;  /*400px;*/
+              }
+
+              #zipcode_text {
+                border: 1px solid transparent;
+                background-color: #f1f1f1;
+                padding: 10px;
+                width: 96%;  /*400px;*/
+              }
+              
+              
+              .autocomplete-items {
+                position: absolute;
+                border: 1px solid #d4d4d4;
+                border-bottom: none;
+                border-top: none;
+                z-index: 99;
+                /*position the autocomplete items to be the same width as the container:*/
+                top: 100%;
+                left: 0;
+                right: 0;
+              }
+
+              .autocomplete-items div {
+                padding: 10px;
+                cursor: pointer;
+                background-color: #F0FFFF;  /* drop down option background color, should be special color */
+                border-bottom: 1px solid #d4d4d4; 
+              }
+
+              /*when hovering an item:*/
+              .autocomplete-items div:hover {
+                background-color: #e9e9e9; 
+              }
+
+              /*when navigating through the items using the arrow keys:*/
+              .autocomplete-active {
+                background-color: DodgerBlue !important; 
+                color: #ffffff; 
+              }
+
+
+              
+
+    /* ....... ....... ........  dark mode only ......... ........ ........... .......... */
+
+              body.dark #zipcode_text {
+                border: 1px solid transparent;
+                color:rgb(229, 228, 226);
+                background-color: rgb(54, 69, 79);
+                padding: 10px;
+                width: 96%;  /*400px;*/
+              }
+
+              body.dark .autocomplete-items {
+                position: absolute;
+                border: 1px solid #d4d4d4;
+                border-bottom: none;
+                border-top: none;
+                z-index: 99;
+                /*position the autocomplete items to be the same width as the container:*/
+                top: 100%;
+                left: 0;
+                right: 0;
+              }
+
+              body.dark .autocomplete-items div {
+                padding: 10px;
+                cursor: pointer;
+                background-color: #36454F; /* drop down option background color, should be special color */
+                border-bottom: 1px solid #d4d4d4; 
+              }
+
+              /*when hovering an item:*/
+              body.dark .autocomplete-items div:hover {
+                background-color: #708090; 
+              }
+
+              /*when navigating through the items using the arrow keys:*/
+              body.dark .autocomplete-active {
+                background-color: DodgerBlue !important; 
+                color: #ffffff; 
+              }
+
+
+    /* ....... ....... ........  dark mode only ......... ........ ........... .......... */
+
+
+
+
+/* -------- end ---------- autocomplete --------------*/

@@ -1,0 +1,678 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ---------  both left and right   ---------    nav  --------- */
+
+.horizontal-left-right-flex-container {
+  display: flex;
+  flex-direction: row;
+
+  width:  1800px;  /*  must set total width, each page decide each part width */
+  
+  margin-right: auto; /* make sure everything is in the center of page */
+  margin-left: auto;  /* make sure everything is in the center of page */ 
+
+
+}
+
+.horizontal-left-right-width-undefined-container {
+  display: flex;
+  flex-direction: row;
+  margin-right: auto; /* make sure everything is in the center of page */
+  margin-left: auto;  /* make sure everything is in the center of page */ 
+}
+
+
+.vertical-width-undefined-box {
+  display: flex;
+  flex-direction: column;
+ /* must define width in inline style    <style=width:  500px;> */
+  border: 1px dotted grey;
+  /* overflow: scroll; */
+  border-radius: 5px;
+}
+
+
+
+
+
+/*   ---------   end  ---------  both left and right   ---------    nav  --------- */
+
+
+
+
+
+
+/* ---------  right   ---------    nav  --------- */
+
+.horizontal-right-flex-container {
+  display: flex;
+  flex-direction: row;
+  width:  1900px;  
+  
+  margin-right: auto; /* make sure everything is in the center of page */
+  margin-left: auto;  /* make sure everything is in the center of page */ 
+
+
+}
+
+
+
+.vertical-right-box {
+  display: flex;
+  flex-direction: column;
+  width:  700px; 
+  border: 1px dotted grey;
+  /* overflow: scroll; */
+  border-radius: 5px;
+
+
+  height: 970px;  /* HD 1020, should not show vertical scroll bar, */
+  overflow: auto;
+}
+
+
+
+
+/*   ---------   end  ---------  right   ---------    nav  --------- */
+
+
+
+
+/* ---------  left   ---------    nav  --------- */
+
+.horizontal-left-flex-container {
+  display: flex;
+  flex-direction: row;
+  width:  1900px;  
+  
+  margin-right: auto; /* make sure everything is in the center of page */
+  margin-left: auto;  /* make sure everything is in the center of page */ 
+
+
+}
+
+
+
+.vertical-left-box {
+  display: flex;
+  flex-direction: column;
+  width:  700px; 
+  border: 1px dotted grey;
+  /* overflow: scroll; */
+  border-radius: 5px;
+
+
+  height: 970px;  /* HD 1020, should not show vertical scroll bar, */
+  overflow: auto;
+}
+
+
+
+
+/*   ---------   end  ---------  left   ---------    nav  --------- */
+
+
+/* --------- vertical  ---------   only     --------- */
+
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    
+    
+    margin-right: auto; /* make sure everything is in the center of page */
+    margin-left: auto;  /* make sure everything is in the center of page */ 
+
+    width:  1200px;  
+   
+    
+  }
+  
+  .vertical-width-undefined-flex-container {
+    display: flex;
+    flex-direction: column;
+    
+    
+    margin-right: auto; /* make sure everything is in the center of page */
+    margin-left: auto;  /* make sure everything is in the center of page */
+    
+    
+    border: 1px dotted grey;
+    /* overflow: scroll; */
+    border-radius: 5px;
+
+
+    
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+   
+  }
+
+
+  .vertical-width-undefined-no-border{
+    display: flex;
+
+    /*flex-wrap: wrap;*/
+
+
+    flex-direction: column;
+    margin-right: auto; /* make sure everything is in the center of page */
+    margin-left: auto;  /* make sure everything is in the center of page */
+
+    /*
+      No padding because it resize map width to 1183, instead of 1200
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    */
+  }
+  
+  
+
+.top-bar-box {
+  display: flex;
+  flex-direction: row; 
+  
+  border: 1px dotted grey;
+  /*overflow: scroll; */
+  border-radius: 5px;
+
+  justify-content: center;  /* make text div at center of row, horizontal */
+  align-items: center;      /* make text div at center of colum, vertical */
+}
+
+
+
+.padding-5px {
+
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+}
+
+
+
+.padding-3px {
+
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+
+}
+
+
+
+
+
+.padding-1px {
+
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+
+}
+
+
+
+/* fixed height */
+  .dashboard-box {
+    display: flex;
+    flex-direction: row;
+    /* height: 83px; */
+    border: 1px dotted grey;
+    /* overflow: scroll; */
+    border-radius: 5px;
+ }
+
+ 
+ /* not height */
+ .dashboard-horizontal-row-flow-box {
+  display: flex;
+  flex-direction: row;
+  /* height: 50px;  define at inline style=height: 50px; */
+  border: 1px dotted grey;
+  /* overflow: scroll; */
+  border-radius: 5px;
+
+}
+
+
+  .map-box {
+    border: 1px dotted grey;
+    border-radius: 5px;
+  }
+
+
+
+
+
+  .info-window-box {
+   /* height: 300px;*/
+    border: 1px dotted rgba(0, 0, 0, 0) ; 
+    border-radius: 5px;
+  }
+
+
+  .info-window-box-scroll-height-undefined {
+    /* height: 300px;*/
+     border: 1px dotted rgba(0, 0, 0, 0) ; 
+     border-radius: 5px;
+     overflow-y: auto;
+   }
+  
+
+
+
+
+
+
+.search-box {
+     
+    height: 100px;
+    border: 1px dotted grey;
+    border-radius: 5px;
+    
+}
+
+
+
+
+
+
+
+#map{ height: 600px;}  /* for node.js google map*/
+#viewDiv{height: 600px;} /* for json2tree esri map */
+
+
+
+
+  .card{
+
+    border: 1px dotted grey;
+    border-radius: 5px;
+   /*  
+       inline style define each card width
+
+       width: 197.66px;   
+   
+       Total width 1200px - (14x1px border line) / 6(div) = 197.6px per div 
+   
+   
+     */
+     display: flex;
+     flex-direction: column;
+
+
+     justify-content: center;  /* make text div at center of row, horizontal */
+     align-items: center;      /* make text div at center of colum, vertical */
+  }
+
+
+
+
+  .card-horizontal-row-flow{
+
+    border: 1px dotted grey;
+    border-radius: 5px;
+   /*  
+       inline style define each card width
+
+       width: 197.66px;   
+   
+       Total width 1200px - (14x1px border line) / 6(div) = 197.6px per div 
+   
+   
+     */
+     display: flex;
+     flex-direction: row;
+
+
+     justify-content: center;  /* make text div at center of row, horizontal */
+     align-items: center;      /* make text div at center of colum, vertical */
+
+    
+  }
+
+
+
+
+
+
+
+
+
+  
+  
+
+/*   entire page blue mode    */
+
+
+body.blue {
+  background-color: #000033 ;
+  color: #fff;
+}
+
+body.blue button{
+  background-color: #000033 ;
+  color: #fff;
+}
+
+body.blue input{
+  background-color: #000033 ;
+  color: #fff;
+}
+
+
+body.blue textarea{
+  background-color: #000033;
+  color: #fff;
+}
+
+body.blue nav {
+  background-color: #26A69A;
+}
+body.blue .card {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/*
+body.blue .btn {
+  background-color: rgba(255, 254, 253, 0.233);     special for dark button 
+}
+*/
+
+
+body.blue .divider {
+  opacity: 0.2;
+}
+body.blue .sidenav {
+  background-color: #000033 ;
+}
+body.blue .sidenav li a:not(.subheader) {
+  color: #89B2F5;
+}
+body.blue .sidenav li a:not(.subheader):hover {
+  background-color: #3B4043;
+}
+body.blue .sidenav li a.subheader {
+  color: #9AA0A6;
+}
+body.blue .sidenav li a .material-icons {
+  color: #9AA0A6;
+}
+body.blue .collection {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+body.blue .collection .collection-item {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+body.blue .collection .active {
+  background-color: rgba(233, 30, 99, 0.5);
+}
+
+
+body.blue .tabs {
+  background-color: #000033 ;
+}
+
+body.blue a {
+  color: #CCCCFF;
+  
+}
+
+
+
+body.blue legend {
+  background-color: #000033 ;
+  color: #fff;
+  
+}
+
+
+body.blue span {
+  background-color: #000033 ;
+  color: #fff;
+  
+}
+ 
+
+
+/*  - end -  entire page blue mode    */
+
+
+
+
+
+
+
+
+  
+
+/*   entire page red mode    */
+
+
+body.red {
+  background-color: #483C32 ;
+  color: #fff;
+}
+
+body.red button{
+  background-color: #483C32 ;
+  color: #fff;
+}
+
+body.red input{
+  background-color: #483C32 ;
+  color: #fff;
+}
+
+
+body.red textarea{
+  background-color: #483C32;
+  color: #fff;
+}
+
+body.red nav {
+  background-color: #26A69A;
+}
+body.red .card {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/*
+body.red .btn {
+  background-color: rgba(255, 254, 253, 0.233);     special for dark button 
+}
+*/
+
+
+body.red .divider {
+  opacity: 0.2;
+}
+body.red .sidenav {
+  background-color: #483C32 ;
+}
+body.red .sidenav li a:not(.subheader) {
+  color: #89B2F5;
+}
+body.red .sidenav li a:not(.subheader):hover {
+  background-color: #3B4043;
+}
+body.red .sidenav li a.subheader {
+  color: #9AA0A6;
+}
+body.red .sidenav li a .material-icons {
+  color: #9AA0A6;
+}
+body.red .collection {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+body.red .collection .collection-item {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+body.red .collection .active {
+  background-color: rgba(233, 30, 99, 0.5);
+}
+
+
+body.red .tabs {
+  background-color: #483C32 ;
+}
+
+body.red a {
+  color: #CCCCFF;
+  
+}
+
+
+
+body.red legend {
+  background-color: #483C32 ;
+  color: #fff;
+  
+}
+
+
+body.red span {
+  background-color: #483C32 ;
+  color: #fff;
+  
+}
+ 
+
+
+/*  - end -  entire page red mode    */
+
+
+
+
+
+
+
+
+
+  
+
+/*   entire page teal mode    */
+
+
+body.teal {
+  background-color: #1f6d65 ;
+  color: #fff;
+}
+
+body.teal button{
+  background-color: #1f6d65 ;
+  color: #fff;
+}
+
+body.teal input{
+  background-color: #1f6d65 ;
+  color: #fff;
+}
+
+
+body.teal textarea{
+  background-color: #483C32;
+  color: #fff;
+}
+
+body.teal nav {
+  background-color: #26A69A;
+}
+body.teal .card {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/*
+body.teal .btn {
+  background-color: rgba(255, 254, 253, 0.233);     special for dark button 
+}
+*/
+
+
+body.teal .divider {
+  opacity: 0.2;
+}
+body.teal .sidenav {
+  background-color: #1f6d65 ;
+}
+body.teal .sidenav li a:not(.subheader) {
+  color: #89B2F5;
+}
+body.teal .sidenav li a:not(.subheader):hover {
+  background-color: #3B4043;
+}
+body.teal .sidenav li a.subheader {
+  color: #9AA0A6;
+}
+body.teal .sidenav li a .material-icons {
+  color: #9AA0A6;
+}
+body.teal .collection {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+body.teal .collection .collection-item {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+body.teal .collection .active {
+  background-color: rgba(233, 30, 99, 0.5);
+}
+
+
+body.teal .tabs {
+  background-color: #1f6d65 ;
+}
+
+body.teal a {
+  color: #CCCCFF;
+  
+}
+
+
+
+body.teal legend {
+  background-color: #1f6d65 ;
+  color: #fff;
+  
+}
+
+
+body.teal span {
+  background-color: #1f6d65 ;
+  color: #fff;
+  
+}
+ 
+
+
+/*  - end -  entire page teal mode    */
+
+
+
+
+

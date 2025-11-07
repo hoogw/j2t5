@@ -1,0 +1,186 @@
+
+
+
+/* --------- top  ---------   left     --------- */
+
+.top-left-flex-container {
+  display: flex;
+  flex-direction: column;
+  width:  1900px;  
+  
+  margin-right: auto; /* make sure everything is in the center of page */
+  margin-left: auto;  /* make sure everything is in the center of page */ 
+
+
+}
+
+
+.top-flex-box {
+  display: flex;
+  flex-direction: row; 
+  width:  1900px;  
+  border: 1px dotted grey;
+  /*overflow: scroll; */
+}
+
+
+
+
+.horizontal-left-flex-container {
+  display: flex;
+  flex-direction: row;
+  width:  1900px;  
+  
+  margin-right: auto; /* make sure everything is in the center of page */
+  margin-left: auto;  /* make sure everything is in the center of page */ 
+
+
+}
+
+
+
+.vertical-left-box {
+  display: flex;
+  flex-direction: column;
+  width:  700px; 
+  border: 1px dotted grey;
+}
+
+.left-nav-list{
+  height: 680px;
+  overflow: scroll; 
+}
+
+.left-nav-list-2{
+  height: 900px;
+  overflow: scroll; 
+}
+
+
+/*   ---------   end  --------- top  ---------   left     --------- */
+
+
+/* --------- vertical  ---------   only     --------- */
+
+
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    width:  1200px;  
+   
+
+  }
+  
+  
+
+
+
+  .dashboard-box {
+    display: flex;
+    flex-direction: row;
+    width:  698px; 
+    /*height: 83px;*/
+    border: 1px dotted grey;
+    /* overflow: scroll; */
+ }
+
+/* not height */
+.dashboard-horizontal-row-flow-box {
+  display: flex;
+  flex-direction: row;
+  /* height: 50px;  define at inline style=height: 50px; */
+  border: 1px dotted grey;
+  /* overflow: scroll; */
+  border-radius: 5px;
+}
+
+
+  .map-box {
+    
+    border: 1px dotted grey;
+  }
+
+
+
+
+
+  .info-window-box {
+    /* height: 300px;*/
+    border: 1px dotted grey;
+   }
+
+
+    
+
+
+
+
+
+
+
+
+
+
+#map{ height: 600px;}  /* for node.js google map*/
+#viewDiv{height: 600px;} /* for json2tree esri map */
+
+
+
+
+  .card{
+
+    border: 1px dotted grey;
+    
+   /*  
+       inline style define each card width
+
+       width: 197.66px;   
+   
+       Total width 1200px - (14x1px border line) / 6(div) = 197.6px per div 
+   
+   
+     */
+     display: flex;
+     flex-direction: column;
+
+
+     justify-content: center;  /* make text div at center of row, horizontal */
+     align-items: center;      /* make text div at center of colum, vertical */
+  }
+
+ 
+
+
+  .card-horizontal-row-flow{
+
+    border: 1px dotted grey;
+    border-radius: 5px;
+   /*  
+       inline style define each card width
+
+       width: 197.66px;   
+   
+       Total width 1200px - (14x1px border line) / 6(div) = 197.6px per div 
+   
+   
+     */
+     display: flex;
+     flex-direction: row;
+
+
+     justify-content: center;  /* make text div at center of row, horizontal */
+     align-items: center;      /* make text div at center of colum, vertical */
+
+    
+  }
+
+
+
+
+/* specially for filter by, classified, overwrite original width 480px */
+  .esri-search {
+    /* adjust esri search widget's width  "!important" will overwrite the default "width:240px" in original esri-search class */
+    width: 400px !important;
+  }
+

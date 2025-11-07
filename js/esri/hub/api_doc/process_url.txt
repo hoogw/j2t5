@@ -1,0 +1,40 @@
+
+
+
+google search , not success,   100 per day free,   $5= 1000
+not be able to find correct folder url like normal google search did
+http://localhost:10/json2tree/esri/hub/static/opendata-org-short-name.html?file=opendata_v3_region_us_9972.zip&filter_by=
+
+http://localhost:10/json2tree/esri/hub/static/hub-org-short-name.html?file=hub_v1_created_2025_3_26.zip&filter_by=
+
+
+
+
+http://localhost:10/json2tree/esri/hub/static/opendata-org-short-name-refined.html?file=opendata_org_short_name_test.zip&filter_by=
+
+http://localhost:10/json2tree/esri/hub/static/hub-org-short-name-refined.html?file=hub_org_short_name_test.zip&filter_by=
+
+
+
+http://localhost:10/json2tree/esri/hub/static/hub-org-id.html?file=hub_v1_created_before_2025_3_26.zip
+
+http://localhost:10/json2tree/esri/hub/static/opendata-org-id.html?file=opendata_v3_created_2017_01_01_to_2025_03_29.json.zip
+
+
+http://localhost:10/json2tree/esri/hub/static/hub-refined.html?file=hub_refined_2025.zip
+
+
+http://localhost:10/json2tree/esri/hub/static/opendata-refined.html?file=
+
+
+https://transparentgov.net/json2tree/esri/hub/static/opendata-refined.html?file=opendata_refined_2017_to+2025_Mar26.zip&filter_by=
+https://transparentgov.net/json2tree/esri/hub/static/hub-refined.html?file=hub_refined_2017_to 2025_Mar26.zip&filter_by=
+
+https://transparentgov.net/data/json2tree/hub_refined_2017_to 2025_Mar26.zip
+https://transparentgov.net/data/json2tree/opendata_refined_2017_to 2025_Mar26.zip
+https://transparentgov.net/data/json2tree/hub_v1_created_before_2025_3_26.zip
+https://transparentgov.net/data/json2tree/opendata_v3_created_2017_01_01_to_2025_03_29.json.zip
+
+
+
+

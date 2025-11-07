@@ -1,0 +1,4846 @@
+
+
+
+
+/* ------------- esri widget ------------- */
+
+   /*  
+       change widget opacity
+           https://community.esri.com/t5/arcgis-javascript-maps-sdk-questions/widget-opacity/m-p/275531#M25425
+       inspect element, then use css set opacity  
+       works, but not use, move to use js, jquery to change widget opacity  
+  
+          .esri-widget{
+            opacity: 0.8;
+          }
+
+
+
+          css class selector not working, because you can't change css class property, but you can change dom element css property
+          Change CSS class properties with jQuery
+          https://stackoverflow.com/questions/11474430/change-css-class-properties-with-jquery
+          CSS class once loaded, you can't change css class content, you can only change individual element (by id) css style
+          
+          2 solution,  
+          Dynamically Load CSS from a File ( not use )
+          Dynamically Add a Style Element ( in use )
+
+
+ */
+
+
+
+
+  
+/* ------------- end ------------- esri widget ------------- */
+
+
+
+
+
+/*  
+      :::::::: ESRI only ::::::::    warning   ::::::::  ::::::::  for json2tree ( ESRI arcgis/featurelayer ... etc) only  ::::::::  :::::::: ::::::::  :::::::: 
+*/
+
+
+
+
+
+
+
+/*  == == == == ==  full screen flex box version    == == == == ==      */
+
+            .full_screen_flex_container_column {
+              display: flex;
+              flex-direction: column;
+              height: 100%;
+              padding: 0;
+              margin: 0;
+            }
+
+              .self_define_height_flex_container_column {
+              display: flex;
+              flex-direction: column;
+              
+              padding: 0;
+              margin: 0;
+            }
+
+
+
+            .full_screen_flex_container_row {
+              display: flex;
+              flex-direction: row;
+              height: 100%;
+              padding: 0;
+              margin: 0;
+            }
+
+
+            .self_define_height_full_screen_flex_container_row {
+              display: flex;
+              flex-direction: row;
+             
+              padding: 0;
+              margin: 0;
+            }
+
+
+
+            .flex_1 {
+              flex: 1;
+              
+            /*  do not use these 2 line, because it cause outside-map-legend div disappear(height is 0) */
+              
+            display: flex;
+            flex-direction: column;
+            
+
+              overflow-y: auto;
+
+
+              border: 1px dotted grey;
+              border-radius: 5px;
+
+              margin: 0px;
+            }
+
+            .flex_2 {
+              flex: 2;
+              
+              overflow-y: auto;
+            }
+
+            .flex_3 {
+              flex: 3;
+            
+              overflow-y: auto;
+            }
+
+            .flex_4 {
+              flex: 4;
+              
+              overflow-y: auto;
+            }
+
+            .flex_5 {
+              flex: 5;
+              
+              overflow-y: auto;
+            }
+
+            .flex_6 {
+              flex: 6;
+              
+              overflow-y: auto;
+            }
+
+            .flex_7 {
+              flex: 7;
+              
+              overflow-y: auto;
+            }
+
+
+            .floating_popup_info_window{
+
+                  /* without this, close button will be regular size at left, with this close button will be cross whole row  */
+                  display: flex;
+                  flex-direction: column; 
+                  /* . .  end  . .   without this, close button will be regular size at left, with this close button will be cross whole row  */
+
+
+                  position: fixed;  /* fixed or absolute works ,   relative or empty not work  */
+
+                  width: 32.7%;    /* 33.3 - 0.3(left) - 0.3(right side border line shadow) */
+                   /* height: 96.3%;  if not set height, 
+                     vertical scroll bar at right side would not show up, 
+                     you can't scroll, you will have to convert from popup to build in window */
+
+                  color: black;
+                  background-color:white;
+
+
+
+
+                  z-index: 200;
+                  opacity: 1;
+                  float:right;
+
+
+                        /* border: 2px solid rgba(200, 200, 200, .96); */
+                        border: 0;
+                        border-radius: 2px;
+                        /* white line border use this */
+                        box-shadow: 0 2px 5px 6px rgba(200, 200, 200, .96);
+                        /* black line border use this 
+                        box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0.8);*/
+                        /* no border line, trasnparent border line use this
+                        box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0 );*/
+
+
+
+
+
+            overflow-x: auto;
+            overflow-y: auto;
+
+
+            right: 1.8%;  /*  0.3 + 1.5( scrolling bar vertical on right side)*/  
+            top:  0.3%;
+
+            }
+
+            body.dark .floating_popup_info_window{
+
+            color: white;
+            background-color: black;
+            }
+
+/*    == == == == ==      end    == == == == ==  full screen flex box version    == == == == ==      */
+
+
+
+
+
+
+
+
+
+
+
+                /*
+                
+                     ***  *** dark mode  *** *** customized for folder.js *** *** ***
+                     using color code https://htmlcolorcodes.com/colors/
+
+
+
+                    original
+                    https://codepen.io/j_holtslander/pen/MRbpLX
+                    https://codepen.io/j_holtslander/embed/MRbpLX?height=467&theme-id=dark&default-tab=result
+
+
+                    fork
+                    https://codepen.io/hoogw/pen/xxZePPY
+
+
+
+
+
+                                      ---------    scss (uncompiled)  ---------  
+
+                                      $transition-effects: color 1s ease, background-color 1s ease;
+
+                                      body {
+                                        background-color: #eee;
+                                        transition: $transition-effects;
+                                        &.dark {
+                                          background-color: #202123;
+                                          color: #fff;
+                                          nav {
+                                            background-color: #26A69A;
+                                          }
+                                          .card {
+                                            background-color: rgba(255,255,255,0.2);
+                                          }
+                                          .btn {
+                                            background-color: rgba(255, 254, 253, 0.233); 
+                                          }
+                                          .divider {
+                                            opacity: 0.2;
+                                          }
+                                          .sidenav {
+                                            background-color: #2D2D31;
+                                            li {
+                                              a {
+                                                &:not(.subheader){
+                                                  color: #89B2F5;
+                                                  &:hover {
+                                                    background-color: #3B4043;
+                                                  }
+                                                }
+                                                &.subheader {
+                                                  color:#9AA0A6; 
+                                                }
+                                                .material-icons {
+                                                  color: #9AA0A6;
+                                                }
+                                              }
+                                            }
+                                          }
+                                          .collection {
+                                            border: 1px solid rgba(255,255,255,0.2);
+                                            .collection-item {
+                                              background-color: rgba(255,255,255,0.2);
+                                              border-bottom: 1px solid rgba(255,255,255,0.2);
+                                            }
+                                            
+                                            
+                                            .active {
+                                              background-color: rgba(233, 30, 99, 0.5);
+                                              
+                                            }
+                                          }
+
+
+
+
+
+
+
+
+                                          .tabs {
+                                            background-color: #2D2D31;
+                                            .tab {
+                                              
+                                              
+                                            }
+                                          }
+                    
+
+
+
+
+
+
+
+
+                                        }
+                                      }
+
+                                    ---------   end -----  scss (uncompiled)  ---------  
+
+
+
+                */
+
+                              body {
+                                background-color: #eee;
+                                -webkit-transition: color 1s ease, background-color 1s ease;
+                                transition: color 1s ease, background-color 1s ease;
+                              }
+                              body.dark {
+                                background-color: #202123;
+                                color: #fff;
+                              }
+
+                              body.dark button{
+                                background-color: #202123;
+                                color: #fff;
+                                border: 1.1px solid #fff;
+                              }
+
+                              body.dark input{
+                                background-color: #202123;
+                                color: #fff;
+                                border: 1.1px solid #fff;
+                              }
+
+
+                                                          
+                              body.dark textarea{
+                                background-color: #483C32;
+                                color: #fff;
+                                border: 1.1px solid #fff;
+                              }
+
+                              body.dark nav {
+                                background-color: #26A69A;
+                              }
+                              body.dark .card {
+                                background-color: rgba(255, 255, 255, 0.2);
+                              }
+
+
+                             
+                              body.dark .btn {
+                                background-color: rgba(255, 254, 253, 0.233);  
+                              }
+                              body.dark .divider {
+                                opacity: 0.2;
+                              }
+                              
+                              body.dark .sidenav li a:not(.subheader) {
+                                color: #89B2F5;
+                              }
+                              body.dark .sidenav li a:not(.subheader):hover {
+                                background-color: #3B4043;
+                              }
+                              body.dark .sidenav li a.subheader {
+                                color: #9AA0A6;
+                              }
+                              body.dark .sidenav li a .material-icons {
+                                color: #9AA0A6;
+                              }
+                              body.dark .collection {
+                                border: 1px solid rgba(255, 255, 255, 0.2);
+                              }
+                              body.dark .collection .collection-item {
+                                background-color: rgba(255, 255, 255, 0.2);
+                                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+                              }
+
+
+                              body.dark .collection .active {
+                                background-color: rgba(233, 30, 99, 0.5);
+                              }
+
+
+                              body.dark .tabs {
+                                background-color: #2D2D31;
+                              }
+
+                              body.dark a {
+                                color: #CCCCFF;
+                              }
+                              body a {
+                                color: #0e0ed4;
+                              }
+
+
+                              body.dark .sidebar-container {
+                                    background-color: rgba(40, 40, 43, .96);
+                              }
+                
+                              body.dark .content-container {
+                                    background-color: rgba(54, 69, 79, .96);
+                              }
+                
+                              body.dark .right-sidebar-container {
+                                background-color: DarkSlateGray;
+                              }
+
+
+                              body.dark .setting_panel {
+                          background-color: rgba(71, 71, 71, .96);
+                  }
+
+                  body.dark .browse_arcgis_server_panel {
+                    background-color: rgba(0, 0, 0, .96);
+                  }
+
+                  body.dark .browse_tree_panel {
+                    background-color: rgba(0, 0, 0, .96);
+                  }
+
+                  body.dark .browse_list_panel {
+                    background-color: rgba(0, 0, 0, .96);
+                  }
+
+
+
+                  body.dark .sidebar-container-embeded {
+                    background-color: rgba(0, 0, 0, .96);
+                  }
+                  body.dark .content-container-embeded {
+                    background-color: rgba(71, 71, 71, .96);
+                  }
+                  body.dark .right-sidebar-container-embeded {
+                    background-color: rgba(54, 69, 79, .96);
+                  }
+
+
+                  body.dark .browse_list_panel {
+                    background-color: rgba(0, 0, 0, .96);
+                  }
+
+                  body.dark .btn-light {
+
+
+                    background-color: rgba(0, 0, 0, .96);
+                    color: #fff;
+
+                  }
+
+
+
+
+                                  
+                  
+                  body.dark legend {
+                    background-color: #202123;
+                    color: #fff;
+                    
+                  }
+
+
+                  body.dark span {
+                    background-color: #202123;
+                    color: #fff;
+                    
+                  }
+
+                /*
+
+                ----  End  ----  dark mode
+
+                */
+
+
+
+
+
+
+
+
+/*
+https://codepen.io/hoogw/pen/YzzzyZZ
+*/
+
+
+
+.custom-counter {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.custom-counter li {
+  counter-increment: step-counter;
+  margin-bottom: 5px;
+}
+
+.custom-counter li::before {
+  content: counter(step-counter);
+  margin-right: 5px;
+  font-size: 25.8px;
+  background-color: rgb(0,200,200);
+  color: white;
+  font-weight: lighter;
+  padding: 3px 8px;
+  border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+
+                          /* -------- view UI  --------  control   --------  */
+
+                          #search-widget-div {
+
+                            position: absolute;  /*   relative; fixed; */
+
+
+                            top: 15px;
+                            
+                            left: 60px;
+
+
+                            height:60px;
+                            width: 600px;
+
+                            padding-top: 15px;
+                            padding-left: 20px;
+                            padding-right: 20px;
+                            padding-bottom: 30px;
+
+
+
+                                          /* border-color: rgba(255,255,255, .80); 
+                                          border-width: thick;  */
+                                          background-color: rgba(0,0,0, .60);
+                                        /* color: black;   rgba(255,255,255, .90); */
+                          }
+
+
+
+
+
+
+                          .zoom2layer_btn_class {
+
+                          
+
+
+
+                            position: absolute; /* fixed; */
+
+                            opacity: 0.6;
+
+                          
+                            bottom: 60px;
+                            left: 10px;
+
+                            height:50px;
+                            width: 130px;
+
+                            padding-top: 0px;
+                            padding-left: 0px;
+                            padding-right: 0px;
+                            padding-bottom: 0px;
+
+
+
+                                        
+
+                          }
+
+                  /* -------- end  --------   view UI  --------  control   --------  */
+
+
+
+
+
+
+
+
+
+/*  
+::::::::   end  ::::::::   ESRI only  ::::::::  warning   ::::::::  ::::::::  for json2tree ( ESRI arcgis/featurelayer ... etc) only  ::::::::  :::::::: ::::::::  :::::::: 
+*/
+
+
+
+
+
+
+
+                /* ###### ###### color ###### code ###### name ###### ######
+                
+                     https://htmlcolorcodes.com/colors/
+                
+                */
+                .steel_blue {
+                    color: #4682B4;
+                  }
+                  body.dark .steel_blue {
+                     color: #CCCCFF;  /* Periwinkle */
+                  }
+
+
+                 .copper {
+                     color: #B87333;
+                   }
+                 body.dark  .copper {
+                     color: #E5AA70; /* Fawn */
+                   }
+
+
+                   .mango {
+                     color: #F4BB44;
+                   }
+                   body.dark .mango {
+                     color: #FFDEAD; /* Navajo White */
+                   }
+
+
+                   .moss_green {
+                     color: #8A9A5B;
+                   }
+                   body.dark .moss_green {
+                     color: #0FFF50; /* Neon Green */
+                   }
+
+
+
+                   .glaucous {
+                     color: #6082B6;
+                   }
+                   body.dark .glaucous {
+                     color: #ADD8E6; /* Light Blue */
+                   }
+
+
+                   .blue_green {
+                     color: #088F8F;
+                   }
+                   body.dark .blue_green {
+                     color: #7DF9FF; /* Electric Blue */
+                   }
+
+
+                   .taupe {
+                     color: #483C32;
+                   }
+                   body.dark .taupe {
+                     color: #F5DEB3; /* Wheat */
+                   }
+
+                   .cadmium_green {
+                     color: #097969;
+                   }
+                   body.dark .cadmium_green {
+                     color: #AFE1AF; /* Celadon */
+                   }
+
+                   .viridian {
+                     color: #40826D;
+                   }
+                   body.dark .viridian {
+                     color: #ECFFDC; /* Nyanza */
+                   }
+
+              /* ######   end   ###### color ###### code ###### name ###### ######*/
+
+
+
+
+
+
+    /*    ==== button   ====      */
+
+
+
+              .charcoal_button {
+                color: #FAF9F6;
+                background:#36454F;
+              }
+              body.dark .charcoal_button {
+                color: #FAF9F6;
+                background:#36454F;
+              }
+
+
+              .denim_button {
+                color: #FAF9F6;
+                background:#6F8FAF;
+              }
+              body.dark .denim_button {
+                color: #FAF9F6;
+                background:#6F8FAF;
+              }
+
+
+
+
+              .copper_button {
+                color: #FAF9F6;
+                background:#B87333;
+              }
+              body.dark .copper_button {
+                color: #FAF9F6;
+                background:#B87333;
+              }
+
+
+              .cinnamon_button {
+                color: #FAF9F6;
+                background-color:#D27D2D;
+              }
+              body.dark .cinnamon_button {
+                color: #FAF9F6;
+                background-color:#D27D2D;
+              }
+
+
+              .glaucous_button {
+                color: #FAF9F6;
+                background-color:#6082B6;
+              }
+              body.dark .glaucous_button {
+                color: #FAF9F6;
+                background-color:#6082B6;
+              }
+
+              .citrine_button {
+                color: #FAF9F6;
+                background-color:#E4D00A;
+              }
+              body.dark .citrine_button {
+                color: #FAF9F6;
+                background-color:#E4D00A;
+              }
+
+
+              .fuchsia_button {
+                color: #FAF9F6;
+                background-color:#FF00FF;
+              }
+              body.dark .fuchsia_button {
+                color: #FAF9F6;
+                background-color:#FF00FF;
+              }
+
+
+              .dusty_rose_button {
+                color: #FAF9F6;
+                background-color:#C9A9A6;
+              }
+              body.dark .dusty_rose_button {
+                color: #FAF9F6;
+                background-color:#C9A9A6;
+              }
+
+
+
+       /*    ==== button   ====      */
+
+
+/**/
+
+
+/*
+     uncomment here,  will make all html legend tag align in middle,  
+
+legend {
+  margin:0 auto;
+  padding: 10px;
+}
+
+*/
+
+       /**/
+       /* .... .....  input ... field  .... .....  */
+
+       .field_input_for_search {
+        margin: 10px 10px 10px 10px;
+        width: 80%;
+        height: 50px; /*6vh;*/
+        font-size:24px;
+        
+        color: black;
+        background-color: white;
+        
+        border-width: 0.02em;
+        box-shadow: 0px 0px 1px 1px rgb(53, 57, 53);
+          
+      }
+
+      body.dark .field_input_for_search {
+        margin: 10px 10px 10px 10px;
+        width: 80%;
+        height: 50px; /*6vh;*/
+        font-size:24px;
+        
+        color: white;
+        background-color:black;
+        
+        border-width: 0.02em;
+        box-shadow: 0px 0px 1px 1px rgb(249, 246, 238);
+      }
+
+
+
+
+      .field_input_for_search_widthUndefined {
+        margin: 10px 10px 10px 10px;
+       
+        height: 50px; /*6vh;*/
+        font-size:24px;
+        
+        color: black;
+        background-color: white;
+        
+        border-width: 0.02em;
+        box-shadow: 0px 0px 1px 1px rgb(53, 57, 53);
+          
+      }
+
+      body.dark .field_input_for_search_widthUndefined {
+        margin: 10px 10px 10px 10px;
+       
+        height: 50px; /*6vh;*/
+        font-size:24px;
+        
+        color: white;
+        background-color:black;
+        
+        border-width: 0.02em;
+        box-shadow: 0px 0px 1px 1px rgb(249, 246, 238);
+      }
+
+
+
+
+
+
+
+
+
+      .field_input_for_search_fixed_width {
+        margin: 10px 10px 10px 10px;
+        width: 400px;
+        height: 50px;
+        font-size:24px;
+        
+        color: black;
+        background-color: white;
+        
+        border-width: 0.02em;
+        box-shadow: 0px 0px 1px 1px rgb(53, 57, 53);
+      }
+      body.dark .field_input_for_search_fixed_width {
+        margin: 10px 10px 10px 10px;
+        width: 400px;
+        height: 50px;
+        font-size:24px;
+        
+        color: white;
+        background-color:black;
+        
+        border-width: 0.02em;
+        box-shadow: 0px 0px 1px 1px rgb(249, 246, 238);
+      }
+
+
+        /* .... .....  input ... field  .... .....  */
+
+        /**/
+
+
+
+
+      /*   --  esri style search text field  --    https://uiverse.io/alexruix/slippery-frog-10 */
+
+              .search_text_esri {
+                width: 100%;
+                height: 107px;
+                line-height: 56px;
+                padding: 0 1rem;
+                padding-left: 0.1rem;
+                border: 2px solid;  /*transparent*/
+                border-radius: 8px;
+                outline: none;
+                background-color: #f3f3f4;
+                color: #0d0c22;
+                transition: .3s ease;
+                font-size:72px;
+              }
+
+              .search_text_esri::placeholder {
+                color: #9e9ea7;
+              }
+              
+              .search_text_esri:focus, search_text_esri:hover {
+                outline: none;
+                border-color: rgba(234,76,137,0.4);
+                background-color: #fff;
+                box-shadow: 0 0 0 4px rgb(234 76 137 / 10%);
+              }
+              .search_text_esri_icon {
+                position: absolute;
+                left: 1rem;
+                fill: #9e9ea7;
+                width: 4rem;
+                height: 4rem;
+              }
+
+              .search_text_esri_group {
+                margin: 0.3rem 0.3rem 0.3rem 0.3rem;
+                display: flex;
+                line-height: 56px;
+                /*align-items: center;*/
+                position: relative;
+                /* max-width: 190px; */
+              }
+              
+        /*  -- end --  esri style search text field  --   https://uiverse.io/alexruix/slippery-frog-10 */
+            
+
+
+                  /*   --  google style search text field  --    https://uiverse.io/TimTrayler/orange-bat-25 */
+
+                        .searchbar-google {
+                          font-size: 36px;
+                          font-family: arial, sans-serif;
+                          color: #202124;
+                          display: flex;
+                          z-index: 3;
+                          height: 70px;
+                          background: white;
+                          border: 1px solid #dfe1e5;
+                          box-shadow: none;
+                          border-radius: 24px;
+                          margin: 0 auto;
+                          width: auto;
+                          max-width: 1900px;
+                          margin: 2rem 1rem 1rem 2rem;
+                        }
+                        
+                        .searchbar-google:hover {
+                          box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+                          border-color: rgba(223,225,229,0);
+                        }
+                        
+                        .searchbar-wrapper-google {
+                          flex: 1;
+                          display: flex;
+                          padding: 5px 8px 0 14px;
+                        }
+                        
+                        .searchbar-left-google {
+                          font-size: 36px;
+                          font-family: arial, sans-serif;
+                          color: #202124;
+                          display: flex;
+                          align-items: center;
+                          padding-right: 13px;
+                          margin-top: -5px;
+                        }
+                        
+                        .search-icon-wrapper-google {
+                          margin: auto;
+                        }
+                        
+                        .search-icon-google {
+                          margin-top: 3px;
+                          color: #9aa0a6;
+                          height: 60px;
+                          line-height: 60px;
+                          width: 60px;
+                        }
+                        
+                        .searchbar-icon-google {
+                          display: inline-block;
+                          fill: currentColor;
+                          height: 60px;
+                          line-height: 60px;
+                          position: relative;
+                          width: 60px;
+                        }
+                        
+                        .searchbar-center-google {
+                          display: flex;
+                          flex: 1;
+                          flex-wrap: wrap;
+                        }
+                        
+                        .searchbar-input-spacer-google {
+                          color: transparent;
+                          flex: 100%;
+                          white-space: pre;
+                          height: 34px;
+                          font-size: 36px;
+                        }
+                        
+                        .searchbar-input-google {
+                          background-color: transparent;
+                          border: none;
+                          margin: 0;
+                          padding: 0;
+                          color: rgba(0, 0, 0, .87);
+                          word-wrap: break-word;
+                          outline: none;
+                          display: flex;
+                          flex: 100%;
+                          margin-top: -37px;
+                          height: 34px;
+                          font-size: 36px;
+                          max-width: 100%;
+                          width: 100%;
+                        }
+                        
+                        .searchbar-right-google {
+                          display: flex;
+                          flex: 0 0 auto;
+                          margin-top: -5px;
+                          align-items: stretch;
+                          flex-direction: row
+                        }
+                        
+                        .searchbar-clear-icon-google {
+                          margin-right: 12px
+                        }
+                        
+                        .voice-search-google {
+                          flex: 1 0 auto;
+                          display: flex;
+                          cursor: pointer;
+                          align-items: center;
+                          border: 0;
+                          background: transparent;
+                          outline: none;
+                          padding: 0 8px;
+                          width: 2.8em;
+                        }
+
+                  /*   -- end -- --  google style search text field  --    https://uiverse.io/TimTrayler/orange-bat-25 */
+
+
+
+
+
+
+
+
+
+
+        /*
+
+        
+
+                      ======   special for data table only  ====== 
+
+
+                                            json-editor customize header color
+                                            https://github.com/josdejong/jsoneditor/issues/1040
+
+
+                                            What you can do is give the containers where you attach the JSONEditors different classes:
+
+                                                      <div class="editor1"></div>
+                                                      <div class="editor2"></div>
+
+                                                      then create different styling for the different containers:
+
+                                                      div.editor1 div.jsoneditor-menu {
+                                                        background-color: red;
+                                                      }
+
+                                                      div.editor2 div.jsoneditor-menu {
+                                                        background-color: blue;
+                                                      }
+
+                                          */
+
+                                          /*  -- jsoneditor -- search only -- */
+                                          #jsoneditor_search div.jsoneditor-menu {
+                                            background-color: #9FE2BF;
+                                            border: thin solid #9FE2BF;
+                                          }
+
+                                          #jsoneditor_search div.jsoneditor {
+                                              border: thin solid #9FE2BF;
+                                          }
+
+
+                                          #jsoneditor_search2 div.jsoneditor-menu {
+                                            background-color: #CCCCFF;
+                                            border: thin solid #CCCCFF;
+                                          }
+
+                                          #jsoneditor_search2 div.jsoneditor {
+                                              border: thin solid #CCCCFF;
+                                          }
+
+
+
+
+
+
+
+
+
+                                          /*  -- jsoneditor -- 1 -- */
+                                          #jsoneditor_info_outline div.jsoneditor-menu {
+                                            background-color: #009688;
+                                            border: thin solid #009688;
+                                          }
+
+                                          #jsoneditor_info_outline div.jsoneditor {
+                                              border: thin solid #009688;
+                                          }
+
+                                          #jsoneditor_list div.jsoneditor-menu {
+                                            background-color: #00bcd4;
+                                            border: thin solid #00bcd4;
+                                          }
+
+                                          #jsoneditor_list div.jsoneditor {
+                                            border: thin solid #00bcd4;
+                                          }
+
+
+                                          /*  dark mode, overwrite property from black to grey */
+                                          #jsoneditor_info_outline div.jsoneditor-field {
+                                            color: grey;
+                                          }
+                                          #jsoneditor_list div.jsoneditor-field {
+                                            color: grey;
+                                          }
+
+
+
+
+
+
+                                          /*  -- jsoneditor -- 2 -- */
+                                          #jsoneditor_info_outline2 div.jsoneditor-menu {
+                                            background-color: #009688;
+                                            border: thin solid #009688;
+                                          }
+
+                                          #jsoneditor_info_outline2 div.jsoneditor {
+                                              border: 4mm ridge #D27D2D;   /* Cinnamon */
+                                          }
+
+                                          #jsoneditor_list2 div.jsoneditor-menu {
+                                            background-color: #00bcd4;
+                                            border: thin solid #00bcd4;
+                                          }
+
+                                          #jsoneditor_list2 div.jsoneditor {
+                                            border: 4mm ridge #D27D2D;
+                                          }
+
+
+                                          /*  dark mode, overwrite property from black to grey */
+                                          #jsoneditor_info_outline2 div.jsoneditor-field {
+                                            color: grey;
+                                          }
+                                          #jsoneditor_list2 div.jsoneditor-field {
+                                            color: grey;
+                                          }
+
+
+
+
+
+
+                                          /*  -- jsoneditor -- 3 -- */
+                                          #jsoneditor_info_outline3 div.jsoneditor-menu {
+                                            background-color: #009688;
+                                            border: thin solid #009688;
+                                          }
+
+                                          #jsoneditor_info_outline3 div.jsoneditor {
+                                            border: 4mm ridge #6082B6;
+                                          }
+
+                                          #jsoneditor_list3 div.jsoneditor-menu {
+                                            background-color: #00bcd4;
+                                            border: thin solid #00bcd4;
+                                          }
+
+                                          #jsoneditor_list3 div.jsoneditor {
+                                            border: 4mm ridge #6082B6;
+                                          }
+
+
+                                          /*  dark mode, overwrite property from black to grey */
+                                          #jsoneditor_info_outline3 div.jsoneditor-field {
+                                            color: grey;
+                                          }
+                                          #jsoneditor_list3 div.jsoneditor-field {
+                                            color: grey;
+                                          }
+
+
+
+
+
+
+                                          /*  -- jsoneditor -- 4 -- */
+                                          #jsoneditor_info_outline4 div.jsoneditor-menu {
+                                            background-color: #009688;
+                                            border: thin solid #009688;
+                                          }
+
+                                          #jsoneditor_info_outline4 div.jsoneditor {
+                                              border: 4mm ridge #E4D00A;
+                                          }
+
+                                          #jsoneditor_list4 div.jsoneditor-menu {
+                                            background-color: #00bcd4;
+                                            border: thin solid #00bcd4;
+                                          }
+
+                                          #jsoneditor_list4 div.jsoneditor {
+                                            border: 4mm ridge #E4D00A;
+                                          }
+
+
+                                          /*  dark mode, overwrite property from black to grey */
+                                          #jsoneditor_info_outline4 div.jsoneditor-field {
+                                            color: grey;
+                                          }
+                                          #jsoneditor_list4 div.jsoneditor-field {
+                                            color: grey;
+                                          }
+
+
+
+
+
+
+                                          /*  -- jsoneditor -- 5 -- */
+                                          #jsoneditor_info_outline5 div.jsoneditor-menu {
+                                            background-color: #009688;
+                                            border: thin solid #009688;
+                                          }
+
+                                          #jsoneditor_info_outline5 div.jsoneditor {
+                                            border: 4mm ridge #FF00FF;
+                                          }
+
+                                          #jsoneditor_list5 div.jsoneditor-menu {
+                                            background-color: #00bcd4;
+                                            border: thin solid #00bcd4;
+                                          }
+
+                                          #jsoneditor_list5 div.jsoneditor {
+                                            border: 4mm ridge #FF00FF;
+                                          }
+
+
+                                          /*  dark mode, overwrite property from black to grey */
+                                          #jsoneditor_info_outline5 div.jsoneditor-field {
+                                            color: grey;
+                                          }
+                                          #jsoneditor_list5 div.jsoneditor-field {
+                                            color: grey;
+                                          }
+
+                                          
+
+
+
+
+
+
+                                          /*  -- jsoneditor -- 6 -- */
+                                          #jsoneditor_info_outline6 div.jsoneditor-menu {
+                                            background-color: #009688;
+                                            border: thin solid #009688;
+                                          }
+
+                                          #jsoneditor_info_outline6 div.jsoneditor {
+                                            border: 4mm ridge #C9A9A6;
+                                          }
+
+                                          #jsoneditor_list6 div.jsoneditor-menu {
+                                            background-color: #00bcd4;
+                                            border: thin solid #00bcd4;
+                                          }
+
+                                          #jsoneditor_list6 div.jsoneditor {
+                                            border: 4mm ridge #C9A9A6;
+                                          }
+
+
+                                          /*  dark mode, overwrite property from black to grey */
+                                          #jsoneditor_info_outline6 div.jsoneditor-field {
+                                            color: grey;
+                                          }
+                                          #jsoneditor_list6 div.jsoneditor-field {
+                                            color: grey;
+                                          }
+
+
+            /*  -----  end ------ json-editor customize color  ----------- */
+
+
+
+
+
+
+
+
+
+
+
+                                          /* ..... button ..... */
+
+
+                                          .close_button{
+
+                                            background-color:  #B87333;  /* copper */
+                                            color: #FFFFFF;
+                                            border-radius: 10px;
+                                            -moz-border-radius: 10px;
+                                            -webkit-border-radius: 10px;
+                                           
+
+                                          }
+
+
+                                
+                                          .naming_button{   /* ..... only for domain.js   serchlayer.js  etc...  ..... */
+
+                                            background-color: #000000;
+                                            color: #FFFFFF;
+                                            padding: 10px;
+                                            border-radius: 10px;
+                                            -moz-border-radius: 10px;
+                                            -webkit-border-radius: 10px;
+                                            margin:10px;
+
+                                            font-weight: 900;
+                                            font-size: 50px;
+
+                                            width: 250px;
+                                            height: 75px;
+
+                                          }
+
+
+
+                                          .search_button{
+
+                                            background-color:  #B87333;  /* copper */
+                                            color: #FFFFFF;
+                                            padding: 10px;
+                                            font-size:36px;
+                                            border-radius: 10px;
+                                            -moz-border-radius: 10px;
+                                            -webkit-border-radius: 10px;
+                                            margin:10px
+
+                                          }
+
+
+                                          body.dark .search_button{
+
+                                            background-color: #FFFFFF; 
+                                            color:  #B87333;  /* copper */
+                                            padding: 10px;
+                                            font-size:36px;
+                                            border-radius: 10px;
+                                            -moz-border-radius: 10px;
+                                            -webkit-border-radius: 10px;
+                                            margin:10px
+
+                                          }
+
+
+                                          .setting_button{
+
+                                            background-color: #000000;
+                                            color: #FFFFFF;
+                                            padding: 10px;
+                                            border-radius: 10px;
+                                            -moz-border-radius: 10px;
+                                            -webkit-border-radius: 10px;
+                                            margin:10px
+
+                                          }
+
+
+                                          body.dark .setting_button{
+
+                                            background-color: #FFFFFF; 
+                                            color: #000000;
+                                            padding: 10px;
+                                            border-radius: 10px;
+                                            -moz-border-radius: 10px;
+                                            -webkit-border-radius: 10px;
+                                            margin:10px
+
+                                          }
+
+
+
+
+
+                                          .small-btn {
+                                              width: 50px;
+                                              height: 30px;
+                                          }
+                                          
+                                          .medium-btn {
+                                              width: 70px;
+                                              height: 50px;
+                                          }
+                                          
+                                          .big-btn {
+                                              width: 130px;
+                                              height:75px;
+                                          }
+
+                                          .xbig-btn {
+                                              width: 180px;
+                                              height:80px;
+                                          }
+
+                                 /* ..... end  .....   button ..... */
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                 
+
+
+
+            .naming_panel {
+              position: fixed;  /* fixed or absolute works ,   relative or empty not work  */
+              width: 30vw;
+              height: 80%;    
+              background-color:  rgba(255, 255, 255, .90);
+             /* border: 2px solid rgba(200, 200, 200, .96); */
+              border: 0;
+              border-radius: 2px;
+              box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0.8);
+              z-index: 300;
+              opacity: 0.89;
+              float:right;
+              overflow-x: auto;
+              overflow-y: auto;
+              right: 2vw;
+              top:  2vw;  
+          }
+          
+          body.dark .naming_panel {
+            background-color:  rgba(0, 0, 0, .90);
+        }
+
+
+
+
+
+        .border_panel {
+          
+              background-color:  rgba(255, 255, 255, .90); 
+             /* background-color:  rgba(0, 0, 0, .90);*/
+          /* border: 2px solid rgba(200, 200, 200, .96); */
+            border: 0;
+            border-radius: 2px;
+            box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0.8);
+            z-index: 300;
+            opacity: 0.8;
+            
+            overflow-x: auto;
+            overflow-y: auto;
+           
+        }
+      
+        body.dark .legend_panel {
+            background-color:  rgba(0, 0, 0, .90);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                /* CSS change button style after click  https://stackoverflow.com/questions/42134731/css-change-button-style-after-click */
+                .click_change_style {
+                  background: none;
+
+                  /* padding: 5px;*/
+                  border-radius: 8px;
+                  -moz-border-radius: 8px;
+                  -webkit-border-radius: 8px;
+                 /* margin:5px  */
+                }
+                .click_change_style:active{
+                  background: #F4BB44;
+
+                }
+                .click_change_style:focus{
+                    background:#F4BB44;
+                }
+                body.dark .click_change_style:active{
+                  background: #B87333;
+
+                }
+                body.dark .click_change_style:focus{
+                    background:#B87333;
+                }
+
+
+              
+                /*  -- flowing flashing button  --  https://codepen.io/vikramsansare/pen/eYJPogJ      https://uicookies.com/css-glow-effects/    */
+
+                .flashing-btn-div {
+                  position: relative;
+                  margin: 0px;
+                  background-color: transparent;
+                }
+                .flashing-btn-div1::before {
+                  content: '';
+                  position: absolute;
+                  left: 0;
+                  top: 0;
+                  width: 50%;
+                  height: 50%;
+                  -webkit-box-shadow: 0 0 17px 3px #ffff01,0 0 4px 2px #ffff01;
+                          box-shadow: 0 0 17px 3px #ffff01,0 0 4px 2px #ffff01;
+                  z-index: -1;
+                  -webkit-animation-name: yellow-shadow;
+                          animation-name: yellow-shadow;
+                  -webkit-animation-timing-function: ease;
+                          animation-timing-function: ease;
+                  -webkit-animation-duration: 2s;
+                          animation-duration: 2s;
+                  -webkit-animation-iteration-count: infinite;
+                          animation-iteration-count: infinite;
+                  border-radius: 5px;
+                  -webkit-border-radius: 5px;
+                  -moz-border-radius: 5px;
+                  -ms-border-radius: 5px;
+                  -o-border-radius: 5px;
+                }
+                
+                .flashing-btn-div1::after {
+                  content: '';
+                  position: absolute;
+                  right: 0;
+                  bottom: 0;
+                  width: 50%;
+                  height: 50%;
+                  -webkit-box-shadow: 0 0 17px 3px #0ff,0 0 4px 2px #0ff;
+                          box-shadow: 0 0 17px 3px #0ff,0 0 4px 2px #0ff;
+                  z-index: -1;
+                  -webkit-animation-name: cyan-shadow;
+                          animation-name: cyan-shadow;
+                  -webkit-animation-timing-function: ease;
+                          animation-timing-function: ease;
+                  -webkit-animation-duration: 2s;
+                          animation-duration: 2s;
+                  -webkit-animation-iteration-count: infinite;
+                          animation-iteration-count: infinite;
+                  border-radius: 5px;
+                  -webkit-border-radius: 5px;
+                  -moz-border-radius: 5px;
+                  -ms-border-radius: 5px;
+                  -o-border-radius: 5px;
+                }
+                
+                .flashing-btn-div2::before {
+                  content: '';
+                  position: absolute;
+                  left: 0;
+                  top: 0;
+                  width: 100%;
+                  height: 100%;
+                  -webkit-box-shadow: 0 0 17px 3px #ffff01,0 0 4px 2px #ffff01;
+                          box-shadow: 0 0 17px 3px #ffff01,0 0 4px 2px #ffff01;
+                  z-index: -1;
+                  -webkit-animation-name: gradient-shadow;
+                          animation-name: gradient-shadow;
+                  -webkit-animation-timing-function: ease;
+                          animation-timing-function: ease;
+                  -webkit-animation-duration: 2s;
+                          animation-duration: 2s;
+                  -webkit-animation-iteration-count: infinite;
+                          animation-iteration-count: infinite;
+                  border-radius: 5px;
+                  -webkit-border-radius: 5px;
+                  -moz-border-radius: 5px;
+                  -ms-border-radius: 5px;
+                  -o-border-radius: 5px;
+                }
+                
+                .flashing-btn-div3::before {
+                  content: '';
+                  position: absolute;
+                  left: 0;
+                  top: 0;
+                  width: 50%;
+                  height: 100%;
+                  -webkit-box-shadow: 0 0 17px 3px #ffff01,0 0 4px 2px #ffff01;
+                          box-shadow: 0 0 17px 3px #ffff01,0 0 4px 2px #ffff01;
+                  z-index: -1;
+                  -webkit-animation-name: half-yellow-shadow;
+                          animation-name: half-yellow-shadow;
+                  -webkit-animation-timing-function: ease;
+                          animation-timing-function: ease;
+                  -webkit-animation-duration: 5s;
+                          animation-duration: 5s;
+                  -webkit-animation-iteration-count: infinite;
+                          animation-iteration-count: infinite;
+                  border-radius: 5px;
+                  -webkit-border-radius: 5px;
+                  -moz-border-radius: 5px;
+                  -ms-border-radius: 5px;
+                  -o-border-radius: 5px;
+                }
+                
+                .flashing-btn-div3::after {
+                  content: '';
+                  position: absolute;
+                  right: 0;
+                  bottom: 0;
+                  width: 50%;
+                  height: 100%;
+                  -webkit-box-shadow: 0 0 17px 3px #0ff,0 0 4px 2px #0ff;
+                          box-shadow: 0 0 17px 3px #0ff,0 0 4px 2px #0ff;
+                  z-index: -1;
+                  -webkit-animation-name: half-cyan-shadow;
+                          animation-name: half-cyan-shadow;
+                  -webkit-animation-timing-function: ease;
+                          animation-timing-function: ease;
+                  -webkit-animation-duration: 5s;
+                          animation-duration: 5s;
+                  -webkit-animation-iteration-count: infinite;
+                          animation-iteration-count: infinite;
+                  border-radius: 5px;
+                  -webkit-border-radius: 5px;
+                  -moz-border-radius: 5px;
+                  -ms-border-radius: 5px;
+                  -o-border-radius: 5px;
+                }
+                
+                .flashing-font {
+                   
+                  /*   
+                      font-size: 24px; 
+                      background-color: #060C1F;
+                      color: #fff;
+                  */
+                  margin: 0;
+                  position: relative;
+                  z-index: 3;
+                  padding: 1px;
+                 
+                  border-radius: 5px;
+                  -webkit-border-radius: 5px;
+                  -moz-border-radius: 5px;
+                  -ms-border-radius: 5px;
+                  -o-border-radius: 5px;
+                }
+                
+                @-webkit-keyframes yellow-shadow {
+                  0% {
+                    top: 0;
+                    left: 0;
+                  }
+                  25% {
+                    top: 50%;
+                    left: 0;
+                  }
+                  50% {
+                    top: 50%;
+                    left: 50%;
+                  }
+                  75% {
+                    top: 0;
+                    left: 50%;
+                  }
+                  100% {
+                    top: 0;
+                    left: 0;
+                  }
+                }
+                
+                @keyframes yellow-shadow {
+                  0% {
+                    top: 0;
+                    left: 0;
+                  }
+                  25% {
+                    top: 50%;
+                    left: 0;
+                  }
+                  50% {
+                    top: 50%;
+                    left: 50%;
+                  }
+                  75% {
+                    top: 0;
+                    left: 50%;
+                  }
+                  100% {
+                    top: 0;
+                    left: 0;
+                  }
+                }
+                
+                @-webkit-keyframes cyan-shadow {
+                  0% {
+                    right: 0;
+                    bottom: 0;
+                  }
+                  25% {
+                    right: 0;
+                    bottom: 50%;
+                  }
+                  50% {
+                    right: 50%;
+                    bottom: 50%;
+                  }
+                  75% {
+                    right: 50%;
+                    bottom: 0;
+                  }
+                  100% {
+                    right: 0;
+                    bottom: 0;
+                  }
+                }
+                
+                @keyframes cyan-shadow {
+                  0% {
+                    right: 0;
+                    bottom: 0;
+                  }
+                  25% {
+                    right: 0;
+                    bottom: 50%;
+                  }
+                  50% {
+                    right: 50%;
+                    bottom: 50%;
+                  }
+                  75% {
+                    right: 50%;
+                    bottom: 0;
+                  }
+                  100% {
+                    right: 0;
+                    bottom: 0;
+                  }
+                }
+                
+                @-webkit-keyframes gradient-shadow {
+                  0% {
+                    -webkit-box-shadow: 0 0 17px 3px #C586C0,0 0 4px 2px #C586C0;
+                            box-shadow: 0 0 17px 3px #C586C0,0 0 4px 2px #C586C0;
+                  }
+                  20% {
+                    -webkit-box-shadow: 0 0 17px 3px #0ff,0 0 4px 2px #0ff;
+                            box-shadow: 0 0 17px 3px #0ff,0 0 4px 2px #0ff;
+                  }
+                  40% {
+                    -webkit-box-shadow: 0 0 17px 3px #0f0,0 0 4px 2px #0f0;
+                            box-shadow: 0 0 17px 3px #0f0,0 0 4px 2px #0f0;
+                  }
+                  60% {
+                    -webkit-box-shadow: 0 0 17px 3px #ffff01,0 0 4px 2px #ffff01;
+                            box-shadow: 0 0 17px 3px #ffff01,0 0 4px 2px #ffff01;
+                  }
+                  80% {
+                    -webkit-box-shadow: 0 0 17px 3px #f00,0 0 4px 2px #f00;
+                            box-shadow: 0 0 17px 3px #f00,0 0 4px 2px #f00;
+                  }
+                  100% {
+                    -webkit-box-shadow: 0 0 17px 3px #C586C0,0 0 4px 2px #C586C0;
+                            box-shadow: 0 0 17px 3px #C586C0,0 0 4px 2px #C586C0;
+                  }
+                }
+                
+                @keyframes gradient-shadow {
+                  0% {
+                    -webkit-box-shadow: 0 0 17px 3px #C586C0,0 0 4px 2px #C586C0;
+                            box-shadow: 0 0 17px 3px #C586C0,0 0 4px 2px #C586C0;
+                  }
+                  20% {
+                    -webkit-box-shadow: 0 0 17px 3px #0ff,0 0 4px 2px #0ff;
+                            box-shadow: 0 0 17px 3px #0ff,0 0 4px 2px #0ff;
+                  }
+                  40% {
+                    -webkit-box-shadow: 0 0 17px 3px #0f0,0 0 4px 2px #0f0;
+                            box-shadow: 0 0 17px 3px #0f0,0 0 4px 2px #0f0;
+                  }
+                  60% {
+                    -webkit-box-shadow: 0 0 17px 3px #ffff01,0 0 4px 2px #ffff01;
+                            box-shadow: 0 0 17px 3px #ffff01,0 0 4px 2px #ffff01;
+                  }
+                  80% {
+                    -webkit-box-shadow: 0 0 17px 3px #f00,0 0 4px 2px #f00;
+                            box-shadow: 0 0 17px 3px #f00,0 0 4px 2px #f00;
+                  }
+                  100% {
+                    -webkit-box-shadow: 0 0 17px 3px #C586C0,0 0 4px 2px #C586C0;
+                            box-shadow: 0 0 17px 3px #C586C0,0 0 4px 2px #C586C0;
+                  }
+                }
+                
+                @-webkit-keyframes half-yellow-shadow {
+                  0% {
+                    top: 0;
+                    left: 0;
+                    height: 50%;
+                    width: 50%;
+                  }
+                  16.66% {
+                    top: 0;
+                    left: 0;
+                    height: 50%;
+                    width: 100%;
+                  }
+                  32.32% {
+                    top: 0;
+                    left: 50%;
+                    height: 50%;
+                    width: 50%;
+                  }
+                  49.98% {
+                    top: 50%;
+                    left: 50%;
+                    height: 50%;
+                    width: 50%;
+                  }
+                  66.64% {
+                    top: 50%;
+                    left: 0;
+                    height: 50%;
+                    width: 100%;
+                  }
+                  83.3% {
+                    top: 50%;
+                    left: 0;
+                    height: 50%;
+                    width: 50%;
+                  }
+                  100% {
+                    top: 0;
+                    left: 0;
+                    height: 50%;
+                    width: 50%;
+                  }
+                }
+                
+                @keyframes half-yellow-shadow {
+                  0% {
+                    top: 0;
+                    left: 0;
+                    height: 50%;
+                    width: 50%;
+                  }
+                  16.66% {
+                    top: 0;
+                    left: 0;
+                    height: 50%;
+                    width: 100%;
+                  }
+                  32.32% {
+                    top: 0;
+                    left: 50%;
+                    height: 50%;
+                    width: 50%;
+                  }
+                  49.98% {
+                    top: 50%;
+                    left: 50%;
+                    height: 50%;
+                    width: 50%;
+                  }
+                  66.64% {
+                    top: 50%;
+                    left: 0;
+                    height: 50%;
+                    width: 100%;
+                  }
+                  83.3% {
+                    top: 50%;
+                    left: 0;
+                    height: 50%;
+                    width: 50%;
+                  }
+                  100% {
+                    top: 0;
+                    left: 0;
+                    height: 50%;
+                    width: 50%;
+                  }
+                }
+                
+                @-webkit-keyframes half-cyan-shadow {
+                  0% {
+                    bottom: 0;
+                    right: 0;
+                    height: 50%;
+                    width: 50%;
+                  }
+                  16.66% {
+                    bottom: 0;
+                    right: 0;
+                    height: 50%;
+                    width: 100%;
+                  }
+                  32.32% {
+                    bottom: 0;
+                    right: 50%;
+                    height: 50%;
+                    width: 50%;
+                  }
+                  49.98% {
+                    bottom: 50%;
+                    right: 50%;
+                    height: 50%;
+                    width: 50%;
+                  }
+                  66.64% {
+                    bottom: 50%;
+                    right: 0;
+                    height: 50%;
+                    width: 100%;
+                  }
+                  83.3% {
+                    bottom: 50%;
+                    right: 0;
+                    height: 50%;
+                    width: 50%;
+                  }
+                  100% {
+                    bottom: 0;
+                    right: 0;
+                    height: 50%;
+                    width: 50%;
+                  }
+                }
+                
+                @keyframes half-cyan-shadow {
+                  0% {
+                    bottom: 0;
+                    right: 0;
+                    height: 50%;
+                    width: 50%;
+                  }
+                  16.66% {
+                    bottom: 0;
+                    right: 0;
+                    height: 50%;
+                    width: 100%;
+                  }
+                  32.32% {
+                    bottom: 0;
+                    right: 50%;
+                    height: 50%;
+                    width: 50%;
+                  }
+                  49.98% {
+                    bottom: 50%;
+                    right: 50%;
+                    height: 50%;
+                    width: 50%;
+                  }
+                  66.64% {
+                    bottom: 50%;
+                    right: 0;
+                    height: 50%;
+                    width: 100%;
+                  }
+                  83.3% {
+                    bottom: 50%;
+                    right: 0;
+                    height: 50%;
+                    width: 50%;
+                  }
+                  100% {
+                    bottom: 0;
+                    right: 0;
+                    height: 50%;
+                    width: 50%;
+                  }
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+             /*   -------- glowing   --------  https://uiverse.io/detail/cssbuttons-io/funny-dog-69   */
+             .glowing-button {
+              --glow-color: rgb(217, 176, 255);
+              --glow-spread-color: rgba(191, 123, 255, 0.781);
+              --enhanced-glow-color: rgb(231, 206, 255);
+              --btn-color: rgb(100, 61, 136);
+              border: .25em solid var(--glow-color);
+              padding: 0.1em 0.3em;
+              color: var(--glow-color);
+              font-size: 5px;
+              font-weight: bold;
+              background-color: var(--btn-color);
+              border-radius: 1em;
+              outline: none;
+              box-shadow: 0 0 1em .25em var(--glow-color),
+                     0 0 4em 1em var(--glow-spread-color),
+                     inset 0 0 .75em .25em var(--glow-color);
+              text-shadow: 0 0 .5em var(--glow-color);
+              position: relative;
+              transition: all 0.3s;
+             }
+             
+             .glowing-button::after {
+              pointer-events: none;
+              content: "";
+              position: absolute;
+              top: 120%;
+              left: 0;
+              height: 100%;
+              width: 100%;
+              background-color: var(--glow-spread-color);
+              filter: blur(2em);
+              opacity: .7;
+              transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
+             }
+             
+             .glowing-button:hover {
+              color: var(--btn-color);
+              background-color: var(--glow-color);
+              box-shadow: 0 0 1em .25em var(--glow-color),
+                     0 0 4em 2em var(--glow-spread-color),
+                     inset 0 0 .75em .25em var(--glow-color);
+             }
+             
+             .glowing-button:active {
+              box-shadow: 0 0 0.6em .25em var(--glow-color),
+                     0 0 2.5em 2em var(--glow-spread-color),
+                     inset 0 0 .5em .25em var(--glow-color);
+             }
+     
+
+
+
+
+
+
+            .drag-n-drop-tag{
+
+              vertical-align: text-top;
+              float: right;
+
+
+
+              --glow-color: rgb(217, 176, 255);
+              --glow-spread-color: rgba(191, 123, 255, 0.781);
+              --enhanced-glow-color: rgb(231, 206, 255);
+              --btn-color: rgb(100, 61, 136);
+              border: .25em solid var(--glow-color);
+              padding: 0.5em 1em;
+              color: var(--glow-color);
+              font-size: 6px;
+              font-weight:100;
+              background-color: var(--btn-color);
+              border-radius: 1em;
+              outline: none;
+              box-shadow: 0 0 1em .25em var(--glow-color),
+                     0 0 4em 1em var(--glow-spread-color),
+                     inset 0 0 .75em .25em var(--glow-color);
+              text-shadow: 0 0 .5em var(--glow-color);
+              position: relative;
+              transition: all 0.3s;
+
+             
+
+            }
+
+
+             /* -----  end  -------- -------- glowing   --------   --------  https://uiverse.io/detail/cssbuttons-io/funny-dog-69   */
+
+
+
+         /* -----  zoom-to-button   --------   --------  https://uiverse.io/detail/shah1345/spicy-liger-32   */
+
+             .zoom-to-button {
+              display: inline-block;
+              transition: all 0.2s ease-in;
+              position: relative;
+              overflow: hidden;
+              z-index: 1;
+              color: #090909;
+              padding: 0.1em 0.2em;
+              font-size: 8px;
+              border-radius: 0.5em;
+              background: #e8e8e8;
+              border: 1px solid #e8e8e8;
+              box-shadow: 6px 6px 12px #c5c5c5,
+                         -6px -6px 12px #ffffff;
+            }
+            
+            .zoom-to-button:active {
+              color: #666;
+              box-shadow: inset 4px 4px 12px #c5c5c5,
+                         inset -4px -4px 12px #ffffff;
+            }
+            
+            .zoom-to-button:before {
+              content: "";
+              position: absolute;
+              left: 50%;
+              transform: translateX(-50%) scaleY(1) scaleX(1.25);
+              top: 100%;
+              width: 140%;
+              height: 180%;
+              background-color: rgba(0, 0, 0, 0.05);
+              border-radius: 50%;
+              display: block;
+              transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+              z-index: -1;
+            }
+            
+            .zoom-to-button:after {
+              content: "";
+              position: absolute;
+              left: 55%;
+              transform: translateX(-50%) scaleY(1) scaleX(1.45);
+              top: 180%;
+              width: 160%;
+              height: 190%;
+              background-color: #009087;
+              border-radius: 50%;
+              display: block;
+              transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+              z-index: -1;
+            }
+            
+            .zoom-to-button:hover {
+              color: #ffffff;
+              border: 1px solid #009087;
+            }
+            
+            .zoom-to-button:hover:before {
+              top: -35%;
+              background-color: #009087;
+              transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+            }
+            
+            .zoom-to-button:hover:after {
+              top: -45%;
+              background-color: #009087;
+              transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+            }
+
+
+          /*  -----  end  -------- -----  zoom-to-button   --------   --------  https://uiverse.io/detail/shah1345/spicy-liger-32   */
+
+
+
+          /* -----  dark-mode-button   --------   --------  https://uiverse.io/detail/EmmaxPlay/rude-yak-98   */
+
+
+                     /* From uiverse.io by @EmmaxPlay */
+                            .dark-mode-button {
+
+                              vertical-align: text-top;
+                              /* float: right; */
+                              top: 0.1em;
+                              right: 0.1em;
+
+                              padding: 0.2em 0.5em;
+                              border: none;
+                              outline: none;
+                              color: #FFF;
+                              font-family: inherit;
+                              font-weight: 500;
+                              font-size: 18px;
+                              cursor: pointer;
+                              position: relative;
+                              z-index: 0;
+                              border-radius: 12px;
+                            }
+                            
+                            .dark-mode-button::after {
+                              content: "";
+                              z-index: -1;
+                              position: absolute;
+                              width: 100%;
+                              height: 100%;
+                              background-color: rgb(46, 46, 46);
+                              left: 0;
+                              top: 0;
+                              border-radius: 10px;
+                            }
+                            /* glow */
+                            .dark-mode-button::before {
+                              content: "";
+                              background: linear-gradient(
+                                45deg,
+                                #FF0000, #002BFF, #FF00C8, #002BFF,
+                                  #FF0000, #002BFF, #FF00C8, #002BFF
+                            );
+                              position: absolute;
+                              top: -2px;
+                              right: -2px;
+                              background-size: 600%;
+                              z-index: -1;
+                              width: calc(100% + 4px);
+                              height: calc(100% + 4px);
+                              filter: blur(8px);
+                              animation: glowing 20s linear infinite;
+                              transition: opacity .3s ease-in-out;
+                              border-radius: 10px;
+                              opacity: 0;
+                            }
+                            
+                            @keyframes glowing {
+                              0% {
+                              background-position: 0 0;
+                              }
+                            
+                              50% {
+                              background-position: 400% 0;
+                              }
+                            
+                              100% {
+                              background-position: 0 0;
+                              }
+                            }
+                            
+                            /* hover */
+                            .dark-mode-button:hover::before {
+                              opacity: 1;
+                            }
+                            
+                            .dark-mode-button:active:after {
+                              background: transparent;
+                            }
+                            
+                            .dark-mode-button:active {
+                              color: #000;
+                              font-weight: bold;
+                            }
+
+
+           /* -----  end  -------- ----- dark-mode-button street-view-button   --------   --------  https://uiverse.io/detail/EmmaxPlay/rude-yak-98   */
+
+
+
+            /*  -----  street-view-button   --------   --------  https://uiverse.io/detail/adamgiebl/lucky-donkey-6   */
+
+                                  /* From uiverse.io by @adamgiebl */
+                                          .street-view-button {
+
+                                            vertical-align: text-top;
+                                           /* float: right; */
+                                            margin-top: 0.1em;
+                                            margin-left: 1em;
+                                            margin-right: 1em;
+
+
+                                            color: #090909;
+                                            padding: 0.2em 0.5em;
+                                            font-size: 12px;
+                                            border-radius: 0.5em;
+                                            background: #e8e8e8;
+                                            border: 1px solid #e8e8e8;
+                                            transition: all .3s;
+                                            box-shadow: 6px 6px 12px #c5c5c5,
+                                                        -6px -6px 12px #ffffff;
+                                          }
+                                          
+                                          .street-view-button:hover {
+                                            border: 1px solid white;
+                                          }
+                                          
+                                          .street-view-button:active {
+                                            box-shadow: 4px 4px 12px #c5c5c5,
+                                                        -4px -4px 12px #ffffff;
+                                          }
+
+
+
+
+
+
+                                          /*  street view button turn on mode   https://uiverse.io/detail/cssbuttons-io/funny-dog-69    */
+                                                                .street-view-button-turn-on-mode {
+
+                                                                  vertical-align: text-top;
+                                                                  /* float: right; */
+                                                                  margin-top: 0.1em;
+                                                                  margin-left: 1em;
+                                                                  margin-right: 1em;
+                                                                 
+
+                                                                  --glow-color: rgb(152, 251, 152);  /* Light  Mint Green    */
+                                                                  --glow-spread-color: rgb(50, 205, 50);    /* darker Lime Green  */
+                                                                  --enhanced-glow-color: rgb(236, 255, 220);  /* Lightest  Nyanza    */
+                                                                  --btn-color: rgb(53, 94, 59);  /* darkest   Hunter Green  */
+
+
+
+                                                                  
+                                                                  border: .25em solid var(--glow-color);
+                                                                  padding: 0.2em 0.5em;
+                                                                  color: var(--glow-color);
+                                                                  font-size: 15px;
+                                                                  font-weight: bold;
+                                                                  background-color: var(--btn-color);
+                                                                  border-radius: 1em;
+                                                                  outline: none;
+                                                                  box-shadow: 0 0 1em .25em var(--glow-color),
+                                                                        0 0 4em 1em var(--glow-spread-color),
+                                                                        inset 0 0 .75em .25em var(--glow-color);
+                                                                  text-shadow: 0 0 .5em var(--glow-color);
+                                                                  position: relative;
+                                                                  transition: all 0.3s;
+                                                                }
+                                                                
+                                                                .street-view-button-turn-on-mode::after {
+                                                                  pointer-events: none;
+                                                                  content: "";
+                                                                  position: absolute;
+                                                                  top: 120%;
+                                                                  left: 0;
+                                                                  height: 100%;
+                                                                  width: 100%;
+                                                                  background-color: var(--glow-spread-color);
+                                                                  filter: blur(2em);
+                                                                  opacity: .7;
+                                                                  transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
+                                                                }
+                                                                
+                                                                .street-view-button-turn-on-mode:hover {
+                                                                  color: var(--btn-color);
+                                                                  background-color: var(--glow-color);
+                                                                  box-shadow: 0 0 1em .25em var(--glow-color),
+                                                                        0 0 4em 2em var(--glow-spread-color),
+                                                                        inset 0 0 .75em .25em var(--glow-color);
+                                                                }
+                                                                
+                                                                .street-view-button-turn-on-mode:active {
+                                                                  box-shadow: 0 0 0.6em .25em var(--glow-color),
+                                                                        0 0 2.5em 2em var(--glow-spread-color),
+                                                                        inset 0 0 .5em .25em var(--glow-color);
+                                                                }
+
+
+           /* -----  end  -------- -----  street-view-button   --------   --------  https://uiverse.io/detail/adamgiebl/lucky-donkey-6   */
+
+
+
+        /*  -----  shift button   --------   --------  https://uiverse.io/Yaya12085/quick-husky-74   https://uiverse.io/Yaya12085/afraid-robin-32 */
+
+
+        .shift_button {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: flex-end;
+          background-color: #000;
+          color: #fff;
+          font-size: 16px;
+          letter-spacing: 1px;
+          border: 0.5px solid rgba(0, 0, 0, 0.1);
+          padding-bottom: 8px;
+          height: 44px;
+          width: 123px; /*  need adjust by how long the text */
+          padding: 12px;
+          border-radius: 15px 15px 12px 12px;
+          cursor: pointer;
+          position: relative;
+          will-change: transform;
+          transition: all .1s ease-in-out 0s;
+          user-select: none;
+          /* Add gradient shading to each side */
+          background-image: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)),
+            linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+          background-position: bottom right, bottom right;
+          background-size: 100% 100%, 100% 100%;
+          background-repeat: no-repeat;
+          box-shadow: inset -4px -10px 0px rgba(255, 255, 255, 0.4),
+            inset -4px -8px 0px rgba(0, 0, 0, 0.3),
+            0px 2px 1px rgba(0, 0, 0, 0.3),
+            0px 2px 1px rgba(255, 255, 255, 0.1);
+          transform: perspective(70px) rotateX(5deg) rotateY(0deg);
+        }
+        
+        .shift_button span {
+          transform: translateY(-10px);
+        }
+        
+        .shift_button::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.5));
+          z-index: -1;
+          border-radius: 15px;
+          box-shadow: inset 4px 0px 0px rgba(255, 255, 255, 0.1),
+            inset 4px -8px 0px rgba(0, 0, 0, 0.3);
+          transition: all .1s ease-in-out 0s;
+        }
+        
+        .shift_button::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background-image: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)),
+            linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+          background-position: bottom right, bottom right;
+          background-size: 100% 100%, 100% 100%;
+          background-repeat: no-repeat;
+          z-index: -1;
+          border-radius: 15px;
+          transition: all .1s ease-in-out 0s;
+        }
+        
+        .shift_button:active {
+          will-change: transform;
+          transform: perspective(80px) rotateX(5deg) rotateY(1deg) translateY(3px) scale(0.96);
+          height: 64px;
+          border: 0.25px solid rgba(0, 0, 0, 0.2);
+          box-shadow: inset -4px -8px 0px rgba(255, 255, 255, 0.2),
+            inset -4px -6px 0px rgba(0, 0, 0, 0.8),
+            0px 1px 0px rgba(0, 0, 0, 0.9),
+            0px 1px 0px rgba(255, 255, 255, 0.2);
+          transition: all .1s ease-in-out 0s;
+        }
+        
+        .shift_button::after:active {
+          background-image: linear-gradient(to bottom,rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.2));
+        }
+        
+        .shift_button:active::before {
+          content: "";
+          display: block;
+          position: absolute;
+          top: 5%;
+          left: 20%;
+          width: 50%;
+          height: 80%;
+          background-color: rgba(255, 255, 255, 0.1);
+          animation: overlay 0.1s ease-in-out 0s;
+          pointer-events: none;
+        }
+        
+        .shift_button svg {
+          width: 15px;
+          height: 15px;
+        }
+        
+        @keyframes overlay {
+          from {
+            opacity: 0;
+          }
+        
+          to {
+            opacity: 1;
+          }
+        }
+        
+        .shift_button:focus {
+          outline: none;
+        }
+
+
+        /*  -----  -----  end  -------- shift button   --------   --------  */
+
+
+
+
+             /*  -----  setting-button   --------   --------  */
+
+                                  
+
+
+                                  /* From uiverse.io by @EmmaxPlay   https://uiverse.io/detail/EmmaxPlay/rude-yak-98 */
+                                                .setting-button {
+
+                                                  margin: 0.2em;
+
+
+                                                  padding: 0.1em 0.2em;
+                                                  border: none;
+                                                  outline: none;
+                                                  color: #FFF;
+                                                  font-family: inherit;
+                                                  font-weight: 100;
+                                                  font-size: 24px;
+                                                  cursor: pointer;
+                                                  position: relative;
+                                                  z-index: 0;
+                                                  border-radius: 12px;
+                                                }
+                                                
+                                                .setting-button::after {
+                                                  content: "";
+                                                  z-index: -1;
+                                                  position: absolute;
+                                                  width: 100%;
+                                                  height: 100%;
+                                                  background-color: rgb(46, 46, 46);
+                                                  left: 0;
+                                                  top: 0;
+                                                  border-radius: 10px;
+                                                }
+                                                /* glow */
+                                                .setting-button::before {
+                                                  content: "";
+                                                  background: linear-gradient(
+                                                    45deg,
+                                                    #FF0000, #002BFF, #FF00C8, #002BFF,
+                                                      #FF0000, #002BFF, #FF00C8, #002BFF
+                                                );
+                                                  position: absolute;
+                                                  top: -2px;
+                                                  left: -2px;
+                                                  background-size: 600%;
+                                                  z-index: -1;
+                                                  width: calc(100% + 4px);
+                                                  height: calc(100% + 4px);
+                                                  filter: blur(8px);
+                                                  animation: glowing 20s linear infinite;
+                                                  transition: opacity .3s ease-in-out;
+                                                  border-radius: 10px;
+                                                  opacity: 0;
+                                                }
+                                                
+                                                @keyframes glowing {
+                                                  0% {
+                                                  background-position: 0 0;
+                                                  }
+                                                
+                                                  50% {
+                                                  background-position: 400% 0;
+                                                  }
+                                                
+                                                  100% {
+                                                  background-position: 0 0;
+                                                  }
+                                                }
+                                                
+                                                /* hover */
+                                                .setting-button:hover::before {
+                                                  opacity: 1;
+                                                }
+                                                
+                                                .setting-button:active:after {
+                                                  background: transparent;
+                                                }
+                                                
+                                                .setting-button:active {
+                                                  color: #000;
+                                                  font-weight: bold;
+                                                }
+
+
+
+
+
+                                  /*  setting button turn on mode   https://uiverse.io/detail/cssbuttons-io/funny-dog-69    */
+                                                        .setting-button-turn-on-mode {
+
+                                                          
+                                                          margin: 0.2em;
+
+
+                                                          --glow-color: rgb(192, 192, 192);  /* Light  Silver    */
+                                                          --glow-spread-color: rgb(112, 128, 144);    /* darker Slate Gray  */
+                                                          --enhanced-glow-color: rgb(229, 228, 226);  /* Lightest  Platinum    */
+                                                          --btn-color: rgb(113, 121, 126);  /* darkest   Steel Gray  */
+
+
+                                                         
+                                                          border: .25em solid var(--glow-color);
+                                                          padding: 0.1em 0.2em;
+                                                          color: var(--glow-color);
+                                                          font-size: 36px;
+                                                          font-weight:900;
+                                                          background-color: var(--btn-color);
+                                                          border-radius: 1em;
+                                                          outline: none;
+                                                          box-shadow: 0 0 1em .25em var(--glow-color),
+                                                                0 0 4em 1em var(--glow-spread-color),
+                                                                inset 0 0 .75em .25em var(--glow-color);
+                                                          text-shadow: 0 0 .5em var(--glow-color);
+                                                          position: relative;
+                                                          transition: all 0.3s;
+                                                        }
+                                                        
+                                                        .setting-button-turn-on-mode::after {
+                                                          pointer-events: none;
+                                                          content: "";
+                                                          position: absolute;
+                                                          top: 120%;
+                                                          left: 0;
+                                                          height: 100%;
+                                                          width: 100%;
+                                                          background-color: var(--glow-spread-color);
+                                                          filter: blur(2em);
+                                                          opacity: .7;
+                                                          transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
+                                                        }
+                                                        
+                                                        .setting-button-turn-on-mode:hover {
+                                                          color: var(--btn-color);
+                                                          background-color: var(--glow-color);
+                                                          box-shadow: 0 0 1em .25em var(--glow-color),
+                                                                0 0 4em 2em var(--glow-spread-color),
+                                                                inset 0 0 .75em .25em var(--glow-color);
+                                                        }
+                                                        
+                                                        .setting-button-turn-on-mode:active {
+                                                          box-shadow: 0 0 0.6em .25em var(--glow-color),
+                                                                0 0 2.5em 2em var(--glow-spread-color),
+                                                                inset 0 0 .5em .25em var(--glow-color);
+                                                        }
+
+
+   /* -----  end  -------- -----  setting-button   --------   --------    */
+
+
+
+
+
+
+                  /* -----  close-button   --------   --------  https://uiverse.io/detail/EmmaxPlay/rude-yak-98   */
+
+
+                             /* From uiverse.io by @EmmaxPlay */
+                             .close-button {
+
+                              vertical-align: text-top;
+                              float: right;
+                              top: 0.3em;
+                              right: 0.3em;
+
+                             
+
+                              padding: 0.01em 0.3em;
+                              border: none;
+                              outline: none;
+                              color: #FFF;
+                              font-family: inherit;
+                              font-weight: 900;
+                              font-size: 36px;
+                              cursor: pointer;
+                              position: relative;
+                              z-index: 310;  /* list panel index is 300, close button must on top of it, greater than 300*/
+                              border-radius: 10px;
+                            }
+                            
+                            .close-button::after {
+                              content: "";
+                              z-index: -1;
+                              position: absolute;
+                              width: 100%;
+                              height: 100%;
+                              background-color: rgb(46, 46, 46);
+                              left: 0;
+                              top: 0;
+                              border-radius: 10px;
+                            }
+                            /* glow */
+                            .close-button::before {
+                              content: "";
+                              background: linear-gradient(
+                                45deg,
+                                #FF0000, #002BFF, #FF00C8, #002BFF,
+                                  #FF0000, #002BFF, #FF00C8, #002BFF
+                            );
+                              position: absolute;
+                              top: -2px;
+                              right: -2px;
+                              background-size: 600%;
+                              z-index: -1;
+                              width: calc(100% + 4px);
+                              height: calc(100% + 4px);
+                              filter: blur(8px);
+                              animation: glowing 20s linear infinite;
+                              transition: opacity .3s ease-in-out;
+                              border-radius: 10px;
+                              opacity: 0;
+                            }
+                            
+                            @keyframes glowing {
+                              0% {
+                              background-position: 0 0;
+                              }
+                            
+                              50% {
+                              background-position: 400% 0;
+                              }
+                            
+                              100% {
+                              background-position: 0 0;
+                              }
+                            }
+                            
+                            /* hover */
+                            .close-button:hover::before {
+                              opacity: 1;
+                            }
+                            
+                            .close-button:active:after {
+                              background: transparent;
+                            }
+                            
+                            .close-button:active {
+                              color:  #000;
+                              font-weight: 900;
+                            }
+
+
+           /* -----  end  -------- ----- close-button street-view-button   --------   --------  https://uiverse.io/detail/EmmaxPlay/rude-yak-98   */
+
+
+
+
+
+    /*  -----  click-button   --------   --------  */
+
+
+   /* From uiverse.io by @Voxybuns */
+        .click-button {
+              /* Variables */
+            --button_radius: 0.5em;
+            --button_color: #e8e8e8;
+            --button_outline_color: #000000;
+            font-size: 12px;
+            font-weight: bold;
+            border: none;
+            border-radius: var(--button_radius);
+            background: var(--button_outline_color);
+            }
+
+            .click-button_top {
+            display: block;
+            box-sizing: border-box;
+            border: 2px solid var(--button_outline_color);
+            border-radius: var(--button_radius);
+            padding: 0.2em 0.4em;
+            background: var(--button_color);
+            color: var(--button_outline_color);
+            transform: translateY(-0.2em);
+            transition: transform 0.1s ease;
+            }
+
+            .click-button:hover .click-button_top {
+              /* Pull the button upwards when hovered */
+            transform: translateY(-0.33em);
+            }
+
+            .click-button:active .click-button_top {
+              /* Push the button downwards when pressed */
+            transform: translateY(0);
+            }
+
+
+
+
+
+
+
+
+            /*
+
+              custom list
+              https://css-tricks.com/custom-list-number-styling/
+
+            */
+
+
+            ol {
+              list-style: none;
+              counter-reset: my-awesome-counter;
+            }
+            ol li {
+              counter-increment: my-awesome-counter;
+            }
+            ol li::before {
+
+              content: counter(my-awesome-counter) "  ";
+              
+            }
+            .ordered_list_number{
+
+              font-size:6px;
+              font-weight:100;
+              
+            }
+
+
+
+
+
+
+            .static_box {
+              border: 3px solid #666;
+              background-color: #E5E4E2;   /* Platinum */
+              border-radius: .5em;
+
+              padding: 10px;
+              margin-left:20px;
+              margin-right:20px;
+            }
+
+
+
+            /*   ... movable ...    Using the HTML5 Drag and Drop API  ... ...     https://web.dev/drag-and-drop/    ... ...      */   
+
+                .movable_container {
+                  display: grid;
+                  grid-template-columns: auto;
+                  gap: 10px;
+                }
+
+                .movable_box {
+                  border: 3px solid #666;
+                  background-color: #ddd;
+                  border-radius: .5em;
+
+                  padding: 10px;
+                  margin-left:20px;
+                  margin-right:20px;
+                 
+
+                  cursor: move;
+                }
+
+                .movable_box.over {
+                  border: 6px dotted #666;
+                  background-color: #FFFFFF;
+                }
+
+
+                [draggable] {
+                  user-select: none;
+                }
+
+
+
+
+                /*  ************   dark mode    ************     */
+
+                body.dark .movable_box {
+                  border: 3px solid #999999;
+                  background-color: #454545;
+                  border-radius: .5em;
+
+                  padding: 10px;
+                  margin-left:20px;
+                  margin-right:20px;
+                 
+
+                  cursor: move;
+                }
+
+
+                body.dark .static_box {
+                  border: 3px solid #E5E4E2;
+                  background-color: #36454F;    /*     Charcoal */
+                  border-radius: .5em;
+
+                  padding: 10px;
+                  margin-left:20px;
+                  margin-right:20px;
+                }
+
+                 /*   ************     end  ************   dark mode    ************     */
+
+
+            /*   ... ...    end ... movable ...    Using the HTML5 Drag and Drop API  ... ...     https://web.dev/drag-and-drop/    ... ...      */   
+
+
+
+
+
+
+
+            .primary-layer-name{
+              font-weight: 900;
+            }
+
+            .secondary-layer-name{
+               font-weight: 100;
+            }
+
+
+            
+
+
+
+
+
+
+
+
+            /* ------- let's go to your REST api  ------- */
+            .topbar-container {
+
+              
+
+              background-color:PaleGreen;
+              
+              overflow-x: auto;
+              overflow-y: auto;
+            
+              
+              padding-top: 10px;
+              padding-left: 10px;
+              padding-bottom: 10px;
+              padding-right: 10px;
+              
+            }
+
+            body.dark .topbar-container {
+              background-color: DarkGreen;
+            }
+
+            /* for whole line full width */
+            .rest_api_endpoint_class {
+              width:   calc(100% - 70.85px - 123px - 20px);  /* 100% width - dark button width(70.85px) - let's go button width(123px) - spacing(20px)     https://developer.mozilla.org/en-US/docs/Web/CSS/calc  */
+              padding-left: 10px;
+              padding-right: 10px;
+            }
+            /*  -------  end ------- let's go to your REST api  ------- */
+
+   
+
+
+
+
+
+
+
+                /* CSS change button style after click  https://stackoverflow.com/questions/42134731/css-change-button-style-after-click */
+                .click_change_style {
+                  background: none;
+
+                   /* padding: 5px;*/
+                   border-radius: 8px;
+                   -moz-border-radius: 8px;
+                   -webkit-border-radius: 8px;
+                  /* margin:5px  */
+                  
+                }
+                .click_change_style:active{
+                  background: #F4BB44;
+
+                }
+                .click_change_style:focus{
+                    background:#F4BB44;
+                }
+                body.dark .click_change_style:active{
+                  background: #B87333;
+
+                }
+                body.dark .click_change_style:focus{
+                    background:#B87333;
+                }
+
+
+
+
+
+                /*   for g40       */
+                .selected_style {
+                  background: #F4BB44;
+
+                   /* padding: 5px;*/
+                   border-radius: 8px;
+                   -moz-border-radius: 8px;
+                   -webkit-border-radius: 8px;
+                  /* margin:5px  */
+                  
+                }
+
+                body.dark .selected_style {
+                  background: #B87333;
+
+                   /* padding: 5px;*/
+                   border-radius: 8px;
+                   -moz-border-radius: 8px;
+                   -webkit-border-radius: 8px;
+                  /* margin:5px  */
+                  
+                }
+                
+
+               /*   == ==  end   == ==  CSS change button style after click  https://stackoverflow.com/questions/42134731/css-change-button-style-after-click */
+
+
+
+
+
+
+              /*  loader - https://uiverse.io/Nawsome/tender-swan-29  */
+
+              .socket {
+                width: 200px;
+                height: 200px;
+                position: absolute;
+                left: 50%;
+                margin-left: -100px;
+                top: 50%;
+                margin-top: -100px;
+              }
+              
+              .hex-brick {
+                background: #9FE2BF; /* #000000;   for-original-black-serial */
+                width: 30px;
+                height: 17px;
+                position: absolute;
+                top: 5px;
+                animation-name: fade00;
+                animation-duration: 2s;
+                animation-iteration-count: infinite;
+                -webkit-animation-name: fade00;
+                -webkit-animation-duration: 2s;
+                -webkit-animation-iteration-count: infinite;
+              }
+              
+              .h2 {
+                transform: rotate(60deg);
+                -webkit-transform: rotate(60deg);
+              }
+              
+              .h3 {
+                transform: rotate(-60deg);
+                -webkit-transform: rotate(-60deg);
+              }
+              
+              .gel {
+                height: 30px;
+                width: 30px;
+                transition: all .3s;
+                -webkit-transition: all .3s;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+              }
+              
+              .center-gel {
+                margin-left: -15px;
+                margin-top: -15px;
+                animation-name: pulse00;
+                animation-duration: 2s;
+                animation-iteration-count: infinite;
+                -webkit-animation-name: pulse00;
+                -webkit-animation-duration: 2s;
+                -webkit-animation-iteration-count: infinite;
+              }
+              
+              .c1 {
+                margin-left: -47px;
+                margin-top: -15px;
+              }
+              
+              .c2 {
+                margin-left: -31px;
+                margin-top: -43px;
+              }
+              
+              .c3 {
+                margin-left: 1px;
+                margin-top: -43px;
+              }
+              
+              .c4 {
+                margin-left: 17px;
+                margin-top: -15px;
+              }
+              
+              .c5 {
+                margin-left: -31px;
+                margin-top: 13px;
+              }
+              
+              .c6 {
+                margin-left: 1px;
+                margin-top: 13px;
+              }
+              
+              .c7 {
+                margin-left: -63px;
+                margin-top: -43px;
+              }
+              
+              .c8 {
+                margin-left: 33px;
+                margin-top: -43px;
+              }
+              
+              .c9 {
+                margin-left: -15px;
+                margin-top: 41px;
+              }
+              
+              .c10 {
+                margin-left: -63px;
+                margin-top: 13px;
+              }
+              
+              .c11 {
+                margin-left: 33px;
+                margin-top: 13px;
+              }
+              
+              .c12 {
+                margin-left: -15px;
+                margin-top: -71px;
+              }
+              
+              .c13 {
+                margin-left: -47px;
+                margin-top: -71px;
+              }
+              
+              .c14 {
+                margin-left: 17px;
+                margin-top: -71px;
+              }
+              
+              .c15 {
+                margin-left: -47px;
+                margin-top: 41px;
+              }
+              
+              .c16 {
+                margin-left: 17px;
+                margin-top: 41px;
+              }
+              
+              .c17 {
+                margin-left: -79px;
+                margin-top: -15px;
+              }
+              
+              .c18 {
+                margin-left: 49px;
+                margin-top: -15px;
+              }
+              
+              .c19 {
+                margin-left: -63px;
+                margin-top: -99px;
+              }
+              
+              .c20 {
+                margin-left: 33px;
+                margin-top: -99px;
+              }
+              
+              .c21 {
+                margin-left: 1px;
+                margin-top: -99px;
+              }
+              
+              .c22 {
+                margin-left: -31px;
+                margin-top: -99px;
+              }
+              
+              .c23 {
+                margin-left: -63px;
+                margin-top: 69px;
+              }
+              
+              .c24 {
+                margin-left: 33px;
+                margin-top: 69px;
+              }
+              
+              .c25 {
+                margin-left: 1px;
+                margin-top: 69px;
+              }
+              
+              .c26 {
+                margin-left: -31px;
+                margin-top: 69px;
+              }
+              
+              .c27 {
+                margin-left: -79px;
+                margin-top: -15px;
+              }
+              
+              .c28 {
+                margin-left: -95px;
+                margin-top: -43px;
+              }
+              
+              .c29 {
+                margin-left: -95px;
+                margin-top: 13px;
+              }
+              
+              .c30 {
+                margin-left: 49px;
+                margin-top: 41px;
+              }
+              
+              .c31 {
+                margin-left: -79px;
+                margin-top: -71px;
+              }
+              
+              .c32 {
+                margin-left: -111px;
+                margin-top: -15px;
+              }
+              
+              .c33 {
+                margin-left: 65px;
+                margin-top: -43px;
+              }
+              
+              .c34 {
+                margin-left: 65px;
+                margin-top: 13px;
+              }
+              
+              .c35 {
+                margin-left: -79px;
+                margin-top: 41px;
+              }
+              
+              .c36 {
+                margin-left: 49px;
+                margin-top: -71px;
+              }
+              
+              .c37 {
+                margin-left: 81px;
+                margin-top: -15px;
+              }
+              
+              .r1 {
+                animation-name: pulse00;
+                animation-duration: 2s;
+                animation-iteration-count: infinite;
+                animation-delay: .2s;
+                -webkit-animation-name: pulse00;
+                -webkit-animation-duration: 2s;
+                -webkit-animation-iteration-count: infinite;
+                -webkit-animation-delay: .2s;
+              }
+              
+              .r2 {
+                animation-name: pulse00;
+                animation-duration: 2s;
+                animation-iteration-count: infinite;
+                animation-delay: .4s;
+                -webkit-animation-name: pulse00;
+                -webkit-animation-duration: 2s;
+                -webkit-animation-iteration-count: infinite;
+                -webkit-animation-delay: .4s;
+              }
+              
+              .r3 {
+                animation-name: pulse00;
+                animation-duration: 2s;
+                animation-iteration-count: infinite;
+                animation-delay: .6s;
+                -webkit-animation-name: pulse00;
+                -webkit-animation-duration: 2s;
+                -webkit-animation-iteration-count: infinite;
+                -webkit-animation-delay: .6s;
+              }
+              
+              .r1 > .hex-brick {
+                animation-name: fade00;
+                animation-duration: 2s;
+                animation-iteration-count: infinite;
+                animation-delay: .2s;
+                -webkit-animation-name: fade00;
+                -webkit-animation-duration: 2s;
+                -webkit-animation-iteration-count: infinite;
+                -webkit-animation-delay: .2s;
+              }
+              
+              .r2 > .hex-brick {
+                animation-name: fade00;
+                animation-duration: 2s;
+                animation-iteration-count: infinite;
+                animation-delay: .4s;
+                -webkit-animation-name: fade00;
+                -webkit-animation-duration: 2s;
+                -webkit-animation-iteration-count: infinite;
+                -webkit-animation-delay: .4s;
+              }
+              
+              .r3 > .hex-brick {
+                animation-name: fade00;
+                animation-duration: 2s;
+                animation-iteration-count: infinite;
+                animation-delay: .6s;
+                -webkit-animation-name: fade00;
+                -webkit-animation-duration: 2s;
+                -webkit-animation-iteration-count: infinite;
+                -webkit-animation-delay: .6s;
+              }
+              
+              @keyframes pulse00 {
+                0% {
+                  -webkit-transform: scale(1);
+                  transform: scale(1);
+                }
+              
+                50% {
+                  -webkit-transform: scale(0.01);
+                  transform: scale(0.01);
+                }
+              
+                100% {
+                  -webkit-transform: scale(1);
+                  transform: scale(1);
+                }
+              }
+              
+              @keyframes fade00 {
+                0% {
+                  background:#40E0D0; /* #252525;  for-original-black-serial */
+                }
+              
+                50% {
+                  background:#DE3163; /* #000000;   for-original-black-serial */
+                }
+              
+                100% {
+                  background: #CCCCFF;  /* #353535;   for-original-black-serial */
+                }
+              }
+              
+
+               /* -- end  -- loader  -- --  - https://uiverse.io/Nawsome/tender-swan-29  */
+
+
+
+
+
+ /*   . . .   . . . esri search widget  . . . searchAddressWidget  . . .*/
+      .esri-search {
+        /* adjust esri search widget's width  "!important" will overwrite the default "width:240px" in original esri-search class */
+        /*width: 480px !important;  only for on map version with fixed width */ 
+        width: 100% !important; /* for outside of map version, full width*/
+        height: 77px !important;
+      }
+      .esri-input { 
+        /* adjust esri search widget's input text font */
+        font-size: 39px !important;  /* default is 14px,*/
+      }
+
+      /*  .esri-widget {   }  not use, because it affect attribution bar at bottom of map */
+
+      
+      
+ /*   . . . end  . . . esri search widget . . . searchAddressWidget  . . . */
+
+
+
+
+      /*   . . . map bottom attribution  . . . 
+          
+         need move attribution outside of map, because large font will conflict with other widget on map
+
+          .esri-attribution {
+            font-size: 28.7px !important;  
+            color:yellow !important;
+            background-color: black !important;
+            font-family: emoji;
+            font-style: italic;
+          }
+          */
+
+          /* this control both outside map and inside map attribution widget style */
+
+          .esri-attribution {
+            all: initial;
+          }
+
+          .esri-attribution .esri-attribution__sources {
+              /*  all: initial; */
+               line-height: initial; 
+          }
+
+          .esri-attribution .esri-attribution__powered-by {
+             /*  all: initial; */
+             line-height: initial; 
+          }
+      /*    . . . end  . . . . . . map bottom attribution  . . . */
+      
+
+
+
+/* ................ esri track widget icon button size modify to bigger  ................    ................  */
+
+    /*
+    #outside-esri-track-current-location {
+        background-color: greenyellow !important;   
+    }
+    */  
+
+    /* must use calcite button to avoid affect other search button    */
+    #outside-esri-track-current-location .esri-widget--button {
+      width: 107px !important;
+      height: 86px !important;
+    }
+
+
+    /* only for inside on map widget icon    */
+    .esri-locate .esri-widget--button {
+     /*  background-color: darkgreen !important; */
+      width: 107px !important;
+      height: 86px !important;
+    }
+
+
+/*   ................ end  ................ esri track widget icon button size modify to bigger  ................    ................ */
+
+
+/* ... ... ..... esri base map toggle widget icon button size modify to bigger  ... ... ..... */
+
+
+            /*  ... ... for outside map widget button  ... ... */
+            /*
+            #outside-esri-toggle-basemap-expand {
+              background-color: greenyellow !important;
+            } 
+            */
+
+            #outside-esri-toggle-basemap-expand .esri-widget--button {
+              width: 143px !important;
+              height: 86px !important;
+            }
+              
+
+            #outside-esri-toggle-basemap-expand .esri-collapse__icon {
+              width: 57px !important;
+              height: 57px !important;
+            }
+
+
+
+            /* not work,  set width, height, outside basemap toggle will scroll, but click will failed working 
+            .esri-expand__popover-content .esri-basemap-gallery {
+              width:302px;
+              height: 422px;
+             
+              not work, try to add scroll bar to outside basemap toggle, but it will also affect inside map basemap toggle.
+              overflow: scroll;
+             
+            }
+            */
+
+
+            /* ... ... end   ... ... ... ... for outside map widget button  ... ... */
+
+
+
+
+          /*  ... ... for inside on map widget button  ... ... */
+          
+          /*  not use, it affect all button including search button
+           .esri-ui .esri-widget--button {
+           .esri-ui .esri-collapse__icon {
+          */
+
+          .esri-expand .esri-expand__toggle .esri-widget--button {
+           /*  background-color: darkgreen !important; */
+            width: 143px !important;
+            height: 86px !important;
+          }
+          .esri-expand .esri-expand__toggle .esri-collapse__icon {
+            /*  background-color: darkgreen !important; */
+            width: 57px !important;
+            height: 57px !important;
+          }
+          /*  ... ... end   ... ...   for inside on map widget button */
+
+
+
+
+/* ... ...  end  ..... esri base map toggle widget icon button size modify to bigger  ... ... ..... */
+
+
+ /*   . . .   . . . esri legend widget  . . .   . . .*/
+ 
+/*
+ .esri-legend {
+     background-color: black !important; 
+ }*/
+
+/*   . . . end  . . . esri legend widget . . . searchAddressWidget  . . . */
+
+
+
+ /*   . . .   . . . esri direction widget  . . .   . . .*/
+      .esri-directions,
+      .esri-directions__scroller,
+      .esri-directions__panel-content,
+      .esri-directions__section
+      {
+        /* default direction widget width is too large*/
+       /*  max-width: fit-content;    not working*/
+       max-width: 563px;
+      }
+
+
+      /* do not pollute Place search widget, so only select search element inside direction widget */
+      #direction_span .esri-search,
+      #direction_span .esri-search__container,
+      #direction_span .esri-search__form,
+      #direction_span .esri-search__input
+      {
+        /* default direction widget width is too large*/
+       /*  max-width: fit-content;    not working*/
+       max-width: 413px;
+      }
+
+      .esri-directions__stops,
+      .esri-directions__stop-row,
+      .esri-directions__remove-stop,
+      .esri-directions__reverse-stops,
+      .esri-directions__stop-handle,
+      .esri-directions__stop-input,
+      .esri-directions__stop-options,
+      .esri-directions__toolbar-section,
+      .esri-directions__toolbar-buttons,
+      .esri-directions__travel-modes,
+      .esri-directions__departure-time,
+      .esri-directions__departure-time-select,
+      .esri-directions__save-section,
+      .esri-directions__splitter,
+      .esri-directions__directions-section
+       {
+        /* default direction widget width is too large*/
+       /*  max-width: fit-content;    not working*/
+       max-width: 413px;
+      }
+
+      
+
+
+/*   . . . end  . . . esri legend widget . . . searchAddressWidget  . . . */
+
+
+
+/*    -----  layer-browser -----  */
+
+               .browse_arcgis_server_panel{
+                position: fixed;  /* fixed or absolute works ,   relative or empty not work  */
+                width: 60vw;
+                height: 80%;    
+                background-color:  rgba(255, 255, 255, .90);
+               /* border: 2px solid rgba(200, 200, 200, .96); */
+                border: 0;
+                border-radius: 2px;
+                box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0.8);
+                z-index: 30;
+                opacity: 0.89;
+                float:left;
+                overflow-x: auto;
+                overflow-y: auto;
+                left: 22vw;
+                top:  2vh;  
+              }
+
+
+              .browse_tree_panel{
+                position: fixed;  /* fixed or absolute works ,   relative or empty not work  */
+                width: 60vw;
+                height: 80%;    
+                background-color:  rgba(255, 255, 255, .90);
+               /* border: 2px solid rgba(200, 200, 200, .96); */
+                border: 0;
+                border-radius: 2px;
+                box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0.8);
+                z-index: 40;
+                opacity: 0.89;
+                float:left;
+                overflow-x: auto;
+                overflow-y: auto;
+                left: 30vw;
+                top:  4vh;  
+              }
+
+              .browse_list_panel{
+                position: fixed;  /* fixed or absolute works ,   relative or empty not work  */
+                width: 60vw;
+                height: 80%;   
+                background-color:  rgba(255, 255, 255, .90);
+               /* border: 2px solid rgba(200, 200, 200, .96); */
+                border: 0;
+                border-radius: 2px;
+                box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0.8);
+                z-index: 50;
+                opacity: 0.89;
+                float:left;
+                overflow-x: auto;
+                overflow-y: auto;
+                left: 32vw;
+                top: 6vh;   
+              }
+
+              /*
+                    How do I line up 3 divs on the same row?
+                    https://stackoverflow.com/questions/8690841/how-do-i-line-up-3-divs-on-the-same-row
+
+              */      
+              .sidebar-container-embeded {
+                position: absolute;
+                height: 100%;         /* Full-height: remove this if you want "auto" height */
+                width: 35%;       
+                left:0px;        
+                
+                background-color:  /*  white -> */ #F0FFFF;   
+                overflow-x: auto;
+                overflow-y: auto;
+                
+              }
+              .content-container-embeded {
+                position: absolute;
+                height: 100%;
+                width:  35%; 
+                left: 35%; 
+               
+                background-color:    /* less white -> */#F9F6EE; 
+                overflow-x: auto;
+                overflow-y: auto;
+               
+              }
+              .right-sidebar-container-embeded {
+                position: absolute;
+                height: 100%;
+                width:  30%; 
+                right:  0px;
+               
+                background-color:    /* less white -> */#E5E4E2; 
+                overflow-x: auto;
+                overflow-y: auto;
+               
+              }
+
+
+/*    -----  end   -----  layer-browser -----  */
+
+
+
+
+
+
+                      /*  -----  ------ json-editor customize color  ----------- */
+                              /* 
+                                warning:  
+                                          css must use, element id of container,  #jsoneditor_info_outline,  
+                                          do no use js editor variable, use html element id
+
+                               test by this sample   
+                               http://localhost:10/json2tree/dkan/jsoneditor_onclassname.html
+
+
+                                1).  highlight row by field name, for quantity color
+                                   https://github.com/josdejong/jsoneditor/issues/1529
+
+
+                                2).  highlight multiple keywords
+                                   https://github.com/josdejong/jsoneditor/issues/1038
+                                   https://github.com/josdejong/jsoneditor/blob/develop/examples/20_custom_css_style_for_nodes.html
+                              */
+                               
+
+                              #jsoneditor_info_outline .highlight_row_by_fieldName {
+                                background-color: #FFEA00;
+                              }
+                              #jsoneditor_info_outline .highlight_row_by_fieldName div.jsoneditor-field,
+                              #jsoneditor_info_outline .highlight_row_by_fieldName div.jsoneditor-value {
+                                color: #023020;
+                                font-size:   19px;
+                                font-weight: 100;
+                              }
+
+                              #jsoneditor_list .highlight_row_by_fieldName {
+                                background-color: #FFEA00;
+                              }
+                              #jsoneditor_list .highlight_row_by_fieldName div.jsoneditor-field,
+                              #jsoneditor_list .highlight_row_by_fieldName div.jsoneditor-value {
+                                color: #023020;
+                                font-size:   19px;
+                                font-weight: 100;
+                              }
+
+
+
+                              #jsoneditor_search .different_element {
+                                background-color: #FFEA00;
+                              }
+                              #jsoneditor_search .different_element div.jsoneditor-field,
+                              #jsoneditor_search .different_element div.jsoneditor-value {
+                                color: #023020;
+                                font-size:   19px;
+                                font-weight: 100;
+                              }
+                        /*  -----  end ------ json-editor customize color  ----------- */
+
+
+
+
+
+                        /*  -----  ------ svelte-jsoneditor customize color  ----------- */
+                        /*  not working
+                             https://github.com/josdejong/svelte-jsoneditor 
+                        */
+                        #domain_svelte_class {
+                          /* define a custom theme color */
+                          --jse-theme-color: #383e42;
+                          --jse-theme-color-highlight: #687177;
+                        }
+
+                        /*  -----  end ------ svelte-jsoneditor customize color  ----------- */
+
+
+
+  .margin-small {
+    margin-top: 0.25rem;
+    margin-right: 0.25rem;
+    margin-bottom: 0.25rem;
+    margin-left: 0.25rem;
+  }
+
+  .pull-right {
+    position: absolute; 
+    right: 0.25rem;
+  }
+
+
+  .disabled_color_class{
+    
+    background-color: dimgrey;
+
+  }
+
+
+
+
+
+  /*  input text field style    */
+
+
+  .login_name{
+    width:135px;
+  }
+
+  .login_password{
+    width:95px;
+  }
+
+    
+  .expire_in_days{
+    width:30px;
+  }
+
+
+  .arcgis_online_token{
+    width:56px;
+  }
+
+
+  .timeout_millisecond{
+    width:49px;
+  }
+
+   /*   -----  end ------  input text field style    */
+
+
+
+
+
+/*    -----  from    ----- flex    ----- vertical     -----  design     -----    -----  */
+
+
+
+   .flex-key-for-column {
+    font-style: oblique 60deg;
+    font-size: 1.1em;
+    font-stretch: expanded;
+    font-family: 'Bradley Hand', cursive; /* cursive; */
+   }
+
+   .flex-value-for-column {
+    font-style: normal;
+    font-size: 1.2em;
+    font-stretch: expanded;
+    font-weight: lighter;
+    /*  23 font family
+         https://blog.hubspot.com/website/web-safe-html-css-fonts
+         https://stackoverflow.com/questions/21334839/applying-comic-sans-ms-font-style
+    */
+    font-family: "Comic Sans MS", "Comic Sans", cursive;   /* system-ui; */
+   }
+
+
+   .flex-key-for-row {
+    font-style: oblique 60deg;
+    font-size: 0.9em;
+    font-family: 'Bradley Hand', cursive; /* cursive; */
+   }
+
+   .flex-value-for-row {
+    font-style: normal;
+    font-size: 1.1em;
+    font-weight: lighter;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;   /* system-ui; */
+   }
+
+
+  
+  .flex-row {
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    border: 1px dotted grey;
+  }
+
+
+ 
+  .flex-column {
+
+    display: flex;
+    flex-direction: column;
+  }
+
+
+
+
+
+  .selected_highlighted_style {
+    background: #F4BB44; /* 244, 187, 68 */
+
+    /* padding: 5px;*/
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+   /* margin:5px  */
+  }
+  
+
+  
+
+
+
+  .horizontal-flex-row{
+    display: flex;
+    flex-direction: row;
+    margin-left: 9px;
+    margin-right: 9px;
+  }
+  .center-of-parent-container{
+    justify-content: center;  /* make text div at center of row, horizontal */
+    align-items: center;      /* make text div at center of colum, vertical */
+  }
+
+
+
+
+/* large radio apply to all
+
+  input[type='radio'] {
+    height: 28px;
+    width: 28px;
+    vertical-align: middle;
+  }
+
+
+*/
+
+  input[type='checkbox'] {
+    height: 19px;
+    width: 19px;
+    vertical-align: middle;
+  }
+
+
+/*   -----  end ------  -----  from    ----- flex    ----- vertical     -----  design     -----    -----  */
+
+
+
+
+
+/*    - - -  Multi-line label for radio button    - - -   https://stackoverflow.com/questions/72648664/multi-line-label-for-radio-button  */
+
+
+.label-container {
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: start;
+}
+
+.label-text {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  
+}
+
+.label-text-prefix {
+  font-weight: 900;
+  font-size: 24px;
+}
+
+.label-text-note {
+  font-weight: 100;
+  font-size: 10px;
+}
+
+.label-text-spacing {
+  padding-inline-start: 8px;
+  padding-inline-end: 4px;
+  padding-bottom: 1px;
+  padding-top: 1px;
+}
+
+/*  - - -  end    - - -  Multi-line label for radio button    - - -    */
+
+
+
+
+/*  - - - radio button  - - -  https://uiverse.io/Pradeepsaranbishnoi/bitter-rabbit-96
+ */
+
+          .radio-tile-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            margin: 3.4px;
+          }
+
+         
+
+          .radio-tile-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+          }
+
+          
+
+          .radio-tile-group .radio-tile-input-container {
+            position: relative;
+            /* height: 80px;
+            width: 80px;*/
+            margin: 0.5rem;
+          }
+
+          .radio-tile-group .radio-tile-input-container .radio-button {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            cursor: pointer;
+          }
+
+          .radio-tile-group .radio-tile-input-container .radio-tile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            border: 1px solid #079ad9;
+            border-radius: 3px;
+            /*padding: 1rem;*/
+            transition: transform 300ms ease;
+          }
+
+          
+         
+
+          .radio-tile-group .radio-tile-input-container .radio-button:checked + .radio-tile {
+            background-color: #079ad9;
+            border: 2px solid #079ad9;
+            color: white;
+            transform: scale(1.1, 1.1);
+          }
+
+          .radio-tile-group .radio-tile-input-container .radio-button:checked + .radio-tile .icon svg {
+            fill: white;
+            background-color: #079ad9;
+          }
+
+          .radio-tile-group .radio-tile-input-container .radio-button:checked + .radio-tile .radio-tile-label {
+            color: white;
+            background-color: #079ad9;
+          }
+
+
+
+
+/*  - - -  end    - - -  - - - radio button  - - -  https://uiverse.io/Pradeepsaranbishnoi/bitter-rabbit-96
+ */
+
+            .simple-radio-button{
+              clip: rect(0 0 0 0);
+              clip-path: inset(100%);
+             
+              overflow: hidden;
+              position: absolute;
+              white-space: nowrap;
+             
+              
+            }
+
+            .simple-radio-button:checked + .simple-radio-button-span {
+              box-shadow: 0 0 0 0.0625em  #DC143C;  /* original is #0043ed; */
+             
+              background-color: #F8C8DC; /* original is  #dee7ff;  */
+             /* z-index: 1; */
+              color: #DC143C; /* original is #0043ed; */
+             
+              
+
+            }
+
+
+            .simple-radio-tile-group {
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: center;
+            }
+
+            .simple-radio-button-label {
+
+             
+              cursor: pointer;
+              /*background-color: #fff;
+              padding: 0.375em .75em;*/
+              position: relative;
+              margin: 0.0625em;
+              box-shadow: 0 0 0 0.0625em #b5bfd9;
+            /*  letter-spacing: .05em;
+              color: #3e4963;*/
+              text-align: center;
+              transition: background-color .5s ease;
+
+              border-radius: 4px;
+            }
+
+            
+
+
+/*  - - - radio button  - - -  https://uiverse.io/Pradeepsaranbishnoi/slimy-warthog-37
+ */
+
+
+
+ /*  - - -  end    - - -  - - - radio button  - - -  https://uiverse.io/Pradeepsaranbishnoi/slimy-warthog-37
+ */
+
+
+
+
+
+ .break-a-new-line-in-flex-box {
+  flex-basis: 100%;
+  height: 5px;
+}
+
+
+
+
+        /*  only for vertical - feature table (from feature table node viewer)  */
+
+
+                .field_input_for_search_vertical {
+                  margin: 5px 5px 5px 5px;
+                  width: 430px;
+                  height: 75px;
+                  font-size:24px;
+                  color: rgb(46, 139, 87);
+                  background-color: #FAF9F6;
+
+                  border:  solid rgb(46, 139, 87);
+                  border-width: 0.1em;
+                  box-shadow: 10px 5px 5px 0px rgb(46, 139, 87);
+                }
+
+
+                .field_input_for_search_vertical_width_undefined {
+                  margin: 5px 5px 5px 5px;
+                  
+                  height: 75px;
+                  font-size:24px;
+                  color: rgb(46, 139, 87);
+                  background-color: #FAF9F6;
+
+                  border:  solid rgb(46, 139, 87);
+                  border-width: 0.1em;
+                  box-shadow: 10px 5px 5px 0px rgb(46, 139, 87);
+                }
+
+
+
+
+
+
+
+                  /*   
+
+                      How can I horizontally align my divs?
+
+                        https://jsfiddle.net/hoogw/z7q3w95j/14/  
+
+                        https://stackoverflow.com/questions/9277311/how-can-i-horizontally-align-my-divs
+                  
+                  */
+                  .block_horizontal {
+                                  /* 
+                                    2 item per row, because pagination is 10 item per page, split into 5 row, 2 item per row  
+                                    18% = 100% - (1% margin x  2 item x 2 margin per item) / 2 item = 98 / 2 = 49
+                                  */
+                                  width: 48%;  /* 49%;*/    
+
+                                  display: inline-block;  /*float: left;*/
+
+                                      /* border: 2px solid green; */
+                                      padding: 0px;
+                                      margin: 1%;
+
+                  }
+
+                  .block_vertical {
+                    width: 98%;
+                    float: left;
+                      /* border: 2px solid green; */
+                    padding: 0px;
+                    margin: 1%;
+                  }
+
+
+
+
+
+
+        /*  - - - end  - - - from feature table node viewer  */
+
+
+
+
+
+
+         /* ................ google geolocation api  ................    ................ */
+
+
+         .panToCurrent_geolocation_button {
+          background-color: rgba(255, 255, 255, .1);    
+          
+          border: 0;
+          border-radius: 2px;
+          box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0.8);
+          margin: 10px;
+          padding: 0 0.5em;
+          font: 400 18px Roboto, Arial, sans-serif;
+          font-weight: bolder;
+          overflow: visible;
+          height: 40px;
+          cursor: pointer;
+        }
+
+        .panToCurrent_geolocation_button:hover {
+          background: #ebebeb;
+        }
+
+
+
+
+
+        .zoomToLayer_button {
+
+
+
+
+                      /* 
+                           only for mapbox icontrol,   https://stackoverflow.com/questions/51681771/how-to-create-my-custom-control-with-event-in-mapboxgl
+                           mapbox container positioning style removes mouse events handling (pointer-events: none;):
+                           So you need to add the class mapboxgl-ctrl (pointer-events: auto;) to the container for catching events:
+                           
+                            this.container.className = 'mapboxgl-ctrl my-custom-control';
+
+                            Or set this CSS-property manually:
+
+                            .my-custom-control {
+                                pointer-events: auto;
+                            }
+
+
+                      */ 
+                      pointer-events: auto;
+
+
+          background-color: rgba(255, 255, 255, .1);    
+
+          border: 0;
+          border-radius: 2px;
+          box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0.8);
+          margin: 10px;
+          padding: 0 0.5em;
+          font: 400 18px Roboto, Arial, sans-serif;
+          font-weight: bolder;
+          overflow: visible;
+          height: 40px;
+          cursor: pointer;
+        }
+
+        .zoomToLayer_button:hover {
+          background: #ebebeb;
+        }
+
+
+
+
+        
+        .zoomLevel {
+          background-color: rgba(0, 0, 0, .5);    
+
+          border: 0;
+          border-radius: 2px;
+          box-shadow: 0 1px 4px 4px rgba(255, 255, 255, 0.8);
+          margin: 10px;
+          padding: 0 0.5em;
+          font: 400 38px Roboto, Arial, sans-serif;
+          font-weight: bolder;
+          color: rgba(255, 255, 255, .8);
+          overflow: visible;
+          height: 40px;
+          cursor: pointer;
+        }
+
+
+        .zoomLevel:hover {
+          background: rgba(0, 0, 0, .2); 
+        }
+
+
+
+        .opacityDIV {
+          background-color: rgba(255, 255, 255, .1);    
+
+          border: 0;
+          border-radius: 2px;
+          box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0.8);
+          margin: 10px;
+          padding: 0 0.5em;
+          
+          overflow: visible;
+          height: 40px;
+         
+          cursor: pointer;
+         
+         
+        }
+
+
+
+
+
+        .opacityDIV:hover {
+          background: rgba(255, 255, 255, .2); 
+        }
+
+
+
+
+                  
+                   
+                    .opacitySlider {
+
+                                margin-top: 12px;
+
+                                /*  this not effect, must use inline css to overwrite bootstrap, materializedcss  display:block; width: 100% */
+                                display: inline;
+                                width:auto;    
+                                
+                    
+                    }
+
+
+
+                    .opacityLabel {
+                                      background-color: rgba(0, 0, 0, 0.5);  
+                                      font: 400 20px Roboto, Arial, sans-serif;
+                                      font-weight: bolder;
+                                      color: rgba(255, 255, 255, 0.9);
+                        
+                                      border: 0;
+                                      border-radius: 2px;
+                                      box-shadow: 0 1px 4px -1px rgba(255, 255, 255, 0.5);
+                                    
+                                     
+
+                                      
+                                      margin-left: 5px;
+                                      
+
+                                      /*  this not effect, must use inline css to overwrite bootstrap, materializedcss  display:block; width: 100% */
+                                      display: inline;
+                                      width:auto;
+                          
+                                      
+                        }
+
+
+
+
+
+
+/* ................ google geolocation api  ................    ................ */
+
+
+
+
+
+
+/* apply to all field set */
+fieldset {
+  border-color: black; /* #F00; */
+  border-style: solid;
+}
+body.dark fieldset {
+  border-color: white; /* #F00; */
+  border-style: solid;
+}
+
+
+
+
+
+
+
+
+/* -----  search-fuzzy-button   --------   -------- https://uiverse.io/satyamchaudharydev/purple-rat-85  */
+
+
+                                  /* From uiverse.io by @EmmaxPlay */
+                                  .search-fuzzy-button {
+
+                                    font-size: 24px;
+                                    font-weight: 100;
+                                   /* float: right;
+                                    margin-right: 10px;*/
+                                   
+
+
+                                    --bg: #e74c3c;
+                                    --text-color: #fff;
+                                    position: relative;
+                                   
+                                    border: none;
+                                    background: var(--bg);
+                                    color: var(--text-color);
+                                    transition: 0.2s;
+                                    border-radius: 7px;
+                                    opacity: 0.8;
+                                    letter-spacing: 1px;
+                                    box-shadow: #c0392b 0px 7px 2px, #000 0px 8px 5px;
+                                  }
+
+
+                                  .search-fuzzy-button:active {
+                                    top: 4px;
+                                    box-shadow: #c0392b 0px 3px 2px,#000 0px 3px 5px;
+                                  }
+                                  
+                                  .search-fuzzy-button:hover {
+                                    opacity: 1;
+                                  }
+                  
+
+
+                 /* -----  end  -------- ----- search-fuzzy-button   --------   --------  https://uiverse.io/detail/EmmaxPlay/rude-yak-98   */
+
+                 
+                 
+                 .clear-search-result-button {
+
+                        padding: 10px 20px;
+                        border: none;
+                        font-size: 12px;
+                        color: #fff;
+                        border-radius: 7px;
+                        letter-spacing: 4px;
+                        font-weight: 700;
+                        /*text-transform: uppercase;*/
+                        transition: 0.5s;
+                        transition-property: box-shadow;
+                }
+
+                .clear-search-result-button {
+                  background: rgb(0,140,255);
+                  box-shadow: 0 0 25px rgb(0,140,255);
+                }
+                
+                .clear-search-result-button:hover {
+                  box-shadow: 0 0 5px rgb(0,140,255),
+                              0 0 25px rgb(0,140,255),
+                              0 0 50px rgb(0,140,255),
+                              0 0 100px rgb(0,140,255);
+                }
+
+
+
+
+                         /* https://uiverse.io/levxyca/tidy-mayfly-7 */
+                                .jelly-button {
+                                  font-size: 1.0rem;
+                                  font-weight: 300;
+                                  border-radius: 4px;
+                                  border: 1px solid;
+                                  box-shadow: 2px 2px rgba(25, 25, 52, .8);
+                                  cursor: pointer;
+                                }
+                                .jelly-button:active {
+                                  box-shadow: none;
+                                  transform: translate(3px, 3px);
+                                }
+
+                                body.dark .jelly-button {
+                                  color: rgba(255, 255, 255, .8);
+                                  background-color: rgba(25, 25, 52, .8);
+                                  box-shadow: 2px 2px #fafafa;
+                                }
+                                
+
+
+
+                                .hoverMeButton {
+                                  font-weight: 300;
+                                  font-size: 1rem;
+                                  border-radius: 4px;
+                                  border: 1px solid;
+                                  box-shadow: 2px 2px rgba(25, 25, 52, .8);
+                                  cursor: pointer;
+                                }
+                                .hoverMeButton:active {
+                                  box-shadow: none;
+                                  transform: translate(3px, 3px);
+                                }
+               
+                                
+
+                                body.dark .hoverMeButton {
+                                  color: rgba(255, 255, 255, .8);
+                                  background-color: rgba(25, 25, 52, .8);
+                                  box-shadow: 2px 2px #fafafa;
+                                }
+               
+
+
+
+
+
+                                
+
+/*  --- yelp POI on google      ---   */
+
+        .twoColumns {
+          display: flex;
+          flex-direction: row;
+        
+          width: 1200px;
+        }
+
+        .twoColumns-left {
+          max-width:600px;
+          display: flex;
+          flex-direction: column;
+          
+        }
+
+        .twoColumns-right {
+          max-width:600px;
+          display: flex;
+          flex-direction: column;
+         
+        }
+
+
+
+
+
+/*   --- end  ---  --- yelp POI on google      ---   */
+
+
+
+
+
+
+
+
+/* -- -- --  google labeling -- -- -- */
+
+
+
+
+
+
+.black_label {
+
+  
+  font-size: 11.1px;
+  color: white;
+
+  /*  do not use, because it block underneath colored point
+     background:black;
+  */
+  padding-left: 0.1px;
+  padding-right: 0.1px;
+  opacity: 0.91;
+
+  /*  https://www.w3.org/Style/Examples/007/text-shadow.en.html */
+  text-shadow: 2px 2px 4px black, 0 0 25px black, 0 0 5px black;
+
+  
+  /*
+     auto break line
+     https://stackoverflow.com/questions/5852700/auto-break-line-in-html
+     https://css-tricks.com/almanac/properties/o/overflow-wrap/
+  */
+  max-width: 102px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;      /* IE 5.5-7 */
+  white-space: -moz-pre-wrap; /* Firefox 1.0-2.0 */
+  white-space: pre-wrap;      /* current browsers */
+  
+  /* 
+    border: dashed white;
+  
+
+    not working, google limit its use
+      border-width: thick;
+      border-color:white;
+  */ 
+
+}
+
+
+
+
+
+.blue_label {
+
+  
+  font-size: 15.5px;
+  color: yellow;
+
+  /*  do not use, because it block underneath colored point
+     background:blue;
+  */
+  padding-left: 1px;
+  padding-right: 1px;
+  opacity: 1;
+
+  /*  https://www.w3.org/Style/Examples/007/text-shadow.en.html */
+  text-shadow: 2px 2px 4px blue, 0 0 25px blue, 0 0 5px blue;
+
+  
+  /*
+     auto break line
+     https://stackoverflow.com/questions/5852700/auto-break-line-in-html
+     https://css-tricks.com/almanac/properties/o/overflow-wrap/
+  */
+  max-width: 102px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;      /* IE 5.5-7 */
+  white-space: -moz-pre-wrap; /* Firefox 1.0-2.0 */
+  white-space: pre-wrap;      /* current browsers */
+  
+  /* 
+    border: dashed white;
+  
+
+    not working, google limit its use
+      border-width: thick;
+      border-color:white;
+  */ 
+
+}
+
+
+.white_label {
+
+
+  font-size: 11.1px;
+  color: black;
+
+  /*  do not use, because it block underneath colored point
+  background:white;
+   */
+  padding-left: 1px;
+  padding-right: 1px;
+  opacity: 1;
+
+  /*  https://www.w3.org/Style/Examples/007/text-shadow.en.html */
+  text-shadow: 3px 3px 4px white, 0 0 25px white, 0 0 5px white;
+
+  /*
+     auto break line
+     https://stackoverflow.com/questions/5852700/auto-break-line-in-html
+     https://css-tricks.com/almanac/properties/o/overflow-wrap/
+  */
+  max-width: 102px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;      /* IE 5.5-7 */
+  white-space: -moz-pre-wrap; /* Firefox 1.0-2.0 */
+  white-space: pre-wrap;      /* current browsers */
+  
+/*
+  border: dashed black;
+
+
+   not works, google only use (thin/normal) and bold 2 mode 
+  font-weight:900; 
+  font-weight:100;
+
+    not working, google limit its use
+      border-width: thick;
+      border-color:white;
+*/ 
+
+}
+
+
+
+
+/* -- -- --  end -- -- --  google labeling -- -- -- */
+
+
+
+
+
+
+.container-for2overlap-image{
+  position: relative;
+}
+.overlap-image{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+
+
+      /*
+            --------- only for outside of map   ---------    google-place-search.css   --------- 
+      
+            #pac-input {
+
+            
+              background-color: rgba(255, 255, 255, .89);  
+              color: rgba(0, 0, 0, 0.91);
+
+              
+              border: 0;
+              border-radius: 2px;
+              box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0.83);
+             
+           
+              font: 400 38px Roboto, Arial, sans-serif;
+              font-weight: bolder;
+            
+              overflow: visible;
+              cursor: pointer;
+
+             
+              font-family: Roboto;
+              font-size: 20.56px;
+              font-weight: 100;
+              
+             
+             
+              margin-right: 1px;
+              margin-left:  1px;
+              margin-top:   1px;
+              margin-bottom: 1px;
+              
+
+              padding: 0 5px 0 5px;
+              text-overflow: ellipsis;
+             
+            
+              width: 90%;
+              height: 31px;
+           
+              
+            }
+
+
+            
+                
+            #pac-input:focus {
+                    background: rgba(255, 255, 255, .89); 
+            }
+
+     
+      ---------     end   ---------   use special  ---------    google-place-search.css   --------- 
+      */
+
+
+
+
+
+      /* https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/range */
+       .vertical-datalist {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          writing-mode: vertical-lr;
+          width: 95%; /* 95% must be same as tick-slider width */
+        }
+
+
+        /* Ticks for type="range" HTML  https://stackoverflow.com/questions/26612700/ticks-for-type-range-html-input*/
+             
+       :root {
+                font-family: system-ui, -apple-system, -apple-system-font, 'Segoe UI', 'Roboto', sans-serif;
+              }
+
+              .tick-title {
+                font-size: .9em;
+                text-transform: uppercase;
+                color: darkgray;
+                letter-spacing: .1em;
+              }
+
+               .tick-title-value {
+                font-size: 1.9em;
+                text-transform: uppercase;
+                color: darkgray;
+                letter-spacing: .2em;
+              }
+
+              .tick-options {
+               /* width: 33em; */
+                border: 1px solid silver;
+                border-radius: 1em;
+                background-color: ghostwhite;
+                padding: 0 0 1em 0;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+              }
+
+              
+              .ticks {
+                display: flex;
+                font-size: 9.8px;
+              }
+                
+
+              .tick-o_txt {
+                flex: 1;
+              }
+               
+
+              .tick-slider {
+                width: 95%; /* manually adjust this to look right */
+                margin: auto;
+                cursor: grab;
+               
+              }
+
+              .tick-o_on {
+                font-weight: 800;
+                color: blue;
+              }
+
+
+
+
+
+/* https://www.w3schools.com/howto/howto_css_zoom_hover.asp*/
+.hover-zoom {
+  transition: transform .2s;
+}
+.hover-zoom:hover {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(1.5); 
+}
+

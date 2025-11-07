@@ -1,0 +1,109 @@
+<!doctype HTML>
+<html>
+  <head>
+    <title id="title">my.arcgis.online</title>
+    <meta charset="utf-8" />
+
+    
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  <body>
+   
+      
+    <!-- dark mode toggle -->
+    <button href="#" onclick="localStorage.setItem('mode', (localStorage.getItem('mode') || 'dark') === 'dark' ? 'light' : 'dark'); localStorage.getItem('mode') === 'dark' ? document.querySelector('body').classList.add('dark') : document.querySelector('body').classList.remove('dark')" title="Dark/light">
+          &#127763;Dark
+    </button>
+             
+    <div>
+
+      <p>
+        <b>Only 1 parameter needed to build the link.</b>  For example: 
+        </br> 
+        https://transparentgov.net/json2tree/.....html?url=<mark>your-arcgis-online-URL</mark> 
+        </br> 
+        </br>
+        Example <mark>your-arcgis-online-URL</mark>
+        </br> 
+        <b>https://geohub.lacity.org</b>
+      </p>
+       
+      <p>
+          <input id="arcgis_online_url" name="arcgis_online_url" type='text' placeholder='copy/past your-arcgis-online-URL' style="width: 90%;">
+          <button id="close_icon_arcgis_online" type="button">reset</button>
+      </p>
+    
+   
+        
+          
+       
+              
+              
+      <strong>List All Items </strong>
+      </br>
+
+      <a target="_blank" id="arcgis_online"  href=".">
+        <span id="arcgis_online-txt"></span>
+      </a>
+        
+      </br>
+      </br>
+
+
+      <strong>Check Meta Info</strong>
+      </br>
+
+      <a target="_blank" id="arcgis_online_check"  href=".">
+        <span id="arcgis_online_check-txt"></span>
+      </a>
+
+
+      </br>
+      </br>
+              
+              
+              
+
+
+         
+
+      
+      
+      
+      
+    
+    
+    
+    
+     
+     <!-- must have, without this, ol, counter, number will be black text(dark theme invisible). should be light teal gray color -->
+   <link href="../stylesheets/common_share.css" rel="stylesheet" type="text/css"/>
+   <link href="../stylesheets/color.css" rel="stylesheet" type="text/css"/>
+  
+    
+    
+    
+  
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+     
+   
+
+   <script src="../js/gateway/my.arcgis.online.js"></script>
+  
+  
+      </body>
+</html>

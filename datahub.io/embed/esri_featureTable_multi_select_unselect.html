@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+     <!--Let browser know website is optimized for mobile-->
+     <meta name="viewport" charset='utf-8' content="initial-scale=1.0, width=device-width"/>
+
+    <title id="title">esri feature table</title>
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+   
+    <link href="../../stylesheets/color.css" rel="stylesheet" type="text/css"/> 
+    <link rel="stylesheet" href="../../stylesheets/vertical.css">
+
+    
+
+</head>
+
+<body>
+  <div class="horizontal-left-right-flex-container">
+
+          <div class="vertical-width-undefined-no-border" style="width: 800px;">
+
+            <div class='dashboard-horizontal-row-flow-box'>
+              <span style="font-size: 19px; font-weight: 900;">Multiple Select</span> &nbsp;&nbsp; <span>click to select, click selected again to unselect</span>
+            </div>
+
+            <div id="viewDiv" style="height: 800px;"></div>
+
+          </div>
+
+
+
+          <div class="vertical-width-undefined-no-border" style="width: 1000px;">
+
+            <div id="tableDiv"></div>
+
+            
+            
+
+
+            <div class='dashboard-horizontal-row-flow-box'>
+
+              <button id="refresh_btn" type="button" >Refresh Table</button>
+              &nbsp;&nbsp;
+              <button id="clearSelection_btn" type="button" >Clear Selection</button>
+              &nbsp;&nbsp;
+
+
+              <button id="scrollToBottom_btn" type="button" >Scroll to Bottom</button>
+              &nbsp;&nbsp;
+              <button id="scrollToTop_btn" type="button" >Scroll to Top</button>
+              &nbsp;&nbsp;
+              <button id="scrollToLeft_btn" type="button" >Scroll to Left</button>
+              &nbsp;&nbsp;
+
+
+              <button id="zoomToSelection_btn" type="button" >Zoom to Selection</button>
+              &nbsp;&nbsp;
+              <button id="exportSelectionToCSV_btn" type="button" >Export Selection to CSV</button>
+              
+            </div>
+
+
+            <div class='dashboard-horizontal-row-flow-box'>
+              <div id="fields-mask-div"></div> 
+            </div>
+
+            <div class='dashboard-horizontal-row-flow-box'>
+
+                <input name="filterType_radio" type="radio"  value="selection"/>
+                <span style="font-size: 19px;">show selected only</span>
+                &nbsp;&nbsp;
+                <input name="filterType_radio" type="radio"  value="autoSwitch"/>
+                <span style="font-size: 19px;">if nothing selected,show all</span>
+                &nbsp;&nbsp;
+                <input name="filterType_radio" type="radio"  value="geometry"/>
+                <span style="font-size: 19px;">show all</span>
+
+                &nbsp;&nbsp;
+             
+
+                <input name="pagingFeatureTable_radio" type="radio"  value="allin1page"/>
+                <span>all-in-1 page</span>
+                &nbsp;&nbsp;
+                <input name="pagingFeatureTable_radio" type="radio"  value="paging"/>
+                <span>multiple pages</span>
+
+            </div>
+
+
+          </div>  
+      
+
+  </div>
+  
+   
+      
+      
+  
+
+     <!-- jquery must load first on top header -->
+     <!-- esri dojo conflict with jquery, must load after jquery, at bottom of page -->
+     <!-- my.js must load after esri dojo load -->
+                
+                  <link rel="stylesheet" href="https://js.arcgis.com/4.33/esri/themes/light/main.css"/>
+                  <script src="https://js.arcgis.com/4.33/"></script>
+       
+      <script src="../../js/arcgis/arcgis_common.js" type="text/javascript"></script>
+      <script src="../../js/datahub.io/embed/esri_featureTable_multi_select_unselect.js" type="text/javascript"></script>
+
+  </body>
+</html>

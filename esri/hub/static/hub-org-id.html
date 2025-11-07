@@ -1,0 +1,115 @@
+<!doctype HTML>
+<html>
+  <head>
+    <title id="title">Hub Static</title>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="../../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../../favicon.ico" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+  </head>
+  <body>
+    <div id="control_panel" class="floating">
+            <a style="font-size:27.8px; font-style: italic;" href="https://hub.arcgis.com/api/search/v1/collections/site">Hub v1</a>
+            <sup style="font-size:17.8px; font-style: italic;">static</sup> 
+            &nbsp;
+            <input id="filter_by" name="filter_by"  type='search' placeholder='org-id, org-short-name, contact-email,...' style="font-size: 27.27px;"/>
+            
+            
+            
+            <button id='clear_search_result_button'>
+         &#9932; clear
+            </button>
+            &nbsp;
+            <label id="counter_label"></label>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+
+             <!-- dark mode toggle -->
+             <button href="#" onclick="localStorage.setItem('mode', (localStorage.getItem('mode') || 'dark') === 'dark' ? 'light' : 'dark'); localStorage.getItem('mode') === 'dark' ? document.querySelector('body').classList.add('dark') : document.querySelector('body').classList.remove('dark')" title="Dark/light">
+              &#127763;Dark
+            </button>
+
+          </br>
+
+            <button  id='download_csv_button'><span style="font-size: 13.5px;">&#x21e9; Download filtered<span style="font-size: 19.5px; font-weight: 800;"> .CSV</span><span style="font-size: 11.12px;"> file</span></span></button> 
+            
+            <button  id='download_json_button'><span style="font-size: 13.5px;">&#x21e9; Download filtered<span style="font-size: 19.5px; font-weight: 800;"> .json</span><span style="font-size: 11.12px;"> file</span></span></button> 
+            &nbsp;&nbsp;&nbsp;&nbsp;
+
+           
+            <button id='start_streaming_button'>
+              start
+            </button> 
+            <button id='stop_streaming_button'>
+              stop 
+            </button> 
+            <span id="message-span"></span>
+
+
+            <!-- uncomment this seciton to use :  auto suggest toggle on/off 
+            <span class="switch right z-depth-5 not-edge">
+            <label class="xs">
+            <a class='waves-effect btn-flat btn-small brown-text'>Suggest On/Off</a>
+                    <input id="autocomplete_switch" type="checkbox"> 
+                    <span class="lever brown"></span>
+            </label>
+            </span>
+            --> 
+
+
+           
+                           
+
+    </div>             
+
+       <!--  
+              Auto height div with overflow and scroll when needed
+              https://stackoverflow.com/questions/10155344/auto-height-div-with-overflow-and-scroll-when-needed
+
+              floating panel at top
+              spacer height = floating panel height
+              spacer + scrollable = 100vh
+          --> 
+          <div id="blank_row_as_spacer_for_floating_control_panel" style="width:100%;  height:100px; /* should be a little bit more than height of floating control panel */"></div> 
+          <div id="json-renderer" class="scrollable" style="height: calc(100vh - 130px);"></div>
+      <!--  ----- only for scroll back to top button -----  --> 
+      <a id="back_to_top_button"></a>
+  
+      <script src="../../../js/lib/papaparse.js" type="text/javascript"></script>
+    
+    <!--  ----- lunr.js -----   --> 
+    <script src="../../../js/lib/lunr/lunr.js" type="text/javascript"></script>
+    
+    <!--  ----- mark.js  --> 
+        <script src="../../../js/lib/mark.js/mark.min.js" type="text/javascript"></script>
+        <script src="../../../js/lib/mark.js/jquery.mark.min.js" type="text/javascript"></script>
+        <link href="../../../stylesheets/mark.js.css" rel="stylesheet" type="text/css"/>
+    <!--  end ---- mark.js  --> 
+    
+    
+    <!-- ********* zip.js *********** -->
+    
+        <!-- customized zip.js file, use relative path to fixed deep level of html for 'z-worker.js', 'deflate.js'  -->
+        <script src="../../../js/lib/zipjs/zip.js" type="text/javascript"></script>
+        <!-- when use zip.js make sure html is same deep level as previous one  -->
+        
+        <!-- you must add this, to use zip.HttpReader later -->
+        <script src="../../../js/lib/zipjs/zip-ext.js" type="text/javascript"></script> 
+  
+     <!-- ********* End ******** zip.js *********** -->
+    
+   <script src="../../../js/esri/arcgis_common.js"></script>
+
+  
+   
+   <script src="../../../js/esri/hub/static/hub-org-id.js"></script>
+   
+   <!-- must have, without this, ol, counter, number will be black text(dark theme invisible). should be light teal gray color -->
+   <link href="../../../stylesheets/common_share.css" rel="stylesheet" type="text/css"/>
+   <link href="../../../stylesheets/color.css" rel="stylesheet" type="text/css"/>
+   
+      </body>
+</html>

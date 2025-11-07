@@ -1,0 +1,1700 @@
+
+
+
+
+
+
+
+
+
+
+/*  left, map      */  
+
+
+html, body{
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+
+
+#map {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  
+  /*
+   
+  bug fix: leaflet map will display scrollbar with below setting. so need comment out
+  other google map bing, here, etc do NOT need this either. 
+  Only left_1 div need this for scrollbar when large amount of content. 
+
+  display: block; 
+  overflow-y: auto; 
+  overflow-x: auto;
+
+  */
+
+
+}
+
+
+
+/* some new esri sample use viewDiv instead of map */
+#viewDiv {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  
+
+
+  /*  
+      Map div is parent div, must place position: xxx; in order for on-map-control use position: absolute; to relative to parent div 
+      https://stackoverflow.com/questions/65642167/cannot-apply-style-to-dynamically-created-elements-in-javascript/65642573?noredirect=1#comment125074687_65642573
+
+    position: fixed;  absolute;    not working 
+    
+  */
+  position: relative;
+
+
+
+
+
+  /*
+   
+  bug fix: leaflet map will display scrollbar with below setting. so need comment out
+  other google map bing, here, etc do NOT need this either. 
+  Only left_1 div need this for scrollbar when large amount of content. 
+
+  display: block; 
+  overflow-y: auto; 
+  overflow-x: auto;
+
+  */
+
+
+}
+
+
+
+
+
+
+/*  ==========  all 1080p full HD and larger screen  > 1900px     ==========     */
+
+/*
+     use in : 
+
+
+      8K Resolution 7680 x 4320, 
+
+      4K Resolution 3840 x 2160, UHD, Ultra HD, 4K UHD, 4K resolution also has 4 times more pixels than 1080p
+
+      1440p Resolution 2560 x 1440, Quad HD , 1440p is 4 times stronger than the base HD variant
+
+      1080p Resolution 1920 x 1080, Full HD, FHD , 1080p is currently the standard resolution
+
+      
+
+
+*/
+
+
+
+.sidebar-container {
+
+    position: fixed;
+    height: 100%;         /* Full-height: remove this if you want "auto" height */
+    width: 600px; 
+    left: 0px;       /*  right: 0;         left: 0;   */      
+    
+    z-index: 1;           /* Stay on top */
+    background-color:  /*  white -> */ rgba(255, 255, 255, .96);       
+
+    overflow-x: auto;
+    overflow-y: auto;
+   
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+  }
+  
+
+
+  .right-sidebar-container {
+  
+       /* position: fixed;      Do not use , we need 3rd section dynamic , no matter full screen or not   */ 
+       /* width:  100%;         Do not use , we need 3rd section dynamic , no matter full screen or not */  
+       position: relative;
+    height: 100%;
+    
+
+
+
+    /* 
+    
+        full screen map, use margin left 0px, 
+            must use "margin-left"  , keep map right bottom widget inside screen
+              Can not use "left", otherwise will cause map right bottom widget out side of screen. 
+    */
+      margin-left: 600px;   /* Only for Map is Not Full Screen */
+      /* margin-left: 0px;     full screen */
+   
+
+
+
+
+    z-index: 0;           /* stay at bottom  */
+
+    
+    overflow-x: auto;
+    overflow-y: auto;
+   
+  
+
+   padding-top: 0px;
+   padding-left: 0px;
+   padding-bottom: 0px;
+   padding-right: 0px;
+
+
+
+   
+  }
+
+
+
+
+
+
+
+
+
+
+
+                                    /*   -----  overlay panel on top  ------     */
+
+
+                                          /*  https://codepen.io/KimmoCommit/pen/VYKggM     */
+
+
+
+                                         
+
+
+                                          .info_outline{
+
+                                            display: flex;
+                                            flex-direction: column;
+
+                                            position: fixed;  /* fixed or absolute works ,   relative or empty not work  */
+
+                                            width: 580px;    /* side1 300px + side2 300px = 600px , use 590px =  600 - 5px(left) -  5px(right edge) */
+                                            height: 97%;
+
+                                            color: black;
+                                            background-color:white;
+
+
+                                           
+                                           
+                                            z-index: 200;
+                                            opacity: 1;
+                                            float:left;
+
+
+                                                        /* border: 2px solid rgba(200, 200, 200, .96); */
+                                                        border: 0;
+                                                        border-radius: 2px;
+                                                        /* white line border use this */
+                                                        box-shadow: 0 2px 5px 6px rgba(200, 200, 200, .96);
+                                                        /* black line border use this 
+                                                        box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0.8);*/
+                                                        /* no border line, trasnparent border line use this
+                                                        box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0 );*/
+
+
+
+
+
+                                            overflow-x: auto;
+                                            overflow-y: auto;
+                                            
+                                            
+                                            left: 19px;  
+                                            top:  0.3%;
+                                            
+                                          }
+                                          
+                                          body.dark .info_outline{
+                                           
+                                            color: white;
+                                            background-color: black;
+                                          }
+
+
+
+                                          .list{
+
+                                            position: fixed;  /* fixed or absolute works ,   relative or empty not work  */
+
+                                            width: 580px;  
+                                            height: 97%; 
+                                            background-color: /*  white -> */ rgba(0,0,0, 0);
+                                           
+                                            z-index: 300;
+                                            opacity: 0.89;
+                                            float:left;
+
+
+                                                        /* border: 2px solid rgba(200, 200, 200, .96); */
+                                                        border: 0;
+                                                        border-radius: 2px;
+                                                        /* white line border use this */
+                                                        box-shadow: 0 2px 5px 6px rgba(200, 200, 200, .96);
+                                                        /* black line border use this 
+                                                        box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0.8);*/
+                                                        /* no border line, trasnparent border line use this
+                                                        box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0 );*/
+
+
+
+
+                                            overflow-x: auto;
+                                            overflow-y: auto;
+                                            
+                                            left: 19px; 
+                                            top:  0.3%;
+                                          }
+                                          
+                                          
+                                          #jsoneditor_info_outline{
+                                            background-color: /*  white -> */ rgba(255, 255, 255, 0.96);
+                                          }
+                                          #jsoneditor_info_outline2{
+                                            background-color: /*  white -> */ rgba(255, 255, 255, 0.96);
+                                          }
+                                          #jsoneditor_info_outline3{
+                                            background-color: /*  white -> */ rgba(255, 255, 255, 0.96);
+                                          }
+                                          #jsoneditor_info_outline4{
+                                            background-color: /*  white -> */ rgba(255, 255, 255, 0.96);
+                                          }
+                                          #jsoneditor_info_outline5{
+                                            background-color: /*  white -> */ rgba(255, 255, 255, 0.96);
+                                          }
+                                          #jsoneditor_info_outline6{
+                                            background-color: /*  white -> */ rgba(255, 255, 255, 0.96);
+                                          }
+                                          #jsoneditor_list{
+                                            background-color: /*  white -> */ rgba(255, 255, 255, 0.96);
+                                          }
+                                          #jsoneditor_list2{
+                                            background-color: /*  white -> */ rgba(255, 255, 255, 0.96);
+                                          }
+                                          #jsoneditor_list3{
+                                            background-color: /*  white -> */ rgba(255, 255, 255, 0.96);
+                                          }
+                                          #jsoneditor_list4{
+                                            background-color: /*  white -> */ rgba(255, 255, 255, 0.96);
+                                          }
+                                          #jsoneditor_list5{
+                                            background-color: /*  white -> */ rgba(255, 255, 255, 0.96);
+                                          }
+                                          #jsoneditor_list6{
+                                            background-color: /*  white -> */ rgba(255, 255, 255, 0.96);
+                                          }
+
+
+
+
+                                          
+
+
+                                          .street_view_panel{
+
+                                            position: fixed;  /* fixed or absolute works ,   relative or empty not work  */
+
+                                            width: 620px;  /* side1 300px + side2 300px = 600px  +  20px (for edge) */
+                                            height: 620px;   
+                                            background-color: rgba(0, 0, 0, .96);
+                                            border: 2px solid rgba(0, 0, 0, .96);
+                                            z-index: 300;
+                                            opacity: 0.89;
+                                            float:left;
+
+                                            overflow-x: auto;
+                                            overflow-y: auto;
+                                            
+                                            left:    0px;  /* no edge 0% */
+                                            bottom:  0px;  
+                                          }
+
+
+
+
+                                          .street_view{
+
+                                            position: fixed;  /* fixed or absolute works ,   relative or empty not work  */
+
+                                            width: 600px;  /* side1 300px + side2 300px = 600px */
+                                            height: 600px;  
+                                            
+                                            z-index: 350;
+                                            opacity: 0.89;
+                                            float:left;
+
+                                            overflow-x: auto;
+                                            overflow-y: auto;
+
+                                            top:  10px;   /* 20px for edge   =   10px top   +     10px bottom  */
+                                            left: 10px;   /* 20px for edge   =   10px left   +    10px right   */
+                                          }
+
+
+                                          .browse_arcgis_server_panel{
+                                            position: fixed;  /* fixed or absolute works ,   relative or empty not work  */
+                                            width: 60vw;
+                                            height: 80%;    
+                                            background-color:  rgba(255, 255, 255, .90);
+                                           /* border: 2px solid rgba(200, 200, 200, .96); */
+                                            border: 0;
+                                            border-radius: 2px;
+                                            box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0.8);
+                                            z-index: 30;
+                                            opacity: 0.89;
+                                            float:left;
+                                            overflow-x: auto;
+                                            overflow-y: auto;
+                                            left: 22vw;
+                                            top:  2vh;  
+                                          }
+
+
+                                          .browse_tree_panel{
+                                            position: fixed;  /* fixed or absolute works ,   relative or empty not work  */
+                                            width: 60vw;
+                                            height: 80%;    
+                                            background-color:  rgba(255, 255, 255, .90);
+                                           /* border: 2px solid rgba(200, 200, 200, .96); */
+                                            border: 0;
+                                            border-radius: 2px;
+                                            box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0.8);
+                                            z-index: 40;
+                                            opacity: 0.89;
+                                            float:left;
+                                            overflow-x: auto;
+                                            overflow-y: auto;
+                                            left: 30vw;
+                                            top:  4vh;  
+                                          }
+
+                                          .browse_list_panel{
+                                            position: fixed;  /* fixed or absolute works ,   relative or empty not work  */
+                                            width: 60vw;
+                                            height: 80%;   
+                                            background-color:  rgba(255, 255, 255, .90);
+                                           /* border: 2px solid rgba(200, 200, 200, .96); */
+                                            border: 0;
+                                            border-radius: 2px;
+                                            box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0.8);
+                                            z-index: 50;
+                                            opacity: 0.89;
+                                            float:left;
+                                            overflow-x: auto;
+                                            overflow-y: auto;
+                                            left: 32vw;
+                                            top: 6vh;   
+                                          }
+
+                                          /*
+                                                How do I line up 3 divs on the same row?
+                                                https://stackoverflow.com/questions/8690841/how-do-i-line-up-3-divs-on-the-same-row
+
+                                          */      
+                                          .sidebar-container-embeded {
+                                            position: absolute;
+                                            height: 100%;         /* Full-height: remove this if you want "auto" height */
+                                            width: 35%;       
+                                            left:0px;        
+                                            
+                                            background-color:  /*  white -> */ #F0FFFF;   
+                                            overflow-x: auto;
+                                            overflow-y: auto;
+                                            padding-top: 10px;
+                                            padding-left: 10px;
+                                            padding-bottom: 10px;
+                                            padding-right: 10px;
+                                          }
+                                          .content-container-embeded {
+                                            position: absolute;
+                                            height: 100%;
+                                            width:  35%; 
+                                            left: 35%; 
+                                           
+                                            background-color:    /* less white -> */#F9F6EE; 
+                                            overflow-x: auto;
+                                            overflow-y: auto;
+                                            padding-top: 10px;
+                                            padding-left: 10px;
+                                            padding-bottom: 10px;
+                                            padding-right: 10px;
+                                          }
+                                          .right-sidebar-container-embeded {
+                                            position: absolute;
+                                            height: 100%;
+                                            width:  30%; 
+                                            right:  0px;
+                                           
+                                            background-color:    /* less white -> */#E5E4E2; 
+                                            overflow-x: auto;
+                                            overflow-y: auto;
+                                            padding-top: 10px;
+                                            padding-left: 10px;
+                                            padding-bottom: 10px;
+                                            padding-right: 10px;
+                                          }
+
+
+
+
+
+
+                                          .setting_panel{
+                                            position: fixed;  /* fixed or absolute works ,   relative or empty not work  */
+                                            width: 550px;  /* side1 300px + side2 300px = 600px  +  20px (for edge) */
+                                            height: 80%;    
+                                            background-color:  rgba(255, 255, 255, .96);
+                                           /* border: 2px solid rgba(200, 200, 200, .96); */
+                                            border: 0;
+                                            border-radius: 2px;
+                                            box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0.8);
+                                            z-index: 20;
+                                            opacity: 0.89;
+                                            float:left;
+                                            overflow-x: auto;
+                                            overflow-y: auto;
+                                            left: 60px;     /*   do not block navigation bar setting button */ 
+                                            top:  110px;   
+                                          }
+
+
+                                          
+
+                                          .floating_process_div{
+
+                                            position: fixed;  /* fixed or absolute works ,   relative or empty not work  */
+
+                                            width: 600px;
+                                          
+                                            background-color:  rgba(255, 255, 255, 0);
+                                            border: 0px solid rgba(255, 255, 255, 0);
+                                            z-index: 999;
+                                            opacity: 0.6;
+                                            /*float:left;*/
+
+                                            overflow-x: auto;
+                                            overflow-y: auto;
+                                            
+                                            left:  0px;  
+                                            bottom:0px;
+
+                                          }
+
+
+                                         
+
+                                    /*   -----  end     -----   overlay panel on top ------     */
+
+
+
+
+
+
+
+
+
+
+
+
+        /*  ==========     responsive sidebar  ==========     */
+
+
+               /* must place after those responsive-element */
+
+
+                  /*  https://www.w3schools.com/howto/howto_css_sidebar_responsive.asp */
+
+                                  /* On screens that are less than 1900px wide, only the properties that changed, redefine here, by default, it will inheritage from parent level,
+                                    so if property has no change, no need to list here, only list propeties that changed value. otherwise other properties, just use parent value above */
+                                    
+
+
+
+
+
+                                  @media screen and (max-width: 1900px) {
+
+                                    /*  ==========   1400px  <   screen  < 1900px     ==========     */
+
+                                    /*
+                                          
+                                          1680 × 1050   20- and 22-inch widescreen LCD monitors
+
+                                    */
+
+
+
+
+                                                          
+                                      .sidebar-container {
+                                        
+                                        width: 400px;       /* left-width  */ 
+                                        
+                                      }
+
+                                      
+
+
+
+                                      .right-sidebar-container {
+                                    
+                                         margin-left: 400px;    /* Only for Map is Not Full Screen */
+                                       /* margin-left: 0px;             full screen map */
+                                      }
+
+                            
+
+
+
+                                    /*  -----  overlay panel   ----- */
+
+                                              .list {
+                                                width: 380px;
+                                                
+                                              }
+                                              
+                                              .info_outline {
+                                                width: 380px;
+                                                
+                                              }
+
+
+                                              .street_view_panel {
+                                                width: 420px;
+                                                height: 420px;
+                                              }
+
+
+
+                                              .street_view {
+                                                width: 400px;
+                                                height: 400px;
+                                              }
+
+
+                                              .setting_panel {
+                                                width: 350px;
+                                                
+                                              }
+
+                                              .floating_process_div{
+
+                                                width: 400px; 
+    
+                                              }  
+
+
+                                    /*  -----  end    -----  overlay panel   ----- */
+
+
+                            }
+
+
+
+
+
+
+                            
+                            @media screen and (max-width: 1400px) {
+
+                              /*  ==========   900px  <   screen  < 1400px     ==========     */
+
+                              /*
+                                    
+                                    720p Resolution, 1280 x 720, HD, HD Ready, Standard HD, the lowest of the HD-capable resolutions
+
+                              */
+
+
+                                                  
+                                          .sidebar-container {
+                                                width: 200px;       
+                                            
+                                          }
+
+                                          
+
+
+                                          .right-sidebar-container {
+                                        
+                                          
+                                             margin-left: 200px;    /* Only for Map is Not Full Screen */
+                                             /*  margin-left: 0px;           full screen map */
+                                          
+                                          
+                                          }
+
+
+
+
+
+                                    /*  -----  overlay panel   ----- */
+
+                                              .list {
+                                                width: 180px;
+                                               
+                                              }
+                                              
+                                              .info_outline {
+                                                width: 180px;
+                                                
+                                              }
+
+
+                                              .street_view_panel {
+                                                width: 220px;
+                                                height: 220px;
+                                              }
+
+
+
+                                              .street_view {
+                                                width: 200px;
+                                                height: 200px;
+                                              }
+
+
+
+                                              .setting_panel {
+                                                width: 200px;
+                                                
+                                              }
+
+                                              .floating_process_div{
+
+                                                width: 200px; 
+    
+                                              }  
+
+                                    /*  -----  end    -----  overlay panel   ----- */
+
+
+                              
+                            }
+
+
+
+
+
+
+
+
+
+
+                            @media screen and (max-width: 900px) {
+
+                              /*  ==========   500px  <   screen  < 900px     ==========     */
+
+                                        
+
+                                                              
+                                          .sidebar-container {
+                                                width: 200px;       
+                                            
+                                          }
+
+                                          
+
+
+
+                                          .right-sidebar-container {
+                                        
+                                          
+                                            
+                                            margin-left: 200px;      /* Only for Map is Not Full Screen */
+                                           /* margin-left: 0px;             full screen map */
+                                          
+                                            
+                                          
+                                          }
+
+
+
+                                    /*  -----  overlay panel   ----- */
+
+                                              .list {
+                                                width: 180px;
+                                                
+                                              }
+                                              
+                                              .info_outline {
+                                                width: 180px;
+                                                
+                                              }
+
+
+                                              .street_view_panel {
+                                                width: 220px;
+                                                height: 220px;
+                                              }
+
+
+                                              .street_view {
+                                                width: 200px;
+                                                height: 200px;
+                                              }
+
+
+                                              .setting_panel {
+                                                width: 200px;
+                                                
+                                              }
+
+
+                                              .floating_process_div{
+
+                                                width: 200px; 
+    
+                                              }  
+                                    /*  -----  end    -----  overlay panel   ----- */
+
+
+                              
+                            }
+
+
+
+
+
+
+
+                                          
+                                                @media screen and (max-width: 500px) {
+
+                                                 /*  ==========   250px  <   screen  < 500px     ==========     */
+
+
+                                                             
+
+
+                                                                                                                                
+                                                                .sidebar-container {
+                                                                      width: 100px;       
+                                                                  
+                                                                }
+
+                                                                
+
+
+
+                                                                .right-sidebar-container {
+                                                              
+                                                                
+                                                                   margin-left: 100px;  /*  Only for Map is Not Full Screen */
+                                                                 /* margin-left: 0px;     full screen map */
+                                          
+                                                                
+
+                                                        
+                                                                }
+
+
+
+
+
+                                                                /*  -----  overlay panel   ----- */
+
+                                                                          .list {
+                                                                            width: 80px;
+                                                                            
+                                                                          }
+                                                                          
+                                                                          .info_outline {
+                                                                            width: 80px;
+                                                                            
+                                                                          }
+
+
+                                                                          .street_view_panel {
+                                                                            width: 120px;
+                                                                            height: 120px;
+                                                                          }
+
+
+                                                                          .street_view {
+                                                                            width: 100px;
+                                                                            height: 100px;
+                                                                          }
+
+                                                                          .setting_panel {
+                                                                            width: 100px;
+                                                                            
+                                                                          }
+
+                                                                          .floating_process_div{
+
+                                                                            width: 100px; 
+                                
+                                                                          }  
+                                                                /*  -----  end    -----  overlay panel   ----- */
+
+
+
+
+                                                }
+
+
+
+
+
+
+                           
+
+
+
+
+
+
+
+
+                                  
+                                                @media screen and (max-width: 250px) {
+
+                                                  /*  ==========   250px  <   screen  < 500px     ==========     */
+        
+
+                                                               
+
+                                                                  
+                                                                    .sidebar-container {
+                                                                      position: relative;
+                                                                      width: 100%;       
+                                                                      
+
+                                                                      
+                                                                  
+                                                                    }
+
+                                                                    
+
+
+
+                                                                    .right-sidebar-container {
+                                                                  
+                                                                      
+                                                                      margin-left: 0px; 
+                                                                      
+
+                                                                    
+                                                                    
+                                                                    }
+
+
+
+
+
+                                                                      /*  -----  overlay panel   ----- */
+
+                                                                                .list {
+                                                                                  position: relative;
+                                                                                  width: 100%; 
+                                                                                }
+                                                                                
+                                                                                .info_outline {
+                                                                                  position: relative;
+                                                                                  width: 100%; 
+                                                                                }
+
+
+                                                                                .street_view_panel {
+                                                                                  position: relative;
+                                                                                  width: 100%; 
+                                                                                  height: 100%; 
+                                                                                }
+
+
+
+                                                                                .street_view {
+                                                                                  position: relative;
+                                                                                  width: 100%; 
+                                                                                  height: 100%; 
+                                                                                }
+
+                                                                                .setting_panel {
+                                                                                  position: relative;
+                                                                                  width: 100%; 
+                                                                                  
+                                                                                }
+
+                                                                                .floating_process_div{
+                                                                                  position: relative;
+                                                                                  width: 100%; 
+                                      
+                                                                                }  
+
+                                                                      /*  -----  end    -----  overlay panel   ----- */
+
+
+
+
+
+
+                                                   }
+
+
+
+
+  /*  ==========  end    ==========   responsive sidebar  ==========     */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+                                                                      
+
+
+                      
+
+
+
+
+
+                          
+
+
+
+
+                  
+
+
+
+
+
+
+
+
+
+
+     /*
+      
+            ---------   use special  ---------    google-place-search.css   --------- 
+
+      */
+
+
+
+
+
+                              .pac-card {
+                                margin: 10px 10px 0 0;
+                                border-radius: 2px 0 0 2px;
+                                box-sizing: border-box;
+                                -moz-box-sizing: border-box;
+                                outline: none;
+                                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+                                background-color: rgba(255, 255, 255, .96);
+                                font-family: Roboto;
+                              }
+                            
+                              #pac-container {
+                                padding-bottom: 12px;
+                                margin-right: 12px;
+                                
+                              }
+                            
+                              .pac-controls {
+                                display: inline-block;
+                                
+                                padding: 5px 11px;
+                                
+                              }
+                            
+                              .pac-controls label {
+                                font-family: Roboto;
+                                font-size: 13px;
+                                font-weight: 300;
+                              }
+                            
+
+
+
+                              #pac-input {
+
+                                border-color: rgba(255,255,255, .60);  
+                                border-width: thick; 
+                                background-color: rgba(0,0,0, .40);
+                                color: rgba(255,255,255, .80);
+                        
+                        
+                                font-family: Roboto;
+                                font-size: 15px;
+                                font-weight: 300;
+                                
+                        
+                                /*  ====== adjust postion relative to map div   ======  */
+                                margin-right: 6px;
+                                margin-left:  6px;
+                                margin-top:   6px;
+                                margin-bottom: 6px;
+                        
+                                padding: 0 11px 0 13px;
+                                text-overflow: ellipsis;
+                        
+                        
+                                /*  ====== adjust box size   ======  */
+                                width: 350px;
+                                height: 40px;
+                                
+                        
+                        
+                              }
+                        
+
+
+
+                            
+                              #pac-input:focus {
+                                border-color: rgba(204, 204, 255, .70);
+                                background-color: rgba(0,0,0, .60);
+                              }
+
+
+
+
+
+     /*
+      
+          ---------     end   ---------   use special  ---------    google-place-search.css   --------- 
+
+      */
+
+
+
+
+
+
+
+
+
+
+     /*
+      
+          =============    time count down progress bar     =============   
+
+          https://codepen.io/hoogw/pen/RwgmNNm
+
+          https://stackoverflow.com/questions/24530908/showing-a-time-countdown-progress-bar
+          https://codepen.io/Rudchyk/pen/qNOEGj
+
+
+      */
+
+                #ajax_getJson_processing {
+
+                  width: 100%; /* 80%; */
+                  margin: 10px auto;
+                  height: 50px;  /*  default normal size 22px  */
+                  background-color:   #0A5F44; 
+
+                }
+                
+
+
+
+
+                #ajax_getJson_processing div {
+
+
+                  height: 100%;
+                  text-align: left; /* right; */
+                  padding: 0 10px;
+                  line-height: 50px; /* same as #progressBar height if we want text middle aligned */
+                  width: 0;
+                  background-color: #9FE2BF; /* #CBEA00; */
+                  box-sizing: border-box;
+
+                  font-size: 50px;   /* timer number size*/
+
+                  color: #0A5F44; 
+
+
+                }
+
+
+
+                #ajax_image_loading_progressing {
+
+                  width: 100%; /* 80%; */
+                  margin: 10px auto;
+                  height: 50px;  /*  default normal size 22px  */
+                  background-color:   #0A5F44; 
+
+                }
+                
+
+
+
+
+                #ajax_image_loading_progressing div {
+
+
+                  height: 100%;
+                  text-align: left; /* right; */
+                  padding: 0 10px;
+                  line-height: 50px; /* same as #progressBar height if we want text middle aligned */
+                  width: 0;
+                  background-color: #FFBF00;
+                  box-sizing: border-box;
+
+                  font-size: 50px;   /* timer number size*/
+
+                  color: #0A5F44; 
+
+
+                }
+
+
+                #ajax_tile_loading_progressing {
+
+                  width: 100%; /* 80%; */
+                  margin: 10px auto;
+                  height: 50px;  /*  default normal size 22px  */
+                  background-color:   #0A5F44; 
+
+                }
+                
+
+
+
+
+                #ajax_tile_loading_progressing div {
+
+
+                  height: 100%;
+                  text-align: left; /* right; */
+                  padding: 0 10px;
+                  line-height: 50px; /* same as #progressBar height if we want text middle aligned */
+                  width: 0;
+                  background-color: #CCCCFF;
+                  box-sizing: border-box;
+
+                  font-size: 50px;   /* timer number size*/
+
+                  color: #0A5F44; 
+
+
+                }
+
+
+
+
+                /*   ==================  for 2 layers 2 processing bar   ==================   */
+
+
+                                          #ajax_getJson_processing2 {
+
+                                            width: 100%; /* 80%; */
+                                            margin: 10px auto;
+                                            height: 50px;  /*  default normal size 22px  */
+                                            background-color:   #0A5F44; 
+
+                                          }
+                                          
+
+
+
+
+                                          #ajax_getJson_processing2 div {
+
+
+                                            height: 100%;
+                                            text-align: left; /* right; */
+                                            padding: 0 10px;
+                                            line-height: 50px; /* same as #progressBar height if we want text middle aligned */
+                                            width: 0;
+                                            background-color: #9FE2BF; /* #CBEA00; */
+                                            box-sizing: border-box;
+
+                                            font-size: 50px;   /* timer number size*/
+
+                                            color: #0A5F44; 
+
+
+                                          }
+
+
+
+
+
+                                          #ajax_image_loading_progressing2 {
+
+                                            width: 100%; /* 80%; */
+                                            margin: 10px auto;
+                                            height: 50px;  /*  default normal size 22px  */
+                                            background-color:   #0A5F44; 
+
+                                          }
+                                          
+
+
+
+
+                                          #ajax_image_loading_progressing2 div {
+
+
+                                            height: 100%;
+                                            text-align: left; /* right; */
+                                            padding: 0 10px;
+                                            line-height: 50px; /* same as #progressBar height if we want text middle aligned */
+                                            width: 0;
+                                            background-color: #9FE2BF; /* #CBEA00; */
+                                            box-sizing: border-box;
+
+                                            font-size: 50px;   /* timer number size*/
+
+                                            color: #0A5F44; 
+
+
+                                          }
+
+
+
+
+                                          #ajax_tile_loading_progressing2 {
+
+                                            width: 100%; /* 80%; */
+                                            margin: 10px auto;
+                                            height: 50px;  /*  default normal size 22px  */
+                                            background-color:   #0A5F44; 
+
+                                          }
+                                          
+
+
+
+
+                                          #ajax_tile_loading_progressing2 div {
+
+
+                                            height: 100%;
+                                            text-align: left; /* right; */
+                                            padding: 0 10px;
+                                            line-height: 50px; /* same as #progressBar height if we want text middle aligned */
+                                            width: 0;
+                                            background-color: #CCCCFF;
+                                            box-sizing: border-box;
+
+                                            font-size: 50px;   /* timer number size*/
+
+                                            color: #0A5F44; 
+
+
+                                          }
+
+
+
+                          /*   ==================  end     ==================  for 2 layers 2 processing bar   ==================   */
+
+
+
+
+
+
+
+
+/*
+
+=============    end        =============      time count down progress bar     =============   
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     /*
+                                    HTML element
+  
+                   https://developer.mozilla.org/en-US/docs/Web/HTML/Element/kbd
+
+      */
+
+
+            kbd {
+              background-color: #eee;
+              border-radius: 3px;
+              border: 1px solid #b4b4b4;
+              box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 0 2px 0 0 rgba(255, 255, 255, .7) inset;
+              color: #333;
+              display: inline-block;
+              font-size: .85em;
+              font-weight: 700;
+              line-height: 1;
+              padding: 2px 4px;
+              white-space: nowrap;
+            }
+
+
+      /*
+
+
+        ======= end  =======     HTML element
+
+
+
+      */
+
+
+
+
+
+
+
+
+            /* ................ google geolocation api  ................    ................ */
+
+
+            .panToCurrent_geolocation_button {
+              background-color: rgba(255, 255, 255, .1);    
+              
+              border: 0;
+              border-radius: 2px;
+              box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0.8);
+              margin: 10px;
+              padding: 0 0.5em;
+              font: 400 18px Roboto, Arial, sans-serif;
+              font-weight: bolder;
+              overflow: visible;
+              height: 40px;
+              cursor: pointer;
+            }
+
+            .panToCurrent_geolocation_button:hover {
+              background: #ebebeb;
+            }
+
+
+
+
+
+            .zoomToLayer_button {
+
+
+
+
+                          /* 
+                               only for mapbox icontrol,   https://stackoverflow.com/questions/51681771/how-to-create-my-custom-control-with-event-in-mapboxgl
+                               mapbox container positioning style removes mouse events handling (pointer-events: none;):
+                               So you need to add the class mapboxgl-ctrl (pointer-events: auto;) to the container for catching events:
+                               
+                                this.container.className = 'mapboxgl-ctrl my-custom-control';
+
+                                Or set this CSS-property manually:
+
+                                .my-custom-control {
+                                    pointer-events: auto;
+                                }
+
+
+                          */ 
+                          pointer-events: auto;
+
+
+              background-color: rgba(255, 255, 255, .1);    
+
+              border: 0;
+              border-radius: 2px;
+              box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0.8);
+              margin: 10px;
+              padding: 0 0.5em;
+              font: 400 18px Roboto, Arial, sans-serif;
+              font-weight: bolder;
+              overflow: visible;
+              height: 40px;
+              cursor: pointer;
+            }
+
+            .zoomToLayer_button:hover {
+              background: #ebebeb;
+            }
+
+
+
+
+            
+            .zoomLevel {
+              background-color: rgba(0, 0, 0, .5);    
+
+              border: 0;
+              border-radius: 2px;
+              box-shadow: 0 1px 4px 4px rgba(255, 255, 255, 0.8);
+              margin: 10px;
+              padding: 0 0.5em;
+              font: 400 38px Roboto, Arial, sans-serif;
+              font-weight: bolder;
+              color: rgba(255, 255, 255, .8);
+              overflow: visible;
+              height: 40px;
+              cursor: pointer;
+            }
+
+
+            .zoomLevel:hover {
+              background: rgba(0, 0, 0, .2); 
+            }
+
+
+
+            .opacityDIV {
+              background-color: rgba(255, 255, 255, .1);    
+
+              border: 0;
+              border-radius: 2px;
+              box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0.8);
+              margin: 10px;
+              padding: 0 0.5em;
+              
+              overflow: visible;
+              height: 40px;
+             
+              cursor: pointer;
+             
+             
+            }
+
+
+
+
+
+            .opacityDIV:hover {
+              background: rgba(255, 255, 255, .2); 
+            }
+
+
+
+
+                      
+                       
+                        .opacitySlider {
+
+                                    margin-top: 12px;
+
+                                    /*  this not effect, must use inline css to overwrite bootstrap, materializedcss  display:block; width: 100% */
+                                    display: inline;
+                                    width:auto;    
+                                    
+                        
+                        }
+
+
+
+                        .opacityLabel {
+                                          background-color: rgba(0, 0, 0, 0.5);  
+                                          font: 400 20px Roboto, Arial, sans-serif;
+                                          font-weight: bolder;
+                                          color: rgba(255, 255, 255, 0.9);
+                            
+                                          border: 0;
+                                          border-radius: 2px;
+                                          box-shadow: 0 1px 4px -1px rgba(255, 255, 255, 0.5);
+                                        
+                                         
+
+                                          
+                                          margin-left: 5px;
+                                          
+
+                                          /*  this not effect, must use inline css to overwrite bootstrap, materializedcss  display:block; width: 100% */
+                                          display: inline;
+                                          width:auto;
+                              
+                                          
+                            }
+
+
+
+
+
+
+/* ................ google geolocation api  ................    ................ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /*   
+         not use customized 
+
+             ................    ................  Cross-Browser Range Input With Solid Lower Fill    ................ 
+                          
+              https://codepen.io/noahblon/pen/OyajvN       
+              
+              https://stackoverflow.com/questions/28283332/style-lower-and-upper-fill-in-html5-range-input
+                          
+              https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
+
+              http://danielstern.ca/range.css/#/
+                                                                                                                                  
+
+
+
+
+
+
+                      
+                                                                                                                                    input[type="range"] { 
+                                                                                                                                      margin: auto;
+                                                                                                                                      -webkit-appearance: none;
+                                                                                                                                      position: relative;
+                                                                                                                                      overflow: visible;
+                                                                                                                                      height: 40px;
+                                                                                                                                    
+                                                                                                                                      cursor: pointer;
+                                                                                                                                      border-radius: 0; 
+                                                                                                            
+                                                                                                            
+                                                                                                            
+                                                                                                                                      background: transparent;
+                                                                                                                                     
+                                                                                                                                  }
+                                                                                                            
+                                                                                                            
+                                                                                                                                  input[type="range"] + .thumb { 
+                                                                                                                                      background-color: teal; 
+                                                                                                                                  }
+                                                                                                            
+                                                                                                                                  
+                                                                                                                                  
+                                                                                                                                  ::-webkit-slider-runnable-track {
+                                                                                                                                       background:#ddd; 
+                                                                                                                                  }
+                                                                                                                                  
+                                                                                                            
+                                                                                                            
+                                                                                                            
+                                                                                                            
+                                                                                                                                 
+                                                                                                                                  ::-webkit-slider-thumb {
+                                                                                                                                      -webkit-appearance: none;
+                                                                                                                                      width: 20px;
+                                                                                                                                      height: 40px;
+                                                                                                                                      background: #fff; 
+                                                                                                                                      box-shadow: -100vw 0 0 100vw #40E0D0; 
+                                                                                                                                      border: 2px solid #999; 
+                                                                                                                                  }
+                                                                                                                                  
+                                                                                                                                  ::-moz-range-track {
+                                                                                                                                      height: 40px;
+                                                                                                                                      background: #ddd;
+                                                                                                                                  }
+                                                                                                                                  
+                                                                                                                                  ::-moz-range-thumb {
+                                                                                                                                      background: #fff;
+                                                                                                                                      height: 40px;
+                                                                                                                                      width: 20px;
+                                                                                                                                      border: 3px solid #999;
+                                                                                                                                      border-radius: 0 !important;
+                                                                                                                                      box-shadow: -100vw 0 0 100vw #40E0D0;
+                                                                                                                                      box-sizing: border-box;
+                                                                                                                                  }
+                                                                                                                                  
+                                                                                                                                  ::-ms-fill-lower { 
+                                                                                                                                      background: #40E0D0;
+                                                                                                                                  }
+                                                                                                                                  
+                                                                                                                                  ::-ms-thumb { 
+                                                                                                                                      background: #fff;
+                                                                                                                                      border: 2px solid #999;
+                                                                                                                                      height: 40px;
+                                                                                                                                      width: 20px;
+                                                                                                                                      box-sizing: border-box;
+                                                                                                                                  }
+                                                                                                                                  
+                                                                                                                                  ::-ms-ticks-after { 
+                                                                                                                                      display: none; 
+                                                                                                                                  }
+                                                                                                                                  
+                                                                                                                                  ::-ms-ticks-before { 
+                                                                                                                                      display: none; 
+                                                                                                                                  }
+                                                                                                                                  
+                                                                                                                                  ::-ms-track { 
+                                                                                                                                      background: #ddd;
+                                                                                                                                      color: transparent;
+                                                                                                                                      height: 40px;
+                                                                                                                                      border: none;
+                                                                                                            
+                                                                                                            
+                                                                                                                                  }
+                                                                                                                                  
+                                                                                                                                  ::-ms-tooltip { 
+                                                                                                                                      display: none;
+                                                                                                                                  }
+                                                                                                            
+                                                                                                                                  */
+                                                                                                            
+                                                                                                            
+                                                                                                                /*      ................   end   ................  Cross-Browser Range Input With Solid Lower Fill    ................ */
+      
+                                                                                                                
+                                                                                                                
+                                                                                                            
+         
+
+
+
+
+

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+     <!--Let browser know website is optimized for mobile-->
+     <meta name="viewport" charset='utf-8' content="initial-scale=1.0, width=device-width"/>
+
+    <title id="title">color - image</title>
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+       
+   
+    
+
+     <!--- jsoneditor  , must at top, will cause error if place at bottom --->
+     <link rel="stylesheet" href="../../js/lib/jsoneditor/jsoneditor.min.css">
+     <script src="../../js/lib/jsoneditor/jsoneditor.min.js"></script>
+
+     
+     <link rel="stylesheet" href="../../stylesheets/color.css">
+     <link rel="stylesheet" href="../../stylesheets/sidenav_1panel.css">
+ 
+                  
+<!--  ---  print   ---  *  *  must after main xxx.css  *  *  https://developer.mozilla.org/en-US/docs/Web/Guide/Printing -->
+<link rel="stylesheet" type="text/css" media="print" href="../../stylesheets/print.css" />
+
+
+</head>
+
+<body>
+               
+            
+
+
+
+
+            <!--  *** *** --- *** *** --- ***  print floating panel  *** *** --- *** *** --- *** -->
+            <div id='title_div' class='title_div'>
+            </div>  
+          <!-- *** *** --- *** *** --- ***  end *** *** --- *** *** --- ***  print floating panel  *** *** --- *** *** --- *** -->
+
+
+
+          <!--  *** *** *** *** *** *** ***  floating panel for jsoneditor *** *** *** *** *** *** *** **** -->
+                      <div id='info_outline' class='info_outline'>
+
+                        <!--  fix bug, only esri , hit test sometime missed trigger hover-out event, cause window not close, add close button, let user manually close it   ------ materialize only -->
+                        <button id='close_info_outline_panel' class="setting-button"> 
+                          Close &times;
+                        </button> 
+                        <div id='jsoneditor_info_outline' style="background-color:rgba(255, 255, 255, 0.96);">
+                        </div>
+                        <div id='jsoneditor_list' hidden></div>   <!-- not use, keep here, placeholder -->
+                        <div id='jsoneditor_search' hidden></div> <!-- not use, keep here, placeholder -->
+                    </div>  
+            <!--  *** *** *** end *** *** *** ***  floating panel for jsoneditor  *** *** *** *** *** *** *** **** -->
+
+
+
+
+
+          
+                    <div class='sidebar-container'>
+
+
+                      <span id="layer-info"></span>
+                      </br>
+                      
+                      
+                      <div id="statistic_info" class='margin-small'></div>
+
+
+                      
+
+
+                      <div id="legend-div"></div>
+                      <div id="legend-outside-mapview-div" style="opacity:1;"></div>
+
+                            
+                                
+                             
+                      <legend>
+                        <input name="symbolType_radio" type="radio"  value="native" checked />
+                        <span style="font-size: 23px;">Original Color (when publish from Arcgis-Pro)</span>
+                      </legend> 
+
+                      
+                              </br>
+
+                              <fieldset>
+                                                                                  
+                                <legend>
+                                    <input  name="symbolType_radio" type="radio"  value="quantity"/>
+                                    <b>Classification by value range</b>
+                                </legend> 
+
+                                  <fieldset>
+                                    <legend>
+                                      <span id="field_name_span" class="context"></span>
+                                    </legend> 
+                                     
+                                    <span>From&nbsp;&nbsp;</span>
+                                    <sup style="font-size: 10px;">min value&nbsp;</sup>
+                                    <span id="min_value_span"></span>
+                                    <span>&nbsp;&nbsp;To&nbsp;&nbsp;</span>
+                                    <sup style="font-size: 10px;">max value&nbsp;</sup>
+                                    <span id="max_value_span"></span>
+
+                                    <div id='color_scale_radio_list'></div>
+
+                                    <div id='class_range_div'>
+
+                                            
+                                            
+
+                                            <span id="class_1_color_span">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                            <span>from</span>
+                                            <input type="text" id="from_1"   name="class_range_min_value" size="10"  disabled/>
+                                            <span>to</span>
+                                            <input type="text" id="to_1"  name="class_range_from_to_input_text" size="10"/>
+
+                                            </br>
+
+                                            <span id="class_2_color_span">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                            <span>from</span>
+                                            <input type="text" id="from_2"   name="class_range_from_to_input_text" size="10" />
+                                            <span>to</span>
+                                            <input type="text" id="to_2"  name="class_range_from_to_input_text" size="10" />
+
+                                            </br>
+
+                                            <span id="class_3_color_span">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                            <span>from</span>
+                                            <input type="text" id="from_3"   name="class_range_from_to_input_text" size="10" />
+                                            <span>to</span>
+                                            <input type="text" id="to_3"  name="class_range_from_to_input_text" size="10" />
+
+
+                                            </br>
+
+                                            
+                                            <span id="class_4_color_span">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                            <span>from</span>
+                                            <input type="text" id="from_4"   name="class_range_from_to_input_text" size="10" />
+                                            <span>to</span>
+                                            <input type="text" id="to_4"  name="class_range_from_to_input_text" size="10" />
+
+
+                                            </br>
+
+                                            <span id="class_5_color_span">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                            <span>from</span>
+                                            <input type="text" id="from_5"   name="class_range_from_to_input_text" size="10"/>
+                                            <span>to</span>
+                                            <input type="text" id="to_5"  name="class_range_max_value" size="10"  disabled/>
+                                            <button id="apply_value_change_btn" type="button" class="margin-small">apply value range</button>
+
+                                            </br>
+                                            <button id="quantile_btn" type="button" class="margin-small">Quantile(default)</button>
+                                            <button id="natural_breaks_btn" type="button" class="margin-small">Natural breaks(Jenks)</button>
+                                            <button id="equal_interval_btn" type="button" class="margin-small">Equal interval</button>
+                                            <button id="equal_interval_local_btn" type="button" class="margin-small">Equal interval(local)</button>
+                                            <a target="_blank" href="https://cartography-playground.gitlab.io/playgrounds/data-classification-methods/">How data classification methods works</a>
+                                                                            
+                                            
+
+                                          </div>
+
+                                  </fieldset>
+
+
+                                  <fieldset>
+                                          <legend>
+                                            <span>based on (field name)</span>
+                                          </legend> 
+                                          <div id='quantity_field_radio_list'></div>
+                                  </fieldset>
+
+                                         
+                              </fieldset>
+
+
+
+                              <fieldset>
+                                                  
+                                                  <legend>
+                                                      <input  name="symbolType_radio" type="radio"  value="customized"/>
+                                                      <b>Single color</b><sup>server side image</sup>
+                                                  </legend> 
+
+
+                                                            </br>
+                                                            <div id='row_symbol_color' >
+                                                                <b> Line Color </b>
+                                                                <div id='symbol_color_div'>
+                                                                  <input type='text' id='symbol_color' name='symbol_color' disabled />
+                                                                </div>
+                                                            </div>
+                                                          
+                                                            </br>
+                                                            <div id='row_symbol_width'>
+                                                                <b> Line Width </b>
+                                                                <input type='range' id='line_width_range' name='line_width_range' min='1' max='50' >
+                                                                <b id='line_width_label'></b>
+                                                            </div>
+
+                                                          
+                                                            </br>
+                                                            <div id='row_fill_color' >
+                                                              <b> Polygon Fill Color </b>
+                                                              <div id='fill_color_div'>
+                                                                    <input type='text' id='fill_color' name='fill_color' disabled>
+                                                              </div>
+                                                            </div>
+
+
+                                                            </br>
+                                                            <div id='row_symbol_point_radius'>
+                                                                <b> Point Radius </b>
+                                                                <input type='range' id='point_radius_range' name='point_radius_range' min='1' max='50'>
+                                                                <b id='point_radius_label'></b>
+                                                            </div>
+                              </fieldset>
+
+
+                               
+                              <div id='dynamic-label'></div>
+                              </br>
+
+                      
+                              <!--  ---  filter   ---   -->
+                            <fieldset>
+                              <legend>
+                                <b>filter by</b> 
+                              </legend> 
+
+                              <input name="filterBy_radio" type="radio"  value="no_filter" checked/><b>no filter</b>
+
+                              
+                              <fieldset>
+                                <legend>
+                                   <input name="filterBy_radio" type="radio"  value="value_range"/><b>value</b>
+                                </legend> 
+                                <div id="value_range_option_div">
+                                  
+                                  <span id="currentSymbolFieldNameAlias_span"></span>
+                                  </br>
+                                  <input type="text" id="more_than" name="more_than" size="8" disabled>
+                                   <span style="font-size: 24px;">&nbsp; &lt; &nbsp;</span> <span id="currentSymbolFieldName_span" class="context"></span> <span style="font-size: 24px;">&nbsp; &lt; &nbsp;</span>
+                                  <input type="text" id="less_than" name="less_than" size="8" disabled>
+                                  &nbsp;&nbsp;
+                                  <button type="button" id="apply_value_range_btn" disabled>apply</button>
+
+                                </div>
+                              </fieldset>
+
+
+                              <fieldset>
+                                <legend>
+                                   <input name="filterBy_radio" type="radio"  value="urban_rural"/><b>urban rural</b>
+                                </legend> 
+                                <div id="urban_rural_option_div"></div>
+                              </fieldset>
+
+
+                              <fieldset>
+                                <legend>
+                                  <input name="filterBy_radio" type="radio"  value="rural"/><b>rural</b>
+                                </legend> 
+                                <div id="rural_option_div"></div>
+                              </fieldset>
+
+
+                              <fieldset>
+                                <legend>
+                                    <input name="filterBy_radio" type="radio"  value="hrsa_region"/><b>HRSA Region</b>
+                                </legend>
+                                <div id="hrsa_region_option_div"></div>
+                              </fieldset>
+
+
+
+                              <fieldset>
+                                <legend>
+                                    <input name="filterBy_radio" type="radio"  value="state"/><b>state</b>
+                                </legend>
+                                <div id="state_option_div"></div>
+                              </fieldset>
+
+                            </fieldset>
+                             <!--  ---   end ---  filter   ---   -->
+
+                              </br>
+                              <!--  ---  print   ---   -->
+                              <fieldset class='margin-small'>
+                                <legend> &#128424; Local Browser Printer</legend>
+                                      <span style="font-size: 11px;">Client side, will NOT use Arcgis Server Printing Service</span>
+                                      </br>
+
+                                                                  <button id='print_map_btn' class='margin-small'>
+                                  &#128424; print PDF
+                                </button>
+                                <button id='sample_title_btn' class='margin-small'>
+                                  &#9999; edit title
+                                </button>
+                                <button id='clear_title_btn' class='margin-small'>
+                             &#9932; clear
+                                </button>
+                                <button id='update_title_btn' class='margin-small'>
+                                  update
+                                </button>
+                                </br>
+                                <!-- textarea must be in same line to show placeholder https://stackoverflow.com/questions/10186913/html5-textarea-placeholder-not-appearing -->
+                                <textarea id="edit_title_textarea" placeholder="edit title html" name="edit_title_textarea" rows="3" style="width: 100%; max-width: 100%;"></textarea>
+                              </fieldset>
+
+
+                    </div> 
+            
+
+                    <div class='right-sidebar-container' >
+                      <div id="viewDiv"></div>
+                    </div>     
+                    
+                    
+
+    <!--  mark.js must before any arcgis api   --> 
+      <!--  ----- mark.js  --> 
+      <script src="../../js/lib/mark.js/mark.min.js" type="text/javascript"></script>
+      <script src="../../js/lib/mark.js/jquery.mark.min.js" type="text/javascript"></script>
+      <link href="../../stylesheets/mark.js.css" rel="stylesheet" type="text/css"/>
+    <!--  end ---- mark.js  --> 
+
+
+                  <!--  setting tab colorPicker svg color picker https://iro.js.org -->
+                  <!--  <script src='https://cdn.jsdelivr.net/npm/@jaames/iro@5'></script>   -->
+                  <script src='../../js/lib/colorPicker.iro.js.org/iro.js'></script>
+            
+                <!-- jquery must load first on top header -->
+     <!-- esri dojo conflict with jquery, must load after jquery, at bottom of page -->
+     <!-- my.js must load after esri dojo load -->
+                
+                <link rel="stylesheet" href="https://js.arcgis.com/4.33/esri/themes/dark/main.css"/>
+                <script src="https://js.arcgis.com/4.33/"></script>
+                
+
+
+
+
+               
+
+
+               
+                <script src="../../js/lib/stack.js"></script>   
+                <script src="../../js/arcgis/arcgis_common.js" type="text/javascript"></script>
+                
+        
+                <script src="../../js/datahub.io/hrsa2/mchb_share.js" type="text/javascript"></script>
+                <script src="../../js/datahub.io/hrsa2/mchb_image2.js" type="text/javascript"></script>
+  </body>
+</html>

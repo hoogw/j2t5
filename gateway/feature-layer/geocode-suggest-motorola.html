@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+     <!--Let browser know website is optimized for mobile-->
+     <meta name="viewport" charset='utf-8' content="initial-scale=1.0, width=device-width"/>
+
+    <title id="title">Geocode</title>
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+   
+    <link href="../../stylesheets/color.css" rel="stylesheet" type="text/css"/> 
+    <link rel="stylesheet" href="../../stylesheets/vertical.css">
+
+    
+
+</head>
+
+<body>
+               
+ 
+ <div class="horizontal-left-right-flex-container">
+
+    <div class="vertical-width-undefined-no-border" style="width: 900px; height: 855px; overflow: auto;">
+
+      
+      <div style="display: flex; flex-direction: row;">
+          <span id="layer-info-vertical">Layer Name</span>
+          &nbsp;&nbsp;
+           <arcgis-search style="z-index:9;" reference-element="map-components-id"></arcgis-search>
+           &nbsp;&nbsp;
+           <button type="button" id = "panToCurrent_geolocation_button">my.loc.</button>
+
+        
+           &nbsp;&nbsp;
+           <span id="lat-lng-zoom" hidden></span>
+              </div>
+
+      <div class='map-box' >
+        <arcgis-map id="map-components-id" basemap="hybrid" style="height: 770px;" >
+        </arcgis-map>
+      </div>
+
+       <div id="radio-basemap-id" style="font-size: xx-small;"></div> 
+      
+
+    </div>
+
+
+
+    <div id="flex_1" class="vertical-width-undefined-no-border" style="width: 900px; height: 855px; overflow: auto;">
+
+       <b>Duplicate Motorola Flex CAD, what you see here is exactly what you see in Motorola Flex CAD</b>
+       <span style="font-size: xx-small;">POI is always at bottom. Real and fake address is always on top. Add special char such as @ or single quote or !,# etc..will enforce Flex popup POI on top</span>
+
+          <span style="font-size:xx-small;" id="geocode-capabilities-label"></span>
+          <span style="font-size:xx-small;" id="geocode-categories-label"></span>
+          <span style="font-size:xx-small;" id="geocode-crossstreetconnector-label"></span>
+          
+          
+          <input id="geocode-suggest-input" placeholder="e.g. gage/temp, home depot, 6510 miles," style="width:360px"></input>
+          <div>
+            <span style="font-size:large;" id="geocode-total-label"></span>
+            <button id="suggest_btn">refresh</button>
+            <button id="find_btn">zoom2selected</button>
+            <button id="clear_btn">clear</button>
+            <span>zoom2level:</span><input id="zoom2level-input" type="text" size="1"></input>
+          </div>
+
+          <!-- Duplicate Motorola Flex CAD, size is 10 by default -->
+          <select size=10 id="suggest-options" hidden></select>
+        
+      
+
+      
+      
+      
+
+      <div class='info-window-box'>
+        <!-- -- -- -- only for vertical -- -- -- --  div id='info-window-div'></div --> 
+        <div id='info-window-div' class="flex-row" style="font-size: xx-small;"></div> 
+      </div> 
+
+    </div>
+               
+    
+  </div>
+
+
+     <!-- jquery must load first on top header -->
+     <!-- esri dojo conflict with jquery, must load after jquery, at bottom of page -->
+     <!-- my.js must load after esri dojo load -->
+                
+    <link rel="stylesheet" href="https://js.arcgis.com/4.33/esri/themes/light/main.css"/>
+    <script src="https://js.arcgis.com/4.33/"></script>
+    <!-- Load Map components from CDN-->
+    <script type="module" src="https://js.arcgis.com/4.33/map-components/"></script>
+    <!-- script type="module" src="https://js.arcgis.com/map-components/4.33/index.js"></script -->
+    <!-- 4 . 3 3 bug without calcite, search component will disappear (height:0px)-->
+    <script type="module" src="https://js.arcgis.com/calcite-components/3.2.1/calcite.esm.js"></script>
+   
+     
+    <script src="../../js/arcgis/arcgis_common.js" type="text/javascript"></script>
+    <script src="../../js/gateway/share/arcgis-component.js" type="text/javascript"></script>
+    <script src="../../js/gateway/share/arcgis-geocode.js" type="text/javascript"></script>
+    <script src="../../js/gateway/feature-layer/geocode-suggest-motorola.js" type="text/javascript"></script>
+
+  </body>
+</html>

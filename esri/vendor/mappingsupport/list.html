@@ -1,0 +1,111 @@
+<!doctype HTML>
+<html>
+  <head>
+    <title id="title">Joseph Elfelt's List</title>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="../../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../../favicon.ico" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+  </head>
+  <body>
+     <!--   <h5>Arcgis Server List from  <a href="https://mappingsupport.com/" target="_blank">MappingSupport.com</a> </h5>--> 
+      
+          <div id="control_panel">
+                    
+            <a href="https://mappingsupport.com/" target="_blank" style="font-size: 27.4px;">Joseph Elfelt's List</a>
+            <span id="backup_info" style="font-size: 17.7px;"></span>
+            &nbsp;&nbsp;
+
+            <!-- dark mode toggle -->
+            <button href="#" onclick="localStorage.setItem('mode', (localStorage.getItem('mode') || 'dark') === 'dark' ? 'light' : 'dark'); localStorage.getItem('mode') === 'dark' ? document.querySelector('body').classList.add('dark') : document.querySelector('body').classList.remove('dark')" title="Dark/light">
+              &#127763;Dark
+            </button>  
+
+
+            <br>    
+                 
+
+                    <input id="filter_by" name="filter_by"   class='field_input_for_search' style="width: 200px;"  type='search' placeholder='Search'/>
+                    <button id='clear_search_result_button'>
+                      &#9932; clear
+                    </button>
+
+                    &nbsp;
+                    <label id="counter_label"></label>
+                    &nbsp;
+
+
+                    <br>
+                  
+                   
+
+                    <sup>https.request.time.out.after</sup>
+                    <input type="range" min="100" max="60000" value="10000" step="100" id="timeout_range">
+                    <b id="timeout_value">10000</b>&nbsp;<sup>milliseconds</sup>
+                    &nbsp;
+
+ <!--  
+                    &nbsp;&nbsp;
+                    <input type="radio" id="default" name="cross_radio" value="default">
+                    <span for="default">default</span>
+                    &nbsp;
+                    <input type="radio" id="cors" name="cross_radio" value="cors">
+                    <span for="cors">cors</span>
+                    &nbsp;
+                    <input type="radio" id="jsonp" name="cross_radio" value="jsonp">
+                    <span for="jsonp">jsonp</span>
+                    &nbsp;
+                    <input type="radio" id="proxy" name="cross_radio" value="proxy">
+                    <span for="proxy">proxy</span>
+    -->               
+                  
+
+                     
+
+                                    
+          </div>             
+
+          <div id="json-renderer" class="scrollable" style="height: calc(100vh - 150px);"></div>
+          <!--  ----- only for scroll back to top button -----  --> 
+          <a id="back_to_top_button"></a>
+                        
+           
+
+
+
+
+
+
+
+
+          <script src="../../../js/lib/papaparse.js" type="text/javascript"></script>
+
+    
+
+
+          <!--  ----- lunr.js -----   --> 
+          <script src="../../../js/lib/lunr/lunr.js" type="text/javascript"></script>
+          
+          
+          <!--  ----- mark.js  --> 
+              <script src="../../../js/lib/mark.js/mark.min.js" type="text/javascript"></script>
+              <script src="../../../js/lib/mark.js/jquery.mark.min.js" type="text/javascript"></script>
+              <link href="../../../stylesheets/mark.js.css" rel="stylesheet" type="text/css"/>
+          <!--  end ---- mark.js  --> 
+          
+
+        <script src="../../../js/esri/arcgis_common.js"></script>
+
+        <script src="../../../js/esri/vendor/mappingsupport/list.js"></script>
+
+        <!-- must have, without this, ol, counter, number will be black text(dark theme invisible). should be light teal gray color -->
+        <link href="../../../stylesheets/common_share.css" rel="stylesheet" type="text/css"/>
+   <link href="../../../stylesheets/color.css" rel="stylesheet" type="text/css"/>
+  
+      </body>
+</html>

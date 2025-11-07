@@ -1,0 +1,90 @@
+
+
+
+
+
+// warning:  because show details share with 'server2/xxx',   'online2/list,search' do not have static file version like shp,kml,geojson, only online1/list,search  has shp,kml,geojson
+
+
+
+google search keyword:       opendata.arcgis.com/api/v3/search
+
+
+
+
+Anything you're looking at in the Portal home app is driven from an API...
+all info is from arcgis online rest api,
+
+
+
+
+
+how to get view count from arcgis portal
+https://community.esri.com/thread/214080-portal-items-number-of-views
+
+
+https://developers.arcgis.com/rest/users-groups-and-items/item.htm
+
+
+example:  zone-catalina  
+
+   both work
+    https://www.arcgis.com/sharing/rest/content/items/a22e7905d67f4330bbec630eebd38419?f=json
+     https://www.arcgis.com/sharing/content/items/a22e7905d67f4330bbec630eebd38419?f=json
+
+
+
+
+arcgis portal:
+ 
+https://developers.arcgis.com/rest/users-groups-and-items/portal-self.htm
+
+
+
+
+
+hub v3 api
+
+original:  
+    https://gist.github.com/jgravois/1b7ec5080e992a59f65cf7a2190e4365
+
+hoogw:
+https://gist.github.com/hoogw
+https://gist.github.com/hoogw/902e75e569d851cc6a37fe3eff3b1cac
+
+
+
+
+
+example:
+
+ layer detail api : dataset id = item id + _ + layer id 
+                     a22e7905d67f4330bbec630eebd38419_26  = a22e7905d67f4330bbec630eebd38419 + _ + 26
+
+                   https://hub.arcgis.com/api/v3/datasets/{dataset_id}
+                   https://hub.arcgis.com/api/v3/datasets/a22e7905d67f4330bbec630eebd38419_26
+
+
+layer meta info ( with view count, html ): 
+              https://www.arcgis.com/home/item.html?id={item_id}
+              https://www.arcgis.com/home/item.html?id=a22e7905d67f4330bbec630eebd38419
+
+
+
+
+***** we need this api for view count  ***** 
+layer meta info ( with view count, json ): 
+           https://www.arcgis.com/sharing/content/items/{item_id}?f=json
+           https://www.arcgis.com/sharing/content/items/a22e7905d67f4330bbec630eebd38419?f=json
+
+
+
+
+
+
+arcgis server rest api view count:
+
+         https://developers.arcgis.com/rest/enterprise-administration/server/servicestatistics.htm
+         https://<service-url>/statistics
+
+         https://maps.lacity.org/arcgis/rest/services/Mapping/NavigateLA/MapServer/statistics?f=json

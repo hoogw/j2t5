@@ -1,0 +1,93 @@
+<!doctype HTML>
+<html>
+  <head>
+    <title id="title">Atlas Static</title>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="../../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../../favicon.ico" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+
+    
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+
+      <!-- google font glowing effect  https://codepen.io/SitePoint/pen/Zbxayw -->
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monoton&effect=neon">
+
+    
+  </head>
+  <body>
+    <div id="control_panel" class="floating">
+     
+         <h1 style="display:inline;">Living Atlas</h1><sup>static</sup> 
+            &nbsp;
+            <input id="filter_by" name="filter_by"  type='search' placeholder='Search'/>
+            <button id='clear_search_result_button'>
+         &#9932; clear
+            </button>
+            &nbsp;
+            <label id="counter_label"></label>
+            &nbsp;
+                            <!-- dark mode toggle -->
+                            <button href="#" onclick="localStorage.setItem('mode', (localStorage.getItem('mode') || 'dark') === 'dark' ? 'light' : 'dark'); localStorage.getItem('mode') === 'dark' ? document.querySelector('body').classList.add('dark') : document.querySelector('body').classList.remove('dark')" title="Dark/light">
+                                  &#127763;Dark
+                            </button>
+
+                            <!-- uncomment this seciton to use :  auto suggest toggle on/off 
+                            <span class="switch right z-depth-5 not-edge">
+                              <label class="xs">
+                                <a class='waves-effect btn-flat btn-small brown-text'>Suggest On/Off</a>
+                                        <input id="autocomplete_switch" type="checkbox"> 
+                                        <span class="lever brown"></span>
+                                </label>
+                            </span>
+                            --> 
+      </div>             
+
+      <br>
+      <br>
+      <br>
+      <!--  ----- inline style overwrite css, default height -----  number of br above must adjust to proper amount ---  --> 
+      <div id="json-renderer" class="scrollable" style="height:95vh;"></div>
+      <!--  ----- only for scroll back to top button -----  --> 
+      <a id="back_to_top_button"></a>
+  
+    
+    <!--  ----- lunr.js -----   --> 
+    <script src="../../../js/lib/lunr/lunr.js" type="text/javascript"></script>
+    
+    <!--  ----- mark.js  --> 
+        <script src="../../../js/lib/mark.js/mark.min.js" type="text/javascript"></script>
+        <script src="../../../js/lib/mark.js/jquery.mark.min.js" type="text/javascript"></script>
+        <link href="../../../stylesheets/mark.js.css" rel="stylesheet" type="text/css"/>
+    <!--  end ---- mark.js  --> 
+    
+    
+    <!-- ********* zip.js *********** -->
+    
+        
+        <!-- customized zip.js file, use relative path to fixed deep level of html for 'z-worker.js', 'deflate.js'  -->
+    <script src="../../../js/lib/zipjs/zip.js" type="text/javascript"></script>
+    <!-- when use zip.js make sure html is same deep level as previous one  -->
+
+        <!-- you must add this, to use zip.HttpReader later -->
+        <script src="../../../js/lib/zipjs/zip-ext.js" type="text/javascript"></script> 
+  
+     <!-- ********* End ******** zip.js *********** -->
+    
+   <script src="../../../js/esri/arcgis_common.js"></script>
+
+  <!-- <script src="https://transparentgov.net/data/json2tree/hub.site.static.data.js"></script>   -->
+   
+   <script src="../../../js/esri/vendor/atlas/atlas.static.js"></script>
+   
+   <!-- must have, without this, ol, counter, number will be black text(dark theme invisible). should be light teal gray color -->
+   <link href="../../../stylesheets/common_share.css" rel="stylesheet" type="text/css"/>
+   <link href="../../../stylesheets/color.css" rel="stylesheet" type="text/css"/>
+   
+      </body>
+</html>

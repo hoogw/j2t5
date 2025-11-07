@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+     <!--Let browser know website is optimized for mobile-->
+     <meta name="viewport" charset='utf-8' content="initial-scale=1.0, width=device-width"/>
+
+    <title id="title">feature layer</title>
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+   
+    <link href="../../stylesheets/color.css" rel="stylesheet" type="text/css"/> 
+    <link rel="stylesheet" href="../../stylesheets/vertical.css">
+
+    
+
+</head>
+
+<body>
+               
+  <div class="flex-container">
+  
+    <div class='dashboard-horizontal-row-flow-box'>
+      click feature layer to get lat lng :  
+      <span id='message'></span>
+    </div>
+
+    <div class='map-box' >
+      <arcgis-map id="map-components-id" basemap="hybrid" style="height: 770px;" >
+        <arcgis-search position="top-right"></arcgis-search>
+        <!--  <arcgis-locate position="bottom-leading"></arcgis-locate> -->
+
+        <!--  choose one  -->
+        <arcgis-basemap-gallery position="bottom-right"></arcgis-basemap-gallery>
+        <!--  <arcgis-basemap-toggle position="bottom-right"></arcgis-basemap-toggle>   -->
+
+
+      </arcgis-map>
+    </div>
+
+
+    
+    <div class='dashboard-horizontal-row-flow-box'>
+      <div id="layer-info-vertical">Layer Name</div>
+              
+      &nbsp;&nbsp;&nbsp;
+      <span id = "opacitytitle_span">layer-opacity:</span>
+      <label for="overlay_opacity_range" id='opacity_value_text'></label>
+      <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"></input>
+                
+      &nbsp;&nbsp;&nbsp;
+      <sup>Total:</sup><span id="total-feature">...</span>
+      
+      &nbsp;&nbsp;&nbsp;          
+      <sup>OnMap:</sup><span id="feature-on-map">...</span>
+    </div>
+
+    <div class='info-window-box'>
+      <div id='info-window-div' class="flex-row" style="font-size: xx-small;"></div> 
+    </div> 
+
+ </div>
+
+
+     
+ <script src="../../js/lib/papaparse.js" type="text/javascript"></script>
+ 
+
+     <!-- jquery must load first on top header -->
+     <!-- esri dojo conflict with jquery, must load after jquery, at bottom of page -->
+     <!-- my.js must load after esri dojo load -->
+                
+    <link rel="stylesheet" href="https://js.arcgis.com/4.33/esri/themes/light/main.css"/>
+    <script src="https://js.arcgis.com/4.33/"></script>
+    <!-- Load Map components from CDN-->
+    <script type="module" src="https://js.arcgis.com/4.33/map-components/"></script>
+    <!-- script type="module" src="https://js.arcgis.com/map-components/4.33/index.js"></script -->
+    <!-- 4 . 3 3 bug without calcite, search component will disappear (height:0px)-->
+    <script type="module" src="https://js.arcgis.com/calcite-components/3.2.1/calcite.esm.js"></script>
+     
+    <script src="../../js/arcgis/arcgis_common.js" type="text/javascript"></script>
+    <script src="../../js/gateway/share/arcgis-component.js" type="text/javascript"></script>
+    <script src="../../js/gateway/feature-layer/click-map-to-get.js" type="text/javascript"></script>
+
+  </body>
+</html>

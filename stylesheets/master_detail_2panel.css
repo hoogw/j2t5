@@ -1,0 +1,363 @@
+
+
+
+
+
+
+
+
+/*
+     
+      master-detail-2 panel 
+           use 60% - 40% to divide 2 panel
+
+      unlike sidenav.css  use <1000px,   >1900px, etc....     
+      
+
+
+*/
+
+
+
+html, body{
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+
+}
+
+
+
+
+
+
+
+.master-container {
+
+  
+
+    position: fixed;
+    height: calc(100vh - 93px);   /*   let's go top bar default height = 92.5px, if shrink, height = 121px, in order to see bottom, must count this */
+    width: 50%;       
+    left: 0;
+
+    z-index: 1;           /* Stay on top */
+    background-color:  /*  white -> */ #F0FFFF;       
+
+    
+    overflow-x: auto;
+    overflow-y: auto;
+   
+    /*
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    */
+  }
+  
+
+
+  .detail-container {
+
+    
+
+    position: fixed;
+    height: calc(100vh - 93px);   /*   let's go top bar default height = 92.5px, if shrink, height = 121px, in order to see bottom, must count this */
+    width: 50%; 
+    left: 50%;
+    
+
+    z-index: 2;           /* Stay on top */
+    background-color:    /* less white -> */#FAF9F6;;                 
+
+    
+    overflow-x: auto;
+    overflow-y: auto;
+
+    /*
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    */
+    
+   
+  }
+
+
+
+
+
+
+
+                    .not-edge {
+                      margin-bottom: 5px;
+                      margin-top: 5px;
+                      margin-left: 10px; 
+                      margin-right: 10px;
+
+                    }
+
+
+
+
+
+
+            
+            
+
+
+
+
+
+
+                    .floating {
+                      position: fixed; /* absolute; */
+                      top: 10px;
+                      left: 10px;
+                      z-index: 100;
+                      /* background-color: rgba(255, 255, 255, 0.8) */
+                      width: 100%;   
+                  }
+                  
+
+
+                        /* for large search result collection scroll only */
+                                    
+                        div.scrollable {
+                          height:80vh;
+                          display: block; 
+                          overflow: auto; 
+                          overflow-y: auto; 
+                          overflow-x: auto;
+
+                          z-index: 50;
+                        }
+
+                        div.scrollable-medium {
+                          height:75vh; 
+                          display: block; 
+                          overflow: auto; 
+                          overflow-y: auto; 
+                          overflow-x: auto;
+
+                          z-index: 50;
+                        }
+
+                        /* for larger title area */
+                        div.scrollable-larger {
+                          height:60vh; 
+                          display: block; 
+                          overflow: auto; 
+                          overflow-y: auto; 
+                          overflow-x: auto;
+
+                          z-index: 50;
+                        }
+
+
+
+
+
+                         /* scroll back to top button
+                
+                              https://codepen.io/matthewcain/pen/ZepbeR
+                              https://codepen.io/hoogw/pen/YzqXbzr
+                        */
+
+                       /*  for master-detail-2panel */   
+                      #back_to_top_button {
+                        display: inline-block;
+                        background-color: #FF9800;
+                        width:  150px; /*50px;*/
+                        height: 100px; /*50px;*/
+                        text-align: center;
+                        border-radius: 2px;
+                        position: relative; /* must use 'relative' for master-detail-2panel, use 'fixed' only for single panel */   
+                        bottom: 10px;
+                        left: 10px;    
+                        transition: background-color .3s, 
+                          opacity .5s, visibility .5s;
+                        opacity: 0;
+                        visibility: hidden;
+                        z-index: 1000;
+                      }
+                      #back_to_top_button::after {
+                        
+                        /* content: "\f077";      must use with  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">  */
+                        content: "Top";  /*  no longer need <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> */
+
+                        font-family: FontAwesome;
+                        font-weight: normal;
+                        font-style: normal;
+                        font-size: 5em; /*2em;*/
+                        line-height: 100px; /*50px;*/
+                        color: #fff;
+                      }
+                      #back_to_top_button:hover {
+                        cursor: pointer;
+                        background-color: #333;
+                      }
+                      #back_to_top_button:active {
+                        background-color: #555;
+                      }
+                      #back_to_top_button.show {
+                        opacity: 1;
+                        visibility: visible;
+                      }
+                /*  ==== end ===== scroll back to top button*/
+
+
+
+
+
+
+
+
+
+
+     /*
+      
+          =============    time count down progress bar     =============   
+
+          https://codepen.io/hoogw/pen/RwgmNNm
+
+          https://stackoverflow.com/questions/24530908/showing-a-time-countdown-progress-bar
+          https://codepen.io/Rudchyk/pen/qNOEGj
+
+
+      */
+
+      #ajax_getJson_processing {
+
+        width: 100%; /* 80%; */
+        margin: 10px auto;
+        height: 50px;  /*  default normal size 22px  */
+        background-color:   #0A5F44; 
+
+      }
+      
+
+
+
+
+      #ajax_getJson_processing div {
+
+
+        height: 100%;
+        text-align: left; /* right; */
+        padding: 0 10px;
+        line-height: 50px; /* same as #progressBar height if we want text middle aligned */
+        width: 0;
+        background-color:  #CBEA00;
+        box-sizing: border-box;
+
+        font-size: 50px;   /* timer number size*/
+
+        color: #0A5F44; 
+
+
+      }
+
+
+/*
+
+=============    end        =============      time count down progress bar     =============   
+
+*/
+
+      
+
+
+
+
+
+
+
+
+
+
+
+                /* ###### ###### color ###### code ###### name ###### ######
+                
+                     https://htmlcolorcodes.com/colors/
+                
+                */
+                     .steel_blue {
+                       color: #4682B4;
+                     }
+                     body.dark .steel_blue {
+                        color: #CCCCFF;  /* Periwinkle */
+                     }
+
+
+                    .copper {
+                        color: #B87333;
+                      }
+                    body.dark  .copper {
+                        color: #E5AA70; /* Fawn */
+                      }
+
+
+                      .mango {
+                        color: #F4BB44;
+                      }
+                      body.dark .mango {
+                        color: #FFDEAD; /* Navajo White */
+                      }
+
+
+                      .moss_green {
+                        color: #8A9A5B;
+                      }
+                      body.dark .moss_green {
+                        color: #0FFF50; /* Neon Green */
+                      }
+
+
+
+                      .glaucous {
+                        color: #6082B6;
+                      }
+                      body.dark .glaucous {
+                        color: #ADD8E6; /* Light Blue */
+                      }
+
+
+                      .blue_green {
+                        color: #088F8F;
+                      }
+                      body.dark .blue_green {
+                        color: #7DF9FF; /* Electric Blue */
+                      }
+
+
+                      .taupe {
+                        color: #483C32;
+                      }
+                      body.dark .taupe {
+                        color: #F5DEB3; /* Wheat */
+                      }
+
+                      .cadmium_green {
+                        color: #097969;
+                      }
+                      body.dark .cadmium_green {
+                        color: #AFE1AF; /* Celadon */
+                      }
+
+                      .viridian {
+                        color: #40826D;
+                      }
+                      body.dark .viridian {
+                        color: #ECFFDC; /* Nyanza */
+                      }
+
+                 /* ######   end   ###### color ###### code ###### name ###### ######*/
+
+
+
+
+

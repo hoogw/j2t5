@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+     <!--Let browser know website is optimized for mobile-->
+     <meta name="viewport" charset='utf-8' content="initial-scale=1.0, width=device-width"/>
+
+    <title id="title">google embed</title>
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+   
+    <link href="../../stylesheets/color.css" rel="stylesheet" type="text/css"/> 
+    <link rel="stylesheet" href="../../stylesheets/vertical.css">
+
+    
+
+</head>
+
+<body>
+  <div class="horizontal-left-right-flex-container">
+
+      <div class="flex-container">
+
+              <div class='dashboard-horizontal-row-flow-box'>
+                      <div id="layer-info-vertical" >Layer Name</div>
+                      &nbsp;&nbsp;
+                      <div id="feature-on-map">...</div>
+                      <div> (visible)</div>
+                      &nbsp;&nbsp;
+                      <div id="total-feature">...</div>
+                      <div> (Total)</div>
+
+
+                      &nbsp;&nbsp;
+                      <button type="button" id = "panToCurrent_geolocation_button">my.loc.</button>
+
+        
+
+                      &nbsp;&nbsp;
+                      <input name="click_or_hover_radio" type="radio"  value="click"/>
+                      <span>clickable</span>
+
+                      &nbsp;&nbsp;
+
+                      <input name="click_or_hover_radio" type="radio"  value="hover"/>
+                      <span>hoverable</span>
+
+                      &nbsp;&nbsp;&nbsp;
+
+                      <!-- .. - .. - ... zoom 2 feature   ... - .. - ..-->
+                      <input type='radio' id='zoom2feature_automatic_zoom_level' name='zoom2feature_radio' value='zoom2feature_automatic_zoom_level'/>
+                      <span>FitZoom Max</span>
+                      <input type='range' id='zoom_to_no_more_than' name='zoom_to_no_more_than' min='1' max='22' step='1'  style='display:inline; width:50px'/>
+                      <mark id='zoom_to_no_more_than_label' for='zoom_to_no_more_than'></mark>
+
+                      &nbsp;
+
+                      <input type='radio' id='zoom2feature_fixed_zoom_level' name='zoom2feature_radio' value='zoom2feature_fixed_zoom_level'/>
+                      <span>FixZoom</span>
+                      <input type='range'   id='zoom_to_range' name='zoom_to_range' min='1' max='22' step='1'  style='display:inline; width:50px'/>
+                      <mark id='zoom_to_label' for='zoom_to_range'></mark>
+
+                      &nbsp;
+
+                      <input type='radio' id='donot_zoom2feature' name='zoom2feature_radio' value='donot_zoom2feature'/>
+                      <span>NotZoom</span>
+                      <!-- ... - .. - ..  end .. - .. - ..... - .. - ... zoom 2 feature   ... - .. - ..-->
+
+              </div>
+
+              <div class='dashboard-horizontal-row-flow-box'>
+
+                <input type='search'  placeholder='Search' id='search_data'/>
+                &nbsp;&nbsp;
+                <button type="button" id='start_search_button'>search</button>
+                &nbsp;&nbsp;
+                <button type="button" id='clear_search_result_button'>clear</button>
+                &nbsp;&nbsp;
+
+                <div id='pagination-container'></div>
+                &nbsp;&nbsp; 
+
+                <input name='search_result_paging_or_not_radio' type='radio'  value='paging'>
+                <span>paged SearchResults</span> 
+                &nbsp;&nbsp;
+                <input name='search_result_paging_or_not_radio' type='radio'  value='not_paging'>
+                <span>show all</span>
+                
+              </div>
+             
+              <div class='map-box'>
+                <div id="map" style="height: 350px;" ></div>
+              </div>  
+                                
+
+        <!-- -------------- Street View Coverage Layer  -------------- -->
+        <div>
+          <input name='pegman_follow_or_not_radio' type='radio'  value='follow'>
+          <span>Pegman FOLLOW you</span> 
+          <input name='pegman_follow_or_not_radio' type='radio'  value='not_follow'>
+          <span>NOT follow</span> 
+          &nbsp;&nbsp;
+          <button id="show_street_view_coverage_layer">TURN ON Coverage</button>
+          <button id="hide_street_view_coverage_layer">TURN OFF</button>
+          <button id="show_live_traffic_layer">ShowTraffic</button>
+          <button id="hide_live_traffic_layer">Hide</button>
+          <button id="show_biking_layer">ShowBiking</button>
+          <button id="hide_biking_layer">Hide</button>
+        </div>
+        <!-- -------------- end -------------- Street View Coverage Layer  -------------- -->
+
+
+
+                             
+
+        <div id='street_view' class="vertical-width-undefined-box" style="height: 400px; ">
+        </div>
+
+            
+
+        
+                            
+                            
+
+                            
+                              
+                              
+          
+      </div>
+
+       <div id="flex_1" class="vertical-width-undefined-no-border" style="width: 600px; height: 800px; overflow: auto; ">
+          <div class='info-window-box'>
+            <div id='info-window-div' class="flex-row" style="font-size: xx-small;"></div> 
+          </div> 
+      </div>
+
+  </div>
+  
+   
+
+  <script src="../../js/arcgis/arcgis_common.js" type="text/javascript"></script>
+      
+      
+  <script src="../../js/lib/stack.js"></script>
+
+  <!-- convert geojson to google shape ( * only for add search result polygon to map ) -->
+  <script src="../../js/lib/GeoJSON-to-Google-Maps/GeoJSON.js"></script>
+
+
+ <!-- paginationjs  -->
+ <link href="../../js/lib/paginationjs/pagination.css" rel="stylesheet" type="text/css"/> 
+ <script src="../../js/lib/paginationjs/pagination.js"></script>
+  
+<!--  ----- mark.js  --> 
+<script src="../../js/lib/mark.js/mark.min.js" type="text/javascript"></script>
+<script src="../../js/lib/mark.js/jquery.mark.min.js" type="text/javascript"></script>
+<link href="../../js/lib/mark.js/mark.js.css" rel="stylesheet" type="text/css"/>
+<!--  end ---- mark.js  --> 
+     
+
+
+  
+  <script src="../../js/lib/proj4/dist/proj4.js"></script>
+  <script src="../../js/lib/wkt.js"></script>
+  <script src="../../js/lib/reproject/dist/reproject.js"></script>
+  <script src="../../js/lib/wellknown/wellknown.js"></script>
+
+
+  <script   src="../../js/lib/arcgis-to-geojson-utils/dist/arcgis-to-geojson.js"></script> 
+  <script   src="../../js/lib/turf/turf.min.js"></script>
+      
+  
+  <script src="../../js/datahub.io/embed/share/cross.js" type="text/javascript"></script>
+  <script src="../../js/datahub.io/embed/share/share_for_all.js" type="text/javascript"></script>
+  <!-- default.js must load befor common_share.js -->
+  <script src="../../js/datahub.io/embed/featureTable_google_streetview/default.js" type="text/javascript"></script>
+  <script src="../../js/datahub.io/embed/featureTable_google_streetview/helper.js" type="text/javascript"></script>
+  <script src="../../js/datahub.io/embed/featureTable_google_streetview/common_share.js" type="text/javascript"></script>
+
+  </body>
+</html>

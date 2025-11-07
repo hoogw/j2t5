@@ -1,0 +1,190 @@
+<!doctype HTML>
+<html>
+    <head>
+      <title id="title">MapServer</title>
+      <meta charset="utf-8" />
+
+      <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+      <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+      
+       <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+    <!-- bootstrap 5 icon  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <link href="../../js/lib/jstree-bootstrap-theme/dist/themes/proton/style.min.css" rel="stylesheet" type="text/css"/>  
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.7/themes/default/style.min.css" /> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.7/jstree.min.js"></script>
+      
+       <!-- for serverside projection only, not truely use, but keep here, I use client side projection instead 
+           must be load first, be here, otherwise, error as proj4 not defined
+          <script src="../../js/lib/proj4/dist/proj4.js"></script>
+      -->
+    </head>
+  <body>
+   
+
+    <div id="naming_panel" class="naming_panel">
+          <br>
+          &nbsp;&nbsp;
+          <button id="expand_button_naming" type="button" class="">expand</button>
+          &nbsp;&nbsp;
+          <button id="collapse_button_naming" type="button" class="">collapse</button>
+
+          <br>
+          <br>
+          <div id="jstree_naming"></div>
+    </div>
+          
+            
+          <div id="control_panel" class="floating">
+
+              <!-- ------- let's go to your REST api  ------- --> 
+              <div class="topbar-container" id="let-us-go-to-your-REST-api">  
+                <span style="font-size: x-large; font-weight: bolder; font-style: oblique;"><button id="letsgo" class="hover-zoom-not-use">Start</button></span>
+                <input id="current_rest_api_endpoint" class="rest_api_endpoint_class" type="search" placeholder="e.g. https://xxx.gov/arcgis/rest/services  e.g. https://services.arcgis.com/xxx/ArcGIS/rest/services"/>
+                
+                <!-- dark mode toggle -->
+                <button href="#" onclick="localStorage.setItem('mode', (localStorage.getItem('mode') || 'dark') === 'dark' ? 'light' : 'dark'); localStorage.getItem('mode') === 'dark' ? document.querySelector('body').classList.add('dark') : document.querySelector('body').classList.remove('dark')" title="Dark/light">
+                        &#127763;Dark
+                </button>
+
+                </br>
+                
+                <span style="font-size: xx-small; font-weight: lighter; font-style: oblique;">
+                <span>Login:</span><input id="login_name" class="login_name" type="search" placeholder="portal_admin" value="portal_admin"/>
+                &nbsp;
+                <span>Password:</span><input id="login_password" class="login_password" type="password" placeholder="password"  value=""/>  
+                &nbsp;
+                <input type="radio" id="arcgis_online" name="online_or_portal_radio" value="arcgis_online">
+                &nbsp;
+                <span for="arcgis_online">Arcgis Online (xxx.arcgis.com)</span>&nbsp;
+                &nbsp;
+                <input type="radio" id="arcgis_enterprise_portal" name="online_or_portal_radio" value="arcgis_enterprise_portal">
+                &nbsp;
+                <span for="arcgis_enterprise_portal">Enterprise Portal (xxx.gov)</span>
+                &nbsp;&nbsp;
+                <span>Expire</span><input id="expire_in_days" class="expire_in_days" type="text" placeholder="60" value="60"/><span>days</span>
+                &nbsp;
+                <button id="generate_token" type="button" >Generate Token</button>
+                &nbsp;
+                <button id="clear_token" type="button" >Clear Token</button>
+                
+                &nbsp;
+              
+              
+                <mark>Token</mark>
+                <input id="arcgis_online_token" class="arcgis_online_token" type="search" placeholder="arcgis online/portal token"/>
+                &nbsp;
+                <span hidden>Token URL:</span><input id="genToken_url" type="text" placeholder="generate token url" value="generate token url" hidden/> 
+                <span>TimeOut:</span><input id="timeout_millisecond" class="timeout_millisecond" type="text" placeholder="" value=""/><span>milliseconds</span>
+</span>
+
+              </div>
+              <!--  end ------- let's go to your REST api  ------- -->  
+
+
+
+                    <label id="message_div" ></label>
+                    <br>
+
+                    <input id="filter_by" name="filter_by"   class='field_input_for_search_fixed_width'  type='search' placeholder='Search'/>
+
+
+                    
+                    <label id="counter_label"></label> 
+                    &nbsp;&nbsp;
+                    
+                    <button id='pause_streaming_button'>
+                      pause 
+                    </button> 
+
+                    <button id='resume_streaming_button'>
+                      resume 
+                    </button> 
+
+                    <button id='stop_streaming_button'>
+                      stop 
+                    </button> 
+
+                    <button id='clear_search_result_button'>
+                 &#9932; clear
+                    </button> 
+
+                   
+
+                                    
+
+                    
+
+                    
+                    <!-- dark mode toggle -->
+                    <button href="#" onclick="localStorage.setItem('mode', (localStorage.getItem('mode') || 'dark') === 'dark' ? 'light' : 'dark'); localStorage.getItem('mode') === 'dark' ? document.querySelector('body').classList.add('dark') : document.querySelector('body').classList.remove('dark')" title="Dark/light">
+                          &#127763;Dark
+                    </button>
+
+                    
+                    
+                    <button id='naming_panel_toggle' class='street-view-button' type='button'>
+                      inheritance pattern
+                    </button>
+                  
+          </div>             
+      
+      
+
+              
+    
+         <!--  
+            Auto height div with overflow and scroll when needed
+            https://stackoverflow.com/questions/10155344/auto-height-div-with-overflow-and-scroll-when-needed
+
+            floating panel at top
+            spacer height = floating panel height
+            spacer + scrollable = 100vh
+        --> 
+        <div id="blank_row_as_spacer_for_floating_control_panel" style="width:100vh;  height:12vh; /* should be a little bit more than height of floating control panel */"></div> 
+        <div id="json-renderer" class="scrollable" style="height: calc(100vh - 12vh);"></div>
+          <!--  ----- only for scroll back to top button -----  --> 
+        <a id="back_to_top_button"></a>
+
+
+    
+    
+    
+    
+    
+    
+    
+    <!--  ----- lunr.js -----   --> 
+    <script src="../../js/lib/lunr/lunr.js" type="text/javascript"></script>
+    
+    
+    <!--  ----- mark.js  --> 
+        <script src="../../js/lib/mark.js/mark.min.js" type="text/javascript"></script>
+        <script src="../../js/lib/mark.js/jquery.mark.min.js" type="text/javascript"></script>
+        <link href="../../js/lib/mark.js/mark.js.css" rel="stylesheet" type="text/css"/>
+    <!--  end ---- mark.js  --> 
+    
+     
+    <!-- must have, without this, ol, counter, number will be black text(dark theme invisible). should be light teal gray color -->
+    <link href="../../stylesheets/common_share.css" rel="stylesheet" type="text/css"/>
+    <link href="../../stylesheets/color.css" rel="stylesheet" type="text/css"/>
+  
+
+    
+    <script src="../../js/esri/share/tree_icon_flatjson.js"></script>
+    <script src="../../js/esri/share/tree_icon_link.js"></script>
+    <script src="../../js/esri/share/naming.js"></script>
+    <script src="../../js/lib/stack.js"></script>
+    <script src="../../js/esri/arcgis_common.js"></script>
+    <script src="../../js/esri/server2/searchMapServer.js"></script>
+  
+  
+   
+
+
+      </body>
+</html>

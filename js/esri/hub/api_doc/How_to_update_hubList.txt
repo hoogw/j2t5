@@ -1,0 +1,370 @@
+
+
+
+
+
+api: 
+https://developers.google.com/custom-search/v1/introduction
+
+
+
+
+
+
+How to update list, 
+
+
+
+1). go to hub.com, left bottom filter, date updated, select  2000.1.1 - 2021.1.1
+https://hub.arcgis.com/search?collection=site&modified=2021-01-02T08%3A00%3A00.000Z%7C2023-01-02T07%3A59%3A59.999Z&sort=Date%20Updated%7Cmodified%7Cdesc
+
+
+2). click next button, 
+catch https-request url as "modified" 
+
+3). replace modified with created, run this url again,
+
+4). at response json bottom, looking for total number matched. That is the total number.
+
+
+Hub has 10000 max return count limit, do not over limit, break down into years
+
+
+
+
+
+
+/**/
+//  --- for hub.com v1   --- 
+/**/
+
+
+// each time only pick one
+
+// if combine 2 year, total 7k-8k, will always failed in half. only get 3k-4k, so don't combine years. 
+
+
+
+// 2016
+// 1/1/2016 - 1/1/2017 created 0
+var ___url_string_full_list ="https://hub.arcgis.com/api/search/v1/collections/site/items?filter=((openData%3Dtrue))%20AND%20((created%20BETWEEN%201451606400000%20AND%201483228800000))"
+
+// everyting start 2017.
+
+// 2017
+// 1/1/2017 - 1/1/2018 created 402
+//var ___url_string_full_list ="https://hub.arcgis.com/api/search/v1/collections/site/items?filter=((openData%3Dtrue))%20AND%20((created%20BETWEEN%201483228800000%20AND%201514764800000))"
+
+
+
+// 2018
+// 1/1/2018 - 1/1/2019 created 819
+//var ___url_string_full_list ="https://hub.arcgis.com/api/search/v1/collections/site/items?filter=((openData%3Dtrue))%20AND%20((created%20BETWEEN%201514764800000%20AND%201546300800000))"
+
+
+// 2019
+// 1/1/2019 - 1/1/2020 created 1586
+//var ___url_string_full_list ="https://hub.arcgis.com/api/search/v1/collections/site/items?filter=((openData%3Dtrue))%20AND%20((created%20BETWEEN%201546300800000%20AND%201577836800000))"
+
+
+// 2020
+// 1/1/2020 - 1/1/2021 created 4416
+//var ___url_string_full_list ="https://hub.arcgis.com/api/search/v1/collections/site/items?filter=((openData%3Dtrue))%20AND%20((created%20BETWEEN%201577836800000%20AND%201609574399999))"
+
+
+// 2021
+// 1/1/2021 - 1/1/2022 created 4262
+//var ___url_string_full_list ="https://hub.arcgis.com/api/search/v1/collections/site/items?filter=((openData%3Dtrue))%20AND%20((created%20BETWEEN%201609488000000%20AND%201640995200000))&limit=12&startindex=13&sortBy=-properties.modified"
+
+
+// 2022
+// 1/1/2022 - 1/1/2023 created 4154
+//var ___url_string_full_list ="https://hub.arcgis.com/api/search/v1/collections/site/items?filter=((openData%3Dtrue))%20AND%20((created%20BETWEEN%201640995200000%20AND%201672646399999))&limit=12&startindex=13&sortBy=-properties.modified"
+
+
+// 2023
+// 1/1/2023 - 1/1/2024 created 4406
+//var ___url_string_full_list ="https://hub.arcgis.com/api/search/v1/collections/site/items?filter=((openData%3Dtrue))%20AND%20((created%20BETWEEN%201672560000000%20AND%201704182399999))&limit=12&startindex=13&sortBy=-properties.modified"
+
+
+// 2024
+// 1/1/2024 - 1/1/2025 created 4426
+//var ___url_string_full_list ="https://hub.arcgis.com/api/search/v1/collections/site/items?filter=((openData%3Dtrue))%20AND%20((created%20BETWEEN%201704096000000%20AND%201735804799999))&limit=12&startindex=13&sortBy=-properties.modified"
+
+
+// 2025
+// 1/1/2025 - 3/26/2025 created 787
+//var ___url_string_full_list ="https://hub.arcgis.com/api/search/v1/collections/site/items?filter=((openData%3Dtrue))%20AND%20((created%20BETWEEN%201735718400000%20AND%201743058799999))"
+
+
+
+
+/**/
+//  --- end  ---  for hub.com v1    --- 
+/**/
+
+
+
+
+
+doc - hub search v1 api
+https://hub.arcgis.com/api/search/definition/#/default/CollectionController_getSiteCollections
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+arcgis opendata api v3 search
+
+Hub has 10000 max return count limit, do not over limit, break down into years
+Not use  "&filter[openData]=true" only 10s more count on each search.
+
+
+Correct, but missing some, because there are some hub, region is undefined.
+region: "US", totalCount: 10038,
+https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&filter[region]=US
+
+
+
+
+
+
+
+
+
+// created since 2025-01-01 to today, total 817
+//var ___url_string_full_list ="https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&filter[created]=2025-01-01"
+// created since 2024-01-01 to today, total 5260
+//var ___url_string_full_list ="https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&filter[created]=2024-01-01"
+// created since 2023-01-01 to today, total 9681, sort=created , means descending order from oldest  ->  newest
+//var ___url_string_full_list ="https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&filter[created]=2023-01-01&sort=created"
+// created since 2022-01-01 to today, total 13846, but only get 10000, sort=created , means descending order from oldest  ->  newest
+//var ___url_string_full_list ="https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&filter[created]=2022-01-01&sort=created"
+
+// modified works, but not use
+//var ___url_string_full_list ="https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&filter[modified]=2025-01-01"
+
+
+
+
+
+// error:  "Only dates in ISO format (YYYY/MM/DD) are allowed for 'created' filter",
+//var ___url_string_full_list ="https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&filter[created]=BETWEEN%201483228800000%20AND%201514764800000"
+//var ___url_string_full_list ="https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&filter[created]=BETWEEN%202017-01-01%20AND%202018-01-01"
+//var ___url_string_full_list ="https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&filter[created]=between[2017-01-01%20AND%202018-01-01]"
+// endDate 2024-01-01 does not take effect, still 9681, same as today
+//var ___url_string_full_list ="https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&filter[created]=2023-01-01&filter[endDate]=1704182399999"
+
+
+api not correct, q=created:between(2025-01-01T00:00:00Z,2025-03-26T00:00:00Z) is not correct
+
+1/1/2000 - 1/1/2021 created totalCount: 2868,
+https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&q=created:between(2000-01-01T00:00:00Z,2021-01-01T00:00:00Z)
+
+1/1/2021 - 1/1/2023 totalCount: 4251,
+https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&q=created:between(2021-01-01T00:00:00Z,2023-01-01T00:00:00Z)
+
+
+1/1/2023 - 1/1/2025 totalCount: 3372,
+https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&q=created:between(2023-01-01T00:00:00Z,2025-01-01T00:00:00Z)
+
+
+1/1/2025 - 3/26/2025 totalCount: 1833,
+https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&q=created:between(2025-01-01T00:00:00Z,2025-03-26T00:00:00Z)
+
+
+// not use,  api not correct, q=created:between(2025-01-01T00:00:00Z,2025-03-26T00:00:00Z) is not correct
+
+//1/1/2025 - 3/26/2025 totalCount: 1833,
+//var ___url_string_full_list ="https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&q=created:between(2025-01-01T00:00:00Z,2025-03-26T00:00:00Z)"
+
+//1/1/2023 - 1/1/2025 totalCount: 3372,
+//var ___url_string_full_list ="https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&q=created:between(2023-01-01T00:00:00Z,2025-01-01T00:00:00Z)"
+
+//1/1/2021 - 1/1/2023 totalCount: 4251,
+//var ___url_string_full_list ="https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&q=created:between(2021-01-01T00:00:00Z,2023-01-01T00:00:00Z)"
+
+//1/1/2000 - 1/1/2021 created totalCount: 2868,
+//var ___url_string_full_list ="https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&q=created:between(2000-01-01T00:00:00Z,2021-01-01T00:00:00Z)"
+
+
+
+
+// not working, 2017
+// 1/1/2017 - 1/1/2018 created 18418, too much.
+//var ___url_string_full_list ="https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&q=created%20BETWEEN%201483228800000%20AND%201514764800000"
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------
+
+
+test  only  arcgis opendata api v3 search test
+
+
+
+          list everything, totalCount: 18366077
+          https://opendata.arcgis.com/api/v3/search
+
+
+          site only, totalCount: 26267,
+          https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)
+
+
+          site only, totalCount: 25696,
+          https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&filter[openData]=true
+
+
+
+          from modified: "2025/01/01",  to today's endDate: "eventsBefore(1743107028119)"
+          totalCount: 5136,
+          https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&filter[modified]=2025/01/01
+
+          from modified: "2024/01/01",  to today's endDate: "eventsBefore(1743107127451)"
+          totalCount: 12357
+          https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&filter[modified]=2024/01/01
+
+
+          
+
+
+          from 2025/01/01 to today's totalCount: 803,
+          collection: "any(Site)",
+          created: "2025/01/01",
+          isCancelled: "eventsEq(false)",
+          status: "not(private,draft,planned)",
+          endDate: "eventsBefore(1743101049659)"
+          https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&filter[created]=2025/01/01
+
+
+
+
+          from 2023/01/01 to today's totalCount: 9665,
+          queryParameters: {
+               filter: {
+                              collection: "any(Site)",
+                              created: "2023/01/01",
+                              isCancelled: "eventsEq(false)",
+                              status: "not(private,draft,planned)",
+                              endDate: "eventsBefore(1743102785172)
+                        }
+          },
+          https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&filter[created]=2023/01/01
+
+
+
+          totalCount: 3279
+          https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&q=created:between(2024-01-01T00:00:00Z,2025-01-01T00:00:00Z)
+
+
+          totalCount: 4054
+          https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&q=created:between(2023-01-01T00:00:00Z,2024-01-01T00:00:00Z)
+
+
+https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&q=created:between(2018-01-01T00:00:00Z,2019-01-01T00:00:00Z)
+
+
+
+
+
+          https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&filter[startDate]=1735718400000&filter[endDate]=1743058799999&filter[created]=2025/03/20
+
+
+          https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&filter[created]=2024/03/20&filter[endDate]=1735718400000
+
+
+
+
+
+
+
+
+
+keyword, doc for search arcgis online
+https://doc.arcgis.com/en/arcgis-online/reference/advanced-search.htm#:~:text=Boolean%20operators,-Boolean%20operators%20allow&text=The%20AND%20operator%20is%20the,to%20an%20intersection%20using%20sets.&text=The%20OR%20operator%20links%20two,%22recent%20fires%22%20OR%20fires.&text=The%20NOT%20operator%20excludes%20items,the%20query%20California%20NOT%20Imagery.&text=Similar%20to%20the%20NOT%20operator,use%20the%20query%20California%20%2DImagery.
+
+
+
+----------------------------------------------------------------------------------------------------------------------
+
+
+ basic
+          var ___url_string_full_list ="https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)"
+
+
+          There is no api doc, but you can get from here:
+              only opendata=true, sort by created time 
+              parameter, look at, network traffic from   https://hub.arcgis.com/search?collection=Site&sort=-created
+              sort= -created (date created),  -modified (date updated),  name (title)
+              -  '-' in front of the attribute name means descending order 
+         var ___url_string_full_list ="https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&filter[openData]=true&sort=-created"
+
+     
+
+
+// step 1 run this, to get range 1 - 10000,  sort=-created , means descending order from newest -> oldest
+ var ___url_string_full_list ="https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&sort=-modified"
+ 
+
+
+// step 2  ( hub.site.live2 )run this, to get range 10000 - 100805 , sort=created, means ascending order  oldest - newest, we only need 805, then manually connect(copy past) 2 file data into 1 
+// we also need to adjust for loop range to 805/ 20 = 41, search by " step 2 "
+// var ___url_string_full_list ="https://opendata.arcgis.com/api/v3/search?filter[collection]=any(Site)&filter[openData]=true&sort=created"
+ 
+
+
+       step 3,  add 2 result together,  
+     
+                      step 1 get array { data:[ {1}...{10000}] }      sort=-created   
+                      step 2 get array { data:[ {1}...{805}] }        sort=created 
+
+         [{1}...{10000}, {1}...{805} ]
+
+
+
+
+
+
+       opendata.arcgis.com api v3 search
+
+
+               google search keyword:       opendata.arcgis.com/api/v3/search
+
+            discuss: 
+
+            https://community.esri.com/t5/arcgis-hub-questions/is-all-open-data-from-hubs-available-on-hub-arcgis-com/td-p/388330
+
+
+
+
+               api v3 search 
+               https://gist.github.com/hamhands/b6d1f0f514678b88cdc01070bf006263
+          
+         
+
+          fork gist:
+              https://gist.github.com/hoogw/a60f3b491dfe73d03e7a12d2bc38f875
+ 
+
+
+
+            md is markdown file, visual studio code, right click .md file, choose open preview
+
+            v3.md                         Jan, 2021
+            hub_v3_search_api_ref.md      February 5th, 2019
+
+
+
+       json:api  standard
+            https://jsonapi.org/

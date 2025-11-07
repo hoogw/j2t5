@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+     <!--Let browser know website is optimized for mobile-->
+     <meta name="viewport" charset='utf-8' content="initial-scale=1.0, width=device-width"/>
+
+    <title id="title">map image layer</title>
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="../../js/lib/stack.js"></script>
+    
+   
+    <link href="../../stylesheets/color.css" rel="stylesheet" type="text/css"/> 
+    <link rel="stylesheet" href="../../stylesheets/vertical.css">
+
+    
+
+</head>
+
+<body>
+               
+
+  <div class="horizontal-right-flex-container">
+
+        <div class="flex-container">
+
+           <div class='dashboard-horizontal-row-flow-box' style="height: 77px;">
+
+            <div id="layer-info-vertical" class='card-horizontal-row-flow' style="width:600px; font-size: 25px;" >Layer Name</div>
+
+            <div class='card-horizontal-row-flow' style="width:200px;">
+              <span style="font-size:29px;" id="total-feature">...</span>
+              <span style="font-size:9px;">Total</span>
+            </div>
+            
+            
+
+            <div class='card-horizontal-row-flow' style="width:200px;">
+              <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"></input>
+              &nbsp;&nbsp;
+              <label for="overlay_opacity_range" id='opacity_value_text'></label>
+            </div>
+
+
+            <div id="outside-esri-track-current-location" class='card-horizontal-row-flow' style="width:90px;" ></div>
+            <div id="outside-esri-toggle-basemap" class='card-horizontal-row-flow' style="width:110px;" ></div>
+
+            
+          </div>
+
+          <div class='map-box' >
+            <!-- overwrite default height, for info window on left only, for info window at bottom, use default height, do not overwrite  -->
+           <div id="viewDiv" style="height: 800px;"></div>
+          </div>
+             
+        </div>
+
+        <div class="vertical-right-box">
+
+
+          <!--   --- --- --- --- zoom to feature or not radio button  --- --- --- --- -->
+
+                              <!-- --- --- back to previous extent button --- --- 
+                              <button  type='button' id='back_to_previous_extent_btn'><span style="font-size: 28px;">&#8678; back to previous extent</span></button>
+                              -->
+
+                              <!-- --- --- outside esri search widget --- --- -->
+                            <div id="outside-esri-search-widget"></div>
+                            </br>
+
+
+
+                              <!-- --- ---  --- --- -->
+                              <fieldset class="horizontal-flex-row center-of-parent-container">
+                                
+                                <legend>When you click feature ( clickable mode only )</legend>
+
+                                <span class="label-container">
+                                  <input class="radio-input" name="zoom_to_feature_or_not_radio" type="radio"  value="zoom_to_feature"/>
+                                  <span>
+                                    <span class="label-text label-text-spacing label-text-prefix">Zoom to feature</span>
+                                  </span>
+                                </span>
+                                
+                                <span class="label-container">
+                                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </span>
+                              
+                                <span class="label-container">
+                                  <input name="zoom_to_feature_or_not_radio" type="radio"  value="not_zoom2feature"/>
+                                  <span>
+                                    <span class="label-text label-text-spacing label-text-prefix">Not zoom</span>
+                                  </span>
+                                </span>
+                              </fieldset>
+                              <!-- --- ---  --- --- -->
+
+
+                            </br>
+                              
+                           
+
+                          <!--   --- --- end --- --- zoom to feature or not radio button --- --- --- --- -->
+      
+
+
+          
+          <div id='info-window-div' class="flex-row" style="font-size: xx-small;"></div>
+        </div>
+   </div>  
+      
+  
+
+     <!-- jquery must load first on top header -->
+     <!-- esri dojo conflict with jquery, must load after jquery, at bottom of page -->
+     <!-- my.js must load after esri dojo load -->
+                
+                <link rel="stylesheet" href="https://js.arcgis.com/4.33/esri/themes/light/main.css"/>
+                <script src="https://js.arcgis.com/4.33/"></script>
+     
+    <script src="../../js/arcgis/arcgis_common.js" type="text/javascript"></script>
+    <script src="../../js/arcgis/mapimagelayer/click_mapimage.js" type="text/javascript"></script>
+
+  </body>
+</html>

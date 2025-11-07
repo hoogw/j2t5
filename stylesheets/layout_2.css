@@ -1,0 +1,63 @@
+/* layout_2 for top info_row, bottom map_row only */
+
+
+html, body{
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#row_1  {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+
+#info_row {
+  padding: 0;
+  margin: 0;
+  height: 4%;
+  display: block; 
+  overflow-y: auto; 
+  overflow-x: auto;
+}
+
+
+#map_row {
+  padding: 0;
+  margin: 0;
+  height: 96%;
+  display: block; 
+  overflow-y: auto; 
+  overflow-x: auto;
+}
+
+
+#map {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  
+  /* height: 900px; */
+  
+  
+  
+  
+  /*
+   
+  bug fix: leaflet map will display scrollbar with below setting. so need comment out
+  other google map bing, here, etc do NOT need this either. 
+  Only left_1 div need this for scrollbar when large amount of content. 
+
+  display: block; 
+  overflow-y: auto; 
+  overflow-x: auto;
+
+  */
+
+
+}
+

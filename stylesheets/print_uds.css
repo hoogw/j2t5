@@ -1,0 +1,121 @@
+
+
+
+@page {
+   /*  https://developer.mozilla.org/en-US/docs/Web/CSS/@page */
+
+    size: auto; /*  auto allow user click 'more setting' to change scale, paper size,*/
+    /*size: a4 landscape; portrait;    DO NOT USE,   no 'more setting' option, can't change scale, paper size  */
+
+    /*  Print Dialog Settings  https://stackoverflow.com/questions/37033766/css-print-a-custom-sized-page-margin-when-the-content-is-on-multiple-pages
+        In the print preview dialog, ensure that "Margins" is set to "Default".
+        If "Margins" are set to "None" (or other non-"Default" option) the @page settings will be ignored. 
+    */ 
+    margin: 3mm 3mm 3mm 3mm; 
+   
+  }
+
+
+html, body{
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+  }
+  
+
+
+.sidebar-container {
+    display: none;
+   visibility: hidden;
+}
+
+
+
+
+.right-sidebar-container {
+    /* this is print, unit should be 5in 5mm 5cm, not 5px */
+
+    /* not use, because it trigger 2 pages 
+    margin: 2mm 2mm 2mm 2mm; */
+
+    /* in use, only 1 page*/
+     margin: 0mm;
+}
+
+
+
+ /*    ... ... - only for by county ... city ... zip - ...    ...    */
+
+        .side-top-container,
+        .content-container
+        {
+            display: none;
+            visibility: hidden;
+          }
+
+
+ /*    ... end ... - only for by county ... city ... zip - ...    ...    */
+
+
+
+
+
+
+
+        
+        /*    --- --- --- - hide esri widget   --- --- --- -   */
+
+                            /*    hide all widget(esri-widget and my customized widget and esir-logo, everything on the map   
+                            .esri-component {
+                                display: none;
+                                visibility: hidden;
+                            }
+                            */
+
+                            /* only hide (all-esri-widget) such as legend, zoom, base map, esri-logo-attribute, search    (not include my-customized-widget) 
+                            .esri-widget {
+                                visibility: hidden;
+                            }
+                            */
+
+
+                            /* only hide esri-widget */
+                            .esri-search,
+                            .esri-zoom,
+                            .esri-track,
+                            .esri-basemap-thumbnail,   /* basemap toggle */
+                            .esri-expand,              /* basemap expend icon */
+                            .esri-attribution,         /* esri bottom line logo*/
+                            #coordsWidget              /* lat long widget */
+                            {   
+                                display: none;
+                                visibility: hidden;
+                            }
+                            
+
+
+
+                            /* only hide my-customized-widget */
+                            #current_zoom_level,
+                            #zoom2layer_button,
+                            #opacitytitle_span,
+                            #overlay_opacity_range,
+                            #overlay_opacity_label,
+                            #hideLegend_button,
+                            #widget_opacity_title_span,
+                            #widget_opacity_slider_input,
+                            #widget_opacity_slider_id,
+                            #widget_opacity_label,
+                            #statistic_info
+                            {
+                                visibility: hidden;
+                            }
+
+
+        /*   --- --- --- -   end --- --- --- - hide esri widget   --- --- --- -   */
+
+
+
+        
+

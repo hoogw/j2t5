@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+     <!--Let browser know website is optimized for mobile-->
+     <meta name="viewport" charset='utf-8' content="initial-scale=1.0, width=device-width"/>
+
+    <title id="title">feature layer</title>
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+   
+    <link href="../../stylesheets/color.css" rel="stylesheet" type="text/css"/> 
+    <link rel="stylesheet" href="../../stylesheets/vertical.css">
+
+    
+
+</head>
+
+<body>
+               
+        <div class="flex-container">
+
+
+                    <div class='dashboard-horizontal-row-flow-box' style="height: 50px;">
+                   
+                          <div id="layer-info-vertical" class='card-horizontal-row-flow' style="width:390px;" >Layer Name</div>
+
+                          <div class='card-horizontal-row-flow' style="width:310px;">
+                              <input name="click_or_hover_radio" type="radio"  value="hover"/>
+                              <span>Hoverable</span><sup style="font-size: 8px;">not zoom</sup>
+                              
+                              <input name="click_or_hover_radio" type="radio"  value="click"/>
+                              <span>Clickable</span><sup style="font-size: 8px;">zoom2feature</sup>
+                          </div>
+
+
+                          <div class='card-horizontal-row-flow' style="width:170px;">
+                            <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"></input>
+                          
+                            <label for="overlay_opacity_range" id='opacity_value_text'></label>
+                          </div>
+
+                          <div class='card-horizontal-row-flow' style="width:170px;">
+                            <h2 style="display:inline;" id="total-feature">...</h2>&nbsp;<sup>Total</sup>
+                          </div>
+
+                          <div class='card-horizontal-row-flow' style="width:150px;">
+                            <h1 style="display:inline;" id="feature-on-map">...</h1>&nbsp;<sup>OnMap</sup>
+                          </div>
+
+
+                          
+
+                    </div>
+
+
+
+
+                    <div id='dynamic-label' class="dashboard-horizontal-row-flow-box"></div>
+
+          
+                    <div class='dashboard-horizontal-row-flow-box'>
+                         
+
+                          <div class="radio-tile-container">
+
+                            <div class="radio-tile-group">
+                                <span style="font-size: 24px; font-weight: 900;">ColorBy</span>
+                                &nbsp;&nbsp;&nbsp;
+
+
+                                <div class="radio-tile-input-container">
+                                  <input  class="radio-button" name="polygonFillBy_radio" type="radio"  value="original-color"/>
+                                  <div class="radio-tile">
+                                    <label class="radio-tile-label">&nbsp;original-color&nbsp;</label>
+                                  </div>
+                                </div>
+
+                                <div class="radio-tile-input-container">
+                                  <input  class="radio-button" name="polygonFillBy_radio" type="radio"  value="red-diagonal-cross"/>
+                                  <div class="radio-tile">
+                                    <label class="radio-tile-label">&nbsp;red-diagonal-cross&nbsp;</label>
+                                  </div>
+                                </div>
+                               
+                                <div class="radio-tile-input-container">
+                                  <input  class="radio-button" name="polygonFillBy_radio" type="radio"  value="blue-tint"/>
+                                  <div class="radio-tile">
+                                    <label class="radio-tile-label">&nbsp;blue-tint&nbsp;</label>
+                                  </div>
+                                </div>
+
+                                <div class="radio-tile-input-container">
+                                  <input  class="radio-button" name="polygonFillBy_radio" type="radio"  value="red-cross"/>
+                                  <div class="radio-tile">
+                                    <label class="radio-tile-label">&nbsp;red-cross&nbsp;</label>
+                                  </div>
+                                </div>
+
+                                <div class="radio-tile-input-container">
+                                  <input  class="radio-button" name="polygonFillBy_radio" type="radio"  value="blue-forward-diagonal"/>
+                                  <div class="radio-tile">
+                                    <label class="radio-tile-label">&nbsp;blue-forward-diagonal&nbsp;</label>
+                                  </div>
+                                </div>
+
+                                <div class="radio-tile-input-container">
+                                  <input  class="radio-button" name="polygonFillBy_radio" type="radio"  value="red-tint"/>
+                                  <div class="radio-tile">
+                                    <label class="radio-tile-label">&nbsp;red-tint&nbsp;</label>
+                                  </div>
+                                </div>
+
+                                <div class="radio-tile-input-container">
+                                  <input  class="radio-button" name="polygonFillBy_radio" type="radio"  value="blue-backward-diagonal"/>
+                                  <div class="radio-tile">
+                                    <label class="radio-tile-label">&nbsp;blue-backward-diagonal&nbsp;</label>
+                                  </div>
+                                </div>
+
+                                <div class="radio-tile-input-container">
+                                    <input  class="radio-button" name="polygonFillBy_radio" type="radio"  value="nothing"/>
+                                    <div class="radio-tile">
+                                      <label class="radio-tile-label">&nbsp;nothing&nbsp;</label>
+                                    </div>
+                                </div>
+
+                                
+
+                              </div>
+                          </div>
+                    </div>
+
+
+                   
+                    
+
+            
+                    <div class='map-box' >
+                      <div id="viewDiv"></div>
+                    </div>  
+                       
+                    
+                    <div class='info-window-box'>
+                      <div id='info-window-div' class="flex-row" style="font-size: xx-small;"></div> 
+                    </div> 
+
+
+                   
+                   
+
+                  
+                    
+                    
+ 
+ </div>
+
+
+      
+      
+  
+
+     <!-- jquery must load first on top header -->
+     <!-- esri dojo conflict with jquery, must load after jquery, at bottom of page -->
+     <!-- my.js must load after esri dojo load -->
+                
+                <link rel="stylesheet" href="https://js.arcgis.com/4.33/esri/themes/light/main.css"/>
+                <script src="https://js.arcgis.com/4.33/"></script>
+     
+    <script src="../../js/arcgis/arcgis_common.js" type="text/javascript"></script>
+    <script src="../../js/datahub.io/embed/featurelayer_label_color.js" type="text/javascript"></script>
+
+  </body>
+</html>

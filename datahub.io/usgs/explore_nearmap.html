@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+     <!--Let browser know website is optimized for mobile-->
+     <meta name="viewport" charset='utf-8' content="initial-scale=1.0, width=device-width"/>
+
+    <title id="title">explore</title>
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+       
+   
+   
+   
+    
+
+               
+
+    <link rel="stylesheet" href="../../stylesheets/color.css">
+    <link rel="stylesheet" href="../../stylesheets/sidenav_1panel.css">
+
+    <!--  ---  print   ---  *  *  must after main xxx.css  *  *  https://developer.mozilla.org/en-US/docs/Web/Guide/Printing -->
+    <link rel="stylesheet" type="text/css" media="print" href="../../stylesheets/print.css" />
+
+
+</head>
+
+<body>
+               
+           
+
+
+            <!--  *** *** *** *** *** *** ***  floating panel for jsoneditor *** *** *** *** *** *** *** **** -->
+            <div id='info_outline' class='info_outline'>
+              <!--  fix bug, only esri , hit test sometime missed trigger hover-out event, cause window not close, add close button, let user manually close it   ------ materialize only -->
+              <button id='close_info_outline_panel' class="setting-button"> 
+                Close &times;
+              </button>
+
+              <div id='info-window-div' class="flex-row" style="font-size: xx-small;"></div>
+             
+            </div>  
+            <!--  *** *** *** end *** *** *** ***  floating panel for jsoneditor  *** *** *** *** *** *** *** **** -->
+
+
+
+            <!--  *** *** --- *** *** --- ***  print floating panel  *** *** --- *** *** --- *** -->
+              <div id='title_div' class='title_div'>
+              </div>  
+            <!-- *** *** --- *** *** --- ***  end *** *** --- *** *** --- ***  print floating panel  *** *** --- *** *** --- *** -->
+
+
+
+            
+
+
+
+
+
+          
+                    <div class='sidebar-container'>
+
+
+                      <span id="layer-info"></span>
+                      </br>
+                       
+                      
+                     
+
+                    
+
+                      
+
+                      <div id='row_btn'>
+
+                        <!-- dark mode toggle -->
+                        <button href="#" onclick="localStorage.setItem('mode', (localStorage.getItem('mode') || 'dark') === 'dark' ? 'light' : 'dark'); localStorage.getItem('mode') === 'dark' ? document.querySelector('body').classList.add('dark') : document.querySelector('body').classList.remove('dark')" title="Dark/light">
+                          &#127763;Dark
+                        </button>
+
+                        <!--   --- --- --- --- back to previous extent --- --- --- --- -->
+                        <button  type='button' id='back_to_previous_extent_btn'><span style="font-size: 28px;">&#8678; back to previous extent</span></button>
+                        <button  type='button' id='full_extent_btn'><span style="font-size: 28px;">&#9974; full extent</span></button>
+                        <!--   --- --- end --- --- back to previous extent --- --- --- ---  -->
+
+
+                         <!-- . . . attribution . . . -->
+                      </br>
+                      <span  style="font-size: 10.1px;">Current Background Map: </span>
+                      <div id='attribution-outside-of-map-div' style="font-size: 10.1px;"></div>
+                      <!--  . . end . . .. . . attribution . . . -->  
+
+                        <!-- token -->
+                        </br>
+                        <span id='arcgis_online_token_label'></span>
+                        <span id='arcgis_online_token'></span>
+                      </div> 
+
+
+                       
+
+
+                    <!-- . . . nearmap only . . . -->
+                    </br>
+                    <fieldset>
+                      <input name="nearmap_radio" type="radio"  value="nearmap_imagery"/>
+                      <h1 style="display: inline;">Add Nearmap Tile (on top)</h1>
+                      </br>
+                      <span id='overlay_opacity_type' class='opacityLabel'>opacity</span> 
+                      <input type='range' id='nearmap_opacity_range' name='nearmap_opacity_range' min='0' max='10' style='display:inline;' />
+                      <span id='nearmap_opacity_label'></span>
+
+                      </br>
+                      </br>
+                      <input name="nearmap_radio" type="radio"  value="esri_imagery"/>
+                      <h1 style="display: inline;">Remove Nearmap Tile </h1>
+                    </fieldset>
+                    <!-- . . . end . . . nearmap only . . . -->
+
+                      
+                      <div id="statistic_info" class='margin-small'></div>
+
+
+                      
+  
+                               
+                                <div id="legend-div"></div>
+                                <div id="legend-outside-mapview-div" style="opacity:1;"></div>
+
+
+                              </br>
+                             <!-- --- --- POI point of interest search esri --- --- -->
+
+                             <fieldset>
+                                  
+                              <legend>Esri POI ( powered by Esri Location Platform )</legend>
+                              
+                              <button  id='clear_poi_button'><span style="font-size: 27px;">&#9932; Clear POI &nbsp;</span></button>
+                              </br>
+                              <input id='search_poi_input' class='field_input_for_search' type='search' placeholder='Search POI (Point Of Interest)'/>                               
+                              </br>
+                              <button  id='search_poi_button'><span style="font-size: 27px;">&#128270; Search POI &nbsp;</span></button>
+                              <sup style="font-size:9px;">search keyword is required</sup>
+                              <button  id='nearby_poi_button'><span style="font-size: 27px;">&#128205; Show Nearby POI &nbsp;</span></button>
+                              <sup style="font-size:9px;">search keyword is optional, max 5 miles radius from center, ESRI limit max 200 poi </sup>
+                              </br>
+                              <div id='pagination-container'></div>
+
+                            </fieldset>
+
+                          <!-- end --- --- POI point of interest search esri --- --- -->
+                              
+
+                              </br>
+                              <!--  ---  print   ---   -->
+                              <fieldset class='margin-small'>
+                                      <legend> &#128424; Local Browser Printer</legend>
+                                      <span style="font-size: 11px;">Client side, will NOT use Arcgis Server Printing Service</span>
+                                      </br>
+
+                                      <button id='print_map_btn' class='margin-small'>
+                                        &#128424; print PDF
+                                      </button>
+                                      <button id='sample_title_btn' class='margin-small'>
+                                        &#9999; edit title
+                                      </button>
+                                      <button id='clear_title_btn' class='margin-small'>
+                                   &#9932; clear
+                                      </button>
+                                      <button id='update_title_btn' class='margin-small'>
+                                        update
+                                      </button>
+                                      </br>
+                                      <!-- textarea must be in same line to show placeholder https://stackoverflow.com/questions/10186913/html5-textarea-placeholder-not-appearing -->
+                                      <textarea id="edit_title_textarea" placeholder="edit title html" name="edit_title_textarea" rows="3" style="width: 100%; max-width: 100%;"></textarea>
+                               </fieldset>
+                                <!--  - - - end  - - ----  print   ---   -->
+
+                              </br>
+                               <!--  - - -   - - -  esri print widget   - - -   - - -    -->
+                               <fieldset class='margin-small'>
+                                   <legend> &#128424; Remote Esri Printing Service</legend>
+                                   <span style="font-size: 11px;">Server side, will use remote Arcgis Server Printing Service</span>
+                                   </br>
+
+                                   <div id='esri-print-wiget-outside-mapview-div'></div>
+                               </fieldset>
+                                <!--  - - - end  - - -  esri print widget   - - -   - - -    -->
+                    </div> 
+            
+
+                    <div class='right-sidebar-container' >
+                      <div id="viewDiv"></div>
+                    </div>      
+ 
+     <!-- jquery must load first on top header -->
+     <!-- esri dojo conflict with jquery, must load after jquery, at bottom of page -->
+     <!-- my.js must load after esri dojo load -->
+                
+               <!-- paginationjs  -->
+ <link href="../../js/lib/paginationjs/pagination.css" rel="stylesheet" type="text/css"/> 
+ <script src="../../js/lib/paginationjs/pagination.js"></script>
+      
+  <script src="../../js/lib/stack.js"></script> 
+
+  <!-- - - - - all third party js should load before esri js api  - - - - otherwise, get multiDefine error   - - - --->
+
+
+                
+                <link rel="stylesheet" href="https://js.arcgis.com/4.33/esri/themes/light/main.css"/>
+                <script src="https://js.arcgis.com/4.33/"></script>
+                
+        
+                <script src="../../js/arcgis/arcgis_common.js" type="text/javascript"></script>
+                
+        
+                <script src="../../js/datahub.io/usgs/explore_nearmap.js" type="text/javascript"></script>
+
+  </body>
+</html>

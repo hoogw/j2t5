@@ -1,0 +1,156 @@
+<!doctype HTML>
+<html>
+  <head>
+    <title id="title">kml viewer</title>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+
+  </head>
+  <body>
+   
+      
+            
+    
+                                
+          <h1>
+              Try these sample kml URL
+          </h1>  
+          <sup>These URL can be saved as a kml file</sup>
+
+
+
+        </br>
+        <span><mark>Socrata open data</mark> <b>kml</b> URL format, Los Angeles Council District</span>
+      </br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 
+        <a target="_blank" href ="https://data.lacity.org/api/geospatial/5v3h-vptv?method=export&format=KML"> 
+          https://data.lacity.org/api/geospatial/5v3h-vptv?method=export&format=KML
+        </a>
+        
+
+
+      </br>
+        <span><mark>Arcgis online hub</mark> <b>kml</b> URL format, Los Angeles Council District</span>
+      </br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 
+        <a target="_blank" href ="https://opendata.arcgis.com/api/v3/datasets/76104f230e384f38871eb3c4782f903d_13/downloads/data?format=kml&spatialRefId=4326&where=1%3D1"> 
+          https://opendata.arcgis.com/api/v3/datasets/76104f230e384f38871eb3c4782f903d_13/downloads/data?format=kml&spatialRefId=4326&where=1%3D1
+        </a>
+
+
+      </br>
+
+        </br>
+        <span>1. Los Angeles Council District</span>
+      </br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 
+        <a target="_blank" href ="https://transparentgov.net/data/sample/kml/LA_Council_Districts.kml"> 
+          https://transparentgov.net/data/sample/kml/LA_Council_Districts.kml
+        </a>
+
+
+          </br>
+            <span>2. California Catalina Island Zoning</span>
+          </br>
+          &nbsp;&nbsp;&nbsp;&nbsp; 
+            <a target="_blank" href ="https://transparentgov.net/data/sample/kml/california_Catalina_Island_zoning.kml"> 
+              https://transparentgov.net/data/sample/kml/california_Catalina_Island_zoning.kml
+            </a>
+
+         
+
+          </br>
+            <span>3. London Park</span>
+          </br>
+          &nbsp;&nbsp;&nbsp;&nbsp; 
+            <a target="_blank" href ="https://transparentgov.net/data/sample/kml/london_parks.kml"> 
+              https://transparentgov.net/data/sample/kml/london_parks.kml
+            </a>
+                
+
+    
+</br>
+</br>
+<fieldset>
+
+        
+        <input style="width: 100%; font-size: 36px;" id="kml_url" name="kml_url" type='search' placeholder='Type or past .kml url here'>
+
+        <button class='dark-mode-button margin-small' id="create_link_btn">create link</button>
+        <button class='dark-mode-button margin-small' id="clear_btn">clear</button>
+
+        &nbsp;&nbsp;
+        <!-- dark mode toggle -->
+        <button href="#" onclick="localStorage.setItem('mode', (localStorage.getItem('mode') || 'dark') === 'dark' ? 'light' : 'dark'); localStorage.getItem('mode') === 'dark' ? document.querySelector('body').classList.add('dark') : document.querySelector('body').classList.remove('dark')" title="Dark/light">
+          &#127763;Dark
+        </button>
+                  
+       
+                
+        
+        <h4>95 Google Maps (cors)</h4>
+        &nbsp;&nbsp;&nbsp;&nbsp; 
+        <a target="_blank" id="GoogleMaps-CORS95">
+                      <span id="GoogleMaps-CORS95-txt" ></span>
+        </a>
+              
+        
+        <h4>95 Google Maps (jsonp)</h4>
+        &nbsp;&nbsp;&nbsp;&nbsp; 
+        <a target="_blank" id="GoogleMaps-JSONP95">
+                  <span id="GoogleMaps-JSONP95-txt" ></span>
+        </a>
+                  
+       
+        <h4>95 Google Maps (proxy)</h4>
+        &nbsp;&nbsp;&nbsp;&nbsp; 
+        <a target="_blank" id="GoogleMaps-Proxy95">
+                    <span id="GoogleMaps-Proxy95-txt" ></span>
+        </a>
+      
+      
+       
+        <h4>click to download .kml file</h4>
+        &nbsp;&nbsp;&nbsp;&nbsp; 
+        <a target="_blank" id="Original-kml">
+                  <span id="Original-kml-txt" ></span>
+        </a>
+
+</fieldset>
+     
+   
+                      
+           <h2> Upload  <mark>xxx.kml</mark> file from your computer </h2>
+              
+                  <h4>GoogleMaps</h4>
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <a target="_blank" id="GoogleMaps-local" href="https://transparentgov.net:3200/googlemaps95/upload">
+                       https://transparentgov.net:3200/googlemaps95/upload
+                  </a>
+                  
+      
+
+
+
+
+    
+     <!-- must have, without this, ol, counter, number will be black text(dark theme invisible). should be light teal gray color -->
+   <link href="../stylesheets/common_share.css" rel="stylesheet" type="text/css"/>
+   <link href="../stylesheets/color.css" rel="stylesheet" type="text/css"/>
+  
+    
+  
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+     
+   
+
+   <script src="../js/gateway/kml.viewer.js"></script>
+  
+  
+      </body>
+</html>

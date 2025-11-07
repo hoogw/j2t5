@@ -1,0 +1,131 @@
+<!doctype HTML>
+<html>
+  <head>
+    <title id="title">my.arcgis.server</title>
+    <meta charset="utf-8" />
+
+    
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    
+    
+    
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   
+    
+    
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  <body>
+   
+      
+      
+    <!-- dark mode toggle -->
+    <button href="#" onclick="localStorage.setItem('mode', (localStorage.getItem('mode') || 'dark') === 'dark' ? 'light' : 'dark'); localStorage.getItem('mode') === 'dark' ? document.querySelector('body').classList.add('dark') : document.querySelector('body').classList.remove('dark')" title="Dark/light">
+          &#127763;Dark
+    </button>
+      
+      
+  
+             
+    <div>
+
+                    <p>
+                      <b>Only 1 parameter needed to build the link.</b>  For example: 
+                      </br> 
+                      https://transparentgov.net/json2tree/.....html?url=<mark>your-arcgis-server-URL</mark> 
+                      </br> 
+                      </br>
+                      Example <mark>your-arcgis-server-URL</mark> (ended with ... ...<b>/rest/service</b>):
+                      </br> 
+                      <b>https://maps.lacity.org/lahub/rest/services</b>
+                    </p>
+                     
+                    <p>
+                        <input id="arcgis_server_url" name="arcgis_server_url" type='text' placeholder='copy/past your-arcgis-server-URL' style="width: 90%;">
+                        <button id="close_icon_arcgis_server" type="button">reset</button>
+                    </p>
+                  
+                 
+                 
+                      
+                                   <strong>Search Layers API </strong>
+                                   </br>
+
+                                   <a target="_blank" id="arcgis_rest_api"  href=".">
+                                      <span id="arcgis_rest_api-txt"></span>
+                                   </a>
+                                     
+                                   </br>
+                                   </br>
+                       
+                       
+                                   <strong> Folder structure API </strong>
+                                   </br>
+       
+                                   <a target="_blank" id="arcgis_rest_api_tree_structure"  href=".">
+                                      <span id="arcgis_rest_api_tree_structure-txt"></span>
+                                   </a>
+
+
+                                    </br>
+                                    </br>
+                
+                
+                                   <strong>Check each layer availability API</strong>
+                                   </br>
+
+
+                                   <a target="_blank" id="arcgis_rest_api_check" class="light-blue-text hoverable" href=".">
+                                     <span id="arcgis_rest_api_check-txt"></span>
+                                   </a>
+                              
+                  
+    </div>
+                      
+               
+                   
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    
+    
+     
+     <!-- must have, without this, ol, counter, number will be black text(dark theme invisible). should be light teal gray color -->
+   <link href="../stylesheets/common_share.css" rel="stylesheet" type="text/css"/>
+   <link href="../stylesheets/color.css" rel="stylesheet" type="text/css"/>
+  
+    
+    
+    
+  
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+     
+   
+
+   <script src="../js/gateway/my.arcgis.server.js"></script>
+  
+  
+      </body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+     <!--Let browser know website is optimized for mobile-->
+     <meta name="viewport" charset='utf-8' content="initial-scale=1.0, width=device-width"/>
+
+    <title id="title">feature layer</title>
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+   
+    <link href="../../stylesheets/color.css" rel="stylesheet" type="text/css"/> 
+    <link rel="stylesheet" href="../../stylesheets/vertical.css">
+
+    
+
+</head>
+
+<body>
+               
+  <div class="flex-container">
+
+
+                   
+
+
+
+
+
+          
+                    <div class='dashboard-box'>
+
+                            <div class='card' style="width:440px;">
+                              <div id="layer-info-vertical" >Layer Name</div>
+                            </div>
+
+
+                            <!--  --- original color or yellow   ---  -->
+                            <div class='card' style="width:150px;">
+                              <div>
+                                <input name="original_color_or_yellow_radio" type="radio"  value="yellow"/>
+                                <span>yellow</span>
+                              </div>
+                              <div>
+                                <input name="original_color_or_yellow_radio" type="radio"  value="original_color"/>
+                                <span>original color</span>
+                              </div>
+                            </div>
+
+                            <div class='card' style="width:150px;">
+
+                              <div>
+                                <input name="click_or_hover_radio" type="radio"  value="hover"/>
+                                <span>hoverable</span>
+                              </div>
+
+                             
+
+
+                              <div>
+                                <input name="click_or_hover_radio" type="radio"  value="click"/>
+                                <span>clickable</span>
+                              </div>
+
+                            </div>
+
+
+                            <div class='card' style="width:150px;">
+
+                              <div>
+                                <span id = "opacitytitle_span">layer-opacity:</span>
+                                &nbsp;
+                                <label for="overlay_opacity_range" id='opacity_value_text'></label>
+                              </div>
+                              <!-- <span id = "opacitytitle_span">opacity</span> -->
+                              
+                              <div>
+                                <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"></input>
+                              </div>
+                              
+                            </div>
+
+                            <div class='card' style="width:150px;">
+                              <div id="total-feature">...</div>
+                              <div> (Total)</div>
+                            </div>
+
+                            <div class='card' style="width:150px;">
+                              <div id="feature-on-map">...</div>
+                              <div>On Map</div>
+                            </div>
+
+
+                            
+
+
+                            
+                    </div>
+
+
+                   
+                   
+
+
+            
+                    <div class='map-box' >
+                      <div id="viewDiv"></div>
+                    </div>  
+                       
+                    
+                    <div class='info-window-box'>
+
+
+                      <div>
+                        <span>Attachment Image Size</span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input name="attachment-image-size-radio" type="radio"  value="small"/>
+                        <span>Small</span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input name="attachment-image-size-radio" type="radio"  value="medium"/>
+                        <span>Medium</span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input name="attachment-image-size-radio" type="radio"  value="large"/>
+                        <span>Large</span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input name="attachment-image-size-radio" type="radio"  value="original"/>
+                        <span>Original Size</span>
+                      </div>
+
+                      <div id='info-window-div' class="flex-row" style="font-size: xx-small;"></div> 
+                    </div> 
+
+
+                   
+                   
+
+                  
+                    
+                    
+ 
+ </div>
+
+
+      
+      
+  
+
+     <!-- jquery must load first on top header -->
+     <!-- esri dojo conflict with jquery, must load after jquery, at bottom of page -->
+     <!-- my.js must load after esri dojo load -->
+                
+                <link rel="stylesheet" href="https://js.arcgis.com/4.33/esri/themes/light/main.css"/>
+                <script src="https://js.arcgis.com/4.33/"></script>
+     
+    <script src="../../js/arcgis/arcgis_common.js" type="text/javascript"></script>
+    <script src="../../js/datahub.io/embed/featurelayer_attachments.js" type="text/javascript"></script>
+
+  </body>
+</html>

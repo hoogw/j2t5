@@ -1,0 +1,252 @@
+
+
+
+
+.not-edge {
+  margin-bottom: 5px;
+  margin-top: 5px;
+  margin-left: 10px; 
+  margin-right: 10px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              /*
+                json-editor customize header color
+                https://github.com/josdejong/jsoneditor/issues/1040
+
+
+                What you can do is give the containers where you attach the JSONEditors different classes:
+
+                          <div class="editor1"></div>
+                          <div class="editor2"></div>
+
+                          then create different styling for the different containers:
+
+                          div.editor1 div.jsoneditor-menu {
+                            background-color: red;
+                          }
+
+                          div.editor2 div.jsoneditor-menu {
+                            background-color: blue;
+                          }
+
+              */
+
+              #jsoneditor div.jsoneditor-field {
+                color: grey;
+              }
+
+              /*  -----  end ------ json-editor customize color  ----------- */
+
+
+
+
+
+
+
+
+
+
+
+
+                    .floating {
+                      position: fixed; /* absolute; */
+                      top: 10px;
+                      left: 10px;
+                      z-index: 100;
+                      /* background-color: rgba(255, 255, 255, 0.8) */
+                      width: 100%;
+                  }
+
+                  .floating-flex {
+                    position: fixed; /* absolute; */
+                    top: 10px;
+                    left: 10px;
+                    z-index: 100;
+                    /* background-color: rgba(255, 255, 255, 0.8) */
+                    width: 100%;
+                }
+                  
+
+
+
+          /* for large search result collection scroll only */
+
+
+                      div.scrollable {
+                        height:80vh;
+                        display: block; 
+                        overflow: auto; 
+                        overflow-y: auto; 
+                        overflow-x: auto;
+
+                        z-index: 50;
+                      }
+
+                      div.scrollable-medium {
+                        height:70vh; 
+                        display: block; 
+                        overflow: auto; 
+                        overflow-y: auto; 
+                        overflow-x: auto;
+
+                        z-index: 50;
+                      }
+
+                      /* for larger title area */
+                      div.scrollable-larger {
+                        height:60vh; 
+                        display: block; 
+                        overflow: auto; 
+                        overflow-y: auto; 
+                        overflow-x: auto;
+
+                        z-index: 50;
+                      }
+
+                      
+          /* ==== end ===== for large search result collection scroll only */
+
+
+                    
+                /* scroll back to top button
+                
+                      https://codepen.io/matthewcain/pen/ZepbeR
+                      https://codepen.io/hoogw/pen/YzqXbzr
+                */
+
+                   
+                      #back_to_top_button {
+                        display: inline-block;
+                        background-color: #FF9800;
+                        width:  150px; /*50px;*/
+                        height: 100px; /*50px;*/
+                        text-align: center;
+                        border-radius: 4px;
+                        position: fixed;     /* fixed; */ 
+                        bottom: 30px;
+                        right: 30px;
+                        transition: background-color .3s, 
+                          opacity .5s, visibility .5s;
+                        opacity: 0;
+                        visibility: hidden;
+                        z-index: 1000;
+                      }
+                      #back_to_top_button::after {
+                        
+                        /* content: "\f077";      must use with  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">  */
+                        content: "Top";  /*  no longer need <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> */
+
+                        font-family: FontAwesome;
+                        font-weight: normal;
+                        font-style: normal;
+                        font-size: 5em; /*2em;*/
+                        line-height: 100px; /*50px;*/
+                        color: #fff;
+                      }
+                      #back_to_top_button:hover {
+                        cursor: pointer;
+                        background-color: #333;
+                      }
+                      #back_to_top_button:active {
+                        background-color: #555;
+                      }
+                      #back_to_top_button.show {
+                        opacity: 1;
+                        visibility: visible;
+                      }
+                /*  ==== end ===== scroll back to top button*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     /*
+      
+          =============    time count down progress bar     =============   
+
+          https://codepen.io/hoogw/pen/RwgmNNm
+
+          https://stackoverflow.com/questions/24530908/showing-a-time-countdown-progress-bar
+          https://codepen.io/Rudchyk/pen/qNOEGj
+
+
+      */
+
+      #ajax_getJson_processing {
+
+        width: 100%; /* 80%; */
+        margin: 10px auto;
+        height: 50px;  /*  default normal size 22px  */
+        background-color:   #0A5F44; 
+
+      }
+      
+
+
+
+
+      #ajax_getJson_processing div {
+
+
+        height: 100%;
+        text-align: left; /* right; */
+        padding: 0 10px;
+        line-height: 50px; /* same as #progressBar height if we want text middle aligned */
+        width: 0;
+        background-color:  #CBEA00;
+        box-sizing: border-box;
+
+        font-size: 50px;   /* timer number size*/
+
+        color: #0A5F44; 
+
+
+      }
+
+
+/*
+
+=============    end        =============      time count down progress bar     =============   
+
+*/
+
+      
+
+
+
+
+

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+     <!--Let browser know website is optimized for mobile-->
+     <meta name="viewport" charset='utf-8' content="initial-scale=1.0, width=device-width"/>
+
+    <title id="title">google embed</title>
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+   
+    <link href="../../stylesheets/color.css" rel="stylesheet" type="text/css"/> 
+    <link rel="stylesheet" href="../../stylesheets/vertical.css">
+
+    
+
+</head>
+
+<body>
+
+  <div class="horizontal-left-right-flex-container">
+             
+   
+    
+    <div id="flex_1" class="vertical-width-undefined-no-border" style="width: 600px; height: 800px; overflow: auto; ">
+    
+      
+       
+     
+      <div> 
+        <span id="layer-info-vertical">Layer Name</span>
+      </div> 
+
+      <div>
+         <span>Total:</span> <span id="total-feature">...</span>
+         &nbsp;
+         <span>Visible:</span>&nbsp;<span id="feature-on-map">...</span>
+         &nbsp;
+         <span>Render:</span> <span style="font-size: 12px;" id="rendering-feature">...</span>
+         &nbsp;  
+      </div> 
+
+    </br>
+
+    <input id='pac-input' type='search' placeholder='common name,zipcode,address'/> 
+
+     </br>
+
+      <div> 
+        <input type="checkbox" id="show_traffic_checkbox" name="show_traffic_checkbox" />
+        <label for="show_traffic_checkbox">Google-Traffic</label>
+        &nbsp;&nbsp;&nbsp;
+        <span id="lat-lng-zoom">...</span>
+      </div> 
+    
+      
+
+
+      <div> 
+        <span id = "opacitytitle_span">layer-opacity:</span>
+        <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"></input>
+        <label for="overlay_opacity_range" id='overlay_opacity_label'></label>
+
+        <button type="button" id = "panToCurrent_geolocation_button">my.loc.</button>
+
+        
+        <button type="button" id = "zoomToLayer_button">find.layer</button>
+      </div> 
+
+   
+
+   
+      <div> 
+        <input name="click_or_hover_radio" type="radio"  value="hover"/>
+        <span>Hoverable</span>
+        &nbsp;
+        <input name="click_or_hover_radio" type="radio"  value="click"/>
+        <span>Clickable</span>
+      </div> 
+
+      <div> 
+          <button id='close_info_outline_panel'>&times; close popup </button>
+          &nbsp;
+          <button id='download_csv_button'>Download entire.csv</button> 
+          &nbsp;
+          <button id='download_geojson_button'>Download entire.geojson</button>  
+      </div>  
+      
+      <div id='info-window-div' class="flex-row" style="font-size: xx-small;"></div>
+      
+       
+    
+    </div>
+
+    <div class="flex-container">
+      <div class='map-box'>
+        <div id="map" style="height:800px;"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="../../js/lib/papaparse.js" type="text/javascript"></script>
+      
+  <script src="../../js/lib/stack.js"></script>
+
+  
+  <script src="../../js/lib/proj4/dist/proj4.js"></script>
+  <script src="../../js/lib/wkt.js"></script>
+  <script src="../../js/lib/reproject/dist/reproject.js"></script>
+  <script src="../../js/lib/wellknown/wellknown.js"></script>
+
+
+  <script   src="../../js/lib/arcgis-to-geojson-utils/dist/arcgis-to-geojson.js"></script> 
+  <script   src="../../js/lib/turf/turf.min.js"></script>
+      
+  <script src="../../js/arcgis/arcgis_common.js" type="text/javascript"></script>
+
+  <script src="../../js/datahub.io/embed/share/share_for_all.js" type="text/javascript"></script>
+  <!-- default.js must load befor common_share.js -->
+  <script src="../../js/gateway/google-efficient-engine/entire-new-marker/default.js" type="text/javascript"></script>
+  <script src="../../js/gateway/google-efficient-engine/entire-new-marker/helper.js" type="text/javascript"></script>
+  <script src="../../js/gateway/google-efficient-engine/entire-new-marker/common_share.js" type="text/javascript"></script>
+
+
+  
+
+  </body>
+</html>

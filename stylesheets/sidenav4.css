@@ -1,0 +1,390 @@
+
+
+/*  for       http://localhost:10/json2tree/esri/server/folder.html                */
+
+
+html, body{
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+
+#map {
+  padding: 0;
+  margin: 0;
+  
+  height: 100%;
+  
+
+ 
+}
+
+
+
+
+
+
+
+/*  ==========  all 1080p full HD and larger screen  > 1900px     ==========     */
+
+/*
+     use in : 
+
+
+      8K Resolution 7680 x 4320, 
+
+      4K Resolution 3840 x 2160, UHD, Ultra HD, 4K UHD, 4K resolution also has 4 times more pixels than 1080p
+
+      1440p Resolution 2560 x 1440, Quad HD , 1440p is 4 times stronger than the base HD variant
+
+      1080p Resolution 1920 x 1080, Full HD, FHD , 1080p is currently the standard resolution
+
+      
+
+
+*/
+
+
+
+
+/*  ==========    > 1800px large screen    ==========     */
+
+
+
+.topMenu-container {
+
+
+
+  position: fixed;
+  height: 100%;         /* Full-height: remove this if you want "auto" height */
+  width: 200px;       
+  left: 0px;
+
+  z-index: 1;           /* Stay on top */
+  background-color:  /*  white -> */ rgba(246, 246, 246, 0.96);       
+
+  
+  overflow-x: auto;
+  overflow-y: auto;
+ 
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+}
+
+
+.sidebar-container {
+
+
+
+    position: fixed;
+    height: 100%;         /* Full-height: remove this if you want "auto" height */
+    width: 500px;       
+    left: 200px;
+
+    z-index: 10;           /* Stay on top */
+    background-color:  /*  white -> */ rgba(249, 249, 249, 0.96);       
+
+    
+    overflow-x: auto;
+    overflow-y: auto;
+   
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+  }
+  
+
+
+  .content-container {
+
+   
+
+    position: fixed;
+    height: 100%;
+    width: 800px;  
+    left: 700px;
+    
+
+    z-index: 20;           /* Stay on top */
+    background-color:    /* less white -> */ rgba(252, 252, 252, 0.96);                
+
+    
+    overflow-x: auto;
+    overflow-y: auto;
+
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    
+   
+  }
+
+
+
+  .right-sidebar-container {
+  
+     /* position: fixed;      Do not use , we need 3rd section dynamic , no matter full screen or not   */ 
+       /* width:  100%;         Do not use , we need 3rd section dynamic , no matter full screen or not */  
+
+    height: 100%;
+    
+    margin-left: 1500px;    /*  must use "margin-left", "left" not working */
+
+
+    z-index: 30;           /* Stay on top */
+    background-color:    /* less white -> */ rgba(255, 255, 255, 0.96);                
+
+    
+    overflow-x: auto;
+    overflow-y: auto;
+
+
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+
+   
+  }
+
+
+
+
+
+
+
+        /*  ==========     responsive sidebar  ==========     */
+
+
+
+
+
+                  /*  https://www.w3schools.com/howto/howto_css_sidebar_responsive.asp */
+
+                                  /* On screens that are less than 1900px wide, only the properties that changed, redefine here, by default, it will inheritage from parent level,
+                                    so if property has no change, no need to list here, only list propeties that changed value. otherwise other properties, just use parent value above */
+                                  @media screen and (max-width: 1900px) {
+
+
+                                                                        
+
+                                    /*  ==========   1400px  <   screen  < 1900px     ==========     */
+
+                                                                        /*
+                                                                              
+                                                                              1680 × 1050   20- and 22-inch widescreen LCD monitors
+
+                                                                        */
+
+
+
+                                            /* fixed panel-1  200px , following left must add this  */
+
+                                            .sidebar-container {
+                                              
+                                              width: 400px;       /* left-width  */ 
+                                              left:  200px;
+                                            }
+
+                                            .content-container {
+
+                                              width: 600px;        /*  middle-width */
+                                              left:  600px;  
+                                              
+                                            }
+
+
+
+                                            .right-sidebar-container {
+                                          
+                                              margin-left: 1200px;   /*  must use "margin-left", "left" not working */
+                                            }
+
+                                  
+                                    
+                                  
+
+
+
+                                  }
+
+
+
+
+
+
+                                  
+                                  /* On screens that are less than 1400px    1400 =  (above level)   left-width + middle-width + right-width  */
+                                  @media screen and (max-width: 1400px) {
+
+
+                                    /*  ==========   900px  <   screen  < 1400px     ==========     */
+
+                                    /*
+                                          
+                                          720p Resolution, 1280 x 720, HD, HD Ready, Standard HD, the lowest of the HD-capable resolutions
+
+                                    */
+
+                                               
+                          
+                                                /* fixed panel-1  200px , following left must add this  */
+                                                        
+                                                .sidebar-container {
+                                                      width: 300px;       
+                                                      left:  200px;
+                                                }
+
+                                                .content-container {
+
+                                                  width: 400px;  
+                                                  left: 500px;
+                                                  
+                                                }
+
+
+
+                                                .right-sidebar-container {
+                                              
+                                                
+                                                  margin-left: 900px;  /*  must use "margin-left", "left" not working */
+
+                                                
+                                                }
+
+                                    
+                                  }
+
+
+
+                                              /* On screens that are less than 900px    900 =  (above level)   left-width + middle-width + right-width */
+                                              @media screen and (max-width: 900px) {
+
+                                                /*  ==========   500px  <   screen  < 900px     ==========     */
+
+                                                /* fixed panel-1  200px , following left must add this  */
+                                                                    
+                                                .sidebar-container {
+                                                      width: 200px;       
+                                                  
+                                                }
+
+                                                .content-container {
+
+                                                  width: 200px;  
+                                                  left: 400px;
+                                                  
+                                                }
+
+
+
+                                                .right-sidebar-container {
+                                              
+                                                
+                                                  margin-left: 600px;   /*  must use "margin-left", "left" not working */
+
+                                                
+                                                }
+
+                                    
+                                  }
+
+
+                                                /* On screens that are less than 500px    500 =  (above level)   left-width + middle-width + right-width */
+                                                @media screen and (max-width: 500px) {
+
+
+                                                  /*  ==========   250px  <   screen  < 500px     ==========     */
+
+                                                  
+                                                  .topMenu-container {
+
+                                                               width: 50px; 
+                                                          }
+                                                                                                                  
+                                                  .sidebar-container {
+                                                        width: 100px;       
+                                                        left: 50px;
+                                                  }
+
+                                                  .content-container {
+
+                                                    width: 100px;  
+                                                    left: 150px;
+                                                    
+                                                  }
+
+
+
+                                                  .right-sidebar-container {
+                                                    margin-left: 250px;   /*  must use "margin-left", "left" not working */
+                                                  }
+
+
+                                              }
+
+
+
+
+
+
+                                  /* On screens that are less than 250px, display the bar vertically, instead of horizontally */
+                                  @media screen and (max-width: 250px) {
+
+
+                                                /*  ==========   250px  <   screen  < 500px     ==========     */
+
+
+                                              
+                                                .sidebar-container {
+                                                  position: relative;
+                                                  width: 100%;       
+                                                  
+
+                                                  
+                                              
+                                                }
+
+                                                .content-container {
+
+                                              
+
+                                                  position: relative;
+                                                  width: 100%; 
+                                                  left: 0px;
+                                                  
+                                                
+                                                }
+
+
+
+                                                .right-sidebar-container {
+                                                  margin-left: 0px;    /*  must use "margin-left", "left" not working */
+                                                }
+
+
+
+
+
+
+
+
+
+                                  }
+
+
+
+
+        /*  ==========  end    ==========   responsive sidebar  ==========     */
+
+
+
+
+
+

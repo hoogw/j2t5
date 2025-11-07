@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+     <!--Let browser know website is optimized for mobile-->
+     <meta name="viewport" charset='utf-8' content="initial-scale=1.0, width=device-width"/>
+
+    <title id="title">feature layer</title>
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+   
+    <link href="../../stylesheets/color.css" rel="stylesheet" type="text/css"/> 
+    <link rel="stylesheet" href="../../stylesheets/vertical.css">
+
+    
+
+</head>
+
+<body>
+               
+  <div class="flex-container">
+
+
+                   
+
+
+
+
+
+          
+              <div class='dashboard-box' style='top: 0px; position: fixed; z-index:9; opacity: 0.95; background: white;'>
+
+                            <div class='card' style="width:440px;">
+                              <input class='field_input_for_search_vertical' type='search'  placeholder='Search' id='search_data'/>
+                            </div>
+
+
+                            <div class='card' style="width:80px;">
+                              <button type="button" id='start_search_button'>search</button>
+                              &nbsp;
+                              <button type="button" id='clear_search_result_button'>clear</button>
+                            </div>
+
+
+
+                            <div class='card' style="width:370px;">
+                              <div id="layer-info-vertical" >Layer Name</div>
+                            </div>
+
+
+
+                            <div class='card' style="width:150px;">
+                              <div id="feature-on-map">...</div>
+                              <div> (visible)</div>
+                            </div>
+
+
+                            <div class='card' style="width:150px;">
+                              <div id="total-feature">...</div>
+                              <div> (Total)</div>
+                            </div>
+
+                            
+
+                            
+              </div>
+
+
+                   
+              <div class='dashboard-horizontal-row-flow-box' style='width: 1200px; top: 90px; position: fixed; z-index:8; opacity: 0.95; background: white;'>
+
+                <div id='pagination-container'></div>
+               
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                <input name='search_result_paging_or_not_radio' type='radio'  value='paging'>
+                <span>paged SearchResults</span> 
+              
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                <input name='search_result_paging_or_not_radio' type='radio'  value='not_paging'>
+                <span>show all</span>
+
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                
+                <div id='message_div'></div>   
+              </div>
+
+
+              <div class='info-window-box'  style='top: 135px; position: absolute; width: 1200px; z-index:7;'>
+                <div id='info-window-div' class="flex-row" style="font-size: xx-small;"></div> 
+              </div> 
+                    
+ 
+ </div>
+
+
+ <script src="../../js/lib/stack.js"></script>
+
+
+
+ <!-- paginationjs  -->
+ <link href="../../js/lib/paginationjs/pagination.css" rel="stylesheet" type="text/css"/> 
+ <script src="../../js/lib/paginationjs/pagination.js"></script>
+  
+<!--  ----- mark.js  --> 
+<script src="../../js/lib/mark.js/mark.min.js" type="text/javascript"></script>
+<script src="../../js/lib/mark.js/jquery.mark.min.js" type="text/javascript"></script>
+<link href="../../js/lib/mark.js/mark.js.css" rel="stylesheet" type="text/css"/>
+<!--  end ---- mark.js  --> 
+     
+     
+    <script src="../../js/arcgis/arcgis_common.js" type="text/javascript"></script>
+
+    <script src="../../js/datahub.io/embed/share/cross.js" type="text/javascript"></script>
+    <script src="../../js/datahub.io/embed/share/share_for_all.js" type="text/javascript"></script>
+
+    <!-- default.js must load befor common_share.js -->
+    <script src="../../js/datahub.io/embed/featureTable_vertical/default.js" type="text/javascript"></script>
+    <script src="../../js/datahub.io/embed/featureTable_vertical/helper.js" type="text/javascript"></script>
+    <script src="../../js/datahub.io/embed/featureTable_vertical/common_share.js" type="text/javascript"></script>
+
+
+  </body>
+</html>

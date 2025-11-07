@@ -1,0 +1,739 @@
+
+
+
+
+/*  
+      :::::::: ESRI only ::::::::    warning   ::::::::  ::::::::  for json2tree ( ESRI arcgis/featurelayer ... etc) only  ::::::::  :::::::: ::::::::  :::::::: 
+*/
+
+
+
+                          /* -------- view UI  --------  control   --------  */
+
+                                  #search-widget-div {
+
+                                    position: absolute;  /*   relative; fixed; */
+
+
+                                    top: 15px;
+                                    
+                                    left: 60px;
+
+
+                                    height:60px;
+                                    width: 600px;
+
+                                    padding-top: 15px;
+                                    padding-left: 20px;
+                                    padding-right: 20px;
+                                    padding-bottom: 30px;
+
+
+
+                                                  /* border-color: rgba(255,255,255, .80); 
+                                                  border-width: thick;  */
+                                                  background-color: rgba(0,0,0, .60);
+                                                /* color: black;   rgba(255,255,255, .90); */
+                                  }
+
+
+
+                                  #coordsWidget {
+
+                                  
+                                    
+
+                                    position: absolute; /* fixed; */
+
+                                    bottom: 20px;
+                                    left: 10px;
+
+                                    height:26px;
+                                    width: 680px;
+
+                                    padding-top: 5px;
+                                    padding-left: 5px;
+                                    padding-right: 5px;
+                                    padding-bottom: 5px;
+
+
+                                    background-color: rgba(0,0,0, .40);
+
+                                  }
+
+
+
+
+                                  .zoom2layer_btn_class {
+
+                                  
+
+
+
+                                    position: absolute; /* fixed; */
+
+                                    opacity: 0.6;
+
+                                  
+                                    bottom: 60px;
+                                    left: 10px;
+
+                                    height:50px;
+                                    width: 130px;
+
+                                    padding-top: 0px;
+                                    padding-left: 0px;
+                                    padding-right: 0px;
+                                    padding-bottom: 0px;
+
+
+
+                                                
+
+                                  }
+
+                          /* -------- end  --------   view UI  --------  control   --------  */
+
+
+
+
+
+
+
+
+
+/*  
+      ::::::::   end  ::::::::   ESRI only  ::::::::  warning   ::::::::  ::::::::  for json2tree ( ESRI arcgis/featurelayer ... etc) only  ::::::::  :::::::: ::::::::  :::::::: 
+*/
+
+
+
+
+
+
+
+
+
+
+html, body{
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.left_1 {
+  height: 100%;
+  width:  25%;
+}
+
+.right_1 {
+  position:absolute; 
+
+  height:100%;
+  width:  75%;
+
+  bottom:0px;
+  right:0px;
+ }
+
+
+
+ /* warning:   some new esri sample use viewDiv instead of map ,  not use 'map'  but keep here  */
+#map {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+
+
+
+/* some new esri sample use viewDiv instead of map */
+#viewDiv {
+
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  
+  /*  
+      Map div is parent div, must place position: xxx; in order for on-map-control use position: absolute; to relative to parent div 
+      https://stackoverflow.com/questions/65642167/cannot-apply-style-to-dynamically-created-elements-in-javascript/65642573?noredirect=1#comment125074687_65642573
+
+    position: fixed;  absolute;    not working 
+    position: absolute;
+  */
+  
+
+}
+
+
+
+.info_outline{
+
+  position: fixed;  /* fixed or absolute works ,   relative or empty not work  */
+
+  width: 23%;    /* side1 300px + side2 300px = 600px , use 590px =  600 - 5px(left) -  5px(right edge) */
+  height: 70%;   /*1000px;*/
+  background-color: /*  white -> */ rgba(255, 255, 255, 0);
+
+  z-index: 200;
+  opacity: 0.89;
+  float:left;
+
+
+              /* border: 2px solid rgba(200, 200, 200, .96); */
+              border: 0;
+              border-radius: 2px;
+              /* white line border use this */
+              box-shadow: 0 2px 5px 6px rgba(200, 200, 200, .96);
+              /* black line border use this 
+              box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0.8);*/
+              /* no border line, trasnparent border line use this
+              box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0 );*/
+
+
+
+  overflow-x: auto;
+  overflow-y: auto;
+  
+  
+  left: 1%;  /* 1% */
+  top: 10%;
+  
+}
+
+
+
+.list{
+
+  position: fixed;  /* fixed or absolute works ,   relative or empty not work  */
+
+  width: 23%;  /* side1 300px + side2 300px = 600px , use 580px =  600 - 10px(left) -  10px(right edge) */
+  height: 70%;   /*   90% + top 5% = 95%, there is gap at bottom 5%  1000px;*/
+  background-color: /*  white -> */ rgba(255, 255, 255, 0);
+  
+  z-index: 300;
+  opacity: 0.89;
+  float:left;
+
+
+  /* border: 2px solid rgba(200, 200, 200, .96); */
+  border: 0;
+  border-radius: 2px;
+  /* white line border use this */
+  box-shadow: 0 2px 5px 6px rgba(200, 200, 200, .96);
+  /* black line border use this 
+  box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0.8);*/
+  /* no border line, trasnparent border line use this
+  box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0 );*/
+
+  overflow-x: auto;
+  overflow-y: auto;
+  
+  left: 2%;
+  top:  15%;
+}
+
+
+
+
+
+
+
+
+
+/* for large search result collection scroll only */
+div.scrollable {
+
+        
+        
+  /*  both works 1:  independed on parent div */
+ 
+  height:80vh; 
+  
+
+
+  /* both works 2:   if use, must also define parent element height, div(id=search) ,    #search{ height:85% } */
+  /*
+  height: 85%;
+   */
+
+  display: block; 
+  overflow: auto; 
+  overflow-y: auto; 
+  overflow-x: auto;
+
+
+}
+
+
+
+
+
+                                                                       
+
+                     
+
+                           
+
+                      
+
+
+
+
+
+                          
+
+
+
+
+                  /*
+
+        
+
+                      ======   special for data table only  ====== 
+
+
+                                            json-editor customize header color
+                                            https://github.com/josdejong/jsoneditor/issues/1040
+
+
+                                            What you can do is give the containers where you attach the JSONEditors different classes:
+
+                                                      <div class="editor1"></div>
+                                                      <div class="editor2"></div>
+
+                                                      then create different styling for the different containers:
+
+                                                      div.editor1 div.jsoneditor-menu {
+                                                        background-color: red;
+                                                      }
+
+                                                      div.editor2 div.jsoneditor-menu {
+                                                        background-color: blue;
+                                                      }
+
+                                          */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                          #jsoneditor_search div.jsoneditor-menu {
+                                            background-color: #9FE2BF;
+                                            border: thin solid #9FE2BF;
+                                          }
+
+                                          #jsoneditor_search div.jsoneditor {
+                                              border: thin solid #9FE2BF;
+                                          }
+
+
+                                          #jsoneditor_search2 div.jsoneditor-menu {
+                                            background-color: #CCCCFF;
+                                            border: thin solid #CCCCFF;
+                                          }
+
+                                          #jsoneditor_search2 div.jsoneditor {
+                                              border: thin solid #CCCCFF;
+                                          }
+
+
+
+
+
+
+
+
+                                                                        #jsoneditor_info_outline div.jsoneditor-menu {
+                                                                          background-color: #009688;
+                                                                          border: thin solid #009688;
+                                                                        }
+
+                                                                        #jsoneditor_info_outline div.jsoneditor {
+                                                                            border: thin solid #009688;
+                                                                        }
+
+                                                                        #jsoneditor_list div.jsoneditor-menu {
+                                                                          background-color: #00bcd4;
+                                                                          border: thin solid #00bcd4;
+                                                                        }
+
+                                                                        #jsoneditor_list div.jsoneditor {
+                                                                          border: thin solid #00bcd4;
+                                                                        }
+
+
+                                                                        /*  dark mode, overwrite property from black to grey */
+                                                                        #jsoneditor_info_outline div.jsoneditor-field {
+                                                                          color: grey;
+                                                                        }
+                                                                        #jsoneditor_list div.jsoneditor-field {
+                                                                          color: grey;
+                                                                        }
+
+
+                                          /*  -----  end ------ json-editor customize color  ----------- */
+
+
+
+
+
+
+
+
+
+
+
+
+                           
+                   /*
+                    
+                        ==========   search result collection color    ==========   for xxx_card only  ========== 
+
+                    */
+
+
+                    
+
+                                    body .collection .collection-item.active {
+                                      background-color: rgba(255, 255, 255, 1);
+                                    }
+
+                                    body .collection {
+                                      border: 1px solid rgba(0,0,0, 0);
+                                      color:rgba(255, 255, 255, 1);
+                                    }
+                                    body .collection .collection-item {
+                                      background-color: rgba(255, 255, 255, 0);
+                                      border-bottom: 1px solid rgba(0,0,0, 0);
+                                      color:rgba(255, 255, 255, 1);
+                                    }
+
+                                  
+
+
+         
+                   /*
+                    
+                        ==========  end  ========== search result collection color    ==========     for xxx_card only  ========== 
+
+                    */
+
+
+
+
+
+
+
+                                        /*
+                                          
+                                                ---------   use special  ---------    google-place-search.css   --------- 
+
+                                          */
+
+
+
+
+
+                                                            .pac-card {
+                                                              margin: 10px 10px 0 0;
+                                                              border-radius: 2px 0 0 2px;
+                                                              box-sizing: border-box;
+                                                              -moz-box-sizing: border-box;
+                                                              outline: none;
+                                                              box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+                                                              background-color: rgba(255, 255, 255, .96);
+                                                              font-family: Roboto;
+                                                              
+                                                            }
+                                                          
+                                                            #pac-container {
+                                                              padding-bottom: 12px;
+                                                              margin-right: 12px;
+                                                              
+                                                            }
+                                                          
+                                                            .pac-controls {
+                                                              display: inline-block;
+                                                              
+                                                              padding: 5px 11px;
+                                                              
+                                                            }
+                                                          
+                                                            .pac-controls label {
+                                                              font-family: Roboto;
+                                                              font-size: 15px;
+                                                              font-weight: 300;
+                                                              
+                                                            }
+                                                          
+
+
+
+                                                            #pac-input {
+
+                                                              border-color: rgba(255,255,255, .60);  
+                                                              border-width: thick; 
+                                                              background-color: rgba(0,0,0, .40);
+                                                              color: rgba(255,255,255, .80);
+                                                      
+                                                      
+                                                              font-family: Roboto;
+                                                              font-size: 15px;
+                                                              font-weight: 300;
+                                                              
+                                                      
+                                                              /*  ====== adjust postion relative to map div   ======  */
+                                                              margin-top:  10px;
+                                                              margin-left: 20px;
+                                                      
+                                                              padding: 0 11px 0 13px;
+                                                              text-overflow: ellipsis;
+                                                      
+                                                      
+                                                              /*  ====== adjust box size   ======  */
+                                                              width: 350px;
+                                                              height: 40px;
+                                                              
+                                                      
+                                                      
+                                                            }
+                                                      
+                              
+                              
+                              
+                                                          
+                                                            #pac-input:focus {
+                                                              border-color: rgba(204, 204, 255, .70);
+                                                              background-color: rgba(0,0,0, .60);
+                                                            }
+
+
+
+
+
+                                          /*
+
+                                          ---------     end   ---------   use special  ---------    google-place-search.css   --------- 
+
+                                          */
+
+
+
+
+
+
+
+
+
+
+
+     /*
+      
+          =============    time count down progress bar     =============   
+
+          https://codepen.io/hoogw/pen/RwgmNNm
+
+          https://stackoverflow.com/questions/24530908/showing-a-time-countdown-progress-bar
+          https://codepen.io/Rudchyk/pen/qNOEGj
+
+
+      */
+
+                #ajax_getJson_processing  {
+
+                  width: 100%; /* 80%; */
+                  margin: 10px auto;
+                  height: 50px;  /*  default normal size 22px  */
+                  background-color:   #0A5F44; 
+
+                }
+                
+
+
+
+
+                #ajax_getJson_processing div {
+
+
+                  height: 100%;
+                  text-align: left; /* right; */
+                  padding: 0 10px;
+                  line-height: 50px; /* same as #progressBar height if we want text middle aligned */
+                  width: 0;
+                  background-color:  #CBEA00;
+                  box-sizing: border-box;
+
+                  font-size: 50px;   /* timer number size*/
+
+                  color: #0A5F44; 
+
+
+                }
+
+
+
+
+                #ajax_image_loading_progressing {
+
+                  width: 100%; /* 80%; */
+                  margin: 10px auto;
+                  height: 50px;  /*  default normal size 22px  */
+                  background-color:   #0A5F44; 
+
+                }
+                
+
+
+
+
+                #ajax_image_loading_progressing div {
+
+
+                  height: 100%;
+                  text-align: left; /* right; */
+                  padding: 0 10px;
+                  line-height: 50px; /* same as #progressBar height if we want text middle aligned */
+                  width: 0;
+                  background-color:  #CBEA00;
+                  box-sizing: border-box;
+
+                  font-size: 50px;   /* timer number size*/
+
+                  color: #0A5F44; 
+
+
+                }
+
+
+
+
+
+
+/*
+
+=============    end        =============      time count down progress bar     =============   
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     /*
+                                    HTML element
+  
+                   https://developer.mozilla.org/en-US/docs/Web/HTML/Element/kbd
+
+      */
+
+
+                kbd {
+                  background-color: #eee;
+                  border-radius: 3px;
+                  border: 1px solid #b4b4b4;
+                  box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 0 2px 0 0 rgba(255, 255, 255, .7) inset;
+                  color: #333;
+                  display: inline-block;
+                  font-size: .85em;
+                  font-weight: 700;
+                  line-height: 1;
+                  padding: 2px 4px;
+                  white-space: nowrap;
+                }
+
+
+      /*
+         
+      
+            ======= end  =======     HTML element
+  
+         
+
+      */
+
+
+
+
+
+
+            /* ................ google geolocation api  ................    ................ */
+
+
+                        .panToCurrent_geolocation_button {
+                          background-color: rgba(255, 255, 255, .5);    
+                          
+                          border: 0;
+                          border-radius: 2px;
+                          box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+                          margin: 10px;
+                          padding: 0 0.5em;
+                          font: 400 18px Roboto, Arial, sans-serif;
+                          font-weight: bolder;
+                          overflow: hidden;
+                          height: 40px;
+                          cursor: pointer;
+                        }
+
+                        .panToCurrent_geolocation_button:hover {
+                          background: #ebebeb;
+                        }
+
+
+
+
+
+                        /*  --- also used by microsoft bing  ---*/
+                        .zoomToLayer_button {
+                          background-color: rgba(255, 255, 255, .5);    
+
+                          border: 0;
+                          border-radius: 2px;
+                          box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+                          margin: 10px;
+                          padding: 0 0.5em;
+                          font: 400 18px Roboto, Arial, sans-serif;
+                          font-weight: bolder;
+                          overflow: hidden;
+                          height: 40px;
+                          cursor: pointer;
+                        }
+
+                        .zoomToLayer_button:hover {
+                          background: #ebebeb;
+                        }
+
+
+
+            /* ................ google geolocation api  ................    ................ */
+
+
+
+
+
+
+
+
+            

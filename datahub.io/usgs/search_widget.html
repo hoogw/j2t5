@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+     <!--Let browser know website is optimized for mobile-->
+     <meta name="viewport" charset='utf-8' content="initial-scale=1.0, width=device-width"/>
+
+    <title id="title">search</title>
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+       
+   
+   
+   
+  <script src="../../js/lib/stack.js"></script>
+
+  <!--- jsoneditor   --->
+  <link rel="stylesheet" href="../../js/lib/jsoneditor/jsoneditor.min.css">
+  <script src="../../js/lib/jsoneditor/jsoneditor.min.js"></script>
+
+
+     <!--  mark.js must before any arcgis api   --> 
+      <!--  ----- mark.js  --> 
+      <script src="../../js/lib/mark.js/mark.min.js" type="text/javascript"></script>
+      <script src="../../js/lib/mark.js/jquery.mark.min.js" type="text/javascript"></script>
+      <link href="../../stylesheets/mark.js.css" rel="stylesheet" type="text/css"/>
+    <!--  end ---- mark.js  --> 
+
+    
+     <link rel="stylesheet" href="../../stylesheets/color.css">
+     <link rel="stylesheet" href="../../stylesheets/sidenav_1panel.css">
+ 
+                  
+<!--  ---  print   ---  *  *  must after main xxx.css  *  *  https://developer.mozilla.org/en-US/docs/Web/Guide/Printing -->
+<link rel="stylesheet" type="text/css" media="print" href="../../stylesheets/print.css" />
+
+
+</head>
+
+<body>
+               
+            
+            <!--  *** *** *** *** *** *** ***  floating panel for jsoneditor *** *** search only *** *** *** *** *** **** -->
+            <div id='info_outline' class='info_outline'>
+                  <!--  fix bug, only esri , hit test sometime missed trigger hover-out event, cause window not close, add close button, let user manually close it   ------ materialize only -->
+                  <button id='close_info_outline_panel' class="setting-button"> 
+                    Close &times;
+                  </button>
+
+                  <div id='jsoneditor_info_outline' hidden></div> <!-- in use, initially hidden -->
+                  <div id='jsoneditor_list' hidden></div>   <!-- not use, keep here, placeholder -->
+                  
+                  <div id='info-window-div' class="flex-row" style="font-size: xx-small;"></div>
+                  
+                </div>   
+            <!--  *** *** *** end *** *** *** ***  floating panel for jsoneditor  *** ***  search only  *** *** *** *** *** **** -->
+
+
+
+
+
+            <!--  *** *** --- *** *** --- ***  print floating panel  *** *** --- *** *** --- *** -->
+            <div id='title_div' class='title_div'>
+            </div>  
+          <!-- *** *** --- *** *** --- ***  end *** *** --- *** *** --- ***  print floating panel  *** *** --- *** *** --- *** -->
+
+
+
+         
+
+
+
+          
+                    <div class='sidebar-container'>
+
+
+                      <span id="layer-info"></span>
+                      </br>
+                      
+                      
+
+                      
+
+                      <div id='row_btn'>
+
+                        <!-- dark mode toggle -->
+                        <button href="#" onclick="localStorage.setItem('mode', (localStorage.getItem('mode') || 'dark') === 'dark' ? 'light' : 'dark'); localStorage.getItem('mode') === 'dark' ? document.querySelector('body').classList.add('dark') : document.querySelector('body').classList.remove('dark')" title="Dark/light">
+                          &#127763;Dark
+                        </button>
+
+                        <!--   --- --- --- --- back to previous extent --- --- --- --- -->
+                        <button  type='button' id='back_to_previous_extent_btn'><span style="font-size: 28px;">&#8678; back to previous extent</span></button>
+                        <button  type='button' id='full_extent_btn'><span style="font-size: 28px;">&#9974; full extent</span></button>
+                        <!--   --- --- end --- --- back to previous extent --- --- --- ---  -->
+
+                         <!-- . . . attribution . . . -->
+                      </br>
+                      <span  style="font-size: 10.1px;">Current Background Map: </span>
+                      <div id='attribution-outside-of-map-div' style="font-size: 10.1px;"></div>
+                      <!--  . . end . . .. . . attribution . . . -->  
+
+                        <!-- token -->
+                        <span id='arcgis_online_token_label'></span>
+                        <span id='arcgis_online_token'></span>
+                      </div> 
+                     
+                      <div id="statistic_info" class='margin-small'></div>
+
+                     
+                      </br>
+
+                          <!--  esri style search field   -->
+                                    <div class="search_text_esri_group">
+                                      <input class="search_text_esri" id="search_text_esri" type="search"  placeholder="all fields">
+                                    </div>
+                                    
+                                    &nbsp;&nbsp;
+                                    <button class='search-fuzzy-button' id='search_button_fuzzy'>&#128270; Search all fields</button>
+                                    &nbsp;&nbsp;
+                                    <button class='clear-search-result-button' id='show_all'>&#9932; clear</button>
+                                    </br>
+                                    &nbsp;&nbsp;
+                                    <span>To search by each field, use customzied esri's <b>search widget</b> on map top</span>
+                                    </br>
+                                    &nbsp;&nbsp;
+                                    <span>click the drop-down triangle to select which field to search</span>
+                                    
+                          <!--  --- end  --- esri style search field   -->
+
+                        
+                         
+                          <span id='badge_on_searchTab'></span>
+                          
+                          <!--   .. - .. - ... zoom 2 feature   ... - .. - .. -->
+                              <fieldset id='zoom2feature_forSearch'>
+                                  <input type='radio' id='zoom2feature_automatic_zoom_level' name='zoom2feature_radio' value='zoom2feature_automatic_zoom_level'/>
+                                  <small>Zoom2location</small><sup><mark><b>Automatically </b></mark><small>But No More Than&nbsp;</small></sup>
+                                  <input type='range'   id='zoom_to_no_more_than' name='zoom_to_no_more_than' min='1' max='22' step='1'  style='display:inline; width:auto'/>
+                                  <mark id='zoom_to_no_more_than_label'></mark>
+
+                                  <br>
+                                  <input type='radio' id='zoom2feature_fixed_zoom_level' name='zoom2feature_radio' value='zoom2feature_fixed_zoom_level'/>
+                                  <small>Zoom2location</small><sup><mark><b>Fixed</b></mark><small>at&nbsp;</small></sup>
+                                  <input type='range'   id='zoom_to_range' name='zoom_to_range' min='1' max='22' step='1'  style='display:inline; width:auto'/>
+                                  <mark id='zoom_to_label'></mark>
+                                                
+                                  <br>
+                                  <input type='radio' id='donot_zoom2feature' name='zoom2feature_radio' value='donot_zoom2feature'/>
+                                  <mark><b>Do Not&nbsp;</b></mark><small><del>Zoom2location</del></small><sup><small>same as Hold </small><kbd>SHIFT</kbd><small>&nbsp;key</small></sup>
+                              </fieldset>      
+                          <!--     ... - .. - ..  end .. - .. - ... zoom 2 feature   ... - .. - .. -->
+
+                          <div id="jsoneditor_search" class='margin-small'></div>
+                          
+                            
+                        </br>
+                        <div id="legend-div"></div>
+                        <div id="legend-outside-mapview-div" style="opacity:1;"></div>
+                          
+
+                                
+  
+                                
+
+
+                      </br>
+                      <!--  ---  print   ---   -->
+                      <fieldset class='margin-small'>
+                              <legend> &#128424; Local Browser Printer</legend>
+                                      <span style="font-size: 11px;">Client side, will NOT use Arcgis Server Printing Service</span>
+                                      </br>
+
+                              <button id='print_map_btn' class='margin-small'>
+                                &#128424; print PDF
+                              </button>
+                              <button id='sample_title_btn' class='margin-small'>
+                                &#9999; edit title
+                              </button>
+                              <button id='clear_title_btn' class='margin-small'>
+                           &#9932; clear
+                              </button>
+                              <button id='update_title_btn' class='margin-small'>
+                                update
+                              </button>
+                              </br>
+                              <!-- textarea must be in same line to show placeholder https://stackoverflow.com/questions/10186913/html5-textarea-placeholder-not-appearing -->
+                              <textarea id="edit_title_textarea" placeholder="edit title html" name="edit_title_textarea" rows="3" style="width: 100%; max-width: 100%;"></textarea>
+                       </fieldset>
+                        <!--  - - - end  - - ----  print   ---   -->
+
+                      </br>
+                       <!--  - - -   - - -  esri print widget   - - -   - - -    -->
+                       <fieldset class='margin-small'>
+                           <legend> &#128424; Remote Esri Printing Service</legend>
+                                   <span style="font-size: 11px;">Server side, will use remote Arcgis Server Printing Service</span>
+                                   </br>
+
+                           <div id='esri-print-wiget-outside-mapview-div'></div>
+                       </fieldset>
+                        <!--  - - - end  - - -  esri print widget   - - -   - - -    -->
+                    </div> 
+            
+
+                    <div class='right-sidebar-container' >
+                      <div id="viewDiv"></div>
+                    </div>      
+ 
+     <!-- jquery must load first on top header -->
+     <!-- esri dojo conflict with jquery, must load after jquery, at bottom of page -->
+     <!-- my.js must load after esri dojo load -->
+                
+                <link rel="stylesheet" href="https://js.arcgis.com/4.33/esri/themes/light/main.css"/>
+                <script src="https://js.arcgis.com/4.33/"></script>
+                
+
+
+
+
+               
+
+
+               
+                <script src="../../js/lib/stack.js"></script>   
+                <script src="../../js/arcgis/arcgis_common.js" type="text/javascript"></script>
+                
+        
+                <script src="../../js/datahub.io/usgs/search_widget.js" type="text/javascript"></script>
+
+  </body>
+</html>

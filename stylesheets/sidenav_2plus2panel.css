@@ -1,0 +1,591 @@
+
+
+/*  top left right bottom, map      */
+
+
+html, body{
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+
+#map {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  
+
+ 
+}
+
+
+
+
+
+
+/* some new esri sample use viewDiv instead of map */
+#viewDiv {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  
+
+
+  /*  
+      Map div is parent div, must place position: xxx; in order for on-map-control use position: absolute; to relative to parent div 
+      https://stackoverflow.com/questions/65642167/cannot-apply-style-to-dynamically-created-elements-in-javascript/65642573?noredirect=1#comment125074687_65642573
+
+    position: fixed;  absolute;    not working 
+    
+  */
+  position: relative;
+
+
+
+
+
+  /*
+   
+  bug fix: leaflet map will display scrollbar with below setting. so need comment out
+  other google map bing, here, etc do NOT need this either. 
+  Only left_1 div need this for scrollbar when large amount of content. 
+
+  display: block; 
+  overflow-y: auto; 
+  overflow-x: auto;
+
+  */
+
+
+}
+
+
+
+
+
+
+/*  ==========  all 1080p full HD and larger screen  > 1900px     ==========     */
+
+/*
+     use in : 
+
+
+      8K Resolution 7680 x 4320, 
+
+      4K Resolution 3840 x 2160, UHD, Ultra HD, 4K UHD, 4K resolution also has 4 times more pixels than 1080p
+
+      1440p Resolution 2560 x 1440, Quad HD , 1440p is 4 times stronger than the base HD variant
+
+      1080p Resolution 1920 x 1080, Full HD, FHD , 1080p is currently the standard resolution
+
+      
+
+
+*/
+
+
+
+
+/*  ==========    > 1800px large screen    ==========     */
+
+
+
+.side-top-container {
+
+  
+  position: fixed;
+  height: 10%;         /* Full-height: remove this if you want "auto" height */
+  width: 800px; 
+  left: 0px;       /*  right: 0;         left: 0;   */      
+  
+    
+
+    z-index: 3;           /* Stay on top */
+    background-color:    /* less white -> */rgba(245, 245, 245, .96);                 
+
+    
+    overflow-x: auto;
+    overflow-y: auto;
+
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+   
+  }
+
+  
+
+.sidebar-container {
+
+  top: 10%;
+
+  position: fixed;
+  height: 70%;         /* Full-height: remove this if you want "auto" height */
+  width: 400px; 
+  left: 0px;       /*  right: 0;         left: 0;   */      
+  
+  z-index: 1;           /* Stay on top */
+  background-color:  /*  white -> */ rgba(255, 255, 255, .96);       
+
+  overflow-x: auto;
+  overflow-y: auto;
+ 
+  padding-top: 0px;
+  padding-left: 0px;
+  padding-bottom: 0px;
+  padding-right: 0px;
+
+
+  }
+  
+
+
+  .content-container {
+
+    top: 10%;
+
+  position: fixed;
+  height: 70%;         /* Full-height: remove this if you want "auto" height */
+  width: 400px; 
+  left: 400px;       /*  right: 0;         left: 0;   */      
+  
+    
+
+    z-index: 2;           /* Stay on top */
+    background-color:    /* less white -> */rgba(230, 230, 230, .96);                 
+
+    
+    overflow-x: auto;
+    overflow-y: auto;
+
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+   
+  }
+
+
+
+  .right-sidebar-container {
+  
+     /* position: fixed;      Do not use , we need 3rd section dynamic , no matter full screen or not   */ 
+       /* width:  100%;         Do not use , we need 3rd section dynamic , no matter full screen or not */  
+       position: relative;
+    height: 100%;
+    
+
+
+
+    /* 
+    
+        full screen map, use margin left 0px, 
+            must use "margin-left"  , keep map right bottom widget inside screen
+              Can not use "left", otherwise will cause map right bottom widget out side of screen. 
+    */
+      margin-left: 800px;   /* Only for Map is Not Full Screen */
+      /* margin-left: 0px;     full screen */
+   
+
+
+
+
+    z-index: 0;           /* stay at bottom  */
+
+    
+    overflow-x: auto;
+    overflow-y: auto;
+   
+  
+
+   padding-top: 0px;
+   padding-left: 0px;
+   padding-bottom: 0px;
+   padding-right: 0px;
+
+
+   
+  }
+
+
+
+
+  .side-bottom-container {
+
+    top: 80%;
+    position: fixed;
+    height: 20%;         /* Full-height: remove this if you want "auto" height */
+    width: 800px; 
+    left: 0px;       /*  right: 0;         left: 0;   */      
+    
+      
+  
+      z-index: 3;           /* Stay on top */
+      background-color:    /* less white -> */rgba(245, 245, 245, .96);                 
+  
+      
+      overflow-x: auto;
+      overflow-y: auto;
+  
+      padding-top: 0px;
+      padding-left: 0px;
+      padding-bottom: 0px;
+      padding-right: 0px;
+     
+    }
+
+
+
+        /*  ==========     responsive sidebar  ==========     */
+
+
+
+
+
+                  /*  https://www.w3schools.com/howto/howto_css_sidebar_responsive.asp */
+
+                                  /* On screens that are less than 1900px wide, only the properties that changed, redefine here, by default, it will inheritage from parent level,
+                                    so if property has no change, no need to list here, only list propeties that changed value. otherwise other properties, just use parent value above */
+                                  @media screen and (max-width: 1900px) {
+
+
+                                                                        
+
+                                    /*  ==========   1400px  <   screen  < 1900px     ==========     */
+
+                                                                        /*
+                                                                              
+                                                                              1680 × 1050   20- and 22-inch widescreen LCD monitors
+
+                                                                        */
+                                             .side-top-container {
+                                              width: 600px;
+                                             }
+                                                          
+                                            .sidebar-container {
+                                              
+                                              width: 300px;       /* left-width  */ 
+                                              
+                                            }
+
+                                            .content-container {
+
+                                              width: 300px;        /*  middle-width */
+                                              left:  300px;  /* margin-left  =  left-width  */
+                                              
+                                            }
+
+
+
+                                            .right-sidebar-container {
+                                          
+                                              margin-left: 600px;
+                                            }
+
+                                  
+                                            .side-bottom-container {
+                                              width: 600px;
+                                            }
+                                  
+
+
+
+                                  }
+
+
+
+
+
+
+                                  
+                                  /* On screens that are less than 1400px    1400 =  (above level)   left-width + middle-width + right-width  */
+                                  @media screen and (max-width: 1400px) {
+
+
+                                    /*  ==========   900px  <   screen  < 1400px     ==========     */
+
+                                    /*
+                                          
+                                          720p Resolution, 1280 x 720, HD, HD Ready, Standard HD, the lowest of the HD-capable resolutions
+
+                                    */
+
+                                               
+                          
+                                                .side-top-container {
+                                                  width: 400px;
+                                                }
+                                                        
+                                                .sidebar-container {
+                                                      width: 200px;       
+                                                  
+                                                }
+
+                                                .content-container {
+
+                                                  width: 200px;  
+                                                  left: 200px;
+                                                  
+                                                }
+
+
+
+                                                .right-sidebar-container {
+                                                  margin-left: 400px;
+                                                }
+
+                                                .side-bottom-container {
+                                                  width: 400px;
+                                                }
+
+                                    
+                                  }
+
+
+
+                                              /* On screens that are less than 900px    900 =  (above level)   left-width + middle-width + right-width */
+                                              @media screen and (max-width: 900px) {
+
+                                                /*  ==========   500px  <   screen  < 900px     ==========     */
+
+                                                .side-top-container {
+                                                  width: 200px;
+                                                }
+                                                                    
+                                                .sidebar-container {
+                                                      width: 100px;       
+                                                  
+                                                }
+
+                                                .content-container {
+
+                                                  width: 100px;  
+                                                  left: 100px;
+                                                  
+                                                }
+
+
+
+                                                .right-sidebar-container {
+                                                  margin-left: 200px; 
+                                                }
+
+                                                .side-bottom-container {
+                                                  width: 200px;
+                                                }
+
+                                    
+                                  }
+
+
+                                                /* On screens that are less than 500px    500 =  (above level)   left-width + middle-width + right-width */
+                                                @media screen and (max-width: 500px) {
+
+
+                                                  /*  ==========   250px  <   screen  < 500px     ==========     */
+
+                                                  
+                                                  .side-top-container {
+                                                    width: 100px;
+                                                  }
+                                                                                                                  
+                                                  .sidebar-container {
+                                                        width: 50px;       
+                                                    
+                                                  }
+
+                                                  .content-container {
+
+                                                    width: 50px;  
+                                                    margin-left: 50px;
+                                                    
+                                                  }
+
+
+
+                                                  .right-sidebar-container {
+                                                    margin-left: 100px; 
+                                                  }
+
+
+                                                  .side-bottom-container {
+                                                    width: 200px;
+                                                  }
+
+
+                                              }
+
+
+
+
+
+
+                                  /* On screens that are less than 250px, display the bar vertically, instead of horizontally */
+                                  @media screen and (max-width: 250px) {
+
+
+                                                /*  ==========   250px  <   screen  < 500px     ==========     */
+
+                                                .side-top-container {
+                                                  width: 100%; 
+                                                }
+                                              
+                                                .sidebar-container {
+                                                  position: relative;
+                                                  width: 100%;       
+                                                  
+
+                                                  
+                                              
+                                                }
+
+                                                .content-container {
+
+                                              
+
+                                                  position: relative;
+                                                  width: 100%; 
+                                                  left: 0px;
+                                                  
+                                                
+                                                }
+
+
+
+                                                .right-sidebar-container {
+                                                  margin-left: 0px; 
+                                                }
+
+
+                                                .side-bottom-container {
+                                                  width: 100%; 
+                                                }
+
+
+
+
+
+
+
+
+
+                                  }
+
+
+
+
+        /*  ==========  end    ==========   responsive sidebar  ==========     */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                /* ###### ###### color ###### code ###### name ###### ######
+                
+                     https://htmlcolorcodes.com/colors/
+                
+                */
+                     .steel_blue {
+                       color: #4682B4;
+                     }
+                     body.dark .steel_blue {
+                        color: #CCCCFF;  /* Periwinkle */
+                     }
+
+
+                    .copper {
+                        color: #B87333;
+                      }
+                    body.dark  .copper {
+                        color: #E5AA70; /* Fawn */
+                      }
+
+
+                      .mango {
+                        color: #F4BB44;
+                      }
+                      body.dark .mango {
+                        color: #FFDEAD; /* Navajo White */
+                      }
+
+
+                      .moss_green {
+                        color: #8A9A5B;
+                      }
+                      body.dark .moss_green {
+                        color: #0FFF50; /* Neon Green */
+                      }
+
+
+
+                      .glaucous {
+                        color: #6082B6;
+                      }
+                      body.dark .glaucous {
+                        color: #ADD8E6; /* Light Blue */
+                      }
+
+
+                      .blue_green {
+                        color: #088F8F;
+                      }
+                      body.dark .blue_green {
+                        color: #7DF9FF; /* Electric Blue */
+                      }
+
+
+                      .taupe {
+                        color: #483C32;
+                      }
+                      body.dark .taupe {
+                        color: #F5DEB3; /* Wheat */
+                      }
+
+                      .cadmium_green {
+                        color: #097969;
+                      }
+                      body.dark .cadmium_green {
+                        color: #AFE1AF; /* Celadon */
+                      }
+
+                      .viridian {
+                        color: #40826D;
+                      }
+                      body.dark .viridian {
+                        color: #ECFFDC; /* Nyanza */
+                      }
+
+                 /* ######   end   ###### color ###### code ###### name ###### ######*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+

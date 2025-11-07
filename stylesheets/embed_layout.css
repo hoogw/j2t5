@@ -1,0 +1,11 @@
+
+#info_outline {
+  position: absolute; 
+  top: 0px; 
+  left: 0px; 
+  z-index: 0; 
+  opacity: 0.93; 
+  height:120px; 
+  overflow:scroll;
+}
+

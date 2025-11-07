@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+     <!--Let browser know website is optimized for mobile-->
+     <meta name="viewport" charset='utf-8' content="initial-scale=1.0, width=device-width"/>
+
+    <title id="title">NAServer Route</title>
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+   
+    <link href="../../stylesheets/color.css" rel="stylesheet" type="text/css"/> 
+    <link rel="stylesheet" href="../../stylesheets/vertical.css">
+
+    
+
+</head>
+
+<body>
+               
+ 
+ <div class="horizontal-left-right-flex-container">
+
+    <div class="flex-container">
+      <div class='map-box' >
+        <arcgis-map id="map-components-id" basemap="hybrid" style="height: 900px;" >
+        </arcgis-map>
+      </div>
+    </div>
+
+    <div id="flex_1" class="vertical-width-undefined-no-border" style="width: 600px; height: 800px; overflow: auto; ">
+
+
+      <div>
+        <span>Network Analysis NAServer Test</span>
+        <br>
+        <span id="lat-lng-zoom"></span>
+        <br>
+        <span>Step 1. click map to set start point</span>
+        <br>
+        <span>Step 2. click again to set end point</span>
+        <br>
+        <span>Step 3. click again to start over</span>
+        <br>
+        <span >Start</span>&nbsp;&nbsp;<span id="start"></span>
+        <br>
+        <span >End</span>&nbsp;&nbsp;<span id="end"></span>
+      </div>
+
+      <div class='info-window-box'>
+        <div id='info-window-div' class="flex-row" style="font-size: xx-small;"></div>
+        <div id='direction-details-steps'></div> 
+      </div> 
+
+
+       <br>
+
+      <div>
+        <span>Show my current location</span>
+        <arcgis-locate reference-element="map-components-id" style="width: 100px;"></arcgis-locate> 
+        
+        <arcgis-search reference-element="map-components-id" style="z-index:9;"></arcgis-search>
+        <span>Toggle Basemap between Google & HereMap & Microsoft & Esri </span>
+        <arcgis-basemap-gallery  reference-element="map-components-id"></arcgis-basemap-gallery>
+      </div>
+
+       
+
+
+    </div>
+               
+    
+
+
+  </div>
+<!-- jquery must load first on top header -->
+     <!-- esri dojo conflict with jquery, must load after jquery, at bottom of page -->
+     <!-- my.js must load after esri dojo load -->
+                
+    <link rel="stylesheet" href="https://js.arcgis.com/4.33/esri/themes/light/main.css"/>
+    <script src="https://js.arcgis.com/4.33/"></script>
+    <!-- Load Map components from CDN-->
+    <script type="module" src="https://js.arcgis.com/4.33/map-components/"></script>
+    <!-- script type="module" src="https://js.arcgis.com/map-components/4.33/index.js"></script -->
+    <!-- 4 . 3 3 bug without calcite, search component will disappear (height:0px)-->
+    <script type="module" src="https://js.arcgis.com/calcite-components/3.2.1/calcite.esm.js"></script>
+    
+    <script src="../../js/arcgis/arcgis_common.js" type="text/javascript"></script>
+    <script src="../../js/gateway/share/arcgis-component.js" type="text/javascript"></script>
+    <script src="../../js/gateway/feature-layer/naserver-route.js" type="text/javascript"></script>
+
+  </body>
+</html>

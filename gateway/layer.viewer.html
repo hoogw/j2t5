@@ -1,0 +1,354 @@
+<!doctype HTML>
+<html>
+  <head>
+    <title id="title">Single layer</title>
+    <meta charset="utf-8" />
+
+    
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+    
+    
+    
+  </head>
+  <body>
+   
+   
+    <!-- dark mode toggle -->
+    <button href="#" onclick="localStorage.setItem('mode', (localStorage.getItem('mode') || 'dark') === 'dark' ? 'light' : 'dark'); localStorage.getItem('mode') === 'dark' ? document.querySelector('body').classList.add('dark') : document.querySelector('body').classList.remove('dark')" title="Dark/light">
+          &#127763;Dark
+    </button>
+
+
+    <p>
+      <b>Only 1 parameter needed to build the link.</b>  For example: 
+      <br> 
+      https://transparentgov.net/json2tree/.....html?url=<mark>your-arcgis-layer-URL</mark> 
+      <br> 
+      <br>
+      Example <mark>your-arcgis-layer-URL</mark> (ended with ... ...<b>/MapServer/<mark>your-layer-ID</mark></b>):
+      <br> 
+      <b>https://maps.lacity.org/arcgis/rest/services/Mapping/NavigateLA/MapServer/1</b>
+    </p>
+     
+    <p>
+        <input id="arcgis_layer_url" name="arcgis_layer_url" type='text' placeholder='type or past your-arcgis-feature-layer-URL here' style="width: 90%;">
+        <button id="close_icon_arcgis_layer" type="button">reset</button>
+    </p>
+      
+  
+
+
+
+      
+   
+    <fieldset>
+      <legend><h1 style="display:inline;">Google</h1><sub>single layer</sub></legend>                         
+
+                            <h2 style="display:inline;"><b>4</b></h2><sup>classified</sup>
+                            <br>
+                            <a target="_blank" id="ClassifiedGoogle4" href=".">
+                              <span id="ClassifiedGoogle4-txt"></span>
+                            </a>   
+                            <br>
+                            <br>
+
+
+
+                            <h2 style="display:inline;"><b>0</b></h2><sup>searchable</sup>
+                            <br>
+                            <a target="_blank" id="SearchableGoogle0"  href=".">
+                               <span id="SearchableGoogle0-txt"></span>
+                            </a>
+                            <br>
+                            <br>
+                       
+                       
+
+                            <h2 style="display:inline;"><b>7</b></h2><sup>pop-up</sup>
+                            <br>
+                            <a target="_blank" id="Pop-upGoogle7"  href=".">
+                              <span id="Pop-upGoogle7-txt"></span>
+                            </a>
+                            <br>
+                            <br>
+                       
+                       
+
+                            <h2 style="display:inline;"><b>110</b></h2><sup>clickable image</sup>
+                            <br>
+                            <a target="_blank" id="ClickableImageGoogle110"  href=".">
+                              <span id="ClickableImageGoogle110-txt"></span>
+                            </a>
+                            <br>
+                            <br>
+                       
+                       
+                            
+                            <h2 style="display:inline;"><b>120</b></h2><sup>clickable tile</sup>
+                            <br>
+                            <a target="_blank" id="ClickableTileGoogle120"  href=".">
+                              <span id="ClickableTileGoogle120-txt"></span>
+                            </a>
+                            <br>
+                            <br>
+                       
+    </fieldset>     
+
+    <br>
+    <br>
+    
+    <fieldset>
+      <legend><h1 style="display:inline;">Google Advance</h1><sub>multilayer limit in same MapServer</sub></legend>  
+
+                            <h2 style="display:inline;"><b>12</b></h2><sup>pop-up</sup>
+                            <br>
+                            <a target="_blank" id="Pop-upMultilayer12"  href=".">
+                              <span id="Pop-upMultilayer12-txt"></span>
+                            </a>
+                            <br>
+                            <br>
+                       
+                       
+                               
+
+                            <h2 style="display:inline;"><b>111</b></h2><sup>clickable</sup>
+                            <br>
+                            <a target="_blank" id="ClickableMultilayerGoogle111"  href=".">
+                              <span id="ClickableMultilayerGoogle111-txt"></span>
+                            </a>
+                            <br>
+                            <br>
+                              
+
+
+
+
+                            <h2 style="display:inline;"><b>11</b></h2><sup>searchable</sup>
+                            <br>
+                            <a target="_blank" id="SearchableMultilayerGoogle11"  href=".">
+                               <span id="SearchableMultilayerGoogle11-txt"></span>
+                            </a>
+                            <br>
+                            <br>
+                       
+
+
+                            <h2 style="display:inline;"><b>411</b></h2><sup>classified</sup>
+                            <br>
+                            <a target="_blank" id="ClassifiedMultilayerGoogle411" href=".">
+                              <span id="ClassifiedMultilayerGoogle411-txt"></span>
+                            </a>   
+                            <br>
+                            <br>
+
+
+                            <h2 style="display:inline;"><b>420</b></h2><sup>classified clickable</sup>
+                            <br>
+                            <a target="_blank" id="ClassifiedMultilayerGoogle420" href=".">
+                              <span id="ClassifiedMultilayerGoogle420-txt"></span>
+                            </a>   
+                            <br>
+                            <br>
+
+    </fieldset>     
+
+        <br>
+        <br>
+        
+        <fieldset>
+          <legend><h1 style="display:inline;">Google Premium</h1><sub>multilayer in anywhere</sub></legend>  
+
+                            <h2 style="display:inline;"><b>2110</b></h2><sup>clickable image</sup>
+                            <br>
+                            <a target="_blank" id="ClassifiedMultilayerGoogle2110" href=".">
+                              <span id="ClassifiedMultilayerGoogle2110-txt"></span>
+                            </a>   
+                            <br>
+                            <br>
+
+
+    </fieldset>     
+
+        <br>
+        <br>
+        
+        <fieldset>
+          <legend><h1 style="display:inline;">Bing Maps</h1><sub></sub></legend>
+                                   
+                                                  <h2 style="display:inline;"><b>B0</b></h2><sup>Basic</sup>
+                                                  <br>
+                   
+                                                          <a target="_blank" id="BasicBing"  href=".">
+                                                                   <span id="BasicBing-txt"></span>
+                                                          </a>
+            
+                                                  <br>
+                                                  <br>
+    </fieldset>     
+
+        <br>
+        <br>
+        
+        <fieldset>
+          <legend><h1 style="display:inline;">Mapbox</h1><sub></sub></legend>
+                                       
+                                       
+                                                  <h2 style="display:inline;"><b>M0</b></h2><sup>Basic</sup>
+                                                  <br>
+                                                              <a target="_blank" id="BasicMapbox"  href=".">
+                                                                        <span id="BasicMapbox-txt"></span>
+                                                              </a>
+                
+                                                  <br>
+                                                  <br>
+     </fieldset>     
+
+        <br>
+        <br>
+        
+        <fieldset>
+          <legend><h1 style="display:inline;">ESRI</h1><sub></sub></legend>   
+
+
+
+                                                  <h2 style="display:inline;"><b>E</b></h2><sup>3D</sup>
+                                                  <br>
+                              
+                                                                     <a target="_blank" id="ESRI3D"  href=".">
+                                                                               <span id="ESRI3D-txt"></span>
+                                                                     </a>
+                       
+                                                  <br>
+                                                   <br>
+                
+
+
+
+                                                  <h2 style="display:inline;"><b>E</b></h2><sup>2D</sup>
+                                                  <br>
+                                      
+                                                                             <a target="_blank" id="ESRI2D"  href=".">
+                                                                                      <span id="ESRI2D-txt"></span>
+                                                                             </a>
+                               
+                                                   <br>
+                                                   <br>
+                
+
+
+                                                   <h2 style="display:inline;"><b>Classic v3.x</b></h2><sup>must manually zoom to location, different from other links which automatically zoom to location</sup>
+                                                   <br>
+                                      
+                                                                             <a target="_blank" id="ESRIClassic"  href=".">
+                                                                                       <span id="ESRIClassic-txt"></span>
+                                                                             </a>
+                               
+                                                   <br>
+                                                   <br>
+
+        </fieldset>     
+
+                <br>
+                <br>
+                
+                <fieldset>
+                  <legend><h1 style="display:inline;">Attribute Table</h1><sub></sub></legend>
+
+                                                        <h2 style="display:inline;"><b>T4</b></h2><sup>classified</sup>
+                                                        <br>
+                                                                                     <a target="_blank" id="AttributeTable4"  href=".">
+                                                                                               <span id="AttributeTable4-txt"></span>
+                                                                                     </a>
+                                       
+                                                        <br>
+                                                        <br>
+
+
+                                                        <h2 style="display:inline;"><b>T0</b></h2><sup>searchable</sup>
+                                                      <br>
+                                                                                   <a target="_blank" id="AttributeTable0"  href=".">
+                                                                                             <span id="AttributeTable0-txt"></span>
+                                                                                   </a>
+                                     
+                                                      <br>
+                                                      <br>
+                        
+
+
+
+                                
+                                                        <h2 style="display:inline;"><b>TE</b></h2><sup>esri grid</sup>
+                                                          <br>
+                                                      
+                                                             <a target="_blank" id="AttributeTableESRIGrid"  href=".">
+                                                                      <span id="AttributeTableESRIGrid-txt"></span>
+                                                             </a>
+                                                            <br>
+                                                            <br>
+                                        
+        
+
+        </fieldset> 
+
+                              
+
+                        </div>
+                      
+                  </div>
+                   
+    </div>      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+        
+      <!--- <div class="divider"></div>   --->
+       
+    <br>
+    <br>
+    <br>
+      
+
+        
+      
+      
+      
+    
+    
+    
+    
+     
+     <!-- must have, without this, ol, counter, number will be black text(dark theme invisible). should be light teal gray color -->
+   <link href="../stylesheets/common_share.css" rel="stylesheet" type="text/css"/>
+   <link href="../stylesheets/color.css" rel="stylesheet" type="text/css"/>
+  
+    
+    
+    
+  
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+     
+   
+   <script src="../js/gateway/common.js"></script>
+   <script src="../js/gateway/layer.viewer.js"></script>
+  
+  
+      </body>
+</html>

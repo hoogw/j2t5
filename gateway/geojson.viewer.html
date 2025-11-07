@@ -1,0 +1,218 @@
+<!doctype HTML>
+<html>
+  <head>
+    <title id="title">geojson viewer</title>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+
+  </head>
+  <body>
+   
+      
+            
+    
+                                
+          <h1>
+              Try these sample GeoJson URL
+          </h1>  
+          <sup>These URL can be saved as a GeoJson file</sup>
+
+
+        </br>
+          <span><mark>Socrata open data</mark> <b>geojson</b> URL format, Los Angeles Council District</span>
+        </br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 
+          <a target="_blank" href ="https://data.lacity.org/api/geospatial/5v3h-vptv?method=export&format=GeoJSON"> 
+            https://data.lacity.org/api/geospatial/5v3h-vptv?method=export&format=GeoJSON
+          </a>
+          
+
+
+        </br>
+          <span><mark>Arcgis online hub</mark> <b>geojson</b> URL format, Los Angeles Council District</span>
+        </br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 
+          <a target="_blank" href ="https://opendata.arcgis.com/api/v3/datasets/76104f230e384f38871eb3c4782f903d_13/downloads/data?format=geojson&spatialRefId=4326&where=1%3D1"> 
+            https://opendata.arcgis.com/api/v3/datasets/76104f230e384f38871eb3c4782f903d_13/downloads/data?format=geojson&spatialRefId=4326&where=1%3D1
+          </a>
+
+        </br>
+
+          </br>
+          <span>1. California Catalina Island Zoning</span>
+        </br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 
+          <a target="_blank" href ="https://transparentgov.net/data/sample/california_Catalina_Island_zoning.geojson"> 
+                  https://transparentgov.net/data/sample/california_Catalina_Island_zoning.geojson
+          </a>
+
+          </br>
+          <span>2. Santa Monica, California (mixed line and point in a single geojson file)</span> 
+        </br>
+        &nbsp;&nbsp;&nbsp;&nbsp;  
+          <a target="_blank" href ="https://transparentgov.net/data/sample/geojson/linePointMix.geojson"> 
+            https://transparentgov.net/data/sample/geojson/linePointMix.geojson
+          </a>
+
+          </br>
+          <span>3. Alaska Solid Waste Sites</span> 
+        </br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 
+          <a target="_blank" href ="https://transparentgov.net/data/sample/alaska_Solid_Waste_Sites.geojson"> 
+                  https://transparentgov.net/data/sample/alaska_Solid_Waste_Sites.geojson
+          </a>
+
+          </br>
+          <span>4. Alaska Areas</span>
+          </br>
+          &nbsp;&nbsp;&nbsp;&nbsp; 
+          <a target="_blank" href ="https://transparentgov.net/data/sample/alaska_Areas.geojson">
+                  https://transparentgov.net/data/sample/alaska_Areas.geojson
+          </a>
+
+          </br>
+          <span>5. World Countries</span>
+        </br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 
+          <a target="_blank" href ="https://transparentgov.net/data/sample/countries.geojson">
+                              https://transparentgov.net/data/sample/countries.geojson
+          </a>
+                
+
+    
+</br>
+</br>
+<fieldset>
+
+        
+        <input style="width: 100%; font-size: 36px;" id="geojson_url" name="geojson_url" type='search' placeholder='Type or past .geojson url here'>
+
+        <button class='dark-mode-button margin-small' id="create_link_btn">create link</button>
+        <button class='dark-mode-button margin-small' id="clear_btn">clear</button>
+
+        &nbsp;&nbsp;
+        <!-- dark mode toggle -->
+        <button href="#" onclick="localStorage.setItem('mode', (localStorage.getItem('mode') || 'dark') === 'dark' ? 'light' : 'dark'); localStorage.getItem('mode') === 'dark' ? document.querySelector('body').classList.add('dark') : document.querySelector('body').classList.remove('dark')" title="Dark/light">
+          &#127763;Dark
+        </button>
+                  
+       
+        <h4>92 Google Maps (web worker) : </h4>
+        &nbsp;&nbsp;&nbsp;&nbsp; 
+        <a target="_blank" id="GoogleMaps-92">
+                    <span id="GoogleMaps-92-txt" ></span>
+        </a>
+
+        
+        <h4>92 Google Maps (web worker 4) : </h4>
+        &nbsp;&nbsp;&nbsp;&nbsp; 
+        <a target="_blank" id="GoogleMaps-92-4">
+                    <span id="GoogleMaps-92-4-txt" ></span>
+        </a>
+                
+        
+        <h4>93 Google Maps (cors)</h4>
+        &nbsp;&nbsp;&nbsp;&nbsp; 
+        <a target="_blank" id="GoogleMaps-CORS93">
+                      <span id="GoogleMaps-CORS93-txt" ></span>
+        </a>
+              
+        
+        <h4>93 Google Maps (jsonp)</h4>
+        &nbsp;&nbsp;&nbsp;&nbsp; 
+        <a target="_blank" id="GoogleMaps-JSONP93">
+                  <span id="GoogleMaps-JSONP93-txt" ></span>
+        </a>
+                  
+       
+        <h4>93 Google Maps (proxy)</h4>
+        &nbsp;&nbsp;&nbsp;&nbsp; 
+        <a target="_blank" id="GoogleMaps-Proxy93">
+                    <span id="GoogleMaps-Proxy93-txt" ></span>
+        </a>
+      
+      
+       
+        <h4>Mapbox vector</h4>
+        &nbsp;&nbsp;&nbsp;&nbsp; 
+        <a target="_blank" id="Mapbox">
+                  <span id="Mapbox-txt" ></span>
+        </a>
+
+        
+        <h4>ESRI 3D clickable</h4>
+        &nbsp;&nbsp;&nbsp;&nbsp; 
+        <a target="_blank" id="esri3D">
+            <span id="esri3D-txt" ></span>
+        </a>
+
+
+        
+        <h4>ESRI 2D popup</h4>
+        &nbsp;&nbsp;&nbsp;&nbsp; 
+        <a target="_blank" id="esri2D">
+                  <span id="esri2D-txt" ></span>
+        </a>
+
+
+        <h4>ESRI 2D popup variant</h4>
+        &nbsp;&nbsp;&nbsp;&nbsp; 
+        <a target="_blank" id="esri2Dvariant">
+                  <span id="esri2Dvariant-txt" ></span>
+        </a>
+   
+       
+        <h4>click to download .geojson file</h4>
+        &nbsp;&nbsp;&nbsp;&nbsp; 
+        <a target="_blank" id="Original-GeoJson">
+                  <span id="Original-GeoJson-txt" ></span>
+        </a>
+
+</fieldset>
+     
+   
+                      
+           <h2> Upload  <mark>xxx.geojson</mark> file from your computer </h2>
+              
+                  <h4>GoogleMaps</h4>
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <a target="_blank" id="GoogleMaps-local" href="https://transparentgov.net:3200/googlemaps93/upload">
+                       https://transparentgov.net:3200/googlemaps93/upload
+                  </a>
+                  
+      
+                 
+              
+  
+           
+  
+  
+  
+
+
+
+
+
+
+
+    
+     <!-- must have, without this, ol, counter, number will be black text(dark theme invisible). should be light teal gray color -->
+   <link href="../stylesheets/common_share.css" rel="stylesheet" type="text/css"/>
+   <link href="../stylesheets/color.css" rel="stylesheet" type="text/css"/>
+  
+    
+  
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+     
+   
+
+   <script src="../js/gateway/geojson.viewer.js"></script>
+  
+  
+      </body>
+</html>

@@ -1,0 +1,86 @@
+ html,
+      body,
+
+
+
+
+
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+        
+
+        /* other div will overlay on this map viewDiv */
+        position: relative;
+        
+      }
+
+
+
+      
+      #top-right-corner {
+        padding: 0;
+        margin: 0;
+        top: 0;
+        right: 0;
+        height: auto;
+        width: auto;
+
+        position: absolute;
+        z-index: 100;    /* make sure it float on top */
+      }
+
+
+
+     
+      #bottom-right-corner {
+        padding: 0;
+        margin: 0;
+        bottom: 0;
+        right: 0;
+        height: auto;
+        width: auto;
+
+        position: absolute;
+        z-index: 101;    /* make sure it float on top */
+      }
+
+
+
+      #legend-div {
+
+        margin:5px, 5px; 
+        padding:5px; 
+        background-color: 'rgba(255,255,255,255, 0.6)';
+        /* width: 400px; */
+        height: 900px; 
+        overflow-x: auto; 
+        overflow-y: auto; 
+        text-align:justify; 
+
+      }
+
+
+      #opacity {
+        margin:5px, 5px; 
+        padding:5px; 
+
+
+      }
+  
+      /*
+       identifyTask to configure the popupTemplate for each sublayer of your MapImageLayer
+      https://developers.arcgis.com/javascript/latest/sample-code/sandbox/index.html?sample=tasks-identify
+      */
+      
+      
+      .esri-popup .esri-popup-header .esri-title {
+        font-size: 18px;
+        font-weight: bolder;
+      }
+
+      .esri-popup .esri-popup-body .esri-popup-content {
+        font-size: 14px;
+      }
