@@ -1051,6 +1051,8 @@ function point2diamond(_diagonal_meter, point_lng, point_lat){
                         var mouse_lat = Number(event.latLng.lat());
                         var mouse_lng = Number(event.latLng.lng());
                         console.log('guide ring   ,  catch   ,   mouse move event   , pointer lat, lng',mouse_lng, mouse_lat)
+                        
+                        
                         drawing_circle_guideRing(current_circle_radius, mouse_lng, mouse_lat)
                         /**/
                         //  --- end  ---  google manual drawing circle    --- 
