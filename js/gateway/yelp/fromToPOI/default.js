@@ -503,6 +503,8 @@
 
             function init_poi_ui(){
 
+              init_category_array()
+
 
                 /**/
                 //  --- side by side   --- 
