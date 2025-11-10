@@ -1792,6 +1792,17 @@ var highlighted_color = '#1F51FF' // Neon Blue
 
                                 
                                   
+                                
+                                /**/
+                                //  --- yelp POI on google      --- 
+                                /**/
+                                await init_category_array()
+                                init_poi_ui()
+
+                                /**/
+                                //  --- end  ---  yelp POI on google    --- 
+                                /**/
+
 
                                 
 
@@ -1915,16 +1926,6 @@ var highlighted_color = '#1F51FF' // Neon Blue
 
 
                                   
-
-                                                                  
-                                /**/
-                                //  --- yelp POI on google      --- 
-                                /**/
-                                     init_poi()
-                                /**/
-                                //  --- end  ---  yelp POI on google    --- 
-                                /**/
-
 
                                  // due to street view use map object, should after map object created.                             
                                  init_user_interface_event()
