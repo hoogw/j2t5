@@ -919,7 +919,7 @@ function point2diamond(_diagonal_meter, point_lng, point_lat){
 
               clear_circle_guideRing()
 
-              console.log('drawing guide ring at ', _radiusMeter, _centerLng, _centerLat)
+              console.log('d r a w - g u i d e r i n g at ', _radiusMeter, _centerLng, _centerLat)
 
                 /*
               // red solid line
