@@ -521,7 +521,7 @@
               
                                                   
                       // only update URL search_data=xxx, not perform real search.
-                      $("#search_poi_input").on('keyup', update_search_poi_content);
+                      $("#search_poi_input").on('keyup', update_poi_keyword_content);
               
                       // search bar close icon clicked. clear everything.
                       $('#clear_poi_button').on('click', remove_current_poi);
@@ -619,7 +619,7 @@
               
   
   
-              function update_search_poi_content(){
+              function update_poi_keyword_content(){
                 search_poi_keyword = $('#search_poi_input').val().trim().toLowerCase();   // .trim()  Removes only leading & trailing whitespaces
                 console.log('search_poi_keyword --->  ', search_poi_keyword)
                 update_url_parameter('poi', search_poi_keyword);

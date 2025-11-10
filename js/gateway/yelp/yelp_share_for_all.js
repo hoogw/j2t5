@@ -182,3 +182,243 @@ var category_alias_array = []
       }
 
 
+
+
+
+
+      
+
+            function init_poi_ui(){
+
+            
+
+
+                /**/
+                //  --- side by side   --- 
+                /**/
+
+                $('#info_outline').hide()
+                $('#close_info_outline_panel').on('click', function(event) {
+                    empty_info_outline_Tab()
+                });
+                /**/
+                //   --- end  ---   --- side by side   --- 
+                /**/
+
+
+
+            
+
+
+
+
+            /**/
+            //  -  -  - category  -  -  - 
+            /**/
+
+            // 1st time, one time run
+            if (_category_string){
+              $("#category-input").val(_category_string)
+              console.log("1st time, one time run, set poi category search", _category_string)
+            }
+            $("#category-input").on('keyup', update_poi_cat_content);
+           
+
+
+            /**/
+            //  -  -  - end  -  -  -  category    -  -  - 
+            /**/
+
+
+
+                 
+            
+            /**/
+            //  -  -  - search poi keyword  -  -  - 
+            /**/
+
+            // 1st time, one time run
+            if (search_poi_keyword){
+            $("#search_poi_input").val(search_poi_keyword)
+                console.log("1st time, one time run, set poi keyword search", search_poi_keyword)
+            }
+             $("#search_poi_input").on('keyup', update_poi_keyword_content);
+
+            /**/
+            //  -  -  - end  -  -  -  search poi keyword    -  -  - 
+            /**/
+
+
+
+
+  
+            }
+                 
+  
+  
+
+            
+              function update_poi_keyword_content(){
+                search_poi_keyword = $('#search_poi_input').val().trim().toLowerCase();   // .trim()  Removes only leading & trailing whitespaces
+                console.log('search_poi_keyword --->  ', search_poi_keyword)
+                update_url_parameter('poi', search_poi_keyword);
+              }
+
+
+
+
+
+
+
+
+
+
+
+              
+
+ /**/
+                  //  --- papaparse   --- 
+                  /**/
+                  
+                  var inputType = "string";
+                  var stepped = 0, rowCount = 0, errorCount = 0, firstError;
+                  var start, end;
+                  var firstRun = true;
+                  // do not limit length
+                  //var maxUnparseLength = 1000000;
+          
+          
+          
+               
+          
+          
+                  // must wait until csv parse completed at function completeFn
+                  function parse_json_to_csv_string(_csv_ready_json){
+
+
+                      
+          
+                      //  . . . papaparse  . . . demo . . .  https://www.papaparse.com/demo
+          
+                      stepped = 0;
+                      rowCount = 0;
+                      errorCount = 0;
+                      firstError = undefined;
+          
+
+                      start = now();
+                      var csv_string = Papa.unparse(_csv_ready_json, 
+                     
+                          // config see demo.js https://www.papaparse.com/demo
+                          {
+                            delimiter: ',', // The delimiting character. Usually comma or tab. Default is comma.
+                            header: true, // Keys data by field name rather than an array.
+                            dynamicTyping: true, // Turns numeric data into numbers and true/false into booleans.
+                            //skipEmptyLines: true, // By default, empty lines are parsed; check to skip.
+                            // preview: 100, //If > 0, stops parsing after this many rows.
+                            // step: stepFn, // not use, only when very large file
+                            // encoding: 'UTF-8', // Only applies when reading local files. Default is specified by the browser (usually UTF-8).
+                            //worker: false, // Uses a separate thread so the web page doesn't lock up.
+                            // comments: '',  // If specified, skips lines starting with this string.
+                            complete: completeFn,
+                            error: errorFn,
+                            //download: true,
+                          }
+                        )
+
+                        end = now();
+
+
+                     // do not limit length   
+                     // if (csv_string.length > maxUnparseLength){
+                     //     csv_string = csv_string.substr(0, maxUnparseLength);
+                     //      console.log("(Results truncated for brevity)");
+                     // }
+                  
+                      console.log('final csv string ', csv_string);
+
+
+                      return csv_string
+                      
+                      // . . . end  . . . papaparse  . . . 
+          
+                  }
+           
+            
+                    function stepFn(results, parser)
+                    {
+                      stepped++;
+                      if (results)
+                      {
+                        if (results.data)
+                          rowCount += results.data.length;
+                        if (results.errors)
+                        {
+                          errorCount += results.errors.length;
+                          firstError = firstError || results.errors[0];
+                        }
+                      }
+                    }
+          
+                    function completeFn(results)
+                    {
+                      end = now();
+          
+                      if (results && results.errors)
+                      {
+                        if (results.errors)
+                        {
+                          errorCount = results.errors.length;
+                          firstError = results.errors[0];
+                        }
+                        if (results.data && results.data.length > 0)
+                          rowCount = results.data.length;
+                      }
+          
+                      printStats("Parse complete",  results);
+
+                     
+                      
+          
+                    }
+          
+          
+          
+          
+          
+          
+                    function errorFn(err, file)
+                    {
+                      end = now();
+                    }
+          
+          
+                    function now()
+                    {
+                      return typeof window.performance !== 'undefined'
+                          ? window.performance.now()
+                          : 0;
+                    }
+          
+          
+          
+                    function printStats(msg)
+                    {
+                      if (msg)
+                        console.log(msg);
+                      console.log("       Time:", (end-start || "(Unknown; your browser does not support the Performance API)"), "ms");
+                      console.log("  Row count:", rowCount);
+                      if (stepped)
+                        console.log("    Stepped:", stepped);
+                      console.log("     Errors:", errorCount);
+                      if (errorCount)
+                        console.log("First error:", firstError);
+                    }
+          
+          
+          /**/
+          //  --- end  ---  papaparse    --- 
+          /**/
+             
+
+

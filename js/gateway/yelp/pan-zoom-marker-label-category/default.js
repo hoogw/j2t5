@@ -527,10 +527,14 @@
                 console.log('search_poi_keyword --->  ', search_poi_keyword)
                 // esri does not support search empty for all things, it only return 1 record as US, so limit it to non-empty
                 if (search_poi_keyword){
+
+                    update_url_parameter
                     
                     var _titleORalias_ = ""
                     var catAlias_index = category_alias_array.indexOf(search_poi_keyword.toLowerCase())
                     var catTitle_index = category_title_array.indexOf(search_poi_keyword.toLowerCase())
+                    console.log('catAlias_index  ', catAlias_index)
+                    console.log('catTitle_index  ', catTitle_index)
                     if (catAlias_index){
                        _titleORalias_ = search_poi_keyword
                     } else if (catTitle_index){
@@ -719,64 +723,6 @@
 
 
 
-
-
-            function init_poi_ui(){
-
-            
-
-
-                /**/
-                //  --- side by side   --- 
-                /**/
-
-                $('#info_outline').hide()
-                $('#close_info_outline_panel').on('click', function(event) {
-                    empty_info_outline_Tab()
-                });
-                /**/
-                //   --- end  ---   --- side by side   --- 
-                /**/
-
-
-
-                
-              /**/
-              //  . . search bar . . 
-  
-                      console.log('url param search poi',  search_poi_keyword)
-  
-                      // first time, 1 time
-                      // esri does not support search empty for all things, it only return 1 record as US, so limit it to non-empty
-                      if (search_poi_keyword){
-                                  search_poi_keyword = search_poi_keyword.toLowerCase().trim();
-                                  $('#search_poi_input').val(search_poi_keyword);
-
-                                  // first time, 1 time
-                                  //search_poi()
-                      }// if
-              
-              
-                                                  
-                      // only update URL search_data=xxx, not perform real search.
-                      $("#search_poi_input").on('keyup', update_search_poi_content);
-              
-                     
-  
-              //  . . end . .  . . search bar . . 
-              /**/
-  
-            }
-                 
-  
-  
-
-            
-              function update_search_poi_content(){
-                search_poi_keyword = $('#search_poi_input').val().trim().toLowerCase();   // .trim()  Removes only leading & trailing whitespaces
-                console.log('search_poi_keyword --->  ', search_poi_keyword)
-                update_url_parameter('poi', search_poi_keyword);
-              }
 
 
 /**/

@@ -1074,6 +1074,10 @@ function splitAddressMicrosoft_REST_API(_raw_features_array){
               $("#category-input").val(_category_string)
               console.log("1st time, one time run, set poi category search", _category_string)
             }
+             $("#category-input").on('keyup', update_poi_cat_content);
+           
+
+
             /**/
             //  -  -  - end  -  -  -  category    -  -  - 
             /**/
@@ -1091,6 +1095,8 @@ function splitAddressMicrosoft_REST_API(_raw_features_array){
             $("#search_poi_input").val(search_poi_keyword)
                 console.log("1st time, one time run, set poi keyword search", search_poi_keyword)
             }
+             $("#search_poi_input").on('keyup', update_poi_keyword_content);
+
             /**/
             //  -  -  - end  -  -  -  search poi keyword    -  -  - 
             /**/
@@ -1142,6 +1148,17 @@ function splitAddressMicrosoft_REST_API(_raw_features_array){
            }
 
 
+          function update_poi_keyword_content(){
+            search_poi_keyword = $('#search_poi_input').val().trim().toLowerCase();   // .trim()  Removes only leading & trailing whitespaces
+            console.log('search_poi_keyword --->  ', search_poi_keyword)
+            update_url_parameter('poi', search_poi_keyword);
+          }
+
+          function update_poi_cat_content(){
+            _category_string = $('#category-input').val().trim().toLowerCase();   // .trim()  Removes only leading & trailing whitespaces
+            console.log('_category_string --->  ', _category_string)
+            update_url_parameter("poicategory",_category_string)
+          }
 
 
 
