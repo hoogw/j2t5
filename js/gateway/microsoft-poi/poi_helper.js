@@ -1099,7 +1099,7 @@ function splitAddressMicrosoft_REST_API(_raw_features_array){
             }
 
             // do not use, cause unwanted click-refresh, close-dev-tool
-            $("#search_poi_input").on('keyup', update_poi_keyword_content);
+            //$("#search_poi_input").on('keyup', update_poi_keyword_content);
 
             /**/
             //  -  -  - end  -  -  -  search poi keyword    -  -  - 

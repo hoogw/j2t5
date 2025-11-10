@@ -252,13 +252,12 @@ var category_alias_array = []
 
 
             // search bar close icon clicked. clear everything.
-            $('#clear_poi_button').on('click', remove_current_poi);
+            //$('#clear_poi_button').on('click', remove_current_poi);
     
-            $('#search_poi_button').on('click', search_poi);
+            //$('#search_poi_button').on('click', search_poi);
           
-    
             // default search
-            $('#search_poi_input').on('search', search_poi);
+            //$('#search_poi_input').on('search', search_poi);
 
 
             /**/
