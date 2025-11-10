@@ -940,17 +940,6 @@ var highlighted_color = '#1F51FF' // Neon Blue
 /**/
 
    
-   
-
-     async function init_poi(){
-
-       // only for poi, set map image layer transparency as 0
-       image_opacity = 0;
-
-       init_poi_ui()
-
-     }
-
 
          
 
