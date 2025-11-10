@@ -732,60 +732,6 @@
 
 
 
-           function init_poi_ui(){
-
-
-
-                /**/
-                //  --- side by side   --- 
-                /**/
-
-                $('#info_outline').hide()
-                $('#close_info_outline_panel').on('click', function(event) {
-                    empty_info_outline_Tab()
-                });
-                /**/
-                //   --- end  ---   --- side by side   --- 
-                /**/
-
-  
-          /**/
-              //  . . search bar . . 
-  
-                      console.log('url param search poi',  search_poi_keyword)
-  
-                      // first time, 1 time
-                      // esri does not support search empty for all things, it only return 1 record as US, so limit it to non-empty
-                      if (search_poi_keyword){
-                                  search_poi_keyword = search_poi_keyword.toLowerCase().trim();
-                                  $('#search_poi_input').val(search_poi_keyword);
-
-                                  // first time, 1 time
-                                  //search_poi()
-                      }// if
-              
-              
-                                                  
-                      // only update URL search_data=xxx, not perform real search.
-                      $("#search_poi_input").on('keyup', update_poi_keyword_content);
-              
-                     
-  
-              //  . . end . .  . . search bar . . 
-              /**/
-  
-            }
-                 
-  
-  
-
-            
-              function update_poi_keyword_content(){
-                search_poi_keyword = $('#search_poi_input').val().trim().toLowerCase();   // .trim()  Removes only leading & trailing whitespaces
-                console.log('search_poi_keyword --->  ', search_poi_keyword)
-                update_url_parameter('poi', search_poi_keyword);
-              }
-                 
                  
   
   

@@ -1596,6 +1596,8 @@ var highlighted_color = '#1F51FF' // Neon Blue
                   async function initMap() {
                                  
                                 
+                                
+                                
 
 
                                   init_global_var_from_node();
@@ -1622,7 +1624,15 @@ var highlighted_color = '#1F51FF' // Neon Blue
                                   
 
                                 
-                                  
+                                /**/
+                                //  --- yelp POI on google      --- 
+                                /**/
+                                await init_category_array()
+                                init_poi_ui()
+
+                                /**/
+                                //  --- end  ---  yelp POI on google    --- 
+                                /**/
 
                                 
 
@@ -1745,16 +1755,7 @@ var highlighted_color = '#1F51FF' // Neon Blue
 
 
 
-                                /**/
-                                //  --- yelp POI on google      --- 
-                                /**/
-                                await init_category_array()
-                                init_poi_ui()
-
-                                /**/
-                                //  --- end  ---  yelp POI on google    --- 
-                                /**/
-                                
+                               
                                 
                           
 

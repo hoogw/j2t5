@@ -940,17 +940,6 @@ var highlighted_color = '#1F51FF' // Neon Blue
 /**/
 
    
-   
-
-     async function init_poi(){
-
-       // only for poi, set map image layer transparency as 0
-       image_opacity = 0;
-
-       init_poi_ui()
-
-     }
-
 
 
 
@@ -1631,6 +1620,10 @@ var highlighted_color = '#1F51FF' // Neon Blue
 
                   // must have async, for later use await
                   async function initMap() {
+
+
+
+
                                  
                                   init_global_var_from_node();
                                   console.log(' root url ', _url)
@@ -1657,6 +1650,20 @@ var highlighted_color = '#1F51FF' // Neon Blue
 
                                 
                                   
+                    
+                                /**/
+                                //  --- yelp POI on google      --- 
+                                /**/
+                                await init_category_array()
+                                init_poi_ui()
+
+                                /**/
+                                //  --- end  ---  yelp POI on google    --- 
+                                /**/
+
+
+
+
 
                                 
 
@@ -1758,17 +1765,6 @@ var highlighted_color = '#1F51FF' // Neon Blue
                                   add_map_listener_idle()
 
                                   
-
-                                                                  
-                                /**/
-                                //  --- yelp POI on google      --- 
-                                /**/
-                                     init_poi()
-
-                                /**/
-                                //  --- end  ---  yelp POI on google    --- 
-                                /**/
-
 
                                  // due to street view use map object, should after map object created.                             
                                  init_user_interface_event()
