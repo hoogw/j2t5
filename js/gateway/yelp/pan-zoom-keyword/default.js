@@ -483,7 +483,8 @@
 
             async function nearby_poi(_radiusMeter, _centerLng, _centerLat){
 
-              drawing_circle(_radiusMeter, _centerLng, _centerLat)
+              // yelp always use circle for both s e a r c h k e y w o r d & c a t e g o r y,but do not d r a w , c i r c l e to avoid hover point being blocked 
+              //drawing_circle(_radiusMeter, _centerLng, _centerLat)
               
 
 
