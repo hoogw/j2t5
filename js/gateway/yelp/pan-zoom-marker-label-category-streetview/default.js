@@ -522,12 +522,36 @@
             //  -  -  - category  -  -  - 
             /**/
 
-                search_poi_keyword = $('#search_poi_input').val().trim().toLowerCase();   // .trim()  Removes only leading & trailing whitespaces
-                console.log('search_poi_keyword --->  ', search_poi_keyword)
+                _category_string = $('#category-input').val().trim().toLowerCase();   // .trim()  Removes only leading & trailing whitespaces
+                update_url_parameter("poicategory",_category_string)
+                console.log('_category_string --->  ', _category_string)
+                 
+
                 // esri does not support search empty for all things, it only return 1 record as US, so limit it to non-empty
-                if (search_poi_keyword){
-                    // If categories is not included the endpoint will default to searching across businesses from a small number of popular categories.
-                    ____nearby_url += '&categories=' + search_poi_keyword
+                if (_category_string){
+
+                    var _titleORalias_ = ""
+                    var catAlias_index = category_alias_array.indexOf(_category_string.toLowerCase())
+                    var catTitle_index = category_title_array.indexOf(_category_string.toLowerCase())
+                    console.log('catAlias_index  ', catAlias_index)
+                    console.log('catTitle_index  ', catTitle_index)
+                    // -1 means, not found index
+                    if (catAlias_index > 0){
+                       _titleORalias_ = _category_string
+                    } else if (catTitle_index > 0){
+                       _titleORalias_ = category_alias_array[catTitle_index]
+                    } else {
+                      // invalid cat. not found in title, not found in alias
+                      return alert('Invalid Category')
+                    }
+
+                    ____nearby_url += '&categories=' + _titleORalias_
+
+                } else{
+
+                  // If categories is not included the endpoint will default to searching across businesses from a small number of popular categories.
+                    
+                    
                 }//if
 
             /**/
@@ -535,6 +559,7 @@
             /**/
 
                 console.log('nearby poi url ', ____nearby_url + _paged_offset_url_param )
+
 
 
 
