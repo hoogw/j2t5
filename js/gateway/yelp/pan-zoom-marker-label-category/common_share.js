@@ -941,16 +941,6 @@ var highlighted_color = '#1F51FF' // Neon Blue
 
     
 
-     async function init_poi(){
-
-       // only for poi, set map image layer transparency as 0
-       image_opacity = 0;
-
-       init_poi_ui()
-
-     }
-
-
 
 
      
@@ -1759,7 +1749,7 @@ var highlighted_color = '#1F51FF' // Neon Blue
                                 //  --- yelp POI on google      --- 
                                 /**/
                                 await init_category_array()
-                                     init_poi()
+                                init_poi_ui()
 
                                 /**/
                                 //  --- end  ---  yelp POI on google    --- 
