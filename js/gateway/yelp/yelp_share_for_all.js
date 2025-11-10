@@ -250,6 +250,17 @@ var category_alias_array = []
             // do not use, cause unwanted click-refresh, close-dev-tool
             //$("#search_poi_input").on('keyup', update_poi_keyword_content);
 
+
+            // search bar close icon clicked. clear everything.
+            $('#clear_poi_button').on('click', remove_current_poi);
+    
+            $('#search_poi_button').on('click', search_poi);
+          
+    
+            // default search
+            $('#search_poi_input').on('search', search_poi);
+
+
             /**/
             //  -  -  - end  -  -  -  search poi keyword    -  -  - 
             /**/
