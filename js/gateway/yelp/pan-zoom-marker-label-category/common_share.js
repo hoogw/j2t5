@@ -1605,6 +1605,9 @@ var highlighted_color = '#1F51FF' // Neon Blue
                   // must have async, for later use await
                   async function initMap() {
                                  
+                                
+
+
                                   init_global_var_from_node();
                                   console.log(' root url ', _url)
 
@@ -1733,14 +1736,7 @@ var highlighted_color = '#1F51FF' // Neon Blue
                                   
 
                                                                   
-                                /**/
-                                //  --- yelp POI on google      --- 
-                                /**/
-                                     init_poi()
-
-                                /**/
-                                //  --- end  ---  yelp POI on google    --- 
-                                /**/
+                                
 
 
                                  // due to street view use map object, should after map object created.                             
@@ -1759,7 +1755,15 @@ var highlighted_color = '#1F51FF' // Neon Blue
 
 
 
+                                /**/
+                                //  --- yelp POI on google      --- 
+                                /**/
+                                await init_category_array()
+                                     init_poi()
 
+                                /**/
+                                //  --- end  ---  yelp POI on google    --- 
+                                /**/
                                 
                                 
                           

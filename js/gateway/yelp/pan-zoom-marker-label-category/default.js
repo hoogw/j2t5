@@ -527,8 +527,26 @@
                 console.log('search_poi_keyword --->  ', search_poi_keyword)
                 // esri does not support search empty for all things, it only return 1 record as US, so limit it to non-empty
                 if (search_poi_keyword){
-                    // If categories is not included the endpoint will default to searching across businesses from a small number of popular categories.
-                    ____nearby_url += '&categories=' + search_poi_keyword
+                    
+                    var _titleORalias_ = ""
+                    var catAlias_index = category_alias_array.indexOf(search_poi_keyword.toLowerCase())
+                    var catTitle_index = category_title_array.indexOf(search_poi_keyword.toLowerCase())
+                    if (catAlias_index){
+                       _titleORalias_ = search_poi_keyword
+                    } else if (catTitle_index){
+                       _titleORalias_ = category_alias_array[catTitle_index]
+                    } else {
+                      // invalid cat. not found in title, not found in alias
+                      return alert('Invalid Category')
+                    }
+
+                    ____nearby_url += '&categories=' + _titleORalias_
+
+                } else{
+
+                  // If categories is not included the endpoint will default to searching across businesses from a small number of popular categories.
+                    
+                    
                 }//if
 
             /**/
@@ -705,7 +723,7 @@
 
             function init_poi_ui(){
 
-              init_category_array()
+            
 
 
                 /**/

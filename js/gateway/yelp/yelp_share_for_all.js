@@ -82,11 +82,10 @@ var category_alias_array = []
 
 
           stack_item = {}
-          stack_item.id = 0
           stack_item.alias = 'root' 
           stack_item.title = 'Root'
 
-          category_title_array.push('Root')
+          category_title_array.push('root')
           category_alias_array.push('root')
 
 
@@ -105,17 +104,13 @@ var category_alias_array = []
 
                   if (!(poi_categories_array[i].parent_aliases.length)){ 
                     // length is 0,  !0 is true
-
-                      id_counter += 1
-
                       stack_item = {}
-                      stack_item.id = id_counter
                       stack_item.alias = poi_categories_array[i].alias
                       stack_item.title = poi_categories_array[i].title
                       stack.push(stack_item);
 
-                      category_title_array.push(poi_categories_array[i].title)
-                      category_alias_array.push(poi_categories_array[i].alias)
+                      category_title_array.push(poi_categories_array[i].title.toLowerCase())
+                      category_alias_array.push(poi_categories_array[i].alias.toLowerCase())
           
 
 
@@ -131,16 +126,13 @@ var category_alias_array = []
                     if (poi_categories_array[i].parent_aliases[0] == stack_parent_item.alias){ 
                       // length is 0,  !0 is true
 
-                        id_counter += 1
-
                         stack_item = {}
-                        stack_item.id = id_counter
                         stack_item.alias = poi_categories_array[i].alias
                         stack_item.title = poi_categories_array[i].title
                         stack.push(stack_item);
 
-                        category_title_array.push(poi_categories_array[i].title)
-                        category_alias_array.push(poi_categories_array[i].alias)
+                        category_title_array.push(poi_categories_array[i].title.toLowerCase())
+                        category_alias_array.push(poi_categories_array[i].alias.toLowerCase())
           
 
                     }//if root
