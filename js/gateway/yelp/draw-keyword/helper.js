@@ -2150,7 +2150,7 @@
 
 
 
-function init_user_interface_event(){
+function init_user_interface_after_map_load(){
 
 
 

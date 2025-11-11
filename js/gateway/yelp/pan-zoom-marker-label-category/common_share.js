@@ -1740,7 +1740,7 @@ var highlighted_color = '#1F51FF' // Neon Blue
 
 
                                  // due to street view use map object, should after map object created.                             
-                                 init_user_interface_event()
+                                 init_user_interface_after_map_load()
 
                                                               
                                  
