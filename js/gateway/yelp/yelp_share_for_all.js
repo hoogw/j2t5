@@ -619,3 +619,31 @@ var category_alias_array = []
 //  -  -  - end  -  -  -  guided ring for pan and zoom    -  -  - 
 /**/
 
+
+
+
+
+
+
+
+function remove_without_keyword_from_search_result(__poi_geojson__){
+
+       var filtered_feature_array = []
+       var original_feature_array = __poi_geojson__.features
+        console.log("original_feature_array", original_feature_array)
+
+       for (let f = 0; f < original_feature_array.length; f++) {
+
+        var original_name = original_feature_array[f].properties.name.toLowerCase()
+        if (original_name.includes(search_poi_keyword)){
+
+                 filtered_feature_array.push(original_feature_array[f])
+        }//if
+
+       }//for
+
+
+       __poi_geojson__.features = filtered_feature_array
+       return __poi_geojson__
+
+}

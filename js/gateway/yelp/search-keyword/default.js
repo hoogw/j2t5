@@ -543,7 +543,9 @@
                   console.log('poi geojson', poi_geojson)
         
                 
-        
+                 poi_geojson = remove_without_keyword_from_search_result(poi_geojson)
+                 console.log('remove without keyword from search result', poi_geojson)
+
                  
                 /**/
                 //  ---  POI marker replace point geojson      --- 

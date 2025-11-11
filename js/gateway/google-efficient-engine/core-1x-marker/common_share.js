@@ -537,7 +537,7 @@ console.log('  object id field name ', objectid_field_name)
                       
             
                         // if want show label, uncomment this line 
-                        //glyph: highlight_pin_div, 
+                        ////glyph: highlight_pin_div, 
             
                         glyphColor: "white",
             
@@ -583,7 +583,7 @@ console.log('  object id field name ', objectid_field_name)
                       
             
                         // if want show label, uncomment this line 
-                        //glyph: highlight_pin_div, 
+                        ////glyph: highlight_pin_div, 
             
                         glyphColor: "white",
             
