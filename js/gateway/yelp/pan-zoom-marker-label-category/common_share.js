@@ -990,7 +990,7 @@ var highlighted_color = '#1F51FF' // Neon Blue
            
 
             // if want show label, uncomment this line 
-            glyph: pin_div, 
+            //glyph: pin_div, 
 
             glyphColor: "white",
 
@@ -1163,7 +1163,7 @@ var highlighted_color = '#1F51FF' // Neon Blue
             
 
               // if want show label, uncomment this line 
-              glyph: pin_div, 
+              //glyph: pin_div, 
 
               glyphColor: "white",
 
