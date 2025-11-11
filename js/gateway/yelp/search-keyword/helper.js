@@ -1869,16 +1869,7 @@
 function init_user_interface_after_map_load(){
 
 
-  /**/
-    // - - - - download poi  - - - - 
-    /**/
-    $("#download_poi_button").on("click", function() {
-      saveJsonAsFile('poi.geojson', poi_geojson)
-    });
-  /**/
-  //  - - - -  end  - - - -  download poi   - - - - 
-  /**/
-
+ 
   
 //  .......  opacity   ....... 
                                 /**/
