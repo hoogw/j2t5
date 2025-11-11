@@ -505,6 +505,23 @@
 
      
 
+            /**/
+            //  -  -  - search poi keyword  -  -  - 
+            /**/
+                  search_poi_keyword = $('#search_poi_input').val().trim().toLowerCase();   // .trim()  Removes only leading & trailing whitespaces
+                  console.log('search_poi_keyword --->  ', search_poi_keyword)
+                  // esri does not support search empty for all things, it only return 1 record as US, so limit it to non-empty
+                  if (search_poi_keyword){
+                    // If term is not included the endpoint will default to searching across businesses from a small number of popular categories.
+                    ____nearby_url += 'term=' + search_poi_keyword
+                  }//if
+
+            /**/
+            //  -  -  - search poi keyword  -  -  - 
+            /**/
+
+                console.log('nearby poi url ', ____nearby_url + _paged_offset_url_param )
+
 
 
                 
@@ -516,23 +533,7 @@
                 ____nearby_url += '&limit=' + _yelp_page_size  // integer 0 to 50 Defaults to 20
                 
 
-            /**/
-            //  -  -  - search poi keyword  -  -  - 
-            /**/
-                  search_poi_keyword = $('#search_poi_input').val().trim().toLowerCase();   // .trim()  Removes only leading & trailing whitespaces
-                  console.log('search_poi_keyword --->  ', search_poi_keyword)
-                  // esri does not support search empty for all things, it only return 1 record as US, so limit it to non-empty
-                  if (search_poi_keyword){
-                    // If term is not included the endpoint will default to searching across businesses from a small number of popular categories.
-                    ____nearby_url += '&term=' + search_poi_keyword
-                  }//if
-
-            /**/
-            //  -  -  - search poi keyword  -  -  - 
-            /**/
-
-                console.log('nearby poi url ', ____nearby_url + _paged_offset_url_param )
-
+            
 
 
 
