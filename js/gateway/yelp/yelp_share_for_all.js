@@ -188,7 +188,7 @@ var category_alias_array = []
 
       
 
-            function init_poi_ui(){
+            function init_poi_ui_before_map_load(){
 
              // only for poi, set map image layer transparency as 0
              image_opacity = 0;
@@ -265,6 +265,19 @@ var category_alias_array = []
             /**/
 
 
+
+
+
+                          
+                /**/
+                  // - - - - download poi  - - - - 
+                  /**/
+                  $("#download_poi_button").on("click", function() {
+                    saveJsonAsFile('poi.geojson', poi_geojson)
+                  });
+                /**/
+                //  - - - -  end  - - - -  download poi   - - - - 
+                /**/
 
 
   
