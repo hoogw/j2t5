@@ -2052,7 +2052,19 @@
 function init_user_interface_after_map_load(){
 
 
+              // must at each model, instead of share
+              $("#start_over_button").on("click", function() {
 
+              clear_all_circle()
+
+
+              // only for marker label
+              clear_all_poi_advancedMarker()
+
+              // only for old marker
+              //clear_all_poi()
+
+              });
   
 
   

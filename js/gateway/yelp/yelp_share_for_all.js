@@ -197,15 +197,6 @@ var category_alias_array = []
 
 
 
-             
-              $("#start_over_button").on("click", function() {
-              clear_all_circle()
-              clear_all_poi_advancedMarker()
-
-              });
-
-
-
 
 
                 /**/
