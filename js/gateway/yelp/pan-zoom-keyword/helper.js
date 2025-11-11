@@ -2055,13 +2055,6 @@ function init_user_interface_after_map_load(){
 
 
 
-  
-  
-      $("#start_over_button").on("click", function() {
-      clear_all_circle()
-      clear_all_poi()
-
-      });
 
 
 
