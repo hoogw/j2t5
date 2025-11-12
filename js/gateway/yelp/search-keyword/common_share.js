@@ -1187,58 +1187,6 @@ var highlighted_color = '#1F51FF' // Neon Blue
 
 
 
-
-
-      function get_center_radius_in_map_bound(){
-
-
-        // https://developers.google.com/maps/documentation/javascript/reference/geometry
-        // There is no built-in property called "length" to directly access the diagonal distance of the bounds. 
-        // To get the "length" of a LatLngBounds, you would need to calculate the distance between the southwest and northeast corners 
-        // using a distance calculation function provided by the Google Maps API. 
-
-        var bounds = map.getBounds();
-        var southWest = bounds.getSouthWest();
-        var northEast = bounds.getNorthEast();
-        var SWlong = southWest.lng();
-        var SWlat = southWest.lat();
-        var NElong = northEast.lng();
-        var NElat = northEast.lat();
-          
-        
-        
-
-
-        var northWest = new google.maps.LatLng(NElat, SWlong)
-        var southEast = new google.maps.LatLng(SWlat, NElong)
-
-        console.log(' northWest ', northWest )
-        console.log(' southEast ', southEast )
-
-        var vertical_distance = google.maps.geometry.spherical.computeDistanceBetween(southWest, northWest);
-        var horizontal_distance = google.maps.geometry.spherical.computeDistanceBetween(southWest, southEast);
-
-        console.log("vertical_distance in meter", vertical_distance)
-        console.log("horizontal_distance in meter", horizontal_distance)
-
-        var min_radius
-        if (vertical_distance <= horizontal_distance){
-          min_radius = Math.floor(vertical_distance / 2)
-        } else {
-          min_radius = Math.floor(horizontal_distance / 2)
-        }
-
-
-        // If the specified value is too large, a AREA_TOO_LARGE error may be returned. The max value is 40,000 meters (about 25 miles).
-        if (min_radius > max_yelp_poi_radius_meter){
-          min_radius = max_yelp_poi_radius_meter
-        }
-
-        console.log("min_radius in meter", min_radius)
-        return min_radius
-      }
-
-
    
       
 /**/
