@@ -493,26 +493,8 @@
               
 
 
-
-
-
                 ____nearby_url = yelp_api_search
 
-
-
-                //  - - reset to 0 for everything  - - 
-                _paged_poi_array = []
-               
-                _paged_offset = 0
-                // offset integer 0 to 1000, Offset the list of returned results by this amount
-                _paged_offset_url_param = '&offset=' + _paged_offset
-                // - -  end - - reset to 0 for everything
-
-     
-
-
-
-                
 
 
                 // . .   limit by bound, lat lng with minium radius
@@ -520,8 +502,20 @@
                 ____nearby_url += '&latitude=' + _center_lat
                 ____nearby_url += '&longitude=' + _center_long
                 ____nearby_url += '&radius=' + _center_radius_in_meter
-                ____nearby_url += '&limit=' + _yelp_page_size  // integer 0 to 50 Defaults to 20
+
+
+
                 
+
+                // yelp max allow 240, 50 per page, 
+                ____nearby_url += '&limit=' + _yelp_page_size  // integer 0 to 50 Defaults to 20
+                //  - - reset to 0 for everything  - - 
+                _paged_poi_array = []
+               
+                _paged_offset = 0
+                // offset integer 0 to 1000, Offset the list of returned results by this amount
+                _paged_offset_url_param = '&offset=' + _paged_offset
+                // - -  end - - reset to 0 for everything
 
 
             /**/

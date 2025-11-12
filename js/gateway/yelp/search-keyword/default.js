@@ -498,6 +498,9 @@
                   var ____url = yelp_api_search
 
 
+                
+
+
                   search_poi_keyword = $('#search_poi_input').val().trim().toLowerCase();   // .trim()  Removes only leading & trailing whitespaces
                   console.log('search_poi_keyword --->  ', search_poi_keyword)
                   update_url_parameter('poi', search_poi_keyword);
@@ -515,11 +518,17 @@
                   ____url += '&latitude=' + _center_lat
                   ____url += '&longitude=' + _center_long
                   ____url += '&radius=' + _center_radius_in_meter
-                  ____url += '&limit=50'  // integer 0 to 50 Defaults to 20
-                  ____url += '&offset=0'   // offset integer 0 to 1000, Offset the list of returned results by this amount
-                    
-                 
-                  
+
+
+                  // yelp max allow 240, 50 per page, 
+                  ____url += '&limit=' + _yelp_page_size  // integer 0 to 50 Defaults to 20
+                  //  - - reset to 0 for everything  - - 
+                  _paged_poi_array = []
+                  _paged_offset = 0
+                  // offset integer 0 to 1000, Offset the list of returned results by this amount
+                  _paged_offset_url_param = '&offset=' + _paged_offset
+                  // - -  end - - reset to 0 for everything
+
 
 
 
