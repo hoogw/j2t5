@@ -545,12 +545,6 @@
                   });  
       
   
-                  $("#poi_total").html(response_string.total)
-                  $("#poi_on_map").html(response_string.businesses.length)
-                  poi_geojson = poi_to_geojson(response_string.businesses)
-        
-                  console.log('poi geojson', poi_geojson)
-        
                 
                 // yelp search include related business, kfc will include popeye, need filter them
                 // do not use, this filter, because in and out burger will not show, real name is in n out

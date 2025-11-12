@@ -494,7 +494,7 @@
 
                   
   
-                  var ____url = yelp_api_search
+                  var ____nearby_url = yelp_api_search
 
 
 
@@ -505,16 +505,16 @@
                   // yelp support search empty keywprd for all things,
                   if (search_poi_keyword){
                     // If categories is not included the endpoint will default to searching across businesses from a small number of popular categories.
-                    ____url += 'categories=' + search_poi_keyword
+                    ____nearby_url += 'categories=' + search_poi_keyword
                   }//if
                   
 
                   _center_radius_in_meter = get_center_radius_in_map_bound()
-                  ____url += '&latitude=' + _center_lat
-                  ____url += '&longitude=' + _center_long
-                  ____url += '&radius=' + _center_radius_in_meter
-                  ____url += '&limit=50'  // integer 0 to 50 Defaults to 20
-                  ____url += '&offset=0'   // offset integer 0 to 1000, Offset the list of returned results by this amount
+                  ____nearby_url += '&latitude=' + _center_lat
+                  ____nearby_url += '&longitude=' + _center_long
+                  ____nearby_url += '&radius=' + _center_radius_in_meter
+                  ____nearby_url += '&limit=50'  // integer 0 to 50 Defaults to 20
+                  ____nearby_url += '&offset=0'   // offset integer 0 to 1000, Offset the list of returned results by this amount
                     
                  
                   
@@ -522,10 +522,10 @@
 
 
       
-                  console.log('poi search by keyword term url ', ____url )
+                  console.log('poi search by keyword term url ', ____nearby_url )
                   
                   var response_string =  await $.ajax({
-                    url: ____url,
+                    url: ____nearby_url,
                     headers: {
                     'Authorization': yelp_api_key,  //'Bearer xxxxxx',
                     },

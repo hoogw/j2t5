@@ -496,7 +496,7 @@
 
                   
   
-                  var ____url = yelp_api_search
+                  var ____nearby_url = yelp_api_search
 
 
 
@@ -507,27 +507,33 @@
                   // yelp support search empty keywprd for all things,
                   if (search_poi_keyword){
                     // If categories is not included the endpoint will default to searching across businesses from a small number of popular categories.
-                    ____url += 'categories=' + search_poi_keyword
+                    ____nearby_url += 'categories=' + search_poi_keyword
                   }//if
                   
 
                   _center_radius_in_meter = get_center_radius_in_map_bound()
-                  ____url += '&latitude=' + _center_lat
-                  ____url += '&longitude=' + _center_long
-                  ____url += '&radius=' + _center_radius_in_meter
-                  ____url += '&limit=50'  // integer 0 to 50 Defaults to 20
-                  ____url += '&offset=0'   // offset integer 0 to 1000, Offset the list of returned results by this amount
-                    
+                  ____nearby_url += '&latitude=' + _center_lat
+                  ____nearby_url += '&longitude=' + _center_long
+                  ____nearby_url += '&radius=' + _center_radius_in_meter
                  
-                  
+                  // yelp max allow 240, 50 per page, 
+                  ____nearby_url += '&limit=' + _yelp_page_size  // integer 0 to 50 Defaults to 20
+                  //  - - reset to 0 for everything  - - 
+                  _paged_poi_array = []
+                  _paged_offset = 0
+                  // offset integer 0 to 1000, Offset the list of returned results by this amount
+                  _paged_offset_url_param = '&offset=' + _paged_offset
+                  // - -  end - - reset to 0 for everything
+
+
 
 
 
       
-                  console.log('poi search by keyword term url ', ____url )
+                  console.log('poi search by keyword term url ', ____nearby_url )
                   
                   var response_string =  await $.ajax({
-                    url: ____url,
+                    url: ____nearby_url + _paged_offset_url_param,
                     headers: {
                     'Authorization': yelp_api_key,  //'Bearer xxxxxx',
                     },
@@ -539,29 +545,121 @@
                   });  
       
   
-                  $("#poi_total").html(response_string.total)
-                  $("#poi_on_map").html(response_string.businesses.length)
-                  poi_geojson = poi_to_geojson(response_string.businesses)
-        
-                  console.log('poi geojson', poi_geojson)
-        
+                 _total_poi = Number(response_string.total)
+                $("#poi_on_map").html(_total_poi)
+
+                this_page_poi_array = response_string.businesses
+                _paged_poi_array.push(this_page_poi_array)
+
                 
-        
-                 
+                // ----------------download rest of result ----------------
+                while (((_paged_offset + _yelp_page_size) < _total_poi) && ( (_paged_offset + _yelp_page_size) < max_yelp_offset)) {
+
+                    _paged_offset += _yelp_page_size
+                    _paged_offset_url_param = '&offset=' + _paged_offset
+                    console.log('nearby poi url, offset is  ', _paged_offset,  ____nearby_url + _paged_offset_url_param )
+
+                    try{
+                    
+                                var response_string =  await $.ajax({
+                                  url: ____nearby_url + _paged_offset_url_param,
+                                  headers: {
+                                  'Authorization': yelp_api_key,  //'Bearer xxxxxx',
+                                  },
+                                  method: 'GET',
+                                  dataType: 'json',
+                                  success: function(data){
+                                    console.log('poi search by categories success', data)
+
+                                  }, 
+                                  error: function(jqXHR, textStatus, errorThrown) {
+                                    // Handle error response
+                                    console.error("Error:", textStatus, errorThrown);
+                                    console.log('break loop because of Error at offset ',  _paged_offset )
+                                    
+                                  }
+
+                                });  
+
+                                this_page_poi_array = response_string.businesses
+                                if (this_page_poi_array.length){
+                                  console.log('add page, offset ', _paged_offset)
+                                  _paged_poi_array.push(this_page_poi_array)
+                                } else {
+                                  console.log('break loop because of empty result at offset ',  _paged_offset )
+                                  break; // b r e a k while loop
+                                }
+
+                    } catch{
+
+                      console.log('break loop because of catch error at offset ',  _paged_offset )
+                      break; // b r e a k while loop
+
+                    }
+
+                }// while
+                // ------ end ----------download rest of result ----------------
+
+
+
+                //  . . efficient core newOnly  . - .
+                _this_newOnly_result_array = []
+
+
+
+                // test if this new poi already exist
+                for (let i = 0; i < _paged_poi_array.length; i++) {
+                  
+                    this_page_poi_array = _paged_poi_array[i]
+                    for (let j = 0; j < this_page_poi_array.length; j++) {
+                              // test if this new poi already exist
+                              _uniqueID = this_page_poi_array[j].id
+                              if (_all_poi_uniqueID_array.includes(_uniqueID)){
+                                // already exist, skip
+                              } else {
+                                _all_poi_uniqueID_array.push(_uniqueID)
+                                _all_poi_flat_array.push(this_page_poi_array[j])
+                              
+                                //  . . efficient core newOnly  . - .
+                                _this_newOnly_result_array.push(this_page_poi_array[j])
+
+                              }//if
+                    }//for
+
+                }//for
+
+                
+                poi_geojson = poi_to_geojson(_all_poi_flat_array)
+
+                $("#poi_total").html(_all_poi_flat_array.length)
+
+                console.log('poi geojson', poi_geojson)
+
+
+
+
+                            
+
                 /**/
                 //  ---  POI marker replace point geojson      --- 
                 /**/
-
-                poi_geojsonPointFeature_to_marker_label(poi_geojson.features, 'name')
+                            //  . . efficient core newOnly  . - .
+                            console.log('_this_newOnly_result_array', _this_newOnly_result_array)
+                            _this_newOnly_poi_geojson = poi_to_geojson(_this_newOnly_result_array)
+                            // parameter is geojson.features array only
+                            poi_geojsonPointFeature_to_marker_label(_this_newOnly_poi_geojson.features, 'name')
+                            // . .  end . . efficient core newOnly  . - .
 
                 /**/
                 //  --- end  ---  POI marker replace point geojson    --- 
                 /**/
-      
-  
-  
-              }//function
-              
+
+
+
+
+
+
+            }//function
               
   
   
