@@ -431,57 +431,6 @@
 
                           
 
-
-            
-                      
-
-
-            /**/
-            //  ---  POI marker replace point geojson      --- 
-            /**/
-
-              function remove_all_marker(){
-                for (let m = 0; m < marker_array.length; m++) {
-                  marker_array[m].map = null
-                }//for
-                marker_array = []
-              }
-
-            /**/
-            //  --- end  ---  POI marker replace point geojson    --- 
-            /**/
-
-
-
-            function remove_current_poi(){
-
-             
-
-                            
-
-              /**/
-              //  ---  POI marker replace point geojson      --- 
-              /**/
-
-              remove_all_marker()
-
-              /**/
-              //  --- end  ---  POI marker replace point geojson    --- 
-              /**/
-
-
-              $("#info-window-div").html('')
-
-              $("#poi_total").html('...')
-              $("#poi_on_map").html('...')
-
-            }
-
-
-          
-
-
-
   
   
  /**/

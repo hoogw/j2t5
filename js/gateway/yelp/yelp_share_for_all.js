@@ -705,3 +705,27 @@ function remove_without_keyword_from_search_result(__poi_geojson__){
         return min_radius
       }
 
+
+
+
+
+
+
+
+      
+                    function clear_all_poi_advancedMarker(){
+
+                      
+                       for (let m = 0; m < marker_array.length; m++) {
+                          marker_array[m].setMap(null);
+                       }//for
+                       marker_array = []
+                       
+
+                      _all_poi_uniqueID_array = []
+                      _all_poi_flat_array = []
+
+                    _total_poi = 0
+                      empty_info_outline_Tab()
+                      $("#poi_total").html(_total_poi)
+                  }
