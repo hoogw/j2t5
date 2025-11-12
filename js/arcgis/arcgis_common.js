@@ -2056,20 +2056,36 @@ const svg_icon_path_pin3 = "M4.146.146A.5.5 0 0 1 4.5 0h7a.5.5 0 0 1 .5.5c0 .68-
                                     // only for arcgis portal item
                                     ___portal_id = urlParams.get('portal-id'); 
 
+
+
+
+
+                                  // as long as url has lat,lng,zm, then do not pan to loc
+
+                                  // esri lat lng can be a string,no need to convert to number
                                     param_center_lat = urlParams.get('_center_lat');  
                                     if (param_center_lat) {
                                        _center_lat = param_center_lat
+                                       
+                                       // as long as url has lat,lng,zm, then do not pan to loc
+                                       _panto = 0
                                        zoom_to_1st_feature = false
                                     }
                                     param_center_long = urlParams.get('_center_long');  
                                     if (param_center_long) {
                                       _center_long = param_center_long
+                                      
+                                       // as long as url has lat,lng,zm, then do not pan to loc
+                                       _panto = 0
                                       zoom_to_1st_feature = false
                                     }
 
                                     param_center_zoom = urlParams.get('_center_zoom');  
                                     if (param_center_zoom) {
                                       _center_zoom = param_center_zoom
+                                      
+                                       // as long as url has lat,lng,zm, then do not pan to loc
+                                       _panto = 0
                                       zoom_to_1st_feature = false
                                     }
 
@@ -2080,7 +2096,7 @@ const svg_icon_path_pin3 = "M4.146.146A.5.5 0 0 1 4.5 0h7a.5.5 0 0 1 .5.5c0 .68-
                                     _altitude = urlParams.get('altitude');
 
 
-                                    _panto = urlParams.get('panto');
+                                   
                              //.................. required parameter .................
                              
                              
@@ -2176,13 +2192,6 @@ const svg_icon_path_pin3 = "M4.146.146A.5.5 0 0 1 4.5 0h7a.5.5 0 0 1 .5.5c0 .68-
 
 
 
-
-
-                        if (_panto) {
-                            
-                        } else {
-                          _panto = 1;  // default is 1, without _panto means 1,    0 means, not pan to real location  
-                        }
 
 
   

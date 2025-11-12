@@ -9,6 +9,20 @@
 
 
 
+ var _map_type = 'hybrid' // default    roadmap, satellite, terrain
+
+ var _panto = 1 // default is 1, without _panto means 1,    0 means, not pan to real location
+ var need_pan_to_real_location = true
+
+
+
+ // -2 means current showing not available,  -1 means total count not available
+ var _current_rendering_feature = -2 
+ var _current_area_count_of_feature = -2
+ var _total_count_of_feature = -1;
+
+ 
+
 
 
 
@@ -747,7 +761,11 @@ var current_pointShape = 0      // circle
                   async function init_global_var_from_node(){
                 
 
-                    console.log(' center zoom:', _center_zoom, ' center lng:', _center_long, ' center lat:', _center_lat )
+
+
+                    console.log(' default before update from url - - -  panto, need_pan_to_real_location', _panto, need_pan_to_real_location )
+                
+                    console.log(' default before update from url - - -  center zoom:', _center_zoom, ' center lng:', _center_long, ' center lat:', _center_lat )
                 
                     //  .......... global var ..............
                     
@@ -775,6 +793,45 @@ var current_pointShape = 0      // circle
                   
                                   _url = urlParams.get('url');  // required
                   
+
+
+                                  // as long as url has lat,lng,zm, then do not pan to loc
+
+                                  // google lat lng must be number, can not be string
+                                  param_center_lat = urlParams.get('center_lat');  
+                                    if (param_center_lat) {
+                                       _center_lat = Number(param_center_lat)
+
+                                       // as long as url has lat,lng,zm, then do not pan to loc
+                                       _panto = 0
+                                       need_pan_to_real_location = false
+                                    }
+                                    param_center_long = urlParams.get('center_long');  
+                                    if (param_center_long) {
+                                      _center_long = Number(param_center_long)
+
+                                      // as long as url has lat,lng,zm, then do not pan to loc
+                                       _panto = 0
+                                       need_pan_to_real_location = false
+                                    }
+
+                                    param_center_zoom = urlParams.get('center_zoom');  
+                                    if (param_center_zoom) {
+                                      _center_zoom = Number(param_center_zoom)
+
+                                      // as long as url has lat,lng,zm, then do not pan to loc
+                                       _panto = 0
+                                       need_pan_to_real_location = false
+                                    }
+
+                                    
+                                   
+
+
+                    console.log('after update from url, panto,  need_pan_to_real_location ......  ', _panto,  need_pan_to_real_location)  
+                                 
+                    console.log(' after update from url,  - - -  center zoom:', _center_zoom, ' center lng:', _center_long, ' center lat:', _center_lat )
+                
                   
                               //.................. required parameter .................
                               /**/
@@ -807,17 +864,7 @@ var current_pointShape = 0      // circle
                               // *****  end  ******* setting tab parameter *********
                   
                                               
-                                               _panto = urlParams.get('panto');
-                  
-                                               if (_panto) {
-                                                   if (_panto == 0) {need_pan_to_real_location = false}
-                                                   if (_panto == 1) {need_pan_to_real_location = true}
-                                               } else {
-                                                 _panto = 1;  // default is 1, without _panto means 1,    0 means, not pan to real location  
-                                                 need_pan_to_real_location = true
-                                               }
-                                               console.log('panto,  need_pan_to_real_location ......  ', _panto,  need_pan_to_real_location)  
-                                              
+                                               
                         
                                           ___url_string = _url     
                                           if ((___url_string == undefined) || (___url_string == null) || (___url_string == ''))
@@ -913,7 +960,7 @@ var current_pointShape = 0      // circle
 
                               param_search = urlParams.get('search');
                               if (param_search){ 
-                                zoom_to_1st_feature = false
+                                need_pan_to_real_location = false
                               }
                               
                               /**/
