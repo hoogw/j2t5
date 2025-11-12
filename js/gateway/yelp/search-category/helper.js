@@ -878,6 +878,33 @@
             // -- -- --  end -- -- --  POI marker replace point geojson -- -- -- 
             /**/
 
+
+             /**/
+            //  -  -  - guided ring for pan and zoom  -  -  - 
+            /**/
+                // all should works,  bounds_changed, center_changed, drag
+                map.addListener("bounds_changed", (event) => {
+
+                  update_center_latLngZoom()
+                  // . .   limit by bound, lat lng with minium radius
+                  _center_radius_in_meter = get_center_radius_in_map_bound()
+
+
+                  // yelp always use circle for both s e a r c h k e y w o r d & c a t e g o r y,
+                  // only d r a w   c i r c l e when radius large than max 
+                  clear_circle_guideRing() // always clear last time guide ring
+                  if (_center_radius_in_meter == max_yelp_poi_radius_meter){
+                      drawing_circle_guideRing(_center_radius_in_meter, _center_long, _center_lat)
+                  }//if
+              
+                 
+
+                });
+
+            /**/
+            //  -  -  - end  -  -  -  guided ring for pan and zoom    -  -  - 
+            /**/
+
           }
 
 
