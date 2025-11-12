@@ -1052,6 +1052,7 @@
 
                   // yelp always use circle for both s e a r c h k e y w o r d & c a t e g o r y,
                   // only d r a w   c i r c l e when radius large than max 
+                  clear_circle_guideRing() // always clear last time guide ring
                   if (_center_radius_in_meter == max_yelp_poi_radius_meter){
                       drawing_circle_guideRing(_center_radius_in_meter, _center_long, _center_lat)
                   }//if
