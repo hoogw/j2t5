@@ -595,7 +595,7 @@
 
                 
                 // ----------------download rest of result ----------------
-                while ((_paged_offset < _total_poi) && (_paged_offset < max_yelp_offset)) {
+                while (((_paged_offset + _yelp_page_size) < _total_poi) && ( (_paged_offset + _yelp_page_size) < max_yelp_offset)) {
 
                     _paged_offset += _yelp_page_size
                     _paged_offset_url_param = '&offset=' + _paged_offset
