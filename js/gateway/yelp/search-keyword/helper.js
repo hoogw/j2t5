@@ -1900,13 +1900,26 @@ function init_user_interface_after_map_load(){
 
 //  .......  search poi button   ....... 
     // search bar close icon clicked. clear everything.
-    $('#clear_poi_button').on('click', remove_current_poi);
+    
     $('#search_poi_button').on('click', search_poi);
     // default search
     $('#search_poi_input').on('search', search_poi);
 //  ---  end  ---  .......  search poi button   ....... 
 
+// must at each model, instead of share
+              $("#start_over_button").on("click", function() {
 
+              clear_all_circle()
+              clear_circle_guideRing()
+
+
+              // only for marker label
+              clear_all_poi_advancedMarker()
+
+              // only for old marker
+              //clear_all_poi()
+
+              });
  
   
 //  .......  opacity   ....... 
