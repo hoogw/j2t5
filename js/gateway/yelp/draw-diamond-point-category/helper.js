@@ -550,7 +550,7 @@
                                     var mouselatLng = event.latLng;
                                     var mouse_lat = mouselatLng.lat();
                                     var mouse_lng = mouselatLng.lng();
-                                    console.log('ground overlay image layer - - - catch - - - - - mouse move event, pointer lat, lng',mouse_lng, mouse_lat)
+                                    //console.log('ground overlay image layer - - - catch - - - - - mouse move event, pointer lat, lng',mouse_lng, mouse_lat)
       
 
                                     drawing_circle_guideRing(current_circle_radius, mouse_lng, mouse_lat)

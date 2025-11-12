@@ -6091,7 +6091,7 @@ icon_flatjson.push(icon_item)
                 "id" :  8345,     
                 "parent" : 6500,
                 
-                "text" : "8345 category ()",
+                "text" : "8345 category",
                 
                 "layer_name" : _layer_name_,
                 "icon" : open_new_tab_icon,
@@ -6121,7 +6121,7 @@ icon_flatjson.push(icon_item)
                     "id" :  8343,     
                     "parent" : 6500,
                     
-                    "text" : "8343 keywords ()",
+                    "text" : "8343 keyword",
                     
                     "layer_name" : _layer_name_,
                     "icon" : open_new_tab_icon,
@@ -6154,7 +6154,7 @@ icon_flatjson.push(icon_item)
             icon_item = { 
                 "id" :  6503,     
                 "parent" : 328,
-                "text" : "search",
+                "text" : "manual search",
                 "icon" : folder_icon,
                 "link_type": "folder",   
                 "state"       : {
@@ -6172,7 +6172,7 @@ icon_flatjson.push(icon_item)
                                 "id" :  8231,     
                                 "parent" : 6503,
                                 
-                                "text" : "8231 keywords ()",
+                                "text" : "8231 keyword",
                                 
                                 "layer_name" : _layer_name_,
                                 "icon" : open_new_tab_icon,
@@ -6202,7 +6202,7 @@ icon_flatjson.push(icon_item)
                                 "id" :  8251,     
                                 "parent" : 6503,
                                 
-                                "text" : "8251 keywords (street view)",
+                                "text" : "8251 keyword + streetView",
                                 
                                 "layer_name" : _layer_name_,
                                 "icon" : open_new_tab_icon,
@@ -6233,7 +6233,7 @@ icon_flatjson.push(icon_item)
                                 "id" :  8233,     
                                 "parent" : 6503,
                                 
-                                "text" : "8233 category ()",
+                                "text" : "8233 category",
                                 
                                 "layer_name" : _layer_name_,
                                 "icon" : open_new_tab_icon,
@@ -6263,7 +6263,7 @@ icon_flatjson.push(icon_item)
                                 "id" :  8253,     
                                 "parent" : 6503,
                                 
-                                "text" : "8253 category (street view)",
+                                "text" : "8253 category + streetView",
                                 
                                 "layer_name" : _layer_name_,
                                 "icon" : open_new_tab_icon,
@@ -6376,7 +6376,7 @@ icon_flatjson.push(icon_item)
                                             "id" :  8358,     
                                             "parent" : 6501,
                                             
-                                            "text" : "8358 category (street view)",
+                                            "text" : "8358 category + streetView",
                                             
                                             "layer_name" : _layer_name_,
                                             "icon" : open_new_tab_icon,
@@ -6438,7 +6438,7 @@ icon_flatjson.push(icon_item)
                                             "id" :  8352,     
                                             "parent" : 6501,
                                             
-                                            "text" : "8352 keywords (street view)",
+                                            "text" : "8352 keyword + streetView",
                                             
                                             "layer_name" : _layer_name_,
                                             "icon" : open_new_tab_icon,
