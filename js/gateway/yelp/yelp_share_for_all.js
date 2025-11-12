@@ -624,8 +624,9 @@ var category_alias_array = []
 
 
 
-
-
+/*
+// yelp search include related business, kfc will include popeye, need filter them
+// do not use, this filter, because in and out burger will not show, real name is in n out
 function remove_without_keyword_from_search_result(__poi_geojson__){
 
        var filtered_feature_array = []
@@ -647,6 +648,7 @@ function remove_without_keyword_from_search_result(__poi_geojson__){
        return __poi_geojson__
 
 }
+*/
 
 
 

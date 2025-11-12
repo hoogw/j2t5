@@ -547,8 +547,9 @@
         
                 
                 // yelp search include related business, kfc will include popeye, need filter them
-                 poi_geojson = remove_without_keyword_from_search_result(poi_geojson)
-                 console.log('remove without keyword from search result', poi_geojson)
+                // do not use, this filter, because in and out burger will not show, real name is in n out
+                 //poi_geojson = remove_without_keyword_from_search_result(poi_geojson)
+                 //console.log('remove without keyword from search result', poi_geojson)
 
                  
                 /**/
