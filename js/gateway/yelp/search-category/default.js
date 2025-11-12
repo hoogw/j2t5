@@ -499,18 +499,6 @@
                   var ____nearby_url = yelp_api_search
 
 
-
-                  search_poi_keyword = $('#search_poi_input').val().trim().toLowerCase();   // .trim()  Removes only leading & trailing whitespaces
-                  console.log('search_poi_keyword --->  ', search_poi_keyword)
-                  update_url_parameter('poi', search_poi_keyword);
-                  
-                  // yelp support search empty keywprd for all things,
-                  if (search_poi_keyword){
-                    // If categories is not included the endpoint will default to searching across businesses from a small number of popular categories.
-                    ____nearby_url += 'categories=' + search_poi_keyword
-                  }//if
-                  
-
                   _center_radius_in_meter = get_center_radius_in_map_bound()
                   ____nearby_url += '&latitude=' + _center_lat
                   ____nearby_url += '&longitude=' + _center_long
