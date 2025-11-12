@@ -532,7 +532,7 @@ async function nearby_poi(_radiusMeter, _centerLng, _centerLat){  //  -  -  - sh
                   //  -  -  - shoot it !!! -  -  - 
                   /**/
                   // comment out this line
-                  //drawing_circle(_radiusMeter, _centerLng, _centerLat)
+                  drawing_circle(_radiusMeter, _centerLng, _centerLat)
                   /**/
                   //  -  -  - end  -  -  -  shoot it !!!    -  -  - 
                   /**/
