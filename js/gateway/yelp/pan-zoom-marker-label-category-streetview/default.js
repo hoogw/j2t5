@@ -531,7 +531,7 @@
                 console.log('_category_string --->  ', _category_string)
                  
 
-                // esri does not support search empty for all things, it only return 1 record as US, so limit it to non-empty
+                // yelp support search empty keywprd for all things,
                 if (_category_string){
 
                     var _titleORalias_ = ""

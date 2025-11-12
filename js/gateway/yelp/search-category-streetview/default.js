@@ -502,7 +502,7 @@
                   console.log('search_poi_keyword --->  ', search_poi_keyword)
                   update_url_parameter('poi', search_poi_keyword);
                   
-                  // esri does not support search empty for all things, it only return 1 record as US, so limit it to non-empty
+                  // yelp support search empty keywprd for all things,
                   if (search_poi_keyword){
                     // If categories is not included the endpoint will default to searching across businesses from a small number of popular categories.
                     ____url += 'categories=' + search_poi_keyword
