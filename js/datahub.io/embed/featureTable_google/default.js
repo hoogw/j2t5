@@ -125,7 +125,7 @@
 
 
 
- var _map_type = 'hybrid' // default    roadmap, satellite, terrain
+ 
 
 
 

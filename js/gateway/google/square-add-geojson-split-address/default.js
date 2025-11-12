@@ -125,17 +125,17 @@
 
 
 
- var _map_type = 'hybrid' // default    roadmap, satellite, terrain
+ 
 
- var _panto = 1 // default is 1, without _panto means 1,    0 means, not pan to real location
- var need_pan_to_real_location = true
+ 
+ 
 
 
 
  // -2 means current showing not available,  -1 means total count not available
- var _current_rendering_feature = -2 
- var _current_area_count_of_feature = -2
- var _total_count_of_feature = -1;
+  
+ 
+ 
 
  
 
