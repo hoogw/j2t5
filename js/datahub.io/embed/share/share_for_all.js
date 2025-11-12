@@ -11,7 +11,7 @@
 
  var _map_type = 'hybrid' // default    roadmap, satellite, terrain
 
- var _panto = 1 // default is 1, without _panto means 1,    0 means, not pan to real location
+ 
  var need_pan_to_real_location = true
 
 
@@ -763,7 +763,7 @@ var current_pointShape = 0      // circle
 
 
 
-                    console.log(' default before update from url - - -  panto, need_pan_to_real_location', _panto, need_pan_to_real_location )
+                    console.log(' default before update from url - - -  panto, need_pan_to_real_location',  need_pan_to_real_location )
                 
                     console.log(' default before update from url - - -  center zoom:', _center_zoom, ' center lng:', _center_long, ' center lat:', _center_lat )
                 
@@ -803,7 +803,7 @@ var current_pointShape = 0      // circle
                                        _center_lat = Number(param_center_lat)
 
                                        // as long as url has lat,lng,zm, then do not pan to loc
-                                       _panto = 0
+                                      
                                        need_pan_to_real_location = false
                                     }
                                     param_center_long = urlParams.get('center_long');  
@@ -811,7 +811,7 @@ var current_pointShape = 0      // circle
                                       _center_long = Number(param_center_long)
 
                                       // as long as url has lat,lng,zm, then do not pan to loc
-                                       _panto = 0
+                                      
                                        need_pan_to_real_location = false
                                     }
 
@@ -820,7 +820,7 @@ var current_pointShape = 0      // circle
                                       _center_zoom = Number(param_center_zoom)
 
                                       // as long as url has lat,lng,zm, then do not pan to loc
-                                       _panto = 0
+                                      
                                        need_pan_to_real_location = false
                                     }
 
@@ -828,7 +828,7 @@ var current_pointShape = 0      // circle
                                    
 
 
-                    console.log('after update from url, panto,  need_pan_to_real_location ......  ', _panto,  need_pan_to_real_location)  
+                    console.log('after update from url, panto,  need_pan_to_real_location ......  ',   need_pan_to_real_location)  
                                  
                     console.log(' after update from url,  - - -  center zoom:', _center_zoom, ' center lng:', _center_long, ' center lat:', _center_lat )
                 

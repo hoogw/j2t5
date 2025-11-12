@@ -616,7 +616,7 @@ var current_queryFeatureResultsAsGraphic_length
     
 
 
-  var _panto = 1 // default is 1, without _panto means 1,    0 means, not pan to real location  
+    
   
   
 
@@ -2068,7 +2068,7 @@ const svg_icon_path_pin3 = "M4.146.146A.5.5 0 0 1 4.5 0h7a.5.5 0 0 1 .5.5c0 .68-
                                        _center_lat = param_center_lat
                                        
                                        // as long as url has lat,lng,zm, then do not pan to loc
-                                       _panto = 0
+                                      
                                        zoom_to_1st_feature = false
                                     }
                                     param_center_long = urlParams.get('_center_long');  
@@ -2076,7 +2076,7 @@ const svg_icon_path_pin3 = "M4.146.146A.5.5 0 0 1 4.5 0h7a.5.5 0 0 1 .5.5c0 .68-
                                       _center_long = param_center_long
                                       
                                        // as long as url has lat,lng,zm, then do not pan to loc
-                                       _panto = 0
+                                      
                                       zoom_to_1st_feature = false
                                     }
 
@@ -2085,7 +2085,7 @@ const svg_icon_path_pin3 = "M4.146.146A.5.5 0 0 1 4.5 0h7a.5.5 0 0 1 .5.5c0 .68-
                                       _center_zoom = param_center_zoom
                                       
                                        // as long as url has lat,lng,zm, then do not pan to loc
-                                       _panto = 0
+                                      
                                       zoom_to_1st_feature = false
                                     }
 

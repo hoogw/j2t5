@@ -339,17 +339,7 @@ var param_search_poi_keyword
                               // *****  end  ******* setting tab parameter *********
                   
                                               
-                                               _panto = urlParams.get('panto');
-                  
-                                               if (_panto) {
-                                                   if (_panto == 0) {need_pan_to_real_location = false}
-                                                   if (_panto == 1) {need_pan_to_real_location = true}
-                                               } else {
-                                                 _panto = 1;  // default is 1, without _panto means 1,    0 means, not pan to real location  
-                                                 need_pan_to_real_location = true
-                                               }
-                                               console.log('panto,  need_pan_to_real_location ......  ', _panto,  need_pan_to_real_location)  
-                                              
+                                            
                         
                                           ___url_string = _url     
                                           if ((___url_string == undefined) || (___url_string == null) || (___url_string == ''))
