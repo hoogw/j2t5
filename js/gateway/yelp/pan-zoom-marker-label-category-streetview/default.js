@@ -522,7 +522,7 @@
                 // - -  end - - reset to 0 for everything
 
      
-
+                console.log('nearby poi url ', ____nearby_url + _paged_offset_url_param )
 
 
             /**/

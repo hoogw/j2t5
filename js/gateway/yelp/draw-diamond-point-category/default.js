@@ -500,6 +500,14 @@
 
 
 
+                // . .   limit by bound, lat lng with minium radius
+                ____nearby_url += '&latitude=' + _centerLat
+                ____nearby_url += '&longitude=' + _centerLng
+                ____nearby_url += '&radius=' + _radiusMeter
+
+
+                 // yelp max allow 240, 50 per page, 
+                ____nearby_url += '&limit=' + _yelp_page_size  // integer 0 to 50 Defaults to 20
                 //  - - reset to 0 for everything  - - 
                 _paged_poi_array = []
                
@@ -508,28 +516,47 @@
                 _paged_offset_url_param = '&offset=' + _paged_offset
                 // - -  end - - reset to 0 for everything
 
-     
 
 
-                
-                search_poi_keyword = $('#search_poi_input').val().trim().toLowerCase();   // .trim()  Removes only leading & trailing whitespaces
-                  console.log('search_poi_keyword --->  ', search_poi_keyword)
-                  update_url_parameter('poi', search_poi_keyword);
-                  
-                  // yelp support search empty keywprd for all things,
-                  if (search_poi_keyword){
-                    // If categories is not included the endpoint will default to searching across businesses from a small number of popular categories.
-                    ____nearby_url += 'categories=' + search_poi_keyword
-                  }//if
+                /**/
+            //  -  -  - category  -  -  - 
+            /**/
 
+                _category_string = $('#category-input').val().trim().toLowerCase();   // .trim()  Removes only leading & trailing whitespaces
+                update_url_parameter("poicategory",_category_string)
+                console.log('_category_string --->  ', _category_string)
+                 
 
+                // yelp support search empty keywprd for all things,
+                if (_category_string){
 
-                // . .   limit by bound, lat lng with minium radius
-                ____nearby_url += '&latitude=' + _centerLat
-                ____nearby_url += '&longitude=' + _centerLng
-                ____nearby_url += '&radius=' + _radiusMeter
-                ____nearby_url += '&limit=' + _yelp_page_size  // integer 0 to 50 Defaults to 20
-                
+                    var _titleORalias_ = ""
+                    var catAlias_index = category_alias_array.indexOf(_category_string.toLowerCase())
+                    var catTitle_index = category_title_array.indexOf(_category_string.toLowerCase())
+                    console.log('catAlias_index  ', catAlias_index)
+                    console.log('catTitle_index  ', catTitle_index)
+                    // -1 means, not found index
+                    if (catAlias_index > 0){
+                       _titleORalias_ = _category_string
+                    } else if (catTitle_index > 0){
+                       _titleORalias_ = category_alias_array[catTitle_index]
+                    } else {
+                      // invalid cat. not found in title, not found in alias
+                      return alert('Invalid Category')
+                    }
+
+                    ____nearby_url += '&categories=' + _titleORalias_
+
+                } else{
+
+                  // If categories is not included the endpoint will default to searching across businesses from a small number of popular categories.
+                    
+                    
+                }//if
+
+            /**/
+            //  -  -  -  end -  -  - category  -  -  - 
+            /**/
 
                 console.log('nearby poi url ', ____nearby_url + _paged_offset_url_param )
 
@@ -558,17 +585,11 @@
                   }
                 });  
 
-               
+                _total_poi = Number(response_string.total)
+                //$("#poi_on_map").html(_total_poi)
 
                 this_page_poi_array = response_string.businesses
                 _paged_poi_array.push(this_page_poi_array)
-
-
-                
-               
-
-               
-               
 
 
                 
