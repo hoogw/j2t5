@@ -553,7 +553,7 @@
                                     //console.log('ground overlay image layer - - - catch - - - - - mouse move event, pointer lat, lng',mouse_lng, mouse_lat)
       
 
-                                    drawing_circle_guideRing(current_circle_radius, mouse_lng, mouse_lat)
+                                    drawing_circle_guideRing_with_click_event(current_circle_radius, mouse_lng, mouse_lat)
                                 });
 
                 /**/
@@ -1050,7 +1050,7 @@
                                     var mouse_lng = mouselatLng.lng();
                                     console.log('map data catch mouse move event, pointer lat, lng',mouse_lng, mouse_lat)
       
-                                    drawing_circle_guideRing(current_circle_radius, mouse_lng, mouse_lat)
+                                    drawing_circle_guideRing_with_click_event(current_circle_radius, mouse_lng, mouse_lat)
                                 });
 
 
@@ -1144,7 +1144,7 @@
                       console.log('map . .. . mouse move event, pointer lat, lng',mouse_lng, mouse_lat)
 
 
-                      drawing_circle_guideRing(current_circle_radius, mouse_lng, mouse_lat)
+                      drawing_circle_guideRing_with_click_event(current_circle_radius, mouse_lng, mouse_lat)
                   });
 
                   map.addListener("mouseout", () => {

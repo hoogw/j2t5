@@ -914,10 +914,10 @@ function point2diamond(_diagonal_meter, point_lng, point_lat){
 /**/
 //  -  -  - guided ring for manual drawing circle or square  -  -  - 
 /**/
-            var circle_guideRing
+           
 
             // only for manual, circle has click event 
-            function drawing_circle_guideRing(_radiusMeter, _centerLng, _centerLat){
+            function drawing_circle_guideRing_with_click_event(_radiusMeter, _centerLng, _centerLat){
 
               clear_circle_guideRing()
 
@@ -1055,7 +1055,7 @@ function point2diamond(_diagonal_meter, point_lng, point_lat){
                         console.log('guide ring   ,  catch   ,   mouse move event   , pointer lat, lng',mouse_lng, mouse_lat)
                         
                         
-                        drawing_circle_guideRing(current_circle_radius, mouse_lng, mouse_lat)
+                        drawing_circle_guideRing_with_click_event(current_circle_radius, mouse_lng, mouse_lat)
                         /**/
                         //  --- end  ---  google manual drawing circle    --- 
                         /**/
@@ -1066,10 +1066,6 @@ function point2diamond(_diagonal_meter, point_lng, point_lat){
             }
 
 
-
-            function clear_circle_guideRing(){
-               if (circle_guideRing) { circle_guideRing.setMap(null)}
-            }
 
 /**/
 //  -  -  - end  -  -  -  guided ring for manual drawing circle or square    -  -  - 

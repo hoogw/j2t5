@@ -512,7 +512,7 @@ var category_alias_array = []
 
               clear_circle_guideRing()
 
-              console.log('d r a w - g u i d e r i n g at ', _radiusMeter, _centerLng, _centerLat)
+             // console.log('d r a w - g u i d e r i n g at ', _radiusMeter, _centerLng, _centerLat)
 
                 /*
               // red solid line
