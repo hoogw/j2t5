@@ -261,6 +261,7 @@
                   
                    //. . . only for browsing ...  remove last circle . . .  
                    clear_all_circle()
+                   clear_circle_guideRing()
                    
                    nearby_poi(_center_radius_in_meter, _center_long, _center_lat)
 
@@ -2058,6 +2059,7 @@ function init_user_interface_after_map_load(){
               $("#start_over_button").on("click", function() {
 
               clear_all_circle()
+                   clear_circle_guideRing()
 
 
               // only for marker label
