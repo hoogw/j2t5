@@ -482,13 +482,8 @@
 //  --- yelp POI on google      --- 
 /**/       
 
-          /**/
+          /* only for manual drawing circle */
           //  --- yelp manual drawing circle   --- 
-          /**/
-
-
-       
-
           async function nearby_poi(_radiusMeter, _centerLng, _centerLat){
 
               drawing_circle(_radiusMeter, _centerLng, _centerLat)
@@ -500,17 +495,12 @@
 
 
 
-                //  - - reset to 0 for everything  - - 
-                _paged_poi_array = []
-               
-                _paged_offset = 0
-                // offset integer 0 to 1000, Offset the list of returned results by this amount
-                _paged_offset_url_param = '&offset=' + _paged_offset
-                // - -  end - - reset to 0 for everything
-
+                
      
 
-                
+            /**/
+            //  -  -  - search poi keyword  -  -  - 
+            /**/
                 
                   search_poi_keyword = $('#search_poi_input').val().trim().toLowerCase();   // .trim()  Removes only leading & trailing whitespaces
                   console.log('search_poi_keyword --->  ', search_poi_keyword)
@@ -525,12 +515,34 @@
                     //return alert("search keyword required !")
                   }//if
 
+            /**/
+            //  -  -  - search poi keyword  -  -  - 
+            /**/
+
+                console.log('nearby poi url ', ____nearby_url + _paged_offset_url_param )
+
+
 
                 // . .   limit by bound, lat lng with minium radius
                 ____nearby_url += '&latitude=' + _centerLat
                 ____nearby_url += '&longitude=' + _centerLng
                 ____nearby_url += '&radius=' + _radiusMeter
+
+
+
+                // yelp max allow 240, 50 per page, 
                 ____nearby_url += '&limit=' + _yelp_page_size  // integer 0 to 50 Defaults to 20
+                //  - - reset to 0 for everything  - - 
+                _paged_poi_array = []
+               
+                _paged_offset = 0
+                // offset integer 0 to 1000, Offset the list of returned results by this amount
+                _paged_offset_url_param = '&offset=' + _paged_offset
+                // - -  end - - reset to 0 for everything
+
+
+
+
                 
 
                 console.log('nearby poi url ', ____nearby_url + _paged_offset_url_param )
@@ -560,17 +572,11 @@
                   }
                 });  
 
-               
+               _total_poi = Number(response_string.total)
+                //$("#poi_on_map").html(_total_poi)
 
                 this_page_poi_array = response_string.businesses
                 _paged_poi_array.push(this_page_poi_array)
-
-
-                
-               
-
-               
-               
 
 
                 

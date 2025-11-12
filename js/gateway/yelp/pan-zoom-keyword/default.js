@@ -567,7 +567,7 @@
                 });  
 
                 _total_poi = Number(response_string.total)
-                $("#poi_on_map").html(_total_poi)
+                //$("#poi_on_map").html(_total_poi)
 
                 this_page_poi_array = response_string.businesses
                 _paged_poi_array.push(this_page_poi_array)
@@ -656,7 +656,8 @@
                 
 
 
-                $("#poi_total").html(_all_poi_flat_array.length)
+                _total_poi = Number(_all_poi_flat_array.length)
+                $("#poi_total").html(_total_poi)
 
                 console.log('poi geojson', poi_geojson)
 
