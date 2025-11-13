@@ -5464,7 +5464,7 @@ icon_flatjson.push(icon_item)
                                     "id" :  7510,     
                                     "parent" : 3285,
                                     
-                                    "text" : "7510 all category",
+                                    "text" : "7510 by category",
                                     
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
@@ -5495,7 +5495,7 @@ icon_flatjson.push(icon_item)
                                     "id" :  8522,     
                                     "parent" : 3285,
                                     
-                                    "text" : "8522 all category (google base map)",
+                                    "text" : "8522 by keyword (google base map)",
                                     
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
