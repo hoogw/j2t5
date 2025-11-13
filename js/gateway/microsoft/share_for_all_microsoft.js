@@ -10,6 +10,25 @@
 // always at top, 
 
 
+
+
+
+
+ var _map_type = 'hybrid' // default    roadmap, satellite, terrain
+
+ 
+ var need_pan_to_real_location = true
+
+
+
+ // -2 means current showing not available,  -1 means total count not available
+ var _current_rendering_feature = -2 
+ var _current_area_count_of_feature = -2
+ var _total_count_of_feature = -1;
+
+ 
+
+
 // microsoft marker don't have problem, can set no limit
 // no limit, will get maxReturnCount set by arcgis server admin.
 //var max_count_for_rendering = undefined // null,

@@ -1468,7 +1468,7 @@ function  add_dataSource_searchLayer(){
             await get_feature_attributes(_layer_id);
                                   
                                   
-            display_count_info(_layer, _current_area_count_of_feature, _total_count_of_feature, _current_rendering_feature)
+            //display_count_info(_layer, _current_area_count_of_feature, _total_count_of_feature, _current_rendering_feature)
 
 
                                 
