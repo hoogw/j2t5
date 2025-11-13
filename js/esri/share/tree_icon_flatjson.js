@@ -6003,7 +6003,7 @@ icon_flatjson.push(icon_item)
                                     "id" :  8513,     
                                     "parent" : 3266,
                                     
-                                    "text" : "8513 circle",
+                                    "text" : "8513",
                                     
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,

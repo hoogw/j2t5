@@ -75,8 +75,8 @@ function get_center_radius_in_map_bound(){
 
   // microsoft SearchPOI does not limit radius, but searchNearBy limit to 50k
   // If the specified value is too large, a AREA_TOO_LARGE error may be returned. The max value is 40,000 meters (about 25 miles).
-  if (min_radius > max_microsoft_azure_poi_radius_meter){
-            min_radius = max_microsoft_azure_poi_radius_meter
+  if (min_radius > max_microsoft_poi_radius_meter){
+            min_radius = max_microsoft_poi_radius_meter
   }
 
   console.log("min_radius in meter", min_radius)

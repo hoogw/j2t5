@@ -1186,9 +1186,6 @@ var unknow_geometry_icon = "bi bi-triangle"
         var microsoft_azure_primary_key_restrict = '84ivowqjNApFPwGYUwxNt8RogGtTq5622w19VWmGWmY8AvQ1jEuNJQQJ99BGAC8vTInSkNgnAAAgAZMP4XjG'
        
         
-        // microsoft SearchPOI does not limit radius, but searchNearBy limit to 50k
-        // If the specified value is too large, a AREA_TOO_LARGE error may be returned. The max value is 40,000 meters (about 25 miles).
-        var max_microsoft_azure_poi_radius_meter = 40000 
         
         // The minimum number of characters needed in the search input before a search is performed.
         var minSearchInputLength = 3;
@@ -1210,6 +1207,8 @@ var unknow_geometry_icon = "bi bi-triangle"
         var datasource_layer_id
 
 
+        // microsoft SearchPOI does not limit radius, but searchNearBy limit to 50k
+        // If the specified value is too large, a AREA_TOO_LARGE error may be returned. The max value is 40,000 meters (about 25 miles).
         var max_microsoft_poi_radius_meter = 50000 
 
 
