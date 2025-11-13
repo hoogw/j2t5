@@ -1046,7 +1046,7 @@
                                     var mouselatLng = event.latLng;
                                     var mouse_lat = mouselatLng.lat();
                                     var mouse_lng = mouselatLng.lng();
-                                    console.log('map data catch mouse move event, pointer lat, lng',mouse_lng, mouse_lat)
+                                    // console.log('map data catch mouse move event, pointer lat, lng',mouse_lng, mouse_lat)
       
                                     drawing_circle_guideRing_with_click_event(current_circle_radius, mouse_lng, mouse_lat)
                                 });

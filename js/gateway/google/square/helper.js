@@ -896,7 +896,7 @@
                                     var mouse_lat = mouselatLng.lat();
                                     var mouse_lng = mouselatLng.lng();
                                     var mouse_lat_lng_point = { lng : mouse_lng, lat : mouse_lat }
-                                    console.log('map data catch mouse move event, pointer lat, lng',mouse_lng, mouse_lat)
+                                    // console.log('map data catch mouse move event, pointer lat, lng',mouse_lng, mouse_lat)
                                     drawing_shape_guideRing(current_square_edge, mouse_lat_lng_point)
                                 });
 
