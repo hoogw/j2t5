@@ -32,6 +32,16 @@ async function nearby_poi_16circle(_radiusMeter, _centerLng, _centerLat) {
 
 
            
+       
+
+        // URL REST parameter is here https://learn.microsoft.com/en-us/rest/api/maps/search/get-search-poi?view=rest-maps-1.0&tabs=HTTP
+        // class api is here: https://learn.microsoft.com/en-us/javascript/api/azure-maps-rest/atlas.service.searchurl?view=azure-maps-typescript-latest#azure-maps-rest-atlas-service-searchurl-searchnearby
+        // do not use class, bug found,  pipeline, searchNearBy class  not working with "categorySet", so I have to use ajax rest api here with key
+
+              
+        // default, or cat. is empty, means everything
+        var microsoft_search_nearby_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
+        
         /**/
         //  -  -  - category  -  -  - 
         /**/
@@ -41,70 +51,77 @@ async function nearby_poi_16circle(_radiusMeter, _centerLng, _centerLat) {
             _category_string = $("#category-input").val()
             update_url_parameter("poicategory",_category_string)
             
-            
+
+            // only for single cat.
             if (_category_string){
 
+                microsoft_search_nearby_url ="https://atlas.microsoft.com/search/poi/category/json?api-version=1.0"
+
+                // required for   ... / s e a r  c h / p o  i / c a t e g o r y /...
+                microsoft_search_nearby_url += '&query=' + _category_string
+
+                /* not use
+                // only for multiple cat. set,   7510,7654,9876
                 // convert array of string to array of integer, only for micosoft 
                 // https://learn.microsoft.com/en-us/rest/api/maps/search/get-search-nearby?view=rest-maps-1.0&tabs=HTTP
+                _category_array = []
                 _category_array = _category_string.split(',').map(function(item) {
                     return parseInt(item, 10);
-            }); // Splits by comma
-                
-            } else {
-                _category_array = []
-            }
-            console.log('category array', _category_array); // Output: ["apple", "banana", "orange"]
+                }); // Splits by comma
+                 console.log('category array', _category_array); // Output: ["apple", "banana", "orange"]
+                // optional for ... / s e a r  c h / n e a r b y /...
+                microsoft_search_nearby_url += '&categorySet=' + _category_array
+                */
 
-    
-        // SearchNearbyOptions  
-        // URL REST parameter is here https://learn.microsoft.com/en-us/rest/api/maps/search/get-search-nearby?view=rest-maps-1.0&tabs=HTTP
-        // class api is here: https://learn.microsoft.com/en-us/javascript/api/azure-maps-rest/atlas.service.searchurl?view=azure-maps-typescript-latest#azure-maps-rest-atlas-service-searchurl-searchnearby
-        
-        // bug found,  pipeline, searchNearBy class  not working with "categorySet", so I have to use ajax rest api here with key
+            } 
+           
 
+        /**/
+        //  -  -  -  end  -  -  - category  -  -  - 
+        /**/
 
 
 
-            var NW1_search_nearby_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
+            var NW1_search_nearby_url = microsoft_search_nearby_url
             NW1_search_nearby_url += '&lat=' + quater_NW1[1]
             NW1_search_nearby_url += '&lon=' + quater_NW1[0]
             NW1_search_nearby_url += '&limit=' + 100
-            //NW1_search_nearby_url += '&ofs=' + 0
+           
             NW1_search_nearby_url += '&radius=' + _16circle_radius
-            NW1_search_nearby_url += '&categorySet=' + _category_array
+           
             NW1_search_nearby_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
             var NW1_results = await ajax_getjson_common(NW1_search_nearby_url)
             console.log('search nearby NW1_results ', NW1_results)
 
-            var NW2_search_nearby_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
+            var NW2_search_nearby_url =microsoft_search_nearby_url
             NW2_search_nearby_url += '&lat=' + quater_NW2[1]
             NW2_search_nearby_url += '&lon=' + quater_NW2[0]
             NW2_search_nearby_url += '&limit=' + 100
-            //NW2_search_nearby_url += '&ofs=' + 0
+            
             NW2_search_nearby_url += '&radius=' + _16circle_radius
-            NW2_search_nearby_url += '&categorySet=' + _category_array
+           
             NW2_search_nearby_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
             var NW2_results = await ajax_getjson_common(NW2_search_nearby_url)
             console.log('search nearby NW2_results ', NW2_results)
 
-            var NW3_search_nearby_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
+            var NW3_search_nearby_url =microsoft_search_nearby_url
             NW3_search_nearby_url += '&lat=' + quater_NW3[1]
             NW3_search_nearby_url += '&lon=' + quater_NW3[0]
             NW3_search_nearby_url += '&limit=' + 100
-            //NW3_search_nearby_url += '&ofs=' + 0
+            
             NW3_search_nearby_url += '&radius=' + _16circle_radius
-            NW3_search_nearby_url += '&categorySet=' + _category_array
+            
             NW3_search_nearby_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
             var NW3_results = await ajax_getjson_common(NW3_search_nearby_url)
             console.log('search nearby NW3_results ', NW3_results)
 
-            var NW4_search_nearby_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
+            var NW4_search_nearby_url =microsoft_search_nearby_url
             NW4_search_nearby_url += '&lat=' + quater_NW4[1]
             NW4_search_nearby_url += '&lon=' + quater_NW4[0]
             NW4_search_nearby_url += '&limit=' + 100
-            //NW4_search_nearby_url += '&ofs=' + 0
+           
             NW4_search_nearby_url += '&radius=' + _16circle_radius
-            NW4_search_nearby_url += '&categorySet=' + _category_array
+            
             NW4_search_nearby_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
             var NW4_results = await ajax_getjson_common(NW4_search_nearby_url)
             console.log('search nearby NW4_results ', NW4_results)
@@ -115,46 +132,46 @@ async function nearby_poi_16circle(_radiusMeter, _centerLng, _centerLat) {
 
 
 
-            var NE1_search_nearby_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
+            var NE1_search_nearby_url =microsoft_search_nearby_url
             NE1_search_nearby_url += '&lat=' + quater_NE1[1]
             NE1_search_nearby_url += '&lon=' + quater_NE1[0]
             NE1_search_nearby_url += '&limit=' + 100
-            //NE1_search_nearby_url += '&ofs=' + 0
+            
             NE1_search_nearby_url += '&radius=' + _16circle_radius
-            NE1_search_nearby_url += '&categorySet=' + _category_array
+            
             NE1_search_nearby_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
             var NE1_results = await ajax_getjson_common(NE1_search_nearby_url)
             console.log('search nearby NE1_results ', NE1_results)
 
-            var NE2_search_nearby_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
+            var NE2_search_nearby_url =microsoft_search_nearby_url
             NE2_search_nearby_url += '&lat=' + quater_NE2[1]
             NE2_search_nearby_url += '&lon=' + quater_NE2[0]
             NE2_search_nearby_url += '&limit=' + 100
-            //NE2_search_nearby_url += '&ofs=' + 0
+           
             NE2_search_nearby_url += '&radius=' + _16circle_radius
-            NE2_search_nearby_url += '&categorySet=' + _category_array
+           
             NE2_search_nearby_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
             var NE2_results = await ajax_getjson_common(NE2_search_nearby_url)
             console.log('search nearby NE2_results ', NE2_results)
 
-            var NE3_search_nearby_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
+            var NE3_search_nearby_url =microsoft_search_nearby_url
             NE3_search_nearby_url += '&lat=' + quater_NE3[1]
             NE3_search_nearby_url += '&lon=' + quater_NE3[0]
             NE3_search_nearby_url += '&limit=' + 100
-            //NE3_search_nearby_url += '&ofs=' + 0
+           
             NE3_search_nearby_url += '&radius=' + _16circle_radius
-            NE3_search_nearby_url += '&categorySet=' + _category_array
+            
             NE3_search_nearby_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
             var NE3_results = await ajax_getjson_common(NE3_search_nearby_url)
             console.log('search nearby NE3_results ', NE3_results)
      
-            var NE4_search_nearby_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
+            var NE4_search_nearby_url =microsoft_search_nearby_url
             NE4_search_nearby_url += '&lat=' + quater_NE4[1]
             NE4_search_nearby_url += '&lon=' + quater_NE4[0]
             NE4_search_nearby_url += '&limit=' + 100
-            //NE4_search_nearby_url += '&ofs=' + 0
+           
             NE4_search_nearby_url += '&radius=' + _16circle_radius
-            NE4_search_nearby_url += '&categorySet=' + _category_array
+           
             NE4_search_nearby_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
             var NE4_results = await ajax_getjson_common(NE4_search_nearby_url)
             console.log('search nearby NE4_results ', NE4_results)
@@ -168,46 +185,46 @@ async function nearby_poi_16circle(_radiusMeter, _centerLng, _centerLat) {
 
 
 
-            var SE1_search_nearby_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
+            var SE1_search_nearby_url =microsoft_search_nearby_url
             SE1_search_nearby_url += '&lat=' + quater_SE1[1]
             SE1_search_nearby_url += '&lon=' + quater_SE1[0]
             SE1_search_nearby_url += '&limit=' + 100
-            //SE1_search_nearby_url += '&ofs=' + 0
+            
             SE1_search_nearby_url += '&radius=' + _16circle_radius
-            SE1_search_nearby_url += '&categorySet=' + _category_array
+            
             SE1_search_nearby_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
             var SE1_results = await ajax_getjson_common(SE1_search_nearby_url)
             console.log('search nearby SE1_results ', SE1_results)
 
-            var SE2_search_nearby_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
+            var SE2_search_nearby_url =microsoft_search_nearby_url
             SE2_search_nearby_url += '&lat=' + quater_SE2[1]
             SE2_search_nearby_url += '&lon=' + quater_SE2[0]
             SE2_search_nearby_url += '&limit=' + 100
-            //SE2_search_nearby_url += '&ofs=' + 0
+           
             SE2_search_nearby_url += '&radius=' + _16circle_radius
-            SE2_search_nearby_url += '&categorySet=' + _category_array
+            
             SE2_search_nearby_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
             var SE2_results = await ajax_getjson_common(SE2_search_nearby_url)
             console.log('search nearby SE2_results ', SE2_results)
 
-            var SE3_search_nearby_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
+            var SE3_search_nearby_url =microsoft_search_nearby_url
             SE3_search_nearby_url += '&lat=' + quater_SE3[1]
             SE3_search_nearby_url += '&lon=' + quater_SE3[0]
             SE3_search_nearby_url += '&limit=' + 100
-            //SE3_search_nearby_url += '&ofs=' + 0
+            
             SE3_search_nearby_url += '&radius=' + _16circle_radius
-            SE3_search_nearby_url += '&categorySet=' + _category_array
+           
             SE3_search_nearby_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
             var SE3_results = await ajax_getjson_common(SE3_search_nearby_url)
             console.log('search nearby SE3_results ', SE3_results)
             
-            var SE4_search_nearby_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
+            var SE4_search_nearby_url =microsoft_search_nearby_url
             SE4_search_nearby_url += '&lat=' + quater_SE4[1]
             SE4_search_nearby_url += '&lon=' + quater_SE4[0]
             SE4_search_nearby_url += '&limit=' + 100
-            //SE4_search_nearby_url += '&ofs=' + 0
+           
             SE4_search_nearby_url += '&radius=' + _16circle_radius
-            SE4_search_nearby_url += '&categorySet=' + _category_array
+           
             SE4_search_nearby_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
             var SE4_results = await ajax_getjson_common(SE4_search_nearby_url)
             console.log('search nearby SE4_results ', SE4_results)
@@ -218,46 +235,46 @@ async function nearby_poi_16circle(_radiusMeter, _centerLng, _centerLat) {
 
 
 
-            var SW1_search_nearby_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
+            var SW1_search_nearby_url =microsoft_search_nearby_url
             SW1_search_nearby_url += '&lat=' + quater_SW1[1]
             SW1_search_nearby_url += '&lon=' + quater_SW1[0]
             SW1_search_nearby_url += '&limit=' + 100
-            //SW1_search_nearby_url += '&ofs=' + 0
+           
             SW1_search_nearby_url += '&radius=' + _16circle_radius
-            SW1_search_nearby_url += '&categorySet=' + _category_array
+            
             SW1_search_nearby_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
             var SW1_results = await ajax_getjson_common(SW1_search_nearby_url)
             console.log('search nearby SW1_results ', SW1_results)
 
-            var SW2_search_nearby_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
+            var SW2_search_nearby_url =microsoft_search_nearby_url
             SW2_search_nearby_url += '&lat=' + quater_SW2[1]
             SW2_search_nearby_url += '&lon=' + quater_SW2[0]
             SW2_search_nearby_url += '&limit=' + 100
-            //SW2_search_nearby_url += '&ofs=' + 0
+           
             SW2_search_nearby_url += '&radius=' + _16circle_radius
-            SW2_search_nearby_url += '&categorySet=' + _category_array
+            
             SW2_search_nearby_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
             var SW2_results = await ajax_getjson_common(SW2_search_nearby_url)
             console.log('search nearby SW2_results ', SW2_results)
 
-            var SW3_search_nearby_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
+            var SW3_search_nearby_url =microsoft_search_nearby_url
             SW3_search_nearby_url += '&lat=' + quater_SW3[1]
             SW3_search_nearby_url += '&lon=' + quater_SW3[0]
             SW3_search_nearby_url += '&limit=' + 100
-            //SW3_search_nearby_url += '&ofs=' + 0
+            
             SW3_search_nearby_url += '&radius=' + _16circle_radius
-            SW3_search_nearby_url += '&categorySet=' + _category_array
+            
             SW3_search_nearby_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
             var SW3_results = await ajax_getjson_common(SW3_search_nearby_url)
             console.log('search nearby SW3_results ', SW3_results)
 
-            var SW4_search_nearby_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
+            var SW4_search_nearby_url =microsoft_search_nearby_url
             SW4_search_nearby_url += '&lat=' + quater_SW4[1]
             SW4_search_nearby_url += '&lon=' + quater_SW4[0]
             SW4_search_nearby_url += '&limit=' + 100
-            //SW4_search_nearby_url += '&ofs=' + 0
+           
             SW4_search_nearby_url += '&radius=' + _16circle_radius
-            SW4_search_nearby_url += '&categorySet=' + _category_array
+            
             SW4_search_nearby_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
             var SW4_results = await ajax_getjson_common(SW4_search_nearby_url)
             console.log('search nearby SW4_results ', SW4_results)

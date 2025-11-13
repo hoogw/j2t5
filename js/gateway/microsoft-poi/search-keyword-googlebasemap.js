@@ -42,7 +42,7 @@ var searchInput
             
             
             microsoft_search_poi_url += '&limit=' + 100
-            //microsoft_search_poi_url += '&ofs=' + 0
+           
 
             microsoft_search_poi_url += '&btmRight=' + SWlat + ',' + NElong
             microsoft_search_poi_url += '&topLeft=' + NElat + ',' + SWlong

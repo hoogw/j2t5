@@ -79,7 +79,7 @@ var circle_datasource;
             microsoft_search_nearby_url += '&lat=' + _centerLat
             microsoft_search_nearby_url += '&lon=' + _centerLng
             microsoft_search_nearby_url += '&limit=' + 100
-            //microsoft_search_nearby_url += '&ofs=' + 0
+            
             microsoft_search_nearby_url += '&radius=' + _radiusMeter
             microsoft_search_nearby_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
 

@@ -32,6 +32,16 @@ var circle_datasource;
 
         
             
+        
+
+        // URL REST parameter is here https://learn.microsoft.com/en-us/rest/api/maps/search/get-search-poi?view=rest-maps-1.0&tabs=HTTP
+        // class api is here: https://learn.microsoft.com/en-us/javascript/api/azure-maps-rest/atlas.service.searchurl?view=azure-maps-typescript-latest#azure-maps-rest-atlas-service-searchurl-searchnearby
+        // do not use class, bug found,  pipeline, searchNearBy class  not working with "categorySet", so I have to use ajax rest api here with key
+
+              
+        // default, or cat. is empty, means everything
+        var microsoft_search_nearby_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
+        
         /**/
         //  -  -  - category  -  -  - 
         /**/
@@ -41,36 +51,46 @@ var circle_datasource;
             _category_string = $("#category-input").val()
             update_url_parameter("poicategory",_category_string)
             
-            
+
+            // only for single cat.
             if (_category_string){
 
+                microsoft_search_nearby_url ="https://atlas.microsoft.com/search/poi/category/json?api-version=1.0"
+
+                // required for   ... / s e a r  c h / p o  i / c a t e g o r y /...
+                microsoft_search_nearby_url += '&query=' + _category_string
+
+                /* not use
+                // only for multiple cat. set,   7510,7654,9876
                 // convert array of string to array of integer, only for micosoft 
                 // https://learn.microsoft.com/en-us/rest/api/maps/search/get-search-nearby?view=rest-maps-1.0&tabs=HTTP
+                _category_array = []
                 _category_array = _category_string.split(',').map(function(item) {
                     return parseInt(item, 10);
-            }); // Splits by comma
-                
-            } else {
-                _category_array = []
-            }
-            console.log('category array', _category_array); // Output: ["apple", "banana", "orange"]
+                }); // Splits by comma
+                 console.log('category array', _category_array); // Output: ["apple", "banana", "orange"]
+                // optional for ... / s e a r  c h / n e a r b y /...
+                microsoft_search_nearby_url += '&categorySet=' + _category_array
+                */
 
-    
-        // SearchNearbyOptions  
-        // URL REST parameter is here https://learn.microsoft.com/en-us/rest/api/maps/search/get-search-nearby?view=rest-maps-1.0&tabs=HTTP
-        // class api is here: https://learn.microsoft.com/en-us/javascript/api/azure-maps-rest/atlas.service.searchurl?view=azure-maps-typescript-latest#azure-maps-rest-atlas-service-searchurl-searchnearby
+            } 
+           
+
+        /**/
+        //  -  -  -  end  -  -  - category  -  -  - 
+        /**/
+
+           
+
+
+
+
         
-        // bug found,  pipeline, searchNearBy class  not working with "categorySet", so I have to use ajax rest api here with key
-
-
-        
-            var NW_search_nearby_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
+            var NW_search_nearby_url = microsoft_search_nearby_url
             NW_search_nearby_url += '&lat=' + quater_NW[1]
             NW_search_nearby_url += '&lon=' + quater_NW[0]
             NW_search_nearby_url += '&limit=' + 100
-            //NW_search_nearby_url += '&ofs=' + 0
             NW_search_nearby_url += '&radius=' + _4circle_radius
-            NW_search_nearby_url += '&categorySet=' + _category_array
             NW_search_nearby_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
 
             var NW_results = await ajax_getjson_common(NW_search_nearby_url)
@@ -82,13 +102,11 @@ var circle_datasource;
 
 
 
-            var NE_search_nearby_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
+            var NE_search_nearby_url = microsoft_search_nearby_url
             NE_search_nearby_url += '&lat=' + quater_NE[1]
             NE_search_nearby_url += '&lon=' + quater_NE[0]
             NE_search_nearby_url += '&limit=' + 100
-            //NE_search_nearby_url += '&ofs=' + 0
             NE_search_nearby_url += '&radius=' + _4circle_radius
-            NE_search_nearby_url += '&categorySet=' + _category_array
             NE_search_nearby_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
 
             var NE_results = await ajax_getjson_common(NE_search_nearby_url)
@@ -99,13 +117,11 @@ var circle_datasource;
 
 
 
-            var SE_search_nearby_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
+            var SE_search_nearby_url = microsoft_search_nearby_url
             SE_search_nearby_url += '&lat=' + quater_SE[1]
             SE_search_nearby_url += '&lon=' + quater_SE[0]
             SE_search_nearby_url += '&limit=' + 100
-            //SE_search_nearby_url += '&ofs=' + 0
             SE_search_nearby_url += '&radius=' + _4circle_radius
-            SE_search_nearby_url += '&categorySet=' + _category_array
             SE_search_nearby_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
 
             var SE_results = await ajax_getjson_common(SE_search_nearby_url)
@@ -115,13 +131,11 @@ var circle_datasource;
             
 
 
-            var SW_search_nearby_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
+            var SW_search_nearby_url =microsoft_search_nearby_url
             SW_search_nearby_url += '&lat=' + quater_SW[1]
             SW_search_nearby_url += '&lon=' + quater_SW[0]
             SW_search_nearby_url += '&limit=' + 100
-            //SW_search_nearby_url += '&ofs=' + 0
             SW_search_nearby_url += '&radius=' + _4circle_radius
-            SW_search_nearby_url += '&categorySet=' + _category_array
             SW_search_nearby_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
 
             var SW_results = await ajax_getjson_common(SW_search_nearby_url)

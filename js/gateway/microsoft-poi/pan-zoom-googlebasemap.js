@@ -29,6 +29,15 @@ var circle_datasource;
 
 
         
+
+        // URL REST parameter is here https://learn.microsoft.com/en-us/rest/api/maps/search/get-search-poi?view=rest-maps-1.0&tabs=HTTP
+        // class api is here: https://learn.microsoft.com/en-us/javascript/api/azure-maps-rest/atlas.service.searchurl?view=azure-maps-typescript-latest#azure-maps-rest-atlas-service-searchurl-searchnearby
+        // do not use class, bug found,  pipeline, searchNearBy class  not working with "categorySet", so I have to use ajax rest api here with key
+
+              
+        // default, or cat. is empty, means everything
+        var microsoft_search_nearby_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
+        
         /**/
         //  -  -  - category  -  -  - 
         /**/
@@ -38,36 +47,45 @@ var circle_datasource;
             _category_string = $("#category-input").val()
             update_url_parameter("poicategory",_category_string)
             
-            
+
+            // only for single cat.
             if (_category_string){
 
+                microsoft_search_nearby_url ="https://atlas.microsoft.com/search/poi/category/json?api-version=1.0"
+
+                // required for   ... / s e a r  c h / p o  i / c a t e g o r y /...
+                microsoft_search_nearby_url += '&query=' + _category_string
+
+                /* not use
+                // only for multiple cat. set,   7510,7654,9876
                 // convert array of string to array of integer, only for micosoft 
                 // https://learn.microsoft.com/en-us/rest/api/maps/search/get-search-nearby?view=rest-maps-1.0&tabs=HTTP
+                _category_array = []
                 _category_array = _category_string.split(',').map(function(item) {
                     return parseInt(item, 10);
-            }); // Splits by comma
-                
-            } else {
-                _category_array = []
-            }
-            console.log('category array', _category_array); // Output: ["apple", "banana", "orange"]
+                }); // Splits by comma
+                 console.log('category array', _category_array); // Output: ["apple", "banana", "orange"]
+                // optional for ... / s e a r  c h / n e a r b y /...
+                microsoft_search_nearby_url += '&categorySet=' + _category_array
+                */
 
-                
-        // api  
-        // URL REST parameter is here https://learn.microsoft.com/en-us/rest/api/maps/search/get-search-poi?view=rest-maps-1.0&tabs=HTTP
-        // class api is here: https://learn.microsoft.com/en-us/javascript/api/azure-maps-rest/atlas.service.searchurl?view=azure-maps-typescript-latest#azure-maps-rest-atlas-service-searchurl-searchnearby
-        // do not use class, bug found,  pipeline, searchNearBy class  not working with "categorySet", so I have to use ajax rest api here with key
+            } 
+           
 
-            var microsoft_search_nearby_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
+        /**/
+        //  -  -  -  end  -  -  - category  -  -  - 
+        /**/
+
+           
             microsoft_search_nearby_url += '&lat=' + _centerLat
             microsoft_search_nearby_url += '&lon=' + _centerLng
             microsoft_search_nearby_url += '&limit=' + 100
-            //microsoft_search_nearby_url += '&ofs=' + 0
-            microsoft_search_nearby_url += '&radius=' + _radiusMeter
-            //microsoft_search_nearby_url += '&query=' + search_poi_keyword
-            microsoft_search_nearby_url += '&categorySet=' + _category_array
             
+            microsoft_search_nearby_url += '&radius=' + _radiusMeter
             microsoft_search_nearby_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
+
+
+
 
             var microsoft_search_nearby_response = await ajax_getjson_common(microsoft_search_nearby_url)
             console.log('search nearby result ', microsoft_search_nearby_response)
