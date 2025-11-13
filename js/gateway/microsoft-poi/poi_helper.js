@@ -860,48 +860,6 @@ function splitAddressMicrosoft_REST_API(_raw_features_array){
 
 
 
-/**/
-//  -  -  - guided ring for manual drawing circle or square  -  -  - 
-/**/
-
-
-        var circle_guideRing_datasource
-
-
-        function drawing_circle_guideRing(_radiusMeter, _centerLng, _centerLat){
-
-            clear_circle_guideRing()
-
-            //console.log('drawing circle at _radiusMeter, _centerLng, _centerLat', _radiusMeter, _centerLng, _centerLat)
-
-            if (circle_guideRing_datasource){
-                //Create a circle from a Point feature by providing it a subType property set to "Circle" and radius property.
-                circle_guideRing_datasource.add(new atlas.data.Feature(new atlas.data.Point([Number(_centerLng), Number(_centerLat)]), {
-                    subType: "Circle",
-                    radius: Number(_radiusMeter)
-                }));
-
-            }//if
-
-        }
-
-
-
-         function clear_circle_guideRing(){
-
-            if (circle_guideRing_datasource){
-                circle_guideRing_datasource.clear();
-            }
-        
-           
-        }
-
-        
-/**/
-//  -  -  - end  -  -  -  guided ring for manual drawing circle or square    -  -  - 
-/**/
-
-
 
 
 
@@ -1903,3 +1861,45 @@ function drawing_circle(_radiusMeter, _centerLng, _centerLat){
 
 
 
+
+
+/**/
+//  -  -  - guided ring for manual drawing circle or square  -  -  - 
+/**/
+
+
+        var circle_guideRing_datasource
+
+
+        function drawing_circle_guideRing(_radiusMeter, _centerLng, _centerLat){
+
+            clear_circle_guideRing()
+
+            //console.log('drawing circle at _radiusMeter, _centerLng, _centerLat', _radiusMeter, _centerLng, _centerLat)
+
+            if (circle_guideRing_datasource){
+                //Create a circle from a Point feature by providing it a subType property set to "Circle" and radius property.
+                circle_guideRing_datasource.add(new atlas.data.Feature(new atlas.data.Point([Number(_centerLng), Number(_centerLat)]), {
+                    subType: "Circle",
+                    radius: Number(_radiusMeter)
+                }));
+
+            }//if
+
+        }
+
+
+
+         function clear_circle_guideRing(){
+
+            if (circle_guideRing_datasource){
+                circle_guideRing_datasource.clear();
+            }
+        
+           
+        }
+
+        
+/**/
+//  -  -  - end  -  -  -  guided ring for manual drawing circle or square    -  -  - 
+/**/

@@ -359,6 +359,7 @@ function get_map_bound(){
 
             // only for browse
             clear_all_circle()
+               clear_circle_guideRing()
    
            drawing_circle(_center_radius_in_meter, _center_long, _center_lat)
            nearby_poi(_center_radius_in_meter, _center_long, _center_lat)
@@ -1517,6 +1518,7 @@ function  add_dataSource_searchLayer(){
             $("#start_over_button").on("click", function() {
                $("#shoot-it-button").prop('disabled', false);
                clear_all_circle()
+               clear_circle_guideRing()
                clear_all_poi()
 
             });

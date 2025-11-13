@@ -410,6 +410,7 @@ function moveend_handler(){
 
     // only for browse
     clear_all_circle()
+               clear_circle_guideRing()
 
              
      // must be here, because search need these coordinate
@@ -1429,6 +1430,7 @@ function  add_dataSource_searchLayer(){
             $("#start_over_button").on("click", function() {
                $("#shoot-it-button").prop('disabled', false);
                clear_all_circle()
+               clear_circle_guideRing()
                clear_all_poi()
 
             });
