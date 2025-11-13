@@ -488,31 +488,6 @@ function get_map_bound(){
 
 
 
-        function clear_all_circle(){
-
-            if (circle_datasource){
-                circle_datasource.clear();
-            }
-        
-           
-        }
-
-
-        function drawing_circle(_radiusMeter, _centerLng, _centerLat){
-            //console.log('drawing circle at _radiusMeter, _centerLng, _centerLat', _radiusMeter, _centerLng, _centerLat)
-
-            if (circle_datasource){
-                //Create a circle from a Point feature by providing it a subType property set to "Circle" and radius property.
-                circle_datasource.add(new atlas.data.Feature(new atlas.data.Point([Number(_centerLng), Number(_centerLat)]), {
-                    subType: "Circle",
-                    radius: Number(_radiusMeter)
-                }));
-
-            }//if
-
-        }
-
-
 
 
 

@@ -1789,6 +1789,56 @@ function splitAddressMicrosoft_REST_API(_raw_features_array){
 
 
 
+
+
+
+
+/**/
+//  --- microsoft circle       --- 
+/**/
+
+function clear_all_circle(){
+
+    if (circle_datasource){
+        circle_datasource.clear();
+    }
+
+   
+}
+                
+function drawing_circle(_radiusMeter, _centerLng, _centerLat){
+    //console.log('drawing circle at _radiusMeter, _centerLng, _centerLat', _radiusMeter, _centerLng, _centerLat)
+
+    if (circle_datasource){
+      
+
+        //Create a circle from a Point feature by providing it a subType property set to "Circle" and radius property.
+        circle_datasource.add(new atlas.data.Feature(new atlas.data.Point([Number(_centerLng), Number(_centerLat)]), {
+            subType: "Circle",
+            radius: Number(_radiusMeter)
+        }));
+
+    }//if
+
+}
+
+
+
+
+
+
+
+
+/**/
+//  --- end  ---  microsoft circle    --- 
+/**/
+
+
+
+
+
+
+
 /**/
 //  --- microsoft manual drawing circle   --- 
 /**/
@@ -1814,30 +1864,30 @@ function splitAddressMicrosoft_REST_API(_raw_features_array){
 
 
 
-            
-/**/
-//  -  -  - guided ring for manual drawing circle or square  -  -  - 
-/**/
+                          
+              /**/
+              //  -  -  - guided ring for manual drawing circle or square  -  -  - 
+              /**/
 
 
 
-            //Create a data source and add it to the map.
-            circle_guideRing_datasource = new atlas.source.DataSource();
-            map.sources.add(circle_guideRing_datasource);
+                          //Create a data source and add it to the map.
+                          circle_guideRing_datasource = new atlas.source.DataSource();
+                          map.sources.add(circle_guideRing_datasource);
 
-            //Create a polygon layer to render the filled in area of the circle polygon, and add it to the map.
-            map.layers.add(new atlas.layer.PolygonLayer(circle_guideRing_datasource, null, {
-                // api https://learn.microsoft.com/en-us/javascript/api/azure-maps-control/atlas.polygonlayeroptions?view=azure-maps-typescript-latest#azure-maps-control-atlas-polygonlayeroptions-fillantialias
-                fillColor: 'rgba(0, 0, 255, 0.19)',   //'rgba(0, 200, 200, 0.44)',
-                //fillPattern: 
-                //fillOpacity: 0.44,
+                          //Create a polygon layer to render the filled in area of the circle polygon, and add it to the map.
+                          map.layers.add(new atlas.layer.PolygonLayer(circle_guideRing_datasource, null, {
+                              // api https://learn.microsoft.com/en-us/javascript/api/azure-maps-control/atlas.polygonlayeroptions?view=azure-maps-typescript-latest#azure-maps-control-atlas-polygonlayeroptions-fillantialias
+                              fillColor: 'rgba(0, 0, 255, 0.19)',   //'rgba(0, 200, 200, 0.44)',
+                              //fillPattern: 
+                              //fillOpacity: 0.44,
 
-            }));
+                          }));
 
 
-/**/
-//  -  -  - end  -  -  -  guided ring for manual drawing circle or square    -  -  - 
-/**/
+              /**/
+              //  -  -  - end  -  -  -  guided ring for manual drawing circle or square    -  -  - 
+              /**/
 
 
 
