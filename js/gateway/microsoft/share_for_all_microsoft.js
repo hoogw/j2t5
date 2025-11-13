@@ -290,7 +290,13 @@ var param_search_poi_keyword
 
 
 
-                  async function init_global_var_from_node(){
+    async function init_global_var_from_node(){
+
+
+                    console.log(' default before update from url - - -  panto, need_pan_to_real_location',  need_pan_to_real_location )
+                
+                    console.log(' default before update from url - - -  center zoom:', _center_zoom, ' center lng:', _center_long, ' center lat:', _center_lat )
+                
                 
                 
                     //  .......... global var ..............
@@ -320,12 +326,41 @@ var param_search_poi_keyword
                                   _url = urlParams.get('url');  // required
                   
                   
-                                  // google, lat long  must be number
-                                  _center_lat = Number(urlParams.get('_center_lat'));  // not use, only get it from router.js > layout.pug
-                                  _center_long = Number(urlParams.get('_center_long'));  // not use, only get it from router.js > layout.pug
-                                  _center_zoom = Number(urlParams.get('_center_zoom'));  // not use, only get it from router.js > layout.pug
-                  
-                                  
+                                  // as long as url has lat,lng,zm, then do not pan to loc
+
+                                  // google lat lng must be number, can not be string
+                                  param_center_lat = urlParams.get('center_lat');  
+                                    if (param_center_lat) {
+                                       _center_lat = Number(param_center_lat)
+
+                                       // as long as url has lat,lng,zm, then do not pan to loc
+                                      
+                                       need_pan_to_real_location = false
+                                    }
+                                    param_center_long = urlParams.get('center_long');  
+                                    if (param_center_long) {
+                                      _center_long = Number(param_center_long)
+
+                                      // as long as url has lat,lng,zm, then do not pan to loc
+                                      
+                                       need_pan_to_real_location = false
+                                    }
+
+                                    param_center_zoom = urlParams.get('center_zoom');  
+                                    if (param_center_zoom) {
+                                      _center_zoom = Number(param_center_zoom)
+
+                                      // as long as url has lat,lng,zm, then do not pan to loc
+                                      
+                                       need_pan_to_real_location = false
+                                    }
+
+                                    
+                              
+                    console.log('after update from url, panto,  need_pan_to_real_location ......  ',   need_pan_to_real_location)  
+                                 
+                    console.log(' after update from url,  - - -  center zoom:', _center_zoom, ' center lng:', _center_long, ' center lat:', _center_lat )
+                    
                                
                               //.................. required parameter .................
                               /**/
