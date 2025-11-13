@@ -21,36 +21,43 @@ var searchInput
     
 
 
+            
             /**/
             //  -  -  - search poi keyword  -  -  - 
             /**/
+
+            //default
+            var microsoft_search_poi_url
+            
             search_poi_keyword = $("#search_poi_input").val()
             update_url_parameter('poi', search_poi_keyword);
-            
+            if (search_poi_keyword){
+                // search poi
+                microsoft_search_poi_url ="https://atlas.microsoft.com/search/poi/json?api-version=1.0"
+                microsoft_search_poi_url += '&query=' + search_poi_keyword
+                // do not use bias, otherwise it will show fuzzy nearby lots more result
+                microsoft_search_poi_url += '&btmRight=' + SWlat + ',' + NElong
+                microsoft_search_poi_url += '&topLeft=' + NElat + ',' + SWlong
+            } else {
+                // nearby to get everything
+                microsoft_search_poi_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
+                microsoft_search_poi_url += '&lat=' + _centerLat  // for bias only, not for radius
+                microsoft_search_poi_url += '&lon=' + _centerLng  // for bias only, not for radius
+            }
 
-    
-        // api  
-        // URL REST parameter is here https://learn.microsoft.com/en-us/rest/api/maps/search/get-search-poi?view=rest-maps-1.0&tabs=HTTP
-        // class api is here: https://learn.microsoft.com/en-us/javascript/api/azure-maps-rest/atlas.service.searchurl?view=azure-maps-typescript-latest#azure-maps-rest-atlas-service-searchurl-searchnearby
-        // do not use class, bug found,  pipeline, searchNearBy class  not working with "categorySet", so I have to use ajax rest api here with key
-
-            var microsoft_search_poi_url ="https://atlas.microsoft.com/search/poi/json?api-version=1.0"
-
-            // do not use bias, otherwise it will show fuzzy nearby lots more result
-            //microsoft_search_poi_url += '&lat=' + _centerLat  // for bias only, not for radius
-            //microsoft_search_poi_url += '&lon=' + _centerLng  // for bias only, not for radius
-            
-            
             microsoft_search_poi_url += '&limit=' + 100
-           
-
-            microsoft_search_poi_url += '&btmRight=' + SWlat + ',' + NElong
-            microsoft_search_poi_url += '&topLeft=' + NElat + ',' + SWlong
-
-
-            microsoft_search_poi_url += '&query=' + search_poi_keyword
             microsoft_search_poi_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
 
+            /**/
+            //  -  -  - end  -  -  -  search poi keyword    -  -  - 
+            /**/
+
+
+
+
+
+
+            
             var microsoft_search_nearby_response = await ajax_getjson_common(microsoft_search_poi_url)
             console.log('search nearby result ', microsoft_search_nearby_response)
 

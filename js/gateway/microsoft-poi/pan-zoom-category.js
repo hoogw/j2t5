@@ -3,6 +3,7 @@
 
 
 
+
 var map
 var datasource
 var datasource_highlight
@@ -10,64 +11,91 @@ var featureLayerGeojson_datasource
 var featureLayerGeojson_datasource_highlight
 var popup
 var searchInput
+//  --- microsoft circle       --- 
+var circle_datasource;
+       
+   
 
 
 
 
-
-                
-    async function nearby_poi(_centerLng, _centerLat) {
-
-    
+/**/
+//  --- microsoft circle       --- 
+/**/
 
 
-            /**/
-            //  -  -  - search poi keyword  -  -  - 
-            /**/
+                        
+       async function nearby_poi(_radiusMeter, _centerLng, _centerLat) {
 
-            //default
-            var microsoft_search_poi_url
+
+
+        // URL REST parameter is here https://learn.microsoft.com/en-us/rest/api/maps/search/get-search-poi?view=rest-maps-1.0&tabs=HTTP
+        // class api is here: https://learn.microsoft.com/en-us/javascript/api/azure-maps-rest/atlas.service.searchurl?view=azure-maps-typescript-latest#azure-maps-rest-atlas-service-searchurl-searchnearby
+        // do not use class, bug found,  pipeline, searchNearBy class  not working with "categorySet", so I have to use ajax rest api here with key
+
+              
+        // default, or cat. is empty, means everything
+        var microsoft_search_nearby_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
+        
+        /**/
+        //  -  -  - category  -  -  - 
+        /**/
+
+            // excel file :  https://onedrive.live.com/:x:/g/personal/0D35222484A76A01/s!AgFqp4QkIjUNr71EalRJTnRM0AEPjA?resid=0D35222484A76A01!777924&ithint=file%2Cxlsx&e=o8ewEb&migratedtospo=true&redeem=aHR0cHM6Ly8xZHJ2Lm1zL3gvcyFBZ0ZxcDRRa0lqVU5yNzFFYWxSSlRuUk0wQUVQakE_ZT1vOGV3RWI
+            // json tree :  https://atlas.microsoft.com/search/poi/category/tree/json?api-version=1.0&subscription-key=2EcKEaa1i02tTRNAUT7Ezip3htMkKcfPcH2JHokGwCynUY4oQHweJQQJ99BGAC8vTInSkNgnAAAgAZMP1MpR
+            _category_string = $("#category-input").val()
+            update_url_parameter("poicategory",_category_string)
             
-            search_poi_keyword = $("#search_poi_input").val()
-            update_url_parameter('poi', search_poi_keyword);
-            if (search_poi_keyword){
-                // search poi
-                microsoft_search_poi_url ="https://atlas.microsoft.com/search/poi/json?api-version=1.0"
-                microsoft_search_poi_url += '&query=' + search_poi_keyword
-                // do not use bias, otherwise it will show fuzzy nearby lots more result
-                microsoft_search_poi_url += '&btmRight=' + SWlat + ',' + NElong
-                microsoft_search_poi_url += '&topLeft=' + NElat + ',' + SWlong
-            } else {
-                // nearby to get everything
-                microsoft_search_poi_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
-                microsoft_search_poi_url += '&lat=' + _centerLat  // for bias only, not for radius
-                microsoft_search_poi_url += '&lon=' + _centerLng  // for bias only, not for radius
-            }
 
-            microsoft_search_poi_url += '&limit=' + 100
-            microsoft_search_poi_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
+            // only for single cat.
+            if (_category_string){
 
-            /**/
-            //  -  -  - end  -  -  -  search poi keyword    -  -  - 
-            /**/
+                microsoft_search_nearby_url ="https://atlas.microsoft.com/search/poi/category/json?api-version=1.0"
+
+                // required for   ... / s e a r  c h / p o  i / c a t e g o r y /...
+                microsoft_search_nearby_url += '&query=' + _category_string
+
+                /* not use
+                // only for multiple cat. set,   7510,7654,9876
+                // convert array of string to array of integer, only for micosoft 
+                // https://learn.microsoft.com/en-us/rest/api/maps/search/get-search-nearby?view=rest-maps-1.0&tabs=HTTP
+                _category_array = []
+                _category_array = _category_string.split(',').map(function(item) {
+                    return parseInt(item, 10);
+                }); // Splits by comma
+                 console.log('category array', _category_array); // Output: ["apple", "banana", "orange"]
+                // optional for ... / s e a r  c h / n e a r b y /...
+                microsoft_search_nearby_url += '&categorySet=' + _category_array
+                */
+
+            } 
+           
+
+        /**/
+        //  -  -  -  end  -  -  - category  -  -  - 
+        /**/
+
+           
+            microsoft_search_nearby_url += '&lat=' + _centerLat
+            microsoft_search_nearby_url += '&lon=' + _centerLng
+            microsoft_search_nearby_url += '&limit=' + 100
+            
+            microsoft_search_nearby_url += '&radius=' + _radiusMeter
+            microsoft_search_nearby_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
 
 
 
 
-            var microsoft_search_nearby_response = await ajax_getjson_common(microsoft_search_poi_url)
+
+
+
+            var microsoft_search_nearby_response = await ajax_getjson_common(microsoft_search_nearby_url)
             console.log('search nearby result ', microsoft_search_nearby_response)
 
             //  . . . street name need to further split  . . . 
             _current_geojson_POI = splitAddressMicrosoft_REST_API(microsoft_search_nearby_response.results)
             console.log('split Address Microsoft  ', _current_geojson_POI)
             // . . .  end  . . .  street name need to further split
-
-
-
-            
-            
-
-
 
 
 
@@ -97,7 +125,7 @@ var searchInput
                 console.log('_all_poi_flat_array  ', _all_poi_flat_array)
 
                 
-                // not use, version 1. for single c i r c l e version
+                // not use, version 1. for single circle version
                 //datasource.add(poi_geojson);
                 // in use,  version 2. accumulate 
                 poi_geojson = {
@@ -122,10 +150,17 @@ var searchInput
 
 
 
-        
-    }
+                
+
+        }
+
 
    
+
+/**/
+//  --- end  ---  microsoft circle    --- 
+/**/
+
 
 
 
@@ -191,13 +226,15 @@ function get_map_bound(){
 
 
 
+
+            
             /**/
-            //  --- Microsoft map image layer   --- // -- without -- basemap ---- version - - -
+            //  --- Microsoft map image layer   --- // -- only for basemap version  -- 
             /**/
 
 
 
-            // -- without -- basemap ---- version - - -
+            // -- only for basemap version  -- 
             function  overlay_export_image(mapservice_url, bbox, layers){
   
                 console.log(' overlay export image ',  layers, bbox )
@@ -284,12 +321,12 @@ function get_map_bound(){
 
                                    // -- only for basemap version  -- 
                                    // data source layer id, means geojson feature layer, so map image layer should add under(before) it
-                                   //map.layers.add(groundoverlay, datasource_layer_id);
+                                    map.layers.add(groundoverlay, datasource_layer_id);
                                    // -- end -- only for basemap version  -- 
                                    
 
                                    // -- without -- basemap ---- version - - - 
-                                   map.layers.add(groundoverlay, 'JK');  // other options labels, traffic_relative
+                                   //map.layers.add(groundoverlay, 'JK');  // other options labels, traffic_relative
                                    
                                    console.log('after add map image layer, geojson feature layer,  data source layer id ', datasource_layer_id)
                                    console.log('after add map image layer, now all layers index ',  map.layers.layerIndex)
@@ -301,39 +338,44 @@ function get_map_bound(){
              
 
 
-           }
+            }
 
 
 
 
            /**/
-           //  --- end  ---  Microsoft map image layer    --- 
+           //  --- end  ---  Microsoft map image layer    --- // -- only for basemap version  -- 
            /**/
 
 
 
 
-function moveend_handler(){
+           function moveend_handler(){
 
             //  --- Microsoft feature layer   --- 
             get_map_bound()
             ajax_GeoJSON()
           
-          
+           _center_radius_in_meter = get_center_radius_in_map_bound() 
+           // microsoft SearchPOI does not limit radius, but searchNearBy limit to 50k
+           setLimit_onNearbyCircleRadius()
 
-/**/
-//  -  -  - shoot it !!! -  -  - 
-/**/
-     $("#shoot-it-button").prop('disabled', false);
-/**/
-//  -  -  - end  -  -  -  shoot it !!!    -  -  - 
-/**/
+            // only for browse
+            clear_all_circle()
+               clear_circle_guideRing()
+   
 
-
-
-
+              
+              // only d r a w   c i r c l e when radius large than max 
+              if (_center_radius_in_meter == max_microsoft_poi_radius_meter){
+                  drawing_circle(_center_radius_in_meter, _center_long, _center_lat)
+              }//if
 
            
+
+
+
+           nearby_poi(_center_radius_in_meter, _center_long, _center_lat)
    
 }
 
@@ -348,7 +390,8 @@ function add_map_event(){
     map.events.add('moveend', moveend_handler);
 
 
-    
+
+
     
 /**/
 //  -  -  - guided ring for pan and zoom  -  -  - 
@@ -361,7 +404,10 @@ function add_map_event(){
 
    
     get_map_bound()
-    
+    _center_radius_in_meter = get_center_radius_in_map_bound()
+     console.log(' you drag map .. . .. . . .', _center_radius_in_meter, _center_long,  _center_lat)
+    drawing_circle_guideRing(_center_radius_in_meter, _center_long,  _center_lat)
+
 
 });
 
@@ -372,8 +418,16 @@ function add_map_event(){
 
 
 
+
+
+
+
   
 }
+
+
+
+
 
 
 
@@ -1136,6 +1190,13 @@ function featureClicked(e) {
 
 
 
+
+
+
+
+
+
+
 function  add_dataSource_searchLayer(){
 
     //Create a data source and add it to the map.
@@ -1214,25 +1275,20 @@ function  add_dataSource_searchLayer(){
     
        empty_info_outline_Tab()
     });
+
+
+
+
+    
 }
 
 
-
-
-
+        
 
 
         
 
-
-       
-
-
-
-
-         
-        
-        // if you want to add other map control, add it here
+  // if you want to add other map control, add it here
         function add_azure_basemap_layer(){
 
             //Add a style control to the map.
@@ -1268,52 +1324,31 @@ function  add_dataSource_searchLayer(){
 
 
 
-        //  without basemap version
+
+       //  without basemap version
         function init_user_interface_after_microsoft_map_load(){
 
 
-                        
-
-           $("#start_over_button").on("click", function() {
-               $("#shoot-it-button").prop('disabled', false);
-              
-               clear_all_poi()
-               
-
-            });
-
-            /**/
-            //  -  -  - shoot it !!! -  -  - 
-            /**/
-
-            $("#shoot-it-button").on("click", function() {
-
-                    nearby_poi(_center_long, _center_lat)
-
-                    $("#shoot-it-button").prop('disabled', true);
-            });
-
             
-            /**/
-            //  -  -  - end  -  -  -  shoot it !!!    -  -  - 
-            /**/
+            
+            $("#start_over_button").on("click", function() {
+               $("#shoot-it-button").prop('disabled', false);
+               clear_all_circle()
+               clear_circle_guideRing()
+               clear_all_poi()
+
+            });
 
 
 
-             // without basemap version
+            // without basemap version
              add_azure_basemap_layer()
-
-
 
             //Create a popup which we can reuse for each result.
             popup = new atlas.Popup();
 
 
-
-            
-
-
- //   .......  Microsoft map image layer .......  opacity   ....... 
+         //   .......  Microsoft map image layer .......  opacity   ....... 
             /**/
                                       
             // init control
@@ -1343,7 +1378,6 @@ function  add_dataSource_searchLayer(){
 
 
 
-                    
 
         }
         
@@ -1385,7 +1419,7 @@ function  add_dataSource_searchLayer(){
 
         
 
-       
+     
         async function getMap() {
 
 
@@ -1405,7 +1439,7 @@ function  add_dataSource_searchLayer(){
             await get_feature_attributes(_layer_id);
                                   
                                   
-            display_count_info(_layer, _current_area_count_of_feature, _total_count_of_feature, _current_rendering_feature)
+            //display_count_info(_layer, _current_area_count_of_feature, _total_count_of_feature, _current_rendering_feature)
 
 
                                 
@@ -1421,19 +1455,15 @@ function  add_dataSource_searchLayer(){
             /**/
             //  --- end  ---  Microsoft feature layer    --- 
             /**/
-
+ 
 
             // azure map only accept number, reject string, must convert to number
             console.log('_center_long', Number(_center_long))
             console.log('_center_lat', Number(_center_lat))
             console.log('_center_zoom', Number(_center_zoom))
 
+           
             init_user_interface_before_microsoft_map_load()
-
-
-
-
-
 
 
 /**/
@@ -1462,7 +1492,11 @@ function  add_dataSource_searchLayer(){
 //  --- end  ---  use your key    --- 
 /**/
 
-        
+
+            
+
+
+
 
         }// get map function 
 
