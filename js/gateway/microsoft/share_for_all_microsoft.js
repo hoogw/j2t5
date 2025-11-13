@@ -328,8 +328,8 @@ var param_search_poi_keyword
                   
                                   // as long as url has lat,lng,zm, then do not pan to loc
 
-                                  // google lat lng must be number, can not be string
-                                  param_center_lat = urlParams.get('center_lat');  
+                                  // microsoft lat lng must be number, can not be string
+                                  param_center_lat = urlParams.get('_center_lat');  
                                     if (param_center_lat) {
                                        _center_lat = Number(param_center_lat)
 
@@ -337,7 +337,7 @@ var param_search_poi_keyword
                                       
                                        need_pan_to_real_location = false
                                     }
-                                    param_center_long = urlParams.get('center_long');  
+                                    param_center_long = urlParams.get('_center_long');  
                                     if (param_center_long) {
                                       _center_long = Number(param_center_long)
 
@@ -346,7 +346,7 @@ var param_search_poi_keyword
                                        need_pan_to_real_location = false
                                     }
 
-                                    param_center_zoom = urlParams.get('center_zoom');  
+                                    param_center_zoom = urlParams.get('_center_zoom');  
                                     if (param_center_zoom) {
                                       _center_zoom = Number(param_center_zoom)
 
@@ -355,7 +355,7 @@ var param_search_poi_keyword
                                        need_pan_to_real_location = false
                                     }
 
-                                    
+
                               
                     console.log('after update from url, panto,  need_pan_to_real_location ......  ',   need_pan_to_real_location)  
                                  
