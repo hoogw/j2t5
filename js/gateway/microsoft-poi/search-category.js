@@ -432,66 +432,6 @@ function add_map_event(){
 
 
 
-/**/
-//  --- microsoft circle       --- 
-/**/
-
-
-       
-
-
-
-
-        function  init_circle_dataSource(){
-
-            //Create a data source and add it to the map.
-            circle_datasource = new atlas.source.DataSource();
-            map.sources.add(circle_datasource);
-
-            //Create a polygon layer to render the filled in area of the circle polygon, and add it to the map.
-            map.layers.add(new atlas.layer.PolygonLayer(circle_datasource, null, {
-                // api https://learn.microsoft.com/en-us/javascript/api/azure-maps-control/atlas.polygonlayeroptions?view=azure-maps-typescript-latest#azure-maps-control-atlas-polygonlayeroptions-fillantialias
-                fillColor: 'rgba(0, 0, 255, 0.44)',   //'rgba(0, 200, 200, 0.44)',
-                //fillPattern: 
-                //fillOpacity: 0.44,
-
-            }));
-
-
-
-            
-                            
-                /**/
-                //  -  -  - guided ring for pan and zoom  -  -  - 
-                /**/
-
-
-                    //Create a data source and add it to the map.
-                    circle_guideRing_datasource = new atlas.source.DataSource();
-                    map.sources.add(circle_guideRing_datasource);
-
-                    //Create a polygon layer to render the filled in area of the circle polygon, and add it to the map.
-                    map.layers.add(new atlas.layer.PolygonLayer(circle_guideRing_datasource, null, {
-                        // api https://learn.microsoft.com/en-us/javascript/api/azure-maps-control/atlas.polygonlayeroptions?view=azure-maps-typescript-latest#azure-maps-control-atlas-polygonlayeroptions-fillantialias
-                        fillColor: 'rgba(0, 0, 255, 0.19)',   //'rgba(0, 200, 200, 0.44)',
-                        //fillPattern: 
-                        //fillOpacity: 0.44,
-
-                    }));
-
-
-                /**/
-                //  -  -  - end  -  -  -  guided ring for pan and zoom    -  -  - 
-                /**/
-
-
-        }
-
-/**/
-//  --- end  ---  microsoft circle    --- 
-/**/
-
-
 
 
 
