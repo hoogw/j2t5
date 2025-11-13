@@ -5880,10 +5880,32 @@ icon_flatjson.push(icon_item)
 
 
 
+
+
+icon_item = { 
+    "id" :  4276,     
+    "parent" : 7281,
+    "text" : "manual search",
+    "icon" : folder_icon,
+    "link_type": "folder",   
+    "state"       : {
+    // use this opened line for always default open this folder
+                    "opened"    :false, //  iconJstreeforceOpen,   // is the node open
+                    // disabled  : boolean  // is the node disabled
+                    // "selected"  : true   // is the node selected
+                }
+};
+icon_flatjson.push(icon_item) 
+
+
+
+
+
+
                 icon_item = { 
                     "id" :  3276,     
-                    "parent" : 7281,
-                    "text" : "search keyword",
+                    "parent" : 4276,
+                    "text" : "keyword",
                     "icon" : folder_icon,
                     "link_type": "folder",   
                     "state"       : {
@@ -5960,8 +5982,8 @@ icon_flatjson.push(icon_item)
 
                 icon_item = { 
                     "id" :  3266,     
-                    "parent" : 7281,
-                    "text" : "search category",
+                    "parent" : 4276,
+                    "text" : "category",
                     "icon" : folder_icon,
                     "link_type": "folder",   
                     "state"       : {
