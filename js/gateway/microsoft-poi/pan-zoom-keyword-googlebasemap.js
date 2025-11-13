@@ -338,14 +338,7 @@ function get_map_bound(){
            // microsoft SearchPOI does not limit radius, but searchNearBy limit to 50k
            setLimit_onNearbyCircleRadius()
 
-            // only for browse
-            clear_all_circle()
-               clear_circle_guideRing()
-   
-           // only d r a w   c i r c l e when radius large than max 
-              if (_center_radius_in_meter == max_microsoft_poi_radius_meter){
-                  drawing_circle(_center_radius_in_meter, _center_long, _center_lat)
-              }//if
+            
            
            
            
@@ -380,9 +373,7 @@ function add_map_event(){
     get_map_bound()
     _center_radius_in_meter = get_center_radius_in_map_bound()
      console.log(' you drag map .. . .. . . .', _center_radius_in_meter, _center_long,  _center_lat)
-    drawing_circle_guideRing(_center_radius_in_meter, _center_long,  _center_lat)
-
-
+   
 });
 
 /**/
@@ -1504,8 +1495,7 @@ function  add_dataSource_searchLayer(){
             
             $("#start_over_button").on("click", function() {
                $("#shoot-it-button").prop('disabled', false);
-               clear_all_circle()
-               clear_circle_guideRing()
+              
                clear_all_poi()
 
             });
