@@ -6486,8 +6486,208 @@ icon_flatjson.push(icon_item)
 
 
                                           
+                                            icon_item = { 
+                                            "id" :  8301,     
+                                            "parent" : 6501,
+                                            "text" : "8301 Police dept",
+                                            "layer_name" : _layer_name_,
+                                            "icon" : open_new_tab_icon,
+                                            "link_type": "embed_8301",
+                                            "state"       : {
+                                                            "opened"    : true,  // is the node open
+                                                            // disabled  : boolean  // is the node disabled
+                                                            // "selected"  : true   // is the node selected
+                                                        },
+                                            "node_path" : _node_path_, 
+                                            "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                            "server_path" : _map_server_url_,
+                                            "layer_id" :  _layer_id_,            
+                                            "type" : _type_
+                                            };
+                                            icon_flatjson.push(icon_item)
+
+                                            icon_item = { 
+                                            "id" :  8302,     
+                                            "parent" : 6501,
+                                            "text" : "8302 Jails & Prisons",
+                                            "layer_name" : _layer_name_,
+                                            "icon" : open_new_tab_icon,
+                                            "link_type": "embed_8302",
+                                            "state"       : {
+                                                            "opened"    : true,  // is the node open
+                                                            // disabled  : boolean  // is the node disabled
+                                                            // "selected"  : true   // is the node selected
+                                                        },
+                                            "node_path" : _node_path_, 
+                                            "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                            "server_path" : _map_server_url_,
+                                            "layer_id" :  _layer_id_,            
+                                            "type" : _type_
+                                            };
+                                            icon_flatjson.push(icon_item)
+
+                                            icon_item = { 
+                                            "id" :  8303,     
+                                            "parent" : 6501,
+                                            "text" : "8303 Court Houses",
+                                            "layer_name" : _layer_name_,
+                                            "icon" : open_new_tab_icon,
+                                            "link_type": "embed_8303",
+                                            "state"       : {
+                                                            "opened"    : true,  // is the node open
+                                                            // disabled  : boolean  // is the node disabled
+                                                            // "selected"  : true   // is the node selected
+                                                        },
+                                            "node_path" : _node_path_, 
+                                            "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                            "server_path" : _map_server_url_,
+                                            "layer_id" :  _layer_id_,            
+                                            "type" : _type_
+                                            };
+                                            icon_flatjson.push(icon_item)
+
+                                            icon_item = { 
+                                            "id" :  8304,     
+                                            "parent" : 6501,
+                                            "text" : "8304 Hospitals",
+                                            "layer_name" : _layer_name_,
+                                            "icon" : open_new_tab_icon,
+                                            "link_type": "embed_8304",
+                                            "state"       : {
+                                                            "opened"    : true,  // is the node open
+                                                            // disabled  : boolean  // is the node disabled
+                                                            // "selected"  : true   // is the node selected
+                                                        },
+                                            "node_path" : _node_path_, 
+                                            "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                            "server_path" : _map_server_url_,
+                                            "layer_id" :  _layer_id_,            
+                                            "type" : _type_
+                                            };
+                                            icon_flatjson.push(icon_item)
+
+                                            icon_item = { 
+                                            "id" :  8305,     
+                                            "parent" : 6501,
+                                            "text" : "8305 Medical Centers",
+                                            "layer_name" : _layer_name_,
+                                            "icon" : open_new_tab_icon,
+                                            "link_type": "embed_8305",
+                                            "state"       : {
+                                                            "opened"    : true,  // is the node open
+                                                            // disabled  : boolean  // is the node disabled
+                                                            // "selected"  : true   // is the node selected
+                                                        },
+                                            "node_path" : _node_path_, 
+                                            "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                            "server_path" : _map_server_url_,
+                                            "layer_id" :  _layer_id_,            
+                                            "type" : _type_
+                                            };
+                                            icon_flatjson.push(icon_item)
+
+                                            icon_item = { 
+                                            "id" :  8306,     
+                                            "parent" : 6501,
+                                            "text" : "8306 Emergency Rooms",
+                                            "layer_name" : _layer_name_,
+                                            "icon" : open_new_tab_icon,
+                                            "link_type": "embed_8306",
+                                            "state"       : {
+                                                            "opened"    : true,  // is the node open
+                                                            // disabled  : boolean  // is the node disabled
+                                                            // "selected"  : true   // is the node selected
+                                                        },
+                                            "node_path" : _node_path_, 
+                                            "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                            "server_path" : _map_server_url_,
+                                            "layer_id" :  _layer_id_,            
+                                            "type" : _type_
+                                            };
+                                            icon_flatjson.push(icon_item)
+
+                                            icon_item = { 
+                                            "id" :  8307,     
+                                            "parent" : 6501,
+                                            "text" : "8307 Urgent Care",
+                                            "layer_name" : _layer_name_,
+                                            "icon" : open_new_tab_icon,
+                                            "link_type": "embed_8307",
+                                            "state"       : {
+                                                            "opened"    : true,  // is the node open
+                                                            // disabled  : boolean  // is the node disabled
+                                                            // "selected"  : true   // is the node selected
+                                                        },
+                                            "node_path" : _node_path_, 
+                                            "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                            "server_path" : _map_server_url_,
+                                            "layer_id" :  _layer_id_,            
+                                            "type" : _type_
+                                            };
+                                            icon_flatjson.push(icon_item)
+            
             
 
+                                            icon_item = { 
+                                            "id" :  8321,     
+                                            "parent" : 6501,
+                                            "text" : "8321 Hostels",
+                                            "layer_name" : _layer_name_,
+                                            "icon" : open_new_tab_icon,
+                                            "link_type": "embed_8321",
+                                            "state"       : {
+                                                            "opened"    : true,  // is the node open
+                                                            // disabled  : boolean  // is the node disabled
+                                                            // "selected"  : true   // is the node selected
+                                                        },
+                                            "node_path" : _node_path_, 
+                                            "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                            "server_path" : _map_server_url_,
+                                            "layer_id" :  _layer_id_,            
+                                            "type" : _type_
+                                            };
+                                            icon_flatjson.push(icon_item)
+
+
+                                            icon_item = { 
+                                            "id" :  8322,     
+                                            "parent" : 6501,
+                                            "text" : "8322 Resorts",
+                                            "layer_name" : _layer_name_,
+                                            "icon" : open_new_tab_icon,
+                                            "link_type": "embed_8322",
+                                            "state"       : {
+                                                            "opened"    : true,  // is the node open
+                                                            // disabled  : boolean  // is the node disabled
+                                                            // "selected"  : true   // is the node selected
+                                                        },
+                                            "node_path" : _node_path_, 
+                                            "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                            "server_path" : _map_server_url_,
+                                            "layer_id" :  _layer_id_,            
+                                            "type" : _type_
+                                            };
+                                            icon_flatjson.push(icon_item)
+
+                                            icon_item = { 
+                                            "id" :  8323,     
+                                            "parent" : 6501,
+                                            "text" : "8323 Vacation Rentals",
+                                            "layer_name" : _layer_name_,
+                                            "icon" : open_new_tab_icon,
+                                            "link_type": "embed_8323",
+                                            "state"       : {
+                                                            "opened"    : true,  // is the node open
+                                                            // disabled  : boolean  // is the node disabled
+                                                            // "selected"  : true   // is the node selected
+                                                        },
+                                            "node_path" : _node_path_, 
+                                            "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                            "server_path" : _map_server_url_,
+                                            "layer_id" :  _layer_id_,            
+                                            "type" : _type_
+                                            };
+                                            icon_flatjson.push(icon_item)
 
 
 

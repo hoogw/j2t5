@@ -1509,6 +1509,77 @@ break;
   break;
 
 
+
+
+
+
+
+
+
+  case "embed_8301":// policedepartments
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    _newTab_link += '&poicategory=policedepartments'
+    window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_8302":// jailsandprisons
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    _newTab_link += '&poicategory=jailsandprisons'
+    window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_8303":// courthouses
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    _newTab_link += '&poicategory=courthouses'
+    window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_8304":// hospitals
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    _newTab_link += '&poicategory=hospitals'
+    window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_8305":// medcenters
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    _newTab_link += '&poicategory=medcenters'
+    window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_8306":// emergencyrooms
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    _newTab_link += '&poicategory=emergencyrooms'
+    window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_8307":// urgent_care
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    _newTab_link += '&poicategory=urgent_care'
+    window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_8321":// hostels
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    _newTab_link += '&poicategory=hostels'
+    window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_8322":// resorts
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    _newTab_link += '&poicategory=resorts'
+    window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_8323":// vacation_rentals
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    _newTab_link += '&poicategory=vacation_rentals'
+    window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+
+
+
   case "embed_8348":
     var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     window.open(_newTab_link,'_blank');
