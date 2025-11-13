@@ -353,25 +353,7 @@ async function nearby_poi_16circle(_radiusMeter, _centerLng, _centerLat) {
 
 
     
-    function clear_all_poi(){
-
-        //Remove any previous results from the map.
-        if (datasource){
-            datasource.clear();
-        }
-        if (datasource_highlight){
-            datasource_highlight.clear();
-        }
-
-
-        _all_poi_uniqueID_array = []
-        _all_poi_flat_array = []
-
-        _total_poi = 0
-        $("#poi_total").html(_total_poi)
-
-    }
-
+    
 
 
 

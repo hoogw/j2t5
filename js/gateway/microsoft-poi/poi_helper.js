@@ -1747,6 +1747,26 @@ function splitAddressMicrosoft_REST_API(_raw_features_array){
 
 
 
+ function clear_all_poi(){
+
+        //Remove any previous results from the map.
+        if (datasource){
+            datasource.clear();
+        }
+        if (datasource_highlight){
+            datasource_highlight.clear();
+        }
+
+
+        _all_poi_uniqueID_array = []
+        _all_poi_flat_array = []
+
+        _total_poi = 0
+        $("#poi_total").html(_total_poi)
+
+    }
+
+
 
 
 
@@ -1755,35 +1775,30 @@ function splitAddressMicrosoft_REST_API(_raw_features_array){
 //  --- microsoft circle       --- 
 /**/
 
-function clear_all_circle(){
+      function clear_all_circle(){
 
-    if (circle_datasource){
-        circle_datasource.clear();
-    }
+          if (circle_datasource){
+              circle_datasource.clear();
+          }
 
-   
-}
-                
-function drawing_circle(_radiusMeter, _centerLng, _centerLat){
-    //console.log('drawing circle at _radiusMeter, _centerLng, _centerLat', _radiusMeter, _centerLng, _centerLat)
+        
+      }
+                      
+      function drawing_circle(_radiusMeter, _centerLng, _centerLat){
+          //console.log('drawing circle at _radiusMeter, _centerLng, _centerLat', _radiusMeter, _centerLng, _centerLat)
 
-    if (circle_datasource){
-      
+          if (circle_datasource){
+            
 
-        //Create a circle from a Point feature by providing it a subType property set to "Circle" and radius property.
-        circle_datasource.add(new atlas.data.Feature(new atlas.data.Point([Number(_centerLng), Number(_centerLat)]), {
-            subType: "Circle",
-            radius: Number(_radiusMeter)
-        }));
+              //Create a circle from a Point feature by providing it a subType property set to "Circle" and radius property.
+              circle_datasource.add(new atlas.data.Feature(new atlas.data.Point([Number(_centerLng), Number(_centerLat)]), {
+                  subType: "Circle",
+                  radius: Number(_radiusMeter)
+              }));
 
-    }//if
+          }//if
 
-}
-
-
-
-
-
+      }
 
 
 
