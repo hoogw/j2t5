@@ -322,15 +322,6 @@ function get_map_bound(){
 
 
 
-        function clear_all_circle(){
-
-            if (circle_datasource){
-                circle_datasource.clear();
-            }
-          
-           
-        }
-
 
         function  drawing_16circle(_radiusMeter, _centerLng, _centerLat){
 

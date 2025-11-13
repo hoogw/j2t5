@@ -484,14 +484,6 @@ function add_map_event(){
 /**/
 
 
-function clear_all_circle(){
-
-    if (circle_datasource){
-        circle_datasource.clear();
-    }
-
-   
-}
 
         function  drawing_4circle(_radiusMeter, _centerLng, _centerLat){
 
