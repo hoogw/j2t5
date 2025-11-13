@@ -45,7 +45,7 @@ var circle_datasource;
                 // https://learn.microsoft.com/en-us/rest/api/maps/search/get-search-nearby?view=rest-maps-1.0&tabs=HTTP
                 _category_array = _category_string.split(',').map(function(item) {
                     return parseInt(item, 10);
-            }); // Splits by comma
+                }); // Splits by comma
                 
             } else {
                 _category_array = []
@@ -59,14 +59,20 @@ var circle_datasource;
         // class api is here: https://learn.microsoft.com/en-us/javascript/api/azure-maps-rest/atlas.service.searchurl?view=azure-maps-typescript-latest#azure-maps-rest-atlas-service-searchurl-searchnearby
         // do not use class, bug found,  pipeline, searchNearBy class  not working with "categorySet", so I have to use ajax rest api here with key
 
-            var microsoft_search_nearby_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
+            //var microsoft_search_nearby_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
+            var microsoft_search_nearby_url ="https://atlas.microsoft.com/search/poi/category/json?api-version=1.0"
             microsoft_search_nearby_url += '&lat=' + _centerLat
             microsoft_search_nearby_url += '&lon=' + _centerLng
             microsoft_search_nearby_url += '&limit=' + 100
             //microsoft_search_nearby_url += '&ofs=' + 0
             microsoft_search_nearby_url += '&radius=' + _radiusMeter
-            //microsoft_search_nearby_url += '&query=' + search_poi_keyword
-            microsoft_search_nearby_url += '&categorySet=' + _category_array
+
+
+            // required for   ... / s e a r  c h / p o  i / c a t e g o r y /...
+            microsoft_search_nearby_url += '&query=' + _category_string
+
+            // optional for ... / s e a r  c h / n e a r b y /...
+            //microsoft_search_nearby_url += '&categorySet=' + _category_array
             
             microsoft_search_nearby_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
 
