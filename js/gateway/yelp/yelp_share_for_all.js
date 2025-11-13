@@ -718,7 +718,7 @@ function remove_without_keyword_from_search_result(__poi_geojson__){
 
 
       
-                    function clear_all_poi_advancedMarker(){
+                  function clear_all_poi_advancedMarker(){
 
                       
                        for (let m = 0; m < marker_array.length; m++) {
@@ -733,4 +733,37 @@ function remove_without_keyword_from_search_result(__poi_geojson__){
                     _total_poi = 0
                       empty_info_outline_Tab()
                       $("#poi_total").html(_total_poi)
+                  }
+
+
+
+                  // . . .  old marker only . . efficient core newOnly  . - .
+                  function clear_all_poi(){
+
+                    //  . . efficient core newOnly  . - .
+                          var _thisNewGeoJsonGoogleHandler
+                          if (_this_newOnly_geojsonGoogleHandlerArray){
+                            
+                            for (var l = 0; l< _this_newOnly_geojsonGoogleHandlerArray.length; l++){
+                              _thisNewGeoJsonGoogleHandler = _this_newOnly_geojsonGoogleHandlerArray[l]
+                              for (var k = 0; k< _thisNewGeoJsonGoogleHandler.length; k++){
+                                map.data.remove(_thisNewGeoJsonGoogleHandler[k]);
+                              }// for
+                            }// for
+
+
+                          }//if
+                          
+                            _this_newOnly_geojsonGoogleHandlerArray = []
+                    // . .  end . . efficient core newOnly  . - .
+
+
+                    
+
+                    _all_poi_uniqueID_array = []
+                    _all_poi_flat_array = []
+
+                  _total_poi = 0
+                    empty_info_outline_Tab()
+                    $("#poi_total").html(_total_poi)
                   }
