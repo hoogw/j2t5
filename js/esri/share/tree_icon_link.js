@@ -1579,6 +1579,14 @@ break;
 
 
 
+  
+  case "embed_5348":
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/category-list.html')
+    window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+
 
   case "embed_8348":
     var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
@@ -1895,6 +1903,13 @@ break;
     console.log('_newTab_link', _newTab_link)
   break;
 
+  
+  case "embed_4348":
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/category-list.html')
+    window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
+  
   case "embed_8526":
     var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/search-4x-nearby-everything.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
     window.open(_newTab_link,'_blank');
