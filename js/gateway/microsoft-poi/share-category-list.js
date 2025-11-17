@@ -24,11 +24,8 @@
 
           init_category_list_ui()
 
-          var response_string =  await $.ajax({
-                                                  url: yelp_api_get_all_categories,
-                                                  headers: {
-                                                  'Authorization': yelp_api_key,  //'Bearer xxxxxx',
-                                                  },
+          var response_json =  await $.ajax({
+                                                  url: microsoft_azure_get_all_categories,
                                                   method: 'GET',
                                                   dataType: 'json',
                                                   success: function(data){
@@ -38,7 +35,7 @@
       
       
 
-          var poi_categories_array = response_string.categories
+          var poi_categories_array = response_json.poiCategories
           $("#poi_categories_total").html(poi_categories_array.length)
 
           folder_structure_flatjson = []

@@ -1212,6 +1212,7 @@ var unknow_geometry_icon = "bi bi-triangle"
         var max_microsoft_poi_radius_meter = 50000 
 
 
+        var microsoft_azure_get_all_categories = "https://atlas.microsoft.com/search/poi/category/tree/json?api-version=1.0&subscription-key=" + microsoft_azure_primary_key_restrict
 
   /**/
   //    --- --- end --- --- --- ---  --- --- microsoft azure  --- --- --- ---  
