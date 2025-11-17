@@ -38,10 +38,7 @@ var searchInput
                 microsoft_search_poi_url += '&btmRight=' + SWlat + ',' + NElong
                 microsoft_search_poi_url += '&topLeft=' + NElat + ',' + SWlong
             } else {
-                // nearby to get everything
-                microsoft_search_poi_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
-                microsoft_search_poi_url += '&lat=' + _centerLat  // for bias only, not for radius
-                microsoft_search_poi_url += '&lon=' + _centerLng  // for bias only, not for radius
+               console.log("keyword is empty, you will get ajax error, says required query string is empty")
             }
 
             microsoft_search_poi_url += '&limit=' + 100
