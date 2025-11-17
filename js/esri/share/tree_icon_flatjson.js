@@ -5739,21 +5739,21 @@ icon_flatjson.push(icon_item)
 
 
 
-                /* = = = = sub folder = = = = m i crosoft poi download   = = = = */
-                icon_item = { 
-                    "id" :  3299,     
-                    "parent" : 7281,
-                    "text" : "draw circle",
-                    "icon" : folder_icon,
-                    "link_type": "folder",   
-                    "state"       : {
-                    // use this opened line for always default open this folder
-                                    "opened"    :false, //  iconJstreeforceOpen,   // is the node open
-                                    // disabled  : boolean  // is the node disabled
-                                    // "selected"  : true   // is the node selected
-                                }
-                };
-                icon_flatjson.push(icon_item) 
+/* = = = = sub folder = = = = m i crosoft poi download   = = = = */
+icon_item = { 
+    "id" :  3299,     
+    "parent" : 7281,
+    "text" : "draw circle",
+    "icon" : folder_icon,
+    "link_type": "folder",   
+    "state"       : {
+    // use this opened line for always default open this folder
+                    "opened"    :false, //  iconJstreeforceOpen,   // is the node open
+                    // disabled  : boolean  // is the node disabled
+                    // "selected"  : true   // is the node selected
+                }
+};
+icon_flatjson.push(icon_item) 
 
 
 
@@ -5761,21 +5761,21 @@ icon_flatjson.push(icon_item)
 
 
                 
-                /* = = = = sub folder = = = = m i crosoft poi download   = = = = */
-                icon_item = { 
-                    "id" :  3281,     
-                    "parent" : 3299,
-                    "text" : "everything",
-                    "icon" : folder_icon,
-                    "link_type": "folder",   
-                    "state"       : {
-                    // use this opened line for always default open this folder
-                                    "opened"    :false, //  iconJstreeforceOpen,   // is the node open
-                                    // disabled  : boolean  // is the node disabled
-                                    // "selected"  : true   // is the node selected
-                                }
-                };
-                icon_flatjson.push(icon_item) 
+    /* = = = = sub folder = = = = m i crosoft poi download   = = = = */
+    icon_item = { 
+        "id" :  3281,     
+        "parent" : 3299,
+        "text" : "everything",
+        "icon" : folder_icon,
+        "link_type": "folder",   
+        "state"       : {
+        // use this opened line for always default open this folder
+                        "opened"    :false, //  iconJstreeforceOpen,   // is the node open
+                        // disabled  : boolean  // is the node disabled
+                        // "selected"  : true   // is the node selected
+                    }
+    };
+    icon_flatjson.push(icon_item) 
 
 
 
@@ -6054,7 +6054,7 @@ icon_flatjson.push(icon_item)
     icon_item = { 
         "id" :  4348,     
         "parent" : 7281,
-        "text" : "category list",
+        "text" : microsoft_svg + " category list",
         "layer_name" : _layer_name_,
         "icon" : open_new_tab_icon,
         "link_type": "embed_4348",
@@ -6708,7 +6708,7 @@ icon_flatjson.push(icon_item)
     icon_item = { 
         "id" :  5348,     
         "parent" : 328,
-        "text" : "category list",
+        "text" : yelp_svg + " category list",
         "layer_name" : _layer_name_,
         "icon" : open_new_tab_icon,
         "link_type": "embed_5348",
