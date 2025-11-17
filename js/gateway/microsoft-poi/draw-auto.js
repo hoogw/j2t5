@@ -1211,36 +1211,21 @@ $.ajax({
         }
 
 
-     async function nearby_poi_auto_grid(_radiusMeter){
+    async function nearby_poi_auto_grid(_radiusMeter){
 
-      
-   // URL REST parameter is here https://learn.microsoft.com/en-us/rest/api/maps/search/get-search-poi?view=rest-maps-1.0&tabs=HTTP
-        // class api is here: https://learn.microsoft.com/en-us/javascript/api/azure-maps-rest/atlas.service.searchurl?view=azure-maps-typescript-latest#azure-maps-rest-atlas-service-searchurl-searchnearby
-        // do not use class, bug found,  pipeline, searchNearBy class  not working with "categorySet", so I have to use ajax rest api here with key
-
-              
-        // default, or cat. is empty, means everything
+       // default, or cat. is empty, means everything
         var microsoft_search_nearby_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
         
         /**/
         //  -  -  - category  -  -  - 
         /**/
-
             // excel file :  https://onedrive.live.com/:x:/g/personal/0D35222484A76A01/s!AgFqp4QkIjUNr71EalRJTnRM0AEPjA?resid=0D35222484A76A01!777924&ithint=file%2Cxlsx&e=o8ewEb&migratedtospo=true&redeem=aHR0cHM6Ly8xZHJ2Lm1zL3gvcyFBZ0ZxcDRRa0lqVU5yNzFFYWxSSlRuUk0wQUVQakE_ZT1vOGV3RWI
             // json tree :  https://atlas.microsoft.com/search/poi/category/tree/json?api-version=1.0&subscription-key=2EcKEaa1i02tTRNAUT7Ezip3htMkKcfPcH2JHokGwCynUY4oQHweJQQJ99BGAC8vTInSkNgnAAAgAZMP1MpR
             _category_string = $("#category-input").val()
             update_url_parameter("poicategory",_category_string)
             
-
-            // only for single cat.
             if (_category_string){
 
-                microsoft_search_nearby_url ="https://atlas.microsoft.com/search/poi/category/json?api-version=1.0"
-
-                // required for   ... / s e a r  c h / p o  i / c a t e g o r y /...
-                microsoft_search_nearby_url += '&query=' + _category_string
-
-                /* not use
                 // only for multiple cat. set,   7510,7654,9876
                 // convert array of string to array of integer, only for micosoft 
                 // https://learn.microsoft.com/en-us/rest/api/maps/search/get-search-nearby?view=rest-maps-1.0&tabs=HTTP
@@ -1248,111 +1233,108 @@ $.ajax({
                 _category_array = _category_string.split(',').map(function(item) {
                     return parseInt(item, 10);
                 }); // Splits by comma
-                 console.log('category array', _category_array); // Output: ["apple", "banana", "orange"]
+                    console.log('category array', _category_array); // Output: ["apple", "banana", "orange"]
                 // optional for ... / s e a r  c h / n e a r b y /...
                 microsoft_search_nearby_url += '&categorySet=' + _category_array
-                */
-
             } 
-           
-
         /**/
         //  -  -  -  end  -  -  - category  -  -  - 
         /**/
 
 
+
         var this_grid_center_lng 
         var this_grid_center_lat
 
- for (let i = 0; i < grid_center_array.length; i++) {
+        for (let i = 0; i < grid_center_array.length; i++) {
 
 
-        this_grid_center_lng = grid_center_array[i].coordinates[0]
-        this_grid_center_lat = grid_center_array[i].coordinates[1]
-
-
-
-        var microsoft_search_nearby_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
-        microsoft_search_nearby_url += '&lat=' + this_grid_center_lat
-        microsoft_search_nearby_url += '&lon=' + this_grid_center_lng
-        microsoft_search_nearby_url += '&limit=' + 100
-        
-        microsoft_search_nearby_url += '&radius=' + _radiusMeter
-        
-        microsoft_search_nearby_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
-
-        var microsoft_search_nearby_response = await ajax_getjson_common(microsoft_search_nearby_url)
-        console.log('search nearby result ', microsoft_search_nearby_response)
-
-        //  . . . street name need to further split  . . . 
-        _current_geojson_POI = splitAddressMicrosoft_REST_API(microsoft_search_nearby_response.results)
-        console.log('split Address Microsoft  ', _current_geojson_POI)
-        // . . .  end  . . .  street name need to further split
+                this_grid_center_lng = grid_center_array[i].coordinates[0]
+                this_grid_center_lat = grid_center_array[i].coordinates[1]
 
 
 
-            
-        /**/
-        //  -  -  - end  -  -  -  category    -  -  - 
-        /**/
+                var microsoft_search_nearby_url ="https://atlas.microsoft.com/search/nearby/json?api-version=1.0"
+                microsoft_search_nearby_url += '&lat=' + this_grid_center_lat
+                microsoft_search_nearby_url += '&lon=' + this_grid_center_lng
+                microsoft_search_nearby_url += '&limit=' + 100
+                
+                microsoft_search_nearby_url += '&radius=' + _radiusMeter
+                
+                microsoft_search_nearby_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
+
+                var microsoft_search_nearby_response = await ajax_getjson_common(microsoft_search_nearby_url)
+                console.log('search nearby result ', microsoft_search_nearby_response)
+
+                //  . . . street name need to further split  . . . 
+                _current_geojson_POI = splitAddressMicrosoft_REST_API(microsoft_search_nearby_response.results)
+                console.log('split Address Microsoft  ', _current_geojson_POI)
+                // . . .  end  . . .  street name need to further split
 
 
 
-
-           //  . . efficient core newOnly  . - .
-           _this_newOnly_result_array = []
-
-
-            //  . . .  test if this new poi already exist  . . . 
-            _this_result_array = _current_geojson_POI.features
-            for (let p = 0; p < _this_result_array.length; p++) {
-                _uniqueID = _this_result_array[p].properties.poi_id
-                if (_all_poi_uniqueID_array.includes(_uniqueID)){
-                // already exist, skip
-                } else {
-                    _all_poi_uniqueID_array.push(_uniqueID)
-                    _all_poi_flat_array.push(_this_result_array[p])
                     
-                    //  . . efficient core newOnly  . - .
-                    _this_newOnly_result_array.push(_this_result_array[p])
-
-               }//if
-            }//for
-            _total_poi = Number(_all_poi_flat_array.length)
-            $("#poi_total").html(_total_poi)
-
-            console.log('_all_poi_uniqueID_array  ', _all_poi_uniqueID_array)
-            console.log('_all_poi_flat_array  ', _all_poi_flat_array)
-
-            
-            // not use, version 1. for single circle version
-                    //datasource.add(poi_geojson);
-                    // in use,  version 2. accumulate 
-                    poi_geojson = {
-                        "type": "FeatureCollection",
-                        "features": _all_poi_flat_array
-                    };
-                    //datasource.add(poi_geojson);
-
-
-                    //  . . efficient core newOnly  . - .
-                    _this_newOnly_poi_geojson = {
-                        "type": "FeatureCollection",
-                        "features": _this_newOnly_result_array
-                    };
-                    datasource.add(_this_newOnly_poi_geojson);
-                     // . .  end . . efficient core newOnly  . - .
-
-            //   . . .  end  . . .  . . .  test if this new poi already exist  . . . 
-            
-
-
-            
-           
+                /**/
+                //  -  -  - end  -  -  -  category    -  -  - 
+                /**/
 
 
 
-      }//for
+
+                //  . . efficient core newOnly  . - .
+                _this_newOnly_result_array = []
+
+
+                    //  . . .  test if this new poi already exist  . . . 
+                    _this_result_array = _current_geojson_POI.features
+                    for (let p = 0; p < _this_result_array.length; p++) {
+                        _uniqueID = _this_result_array[p].properties.poi_id
+                        if (_all_poi_uniqueID_array.includes(_uniqueID)){
+                        // already exist, skip
+                        } else {
+                            _all_poi_uniqueID_array.push(_uniqueID)
+                            _all_poi_flat_array.push(_this_result_array[p])
+                            
+                            //  . . efficient core newOnly  . - .
+                            _this_newOnly_result_array.push(_this_result_array[p])
+
+                    }//if
+                    }//for
+                    _total_poi = Number(_all_poi_flat_array.length)
+                    $("#poi_total").html(_total_poi)
+
+                    console.log('_all_poi_uniqueID_array  ', _all_poi_uniqueID_array)
+                    console.log('_all_poi_flat_array  ', _all_poi_flat_array)
+
+                    
+                    // not use, version 1. for single circle version
+                            //datasource.add(poi_geojson);
+                            // in use,  version 2. accumulate 
+                            poi_geojson = {
+                                "type": "FeatureCollection",
+                                "features": _all_poi_flat_array
+                            };
+                            //datasource.add(poi_geojson);
+
+
+                            //  . . efficient core newOnly  . - .
+                            _this_newOnly_poi_geojson = {
+                                "type": "FeatureCollection",
+                                "features": _this_newOnly_result_array
+                            };
+                            datasource.add(_this_newOnly_poi_geojson);
+                            // . .  end . . efficient core newOnly  . - .
+
+                    //   . . .  end  . . .  . . .  test if this new poi already exist  . . . 
+                    
+
+
+                    
+                
+
+
+
+        }//for
     }
 
 
