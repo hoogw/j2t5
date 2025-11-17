@@ -1896,14 +1896,14 @@ break;
   break;
 
   case "embed_8526":
-    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/search-4x-category.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/search-4x-nearby-everything.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
     window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
   break;
 
 
   case "embed_8527":
-    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/draw-1x-category.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/draw-1x.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
     window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
   break;
@@ -1921,14 +1921,14 @@ break;
   break;
 
   case "embed_8513":
-    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/search-category.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/search-nearby-everything.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
     window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
   break;
 
 
   case "embed_7510":
-    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/pan-zoom-category.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/pan-zoom-nearby-everything.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
     window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
   break;
