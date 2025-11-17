@@ -5928,32 +5928,12 @@ icon_flatjson.push(icon_item)
 
 
 
-
-
-                icon_item = { 
-                    "id" :  3276,     
-                    "parent" : 4276,
-                    "text" : "keyword",
-                    "icon" : folder_icon,
-                    "link_type": "folder",   
-                    "state"       : {
-                    // use this opened line for always default open this folder
-                                    "opened"    :false, //  iconJstreeforceOpen,   // is the node open
-                                    // disabled  : boolean  // is the node disabled
-                                    // "selected"  : true   // is the node selected
-                                }
-                };
-                icon_flatjson.push(icon_item) 
-
-
-
-
                                 icon_item = { 
 
                                     "id" :  8523,     
-                                    "parent" : 3276,
+                                    "parent" : 4276,
                                     
-                                    "text" : "8523",
+                                    "text" : "8523 by category",
                                     
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
@@ -5980,9 +5960,9 @@ icon_flatjson.push(icon_item)
                                      icon_item = { 
 
                                     "id" :  8533,     
-                                    "parent" : 3276,
+                                    "parent" : 4276,
                                     
-                                    "text" : "8533 google base map",
+                                    "text" : "8533 by keyword",
                                     
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
@@ -6008,30 +5988,13 @@ icon_flatjson.push(icon_item)
 
 
 
-                icon_item = { 
-                    "id" :  3266,     
-                    "parent" : 4276,
-                    "text" : "everything",
-                    "icon" : folder_icon,
-                    "link_type": "folder",   
-                    "state"       : {
-                    // use this opened line for always default open this folder
-                                    "opened"    :false, //  iconJstreeforceOpen,   // is the node open
-                                    // disabled  : boolean  // is the node disabled
-                                    // "selected"  : true   // is the node selected
-                                }
-                };
-                icon_flatjson.push(icon_item) 
-
-
-
 
                                     icon_item = { 
 
                                     "id" :  8513,     
-                                    "parent" : 3266,
+                                    "parent" : 4276,
                                     
-                                    "text" : "8513 x1",
+                                    "text" : "8513 everything",
                                     
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
@@ -6059,9 +6022,9 @@ icon_flatjson.push(icon_item)
                                     icon_item = { 
 
                                     "id" :  8526,     
-                                    "parent" : 3266,
+                                    "parent" : 4276,
                                     
-                                    "text" : "8526 x4",
+                                    "text" : "8526 everything x4",
                                     
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,

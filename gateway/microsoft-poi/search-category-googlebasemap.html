@@ -51,9 +51,8 @@
             <button type='button' id='microsoftmap-button'>Start</button>
 
             <div style="margin-left: auto; order: 2;">
-              
-             <input id='search_poi_input' type='text' placeholder='req.* McDonald,walmart,costco'/>
-             
+              <a target="_blank" href="https://learn.microsoft.com/en-us/azure/azure-maps/supported-search-categories">MS Cat.</a>
+              <input type='text' id='category-input' placeholder='req.* police,jail'/>
             </div>
           
           </div>
@@ -62,7 +61,40 @@
             <div id="map"></div>
           </div> 
 
-           
+         <fieldset style="font-size: xx-small;">
+                <legend>Change Background Map</legend>
+
+                <input name="azure_basemap_radio" type="radio"  value="azure-hybrid"/>
+                <span>Microsoft Hybrid(Traffic)</span>
+                &nbsp;&nbsp;
+
+                &nbsp;&nbsp;
+                <input name="azure_basemap_radio" type="radio"  value="google-hybrid"/>
+                <span>Google Hybrid</span>
+                &nbsp;&nbsp;
+                
+                <input name="azure_basemap_radio" type="radio"  value="here-hybrid"/>
+                <span>Here Hybrid</span>
+                &nbsp;&nbsp;
+
+                 <!--
+                <input name="azure_basemap_radio" type="radio"  value="azure-road"/>
+                <span>Microsoft Azure Road</span>
+                -->
+
+                <input name="azure_basemap_radio" type="radio"  value="google-road"/>
+                <span>Google Road</span>
+                &nbsp;&nbsp;
+
+                <input name="azure_basemap_radio" type="radio"  value="here-road"/>
+                <span>Here Road</span>
+                &nbsp;&nbsp;
+
+                <input name="azure_basemap_radio" type="radio"  value="open-street-map"/>
+                <span>OpenStreetMap</span>
+            
+            </fieldset>
+  
 
        <div class='dashboard-horizontal-row-flow-box' >
         <span id="layer-info-vertical">Layer Name</span>
@@ -121,7 +153,7 @@
 
     <script src="../../js/lib/papaparse.js" type="text/javascript"></script>
 
-   <script src="../../js/lib/proj4/dist/proj4.js"></script>
+    <script src="../../js/lib/proj4/dist/proj4.js"></script>
   <script src="../../js/lib/wkt.js"></script>
   <script src="../../js/lib/reproject/dist/reproject.js"></script>
   <script src="../../js/lib/wellknown/wellknown.js"></script>
@@ -136,7 +168,7 @@
     <script src="../../js/gateway/microsoft/share_for_all_microsoft.js" type="text/javascript"></script>
 
     <script src="../../js/gateway/microsoft-poi/poi_helper.js" type="text/javascript"></script>
-    <script src="../../js/gateway/microsoft-poi/search-keyword.js" type="text/javascript"></script>
+    <script src="../../js/gateway/microsoft-poi/search-category-googlebasemap.js" type="text/javascript"></script>
 
     </body>
 

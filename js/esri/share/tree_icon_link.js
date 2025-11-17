@@ -1909,7 +1909,7 @@ break;
   break;
 
   case "embed_8523":
-    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/search-keyword.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/search-category-googlebasemap.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
     window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
   break;

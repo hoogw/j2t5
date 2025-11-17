@@ -18,23 +18,24 @@ var searchInput
                 
     async function nearby_poi(_centerLng, _centerLat) {
 
-    
         //default
-        var microsoft_search_poi_url ="https://atlas.microsoft.com/search/poi/json?api-version=1.0"
+        var microsoft_search_poi_url ="https://atlas.microsoft.com/search/poi/category/json?api-version=1.0"
 
         /**/
-        //  -  -  - search poi keyword  -  -  - 
+        //  -  -  - search poi category  -  -  - 
         /**/
-        search_poi_keyword = $("#search_poi_input").val()
-        update_url_parameter('poi', search_poi_keyword);
-        if (search_poi_keyword){
+        _category_string = $("#category-input").val()
+        update_url_parameter("poicategory",_category_string)
+
+        if (_category_string){
             // search poi
-            microsoft_search_poi_url += '&query=' + search_poi_keyword
+            microsoft_search_poi_url += '&query=' + _category_string
         } else {
             console.log("keyword is empty, you will get ajax error, says required query string is empty")
         }
+
         /**/
-        //  -  -  - end  -  -  -  search poi keyword    -  -  - 
+        //  -  -  - end  -  -  -  search poi category    -  -  - 
         /**/
 
         // do not use bias, otherwise it will show fuzzy nearby lots more result
@@ -44,8 +45,7 @@ var searchInput
         microsoft_search_poi_url += '&limit=' + 100
         microsoft_search_poi_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
 
-
-
+            
         
             var microsoft_search_nearby_response = await ajax_getjson_common(microsoft_search_poi_url)
             console.log('search nearby result ', microsoft_search_nearby_response)
@@ -54,11 +54,6 @@ var searchInput
             _current_geojson_POI = splitAddressMicrosoft_REST_API(microsoft_search_nearby_response.results)
             console.log('split Address Microsoft  ', _current_geojson_POI)
             // . . .  end  . . .  street name need to further split
-
-
-
-            
-            
 
 
 
@@ -118,7 +113,7 @@ var searchInput
         
     }
 
-   
+    
 
 
 
@@ -184,13 +179,14 @@ function get_map_bound(){
 
 
 
+           
             /**/
-            //  --- Microsoft map image layer   --- // -- without -- basemap ---- version - - -
+            //  --- Microsoft map image layer   --- // -- only for basemap version  -- 
             /**/
 
 
 
-            // -- without -- basemap ---- version - - -
+            // -- only for basemap version  -- 
             function  overlay_export_image(mapservice_url, bbox, layers){
   
                 console.log(' overlay export image ',  layers, bbox )
@@ -277,12 +273,12 @@ function get_map_bound(){
 
                                    // -- only for basemap version  -- 
                                    // data source layer id, means geojson feature layer, so map image layer should add under(before) it
-                                   //map.layers.add(groundoverlay, datasource_layer_id);
+                                    map.layers.add(groundoverlay, datasource_layer_id);
                                    // -- end -- only for basemap version  -- 
                                    
 
                                    // -- without -- basemap ---- version - - - 
-                                   map.layers.add(groundoverlay, 'JK');  // other options labels, traffic_relative
+                                   //map.layers.add(groundoverlay, 'JK');  // other options labels, traffic_relative
                                    
                                    console.log('after add map image layer, geojson feature layer,  data source layer id ', datasource_layer_id)
                                    console.log('after add map image layer, now all layers index ',  map.layers.layerIndex)
@@ -294,14 +290,15 @@ function get_map_bound(){
              
 
 
-           }
+            }
 
 
 
 
            /**/
-           //  --- end  ---  Microsoft map image layer    --- 
+           //  --- end  ---  Microsoft map image layer    --- // -- only for basemap version  -- 
            /**/
+
 
 
 
@@ -1128,7 +1125,7 @@ function featureClicked(e) {
 
 
 
-
+// only for multiple base map
 function  add_dataSource_searchLayer(){
 
     //Create a data source and add it to the map.
@@ -1207,6 +1204,17 @@ function  add_dataSource_searchLayer(){
     
        empty_info_outline_Tab()
     });
+
+
+
+
+
+     // . . . . basemap  . . . .
+    // after add search layer, must determine its layer id.  
+    get_datasource_layer_id()
+    //  . . . .  end  . . . . basemap  . . . .
+
+    
 }
 
 
@@ -1214,8 +1222,227 @@ function  add_dataSource_searchLayer(){
 
 
 
+        // . . . . basemap  . . . .
+
+        function get_datasource_layer_id(){
+
+            console.log(' so far all datasource layers id : ', map.layers )
+            var current_map_layers_array =  map.layers.layerIndex
+
+            for (let j = 0; j < current_map_layers_array.length; j++) {
+                console.log(' so far all datasource layers id : ', current_map_layers_array[j].id )
+
+                
+                if (possible_basemap_layer_id_array.includes(current_map_layers_array[j].id)){
+                    // nothing to do
+                    //console.log(' so far all datasource layers id : ', current_map_layers_array[j].id )
+                } else {
+                    datasource_layer_id = current_map_layers_array[j].id
+                    // must break for loop, only get first layer id.
+                    // because  geojson feature layer will add 3 layer (id), only first layer id is what I need, 
+                   
+                    break;
+                }//if
+                
+
+            }//for
+
+            console.log(' data source layer id : ', datasource_layer_id )
+
+        }
+
+
+
+
+
+        function remove_3rdParty_basemap_layer(){
+            
+            // . . . remove all basemap layers . . . 
+            // not use, because clear also remove datasource layer.
+            // map.layers.clear()
+            console.log(' remove 3rdParty basemap layer, so far all layers : ', map.layers )
+            var current_map_layers_array =  map.layers.layerIndex
+
+            for (let j = 0; j < current_map_layers_array.length; j++) {
+                if (current_map_layers_array[j].id.includes('3rdPartyBaseMapLayer')){
+                    map.layers.remove(current_map_layers_array[j])
+                } else {
+                    // not 3rd party basemap layer, nothing to do,
+                }//if
+            }//for
+           //  . . .  end  . . . remove all basemap layers . . . 
+
+
+
+
+
+
+            /* 
+            //currently don't use basemap control, don't need this section code
+            //= = =  remove basemap control = = =  
+            var current_map_controls =  map.controls.getControls()
+            console.log('current_map_controls', current_map_controls)
+
+            // index 2 is basemap control
+            for (let i = 0; i < current_map_controls.length; i++) {
+                if (current_map_controls[i].onStyleChange){
+                    map.controls.remove(current_map_controls[i])
+                    break;
+                }//if
+            }//for
+            //  = = =  end    = = =  remove basemap control = = = 
+            */ 
+
+
+           
+        }
+
+
+        function change_basemap_xyz_tile_layer(){
+
+
+            // first remove all existing basemap layers
+            remove_3rdParty_basemap_layer()
+
+
+            // add new basemap layer based on radio id selected
+            switch(azure_basemap_id) {
+
+                case 'azure-hybrid':
+
+                 // fix bug, comment out this line
+                 //  click point, popup may be different format, don't have "".getProperties()"" function, instead have ".properties"
+                 // so keep hybrid as basemap, never change or reset it, 3rd party tile just on top of it.
+                 // map.setStyle({style:'satellite_road_labels'})
+                  
+                break;
+
+
+                case 'azure-road':
+                 // fix bug, comment out this line
+                 //  click point, popup may be different format, don't have "".getProperties()"" function, instead have ".properties"
+                 // so keep hybrid as basemap, never change or reset it, 3rd party tile just on top of it.
+                 // map.setStyle({style:'road'})
+                  
+                break;
+
+
+
+                case 'google-hybrid':
+
+                    map.layers.add(google_hybrid_3rdPartyBaseMapLayer, datasource_layer_id); // add basemap to the most bottom
+
+                  break;
+
+
+
+                case 'google-road':
+
+                    map.layers.add(google_road_3rdPartyBaseMapLayer, datasource_layer_id); // add basemap to the most bottom
+
+                  break;
+
+
+                  case 'here-hybrid':
+
+                    map.layers.add(here_hybrid_3rdPartyBaseMapLayer, datasource_layer_id); // add basemap to the most bottom
+
+                  break;
+
+                case 'here-road':
+
+                    map.layers.add(here_road_3rdPartyBaseMapLayer, datasource_layer_id); // add basemap to the most bottom
+
+                  break;
+
+
+                  case 'open-street-map':
+
+                    map.layers.add(open_street_map_3rdPartyBaseMapLayer, datasource_layer_id); // add basemap to the most bottom
+
+                    break;
+
+                default:
+                    // fix bug, comment out this line
+                    //  click point, popup may be different format, don't have "".getProperties()"" function, instead have ".properties"
+                    // so keep hybrid as basemap, never change or reset it, 3rd party tile just on top of it.
+                    //map.setStyle({style:'satellite_road_labels'})
+              }
+
+                
+                
+
+        }
+
+
+        var google_hybrid_3rdPartyBaseMapLayer
+        var google_road_3rdPartyBaseMapLayer
+        var here_hybrid_3rdPartyBaseMapLayer
+        var here_road_3rdPartyBaseMapLayer
+        var open_street_map_3rdPartyBaseMapLayer
+
+        function  init_3rdParty_basemap_tileLayer(){
+
+            google_hybrid_3rdPartyBaseMapLayer = new atlas.layer.TileLayer({
+                tileUrl: 'https://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}',
+                opacity: 1,
+                tileSize: 256,
+                minSourceZoom: 1,
+                maxSourceZoom: 23,
+                //must supply new tile layer id
+            },  'google-hybrid-3rdPartyBaseMapLayer-id')
+
+
+            google_road_3rdPartyBaseMapLayer =  new atlas.layer.TileLayer({
+                tileUrl: 'https://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}',
+                opacity: 1,
+                tileSize: 256,
+                minSourceZoom: 1,
+                maxSourceZoom: 23,
+                //must supply new tile layer id
+            },  'google-road-3rdPartyBaseMapLayer-id')
+
+
+            here_hybrid_3rdPartyBaseMapLayer =  new atlas.layer.TileLayer({
+                tileUrl: here_v3_hybrid_raster,
+                opacity: 1,
+                tileSize: 256,
+                minSourceZoom: 1,
+                maxSourceZoom: 23,
+             //must supply new tile layer id
+            },  'here-hybrid-3rdPartyBaseMapLayer-id')
+
+
+            here_road_3rdPartyBaseMapLayer =  new atlas.layer.TileLayer({
+                tileUrl: here_v3_road_raster,
+                opacity: 1,
+                tileSize: 256,
+                minSourceZoom: 1,
+                maxSourceZoom: 23,
+                //must supply new tile layer id
+            },  'here-road-3rdPartyBaseMapLayer-id')
+
+
+            open_street_map_3rdPartyBaseMapLayer = new atlas.layer.TileLayer({
+                    tileUrl: 'http://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                    opacity: 1,
+                    tileSize: 256,
+                    minSourceZoom: 1,
+                    maxSourceZoom: 23,
+                //must supply new tile layer id
+            },  'open-street-map-3rdPartyBaseMapLayer-id')
+
+
+        }
+                
+
+         //  . . . .  end  . . . . basemap  . . . .
+
+
+
 
         
+
 
 
        
@@ -1261,7 +1488,7 @@ function  add_dataSource_searchLayer(){
 
 
 
-        //  without basemap version
+        // . . . . basemap  . . . .
         function init_user_interface_after_microsoft_map_load(){
 
 
@@ -1293,8 +1520,40 @@ function  add_dataSource_searchLayer(){
 
 
 
-             // without basemap version
-             add_azure_basemap_layer()
+             // . . . . basemap  . . . .
+            init_3rdParty_basemap_tileLayer()
+
+
+            // . . - -  azure base map radio  . . - -  
+                urlParams = new URLSearchParams(window.location.search);
+                param_azure_basemap_id = urlParams.get('azureBaseMap'); 
+                if (param_azure_basemap_id){
+                    azure_basemap_id = param_azure_basemap_id
+                }//if
+                // first time set radio
+                $("input[type=radio][name='azure_basemap_radio'][value=" + azure_basemap_id + "]").prop('checked', true);
+                // 1 time, 1st time set base map
+
+
+                change_basemap_xyz_tile_layer()
+                console.log(' after  1 time, 1st time set base map, now current layers ', map.layers )
+
+
+
+                // radio change event
+                $("input[type='radio'][name='azure_basemap_radio']").change(function(){
+                    azure_basemap_id = $("input[type='radio'][name='azure_basemap_radio']:checked").val();
+                console.log(" azure_basemap_id : --  ", azure_basemap_id);
+                update_url_parameter('azureBaseMap', azure_basemap_id);
+
+                change_basemap_xyz_tile_layer()
+
+                });
+
+            // . . - -  end    . . - -   azure base map radio  . . - - 
+            
+      //  . . . .  end  . . . . basemap  . . . .      
+
 
 
 
@@ -1304,9 +1563,10 @@ function  add_dataSource_searchLayer(){
 
 
             
+        
 
 
- //   .......  Microsoft map image layer .......  opacity   ....... 
+          //   .......  Microsoft map image layer .......  opacity   ....... 
             /**/
                                       
             // init control
@@ -1440,13 +1700,14 @@ function  add_dataSource_searchLayer(){
                 console.log("The current URL is localhost.");
                 
                 //for production
-                load_microsoft_map(microsoft_azure_primary_key_restrict)
+                // .............. microsoft use google base map ..............
+                load_microsoft_basemap(microsoft_azure_primary_key_restrict)
                 // for test only
                 //use_your_key()
 
             } else {
                 console.log("The current URL is not localhost.");
-                use_your_key()
+                use_your_key("google")
             }
 
 
