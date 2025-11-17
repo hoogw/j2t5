@@ -1937,40 +1937,40 @@ break;
 
 
   case "embed_7322": // police
-    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/pan-zoom-category.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
-    _newTab_link += "&poicategory=7322" // police
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/pan-zoom-category-googlebasemap.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    _newTab_link += "&poicategory=police" // police
     window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
   break;
   case "embed_9154": // Prison Jail Correction
-    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/pan-zoom-category.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
-    _newTab_link += "&poicategory=9154" // Prison Jail Correction
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/pan-zoom-category-googlebasemap.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    _newTab_link += "&poicategory=jail" // Prison Jail Correction
     window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
   break;
   case "embed_9363": // Courthouse
-    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/pan-zoom-category.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
-    _newTab_link += "&poicategory=9363" // Courthouse
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/pan-zoom-category-googlebasemap.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    _newTab_link += "&poicategory=courthouse" // Courthouse
     window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
   break;
 
   
   case "embed_7321": // Hospital
-    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/pan-zoom-category.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
-    _newTab_link += "&poicategory=7321" // Hospital
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/pan-zoom-category-googlebasemap.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    _newTab_link += "&poicategory=hospital" // Hospital
     window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
   break;
   case "embed_9956": // Emergency Room
-    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/pan-zoom-category.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
-    _newTab_link += "&poicategory=9956" // Emergency Room
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/pan-zoom-category-googlebasemap.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    _newTab_link += "&poicategory=emergency room" // Emergency Room
     window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
   break;
   case "embed_7391": // Emergency Medical Service
-    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/pan-zoom-category.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
-    _newTab_link += "&poicategory=7391" // Emergency Medical Service
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/pan-zoom-category-googlebasemap.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    _newTab_link += "&poicategory=emergency medical service" // Emergency Medical Service
     window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
   break;
@@ -1978,14 +1978,14 @@ break;
 
 
   case "embed_7314": // motel
-    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/pan-zoom-category.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
-    _newTab_link += "&poicategory=7314" // motel
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/pan-zoom-category-googlebasemap.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    _newTab_link += "&poicategory=motel" // motel
     window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
   break;
   case "embed_9379": // Nightlife
-    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/pan-zoom-category.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
-    _newTab_link += "&poicategory=9379" // Nightlife
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/pan-zoom-category-googlebasemap.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    _newTab_link += "&poicategory=nightlife" // Nightlife
     window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
   break;
