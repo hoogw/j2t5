@@ -20,7 +20,7 @@ var searchInput
 
     
         //default
-        var microsoft_search_poi_url ="https://atlas.microsoft.com/search/poi/category/json?api-version=1.0"
+        var microsoft_search_poi_url ="https://atlas.microsoft.com/search/poi/json?api-version=1.0"
 
         /**/
         //  -  -  - search poi keyword  -  -  - 

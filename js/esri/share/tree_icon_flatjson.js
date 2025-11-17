@@ -5765,7 +5765,7 @@ icon_flatjson.push(icon_item)
                 icon_item = { 
                     "id" :  3281,     
                     "parent" : 3299,
-                    "text" : "category",
+                    "text" : "everything",
                     "icon" : folder_icon,
                     "link_type": "folder",   
                     "state"       : {
@@ -6011,7 +6011,7 @@ icon_flatjson.push(icon_item)
                 icon_item = { 
                     "id" :  3266,     
                     "parent" : 4276,
-                    "text" : "category",
+                    "text" : "everything",
                     "icon" : folder_icon,
                     "link_type": "folder",   
                     "state"       : {
@@ -6031,7 +6031,7 @@ icon_flatjson.push(icon_item)
                                     "id" :  8513,     
                                     "parent" : 3266,
                                     
-                                    "text" : "8513",
+                                    "text" : "8513 x1",
                                     
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
@@ -6061,7 +6061,7 @@ icon_flatjson.push(icon_item)
                                     "id" :  8526,     
                                     "parent" : 3266,
                                     
-                                    "text" : "8526 circle x4",
+                                    "text" : "8526 x4",
                                     
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,

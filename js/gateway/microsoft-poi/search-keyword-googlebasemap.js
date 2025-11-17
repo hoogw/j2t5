@@ -19,7 +19,7 @@ var searchInput
     async function nearby_poi(_centerLng, _centerLat) {
 
         //default
-        var microsoft_search_poi_url ="https://atlas.microsoft.com/search/poi/category/json?api-version=1.0"
+        var microsoft_search_poi_url ="https://atlas.microsoft.com/search/poi/json?api-version=1.0"
 
         /**/
         //  -  -  - search poi keyword  -  -  - 
