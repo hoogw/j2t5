@@ -19,38 +19,34 @@ var searchInput
     async function nearby_poi(_centerLng, _centerLat) {
 
     
+        //default
+        var microsoft_search_poi_url ="https://atlas.microsoft.com/search/poi/category/json?api-version=1.0"
 
+        /**/
+        //  -  -  - search poi keyword  -  -  - 
+        /**/
+        search_poi_keyword = $("#search_poi_input").val()
+        update_url_parameter('poi', search_poi_keyword);
+        if (search_poi_keyword){
+            // search poi
+            microsoft_search_poi_url += '&query=' + search_poi_keyword
+        } else {
+            console.log("keyword is empty, you will get ajax error, says required query string is empty")
+        }
+        /**/
+        //  -  -  - end  -  -  -  search poi keyword    -  -  - 
+        /**/
 
-            /**/
-            //  -  -  - search poi keyword  -  -  - 
-            /**/
+        // do not use bias, otherwise it will show fuzzy nearby lots more result
+        microsoft_search_poi_url += '&btmRight=' + SWlat + ',' + NElong
+        microsoft_search_poi_url += '&topLeft=' + NElat + ',' + SWlong
 
-            //default
-            var microsoft_search_poi_url
-            
-            search_poi_keyword = $("#search_poi_input").val()
-            update_url_parameter('poi', search_poi_keyword);
-            if (search_poi_keyword){
-                // search poi
-                microsoft_search_poi_url ="https://atlas.microsoft.com/search/poi/json?api-version=1.0"
-                microsoft_search_poi_url += '&query=' + search_poi_keyword
-                // do not use bias, otherwise it will show fuzzy nearby lots more result
-                microsoft_search_poi_url += '&btmRight=' + SWlat + ',' + NElong
-                microsoft_search_poi_url += '&topLeft=' + NElat + ',' + SWlong
-            } else {
-               console.log("keyword is empty, you will get ajax error, says required query string is empty")
-            }
-
-            microsoft_search_poi_url += '&limit=' + 100
-            microsoft_search_poi_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
-
-            /**/
-            //  -  -  - end  -  -  -  search poi keyword    -  -  - 
-            /**/
+        microsoft_search_poi_url += '&limit=' + 100
+        microsoft_search_poi_url += '&subscription-key=' + microsoft_azure_primary_key_restrict
 
 
 
-
+        
             var microsoft_search_nearby_response = await ajax_getjson_common(microsoft_search_poi_url)
             console.log('search nearby result ', microsoft_search_nearby_response)
 
