@@ -96,7 +96,10 @@
                                         // disabled  : boolean  // is the node disabled
                                         // "selected"  : true   // is the node selected
                                     },
-                    "type" : "folder"
+                    "type" : "folder",
+                    "name" : _name,
+                    "id-code" : _id, 
+                   
                 };       
                 // add folder item
                 folder_structure_flatjson.push(flatJson_item) 
@@ -134,15 +137,39 @@
                                                     // disabled  : boolean  // is the node disabled
                                                     // "selected"  : true   // is the node selected
                                                 },
-                                "type" : "folder"
+                                "type" : "folder",
+                                "name" : c_name,
+                                "id-code" : c_id, 
                             };       
                             // add folder item
                             folder_structure_flatjson.push(flatJson_item) 
                             already_haved_id_array.push(flatJson_item.id)
 
+
                             // ********* add child cat. synonyms *********
 
 
+                            if (c_synonyms.length){
+                               for (let s3 = 0; s3 < c_synonyms.length; s3++) {
+
+                                    flatJson_item =  { 
+                                        "id" : c_id * 1000 + s3, 
+                                        "parent" : c_id,   // root parent id is #
+                                        "text" : "<small>" + c_synonyms[s3] + "</small>",
+                                        "icon" : folder_icon,
+                                        "state"       : {
+                                                            "opened"    : false,  // is the node open
+                                                            // disabled  : boolean  // is the node disabled
+                                                            // "selected"  : true   // is the node selected
+                                                        },
+                                        "type" : "folder",
+                                        "name" : c_synonyms[s3],
+                                        "id-code" : c_id, 
+                                    };       
+                                    // add folder item
+                                    folder_structure_flatjson.push(flatJson_item) 
+                                }//for child syn
+                            }//if child syn
 
 
                             // ********* end ********* add child cat. synonyms *********
@@ -159,6 +186,39 @@
                  }//if child
 
                 // ********* end ********** add child cat. *********
+
+
+
+
+
+                 // ********* add top level cat. synonyms *********
+
+
+                            if (_synonyms_count){
+                               for (let s1 = 0; s1 < _synonyms_count; s1++) {
+
+                                    flatJson_item =  { 
+                                        "id" : _id * 10000 + s1, 
+                                        "parent" : _id,   // root parent id is #
+                                        "text" : "<small>" +  _synonyms[s1] + "</small>",
+                                        "icon" : folder_icon,
+                                        "state"       : {
+                                                            "opened"    : false,  // is the node open
+                                                            // disabled  : boolean  // is the node disabled
+                                                            // "selected"  : true   // is the node selected
+                                                        },
+                                        "type" : "folder",
+                                        "name" : _synonyms[s1],
+                                        "id-code" : _id, 
+                                    };       
+                                    // add folder item
+                                    folder_structure_flatjson.push(flatJson_item) 
+                                }//for child syn
+                            }//if child syn
+
+
+                // ********* end ********* add top level cat. synonyms *********
+
 
 
 
@@ -213,12 +273,16 @@
 
                 if (!(data.action == 'deselect_all')){
 
-                      var i, j,  _selected_alias = [], _selected_text = [], _selected_id = [], _selected_type = [];
+                      var i, j, _selected_name = [], _selected_id_code = [],  _selected_text = [], _selected_id = [], _selected_type = [];
 
                       for(i = 0, j = data.selected.length; i < j; i++) {
-                        _selected_alias.push(data.instance.get_node(data.selected[i]).original.alias);
+                        
                         _selected_text.push(data.instance.get_node(data.selected[i]).text);
                         _selected_id.push(data.instance.get_node(data.selected[i]).id);
+
+                        _selected_name.push(data.instance.get_node(data.selected[i]).original.name);
+                        _selected_id_code.push(data.instance.get_node(data.selected[i]).original["id-code"]);
+
                         // must use .original.type, because re-structured json does not carry our customized field 'type'
                         _selected_type.push(data.instance.get_node(data.selected[i]).original.type);                                                   
                       }
@@ -227,22 +291,24 @@
                       // only get 1st selected node, so always use    _selected_xxxxx[0]
                       //$('#event_result').html('Selected: ' + r.join(', '));
                       console.log('Selected node id : ' + _selected_id[0])
-                      console.log('Selected node alias : ' + _selected_alias[0])
                       console.log('Selected node text : ' +  _selected_text[0])
+                      console.log('Selected node name : ' +  _selected_name[0])
+                      console.log('Selected node id_code : ' +  _selected_id_code[0])
                       console.log('Selected node type : ' +  _selected_type[0])
 
                       var selected_node_type = _selected_type[0]
                       
                       update_url_parameter('select_folder_id', _selected_id[0]);
                       update_url_parameter('select_folder_text', _selected_text[0]);
-                      update_url_parameter('select_folder_alias', _selected_alias[0]);
+                    
 
-                      $("#filter_folder_list_by").val(_selected_alias[0])
+                      //$("#filter_folder_list_by").val(_selected_text[0])
+                      $("#filter_folder_list_by").val(_selected_name[0] + " " + _selected_id_code[0])
 
                       switch(selected_node_type) {
                           case "folder":
                                           console.log(' render folder ', _selected_id[0])
-                                          render_folder(_selected_id[0])
+                                         
                           break;
 
                           default:     
@@ -316,43 +382,7 @@
       }
 
 
-      // when user click a folder, find all sub-item which use this _folder_item_id as their parent id, show sub-item (children item) at service panel (center)
-      // will not use jstree, only display list collection
-      async function render_folder(_selected_folder_tree_id){
-
-
-
-
-         console.log('selected folder tree id ', _selected_folder_tree_id )
-
-          for (f = 0; f < folder_structure_flatjson.length; f++) {
-            // if (folder_structure_flatjson[f].parent == _selected_folder_tree_id.toString()) {
-            if (folder_structure_flatjson[f].id == _selected_folder_tree_id) {
-
-            console.log('selected folder tree alias ', folder_structure_flatjson[f].alias )
-            console.log('selected folder tree text ', folder_structure_flatjson[f].text )
-
- 
-            var ____url = yelp_api_search
-
-            if (folder_structure_flatjson[f].alias == 'root'){
-               //  If categories is not included the endpoint will default to searching across businesses from a small number of popular categories.
-            } else {
-                ____url += 'categories=' + folder_structure_flatjson[f].alias
-            }
-
-
-            console.log('poi search by categories url ', ____url )
-            
-            break;  // for loop
-                                                                      
-            }//if
-          }// for 
-
-
-      }
-
-
+  
 
           /**/
           // - - - filter layer list  - - - 

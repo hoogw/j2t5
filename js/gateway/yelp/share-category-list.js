@@ -254,7 +254,7 @@
                       switch(selected_node_type) {
                           case "folder":
                                           console.log(' render folder ', _selected_id[0])
-                                          render_folder(_selected_id[0])
+                                         
                           break;
 
                           default:     
@@ -327,42 +327,6 @@
 
       }
 
-
-      // when user click a folder, find all sub-item which use this _folder_item_id as their parent id, show sub-item (children item) at service panel (center)
-      // will not use jstree, only display list collection
-      async function render_folder(_selected_folder_tree_id){
-
-
-
-
-         console.log('selected folder tree id ', _selected_folder_tree_id )
-
-          for (f = 0; f < folder_structure_flatjson.length; f++) {
-            // if (folder_structure_flatjson[f].parent == _selected_folder_tree_id.toString()) {
-            if (folder_structure_flatjson[f].id == _selected_folder_tree_id) {
-
-            console.log('selected folder tree alias ', folder_structure_flatjson[f].alias )
-            console.log('selected folder tree text ', folder_structure_flatjson[f].text )
-
- 
-            var ____url = yelp_api_search
-
-            if (folder_structure_flatjson[f].alias == 'root'){
-               //  If categories is not included the endpoint will default to searching across businesses from a small number of popular categories.
-            } else {
-                ____url += 'categories=' + folder_structure_flatjson[f].alias
-            }
-
-
-            console.log('poi search by categories url ', ____url )
-            
-            break;  // for loop
-                                                                      
-            }//if
-          }// for 
-
-
-      }
 
 
 
