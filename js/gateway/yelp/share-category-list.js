@@ -13,7 +13,7 @@
    
 
 
-    
+     var editor_json_root
 
    
 
@@ -185,6 +185,28 @@
 
           jstree_root_folder(folder_structure_flatjson)
 
+
+
+
+                                        
+                                                
+                /**/
+                //   = = = = =   f=json  = = = = =  = = = = =
+                /**/
+                var _html_for_f_json = ''
+                _html_for_f_json += "</br>"
+                _html_for_f_json += '<h5 style="display:inline;"  ><b>  <a target="_blank" id="root_url_link" href="'+  yelp_api_get_all_categories + '?f=json">'  
+                _html_for_f_json += "f=json" + '</a></b></h5>'
+                _html_for_f_json += '<br> <h6 style="display:inline;"  ><sup><a target="_blank" id="root_url_link2" href="'+  yelp_api_get_all_categories + '">' + yelp_api_get_all_categories  + '</a></sup></h6>'
+                $("#root-more-info").html(_html_for_f_json)         
+
+                $("#json-root").show();
+                editor_json_root.set({json:response_json})
+
+                
+                /**/
+                //   = = = = =    end   = = = = =   f=json  = = = = =  = = = = =
+                /**/ 
 
 
       }

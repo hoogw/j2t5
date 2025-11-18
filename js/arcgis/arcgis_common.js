@@ -1211,8 +1211,8 @@ var unknow_geometry_icon = "bi bi-triangle"
         // If the specified value is too large, a AREA_TOO_LARGE error may be returned. The max value is 40,000 meters (about 25 miles).
         var max_microsoft_poi_radius_meter = 50000 
 
-
-        var microsoft_azure_get_all_categories = "https://atlas.microsoft.com/search/poi/category/tree/json?api-version=1.0&subscription-key=" + microsoft_azure_primary_key_restrict
+        var microsoft_azure_get_all_categories_no_key = "https://atlas.microsoft.com/search/poi/category/tree/json?api-version=1.0&subscription-key="
+        var microsoft_azure_get_all_categories = microsoft_azure_get_all_categories_no_key + microsoft_azure_primary_key_restrict
 
   /**/
   //    --- --- end --- --- --- ---  --- --- microsoft azure  --- --- --- ---  

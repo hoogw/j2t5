@@ -3,7 +3,7 @@
     // top level folder jstree
     var folder_structure_flatjson= [];
     // root
-    var id_counter = 0;
+    var root_id = 0;
     var current_selected_folder_tree_id_counter;
 
     // root item + folder item + service item(mapserver, geocodeserver, etc......)
@@ -11,7 +11,7 @@
     var stack_item = {}
     
    
-
+ var editor_json_root
 
     
 
@@ -39,12 +39,12 @@
           $("#poi_categories_total").html(poi_categories_array.length)
 
           folder_structure_flatjson = []
-
+          var already_haved_id_array = []
 
           // ********* add root item *********             
               flatJson_item =  { 
-                // "id" : id_counter.toString(), 
-                    "id" : id_counter, 
+               
+                    "id" : root_id, 
                     "parent" : "#",   // root parent id is #
                     "text" : "Root",
                     "icon" : folder_icon,
@@ -53,135 +53,148 @@
                                         // disabled  : boolean  // is the node disabled
                                     // "selected"  : true   // is the node selected
                                     },
-                    "alias" : "root", 
+                    "id-code" : root_id, 
+                    "name" : "root",
+                    "synonyms" : [],
+                    "childCategoryIds" : [],
                     "type" : "folder"
                 };
 
 
                 // 1 time, first time run, add root item
                 folder_structure_flatjson.push(flatJson_item) 
-
+                already_haved_id_array.push(flatJson_item.id)
                     
           // *******  end  ********* add root item *********
 
 
-          stack_item = {}
-          stack_item.id = flatJson_item.id  // 0
-          stack_item.alias = 'root' 
-          stack_item.title = 'Root'
-
-          var stack = new Stack();
-          stack.push(stack_item);
-
-
-          while(stack.count > 0) {                                              
-
-            var stack_parent_item = stack.pop();
-                      
-            if (stack_parent_item.alias == 'root'){
+        for (let c = 0; c < poi_categories_array.length; c++) {
 
             
-              for (let i = 0; i < poi_categories_array.length; i++) {
-
-                  if (!(poi_categories_array[i].parent_aliases.length)){ 
-                    // length is 0,  !0 is true
-
-                      id_counter += 1
-
-                      stack_item = {}
-                      stack_item.id = id_counter
-                      stack_item.alias = poi_categories_array[i].alias
-                      stack_item.title = poi_categories_array[i].title
-                      stack.push(stack_item);
-
-                  
-                      // ********* add folder item *********
-                      flatJson_item =  { 
-                          //"id" : id_counter.toString(), 
-                          "id" : id_counter, 
-                          //"parent" : current_selected_folder_tree_id_counter.toString(),   // root parent id is #
-                          "parent" : stack_parent_item.id,   // root parent id is #
-                          //"text" : stack_item.title,
-                          "text" : stack_item.title + " <small><small><b>" + stack_item.alias + "</b></small></small>",
-                          "icon" : folder_icon,
-                          "state"       : {
-                                              "opened"    : false,  // is the node open
-                                              // disabled  : boolean  // is the node disabled
-                                              // "selected"  : true   // is the node selected
-                                          },
-                          "alias" : stack_item.alias, 
-                          "type" : "folder"
-                      };
-                              
-                      
-                      // add folder item
-                      folder_structure_flatjson.push(flatJson_item) 
+            var _id = poi_categories_array[c]["id"]
+            var _name = poi_categories_array[c]["name"]
+            var _childCategoryIds = poi_categories_array[c]["childCategoryIds"]
+            var _child_count = _childCategoryIds.length
+            var _synonyms = poi_categories_array[c]["synonyms"]
+            var _synonyms_count = _synonyms.length
 
 
-                      // ********* end ********** add folder item *********
-                  
+            if (already_haved_id_array.includes(_id)){
 
-                  }//if root
-
-              }//for loop array
+                // already have, skip
 
             } else {
 
-                // not root
-                for (let i = 0; i < poi_categories_array.length; i++) {
-
-                    if (poi_categories_array[i].parent_aliases[0] == stack_parent_item.alias){ 
-                      // length is 0,  !0 is true
-
-                        id_counter += 1
-
-                        stack_item = {}
-                        stack_item.id = id_counter
-                        stack_item.alias = poi_categories_array[i].alias
-                        stack_item.title = poi_categories_array[i].title
-                        stack.push(stack_item);
-
-                    
-                        // ********* add folder item *********
-                        flatJson_item =  { 
-                            //"id" : id_counter.toString(), 
-                            "id" : id_counter, 
-                            //"parent" : current_selected_folder_tree_id_counter.toString(),   // root parent id is #
-                            "parent" : stack_parent_item.id,   // root parent id is #
-                            //"text" : stack_item.title,
-                            "text" : stack_item.title + " <small><small><b>" + stack_item.alias + "</b></small></small>",
-                            "icon" : folder_icon,
-                            "state"       : {
-                                                "opened"    : false,  // is the node open
-                                                // disabled  : boolean  // is the node disabled
-                                                // "selected"  : true   // is the node selected
-                                            },
-                            "alias" : stack_item.alias, 
-                            "type" : "folder"
-                        };
-                                
-                        
-                        // add folder item
-                        folder_structure_flatjson.push(flatJson_item) 
+                // ********* add top level name *********
+                flatJson_item =  { 
+                    "id" : _id, 
+                    "parent" : root_id,   // root parent id is #
+                    "text" : _name + "<small><b> " + _id + "</b></small>",
+                    "icon" : folder_icon,
+                    "state"       : {
+                                        "opened"    : false,  // is the node open
+                                        // disabled  : boolean  // is the node disabled
+                                        // "selected"  : true   // is the node selected
+                                    },
+                    "type" : "folder"
+                };       
+                // add folder item
+                folder_structure_flatjson.push(flatJson_item) 
+                already_haved_id_array.push(flatJson_item.id)
+                // ********* end ********** add top level name *********
 
 
-                        // ********* end ********** add folder item *********
-                    
 
-                    }//if root
 
-                }//for loop array
-              
-            }//if
 
-            
-          }// while stack
-                                                                          
-                                                                      
+                // ********* add child cat. *********
+
+                if (_child_count > 0){
+
+                  for (let c1 = 0; c1 < _child_count; c1++) {
+
+                    var child_id = _childCategoryIds[c1]
+
+                    for (let c2 = 0; c2 < poi_categories_array.length; c2++) {
+
+                          if (poi_categories_array[c2]["id"] == child_id){
+
+                            var c_id = poi_categories_array[c2]["id"]
+                            var c_name = poi_categories_array[c2]["name"]
+                            var c_childCategoryIds = poi_categories_array[c2]["childCategoryIds"]
+                            var c_synonyms = poi_categories_array[c2]["synonyms"]
+
+                            flatJson_item =  { 
+                                "id" : c_id, 
+                                "parent" : _id,   // root parent id is #
+                                "text" : c_name + "<small><b> " + c_id + "</b></small>",
+                                "icon" : folder_icon,
+                                "state"       : {
+                                                    "opened"    : false,  // is the node open
+                                                    // disabled  : boolean  // is the node disabled
+                                                    // "selected"  : true   // is the node selected
+                                                },
+                                "type" : "folder"
+                            };       
+                            // add folder item
+                            folder_structure_flatjson.push(flatJson_item) 
+                            already_haved_id_array.push(flatJson_item.id)
+
+                            // ********* add child cat. synonyms *********
+
+
+
+
+                            // ********* end ********* add child cat. synonyms *********
+
+
+                            break; // for c2
+                          }//if c2
+
+                    }//for child c2
+                            
+                           
+                  }//for child c1
+
+                 }//if child
+
+                // ********* end ********** add child cat. *********
+
+
+
+
+
+            }//if already have id
+
+        }//for cat.
+
 
 
           jstree_root_folder(folder_structure_flatjson)
 
+
+
+
+
+                                                
+                                                
+                /**/
+                //   = = = = =   f=json  = = = = =  = = = = =
+                /**/
+                var _html_for_f_json = ''
+                _html_for_f_json += "</br>"
+                _html_for_f_json += '<h5 style="display:inline;"  ><b>  <a target="_blank" id="root_url_link" href="'+  microsoft_azure_get_all_categories_no_key + '?f=json">'  
+                _html_for_f_json += "f=json" + '</a></b></h5>'
+                _html_for_f_json += '<br> <h6 style="display:inline;"  ><sup><a target="_blank" id="root_url_link2" href="'+  microsoft_azure_get_all_categories_no_key + '">' + microsoft_azure_get_all_categories_no_key  + '</a></sup></h6>'
+                $("#root-more-info").html(_html_for_f_json)         
+
+                $("#json-root").show();
+                editor_json_root.set({json:response_json})
+
+                
+                /**/
+                //   = = = = =    end   = = = = =   f=json  = = = = =  = = = = =
+                /**/     
 
 
       }
