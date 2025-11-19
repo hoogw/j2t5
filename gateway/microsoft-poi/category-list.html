@@ -35,23 +35,24 @@
       <div class="vertical-width-undefined-no-border" style="width: 700px; height: 900px; overflow: auto;">
 
         <div>
-            <a target="_blank" href="https://learn.microsoft.com/en-us/azure/azure-maps/supported-search-categories">Microsoft Cat. List</a>
-            <input id='filter_folder_list_by' name='filter_folder_list_by'  type='search' placeholder='search'/>
+          <a target="_blank" href="https://learn.microsoft.com/en-us/azure/azure-maps/supported-search-categories">Microsoft Category List</a>
           
-            <button  id='clear_filter_folder_list_button'>clear</button>
+          <span>Total:</span>
+          <span id="poi_categories_total" style="font-size: large;">...</span>
+            
             <button  id="expand_button_folder" type="button" >expand</button>
             <button  id="collapse_button_folder" type="button">collapse</button>
-
-            <span>Total:</span>
-            <span id="poi_categories_total" style="font-size: large;">...</span>
+            <button  id='clear_filter_folder_list_button'>clear</button>
             
-          
         </div>
+
+        <input id='filter_folder_list_by' name='filter_folder_list_by'  type='search' placeholder='search'/>
+        
 
         <div id="poi_categories"></div>
         <div id="root-more-info"></div>
         <div id="json-root"></div>
-      </div>
+      </div> 
 
   
        <!-- new jsoneditor, https://github.com/josdejong/svelte-jsoneditor/issues/265,   https://jsbin.com/yuwapaj/edit?html,output  -->
