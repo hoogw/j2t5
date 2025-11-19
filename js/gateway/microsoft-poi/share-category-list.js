@@ -24,14 +24,50 @@
 
           init_category_list_ui()
 
-          var response_json =  await $.ajax({
-                                                  url: microsoft_azure_get_all_categories,
-                                                  method: 'GET',
-                                                  dataType: 'json',
-                                                  success: function(data){
-                                                    console.log('poi api get all categories', data)
-                                                  }
-                                              });  
+
+          var response_json
+          var response_json_file
+
+          try{
+
+            // live data from microsoft
+            response_json =  await $.ajax({
+                url: "fake wrong url", //test only,
+                //url: microsoft_azure_get_all_categories,
+                method: 'GET',
+                dataType: 'json',
+                success: function(data){
+                    console.log('poi api get all categories', data)
+                }, 
+                error: async function(XMLHttpRequest, textStatus, errorThrown) { 
+                    //alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+                }
+             }); 
+
+
+            } catch{
+
+                    // backup json file if live is not available
+                    response_json_file =  await $.ajax({
+                         // warning:   
+                         // original live json, id:  name:
+                         // when copy paste to json file,  all property name must use double quote, "id":   "name": ...
+                                        url: "https://transparentgov.net/data/live_data/microsoft_poi_category_list.json",
+                                        method: 'GET',
+                                        dataType: 'text', // warning: must be text for file
+                                        success: function(data){
+                                        //console.log('poi api get all categories', data)
+                                        }
+                    }); 
+
+                    //console.log("response_json_file", response_json_file)          
+                    response_json = JSON.parse(response_json_file)
+                    //console.log("response_json_file parse to json : ", response_json_file) 
+
+            }// catch
+            console.log("response_json", response_json) 
+        
+
       
       
 

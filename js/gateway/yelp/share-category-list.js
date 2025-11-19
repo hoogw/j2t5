@@ -24,19 +24,51 @@
 
           init_category_list_ui()
 
-          var response_json =  await $.ajax({
-                                                  url: yelp_api_get_all_categories,
-                                                  headers: {
-                                                  'Authorization': yelp_api_key,  //'Bearer xxxxxx',
-                                                  },
-                                                  method: 'GET',
-                                                  dataType: 'json',
-                                                  success: function(data){
-                                                    console.log('poi api get all categories', data)
-                                                  }
-                                              });  
+        
+          var response_json
+          var response_json_file
+
+          try{
+
+            // live data from yelp
+            response_json =  await $.ajax({
+                    url: yelp_api_get_all_categories,
+                    headers: {
+                     'Authorization': yelp_api_key,  //'Bearer xxxxxx',
+                    },
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(data){
+                    console.log('poi api get all categories', data)
+                    },
+                    error: async function(XMLHttpRequest, textStatus, errorThrown) { 
+                    //alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+                }
+            });  
       
       
+          } catch{
+
+                    // backup json file if live is not available
+                    response_json_file =  await $.ajax({
+                         // warning:   
+                         // original live json, id:  name:
+                         // when copy paste to json file,  all property name must use double quote, "id":   "name": ...
+                                        url: "https://transparentgov.net/data/live_data/yelp_poi_category_list.json",
+                                        method: 'GET',
+                                        dataType: 'text', // warning: must be text for file
+                                        success: function(data){
+                                        //console.log('poi api get all categories', data)
+                                        }
+                    }); 
+
+                    //console.log("response_json_file", response_json_file)          
+                    response_json = JSON.parse(response_json_file)
+                    //console.log("response_json_file parse to json : ", response_json_file) 
+
+            }// catch
+            console.log("response_json", response_json) 
+        
 
           var poi_categories_array = response_json.categories
           $("#poi_categories_total").html(poi_categories_array.length)
