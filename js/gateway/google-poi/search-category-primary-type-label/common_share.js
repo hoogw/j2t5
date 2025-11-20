@@ -1296,49 +1296,6 @@ var highlighted_color = '#1F51FF' // Neon Blue
 
 
 
-
- /**/
- // -- -- --  POI marker replace point geojson  -- -- -- 
-              // delete function set poi style                   
- // -- -- --  end -- -- --  POI marker replace point geojson -- -- -- 
- /**/
-
-
-      
-      function poi_viewer_for_download(___properties){
-
-        //in use, customized properties ,  only for side info window, 
-        var poi_other_html = ''
-        poi_other_html    +=      '<span style="font-size:22.2px; font-weight:900;">' + ___properties.name + '</span>' + '&nbsp;&nbsp;'
-        poi_other_html    +=      '<span style="font-size:16.3px;">' + ___properties.phone + '</span>' + '&nbsp;&nbsp;'
-        
-        poi_other_html    +=      '<span style="font-size:13.3px;">' + ___properties.fmtAddr + '</span>' + '&nbsp;&nbsp;'
-        
-        // not use google poi id, too much info
-        //poi_other_html    +=      '<span style="font-size:7.3px;">' + ___properties.poi_id + '</span>' + '&nbsp;&nbsp;'
-        
-        poi_other_html    +=      '<span style="font-size:9.3px; background-color:#FF8C00">' + ___properties.open + '</span>' + '&nbsp;&nbsp;'
-       
-        //poi_other_html    +=      '<span style="font-size:11.3px;">reviews(' + ___properties.poi_reviews + ')</span>' + '&nbsp;&nbsp;'
-        //poi_other_html    +=      '<span style="font-size:8.3px;">' + ___properties.poi_photos + '</span>' + '&nbsp;&nbsp;'
-
-        poi_other_html    +=      '<span style="font-size:12.2px;">primaryType(' + ___properties.primaryType + ')</span>' + '&nbsp;&nbsp;'
-        
-        // not use types, it has too much info 
-        //poi_other_html    +=      '<span style="font-size:10.2px;">types(' + ___properties.type + ')</span>' + '&nbsp;&nbsp;'
-
-
-        return  poi_other_html 
-         
-      }
-
-
-
-
-
-
-
-
 /**/
 //  --- end  ---  google poi    --- 
 /**/
