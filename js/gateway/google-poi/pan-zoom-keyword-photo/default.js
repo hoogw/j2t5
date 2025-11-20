@@ -492,9 +492,6 @@
 /**/       
 
 
-           
-
-
             async function nearby_poi(_radiusMeter, _centerLng, _centerLat){
 
 
@@ -648,65 +645,6 @@
             }//function
 
 
-
-            //  . . efficient core newOnly  . - .
-                    function clear_all_poi(){
-
-                       //  . . efficient core newOnly  . - .
-                            var _thisNewGeoJsonGoogleHandler
-                            if (_this_newOnly_geojsonGoogleHandlerArray){
-                              
-                              for (var l = 0; l< _this_newOnly_geojsonGoogleHandlerArray.length; l++){
-                                _thisNewGeoJsonGoogleHandler = _this_newOnly_geojsonGoogleHandlerArray[l]
-                                for (var k = 0; k< _thisNewGeoJsonGoogleHandler.length; k++){
-                                  map.data.remove(_thisNewGeoJsonGoogleHandler[k]);
-                                }// for
-                              }// for
-
-
-                            }//if
-                            
-                              _this_newOnly_geojsonGoogleHandlerArray = []
-                       // . .  end . . efficient core newOnly  . - .
-
-
-                       
-
-                      _all_poi_uniqueID_array = []
-                      _all_poi_flat_array = []
-
-                    _total_poi = 0
-                      empty_info_outline_Tab()
-                      $("#poi_total").html(_total_poi)
-                  }
-           
-           
-           
-         
-
-
-
-
-            function init_poi_ui(){
-
-
-                /**/
-                //  --- side by side   --- 
-                /**/
-
-                $('#info_outline').hide()
-                $('#close_info_outline_panel').on('click', function(event) {
-                    empty_info_outline_Tab()
-                });
-                /**/
-                //   --- end  ---   --- side by side   --- 
-                /**/
-
-  
-            }
-                 
-  
-  
 
 /**/
 //  --- end  ---  google poi    --- 
