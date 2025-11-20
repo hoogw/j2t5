@@ -531,6 +531,26 @@ var _this_newOnly_poi_geojson
               drawing_circle(_radiusMeter, _centerLng, _centerLat)
 
               
+
+              
+                var response_string =  await $.ajax({
+                  url: ____nearby_url + _paged_offset_url_param,
+                  headers: {
+                  'Authorization': yelp_api_key,  //'Bearer xxxxxx',
+                  },
+                  method: 'GET',
+                  dataType: 'json',
+                  success: function(data){
+                    console.log('poi search by categories success', data)
+                  }, 
+                  error: function(jqXHR, textStatus, errorThrown) {
+                    // Handle error response
+                    console.error("Error:", textStatus, errorThrown);
+                  }
+                });  
+
+
+
               
              // https://developers.google.com/maps/documentation/javascript/load-maps-js-api#use-legacy-tag
              var { Place } = await google.maps.importLibrary("places");
