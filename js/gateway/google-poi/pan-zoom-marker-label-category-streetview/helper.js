@@ -997,7 +997,7 @@
                   _center_radius_in_meter = get_center_radius_in_map_bound()
 
 
-                  drawing_circle_guideRing(_center_radius_in_meter, _center_long, _center_lat)
+                  drawing_circle_guideRing_for_pan_zoom(_center_radius_in_meter, _center_long, _center_lat)
 
                 });
 
