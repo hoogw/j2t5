@@ -758,6 +758,75 @@ var current_pointShape = 0      // circle
 
 
 
+var _google_public_map_only_api_key = "AIzaSyCeIFVL6oxxXNT7NToJjfU4J9TV2J8m4vE"
+
+
+/**/
+//  --- use your key  --- 
+/**/
+
+
+   
+   function use_your_key(){
+
+
+          // 1st time, one time
+          urlParams = new URLSearchParams(window.location.search);
+          param_your_google_api_key = urlParams.get('yourGoogleKey'); 
+          if (param_your_google_api_key){
+                $('#googlemap-key-input').val(param_your_google_api_key)
+                your_google_api_key = param_your_google_api_key
+                import_google_map_dynamic_library(your_google_api_key)
+          }
+
+
+    
+          $('#googlemap-button').on("click", async (event) => {
+
+              your_google_api_key = $('#googlemap-key-input').val();
+              update_url_parameter('yourGoogleKey', your_google_api_key);
+              import_google_map_dynamic_library(your_google_api_key)
+          });// click 
+
+   }
+
+
+
+
+    async function import_google_map_dynamic_library(_key){
+
+                        (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+                                key: _key,
+                                v: "weekly",
+                                // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
+                                // Add other bootstrap parameters as needed, using camel case.
+                        });
+                        
+                        console.log("i m p o r t, g o o g l e,  l i b r a r y ");
+                        await google.maps.importLibrary("maps");
+                        await google.maps.importLibrary("geometry");
+                        
+                        // poi already use new place api, no longer use this is legacy place library
+                        // but search place box, still use it, until search place box get updated.
+                        await google.maps.importLibrary("places");
+                        
+                        await google.maps.importLibrary("marker");
+
+                        initMap()
+
+    }
+
+
+
+/**/
+//  --- end  ---  use your key    --- 
+/**/
+
+
+
+
+
+
                   async function init_global_var_from_node(){
                 
 
@@ -6024,415 +6093,6 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                     } 
 
                       
-
-
-
-/**/
-//  --- use your key  --- 
-/**/
-
-
-   
-   function use_your_key(){
-
-
-          // 1st time, one time
-          urlParams = new URLSearchParams(window.location.search);
-          param_your_google_api_key = urlParams.get('yourGoogleKey'); 
-          if (param_your_google_api_key){
-                $('#googlemap-key-input').val(param_your_google_api_key)
-                your_google_api_key = param_your_google_api_key
-                import_google_map_dynamic_library(your_google_api_key)
-          }
-
-
-    
-          $('#googlemap-button').on("click", async (event) => {
-
-              your_google_api_key = $('#googlemap-key-input').val();
-              update_url_parameter('yourGoogleKey', your_google_api_key);
-              import_google_map_dynamic_library(your_google_api_key)
-          });// click 
-
-   }
-
-
-/**/
-//  --- end  ---  use your key    --- 
-/**/
-
-
-
-async function import_google_map_dynamic_library(_key){
-
-                    (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
-                              key: _key,
-                              v: "weekly",
-                              // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
-                              // Add other bootstrap parameters as needed, using camel case.
-                    });
-                    
-                    console.log("i m p o r t, g o o g l e,  l i b r a r y ");
-                    await google.maps.importLibrary("maps");
-                    await google.maps.importLibrary("geometry");
-                    await google.maps.importLibrary("places");
-                    await google.maps.importLibrary("marker");
-
-                    initMap()
-
-}
-
-
-
-
-
-
-
-
- /**/
- //  -  -  - google photo  -  -  - only for new marker
- /**/
-
-     var last_poi_id 
-     var current_poi_id 
-
-/**/
-//  -  -  - end  -  -  -  google photo    -  -  - only for new marker
-/**/
-
-
-
-
-
- /**/
- //  -  -  - google photo  -  -  - 
- /**/
-
- async function google_photo(_place_id){
-
-   
-    var _photos_html = ''
-
-    var _place_details
-    var _place_displayName
-    var _photos_array
-    var _photos_name
-    var _photos_heightPx
-    var _photos_widthPx
-
-    var _photo_api_key
-
-
-        
-
-    var hostname = window.location.hostname;
-    if (hostname === "localhost" || hostname === "127.0.0.1") {
-        console.log("The current URL is localhost.");
-        _photo_api_key = _google_place_api_key
-    } else {
-        // use client's key
-        _photo_api_key = your_google_api_key
-    }
-       
-    // Place Details (New) requests https://developers.google.com/maps/documentation/places/web-service/place-details
-    var _place_details_by_google_url = 'https://places.googleapis.com/v1/places/' + _place_id + '?fields=id,displayName,photos&key=' +  _photo_api_key
-     
-
-           var _response_place_details = await ajax_getjson_common(_place_details_by_google_url)
-              if (typeof _response_place_details === 'object') {
-                              // is object
-                              _place_details = _response_place_details
-              } else {
-                              // is string
-                              _place_details = JSON.parse(_response_place_details)
-              }
-              console.log('_place_details', _place_details)
-
-
-              // place name 
-              if (_place_details.hasOwnProperty('displayName')){
-                _place_displayName =  _place_details.displayName.text
-              }
-              _photos_html += '<span style="font-size:19.3px; font-weight:800;">' + _place_displayName + '</span>' 
-              
-              
-             
-              // photos
-              if (_place_details.hasOwnProperty('photos')){
-
-                _photos_array = _place_details.photos
-                for (let p = 0; p < _photos_array.length; p++) {
-                  _photos_name =  _photos_array[p].name
-                  _photos_heightPx = _photos_array[p].heightPx
-                  _photos_widthPx = _photos_array[p].widthPx
-                  _photos_html += '<img src="https://places.googleapis.com/v1/' + _photos_name + '/media?maxHeightPx=570&maxWidthPx=570&key=' + _photo_api_key + '" >'
-                }// for photo
-
-              }//if
-
-
-               
-              $('#google-photo-div').html(_photos_html)
-              
-
-               
-
-
-
- }
-
-/**/
-//  -  -  - end  -  -  -  google photo    -  -  - 
-/**/
-
-
-
-
-
-
-
-
-
-
-/**/
-//  --- google place geocode    --- 
-/**/
-          
-
-
-  var _google_public_map_only_api_key = "AIzaSyCeIFVL6oxxXNT7NToJjfU4J9TV2J8m4vE"
-  // poi only(with restriction),   not work for compare google poi( require no-referal-restriction) 
-  var _google_place_api_key = 'AIzaSyAUaELIu9LUeqRZAkyxbOQN8CmGtW_gDmY'
-  
-
-  // with photo, without street view
-  async function google_place_api_reverseGeocode(_lat_comma_lng_string){
-
-    your_google_api_key = $('#googlemap-key-input').val(); 
-    update_url_parameter('yourGoogleKey', your_google_api_key)
-
-    // billing https://developers.google.com/maps/documentation/geocoding/usage-and-billing
-    // https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=your_api_key
-    // for this kind of place,geocode api call with &key=xxx,Google not allow use website restrict(localhost,referer restrict is not allowed), can only use IP restrict (hp-police)localhost ip: 167.224.97.162  production server ip: 116.221.167.72
-    // different from google map api key,  which is website restrict to transparentgov.net only
-
-    var _reverseGeocode_by_google_url = 'https://maps.googleapis.com/maps/api/geocode/json?key=' + your_google_api_key +  '&latlng=' + _lat_comma_lng_string;
-    console.log(' _reverseGeocode_by_google_url ', _reverseGeocode_by_google_url)
-                 
-    
-    var _response_reverseGeocode = await ajax_getjson_common(_reverseGeocode_by_google_url)
-    if (typeof _response_reverseGeocode === 'object') {
-                    // is object
-                    addressResult = _response_reverseGeocode
-    } else {
-                    // is string
-                    addressResult = JSON.parse(_response_reverseGeocode)
-    }
-    console.log('address result', addressResult)
-
-    var _formatted_address = ''
-    var _place_id = ''
-    address_value_html = ''
-
-    var _place_details
-    var _place_displayName
-    var _photos_array
-    var _photos_name
-    var _photos_heightPx
-    var _photos_widthPx
-
-    var results_array = addressResult.results
-                
-    for (let i = 0; i < results_array.length; i++) {
-
-        _formatted_address = results_array[i].formatted_address
-        _place_id = results_array[i].place_id
-                  
-        if (i < 2){
-         
-          // Place Details (New) requests https://developers.google.com/maps/documentation/places/web-service/place-details
-          var _place_details_by_google_url = 'https://places.googleapis.com/v1/places/' + _place_id + '?fields=id,displayName,photos&key=' +  your_google_api_key
-          
-          
-          var _response_place_details = await ajax_getjson_common(_place_details_by_google_url)
-              if (typeof _response_place_details === 'object') {
-                              // is object
-                              _place_details = _response_place_details
-              } else {
-                              // is string
-                              _place_details = JSON.parse(_response_place_details)
-              }
-              console.log('_place_details', _place_details)
-
-
-              if (_place_details.hasOwnProperty('displayName')){
-                _place_displayName =  _place_details.displayName.text
-              }
-
-
-              // place name 
-                address_value_html += '<span style="font-size:19.3px; font-weight:800;">' + _place_displayName + '</span>'  
-                address_value_html += "&nbsp;"
-                // address 
-                address_value_html += '<span style="font-size:11px;">' + _formatted_address +   '</span>'
-                // place id 
-                //address_value_html += '<sup style="font-size:7px;">' + _place_id +   '</sup>'
-                //address_value_html += "<br>"
-
-              // photos
-              if (_place_details.hasOwnProperty('photos')){
-
-                _photos_array = _place_details.photos
-                for (let p = 0; p < _photos_array.length; p++) {
-                  _photos_name =  _photos_array[p].name
-                  _photos_heightPx = _photos_array[p].heightPx
-                  _photos_widthPx = _photos_array[p].widthPx
-                    address_value_html += '<img src="https://places.googleapis.com/v1/' + _photos_name + '/media?maxHeightPx=400&maxWidthPx=400&key=' + your_google_api_key + '" >'
-                }// for photo
-
-              }//if
-
-
-              //address_value_html += "<br>"
-
-        } else{    
-         
-                      //address_value_html += "<br>"
-                      address_value_html += '<span style="font-size:11px;">' + _formatted_address +   '</span>'  
-                      address_value_html += '<sup style="font-size:7px;">' + _place_id +   '</sup>'
-        }// if
-    }// for
-                                  
-    $('#info-window-div').html(address_value_html)
-
-  }
-
-
-                  // .............. click to show street view  .............. 
-
-                  
-
-                    // no photo, for street view
-                    // photo conflict with street view, do not show photo to keep street view
-                    async function google_place_api_reverseGeocode_streetview(_lat_comma_lng_string){
-                      
-                      your_google_api_key = $('#googlemap-key-input').val(); 
-                      update_url_parameter('yourGoogleKey', your_google_api_key)
-
-
-                      // billing https://developers.google.com/maps/documentation/geocoding/usage-and-billing
-                      // https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=your_api_key
-                      // for this kind of place,geocode api call with &key=xxx,Google not allow use website restrict(localhost,referer restrict is not allowed), can only use IP restrict (hp-police)localhost ip: 167.224.97.162  production server ip: 116.221.167.72
-                      // different from google map api key,  which is website restrict to transparentgov.net only
-
-                      var _reverseGeocode_by_google_url = 'https://maps.googleapis.com/maps/api/geocode/json?key=' + your_google_api_key +  '&latlng=' + _lat_comma_lng_string;
-                      console.log(' _reverseGeocode_by_google_url ', _reverseGeocode_by_google_url)
-                                  
-                      
-                      var _response_reverseGeocode = await ajax_getjson_common(_reverseGeocode_by_google_url)
-                      if (typeof _response_reverseGeocode === 'object') {
-                                      // is object
-                                      addressResult = _response_reverseGeocode
-                      } else {
-                                      // is string
-                                      addressResult = JSON.parse(_response_reverseGeocode)
-                      }
-                      console.log('address result', addressResult)
-
-                      var _formatted_address = ''
-                      var _place_id = ''
-                      address_value_html = ''
-                      
-
-                      var _place_details
-                      var _place_displayName
-                      var _photos_array
-                      var _photos_name
-                      var _photos_heightPx
-                      var _photos_widthPx
-
-                      var results_array = addressResult.results
-                                  
-                      for (let i = 0; i < results_array.length; i++) {
-
-                          _formatted_address = results_array[i].formatted_address
-                          _place_id = results_array[i].place_id
-                                    
-                          if (i < 2){
-                          
-                            // Place Details (New) requests https://developers.google.com/maps/documentation/places/web-service/place-details
-                            var _place_details_by_google_url = 'https://places.googleapis.com/v1/places/' + _place_id + '?fields=id,displayName,photos&key=' +  your_google_api_key
-                            
-                            
-                            var _response_place_details = await ajax_getjson_common(_place_details_by_google_url)
-                                
-                            if (typeof _response_place_details === 'object') {
-                                                // is object
-                                                _place_details = _response_place_details
-                                } else {
-                                                // is string
-                                                _place_details = JSON.parse(_response_place_details)
-                                }
-                                console.log('_place_details', _place_details)
-
-
-                            if (_place_details.hasOwnProperty('displayName')){
-                                  _place_displayName =  _place_details.displayName.text
-                                }
-
-
-                                // place name 
-                                address_value_html += '<span style="font-size:19.3px; font-weight:800;">' + _place_displayName + '</span>'  
-                                address_value_html += "&nbsp;"
-                                // address 
-                                address_value_html += '<span style="font-size:11px;">' + _formatted_address +   '</span>'
-                                // place id 
-                                //address_value_html += '<sup style="font-size:7px;">' + _place_id +   '</sup>'
-                                address_value_html += "&nbsp;"
-                                // photo conflict with street view, do not show photo to keep street view
-                                //address_value_html += "<br>"
-
-
-                                 // photos
-                                  if (_place_details.hasOwnProperty('photos')){
-
-                                    _photos_array = _place_details.photos
-                                    for (let p = 0; p < _photos_array.length; p++) {
-                                      _photos_name =  _photos_array[p].name
-                                      _photos_heightPx = _photos_array[p].heightPx
-                                      _photos_widthPx = _photos_array[p].widthPx
-                                        address_value_html += '<img src="https://places.googleapis.com/v1/' + _photos_name + '/media?maxHeightPx=400&maxWidthPx=400&key=' + your_google_api_key + '" >'
-                                    }// for photo
-
-                                  }//if
-
-
-                                  //address_value_html += "<br>"
-
-                          } else{    
-                            
-                            
-                              
-                                      //address_value_html += "<br>"
-                                      address_value_html += '<span style="font-size:11px;">' + _formatted_address +   '</span>'  
-                                      address_value_html += '<sup style="font-size:7px;">' + _place_id +   '</sup>'
-                          }// if
-                      }// for
-                                                    
-                      $('#info-window-div').html(address_value_html)
-                      
-
-                    }
-                  // .............. end   ..............  click to show street view  .............. 
-
-
-                  
-
-/**/
-//  --- end  ---  google place geocode    --- 
-/**/
-
-
 
 
 

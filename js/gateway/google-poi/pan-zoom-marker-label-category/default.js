@@ -479,50 +479,6 @@
 //  --- google poi      --- 
 /**/       
 
-var _total_poi = 0
-var _all_poi_flat_array = []
-var _all_poi_uniqueID_array = []
-var _this_page_result_array = []
-
-var _uniqueID
-
-//  . . efficient core newOnly  . - .
-var _this_newOnly_result_array = []
-var _this_newOnly_poi_geojson   
-
-
-
-            var circle_range
-            var circle_array = []
-            
-            function drawing_circle(_radiusMeter, _centerLng, _centerLat){
-              //console.log('drawing circle at _radiusMeter, _centerLng, _centerLat', _radiusMeter, _centerLng, _centerLat)
-
-               circle_range = 
-               new google.maps.Circle({
-                 strokeColor: 'rgba(255, 0, 0, 1)',
-                 strokeOpacity: 0.877,
-                 strokeWeight: 1.45,
-                 fillColor: 'rgba(255, 0, 0, 1)',
-                 fillOpacity: 0.171,
-                 map,
-                 center: { lat: _centerLat, lng: _centerLng },
-                 radius: _radiusMeter,
-               });
-              
-               circle_array.push(circle_range)
-              
-            }
-
-
-            function clear_all_circle(){
-              for (let i = 0; i < circle_array.length; i++) {
-                if (circle_array[i]) { circle_array[i].setMap(null)}
-              }
-              circle_array = []
-            }
-
-
 
             async function nearby_poi(_radiusMeter, _centerLng, _centerLat){
 
@@ -530,16 +486,78 @@ var _this_newOnly_poi_geojson
 
               drawing_circle(_radiusMeter, _centerLng, _centerLat)
 
+
+
+              /**/
+              //  -  -  - category  -  -  - 
+              /**/
+                  _category_string = $("#category-input").val()
+                  update_url_parameter("poicategory",_category_string)
+                  if (_category_string){
+                        _category_array = _category_string.split(","); // Splits by comma
+                  } else {
+                        _category_array = []
+                  }
+                  console.log('category array', _category_array); // Output: ["apple", "banana", "orange"]
+              /**/
+              //  -  -  - end  -  -  -  category    -  -  - 
+              /**/
+
+
+
+
+             //https://developers.google.com/maps/documentation/places/web-service/nearby-search
+             var google_place_header = {
+
+              // must use this to post json
+              "Content-Type": "application/json",
+             
+
+              // required
+              "X-Goog-FieldMask" : google_place_fieldMask,
+              "X-Goog-Api-Key":  _google_place_api_key, // local restriction applied
+
+
+             
+
+             }
+
+
+
+
+
+             var google_nearby_post_data = {
+
+               // optional,      includedTypes/excludedTypes, includedPrimaryTypes/excludedPrimaryTypes
+              "includedPrimaryTypes": _category_array,
+              "maxResultCount": max_google_poi_limit,
+
+               // required
+              "locationRestriction": {
+                                      "circle": {
+                                        "center": {
+                                          "latitude": _center_lat,
+                                          "longitude": _center_long
+                                        },
+                                        "radius": _center_radius_in_meter
+                                      }
+                                    },
+             }
+
               
 
               
-                var response_string =  await $.ajax({
-                  url: ____nearby_url + _paged_offset_url_param,
-                  headers: {
-                  'Authorization': yelp_api_key,  //'Bearer xxxxxx',
-                  },
-                  method: 'GET',
+              var response_raw =  await $.ajax({
+                  url: google_nearby,
+                  method: 'POST',
                   dataType: 'json',
+                  headers: google_place_header,
+                  
+                  // do not let jquery convert object to string,   
+                  processData: false, // default is true, jquery convert object to string in its own rule, different from json,stringify
+                  // must convert object to string, 
+                  data: JSON.stringify(google_nearby_post_data),
+
                   success: function(data){
                     console.log('poi search by categories success', data)
                   }, 
@@ -547,106 +565,11 @@ var _this_newOnly_poi_geojson
                     // Handle error response
                     console.error("Error:", textStatus, errorThrown);
                   }
-                });  
-
-
-
-              
-             // https://developers.google.com/maps/documentation/javascript/load-maps-js-api#use-legacy-tag
-             var { Place } = await google.maps.importLibrary("places");
-             // https://developers.google.com/maps/documentation/javascript/libraries
-
-
-
-
-             var google_place_request_param = {
-
-
-                      // field options  https://developers.google.com/maps/documentation/javascript/place-class-data-fields
-                      fields: [
-                                "id",  
-                                "displayName", 
-                                "nationalPhoneNumber",
-                                "businessStatus",
-
-                                "location", 
-                                "formattedAddress", 
-                                "adrFormatAddress",  
-                                "addressComponents", 
-                                
-
-
-                              // "photos",
-                              // "openingHours", 
-                              //  "reviews", 
-                              "types",
-                              "primaryType",
-                              // "",  
-                              // "name",  //invalid
-                              ],
-
-
-                      locationRestriction: {
-                        center: { lat: _center_lat, lng: _center_long },
-                        radius:  _center_radius_in_meter,  
-                      },
-
-                      // optional parameters
-                      //includedPrimaryTypes: ["restaurant"],
-                      maxResultCount: max_google_poi_limit,   
-                      //rankPreference: SearchNearbyRankPreference.POPULARITY,
-                      //language: "en-US",
-                      //region: "us",
-                    };
-
+                }); 
+                console.log(' place search nearby results : ', response_raw);
                     
-
-
-
-
-                    /**/
-                    //  -  -  - category  -  -  - 
-                    /**/
-
-                        // array of types. https://developers.google.com/maps/documentation/javascript/reference/place#Place.types
-                        // legacy types.  https://developers.google.com/maps/documentation/places/web-service/legacy/supported_types 
-                        _category_string = $("#category-input").val()
-                        update_url_parameter("poicategory",_category_string)
-            
-                        
-                        if (_category_string){
-                              _category_array = _category_string.split(","); // Splits by comma
-                              
-                        } else {
-                              _category_array = []
-                        }
-                        console.log('category array', _category_array); // Output: ["apple", "banana", "orange"]
-
-                      
-
-                        
-
-
-                        //  -  -  - category  -  -  - 
-                        if (_category_string){
-                            // https://developers.google.com/maps/documentation/javascript/reference/place#SearchNearbyRequest
-                            google_place_request_param.includedPrimaryTypes = _category_array
-                            //includedTypes: _category_array,
-                        }//if   
-                        //  -  -  - category  -  -  - 
-
-                    /**/
-                    //  -  -  - end  -  -  -  category    -  -  - 
-                    /**/
-
-
-
-
-                    
-                    var { places } = await Place.searchNearby(google_place_request_param);
-                  
-                    console.log(' place search nearby results : ', places);
-                      
+                
+                var places = response_raw.places
 
                     //  . . efficient core newOnly  . - .
                     _this_newOnly_result_array = []
