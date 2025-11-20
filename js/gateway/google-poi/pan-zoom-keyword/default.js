@@ -491,35 +491,7 @@ var _this_newOnly_poi_geojson
 var _this_newOnly_geojsonGoogleHandlerArray = []
 
 
-            var circle_range
-            var circle_array = []
             
-            function drawing_circle(_radiusMeter, _centerLng, _centerLat){
-              //console.log('drawing circle at _radiusMeter, _centerLng, _centerLat', _radiusMeter, _centerLng, _centerLat)
-
-               circle_range = 
-               new google.maps.Circle({
-                 strokeColor: 'rgba(255, 0, 0, 1)',
-                 strokeOpacity: 0.877,
-                 strokeWeight: 1.45,
-                 fillColor: 'rgba(255, 0, 0, 1)',
-                 fillOpacity: 0.171,
-                 map,
-                 center: { lat: _centerLat, lng: _centerLng },
-                 radius: _radiusMeter,
-               });
-              
-               circle_array.push(circle_range)
-              
-            }
-
-
-            function clear_all_circle(){
-              for (let i = 0; i < circle_array.length; i++) {
-                if (circle_array[i]) { circle_array[i].setMap(null)}
-              }
-              circle_array = []
-            }
 
 
 
