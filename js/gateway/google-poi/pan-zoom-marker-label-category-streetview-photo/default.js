@@ -479,18 +479,6 @@
 //  --- google poi      --- 
 /**/       
 
-var _total_poi = 0
-var _all_poi_flat_array = []
-var _all_poi_uniqueID_array = []
-var _this_page_result_array = []
-
-var _uniqueID
-
-//  . . efficient core newOnly  . - .
-var _this_newOnly_result_array = []
-var _this_newOnly_poi_geojson   
-
-
 
           
 

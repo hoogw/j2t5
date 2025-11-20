@@ -480,28 +480,11 @@
 //  --- google poi      --- 
 /**/       
 
-var _total_poi = 0
-var _all_poi_flat_array = []
-var _all_poi_uniqueID_array = []
-var _this_page_result_array = []
-
-var _uniqueID
-
-
-//  . . efficient core newOnly  . - .
-var _this_newOnly_result_array = []
-var _this_newOnly_poi_geojson  
-// manual draw circle only
-var _this_newOnly_geojsonGoogleHandlerArray = []
-
-
         /**/
         //  --- google poi circle 4x4   --- 
         /**/
 
-            var circle_range
-            var circle_array = [] 
-
+           
 
             // only for manual, circle has click event 
             function drawing_4circle(_radiusMeter, _centerLng, _centerLat){
@@ -563,13 +546,7 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
 
             }
 
-            function clear_all_circle(){
-                      for (let i = 0; i < circle_array.length; i++) {
-                        if (circle_array[i]) { circle_array[i].setMap(null)}
-                      }
-                      circle_array = []
-            }
-          
+           
 
 
 
