@@ -1984,7 +1984,7 @@
 
 
 
-function init_user_interface_event(){
+function init_user_interface_after_map_load(){
 
 
 
@@ -2006,6 +2006,7 @@ if (_category_string){
 // only for pan & zoom, not for manual drawing circle
  $("#start_over_button").on("click", function() {
       clear_all_circle()
+      clear_circle_guideRing()
       clear_all_poi_advancedMarker()
  });
 
