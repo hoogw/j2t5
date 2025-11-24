@@ -962,6 +962,9 @@
               update_center_latLngZoom();
             
               get_map_bound();
+
+              // only d r a w   c i r c l e when radius large than max 
+              clear_circle_guideRing()
                              
             });
 

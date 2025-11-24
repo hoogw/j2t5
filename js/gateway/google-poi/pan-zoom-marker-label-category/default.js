@@ -405,24 +405,10 @@
 
 
 
-                            
-
-
-         
-
-
-
-
-
-
-
-
 
 /**/
 //  --- google poi      --- 
-/**/       
-
-
+/**/    
             async function nearby_poi(_radiusMeter, _centerLng, _centerLat){
 
 
@@ -562,8 +548,6 @@
 
 
             }//function
-
-
 /**/
 //  --- end  ---  google poi    --- 
 /**/
