@@ -258,7 +258,7 @@
 
                                     
                   
-                  drawing_circle(_center_radius_in_meter, _center_long, _center_lat)
+                  
 
                   /**/
                   //  -  -  - shoot it !!! -  -  - 
@@ -978,6 +978,11 @@
               update_center_latLngZoom();
             
               get_map_bound();
+
+              // only d r a w   c i r c l e when radius large than max 
+              if (_center_radius_in_meter >= max_google_poi_radius_meter){
+                clear_circle_guideRing()
+              }//if
                              
             });
 

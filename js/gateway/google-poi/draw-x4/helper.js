@@ -1136,7 +1136,14 @@
                   map.addListener("mouseout", () => {
                     // delete guided ring
                       console.log('mouse pointer out of map, delete guided ring')
-                      clear_circle_guideRing()
+                      
+                      
+                      // only d r a w   c i r c l e when radius large than max 
+                      if (_center_radius_in_meter >= max_google_poi_radius_meter){
+                        clear_circle_guideRing()
+                      }//if
+
+                      
                   });
               /**/
               //  -  -  - end  -  -  -  guided ring for manual drawing circle or square    -  -  - 

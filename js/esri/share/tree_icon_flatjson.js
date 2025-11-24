@@ -4205,7 +4205,7 @@ icon_flatjson.push(icon_item)
                     icon_item = { 
                         "id" :  3286,     
                         "parent" : 3186,
-                        "text" : "category optional (pin marker)",
+                        "text" : "everything (category optional)",
                         "icon" : folder_icon,
                         "link_type": "folder",   
                         "state"       : {
@@ -4226,7 +4226,7 @@ icon_flatjson.push(icon_item)
                                     "id" :  3827,     
                                     "parent" : 3286,
                                     
-                                    "text" : "3827 default",
+                                    "text" : "3827 pin marker (default)",
                                     
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
@@ -4377,7 +4377,7 @@ icon_flatjson.push(icon_item)
                                     icon_item = { 
                                     "id" :  3901,     
                                     "parent" : 3286,
-                                    "text" : "3901 police",
+                                    "text" : "police 3901",
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
                                     "link_type": "embed_3901",
@@ -4397,7 +4397,7 @@ icon_flatjson.push(icon_item)
                                      icon_item = { 
                                     "id" :  3902,     
                                     "parent" : 3286,
-                                    "text" : "3902 courthouse",
+                                    "text" : "courthouse 3902",
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
                                     "link_type": "embed_3902",
@@ -4417,7 +4417,7 @@ icon_flatjson.push(icon_item)
                                     icon_item = { 
                                     "id" :  3904,     
                                     "parent" : 3286,
-                                    "text" : "3904 motel",
+                                    "text" : "motel 3904",
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
                                     "link_type": "embed_3904",
@@ -4437,7 +4437,7 @@ icon_flatjson.push(icon_item)
                                     icon_item = { 
                                     "id" :  3905,     
                                     "parent" : 3286,
-                                    "text" : "3905 hotel",
+                                    "text" : "hotel 3905",
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
                                     "link_type": "embed_3905",
@@ -4457,7 +4457,7 @@ icon_flatjson.push(icon_item)
                                     icon_item = { 
                                     "id" :  3906,     
                                     "parent" : 3286,
-                                    "text" : "3906 inn",
+                                    "text" : "inn 3906",
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
                                     "link_type": "embed_3906",
@@ -4477,7 +4477,7 @@ icon_flatjson.push(icon_item)
                                     icon_item = { 
                                     "id" :  3907,     
                                     "parent" : 3286,
-                                    "text" : "3907 hospital",
+                                    "text" : "hospital 3907",
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
                                     "link_type": "embed_3907",
@@ -4497,7 +4497,7 @@ icon_flatjson.push(icon_item)
                                     icon_item = { 
                                     "id" :  3908,     
                                     "parent" : 3286,
-                                    "text" : "3908 bar",
+                                    "text" : "bar 3908",
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
                                     "link_type": "embed_3908",
@@ -4517,7 +4517,7 @@ icon_flatjson.push(icon_item)
                                     icon_item = { 
                                     "id" :  3909,     
                                     "parent" : 3286,
-                                    "text" : "3909 bar_and_grill",
+                                    "text" : "bar_and_grill 3909",
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
                                     "link_type": "embed_3909",
@@ -4537,7 +4537,7 @@ icon_flatjson.push(icon_item)
                                     icon_item = { 
                                     "id" :  3910,     
                                     "parent" : 3286,
-                                    "text" : "3910 night_club",
+                                    "text" : "night_club 3910",
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
                                     "link_type": "embed_3910",
