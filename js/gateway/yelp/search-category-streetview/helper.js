@@ -1910,29 +1910,34 @@
 
 function init_user_interface_after_map_load(){
 
-//  .......  search poi button   ....... 
-    // search bar close icon clicked. clear everything.
-    
-    $('#search_poi_button').on('click', search_poi);
-    // default search
-    $('#search_poi_input').on('search', search_poi);
-//  ---  end  ---  .......  search poi button   ....... 
+
+// only for pan & zoom, not for manual drawing circle
+ $("#start_over_button").on("click", function() {
+      $("#shoot-it-button").prop('disabled', false);
+      clear_all_circle()
+      clear_circle_guideRing()
+      clear_all_poi_advancedMarker()
+ });
 
 
-// must at each model, instead of share
-              $("#start_over_button").on("click", function() {
 
-              clear_all_circle()
-              clear_circle_guideRing()
+/**/
+//  -  -  - shoot it !!! -  -  - 
+/**/
+
+  $("#shoot-it-button").on("click", function() {
+
+        nearby_poi(_center_radius_in_meter, _center_long, _center_lat)
+
+        $("#shoot-it-button").prop('disabled', true);
+  });
+
+  
+/**/
+//  -  -  - end  -  -  -  shoot it !!!    -  -  - 
+/**/
 
 
-              // only for marker label
-              clear_all_poi_advancedMarker()
-
-              // only for old marker
-              //clear_all_poi()
-
-              });
   
 //  .......  opacity   ....... 
                                 /**/

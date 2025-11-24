@@ -2017,6 +2017,7 @@ if (_category_string){
  $("#start_over_button").on("click", function() {
       $("#shoot-it-button").prop('disabled', false);
       clear_all_circle()
+      clear_circle_guideRing()
       clear_all_poi_advancedMarker()
  });
 
