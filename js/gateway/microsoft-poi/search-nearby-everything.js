@@ -345,13 +345,19 @@ function moveend_handler(){
            setLimit_onNearbyCircleRadius()
    
            // only for browse
-           clear_all_circle()
-               clear_circle_guideRing()
+            clear_all_circle()
+   
 
-           // only d r a w   c i r c l e when radius large than max 
-              if (_center_radius_in_meter >= max_microsoft_poi_radius_meter){
-                  drawing_circle(_center_radius_in_meter, _center_long, _center_lat)
-              }//if
+            // only d r a w   c i r c l e when radius large than max 
+            if (_center_radius_in_meter < max_microsoft_poi_radius_meter){
+                clear_circle_guideRing()
+            }//if
+              
+            // only d r a w   c i r c l e when radius large than max 
+            if (_center_radius_in_meter >= max_microsoft_poi_radius_meter){
+            drawing_circle(_center_radius_in_meter, _center_long, _center_lat)
+            }//if
+
            
 
 /**/
