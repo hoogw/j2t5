@@ -520,6 +520,7 @@
                // https://developers.google.com/maps/documentation/places/web-service/nearby-search
                // optional,      includedTypes/excludedTypes, includedPrimaryTypes/excludedPrimaryTypes
               "includedPrimaryTypes": _category_array,
+              //"includedTypes": _category_array,
               "maxResultCount": max_google_poi_limit,
 
                // required

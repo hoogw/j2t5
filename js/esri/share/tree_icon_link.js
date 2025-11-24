@@ -1699,20 +1699,6 @@ break;
 
 
 
-  case "embed_3836":
-    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/search-marker-category-sub-type.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
-    window.open(_newTab_link,'_blank');
-    console.log('_newTab_link', _newTab_link)
-  break;
-
-
-  case "embed_3833":
-    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/search-marker-category-sub-type-photo.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
-    window.open(_newTab_link,'_blank');
-    console.log('_newTab_link', _newTab_link)
-  break;
-
-
 
 
 
@@ -1822,32 +1808,32 @@ break;
 
 
   case "embed_3817":
-    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/search-category-primary-type.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/search-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
   break;
 
   case "embed_3867":
-    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/search-category-primary-type-label.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/search-category-label.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
   break;
 
 
   case "embed_3897":
-    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/search-category-primary-type-photo.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/search-category-photo.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
   break;
 
    case "embed_3877":
-    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/search-category-primary-type-streetview.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/search-category-streetview.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
   break;
 
   case "embed_3875":
-    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/search-category-primary-type-streetview-photo.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/search-category-streetview-photo.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
   break;
