@@ -479,7 +479,7 @@
 
 
 
-            async function nearby_poi(_radiusMeter, _centerLng, _centerLat){
+            async function search_poi(){
 
 
 

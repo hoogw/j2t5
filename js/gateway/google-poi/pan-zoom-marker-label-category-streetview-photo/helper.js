@@ -243,40 +243,6 @@
 
 
 
-                                    
-
-                  /**/
-                  //  --- google poi   --- 
-                  /**/
-
-
-                   // . .   limit by bound, lat lng with minium radius
-                  _center_radius_in_meter = get_center_radius_in_map_bound()
-                  
-                  //. . . only for browsing ...  remove last circle . . .  
-                  clear_all_circle()
-                  
-                  nearby_poi(_center_radius_in_meter, _center_long, _center_lat)
-
-                  /**/
-                  //  --- end  ---  google poi    --- 
-                  /**/
-
-
-
-
-
-                  
-                 
-
-                 
-
-
-
-                  
-
-
-
                   }// if map.getBounds()
                                   
                                   
@@ -969,10 +935,30 @@
                                   // .............. end   ..............  street view is always on  .............. 
 
 
-              // only d r a w   c i r c l e when radius large than max 
-              if (_center_radius_in_meter < max_google_poi_radius_meter){
-                clear_circle_guideRing()
-              }//if
+              
+                  /**/
+                  //  --- google poi   --- 
+                  /**/
+
+
+                   // . .   limit by bound, lat lng with minium radius
+                  _center_radius_in_meter = get_center_radius_in_map_bound()
+                  
+                  //. . . only for browsing ...  remove last circle . . .  
+                  clear_all_circle()
+
+
+                  // only d r a w   c i r c l e when radius large than max 
+                  if (_center_radius_in_meter < max_google_poi_radius_meter){
+                    clear_circle_guideRing()
+                  }//if
+                  
+                  nearby_poi(_center_radius_in_meter, _center_long, _center_lat)
+
+                  /**/
+                  //  --- end  ---  google poi    --- 
+                  /**/
+
                              
             });
 

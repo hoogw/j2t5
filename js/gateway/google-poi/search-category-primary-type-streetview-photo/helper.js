@@ -243,54 +243,6 @@
 
 
 
-                                    
-
-                  /**/
-                  //  --- google poi   --- 
-                  /**/
-
-
-                   // . .   limit by bound, lat lng with minium radius
-                  _center_radius_in_meter = get_center_radius_in_map_bound()
-                  
-                  //. . . only for browsing ...  remove last circle . . .  
-                  clear_all_circle()
-
-                                    
-                  
-                  drawing_circle(_center_radius_in_meter, _center_long, _center_lat)
-
-                  /**/
-                  //  -  -  - shoot it !!! -  -  - 
-                  /**/
-                      $("#shoot-it-button").prop('disabled', false);
-
-                  /**/
-                  //  -  -  - end  -  -  -  shoot it !!!    -  -  - 
-                  /**/
-
-
-                 
-                  
-                 
-
-                  /**/
-                  //  --- end  ---  google poi    --- 
-                  /**/
-
-
-
-
-
-                  
-                 
-
-                 
-
-
-
-                  
-
 
 
                   }// if map.getBounds()
@@ -984,7 +936,41 @@
                                         turn_on_street_view(_center_lat, _center_long, 1000)
                                   // .............. end   ..............  street view is always on  .............. 
 
+/**/
+                  //  --- google poi   --- 
+                  /**/
 
+
+                   // . .   limit by bound, lat lng with minium radius
+                  _center_radius_in_meter = get_center_radius_in_map_bound()
+                  
+                  //. . . only for browsing ...  remove last circle . . .  
+                  clear_all_circle()
+
+                                    
+                  // only d r a w   c i r c l e when radius large than max 
+                  if (_center_radius_in_meter < max_google_poi_radius_meter){
+                    clear_circle_guideRing()
+                  }//if
+                  
+
+                  /**/
+                  //  -  -  - shoot it !!! -  -  - 
+                  /**/
+                      $("#shoot-it-button").prop('disabled', false);
+
+                  /**/
+                  //  -  -  - end  -  -  -  shoot it !!!    -  -  - 
+                  /**/
+
+
+                 
+                  
+                 
+
+                  /**/
+                  //  --- end  ---  google poi    --- 
+                  /**/
                              
             });
 
