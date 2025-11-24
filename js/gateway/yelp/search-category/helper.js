@@ -869,7 +869,7 @@
               get_map_bound();
                              
              /**/
-              //  --- download yelp poi       --- 
+              //  --- yelp search poi       --- 
               /**/
 
               
@@ -884,10 +884,9 @@
                 clear_circle_guideRing()
               }//if
                 
-                nearby_poi(_center_radius_in_meter, _center_long, _center_lat)
-
+                
               /**/
-              //  --- end  ---  download yelp poi    --- 
+              //  --- end  ---  yelp search poi    --- 
               /**/
                              
             });
