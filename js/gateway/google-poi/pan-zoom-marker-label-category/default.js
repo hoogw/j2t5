@@ -426,9 +426,10 @@
             async function nearby_poi(_radiusMeter, _centerLng, _centerLat){
 
 
-
-              drawing_circle(_radiusMeter, _centerLng, _centerLat)
-
+              // only d r a w   c i r c l e when radius large than max 
+              if (_center_radius_in_meter >= max_google_poi_radius_meter){
+                  drawing_circle(_radiusMeter, _centerLng, _centerLat)
+              }//if
 
 
               /**/
