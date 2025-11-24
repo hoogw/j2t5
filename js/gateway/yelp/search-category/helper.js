@@ -1914,7 +1914,7 @@ function init_user_interface_after_map_load(){
 
 // only for pan & zoom, not for manual drawing circle
  $("#start_over_button").on("click", function() {
-      $("#shoot-it-button").prop('disabled', false);
+      //$("#shoot-it-button").prop('disabled', false);
       clear_all_circle()
       clear_circle_guideRing()
       clear_all_poi_advancedMarker()
@@ -1930,7 +1930,7 @@ function init_user_interface_after_map_load(){
 
         nearby_poi(_center_radius_in_meter, _center_long, _center_lat)
 
-        $("#shoot-it-button").prop('disabled', true);
+        //$("#shoot-it-button").prop('disabled', true);
   });
 
   

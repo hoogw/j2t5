@@ -363,7 +363,7 @@ function moveend_handler(){
 /**/
 //  -  -  - shoot it !!! -  -  - 
 /**/
-     $("#shoot-it-button").prop('disabled', false);
+     //$("#shoot-it-button").prop('disabled', false);
 /**/
 //  -  -  - end  -  -  -  shoot it !!!    -  -  - 
 /**/
@@ -1315,7 +1315,7 @@ function  add_dataSource_searchLayer(){
 
 
             $("#start_over_button").on("click", function() {
-               $("#shoot-it-button").prop('disabled', false);
+               //$("#shoot-it-button").prop('disabled', false);
                clear_all_circle()
                clear_circle_guideRing()
                clear_all_poi()
@@ -1331,7 +1331,7 @@ function  add_dataSource_searchLayer(){
 
                     nearby_poi(_center_radius_in_meter, _center_long, _center_lat)
 
-                    $("#shoot-it-button").prop('disabled', true);
+                    //$("#shoot-it-button").prop('disabled', true);
             });
 
             
