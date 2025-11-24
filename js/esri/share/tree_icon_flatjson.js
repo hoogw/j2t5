@@ -4782,7 +4782,7 @@ icon_flatjson.push(icon_item)
         icon_item = { 
             "id" :  3287,     
             "parent" : 3289,
-            "text" : "category (circle) ",
+            "text" : "everything (category optional)",
             "icon" : folder_icon,
             "link_type": "folder",   
             "state"       : {
@@ -5000,7 +5000,7 @@ icon_flatjson.push(icon_item)
     icon_item = { 
         "id" :  3275,     
         "parent" : 3379,
-        "text" : "category",
+        "text" : "everything (category optional)",
         "icon" : folder_icon,
         "link_type": "folder",   
         "state"       : {
