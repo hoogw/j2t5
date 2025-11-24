@@ -1048,6 +1048,27 @@
             
               get_map_bound();
                              
+            /**/
+              //  --- yelp search poi       --- 
+              /**/
+
+              
+                // . .   limit by bound, lat lng with minium radius
+                _center_radius_in_meter = get_center_radius_in_map_bound()
+              
+                //. . . only for browsing ...  remove last circle . . .  
+                clear_all_circle()
+
+              // only d r a w   c i r c l e when radius large than max 
+              if (_center_radius_in_meter < max_yelp_poi_radius_meter){
+                clear_circle_guideRing()
+              }//if
+                
+                
+              /**/
+              //  --- end  ---  yelp search poi    --- 
+              /**/
+                             
             });
 
            
@@ -1055,6 +1076,27 @@
             // -- -- --  POI marker replace point geojson  -- -- -- 
                           // delete  set poi style                   
             // -- -- --  end -- -- --  POI marker replace point geojson -- -- -- 
+            /**/
+
+
+            /**/
+            //  -  -  - guided ring for pan and zoom  -  -  - 
+            /**/
+                // all should works,  bounds_changed, center_changed, drag
+                map.addListener("bounds_changed", (event) => {
+
+                  update_center_latLngZoom()
+                  // . .   limit by bound, lat lng with minium radius
+                  _center_radius_in_meter = get_center_radius_in_map_bound()
+
+
+                 // yelp always use circle for both s e a r c h k e y w o r d & c a t e g o r y,
+                  // always draw guide ring, no matter what 
+                  drawing_circle_guideRing(_center_radius_in_meter, _center_long, _center_lat)
+                });
+
+            /**/
+            //  -  -  - end  -  -  -  guided ring for pan and zoom    -  -  - 
             /**/
 
           }

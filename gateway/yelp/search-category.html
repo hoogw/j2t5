@@ -25,74 +25,75 @@
           
   
   
-  <div class="horizontal-left-right-flex-container">
+  <div class="horizontal-left-right-width-undefined-container" style="width:1520px;">
 
-    <div class="flex-container">
+
+
+    <div id="flex_1" class="vertical-width-undefined-no-border" style="width: 600px; height: 660px;">
+      <div id='info_outline'>
+        <span id='info-window-div'></span>
+      </div>  
+    </div>  
+      
+
+
+
+    <div class="vertical-width-undefined-no-border" style="width: 800px;">
+
+
+      <div class='dashboard-horizontal-row-flow-box'>
+
+       
+            <div style="margin-left: auto; order: 2;">
+             <a target="_blank" href="https://business.yelp.com/resources/articles/yelp-category-list/?domain=local-business">CategoryList</a>
+             <input id='category-input' type='text' placeholder='optional. nightlife,hotels'/> </div>
+          
+      </div>
+
       <div class='map-box'>
-        <div id="map" style="height:800px;"></div>
-      </div>
-    </div>
+        <div id="map"></div>
+      </div> 
 
 
+      
+    <div class='dashboard-horizontal-row-flow-box' >
 
-      <div id="flex_1" class="vertical-width-undefined-no-border" style="width: 600px; height: 800px;">
-
-        
-        
-     <div>
         <span id="layer-info-vertical">Layer Name</span>
-        <span id="feature-on-map" hidden>...</span>
-        <span id="total-feature"   hidden>...</span>
-      </div>
-
-      <div>
-        <input id='pac-input' type='search' placeholder='common name,zipcode,address'/> 
-        <input type="checkbox" id="show_traffic_checkbox" name="show_traffic_checkbox"  hidden />
-        <label for="show_traffic_checkbox"   hidden>ShowTraffic</label>
-        <span id="lat-lng-zoom"   hidden>...</span>
-        <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"   hidden></input>
-        <label for="overlay_opacity_range" id='overlay_opacity_label'hidden></label>
+        <input type="checkbox" id="show_traffic_checkbox" name="show_traffic_checkbox"  hidden/>
+        <input id='pac-input' type='search' style='width: 257px;' placeholder='common name,zipcode,address'/> 
+        <span id="lat-lng-zoom" hidden>...</span>
+       
         <button type="button" id = "panToCurrent_geolocation_button">my.loc.</button>
 
         
         <button type="button" id = "zoomToLayer_button">Zoom2Layer</button>
-      </div> 
+      
+   </div>
 
-      <div>
-           <span>POI Total</span>
-            <span id="poi_total">...</span>
-            <button id='download_csv_button'>Download poi.csv</button> 
-            <button id='download_poi_button'>Download poi.geojson</button> 
-            <button id='start_over_button'>Clear poi</button> 
+   <div class='dashboard-horizontal-row-flow-box' >
+        <div style="margin-left: auto; order: 2;">
+          <span>POI Total</span>
+          <span id="poi_total">...</span>
+          <button id='download_csv_button'>Download poi.csv</button> 
+          <button id='download_poi_button'>Download poi.geojson</button> 
+          <button id='start_over_button'>Clear poi</button>
         </div>
-
-
-        <div>
-          
-          <a target="_blank" href="https://business.yelp.com/resources/articles/yelp-category-list/?domain=local-business">CategoryList</a>
-          <input id='category-input' type='text' placeholder='e.g. nightlife,hotels'/>
-          <button  id='search_poi_button'>search</button> 
-          
-        </div>
-       
-
-   <!--  *** *** *** *** *** *** ***  build in scroll to top popup info window *** *** *** *** *** *** *** **** -->
-    <div id='info_outline'>
-      <!--  can't be 100% width, otherwise scroll bar show up 
-      <button id='close_info_outline_panel' class="setting-button"> 
-        Close &times;
-      </button>
-      -->
-
-      <span id='info-window-div'></span>
-    
-    </div>  
-    <!--  *** *** *** end *** *** *** ***  build in scroll to top popup info window *** *** *** *** *** *** *** **** -->
-
      
+    </div>
+   
+   
 
+    </div>
 
+   
+    <button type='button' id='shoot-it-button' style="width:100px;">Search</button>
+  
+    
+    <!--
+      <div id="flex_1" class="vertical-width-undefined-no-border" style="width: 600px; height: 700px; overflow: auto; ">
       </div>
+    -->
+   
 
   </div>
       
