@@ -970,7 +970,7 @@
 
 
              // only d r a w   c i r c l e when radius large than max 
-              if (_center_radius_in_meter >= max_google_poi_radius_meter){
+              if (_center_radius_in_meter < max_google_poi_radius_meter){
                 clear_circle_guideRing()
               }//if
                              
