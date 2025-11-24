@@ -1182,17 +1182,18 @@ var highlighted_color = '#1F51FF' // Neon Blue
                                   console.log('####### _center_zoom ########', _center_zoom)
                                   console.log('####### _map_type ########', _map_type)
                                   
-                                  
-                                  
+                               
 
-                                
-                                  
+                                /**/
+                                //  ---  google poi    --- 
+                                /**/
+                                init_poi_ui_before_map_load()
+                                /**/
+                                //  --- end  ---  google poi    --- 
+                                /**/
 
-                                
 
-                                  
-
-                                  map = new google.maps.Map(document.getElementById('map'), 
+                                  map = new google.maps.Map(document.getElementById('map'),  
                                   
                                   
                                                               {
@@ -1290,21 +1291,9 @@ var highlighted_color = '#1F51FF' // Neon Blue
                                   
 
                                                                   
-                                /**/
-                                //  --- google poi      --- 
-                                /**/
+                                // due to street view use map object, should after map object created.                             
+                                 init_user_interface_after_map_load()
 
-                                
-
-                                     init_poi()
-
-                                /**/
-                                //  --- end  ---  google poi    --- 
-                                /**/
-
-
-                                 // due to street view use map object, should after map object created.                             
-                                 init_user_interface_event()
 
                                                               
                                  
