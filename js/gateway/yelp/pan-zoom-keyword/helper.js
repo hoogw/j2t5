@@ -248,34 +248,6 @@
                             
 
 
-
-                  
-
-                  /**/
-                  //  --- download yelp poi       --- 
-                  /**/
-
-                  
-                   // . .   limit by bound, lat lng with minium radius
-                   _center_radius_in_meter = get_center_radius_in_map_bound()
-                  
-                   //. . . only for browsing ...  remove last circle . . .  
-                   clear_all_circle()
-                   clear_circle_guideRing()
-                   
-                   nearby_poi(_center_radius_in_meter, _center_long, _center_lat)
-
-                  /**/
-                  //  --- end  ---  download yelp poi    --- 
-                  /**/
-
-
-
-
-                  
-
-
-
               }// if map.getBounds()
                                   
                                   
@@ -1026,11 +998,32 @@
               update_center_latLngZoom();
             
               get_map_bound();
+
+              
+                  /**/
+                  //  --- download yelp poi       --- 
+                  /**/
+
+                  
+                   // . .   limit by bound, lat lng with minium radius
+                   _center_radius_in_meter = get_center_radius_in_map_bound()
+                  
+                   //. . . only for browsing ...  remove last circle . . .  
+                   clear_all_circle()
+
+                  // only d r a w   c i r c l e when radius large than max 
+                  if (_center_radius_in_meter < max_yelp_poi_radius_meter){
+                    clear_circle_guideRing()
+                  }//if
+                   
+                   nearby_poi(_center_radius_in_meter, _center_long, _center_lat)
+
+                  /**/
+                  //  --- end  ---  download yelp poi    --- 
+                  /**/
+
                              
-            // only d r a w   c i r c l e when radius large than max 
-              if (_center_radius_in_meter < max_yelp_poi_radius_meter){
-                clear_circle_guideRing()
-              }//if
+            
                              
             });
 
