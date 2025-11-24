@@ -4974,7 +4974,7 @@ icon_flatjson.push(icon_item)
   icon_item = { 
     "id" :  3379,     
     "parent" : 3280,
-    "text" : "search",
+    "text" : "manual search",
     "icon" : folder_icon,
     "link_type": "folder",   
     "state"       : {
@@ -5000,7 +5000,7 @@ icon_flatjson.push(icon_item)
     icon_item = { 
         "id" :  3275,     
         "parent" : 3379,
-        "text" : "category optional (circle) ",
+        "text" : "category",
         "icon" : folder_icon,
         "link_type": "folder",   
         "state"       : {
@@ -5020,7 +5020,7 @@ icon_flatjson.push(icon_item)
                                     "id" :  3817,     
                                     "parent" : 3275,
                                     
-                                    "text" : "3817 primary-type",
+                                    "text" : "3817 default",
                                     
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
@@ -5049,7 +5049,7 @@ icon_flatjson.push(icon_item)
                                     "id" :  3867,     
                                     "parent" : 3275,
                                     
-                                    "text" : "3867 primary-type (label)",
+                                    "text" : "3867 label",
                                     
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
@@ -5081,7 +5081,7 @@ icon_flatjson.push(icon_item)
                                     "id" :  3897,     
                                     "parent" : 3275,
                                     
-                                    "text" : "3897 primary-type (photo)",
+                                    "text" : "3897 photo",
                                     
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
@@ -5116,7 +5116,7 @@ icon_flatjson.push(icon_item)
                                     "id" :  3877,     
                                     "parent" : 3275,
                                     
-                                    "text" : "3877 primary-type (street view)",
+                                    "text" : "3877 street view",
                                     
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
@@ -5148,7 +5148,7 @@ icon_flatjson.push(icon_item)
                                     "id" :  3875,     
                                     "parent" : 3275,
                                     
-                                    "text" : "3875 primary-type (street view + photo)",
+                                    "text" : "3875 street view + photo",
                                     
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
