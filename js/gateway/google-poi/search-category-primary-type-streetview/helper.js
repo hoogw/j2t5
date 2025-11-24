@@ -956,7 +956,7 @@
                   /**/
                   //  -  -  - shoot it !!! -  -  - 
                   /**/
-                      //$("#shoot-it-button").prop('disabled', false);
+                      
 
                   /**/
                   //  -  -  - end  -  -  -  shoot it !!!    -  -  - 
@@ -2019,7 +2019,7 @@ if (_category_string){
 
 // only for pan & zoom, not for manual drawing circle
  $("#start_over_button").on("click", function() {
-      //$("#shoot-it-button").prop('disabled', false);
+      
       clear_all_circle()
       clear_all_poi_advancedMarker()
  });
@@ -2034,7 +2034,7 @@ if (_category_string){
 
         nearby_poi(_center_radius_in_meter, _center_long, _center_lat)
 
-        //$("#shoot-it-button").prop('disabled', true);
+        
   });
 
   
