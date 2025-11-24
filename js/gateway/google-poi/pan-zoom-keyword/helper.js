@@ -2019,74 +2019,19 @@ function init_user_interface_after_map_load(){
 
 
 
-/**/
-//  -  -  - search poi keyword  -  -  - 
-/**/
-
-// 1st time, one time run
-if (search_poi_keyword){
-  $("#search_poi_input").val(search_poi_keyword)
-            console.log("1st time, one time run, set poi keyword search", search_poi_keyword)
-}
-/**/
-//  -  -  - end  -  -  -  search poi keyword    -  -  - 
-/**/
-
   
 
 
   
       $("#start_over_button").on("click", function() {
-      clear_all_circle()
+      //clear_all_circle()
       clear_all_poi()
 
       });
 
 
 
-   /**/
-            //  - - - download csv  - - - 
-            /**/
-
-
-
-
-            $("#download_csv_button").on("click", function() {
-
-
-
-              json_for_csv = geojson_to_csvReadyJsonArray(poi_geojson)
-              
-              /**/
-              //  --- papaparse   --- 
-              /**/
-              var final_csv_string = parse_json_to_csv_string(json_for_csv)
-              /**/
-              //  --- end  ---  papaparse    --- 
-              /**/
-
-              saveStringAsFile('poi.csv', final_csv_string)
-
-
-
-          });
-
-
-
-      /**/
-      //  - - -  end  - - -   download csv    - - - 
-      /**/
-
-
-  /**/
-    // - - - - download poi  - - - - 
-    /**/
-    $("#download_poi_button").on("click", function() {
-      saveJsonAsFile('poi.geojson', poi_geojson)
-    });
-  /**/
-  //  - - - -  end  - - - -  download poi   - - - - 
-  /**/
+   
 
   
 //  .......  opacity   ....... 

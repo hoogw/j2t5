@@ -1988,72 +1988,17 @@ function init_user_interface_after_map_load(){
 
 
 
-/**/
-//  -  -  - category  -  -  - 
-/**/
-
-// 1st time, one time run
-if (_category_string){
-  $("#category-input").val(_category_string)
-  console.log("1st time, one time run, set poi category search", _category_string)
-}
-/**/
-//  -  -  - end  -  -  -  category    -  -  - 
-/**/
-
-
 
 // only for pan & zoom, not for manual drawing circle
  $("#start_over_button").on("click", function() {
       clear_all_circle()
+       clear_circle_guideRing()
       clear_all_poi_advancedMarker()
  });
 
 
 
-   /**/
-            //  - - - download csv  - - - 
-            /**/
-
-
-
-
-            $("#download_csv_button").on("click", function() {
-
-
-
-              json_for_csv = geojson_to_csvReadyJsonArray(poi_geojson)
-              
-              /**/
-              //  --- papaparse   --- 
-              /**/
-              var final_csv_string = parse_json_to_csv_string(json_for_csv)
-              /**/
-              //  --- end  ---  papaparse    --- 
-              /**/
-
-              saveStringAsFile('poi.csv', final_csv_string)
-
-
-
-          });
-
-
-
-      /**/
-      //  - - -  end  - - -   download csv    - - - 
-      /**/
-
-
-  /**/
-    // - - - - download poi  - - - - 
-    /**/
-    $("#download_poi_button").on("click", function() {
-      saveJsonAsFile('poi.geojson', poi_geojson)
-    });
-  /**/
-  //  - - - -  end  - - - -  download poi   - - - - 
-  /**/
+  
 
   
 //  .......  opacity   ....... 
