@@ -468,48 +468,10 @@
          
 
 
-
-
-
-
-
-
-
 /**/
-//  --- google poi      --- 
-/**/       
-
-//  -  -  - shoot it !!! -  -  - 
-async function nearby_poi(_radiusMeter, _centerLng, _centerLat){  //  -  -  - shoot it !!! -  -  - 
-
-
-                                
-                  /**/
-                  //  -  -  - shoot it !!! -  -  - 
-                  /**/
-                  // comment out this line
-                  drawing_circle(_radiusMeter, _centerLng, _centerLat)
-                  /**/
-                  //  -  -  - end  -  -  -  shoot it !!!    -  -  - 
-                  /**/
-
-
-
-              
-
-              
-              
-             // https://developers.google.com/maps/documentation/javascript/load-maps-js-api#use-legacy-tag
-             var { Place } = await google.maps.importLibrary("places");
-             // https://developers.google.com/maps/documentation/javascript/libraries
-
-
-
-
-
-
-
-            
+//  --- google textSearch poi      --- 
+/**/      
+            async function search_poi(){
 
             /**/
             //  -  -  - search poi keyword  -  -  - 
@@ -520,88 +482,105 @@ async function nearby_poi(_radiusMeter, _centerLng, _centerLat){  //  -  -  - sh
             //  -  -  - end  -  -  -  search poi keyword    -  -  - 
             /**/
 
+            //https://developers.google.com/maps/documentation/places/web-service/nearby-search
+             var google_place_header = {
 
-           
+              // must use this to post json
+              "Content-Type": "application/json",
+             
 
-
-
-              var google_place_request_param = {
-
-                 /**/
-                //  -  -  - search poi keyword  -  -  - 
-                /**/
-                  // https://developers.google.com/maps/documentation/javascript/reference/place#SearchByTextRequest
-                  textQuery:search_poi_keyword,
-                /**/
-                //  -  -  - end  -  -  -  search poi keyword    -  -  - 
-                /**/
+              // required
+              "X-Goog-FieldMask" : google_place_fieldMask,
+              "X-Goog-Api-Key":  _google_place_api_key, // local restriction applied
 
 
+             
+
+             }
 
 
+              /**/
+              //  -  -  - search poi keyword  -  -  - 
+              /**/
 
 
+              var _bounds = map.getBounds();
+              var _southWest = _bounds.getSouthWest();
+              var _northEast = _bounds.getNorthEast();
+              var _SWlong = _southWest.lng();
+              var _SWlat = _southWest.lat();
+              var _NElong = _northEast.lng();
+              var _NElat = _northEast.lat();
 
-
-
-                // field options  https://developers.google.com/maps/documentation/javascript/place-class-data-fields
-                fields: [
-                          "id",  
-                          "displayName", 
-                          "nationalPhoneNumber",
-                          "businessStatus",
-
-                          "location", 
-                          "formattedAddress", 
-                          "adrFormatAddress",  
-                          "addressComponents", 
-                           
-
-
-                         // "photos",
-                         // "openingHours", 
-                         //  "reviews", 
-                         "types",  
-                         "primaryType",  
-                         // "",  
-                         // "name",  //invalid
-                        ],
-
-
-                /**/
-                //  -  -  - search poi keyword  -  -  - 
-                /**/
-
-                // only for keyword search text https://developers.google.com/maps/documentation/javascript/reference/coordinates#LatLngBoundsLiteral
-                locationRestriction: map.getBounds(),
-                /**/
-                //  -  -  - end  -  -  -  search poi keyword    -  -  - 
-                /**/
-
-                // optional parameters
-                //includedPrimaryTypes: ["restaurant"],
-                maxResultCount: max_google_poi_limit,   
-                //rankPreference: SearchNearbyRankPreference.POPULARITY,
-                //language: "en-US",
-                //region: "us",
-              };
+              //console.log("bounds", bounds)
+              var view_rectangle = {
+                      "rectangle": {
+                        "low": {
+                          "latitude": _SWlat,
+                          "longitude": _SWlong ,
+                        },
+                        "high": {
+                          "latitude":  _NElat,
+                          "longitude": _NElong,
+                        }
+                      }
+                  }
 
 
 
+              var google_textSearch_post_data = {
+
+                // https://developers.google.com/maps/documentation/places/web-service/text-search
+                "textQuery":search_poi_keyword,
+                // not use
+                //"includedTypes": _category_array,
+
+                // only use one, but not use both
+                  // all result must be inside of rectangle 
+                "locationRestriction": view_rectangle,
+                //result must be outside of rectangle 
+                //"locationBias": map.getBounds(),
+              }
+
+            /**/
+            //  -  -  - end  -  -  -  search poi keyword    -  -  - 
+            /**/
+             
+            
 
 
 
               
-              /**/
-                //  -  -  - search poi keyword  -  -  - 
-                /**/
-                // https://developers.google.com/maps/documentation/javascript/reference/place#SearchByTextRequest
-                var { places } = await Place.searchByText(google_place_request_param);
-                /**/
-                //  -  -  - end  -  -  -  search poi keyword    -  -  - 
-                /**/
             
-              console.log(' place search nearby results : ', places);
+             
+              
+              var response_raw =  await $.ajax({
+                  url: google_searchText,
+                  method: 'POST',
+                  dataType: 'json',
+                  headers: google_place_header,
+                  
+                  // do not let jquery convert object to string,   
+                  processData: false, // default is true, jquery convert object to string in its own rule, different from json,stringify
+                  // must convert object to string, 
+                  data: JSON.stringify(google_textSearch_post_data),
+
+                  success: function(data){
+                    console.log('poi search by categories success', data)
+                  }, 
+                  error: function(jqXHR, textStatus, errorThrown) {
+                    // Handle error response
+                    console.error("Error:", textStatus, errorThrown);
+                  }
+                }); 
+                console.log(' place search nearby results : ', response_raw);
+                    
+                
+                var places = []
+                if (response_raw.hasOwnProperty("places") && (response_raw.places)){
+                  places = response_raw.places
+                }
+
                 
 
               //  . . efficient core newOnly  . - .
@@ -632,7 +611,7 @@ async function nearby_poi(_radiusMeter, _centerLng, _centerLat){  //  -  -  - sh
                 poi_geojson = poi_to_geojson(_all_poi_flat_array)
                 console.log('poi geojson', poi_geojson)
 
-  
+
 
 
  /**/
@@ -650,16 +629,9 @@ async function nearby_poi(_radiusMeter, _centerLng, _centerLat){  //  -  -  - sh
 
 
 
-              
-
-
-
-}//function
-
-
-
+            }//function
 /**/
-//  --- end  ---  google poi    --- 
+//  --- end  ---  google textSearch poi    --- 
 /**/
 
 

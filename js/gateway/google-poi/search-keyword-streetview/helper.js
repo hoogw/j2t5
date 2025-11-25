@@ -2028,8 +2028,14 @@ function init_user_interface_after_map_load(){
 
   $("#shoot-it-button").on("click", function() {
 
-        nearby_poi(_center_radius_in_meter, _center_long, _center_lat)
-
+        
+                  /**/
+                  //  --- google textSearch poi   --- 
+                  /**/
+                  search_poi()
+                  /**/
+                  //  --- end  ---  google textSearch poi    --- 
+                  /**/
         
   });
 
