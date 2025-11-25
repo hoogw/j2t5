@@ -222,8 +222,8 @@ function get_map_bound(){
             $("#circle_radius_range").attr("max", _center_radius_in_meter / 2);
 
             // grid density:  smaller circle radius give you denser circle grid
-            current_circle_radius = Math.floor(_center_radius_in_meter / 16);
-
+            //current_circle_radius = Math.floor(_center_radius_in_meter / 16);
+            current_circle_radius = Math.floor(_center_radius_in_meter / 2);
 /**/
 //  --- end  ---  microsoft poi auto    --- 
 /**/

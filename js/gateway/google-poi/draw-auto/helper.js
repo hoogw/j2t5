@@ -500,7 +500,8 @@
             $("#circle_radius_range").attr("max", _center_radius_in_meter / 2);
 
             // grid density:  smaller circle radius give you denser circle grid
-            current_circle_radius = Math.floor(_center_radius_in_meter / 16);
+            //current_circle_radius = Math.floor(_center_radius_in_meter / 16);
+            current_circle_radius = Math.floor(_center_radius_in_meter / 2);
 
 /**/
 //  --- end  ---  microsoft poi auto    --- 
@@ -2304,7 +2305,7 @@ function init_user_interface_after_map_load(){
         // auto grid circle center lat lng  
         var _centerLng = grid_center_array[i].lng();
         var  _centerLat = grid_center_array[i].lat();
-        //console.log('drawing  auto grid circle center lat lng', i,  _radiusMeter, _centerLng, _centerLat)
+        console.log('drawing  auto grid circle center lat lng', i,  _radiusMeter, _centerLng, _centerLat)
 
         circle_range = new google.maps.Circle({
                     strokeColor: 'rgba(255, 0, 0, 1)',
