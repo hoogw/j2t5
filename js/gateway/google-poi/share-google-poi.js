@@ -915,12 +915,14 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
           poi_primaryType = poi_element.primaryType
           poi_type = poi_element.types
 
+
+          // not use, these should be done in arcpro
           // - - motorola requirement  - - 
           // 1) remove special char by space
           //The regular expression /[^a-zA-Z0-9\s]/g matches any character that is NOT an alphabet (a-z, A-Z), a number (0-9), or a whitespace character
-          poi_name = poi_name.replace(/[^a-zA-Z0-9\s]/g, ' ');
+          //poi_name = poi_name.replace(/[^a-zA-Z0-9\s]/g, ' ');
           // 2) truncate max length 60 char
-          poi_name = poi_name.substring(0, 60);
+          //poi_name = poi_name.substring(0, 60);
           //  - -  end - - motorola requirement  - - 
 
 
