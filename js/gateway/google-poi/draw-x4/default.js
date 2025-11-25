@@ -660,7 +660,7 @@
                     console.log(' place search nearby results : ', response_raw);
                         
                     
-                    var places = []
+                var places = []
                 if (response_raw.hasOwnProperty("places") && (response_raw.places)){
                   places = response_raw.places
                 }
