@@ -558,33 +558,50 @@
                 drawing_4circle(_radiusMeter, _centerLng, _centerLat)
 
                       
-                // https://developers.google.com/maps/documentation/javascript/load-maps-js-api#use-legacy-tag
-                var { Place } = await google.maps.importLibrary("places");
-                // https://developers.google.com/maps/documentation/javascript/libraries
+               
+              /**/
+              //  -  -  - category  -  -  - 
+              /**/
+                  _category_string = $("#category-input").val()
+                  update_url_parameter("poicategory",_category_string)
+                  if (_category_string){
+                        _category_array = _category_string.split(","); // Splits by comma
+                  } else {
+                        _category_array = []
+                  }
+                  console.log('category array', _category_array); // Output: ["apple", "banana", "orange"]
+              /**/
+              //  -  -  - end  -  -  -  category    -  -  - 
+              /**/
 
 
-                
-            /**/
-            //  -  -  - category  -  -  - 
-            /**/
 
-             // array of types. https://developers.google.com/maps/documentation/javascript/reference/place#Place.types
-             // legacy types.  https://developers.google.com/maps/documentation/places/web-service/legacy/supported_types 
-             _category_string = $("#category-input").val()
-            update_url_parameter("poicategory",_category_string)
-            
+
+             //https://developers.google.com/maps/documentation/places/web-service/nearby-search
+             var google_place_header = {
+
+              // must use this to post json
+              "Content-Type": "application/json",
              
-             if (_category_string){
-                   _category_array = _category_string.split(","); // Splits by comma
-                   
-             } else {
-                  _category_array = []
-             }
-             console.log('category array', _category_array); // Output: ["apple", "banana", "orange"]
 
-            /**/
-            //  -  -  - end  -  -  -  category    -  -  - 
-            /**/
+              // required
+              "X-Goog-FieldMask" : google_place_fieldMask,
+              "X-Goog-Api-Key":  _google_place_api_key, // local restriction applied
+
+
+             
+
+             }
+
+
+
+
+
+
+
+
+
+
 
                 for (let i = 0; i < circle_centerPoint_array.length; i++) {
 
@@ -593,60 +610,65 @@
                   _centerLng = circle_centerPoint_array[i].lng();
                   _centerLat = circle_centerPoint_array[i].lat();
 
-                  var google_place_request_param = {
 
 
-                /**/
-                //  -  -  - category  -  -  - 
-                /**/
-                  // https://developers.google.com/maps/documentation/javascript/reference/place#SearchNearbyRequest
-                  //includedPrimaryTypes: _category_array, // not use, because 1 poi only have 1 primary type, but have upto 50 types
-                  includedTypes: _category_array,
-                /**/
-                //  -  -  - end  -  -  -  category    -  -  - 
-                /**/
 
+                  var google_nearby_post_data = {
 
-                        // field options  https://developers.google.com/maps/documentation/javascript/place-class-data-fields
-                        fields: [
-                                  "id",  
-                                  "displayName", 
-                                  "nationalPhoneNumber",
-                                  "businessStatus",
-                                  
-                                  "location", 
-                                  "formattedAddress", 
-                                  "adrFormatAddress",  
-                                  "addressComponents", 
-                                  
-        
-                                  
-                                // "photos",
-                                // "openingHours", 
-                                //  "reviews", 
-                                "types",
-                                "primaryType",
-                                // "",  
-                                // "name",  //invalid
-                                ],
+                
+                  // https://developers.google.com/maps/documentation/places/web-service/nearby-search
+                  // optional,      includedTypes/excludedTypes, includedPrimaryTypes/excludedPrimaryTypes
+                  "includedPrimaryTypes": _category_array,
+                  //"includedTypes": _category_array,
 
+                  "maxResultCount": max_google_poi_limit,
 
-                          locationRestriction: {
-                            center: { lat: _centerLat, lng: _centerLng },
-                            radius:  _4circle_radius,  
-                          },
+                  // required
+                  "locationRestriction": {
+                                          "circle": {
+                                            "center": {
+                                              "latitude": _centerLat,
+                                              "longitude": _centerLng
+                                            },
+                                            "radius": _4circle_radius
+                                          }
+                                        },
+                }
 
-                          // optional parameters
-                          //includedPrimaryTypes: ["restaurant"],
-                          maxResultCount: max_google_poi_limit,   
-                          //rankPreference: SearchNearbyRankPreference.POPULARITY,
-                          //language: "en-US",
-                          //region: "us",
-                      };
+                  
 
-                      var { places } = await Place.searchNearby(google_place_request_param);
+                  
+                  var response_raw =  await $.ajax({
+                      url: google_nearby,
+                      method: 'POST',
+                      dataType: 'json',
+                      headers: google_place_header,
+                      
+                      // do not let jquery convert object to string,   
+                      processData: false, // default is true, jquery convert object to string in its own rule, different from json,stringify
+                      // must convert object to string, 
+                      data: JSON.stringify(google_nearby_post_data),
+
+                      success: function(data){
+                        console.log('poi search by categories success', data)
+                      }, 
+                      error: function(jqXHR, textStatus, errorThrown) {
+                        // Handle error response
+                        console.error("Error:", textStatus, errorThrown);
+                      }
+                    }); 
+                    console.log(' place search nearby results : ', response_raw);
+                        
                     
-                      console.log(' place search nearby results : ', places);
+                    var places = []
+                if (response_raw.hasOwnProperty("places") && (response_raw.places)){
+                  places = response_raw.places
+                }
+                    
+           
+
+
+
 
                               
                       //  . . efficient core newOnly  . - .

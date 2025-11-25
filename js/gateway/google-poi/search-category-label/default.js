@@ -569,7 +569,10 @@
                 console.log(' place search nearby results : ', response_raw);
                     
                 
-                var places = response_raw.places
+                var places = []
+                if (response_raw.hasOwnProperty("places") && (response_raw.places)){
+                  places = response_raw.places
+                }
 
                     //  . . efficient core newOnly  . - .
                     _this_newOnly_result_array = []

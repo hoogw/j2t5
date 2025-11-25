@@ -448,7 +448,7 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
 
               clear_circle_guideRing()
 
-              console.log('drawing guide ring at ', _radiusMeter, _centerLng, _centerLat)
+              //console.log('drawing guide ring at ', _radiusMeter, _centerLng, _centerLat)
 
                 /*
               // red solid line
@@ -820,7 +820,7 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
         for (let i = 0; i < ____poi_array.length; i++) {
 
           poi_element = ____poi_array[i]
-          console.log('google place item ',i,  poi_element)
+          //console.log('google place item ',i,  poi_element)
           poi_location = poi_element.location
           poi_lng = poi_location.longitude
           poi_lat = poi_location.latitude
