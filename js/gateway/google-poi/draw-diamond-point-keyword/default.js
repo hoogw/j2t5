@@ -475,32 +475,15 @@
 
 
 /**/
-//  --- google poi      --- 
-/**/       
-
-
+//  --- google textSearch poi      --- 
+/**/     
         /**/
         //  --- google manual drawing square   --- 
         /**/
+        async function search_poi(clickEventLatLng){
 
-              
-                    
-                    async function nearby_poi(clickEventLatLng){
-
-                       drawing_shape(current_square_edge, clickEventLatLng)
+            drawing_shape(current_square_edge, clickEventLatLng)
                      
-
-                      
-                    // https://developers.google.com/maps/documentation/javascript/load-maps-js-api#use-legacy-tag
-                    var { Place } = await google.maps.importLibrary("places");
-                    // https://developers.google.com/maps/documentation/javascript/libraries
-
-
-
-                    
-           
-            
-
             /**/
             //  -  -  - search poi keyword  -  -  - 
             /**/
@@ -513,85 +496,103 @@
            
 
 
+             //https://developers.google.com/maps/documentation/places/web-service/nearby-search
+             var google_place_header = {
 
-              var google_place_request_param = {
+              // must use this to post json
+              "Content-Type": "application/json",
+             
 
-                 /**/
-                //  -  -  - search poi keyword  -  -  - 
-                /**/
-                  // https://developers.google.com/maps/documentation/javascript/reference/place#SearchByTextRequest
-                  textQuery:search_poi_keyword,
-                /**/
-                //  -  -  - end  -  -  -  search poi keyword    -  -  - 
-                /**/
-
+              // required
+              "X-Goog-FieldMask" : google_place_fieldMask,
+              "X-Goog-Api-Key":  _google_place_api_key, // local restriction applied
 
 
+             
+
+             }
+
+
+              /**/
+              //  -  -  - search poi keyword  -  -  - 
+              /**/
+
+              var _SWlong = mid_west_lng;
+              var _SWlat  = mid_south_lat;
+              var _NElong = mid_east_lng;
+              var _NElat  = mid_north_lat;
+
+              //console.log("bounds", bounds)
+              var view_rectangle = {
+                      "rectangle": {
+                        "low": {
+                          "latitude": _SWlat,
+                          "longitude": _SWlong ,
+                        },
+                        "high": {
+                          "latitude":  _NElat,
+                          "longitude": _NElong,
+                        }
+                      }
+                  }
 
 
 
-                      // field options  https://developers.google.com/maps/documentation/javascript/place-class-data-fields
-                      fields: [
-                                "id",  
-                                "displayName", 
-                                "nationalPhoneNumber",
-                                "businessStatus",
-                                
-                                "location", 
-                                "formattedAddress", 
-                                "adrFormatAddress",  
-                                "addressComponents", 
-                                 
-      
-                                
-                               // "photos",
-                               // "openingHours", 
-                               //  "reviews", 
-                               "types",
-                               "primaryType",
-                               // "",  
-                               // "name",  //invalid
-                              ],
+              var google_textSearch_post_data = {
+
+                // https://developers.google.com/maps/documentation/places/web-service/text-search
+                "textQuery":search_poi_keyword,
+                // not use
+                //"includedTypes": _category_array,
+
+                // only use one, but not use both
+                  // all result must be inside of rectangle 
+                "locationRestriction": view_rectangle,
+                //result must be outside of rectangle 
+                //"locationBias": map.getBounds(),
+              }
+
+            /**/
+            //  -  -  - end  -  -  -  search poi keyword    -  -  - 
+            /**/
+             
+            
 
 
-                /**/
-                //  -  -  - search poi keyword  -  -  - for draw square only  -  -  - 
-                /**/
 
-                // only for keyword search text https://developers.google.com/maps/documentation/javascript/reference/coordinates#LatLngBoundsLiteral
-                locationRestriction: {
-                                        north: mid_north_lat, 
-                                        south: mid_south_lat, 
-                                        east: mid_east_lng, 
-                                        west: mid_west_lng,
-                },
-                /**/
-                //  -  -  - end  -  -  -  search poi keyword    -  -  -  for draw square only  -  -  - 
-                /**/
+              
+            
+             
+              
+              var response_raw =  await $.ajax({
+                  url: google_searchText,
+                  method: 'POST',
+                  dataType: 'json',
+                  headers: google_place_header,
+                  
+                  // do not let jquery convert object to string,   
+                  processData: false, // default is true, jquery convert object to string in its own rule, different from json,stringify
+                  // must convert object to string, 
+                  data: JSON.stringify(google_textSearch_post_data),
 
-                        // optional parameters
-                        //includedPrimaryTypes: ["restaurant"],
-                        maxResultCount: max_google_poi_limit,   
-                        //rankPreference: SearchNearbyRankPreference.POPULARITY,
-                        //language: "en-US",
-                        //region: "us",
-                      };
-
-                      
-                      
-                /**/
-                //  -  -  - search poi keyword  -  -  - 
-                /**/
-                // https://developers.google.com/maps/documentation/javascript/reference/place#SearchByTextRequest
-                var { places } = await Place.searchByText(google_place_request_param);
-                /**/
-                //  -  -  - end  -  -  -  search poi keyword    -  -  - 
-                /**/
-
-
+                  success: function(data){
+                    console.log('poi search by categories success', data)
+                  }, 
+                  error: function(jqXHR, textStatus, errorThrown) {
+                    // Handle error response
+                    console.error("Error:", textStatus, errorThrown);
+                  }
+                }); 
+                console.log(' place search nearby results : ', response_raw);
                     
-                      console.log(' place search nearby results : ', places);
+                
+                var places = []
+                if (response_raw.hasOwnProperty("places") && (response_raw.places)){
+                  places = response_raw.places
+                }
 
+
+                      
                               
                       //  . . efficient core newOnly  . - .
                       _this_newOnly_result_array = []
@@ -657,11 +658,8 @@
         /**/
         //  --- end  ---  google manual drawing square    --- 
         /**/
-
-
-
 /**/
-//  --- end  ---  google poi    --- 
+//  --- end  ---  google textSearch poi    --- 
 /**/
 
 

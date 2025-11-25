@@ -995,11 +995,11 @@
            
 
                   /**/
-                  //  --- google poi   --- 
+                  //  --- google textSearch poi   --- 
                   /**/
                   search_poi()
                   /**/
-                  //  --- end  ---  google poi    --- 
+                  //  --- end  ---  google textSearch poi    --- 
                   /**/
                              
             });

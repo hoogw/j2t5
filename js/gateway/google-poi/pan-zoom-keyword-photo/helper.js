@@ -243,40 +243,6 @@
 
 
 
-                                    
-
-                  /**/
-                  //  --- google poi   --- 
-                  /**/
-
-
-                   // . .   limit by bound, lat lng with minium radius
-                  _center_radius_in_meter = get_center_radius_in_map_bound()
-                  
-                  //. . . only for browsing ...  remove last circle . . .  
-                  clear_all_circle()
-                  
-                  nearby_poi(_center_radius_in_meter, _center_long, _center_lat)
-
-                  /**/
-                  //  --- end  ---  google poi    --- 
-                  /**/
-
-
-
-
-
-                  
-                 
-
-                 
-
-
-
-                  
-
-
-
                   }// if map.getBounds()
                                   
                                   
@@ -1045,6 +1011,14 @@
               update_center_latLngZoom();
             
               get_map_bound();
+
+              /**/
+                  //  --- google textSearch poi   --- 
+                  /**/
+                  search_poi()
+                  /**/
+                  //  --- end  ---  google textSearch poi    --- 
+                  /**/
                              
             });
 

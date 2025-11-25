@@ -474,11 +474,8 @@
 
 
 /**/
-//  --- google poi      --- 
-/**/       
-
-
-
+//  --- google textSearch poi      --- 
+/**/      
             async function search_poi(){
 
             /**/
@@ -633,11 +630,8 @@
 
 
             }//function
-
-
-
 /**/
-//  --- end  ---  google poi    --- 
+//  --- end  ---  google textSearch poi    --- 
 /**/
 
 

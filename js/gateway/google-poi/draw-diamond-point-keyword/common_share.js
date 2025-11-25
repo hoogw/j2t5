@@ -1243,7 +1243,10 @@ var highlighted_color = '#1F51FF' // Neon Blue
 
           console.log("min_square_edge in meter", min_square_edge)
           max_square_edge =  Math.floor(min_square_edge)
-          current_square_edge = Math.floor(max_square_edge / 4)
+          // small box
+          //current_square_edge = Math.floor(max_square_edge / 4)
+          // large box
+          current_square_edge = Math.floor(max_square_edge / 2)
 
           max_square_edge_miles =  (max_square_edge * 0.000621371).toFixed(2)
           current_square_edge_miles = (current_square_edge * 0.000621371).toFixed(2)

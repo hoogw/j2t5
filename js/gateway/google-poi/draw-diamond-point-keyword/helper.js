@@ -524,7 +524,7 @@
                 var click_lat_lng_point = { lng : click_lng, lat : click_lat }
                 console.log(' **** clicked ground overlay image *** >>> lng, lat ', click_lng, click_lat)
   
-                nearby_poi(click_event.latLng)
+                search_poi(click_event.latLng)
   
               })// click event
   
@@ -933,7 +933,7 @@
                         var click_lat_lng_point = { lng : click_lng, lat : click_lat }
                         console.log(' **** clicked ground overlay image *** >>> lng, lat ', click_lng, click_lat)
 
-                        nearby_poi(event.latLng)
+                        search_poi(event.latLng)
 
                         /**/
                         //  --- end  ---  google manual drawing square    --- 
