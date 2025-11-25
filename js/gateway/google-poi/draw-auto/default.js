@@ -291,7 +291,7 @@
  
 
 /**/
-//  --- microsoft poi auto    --- 
+//  --- google poi auto    --- 
 /**/
 
 
@@ -345,7 +345,7 @@
 
 
 /**/
-//  --- end  ---  microsoft poi auto    --- 
+//  --- end  ---  google poi auto    --- 
 /**/
 
 

@@ -494,7 +494,7 @@
                    
 
 /**/
-//  --- microsoft poi auto    --- 
+//  --- google poi auto    --- 
 /**/
 
             $("#circle_radius_range").attr("max", _center_radius_in_meter / 2);
@@ -504,7 +504,7 @@
             current_circle_radius = Math.floor(_center_radius_in_meter / 2);
 
 /**/
-//  --- end  ---  microsoft poi auto    --- 
+//  --- end  ---  google poi auto    --- 
 /**/
 
               $("#circle_radius_range").val(current_circle_radius);
@@ -2216,7 +2216,7 @@ function init_user_interface_after_map_load(){
 
 
 /**/
-//  --- microsoft poi auto    --- 
+//  --- google poi auto    --- 
 /**/
 
     var _auto_grid_side
@@ -2492,7 +2492,7 @@ function init_user_interface_after_map_load(){
 
 
 /**/
-//  --- end  ---  microsoft poi auto    --- 
+//  --- end  ---  google poi auto    --- 
 /**/
 
             
