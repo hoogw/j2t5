@@ -1993,7 +1993,7 @@ var small_text = "50%"
                                 show_all_icon_list()
                             }
                         });
-                        //  - - - when user click x at end of search bar(input type=search)   - - -
+                        //  - - -  end  - - - when user click x at end of search bar(input type=search)   - - -
 
                            
                     /**/

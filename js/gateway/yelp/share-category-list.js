@@ -504,6 +504,21 @@
                               $('#poi_categories').jstree('open_all');
                           }
                       }); 
+
+
+                      
+                        //  - - - when user click x at end of search bar(input type=search)  - - -
+                        // so no need filter by button, clear button
+                        $('#filter_folder_list_by').on('search', function(event) {
+                            if ($('#filter_folder_list_by').val().trim().toLowerCase()){
+                                filter_folderList_now()
+                            } else {
+                                // empty
+                                show_all_folder_list()
+                            }
+                        });
+                        //  - - -  end  - - - when user click x at end of search bar(input type=search)   - - -
+
             }
                  
   

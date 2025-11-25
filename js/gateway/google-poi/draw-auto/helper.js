@@ -2328,34 +2328,39 @@ function init_user_interface_after_map_load(){
 
    async function nearby_poi_auto_grid(_radiusMeter){
 
-      // https://developers.google.com/maps/documentation/javascript/load-maps-js-api#use-legacy-tag
-      var { Place } = await google.maps.importLibrary("places");
-      // https://developers.google.com/maps/documentation/javascript/libraries
+      /**/
+      //  -  -  - category  -  -  - 
+      /**/
+          _category_string = $("#category-input").val()
+          update_url_parameter("poicategory",_category_string)
+          if (_category_string){
+                _category_array = _category_string.split(","); // Splits by comma
+          } else {
+                _category_array = []
+          }
+          console.log('category array', _category_array); // Output: ["apple", "banana", "orange"]
+      /**/
+      //  -  -  - end  -  -  -  category    -  -  - 
+      /**/
 
 
 
-          
-            /**/
-            //  -  -  - category  -  -  - 
-            /**/
 
-             // array of types. https://developers.google.com/maps/documentation/javascript/reference/place#Place.types
-             // legacy types.  https://developers.google.com/maps/documentation/places/web-service/legacy/supported_types 
-             _category_string = $("#category-input").val()
-            update_url_parameter("poicategory",_category_string)
-            
-             
-             if (_category_string){
-                   _category_array = _category_string.split(","); // Splits by comma
-                   
-             } else {
-                  _category_array = []
-             }
-             console.log('category array', _category_array); // Output: ["apple", "banana", "orange"]
+      //https://developers.google.com/maps/documentation/places/web-service/nearby-search
+      var google_place_header = {
 
-            /**/
-            //  -  -  - end  -  -  -  category    -  -  - 
-            /**/
+      // must use this to post json
+      "Content-Type": "application/json",
+      
+
+      // required
+      "X-Goog-FieldMask" : google_place_fieldMask,
+      "X-Goog-Api-Key":  _google_place_api_key, // local restriction applied
+
+
+      
+
+      }
 
 
 
@@ -2368,65 +2373,64 @@ function init_user_interface_after_map_load(){
         _centerLng = grid_center_array[i].lng();
         _centerLat = grid_center_array[i].lat();
 
-        var google_place_request_param = {
+         var google_nearby_post_data = {
 
+                
+                  // https://developers.google.com/maps/documentation/places/web-service/nearby-search
+                  // optional,      includedTypes/excludedTypes, includedPrimaryTypes/excludedPrimaryTypes
+                  "includedPrimaryTypes": _category_array,
+                  //"includedTypes": _category_array,
 
-                /**/
-                //  -  -  - category  -  -  - 
-                /**/
-                  // https://developers.google.com/maps/documentation/javascript/reference/place#SearchNearbyRequest
-                  //includedPrimaryTypes: _category_array, // not use, because 1 poi only have 1 primary type, but have upto 50 types
-                  includedTypes: _category_array,
-                /**/
-                //  -  -  - end  -  -  -  category    -  -  - 
-                /**/
+                  "maxResultCount": max_google_poi_limit,
 
+                  // required
+                  "locationRestriction": {
+                                          "circle": {
+                                            "center": {
+                                              "latitude": _centerLat,
+                                              "longitude": _centerLng
+                                            },
+                                            "radius": _radiusMeter
+                                          }
+                                        },
+         }
 
-                        // field options  https://developers.google.com/maps/documentation/javascript/place-class-data-fields
-                        fields: [
-                                  "id",  
-                                  "displayName", 
-                                  "nationalPhoneNumber",
-                                  "businessStatus",
-                                  
-                                  "location", 
-                                  "formattedAddress", 
-                                  "adrFormatAddress",  
-                                  "addressComponents", 
-                                  
-        
-                                  
-                                // "photos",
-                                // "openingHours", 
-                                //  "reviews", 
-                                "types",
-                                "primaryType",
-                                // "",  
-                                // "name",  //invalid
-                                ],
+                   
+        var response_raw =  await $.ajax({
+          url: google_nearby,
+          method: 'POST',
+          dataType: 'json',
+          headers: google_place_header,
+          
+          // do not let jquery convert object to string,   
+          processData: false, // default is true, jquery convert object to string in its own rule, different from json,stringify
+          // must convert object to string, 
+          data: JSON.stringify(google_nearby_post_data),
 
-
-                          locationRestriction: {
-                            center: { lat: _centerLat, lng: _centerLng },
-                            radius:  _radiusMeter,  
-                          },
-
-                          // optional parameters
-                          //includedPrimaryTypes: ["restaurant"],
-                          maxResultCount: max_google_poi_limit,   
-                          //rankPreference: SearchNearbyRankPreference.POPULARITY,
-                          //language: "en-US",
-                          //region: "us",
-                      };
-
-                      var { places } = await Place.searchNearby(google_place_request_param);
+          success: function(data){
+            console.log('poi search by categories success', data)
+          }, 
+          error: function(jqXHR, textStatus, errorThrown) {
+            // Handle error response
+            console.error("Error:", textStatus, errorThrown);
+          }
+        }); 
+        console.log(' place search nearby results : ', response_raw);
+                        
                     
-                      console.log(' place search nearby results : ', places);
+        var places = []
+        if (response_raw.hasOwnProperty("places") && (response_raw.places)){
+          places = response_raw.places
+        }
+                    
+           
 
 
 
 
-           //  . . efficient core newOnly  . - .
+
+
+                //  . . efficient core newOnly  . - .
                       _this_newOnly_result_array = []
 
                         // not use, 

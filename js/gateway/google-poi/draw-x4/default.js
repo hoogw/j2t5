@@ -595,14 +595,6 @@
 
 
 
-
-
-
-
-
-
-
-
                 for (let i = 0; i < circle_centerPoint_array.length; i++) {
 
 
