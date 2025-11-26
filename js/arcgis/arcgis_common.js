@@ -1485,7 +1485,11 @@ var geojsonTemplateFeatures_array = []
 
 
 
+//  .. .. .. .. ..  apple long term static api token  .. .. .. .. ..
 
+apple_token = "eyJraWQiOiI3WERaQzc2MjlXIiwidHlwIjoiSldUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJDNE5YNVM5UTRCIiwiaWF0IjoxNzY0MTg2Njc3LCJvcmlnaW4iOiJ0cmFuc3BhcmVudGdvdi5uZXQifQ.y4HioJk5y_0vbI59mX16HPeVmPTssNxGAZehF66QwOxcn56ek1gPI-8gjNyjEXwSvVV86-_lqRuEGF2KUL69cA"
+
+//  .. .. end .. .. ..  apple long term static api token  .. .. .. .. ..
 
 
 // bootstrap svg icon path can be found here https://icons.getbootstrap.com/icons/geo-alt-fill/
