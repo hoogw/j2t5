@@ -192,6 +192,12 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                     icon_flatjson.push(icon_item) 
 
 
+
+
+
+
+
+
                     icon_item = { 
                         "id" :  577,     
                         "parent" : 10,
@@ -13990,6 +13996,59 @@ icon_flatjson.push(icon_item)
 
 
 
+
+
+
+
+
+
+
+
+
+                  // . . . . apple  . . . .   
+
+                    icon_item = { 
+                        "id" :  776,     
+                        "parent" : 777,
+                        "text" : "default",
+                        "icon" : folder_icon,
+                        "link_type": "folder",   
+                        "state"       : {
+                        // use this opened line for always default open this folder
+                                        "opened"    :false, //  iconJstreeforceOpen,   // is the node open
+                                        // disabled  : boolean  // is the node disabled
+                                        // "selected"  : true   // is the node selected
+                                    }
+                    };
+                    icon_flatjson.push(icon_item) 
+
+
+
+                                icon_item = { 
+
+                                "id" : 7760,     
+                                "parent" : 776,
+                                "text" : "7760 default",
+                                "layer_name" : _layer_name_,
+                                "icon" : open_new_tab_icon,
+                                "link_type": "embed_7760",
+                                "state"       : {
+                                                "opened"    : true,  // is the node open
+                                                // disabled  : boolean  // is the node disabled
+                                                // "selected"  : true   // is the node selected
+                                            },
+                                "node_path" : _node_path_, 
+                                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                "server_path" : _map_server_url_,
+                                "layer_id" :  _layer_id_,            
+                                "type" : _type_
+                                };
+                                icon_flatjson.push(icon_item) 
+
+
+
+
+                  // . . . .  end   . . . .    apple  . . . .    
 
 
 return icon_flatjson

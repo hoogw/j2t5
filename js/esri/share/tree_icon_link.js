@@ -2367,7 +2367,6 @@ case "embed_3953":
 
 // ^^^^^^^^^^^^^^^^^^^^^  apple  feature layer    ^^^^^^^^^^^^^^^^^^^^^
 
-
   case "apple_a120":
       var _newTab_link =  url_template_base_applemaps.replace('applemaps/default?', 'applemaps120/default?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0] 
       window.open(_newTab_link,'_blank');
@@ -2395,6 +2394,12 @@ case "embed_3953":
   break;
 
 
+
+  case "embed_7760":
+      var _newTab_link =  apple_base_url.replace('default.html?', 'default.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
 
 
 //   ^^^^^^^^^^^^^^^^^^^^^   end   ^^^^^^^^^^^^^^^^^^^^^  bing  feature layer     ^^^^^^^^^^^^^^^^^^^^^

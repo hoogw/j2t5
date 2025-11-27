@@ -487,7 +487,7 @@ var  base_url = '';
 
 
                   var url_template_base_applemaps
-                
+                  var apple_base_url
 
                   var url_template_base_bingmaps
                   
@@ -647,9 +647,11 @@ var  base_url = '';
               /**/ 
               //...................................................................................
 
-                // apple map
+                // apple node.js
                 url_template_base_applemaps = template_protocol +  '//' + window.location.hostname + ':' + _port_http_https  +'/applemaps/default?';
-                
+                // apple json2tree
+                apple_base_url = _root_server +  '/json2tree/gateway/apple/default.html?'; 
+             
              
                 
               //...................................................................................
