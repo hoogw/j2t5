@@ -67,7 +67,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                         "id" :  327,     
                         "parent" : 10,
 
-                        "text" : "911",
+                        "text" : "911 location platform",
 
                         "icon" : folder_icon,
                         "link_type": "folder",   
