@@ -253,43 +253,11 @@
                         
 
 
-                        function valid_lat_lng(_lat, _lng){
-
-
-                          if ((_lat<= 90 ) && (_lat >= -90) && (_lng <= 180) && (_lng >= -180)){
-
-
-                            return true
-
-                          } else {
-
-                          return false
-                          }
-
-                        }
+                        
 
 
               
-                        function validate_long(_invalid_long){
-
-                                  var _valid_long
-
-                                  if (_invalid_long > 180) {
-                                    _valid_long = -180 + (_invalid_long - 180)
-
-                                  } 
-
-                                  if (_invalid_long < -180) {
-                                    _valid_long = 180 - (_invalid_long + 180)
-
-                                  } 
-
-
-                                  console.log(' ! ! !  warning ! ! !  invalid long found ! ! !  ! ! !  invalid ----> valid  ! ! !  ! ! !  ',  _invalid_long, _valid_long)
-
-                                  return _valid_long
-
-                        }
+                        
         
 
 
