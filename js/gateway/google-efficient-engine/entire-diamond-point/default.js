@@ -325,22 +325,7 @@
 
 
                              
-              function display_count_info(_subject, ___showing_cnt, ___all_cnt, ____rendering_cnt){
-
-
-                          $('#layer-info-vertical').html('<a  target="_blank" href="' + _url +  '/' + _layer_id +'">' + _subject + '</a>')
-
-                          console.log(' update statistic info', ___showing_cnt, ___all_cnt)
-
-                          if (isNaN(___showing_cnt)){ ___showing_cnt = '...' } // not available...
-                          if (isNaN(___all_cnt)){ ___all_cnt = '...' } // not available...
-                          
-                          $('#feature-on-map').html(___showing_cnt)
-                          $('#total-feature').html(___all_cnt)
-                          $('#rendering-feature').html(____rendering_cnt)
-
-                             
-              }
+              
                         
 
 

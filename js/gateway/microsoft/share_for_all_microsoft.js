@@ -975,20 +975,6 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
 
 
-                  function display_count_info(_subject, ___showing_cnt, ___all_cnt, ____rendering_cnt){
-
-
-                    $('#layer-info-vertical').html('<a  target="_blank" href="' + _url +  '/' + _layer_id +'">' + _subject + '</a>')
-
-                    console.log(' update statistic info', ___showing_cnt, ___all_cnt)
-
-                    if (isNaN(___showing_cnt)){ ___showing_cnt = '...' } // not available...
-                    if (isNaN(___all_cnt)){ ___all_cnt = '...' } // not available...
-                    
-                    $('#feature-on-map').html(___showing_cnt)
-                    $('#total-feature').html(___all_cnt)
-                    $('#rendering-feature').html(____rendering_cnt)
-                  }
 
 
 
@@ -998,256 +984,278 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
 
                   
-            // rest api specific, this is only for arcgis rest api
-            function show_count(data_count_only){
+           
 
 
 
-              //{ 'count': 1661}
-
-              // fix SyntaxError: Unexpected token o in JSON at position 1 at JSON.parse (<anonymous>)                      
-              //is already a plain JavaScript object; no need to try to parse it.
-             
-              if (typeof data_count_only === 'object') {
-                  // is object
-                  _current_area_count_of_feature = data_count_only.count
-              } else {
-                  // is string
-                  _current_area_count_of_feature = JSON.parse(data_count_only).count
-              }
-              
-
-
-
-              
-              display_count_info(_layer, _current_area_count_of_feature, _total_count_of_feature, _current_rendering_feature)
-             
-
-            }
-
-
-
-                  // only for total count ,
-                  function get_count(__raw_count){
-
-                          
-                                                        
-                    //{ 'count': 1661}
-
-                    // fix SyntaxError: Unexpected token o in JSON at position 1 at JSON.parse (<anonymous>)                      
-                    //is already a plain JavaScript object; no need to try to parse it.
-                    var data_count
-                    if (typeof __raw_count === 'object') {
-                        // is object
-                        data_count = __raw_count.count
-                    } else {
-                        // is string
-                        data_count = JSON.parse(__raw_count).count
-                    }
                   
-                    return data_count
-
-                  }
 
 
 
 
-                 // newer arcgis server seems prefer cors instead of jsonp, use cors first - then jsonp - proxy 
-                 async function get_total_count(){
+                // newer arcgis server seems prefer cors instead of jsonp, use cors first - then jsonp - proxy 
+                async function get_total_count(){
 
 
-                    /*    
-                    var SWlong = globe_bounding_box.coordinates[0][0][0];
-                    var SWlat  = globe_bounding_box.coordinates[0][0][1];
-                    var NElong = globe_bounding_box.coordinates[0][2][0];
-                    var NElat  = globe_bounding_box.coordinates[0][2][1];
-                      
+                  /*    
+                  var SWlong = globe_bounding_box.coordinates[0][0][0];
+                  var SWlat  = globe_bounding_box.coordinates[0][0][1];
+                  var NElong = globe_bounding_box.coordinates[0][2][0];
+                  var NElat  = globe_bounding_box.coordinates[0][2][1];
                     
+                  
 
-                    //-------------- arcgis server, rest API --------------------------------
+                  //-------------- arcgis server, rest API --------------------------------
 
-                    // this is bad request, should not use layerDefs={'0':''}, instead should use FeatureServer/0/query?...
-                    // http://services3.arcgis.com/VILr8UqX00eNAkeO/arcgis/rest/services/Parcels/FeatureServer/query?layerDefs={'0':''}&returnGeometry=true&f=json&geometryType=esriGeometryEnvelope&geometry={'xmin' : -117.923158, 'ymin' : 33.644081, 'xmax' : -117.921436, 'ymax' : 33.645157,'spatialReference' : {'wkid' : 4326}}
-                    
-                    // this is good one
-                    // http://maps.lacity.org/arcgis/rest/services/Mapping/NavigateLA/MapServer/333/query?f=pjson&returnCountOnly=false&outFields=*&outSR=4326&where=ASSETID = 1723459
-                    // must specify &outSR=4326& in URL, because gis layer default srid is NOT 4326
-                    // srid=4326 is only srid for lat long
-
-
-                    // esri, by default, use esri:102100, 
-                    //_envelope_111 = '{"spatialReference":{"latestWkid":3857,"wkid":102100},"xmin":-9178558.356484555,"ymin":3240929.9992936105,"xmax":-9177335.364031991,"ymax":3242152.991746176}';
-                    
-                    //var _envelope = '{"xmin" : -117.923158, "ymin" : 33.644081, "xmax" : -117.921436, "ymax" : 33.645157,"spatialReference" : {"wkid" : 4326}}';
-                    var _envelope_un_encode ='{"spatialReference":{"wkid":4326}, "xmin" : '+ SWlong +', "ymin" : '+ SWlat + ', "xmax" : '+NElong +', "ymax" : '+ NElat + '}';
-                    
-                    // fix bug, _envelope must encodeURI( ), without this some city (tampagov.net)
-                    // will show no-cross origine error, the real problem is envelope need encode
-                    
-                  var _envelope = encodeURI(_envelope_un_encode);
-                  //  console.log('_envelope --- encoded >>>', _envelope)
-
-                    
-                    // Note: must specify outFields=*, in order to get all properties, without this, properties= null
-                    var _url_total_countonly = _url + '/'+ _layer_id + '/query?returnGeometry=false&returnCountOnly=true&outSR=4326&f=pjson&geometryType=esriGeometryEnvelope&geometry='+ _envelope;
-                    
-
-                    //--------- End ----- arcgis server, rest API --------------------------------
-                    
-                  */
+                  // this is bad request, should not use layerDefs={'0':''}, instead should use FeatureServer/0/query?...
+                  // http://services3.arcgis.com/VILr8UqX00eNAkeO/arcgis/rest/services/Parcels/FeatureServer/query?layerDefs={'0':''}&returnGeometry=true&f=json&geometryType=esriGeometryEnvelope&geometry={'xmin' : -117.923158, 'ymin' : 33.644081, 'xmax' : -117.921436, 'ymax' : 33.645157,'spatialReference' : {'wkid' : 4326}}
+                  
+                  // this is good one
+                  // http://maps.lacity.org/arcgis/rest/services/Mapping/NavigateLA/MapServer/333/query?f=pjson&returnCountOnly=false&outFields=*&outSR=4326&where=ASSETID = 1723459
+                  // must specify &outSR=4326& in URL, because gis layer default srid is NOT 4326
+                  // srid=4326 is only srid for lat long
 
 
+                  // esri, by default, use esri:102100, 
+                  //_envelope_111 = '{"spatialReference":{"latestWkid":3857,"wkid":102100},"xmin":-9178558.356484555,"ymin":3240929.9992936105,"xmax":-9177335.364031991,"ymax":3242152.991746176}';
+                  
+                  //var _envelope = '{"xmin" : -117.923158, "ymin" : 33.644081, "xmax" : -117.921436, "ymax" : 33.645157,"spatialReference" : {"wkid" : 4326}}';
+                  var _envelope_un_encode ='{"spatialReference":{"wkid":4326}, "xmin" : '+ SWlong +', "ymin" : '+ SWlat + ', "xmax" : '+NElong +', "ymax" : '+ NElat + '}';
+                  
+                  // fix bug, _envelope must encodeURI( ), without this some city (tampagov.net)
+                  // will show no-cross origine error, the real problem is envelope need encode
+                  
+                var _envelope = encodeURI(_envelope_un_encode);
+                //  console.log('_envelope --- encoded >>>', _envelope)
+
+                  
+                  // Note: must specify outFields=*, in order to get all properties, without this, properties= null
+                  var _url_total_countonly = _url + '/'+ _layer_id + '/query?returnGeometry=false&returnCountOnly=true&outSR=4326&f=pjson&geometryType=esriGeometryEnvelope&geometry='+ _envelope;
+                  
+
+                  //--------- End ----- arcgis server, rest API --------------------------------
+                  
+                */
+
+
+
+
+                            
+
+
+
+
+
+
+
+                // use where=1=1 ,  will get total count only ,   (where=FID>0 , where=objectid>0 also can, but not every layer have FID or objectid, you could run into error if layer do not have FID, or objectid) 
+                //var _url_total_countonly = _url + '/'+ _layer_id + '/query?returnGeometry=false&returnCountOnly=true&outSR=4326&f=pjson&where=1=1';
+
+                /*
+                                  https://developers.arcgis.com/rest/services-reference/query-feature-service-layer-.htm
+
+                                  only works from 10.8.1, 
+                                  but if 10.7 or lower, no error, just not fast, same as where=1=1
+
+                                    Non-hosted feature services published from ArcGIS Pro support an optimization for getting a layer's row count. 
+                                    By setting where as 9999=9999 and returnCountOnly as true, the result is an approximate count that is returned very quickly. 
+                                    For accurate, but slower to return, row counts, use any other filter (e.g. where: 1=1). 
+                                    This is only supported when a layer has both isDataVersioned and isDataArchived as false.
+                */ 
+                var _url_total_countonly = _url + '/'+ _layer_id + '/query?returnGeometry=false&returnCountOnly=true&outSR=4326&f=pjson&where=9999=9999';
 
 
                               
 
+                var _total_count_result_json
 
 
+
+
+
+                // newer arcgis server seems prefer cors instead of jsonp, use cors first - then jsonp - proxy 
+                try {
+
+                // cors
+                var response_string =  await $.ajax({ 
+                type: 'GET',
+
+                url: _url_total_countonly,
+
+                error: function (jqXHR, textStatus, errorThrown) {
+                                    var _error_status = textStatus + ' : ' + errorThrown;         
+                                    console.log('ajax error  + ', _error_status);
+                },
+
+                success: function (data) {
+                console.log('get total count --> cors --> success  --> ');
+                }
+
+                });  // await
+                } catch(cors_failed) {
+
+                  console.log('get total count  --> cors failed !!!!!!', cors_failed);
+
+                  try {         
+                        // jsonp 
+                        var response_string =  await $.ajax({
+                          type: 'GET',
+                          dataType: 'jsonp',
+                          data: {},
+
+                          url: _url_total_countonly,
+
+                          error: function (jqXHR, textStatus, errorThrown) {
+                                                var _error_status = textStatus + ' : ' + errorThrown;         
+                                                console.log('ajax error  + ', _error_status);
+                          },
+
+                          success: function (data) {
+                            console.log('get total count --> jsonp --> success  --> ');
+                          }
+
+                  });  // await
+
+                  } catch(jsonp_failed) {
+
+                            console.log('get total count  --> jsonp failed !!!!!!', jsonp_failed);
+
+                            try {
+
+                                      
+
+                                      // proxy
+                                      // --------- add proxy  ---------
+                                      var _url_total_countonly_proxy = proxyurl +  _url_total_countonly
+
+                                      var response_string =  await $.ajax({
+                                        type: 'GET',
+                                  
+                                        url: _url_total_countonly_proxy,
+
+                                        error: function (jqXHR, textStatus, errorThrown) {
+                                                              var _error_status = textStatus + ' : ' + errorThrown;         
+                                                              console.log('ajax error  + ', _error_status);
+                                        },
+
+                                        success: function (data) {
+                                          console.log('get total count --> proxy --> success  --> ');
+                                        }
+
+                                });  // await
+
+
+
+                              } catch(proxy_failed) {
+
+
+                                console.log('get total count  --> proxy failed !!!!!!', proxy_failed);
+
+
+
+                              } // catch proxy
+                        
+
+                  } // catch cors
+
+
+                } // catch jsonp
+
+
+
+
+
+
+                        // jsonp, usually return object.   cors, proxy, can return both string and object, must handle difference  
+                        if (typeof response_string === 'object') {
+                            // is object
+                            _total_count_result_json = response_string
+                        } else {
+                            // is string
+                            _total_count_result_json = JSON.parse(response_string)
+                        }
+
+
+
+                        console.log('try get total count, success ', _total_count_result_json);
+                              
+                        _total_count_of_feature = get_count(_total_count_result_json)
+
+                    
+                        display_count_info(_layer, _current_area_count_of_feature, _total_count_of_feature, _current_rendering_feature)
+
+
+
+
+
+                }   
+                // only for total count ,
+                function get_count(__raw_count){
+
+                        
+                                                      
+                  //{ 'count': 1661}
+
+                  // fix SyntaxError: Unexpected token o in JSON at position 1 at JSON.parse (<anonymous>)                      
+                  //is already a plain JavaScript object; no need to try to parse it.
+                  var data_count
+                  if (typeof __raw_count === 'object') {
+                      // is object
+                      data_count = __raw_count.count
+                  } else {
+                      // is string
+                      data_count = JSON.parse(__raw_count).count
+                  }
+
+                  return data_count
+
+                }
+                // rest api specific, this is only for arcgis rest api
+                function show_count(data_count_only){
+
+
+
+                  //{ 'count': 1661}
+
+                  // fix SyntaxError: Unexpected token o in JSON at position 1 at JSON.parse (<anonymous>)                      
+                  //is already a plain JavaScript object; no need to try to parse it.
+                  
+                  if (typeof data_count_only === 'object') {
+                      // is object
+                      _current_area_count_of_feature = data_count_only.count
+                  } else {
+                      // is string
+                      _current_area_count_of_feature = JSON.parse(data_count_only).count
+                  }
+                  
 
 
 
                   
-            // use where=1=1 ,  will get total count only ,   (where=FID>0 , where=objectid>0 also can, but not every layer have FID or objectid, you could run into error if layer do not have FID, or objectid) 
-            //var _url_total_countonly = _url + '/'+ _layer_id + '/query?returnGeometry=false&returnCountOnly=true&outSR=4326&f=pjson&where=1=1';
-            
-              /*
-                                    https://developers.arcgis.com/rest/services-reference/query-feature-service-layer-.htm
+                  display_count_info(_layer, _current_area_count_of_feature, _total_count_of_feature, _current_rendering_feature)
+                  
 
-                                    only works from 10.8.1, 
-                                    but if 10.7 or lower, no error, just not fast, same as where=1=1
-
-                                      Non-hosted feature services published from ArcGIS Pro support an optimization for getting a layer's row count. 
-                                      By setting where as 9999=9999 and returnCountOnly as true, the result is an approximate count that is returned very quickly. 
-                                      For accurate, but slower to return, row counts, use any other filter (e.g. where: 1=1). 
-                                      This is only supported when a layer has both isDataVersioned and isDataArchived as false.
-              */ 
-            var _url_total_countonly = _url + '/'+ _layer_id + '/query?returnGeometry=false&returnCountOnly=true&outSR=4326&f=pjson&where=9999=9999';
-            
-
-                                
-
-            var _total_count_result_json
+                }
+                function display_count_info(_subject, ___showing_cnt, ___all_cnt, ____rendering_cnt){
 
 
+                  $('#layer-info-vertical').html('<a  target="_blank" href="' + _url +  '/' + _layer_id +'">' + _subject + '</a>')
 
+                  console.log(' update statistic info', ___showing_cnt, ___all_cnt)
 
-
-            // newer arcgis server seems prefer cors instead of jsonp, use cors first - then jsonp - proxy 
-            try {
-
-              // cors
-              var response_string =  await $.ajax({ 
-                type: 'GET',
-              
-                url: _url_total_countonly,
-
-                error: function (jqXHR, textStatus, errorThrown) {
-                                      var _error_status = textStatus + ' : ' + errorThrown;         
-                                      console.log('ajax error  + ', _error_status);
-                },
-
-                success: function (data) {
-                  console.log('get total count --> cors --> success  --> ');
+                  if (isNaN(___showing_cnt)){ ___showing_cnt = '...' } // not available...
+                  if (isNaN(___all_cnt)){ ___all_cnt = '...' } // not available...
+                  
+                  $('#feature-on-map').html(___showing_cnt)
+                  $('#total-feature').html(___all_cnt)
+                  $('#rendering-feature').html(____rendering_cnt)
                 }
 
-              });  // await
-            } catch(cors_failed) {
-
-                    console.log('get total count  --> cors failed !!!!!!', cors_failed);
-
-                    try {         
-                          // jsonp 
-                          var response_string =  await $.ajax({
-                            type: 'GET',
-                            dataType: 'jsonp',
-                            data: {},
-
-                            url: _url_total_countonly,
-
-                            error: function (jqXHR, textStatus, errorThrown) {
-                                                  var _error_status = textStatus + ' : ' + errorThrown;         
-                                                  console.log('ajax error  + ', _error_status);
-                            },
-
-                            success: function (data) {
-                              console.log('get total count --> jsonp --> success  --> ');
-                            }
-
-                    });  // await
-    
-                    } catch(jsonp_failed) {
-
-                              console.log('get total count  --> jsonp failed !!!!!!', jsonp_failed);
-
-                              try {
-
-                                        
-
-                                        // proxy
-                                        // --------- add proxy  ---------
-                                        var _url_total_countonly_proxy = proxyurl +  _url_total_countonly
-
-                                        var response_string =  await $.ajax({
-                                          type: 'GET',
-                                    
-                                          url: _url_total_countonly_proxy,
-      
-                                          error: function (jqXHR, textStatus, errorThrown) {
-                                                                var _error_status = textStatus + ' : ' + errorThrown;         
-                                                                console.log('ajax error  + ', _error_status);
-                                          },
-      
-                                          success: function (data) {
-                                            console.log('get total count --> proxy --> success  --> ');
-                                          }
-      
-                                  });  // await
-
-
-
-                                } catch(proxy_failed) {
-
-
-                                  console.log('get total count  --> proxy failed !!!!!!', proxy_failed);
-
-
-
-                                } // catch proxy
-                          
-
-                    } // catch cors
-
-
-            } // catch jsonp
 
 
 
 
 
-            
-                          // jsonp, usually return object.   cors, proxy, can return both string and object, must handle difference  
-                          if (typeof response_string === 'object') {
-                              // is object
-                              _total_count_result_json = response_string
-                          } else {
-                              // is string
-                              _total_count_result_json = JSON.parse(response_string)
-                          }
-
-
-
-                          console.log('try get total count, success ', _total_count_result_json);
-                                
-                          _total_count_of_feature = get_count(_total_count_result_json)
-
-                      
-                          display_count_info(_layer, _current_area_count_of_feature, _total_count_of_feature, _current_rendering_feature)
-
-
-
-
-
-                  }   
 
 
 
