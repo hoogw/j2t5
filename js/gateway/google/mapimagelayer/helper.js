@@ -1090,7 +1090,6 @@ function change_style(){
 
 
 
-// --------------------- total count ------------------------
 
 
 
@@ -1098,32 +1097,8 @@ function change_style(){
 
 
 
-            // rest api specific, this is only for arcgis rest api
-            function show_count(data_count_only){
 
-
-
-              //{ 'count': 1661}
-
-              // fix SyntaxError: Unexpected token o in JSON at position 1 at JSON.parse (<anonymous>)                      
-              //is already a plain JavaScript object; no need to try to parse it.
-             
-              if (typeof data_count_only === 'object') {
-                  // is object
-                  _current_area_count_of_feature = data_count_only.count
-              } else {
-                  // is string
-                  _current_area_count_of_feature = JSON.parse(data_count_only).count
-              }
-              
-
-
-
-              
-              display_count_info(_layer, _current_area_count_of_feature, _total_count_of_feature, _current_rendering_feature)
-             
-
-            }
+            
 
 
 
