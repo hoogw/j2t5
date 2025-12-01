@@ -670,20 +670,20 @@ var current_queryFeatureResultsAsGraphic_length
           
                                    
 
-                                                                  var _supportsAdvancedQueries  = false;
+    var _supportsAdvancedQueries  = false;
 
-                                                                  var _supportsCountDistinct  = false;
-                                                                  var _supportsDistinct = false;
-                                                                  var _supportsHavingClause = false;
-                                                                  var _supportsOrderBy = false;
-                                                                  var _supportsPagination = false;
-                                                                  var _useStandardizedQueries = false;
-                                                                  var _supportsStatistics = false;
-                                                                  var _supportsTrueCurve = false;
-                                                                  var _supportsReturningQueryExtent = false;
-                                                                  var _supportsQueryWithDistance = false;
+    var _supportsCountDistinct  = false;
+    var _supportsDistinct = false;
+    var _supportsHavingClause = false;
+    var _supportsOrderBy = false;
+    var _supportsPagination = false;
+    var _useStandardizedQueries = false;
+    var _supportsStatistics = false;
+    var _supportsTrueCurve = false;
+    var _supportsReturningQueryExtent = false;
+    var _supportsQueryWithDistance = false;
 
-                                                                  var _supportsQueryWithResultType = false
+    var _supportsQueryWithResultType = false
                               
                               
                               
