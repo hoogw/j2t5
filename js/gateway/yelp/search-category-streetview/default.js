@@ -296,70 +296,7 @@
         
 
 
-                        function update_center_latLngZoom(){
-
-         
-
-                          var center_latLng = map.getCenter();   // local variable
-                          _center_lat = center_latLng.lat();     // global variable 
-                          _center_long = center_latLng.lng();    // global variable 
-                          _center_zoom = parseInt(map.getZoom());          // global variable 
-
-                          console.log(' -------- update  -------- center  -------- lat  -------- Lng  -------- Zoom  -------- ', _center_lat, _center_long, _center_zoom)
-                          
-                          // google bug, sometime, google give long =242, but it really is long=-117
-                          if (valid_lat_lng(_center_lat, _center_long)){
-
-                             // nothing to do
-                          } else {
-
-                            _center_long =  validate_long(_center_long)
-
-
-                          }
-
-
-
-                          if ('URLSearchParams' in window) {
-                            var searchParams = new URLSearchParams(window.location.search);
-                            searchParams.set("center_lat", _center_lat);
-                            searchParams.set("center_long", _center_long);
-                            searchParams.set("center_zoom", _center_zoom);
-                            searchParams.set("panto", 0);
-
-                            // this cause reload  https://stackoverflow.com/questions/5999118/how-can-i-add-or-update-a-query-string-parameter
-                            //window.location.search = searchParams.toString();
-
-                            // instead avoid reload
-                            var newRelativePathQuery = window.location.pathname + '?' + searchParams.toString();
-                            history.pushState(null, '', newRelativePathQuery);
-                            
-                            }// if
-
-
-
-
-
-
-                                                      
-                          /**/
-                          //  --- yelp POI on google      --- 
-                          /**/
-
-                           var _latlngzoom_html = ''
-                           //_latlngzoom_html +='visible area : '
-                           _latlngzoom_html += 'center(lat:' + _center_lat.toFixed(3)
-                           _latlngzoom_html += ',lng:' + _center_long.toFixed(3) + ')'
-                           _latlngzoom_html += ',zoom:' + _center_zoom
-                           //_latlngzoom_html += '&nbsp;&nbsp;'
-                           _latlngzoom_html += ',radius:' + get_center_radius_in_map_bound() + 'm'
-                           $("#lat-lng-zoom").html(_latlngzoom_html)
-
-                          /**/
-                          //  --- end  ---  yelp POI on google    --- 
-                          /**/
-
-                        }
+                        
 
 
 

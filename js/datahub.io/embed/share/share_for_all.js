@@ -2752,6 +2752,102 @@ var _google_public_map_only_api_key = "AIzaSyCeIFVL6oxxXNT7NToJjfU4J9TV2J8m4vE"
                   }
 
 
+
+
+
+                  // fix google map bug
+                  function valid_lat_lng(_lat, _lng){
+
+
+                    if ((_lat<= 90 ) && (_lat >= -90) && (_lng <= 180) && (_lng >= -180)){
+
+
+                      return true
+
+                    } else {
+
+                    return false
+                    }
+
+                  }
+                  function validate_long(_invalid_long){
+
+                            var _valid_long
+
+                            if (_invalid_long > 180) {
+                              _valid_long = -180 + (_invalid_long - 180)
+
+                            } 
+
+                            if (_invalid_long < -180) {
+                              _valid_long = 180 - (_invalid_long + 180)
+
+                            } 
+
+
+                            console.log(' ! ! !  warning ! ! !  invalid long found ! ! !  ! ! !  invalid ----> valid  ! ! !  ! ! !  ',  _invalid_long, _valid_long)
+
+                            return _valid_long
+
+                  }
+                  function update_center_latLngZoom(){
+
+
+
+                    var center_latLng = map.getCenter();   // local variable
+                    _center_lat = center_latLng.lat();     // global variable 
+                    _center_long = center_latLng.lng();    // global variable 
+                    _center_zoom = parseInt(map.getZoom());          // global variable 
+
+                    console.log(' -------- update  -------- center  -------- lat  -------- Lng  -------- Zoom  -------- ', _center_lat, _center_long, _center_zoom)
+                    
+                    // google bug, sometime, google give long =242, but it really is long=-117
+                    if (valid_lat_lng(_center_lat, _center_long)){
+
+                        // nothing to do
+                    } else {
+
+                      _center_long =  validate_long(_center_long)
+
+
+                    }
+
+
+
+                    if ('URLSearchParams' in window) {
+                      var searchParams = new URLSearchParams(window.location.search);
+                      searchParams.set("center_lat", _center_lat);
+                      searchParams.set("center_long", _center_long);
+                      searchParams.set("center_zoom", _center_zoom);
+                      searchParams.set("panto", 0);
+
+                      // this cause reload  https://stackoverflow.com/questions/5999118/how-can-i-add-or-update-a-query-string-parameter
+                      //window.location.search = searchParams.toString();
+
+                      // instead avoid reload
+                      var newRelativePathQuery = window.location.pathname + '?' + searchParams.toString();
+                      history.pushState(null, '', newRelativePathQuery);
+                      
+                      }// if
+
+
+                      var _latlngzoom_html = ''
+                      //_latlngzoom_html +='visible area : '
+                      _latlngzoom_html += 'center(lat:' + _center_lat.toFixed(3)
+                      _latlngzoom_html += ',lng:' + _center_long.toFixed(3) + ')'
+                      _latlngzoom_html += ',zoom:' + _center_zoom
+                      $("#lat-lng-zoom").html(_latlngzoom_html)
+                      
+
+                  }
+                  // - - - end  - - - fix google map bug
+
+
+
+
+
+
+
   /**/
 
 
