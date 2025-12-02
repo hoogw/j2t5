@@ -293,20 +293,6 @@
                   $('#flex_1').scrollTop(0); // build in scroll to top popup info window
                   $('#info-window-div').html(json_flex_tip_viewer(___properties))
 
-                  
-
-                  /**/
-                  // - - - - download geojson  - - - - 
-                  /**/
-                  
-                  _geojson_object_selected_feature = {type: "FeatureCollection", features: [_geojson_hovered]} 
-
-                  /**/
-                  //  - - - -  end  - - - -  download geojson   - - - - 
-                  /**/
-
-
-
                  
                 });
 

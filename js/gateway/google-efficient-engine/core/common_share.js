@@ -6,8 +6,7 @@
 
 var map;
 var _geojson_object;
-// - - - - download geojson  - - - -
-var _geojson_object_selected_feature
+
 var _empty_geojson_object = {type: "FeatureCollection", features: []}
 
 var _search_keyword = ''

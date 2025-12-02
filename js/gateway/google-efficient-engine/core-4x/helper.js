@@ -1846,24 +1846,6 @@ function init_user_interface_event(){
        /**/
 
 
-   /**/
-    // - - - - download geojson  - - - - 
-    /**/
-
-
-    
-    $("#download_selectedFeatureOnMap_button").on("click", function() {
-      saveJsonAsFile('selectedFeatureOnMap.geojson', _geojson_object_selected_feature)
-    });
-
-    $("#download_visibleFeatureOnMap_button").on("click", function() {
-      saveJsonAsFile('visibleFeatureOnMap.geojson', _geojson_object)
-    });
-  /**/
-  //  - - - -  end  - - - -  download geojson   - - - - 
-  /**/
-
-
   
   //  .......  opacity   ....... 
                                   /**/
