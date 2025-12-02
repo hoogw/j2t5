@@ -1302,11 +1302,7 @@ case "embed_6392":
       window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
   break;
-  case "embed_6390":
-    var _newTab_link =  url_template_base_embed.replace('featurelayer.html?', 'google_streetview_fullscreen.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
-    window.open(_newTab_link,'_blank');
-    console.log('_newTab_link', _newTab_link)
-  break;
+  
 
   case "embed_7967":
       var _newTab_link =  url_template_base_embed.replace('featurelayer.html?', 'google_unselect.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
@@ -1384,11 +1380,7 @@ case "embed_6392":
     console.log('_newTab_link', _newTab_link)
   break;
 
-  case "embed_6793":
-    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-click-map-to-get/click-lat-lng-multi-basemap.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
-    window.open(_newTab_link,'_blank');
-    console.log('_newTab_link', _newTab_link)
-  break;
+  
 
 
   case "embed_31728":

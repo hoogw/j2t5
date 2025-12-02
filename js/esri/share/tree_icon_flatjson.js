@@ -448,7 +448,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                                 "parent" : 639,
                                 
                                 
-                                "text" : "6392 hover or click",
+                                "text" : "6392 hover-click",
                                 
                                 "layer_name" : _layer_name_,
                                 "icon" : open_new_tab_icon,
@@ -518,7 +518,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                                         "parent" : 639,
                                         
                                         
-                                        "text" : "6395 base map",
+                                        "text" : "6395 multi-base-map",
                                         
                                         "layer_name" : _layer_name_,
                                         "icon" : open_new_tab_icon,
@@ -769,34 +769,7 @@ icon_flatjson.push(icon_item)
 
 
 
-                            icon_item = { 
-
-                                "id" :  6793,     
-                                "parent" : 7479,
-                                
-                                
-                                "text" : "6793 lat-lng (multi-basemap)",
-                                
-                                "layer_name" : _layer_name_,
-                                "icon" : open_new_tab_icon,
-                                "link_type": "embed_6793",
-                                "state"       : {
-                                                "opened"    : true,  // is the node open
-                                                // disabled  : boolean  // is the node disabled
-                                                // "selected"  : true   // is the node selected
-                                            },
-                                            
-                                "node_path" : _node_path_, 
-                                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                                "server_path" : _map_server_url_,
-                                "layer_id" :  _layer_id_,            
-                                "type" : _type_
-                                
-                                
-                                
-                                };
-                                
-                                icon_flatjson.push(icon_item) 
+                            
 
 
 
@@ -1393,36 +1366,7 @@ icon_flatjson.push(icon_item)
         };
         icon_flatjson.push(icon_item) 
 
-         icon_item = { 
-
-                        "id" :  6390,     
-                        "parent" : 7132,
-                        
-                        
-                        "text" : "6390 dark",
-                        
-                        "layer_name" : _layer_name_,
-                        "icon" : open_new_tab_icon,
-                        "link_type": "embed_6390",
-                        "state"       : {
-                                        "opened"    : true,  // is the node open
-                                        // disabled  : boolean  // is the node disabled
-                                        // "selected"  : true   // is the node selected
-                                    },
-                                    
-                        "node_path" : _node_path_, 
-                        "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                        "server_path" : _map_server_url_,
-                        "layer_id" :  _layer_id_,            
-                        "type" : _type_
-                        
-                        
-                        
-                        };
-                        
-                        icon_flatjson.push(icon_item) 
-
-
+         
 
 
                         icon_item = { 
@@ -1431,7 +1375,7 @@ icon_flatjson.push(icon_item)
                             "parent" : 7132,
                             
                             
-                            "text" : "6391 light",
+                            "text" : "6391 multi-base-map",
                             
                             "layer_name" : _layer_name_,
                             "icon" : open_new_tab_icon,
@@ -1794,7 +1738,7 @@ icon_flatjson.push(icon_item)
                         "parent" : 539,
                         
                         
-                        "text" : "9391 hover or click",
+                        "text" : "9391 hover-click",
                         
                         "layer_name" : _layer_name_,
                         "icon" : open_new_tab_icon,
@@ -13331,7 +13275,7 @@ icon_flatjson.push(icon_item)
 
                                     "id" :  7195,     
                                     "parent" : 7190,
-                                    "text" : "T-7195 hover or click",
+                                    "text" : "T-7195 hover-click",
                                     
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
