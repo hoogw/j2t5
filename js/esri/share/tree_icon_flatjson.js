@@ -419,6 +419,472 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
 
 
 
+        /* = = = = sub folder = = = = g o o g l e M a p = = = =  */
+        icon_item = { 
+            "id" :  639,     
+            "parent" : 4907,
+            "text" : "single select",
+            "icon" : folder_icon,
+            "link_type": "folder",   
+            "state"       : {
+            // use this opened line for always default open this folder
+                            "opened"    :false, //  iconJstreeforceOpen,   // is the node open
+                            // disabled  : boolean  // is the node disabled
+                            // "selected"  : true   // is the node selected
+                        }
+        };
+        icon_flatjson.push(icon_item) 
+
+
+
+
+
+                   
+
+
+                            icon_item = { 
+
+                                "id" :  6392,     
+                                "parent" : 639,
+                                
+                                
+                                "text" : "6392 download",
+                                
+                                "layer_name" : _layer_name_,
+                                "icon" : open_new_tab_icon,
+                                "link_type": "embed_6392",
+                                "state"       : {
+                                                "opened"    : true,  // is the node open
+                                                // disabled  : boolean  // is the node disabled
+                                                // "selected"  : true   // is the node selected
+                                            },
+                                            
+                                "node_path" : _node_path_, 
+                                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                "server_path" : _map_server_url_,
+                                "layer_id" :  _layer_id_,            
+                                "type" : _type_
+                                
+                                
+                                
+                                };
+                                icon_flatjson.push(icon_item) 
+
+
+
+                                icon_item = { 
+
+                                    "id" :  2481,     
+                                    "parent" : 629,
+                                    
+                                    
+                                    "text" : "6392" + google_svg + " single select",
+                                    
+                                    "layer_name" : _layer_name_,
+                                    "icon" : open_new_tab_icon,
+                                    "link_type": "embed_6392",
+                                    "state"       : {
+                                                    "opened"    : true,  // is the node open
+                                                    // disabled  : boolean  // is the node disabled
+                                                    // "selected"  : true   // is the node selected
+                                                },
+                                                
+                                    "node_path" : _node_path_, 
+                                    "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                    "server_path" : _map_server_url_,
+                                    "layer_id" :  _layer_id_,            
+                                    "type" : _type_
+                                    
+                                    
+                                    
+                                    };
+
+
+
+
+                                
+                                icon_flatjson.push(icon_item) 
+
+                               
+
+                                icon_item = { 
+
+                                    "id" :  6393,     
+                                    "parent" : 639,
+                                    
+                                    
+                                    "text" : "6393 hover or click",
+                                    
+                                    "layer_name" : _layer_name_,
+                                    "icon" : open_new_tab_icon,
+                                    "link_type": "embed_6393",
+                                    "state"       : {
+                                                    "opened"    : true,  // is the node open
+                                                    // disabled  : boolean  // is the node disabled
+                                                    // "selected"  : true   // is the node selected
+                                                },
+                                                
+                                    "node_path" : _node_path_, 
+                                    "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                    "server_path" : _map_server_url_,
+                                    "layer_id" :  _layer_id_,            
+                                    "type" : _type_
+                                    
+                                    
+                                    
+                                    };
+                                    
+                                    icon_flatjson.push(icon_item) 
+
+
+
+
+                                    icon_item = { 
+
+                                        "id" :  6395,     
+                                        "parent" : 639,
+                                        
+                                        
+                                        "text" : "6395 base map",
+                                        
+                                        "layer_name" : _layer_name_,
+                                        "icon" : open_new_tab_icon,
+                                        "link_type": "embed_6395",
+                                        "state"       : {
+                                                        "opened"    : true,  // is the node open
+                                                        // disabled  : boolean  // is the node disabled
+                                                        // "selected"  : true   // is the node selected
+                                                    },
+                                                    
+                                        "node_path" : _node_path_, 
+                                        "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                        "server_path" : _map_server_url_,
+                                        "layer_id" :  _layer_id_,            
+                                        "type" : _type_
+                                        
+                                        
+                                        
+                                        };
+                                        
+                                        icon_flatjson.push(icon_item) 
+
+
+
+                                        icon_item = { 
+
+                                            "id" :  6396,     
+                                            "parent" : 639,
+                                            
+                                            
+                                            "text" : "6396 base map" + "<sup>vertical</sup>",
+                                            
+                                            "layer_name" : _layer_name_,
+                                            "icon" : open_new_tab_icon,
+                                            "link_type": "embed_6396",
+                                            "state"       : {
+                                                            "opened"    : true,  // is the node open
+                                                            // disabled  : boolean  // is the node disabled
+                                                            // "selected"  : true   // is the node selected
+                                                        },
+                                                        
+                                            "node_path" : _node_path_, 
+                                            "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                            "server_path" : _map_server_url_,
+                                            "layer_id" :  _layer_id_,            
+                                            "type" : _type_
+                                            
+                                            
+                                            
+                                            };
+                                            
+                                            icon_flatjson.push(icon_item) 
+
+
+                                            icon_item = { 
+
+                                            "id" :  6397,     
+                                            "parent" : 639,
+                                            
+                                            
+                                            "text" : "6397 near-map",
+                                            
+                                            "layer_name" : _layer_name_,
+                                            "icon" : open_new_tab_icon,
+                                            "link_type": "embed_6397",
+                                            "state"       : {
+                                                            "opened"    : true,  // is the node open
+                                                            // disabled  : boolean  // is the node disabled
+                                                            // "selected"  : true   // is the node selected
+                                                        },
+                                                        
+                                            "node_path" : _node_path_, 
+                                            "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                            "server_path" : _map_server_url_,
+                                            "layer_id" :  _layer_id_,            
+                                            "type" : _type_
+                                            
+                                            
+                                            
+                                            };
+                                            
+                                            icon_flatjson.push(icon_item)
+
+                                     
+
+
+/* = = = = sub folder = = = = g o o g l e M a p = = = =  */
+icon_item = { 
+    "id" :  638,     
+    "parent" : 4907,
+    "text" : "multiple select",
+    "icon" : folder_icon,
+    "link_type": "folder",   
+    "state"       : {
+    // use this opened line for always default open this folder
+                    "opened"    :false, //  iconJstreeforceOpen,   // is the node open
+                    // disabled  : boolean  // is the node disabled
+                    // "selected"  : true   // is the node selected
+                }
+};
+icon_flatjson.push(icon_item) 
+
+
+
+                        icon_item = { 
+
+                            "id" :  7967,     
+                            "parent" : 638,
+                            
+                            
+                            "text" : "7967 click-select, again-unselect",
+                            
+                            "layer_name" : _layer_name_,
+                            "icon" : open_new_tab_icon,
+                            "link_type": "embed_7967",
+                            "state"       : {
+                                            "opened"    : true,  // is the node open
+                                            // disabled  : boolean  // is the node disabled
+                                            // "selected"  : true   // is the node selected
+                                        },
+                                        
+                            "node_path" : _node_path_, 
+                            "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                            "server_path" : _map_server_url_,
+                            "layer_id" :  _layer_id_,            
+                            "type" : _type_
+                            
+                            
+                            
+                            };
+                            
+                            icon_flatjson.push(icon_item) 
+
+
+
+
+                            icon_item = { 
+
+                                "id" :  2485,     
+                                "parent" : 629,
+                                
+                                
+                                "text" : "7967" + google_svg + " multiple select (click-select, again-unselect)",
+                                
+                                "layer_name" : _layer_name_,
+                                "icon" : open_new_tab_icon,
+                                "link_type": "embed_7967",
+                                "state"       : {
+                                                "opened"    : true,  // is the node open
+                                                // disabled  : boolean  // is the node disabled
+                                                // "selected"  : true   // is the node selected
+                                            },
+                                            
+                                "node_path" : _node_path_, 
+                                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                "server_path" : _map_server_url_,
+                                "layer_id" :  _layer_id_,            
+                                "type" : _type_
+                                
+                                
+                                
+                                };
+                                
+                                icon_flatjson.push(icon_item) 
+
+
+
+
+/* = = = = sub folder = = = = g o o g l e M a p = = = =  */
+icon_item = { 
+    "id" :  779,     
+    "parent" : 4907,
+    "text" : "MapImageLayer",
+    "icon" : folder_icon,
+    "link_type": "folder",   
+    "state"       : {
+    // use this opened line for always default open this folder
+                    "opened"    :false, //  iconJstreeforceOpen,   // is the node open
+                    // disabled  : boolean  // is the node disabled
+                    // "selected"  : true   // is the node selected
+                }
+};
+icon_flatjson.push(icon_item) 
+
+
+                    icon_item = { 
+
+                        "id" :  7791,     
+                        "parent" : 779,
+                        
+                        
+                        "text" : "7791 click",
+                        
+                        "layer_name" : _layer_name_,
+                        "icon" : open_new_tab_icon,
+                        "link_type": "embed_7791",
+                        "state"       : {
+                                        "opened"    : true,  // is the node open
+                                        // disabled  : boolean  // is the node disabled
+                                        // "selected"  : true   // is the node selected
+                                    },
+                                    
+                        "node_path" : _node_path_, 
+                        "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                        "server_path" : _map_server_url_,
+                        "layer_id" :  _layer_id_,            
+                        "type" : _type_
+                        
+                        
+                        
+                        };
+                        
+                        icon_flatjson.push(icon_item) 
+
+
+
+/*  = = = =  end  = = = = sub folder = = = = g o o g l e M a p = = = =  */
+    
+
+
+
+
+
+
+
+/* = = = = sub folder = = = = g o o g l e M a p = = = =  */
+icon_item = { 
+    "id" :  7479,     
+    "parent" : 4907,
+    "text" : "click map show",
+    "icon" : folder_icon,
+    "link_type": "folder",   
+    "state"       : {
+    // use this opened line for always default open this folder
+                    "opened"    :false, //  iconJstreeforceOpen,   // is the node open
+                    // disabled  : boolean  // is the node disabled
+                    // "selected"  : true   // is the node selected
+                }
+};
+icon_flatjson.push(icon_item) 
+
+
+
+
+
+                            icon_item = { 
+
+                                "id" :  6792,     
+                                "parent" : 7479,
+                                
+                                
+                                "text" : "6792 lat-lng",
+                                
+                                "layer_name" : _layer_name_,
+                                "icon" : open_new_tab_icon,
+                                "link_type": "embed_6792",
+                                "state"       : {
+                                                "opened"    : true,  // is the node open
+                                                // disabled  : boolean  // is the node disabled
+                                                // "selected"  : true   // is the node selected
+                                            },
+                                            
+                                "node_path" : _node_path_, 
+                                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                "server_path" : _map_server_url_,
+                                "layer_id" :  _layer_id_,            
+                                "type" : _type_
+                                
+                                
+                                
+                                };
+                                
+                                icon_flatjson.push(icon_item) 
+
+
+
+
+                            icon_item = { 
+
+                                "id" :  6793,     
+                                "parent" : 7479,
+                                
+                                
+                                "text" : "6793 lat-lng (multi-basemap)",
+                                
+                                "layer_name" : _layer_name_,
+                                "icon" : open_new_tab_icon,
+                                "link_type": "embed_6793",
+                                "state"       : {
+                                                "opened"    : true,  // is the node open
+                                                // disabled  : boolean  // is the node disabled
+                                                // "selected"  : true   // is the node selected
+                                            },
+                                            
+                                "node_path" : _node_path_, 
+                                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                "server_path" : _map_server_url_,
+                                "layer_id" :  _layer_id_,            
+                                "type" : _type_
+                                
+                                
+                                
+                                };
+                                
+                                icon_flatjson.push(icon_item) 
+
+
+
+
+
+                                 icon_item = { 
+
+                                "id" :  6797,     
+                                "parent" : 7479,
+                                
+                                
+                                "text" : "6797 street view",
+                                
+                                "layer_name" : _layer_name_,
+                                "icon" : open_new_tab_icon,
+                                "link_type": "embed_6797",
+                                "state"       : {
+                                                "opened"    : true,  // is the node open
+                                                // disabled  : boolean  // is the node disabled
+                                                // "selected"  : true   // is the node selected
+                                            },
+                                            
+                                "node_path" : _node_path_, 
+                                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                "server_path" : _map_server_url_,
+                                "layer_id" :  _layer_id_,            
+                                "type" : _type_
+                                
+                                
+                                
+                                };
+                                
+                                icon_flatjson.push(icon_item) 
+
 
 
 
@@ -1049,357 +1515,6 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                                       
 
 
-        /* = = = = sub folder = = = = g o o g l e M a p = = = =  */
-        icon_item = { 
-            "id" :  639,     
-            "parent" : 4907,
-            "text" : "single select",
-            "icon" : folder_icon,
-            "link_type": "folder",   
-            "state"       : {
-            // use this opened line for always default open this folder
-                            "opened"    :false, //  iconJstreeforceOpen,   // is the node open
-                            // disabled  : boolean  // is the node disabled
-                            // "selected"  : true   // is the node selected
-                        }
-        };
-        icon_flatjson.push(icon_item) 
-
-
-
-
-
-                   
-
-
-                            icon_item = { 
-
-                                "id" :  6392,     
-                                "parent" : 639,
-                                
-                                
-                                "text" : "6392 download",
-                                
-                                "layer_name" : _layer_name_,
-                                "icon" : open_new_tab_icon,
-                                "link_type": "embed_6392",
-                                "state"       : {
-                                                "opened"    : true,  // is the node open
-                                                // disabled  : boolean  // is the node disabled
-                                                // "selected"  : true   // is the node selected
-                                            },
-                                            
-                                "node_path" : _node_path_, 
-                                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                                "server_path" : _map_server_url_,
-                                "layer_id" :  _layer_id_,            
-                                "type" : _type_
-                                
-                                
-                                
-                                };
-                                icon_flatjson.push(icon_item) 
-
-
-
-                                icon_item = { 
-
-                                    "id" :  2481,     
-                                    "parent" : 629,
-                                    
-                                    
-                                    "text" : "6392" + google_svg + " single select",
-                                    
-                                    "layer_name" : _layer_name_,
-                                    "icon" : open_new_tab_icon,
-                                    "link_type": "embed_6392",
-                                    "state"       : {
-                                                    "opened"    : true,  // is the node open
-                                                    // disabled  : boolean  // is the node disabled
-                                                    // "selected"  : true   // is the node selected
-                                                },
-                                                
-                                    "node_path" : _node_path_, 
-                                    "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                                    "server_path" : _map_server_url_,
-                                    "layer_id" :  _layer_id_,            
-                                    "type" : _type_
-                                    
-                                    
-                                    
-                                    };
-
-
-
-
-                                
-                                icon_flatjson.push(icon_item) 
-
-                               
-
-                                icon_item = { 
-
-                                    "id" :  6393,     
-                                    "parent" : 639,
-                                    
-                                    
-                                    "text" : "6393 hover or click",
-                                    
-                                    "layer_name" : _layer_name_,
-                                    "icon" : open_new_tab_icon,
-                                    "link_type": "embed_6393",
-                                    "state"       : {
-                                                    "opened"    : true,  // is the node open
-                                                    // disabled  : boolean  // is the node disabled
-                                                    // "selected"  : true   // is the node selected
-                                                },
-                                                
-                                    "node_path" : _node_path_, 
-                                    "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                                    "server_path" : _map_server_url_,
-                                    "layer_id" :  _layer_id_,            
-                                    "type" : _type_
-                                    
-                                    
-                                    
-                                    };
-                                    
-                                    icon_flatjson.push(icon_item) 
-
-
-
-
-                                    icon_item = { 
-
-                                        "id" :  6395,     
-                                        "parent" : 639,
-                                        
-                                        
-                                        "text" : "6395 base map",
-                                        
-                                        "layer_name" : _layer_name_,
-                                        "icon" : open_new_tab_icon,
-                                        "link_type": "embed_6395",
-                                        "state"       : {
-                                                        "opened"    : true,  // is the node open
-                                                        // disabled  : boolean  // is the node disabled
-                                                        // "selected"  : true   // is the node selected
-                                                    },
-                                                    
-                                        "node_path" : _node_path_, 
-                                        "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                                        "server_path" : _map_server_url_,
-                                        "layer_id" :  _layer_id_,            
-                                        "type" : _type_
-                                        
-                                        
-                                        
-                                        };
-                                        
-                                        icon_flatjson.push(icon_item) 
-
-
-
-                                        icon_item = { 
-
-                                            "id" :  6396,     
-                                            "parent" : 639,
-                                            
-                                            
-                                            "text" : "6396 base map" + "<sup>vertical</sup>",
-                                            
-                                            "layer_name" : _layer_name_,
-                                            "icon" : open_new_tab_icon,
-                                            "link_type": "embed_6396",
-                                            "state"       : {
-                                                            "opened"    : true,  // is the node open
-                                                            // disabled  : boolean  // is the node disabled
-                                                            // "selected"  : true   // is the node selected
-                                                        },
-                                                        
-                                            "node_path" : _node_path_, 
-                                            "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                                            "server_path" : _map_server_url_,
-                                            "layer_id" :  _layer_id_,            
-                                            "type" : _type_
-                                            
-                                            
-                                            
-                                            };
-                                            
-                                            icon_flatjson.push(icon_item) 
-
-
-                                            icon_item = { 
-
-                                            "id" :  6397,     
-                                            "parent" : 639,
-                                            
-                                            
-                                            "text" : "6397 near-map",
-                                            
-                                            "layer_name" : _layer_name_,
-                                            "icon" : open_new_tab_icon,
-                                            "link_type": "embed_6397",
-                                            "state"       : {
-                                                            "opened"    : true,  // is the node open
-                                                            // disabled  : boolean  // is the node disabled
-                                                            // "selected"  : true   // is the node selected
-                                                        },
-                                                        
-                                            "node_path" : _node_path_, 
-                                            "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                                            "server_path" : _map_server_url_,
-                                            "layer_id" :  _layer_id_,            
-                                            "type" : _type_
-                                            
-                                            
-                                            
-                                            };
-                                            
-                                            icon_flatjson.push(icon_item)
-
-                                     
-
-
-/* = = = = sub folder = = = = g o o g l e M a p = = = =  */
-icon_item = { 
-    "id" :  638,     
-    "parent" : 4907,
-    "text" : "multiple select",
-    "icon" : folder_icon,
-    "link_type": "folder",   
-    "state"       : {
-    // use this opened line for always default open this folder
-                    "opened"    :false, //  iconJstreeforceOpen,   // is the node open
-                    // disabled  : boolean  // is the node disabled
-                    // "selected"  : true   // is the node selected
-                }
-};
-icon_flatjson.push(icon_item) 
-
-
-
-                        icon_item = { 
-
-                            "id" :  7967,     
-                            "parent" : 638,
-                            
-                            
-                            "text" : "7967 click-select, again-unselect",
-                            
-                            "layer_name" : _layer_name_,
-                            "icon" : open_new_tab_icon,
-                            "link_type": "embed_7967",
-                            "state"       : {
-                                            "opened"    : true,  // is the node open
-                                            // disabled  : boolean  // is the node disabled
-                                            // "selected"  : true   // is the node selected
-                                        },
-                                        
-                            "node_path" : _node_path_, 
-                            "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                            "server_path" : _map_server_url_,
-                            "layer_id" :  _layer_id_,            
-                            "type" : _type_
-                            
-                            
-                            
-                            };
-                            
-                            icon_flatjson.push(icon_item) 
-
-
-
-
-                            icon_item = { 
-
-                                "id" :  2485,     
-                                "parent" : 629,
-                                
-                                
-                                "text" : "7967" + google_svg + " multiple select (click-select, again-unselect)",
-                                
-                                "layer_name" : _layer_name_,
-                                "icon" : open_new_tab_icon,
-                                "link_type": "embed_7967",
-                                "state"       : {
-                                                "opened"    : true,  // is the node open
-                                                // disabled  : boolean  // is the node disabled
-                                                // "selected"  : true   // is the node selected
-                                            },
-                                            
-                                "node_path" : _node_path_, 
-                                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                                "server_path" : _map_server_url_,
-                                "layer_id" :  _layer_id_,            
-                                "type" : _type_
-                                
-                                
-                                
-                                };
-                                
-                                icon_flatjson.push(icon_item) 
-
-
-/*  = = = =  end  = = = = sub folder = = = = g o o g l e M a p = = = =  */
-    
-
-
-
-
-
-
-
-
-
-
-
-/* = = = = sub folder = = = = g o o g l e M a p = = = =  */
-icon_item = { 
-    "id" :  779,     
-    "parent" : 4907,
-    "text" : "MapImageLayer",
-    "icon" : folder_icon,
-    "link_type": "folder",   
-    "state"       : {
-    // use this opened line for always default open this folder
-                    "opened"    :false, //  iconJstreeforceOpen,   // is the node open
-                    // disabled  : boolean  // is the node disabled
-                    // "selected"  : true   // is the node selected
-                }
-};
-icon_flatjson.push(icon_item) 
-
-
-                    icon_item = { 
-
-                        "id" :  7791,     
-                        "parent" : 779,
-                        
-                        
-                        "text" : "7791 click",
-                        
-                        "layer_name" : _layer_name_,
-                        "icon" : open_new_tab_icon,
-                        "link_type": "embed_7791",
-                        "state"       : {
-                                        "opened"    : true,  // is the node open
-                                        // disabled  : boolean  // is the node disabled
-                                        // "selected"  : true   // is the node selected
-                                    },
-                                    
-                        "node_path" : _node_path_, 
-                        "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                        "server_path" : _map_server_url_,
-                        "layer_id" :  _layer_id_,            
-                        "type" : _type_
-                        
-                        
-                        
-                        };
-                        
-                        icon_flatjson.push(icon_item) 
 
 
 
@@ -1410,121 +1525,6 @@ icon_flatjson.push(icon_item)
 
 
 
-
-
-/* = = = = sub folder = = = = g o o g l e M a p = = = =  */
-icon_item = { 
-    "id" :  7479,     
-    "parent" : 4907,
-    "text" : "click map show",
-    "icon" : folder_icon,
-    "link_type": "folder",   
-    "state"       : {
-    // use this opened line for always default open this folder
-                    "opened"    :false, //  iconJstreeforceOpen,   // is the node open
-                    // disabled  : boolean  // is the node disabled
-                    // "selected"  : true   // is the node selected
-                }
-};
-icon_flatjson.push(icon_item) 
-
-
-
-
-
-                            icon_item = { 
-
-                                "id" :  6792,     
-                                "parent" : 7479,
-                                
-                                
-                                "text" : "6792 lat-lng",
-                                
-                                "layer_name" : _layer_name_,
-                                "icon" : open_new_tab_icon,
-                                "link_type": "embed_6792",
-                                "state"       : {
-                                                "opened"    : true,  // is the node open
-                                                // disabled  : boolean  // is the node disabled
-                                                // "selected"  : true   // is the node selected
-                                            },
-                                            
-                                "node_path" : _node_path_, 
-                                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                                "server_path" : _map_server_url_,
-                                "layer_id" :  _layer_id_,            
-                                "type" : _type_
-                                
-                                
-                                
-                                };
-                                
-                                icon_flatjson.push(icon_item) 
-
-
-
-
-                            icon_item = { 
-
-                                "id" :  6793,     
-                                "parent" : 7479,
-                                
-                                
-                                "text" : "6793 lat-lng (multi-basemap)",
-                                
-                                "layer_name" : _layer_name_,
-                                "icon" : open_new_tab_icon,
-                                "link_type": "embed_6793",
-                                "state"       : {
-                                                "opened"    : true,  // is the node open
-                                                // disabled  : boolean  // is the node disabled
-                                                // "selected"  : true   // is the node selected
-                                            },
-                                            
-                                "node_path" : _node_path_, 
-                                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                                "server_path" : _map_server_url_,
-                                "layer_id" :  _layer_id_,            
-                                "type" : _type_
-                                
-                                
-                                
-                                };
-                                
-                                icon_flatjson.push(icon_item) 
-
-
-
-
-
-                                 icon_item = { 
-
-                                "id" :  6797,     
-                                "parent" : 7479,
-                                
-                                
-                                "text" : "6797 street view",
-                                
-                                "layer_name" : _layer_name_,
-                                "icon" : open_new_tab_icon,
-                                "link_type": "embed_6797",
-                                "state"       : {
-                                                "opened"    : true,  // is the node open
-                                                // disabled  : boolean  // is the node disabled
-                                                // "selected"  : true   // is the node selected
-                                            },
-                                            
-                                "node_path" : _node_path_, 
-                                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                                "server_path" : _map_server_url_,
-                                "layer_id" :  _layer_id_,            
-                                "type" : _type_
-                                
-                                
-                                
-                                };
-                                
-                                icon_flatjson.push(icon_item) 
 
 
 
