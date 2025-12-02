@@ -1135,11 +1135,7 @@ case "embed_6395":
     console.log('_newTab_link', _newTab_link)
   break;
 
-  case "embed_6396":
-      var _newTab_link =  url_for_google.replace('google.html?', 'basemap-vertical.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
-      window.open(_newTab_link,'_blank');
-    console.log('_newTab_link', _newTab_link)
-  break;
+  
 
   case "embed_6397":
       var _newTab_link =  url_for_google.replace('google.html?', 'basemap-nearmap.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   

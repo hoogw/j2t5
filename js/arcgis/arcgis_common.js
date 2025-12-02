@@ -1245,7 +1245,7 @@ var unknow_geometry_icon = "bi bi-triangle"
 
 
 
-              var nearmap_api_key = "replace nearmap api key here" 
+              var nearmap_api_key = "nearmap api key" 
               //var nearmap_api_key = "ZWFkOGFhOTg. . . . . 0YTkxNTQ5"
 
 
