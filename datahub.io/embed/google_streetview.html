@@ -29,10 +29,24 @@
 
 
 
- <div class="vertical-width-undefined-no-border"  style="width: 900px; height: 800px;">
+ <div class="vertical-width-undefined-no-border"  style="width: 800px; height: 800px;">
 
-   <div id='street_view' class="vertical-width-undefined-box" style="width: 890px; height: 700px;">
-   </div>
+  <!-- -------------- Street View Coverage Layer  -------------- -->
+  <div>
+    <input name='pegman_follow_or_not_radio' type='radio'  value='follow'>
+    <span>Pegman FOLLOW you</span> 
+    <input name='pegman_follow_or_not_radio' type='radio'  value='not_follow'>
+    <span>NOT follow</span> 
+    <button id="show_street_view_coverage_layer">TURN ON Coverage</button>
+    <button id="hide_street_view_coverage_layer">TURN OFF</button>
+    <button id="show_live_traffic_layer">ShowTraffic</button>
+    <button id="hide_live_traffic_layer">Hide</button>
+    <button id="show_biking_layer">ShowBiking</button>
+    <button id="hide_biking_layer">Hide</button>
+  </div>
+  <!-- -------------- end -------------- Street View Coverage Layer  -------------- -->
+
+   <div id='street_view' class="vertical-width-undefined-box" style="width: 790px; height: 800px;"></div>
 
  </div>
 
@@ -68,25 +82,8 @@
   
    
     
-    <div class="vertical-width-undefined-no-border"  style="width: 300px; height: 900px;">
+    <div class="vertical-width-undefined-no-border"  style="width: 300px; height: 800px;">
    
-        <!-- -------------- Street View Coverage Layer  -------------- -->
-        <div>
-          <input name='pegman_follow_or_not_radio' type='radio'  value='follow'>
-          <span>Pegman FOLLOW you</span> 
-          <input name='pegman_follow_or_not_radio' type='radio'  value='not_follow'>
-          <span>NOT follow</span> 
-          &nbsp;&nbsp;
-          <button id="show_street_view_coverage_layer">TURN ON Coverage</button>
-          <button id="hide_street_view_coverage_layer">TURN OFF</button>
-          <button id="show_live_traffic_layer">ShowTraffic</button>
-          <button id="hide_live_traffic_layer">Hide</button>
-          <button id="show_biking_layer">ShowBiking</button>
-          <button id="hide_biking_layer">Hide</button>
-        </div>
-        <!-- -------------- end -------------- Street View Coverage Layer  -------------- -->
-
-
       <div>
         <button id='close_info_outline_panel' hidden>&times; close</button>
       </div> 
