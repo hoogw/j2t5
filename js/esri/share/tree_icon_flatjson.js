@@ -1296,28 +1296,6 @@ icon_flatjson.push(icon_item)
 
 
 
-                                         icon_item = { 
-                                        "id" :  5346,     
-                                        "parent" : 5300,
-                                        "text" : "5346 evenly distribute 4x-ajax</sup>",
-                                        "layer_name" : _layer_name_,
-                                        "icon" : open_new_tab_icon,
-                                        "link_type": "embed_5346",
-                                        "state"       : {
-                                                        "opened"    : true,  // is the node open
-                                                        // disabled  : boolean  // is the node disabled
-                                                        // "selected"  : true   // is the node selected
-                                                    },
-                                                    
-                                        "node_path" : _node_path_, 
-                                        "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                                        "server_path" : _map_server_url_,
-                                        "layer_id" :  _layer_id_,            
-                                        "type" : _type_
-                                        };
-                                        
-                                        icon_flatjson.push(icon_item)
-
 
 
 
