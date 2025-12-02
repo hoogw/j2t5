@@ -1282,12 +1282,6 @@ break;
   break;
 
 
-  case "embed_6207":
-    var _newTab_link =  url_for_google.replace('google/google.html?', 'google-efficient-engine/core-vertical.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
-    window.open(_newTab_link,'_blank');
-  console.log('_newTab_link', _newTab_link)
-break;
-
 
 
 
