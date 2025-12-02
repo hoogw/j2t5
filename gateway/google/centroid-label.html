@@ -21,81 +21,57 @@
 
 <body>
 
-  <div class="horizontal-left-right-flex-container">
+
+
+  <div class="horizontal-left-right-width-undefined-container" style="width:1200px;">
              
-    <div class="flex-container">
-      <div class='map-box'>
-        <div id="map" style="height:800px;"></div>
-      </div>
+    <div class="vertical-width-undefined-no-border" style="width: 800px;"> 
+
+        <div>
+          <span id="layer-info-vertical">Layer Name</span>
+          <input id='pac-input' type='search' placeholder='(google) addr. zip Pl.'/>  
+      
+          <small>visible:</small><b id="feature-on-map">...</b>
+          <small>total:</small><b id="total-feature">...</b>
+          <span id="lat-lng-zoom" hidden>...</span>
+        </div> 
+
+        <div id="map"  style="height:700px;"></div> <!-- override default height -->
+
+        <div>
+            <input name="click_or_hover_radio" type="radio"  value="hover"/>
+            <span>Hoverable</span>
+            <input name="click_or_hover_radio" type="radio"  value="click"/>
+            <span>Clickable</span>
+
+            <button type="button" id = "panToCurrent_geolocation_button">my.loc.</button>
+            <button type="button" id = "zoomToLayer_button">find.layer</button>
+
+            <small id = "opacitytitle_span">layer-opacity:</small>
+            <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"></input>
+            <b id='overlay_opacity_label'></b>
+        </div>
+     
     </div>
     
-    <div id="flex_1" class="vertical-width-undefined-no-border" style="width: 600px; height: 800px; overflow: auto; ">
-    
+    <div class="vertical-width-undefined-no-border" style="width: 400px; height: 800px; overflow: auto; ">
       
-       <div id='info-window-div' class="flex-row" style="font-size: xx-small;"></div>
-      
-       
+      <div id='label-as'></div> 
+
       <div>
         <button id='close_info_outline_panel' hidden>&times; close</button>
       </div> 
-
+      <div id='info-window-div' class="flex-row" style="font-size: xx-small;"></div>
       
-      <div>
-        <span id="layer-info-vertical">Layer Name</span>
-      </div>
-
-      <div>
-        <small>visible:</small><b id="feature-on-map">...</b>
-         <small>total:</small><b id="total-feature">...</b>
-      </div>
-
-
-    <input id='pac-input' type='search' placeholder='(google) addr. zip Pl.'/> 
-
-   
-
-      <div> 
-        <input type="checkbox" id="show_traffic_checkbox" name="show_traffic_checkbox" hidden/>
-        <label for="show_traffic_checkbox" hidden>Google-Traffic</label>
-        <span id="lat-lng-zoom" hidden>...</span>
-      </div> 
-    
-      
-
-
-      <div> 
-        <small id = "opacitytitle_span">layer-opacity:</small>
-        <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"></input>
-        <b id='overlay_opacity_label'></b>
-
-        <button type="button" id = "panToCurrent_geolocation_button">my.loc.</button>
-
-        
-        <button type="button" id = "zoomToLayer_button">find.layer</button>
-      </div> 
-
-   
-
-   
-        <div> 
-        <input name="click_or_hover_radio" type="radio"  value="hover"/>
-        <span>Hoverable</span>
-        &nbsp;
-        <input name="click_or_hover_radio" type="radio"  value="click"/>
-        <span>Clickable</span>
-      </div> 
-
-   
-
-
-      </br>
-      <div id='label-as'></div> 
-
-      
-    
     </div>
 
   </div>
+
+
+
+
+    
+      
 
       
       
