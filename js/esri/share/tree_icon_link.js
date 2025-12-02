@@ -2396,7 +2396,12 @@ case "embed_3953":
 
 
   case "embed_7760":
-      var _newTab_link =  apple_base_url.replace('default.html?', 'default.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      var _newTab_link =  apple_base_url.replace('default.html?', 'hover.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_7762":
+      var _newTab_link =  apple_base_url.replace('default.html?', 'hover2.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
       window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
   break;

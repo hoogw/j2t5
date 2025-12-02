@@ -14010,7 +14010,7 @@ icon_flatjson.push(icon_item)
                     icon_item = { 
                         "id" :  776,     
                         "parent" : 777,
-                        "text" : "default",
+                        "text" : "single select",
                         "icon" : folder_icon,
                         "link_type": "folder",   
                         "state"       : {
@@ -14028,10 +14028,32 @@ icon_flatjson.push(icon_item)
 
                                 "id" : 7760,     
                                 "parent" : 776,
-                                "text" : "7760 default",
+                                "text" : "7760 hover",
                                 "layer_name" : _layer_name_,
                                 "icon" : open_new_tab_icon,
                                 "link_type": "embed_7760",
+                                "state"       : {
+                                                "opened"    : true,  // is the node open
+                                                // disabled  : boolean  // is the node disabled
+                                                // "selected"  : true   // is the node selected
+                                            },
+                                "node_path" : _node_path_, 
+                                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                "server_path" : _map_server_url_,
+                                "layer_id" :  _layer_id_,            
+                                "type" : _type_
+                                };
+                                icon_flatjson.push(icon_item) 
+
+
+                                icon_item = { 
+
+                                "id" : 7762,     
+                                "parent" : 776,
+                                "text" : "7762 hover(zoomable point) ",
+                                "layer_name" : _layer_name_,
+                                "icon" : open_new_tab_icon,
+                                "link_type": "embed_7762",
                                 "state"       : {
                                                 "opened"    : true,  // is the node open
                                                 // disabled  : boolean  // is the node disabled
