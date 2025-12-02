@@ -448,7 +448,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                                 "parent" : 639,
                                 
                                 
-                                "text" : "6392 download",
+                                "text" : "6392 hover or click",
                                 
                                 "layer_name" : _layer_name_,
                                 "icon" : open_new_tab_icon,
@@ -507,34 +507,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
 
                                
 
-                                icon_item = { 
-
-                                    "id" :  6393,     
-                                    "parent" : 639,
-                                    
-                                    
-                                    "text" : "6393 hover or click",
-                                    
-                                    "layer_name" : _layer_name_,
-                                    "icon" : open_new_tab_icon,
-                                    "link_type": "embed_6393",
-                                    "state"       : {
-                                                    "opened"    : true,  // is the node open
-                                                    // disabled  : boolean  // is the node disabled
-                                                    // "selected"  : true   // is the node selected
-                                                },
-                                                
-                                    "node_path" : _node_path_, 
-                                    "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                                    "server_path" : _map_server_url_,
-                                    "layer_id" :  _layer_id_,            
-                                    "type" : _type_
-                                    
-                                    
-                                    
-                                    };
-                                    
-                                    icon_flatjson.push(icon_item) 
+                               
 
 
 

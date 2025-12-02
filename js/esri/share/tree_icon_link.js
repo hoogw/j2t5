@@ -1294,11 +1294,6 @@ break;
 
 
 
-case "embed_6393":
-      var _newTab_link =  url_template_base_embed.replace('featurelayer.html?', 'google-vertical.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
-      window.open(_newTab_link,'_blank');
-    console.log('_newTab_link', _newTab_link)
-  break;
 
 case "embed_6392":
       var _newTab_link =  url_template_base_embed.replace('featurelayer.html?', 'google.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
