@@ -6174,30 +6174,14 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
     
 
     
-    function panto_googlemaps(_panto_latitude, _panto_longitude, _panto_zoom){
-
-
-      var latLng = new google.maps.LatLng(_panto_latitude, _panto_longitude);
-      map.panTo(latLng);
-      map.setZoom(_panto_zoom); 
-
-    }
    
                 
     // reverse pan-to-your-current-location
     function zoom_to_layer() {
-
-      
-
       var zoomToLayerButton = document.getElementById("zoomToLayer_button");
-
       zoomToLayerButton.addEventListener("click", () => {
-
         pan_to_real_location();  
-
       });
-
-
     }
 
 
