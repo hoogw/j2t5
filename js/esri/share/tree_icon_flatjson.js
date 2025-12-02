@@ -14069,6 +14069,30 @@ icon_flatjson.push(icon_item)
 
 
 
+                                icon_item = { 
+
+                                "id" : 7761,     
+                                "parent" : 776,
+                                "text" : "7761 change color",
+                                "layer_name" : _layer_name_,
+                                "icon" : open_new_tab_icon,
+                                "link_type": "embed_7761",
+                                "state"       : {
+                                                "opened"    : true,  // is the node open
+                                                // disabled  : boolean  // is the node disabled
+                                                // "selected"  : true   // is the node selected
+                                            },
+                                "node_path" : _node_path_, 
+                                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                "server_path" : _map_server_url_,
+                                "layer_id" :  _layer_id_,            
+                                "type" : _type_
+                                };
+                                icon_flatjson.push(icon_item) 
+
+
+
+
 
                   // . . . .  end   . . . .    apple  . . . .    
 

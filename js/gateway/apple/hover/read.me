@@ -1,0 +1,83 @@
+
+
+
+/**/
+// ------- apple map only  -------
+/**/
+
+helper2    only difference is looking for '// - - - special for circle overlay instead of annotation - - -'
+and 
+helper1 
+difference:
+difference:
+
+       helper1 : point use annotation ( svg circle tag)
+                 when zoom in/out,  annotation marker size remain same relative to screen size.
+
+       helper2 : point use apple overlay.circle, same way as overly.polygon , overlay.polyline
+                 when zoom in/out,  overlay.circle size remain same relative to earth. because overlay.circle size unit is meter. 
+                 relative to user, screen, when zoom out, overlay.circle will become smaller and smaller.
+
+/**/
+// --- end --- apple map only -------
+/**/
+  
+
+
+
+  
+
+/**/
+// ------- apple map only  -------
+/**/
+
+sample : 
+     use server-side endpoint to get generate a short-term token each time to avoid hard code static token in js file. 
+     https://rajeshlv.medium.com/using-apple-mapkit-js-for-web-applications-15c4cff0e2
+
+
+     only use long-term static token( no server side token setup)
+     https://www.createwithswift.com/using-mapkit-js-to-embed-apple-maps-in-websites/
+
+
+1) long-term static token required in script tag when load apple mapkit, 
+
+     layout.pug 
+           script(type='module' src='https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.core.js' crossorigin async data-callback="initMap" data-libraries="services,full-map,overlays,annotations,geojson,user-location" data-initial-token= apple_token ) 
+
+           'data-initial-token' attribute must use 'apple_token'
+            this is static apple token stored in '.env' file. so far I set it expire in 1 year, which is 2024/2/6
+
+            when long term static token expired, I will go to this page to generate a new one. 
+            static apple token is generated on apple developer home page, use create token page
+                https://maps.developer.apple.com/token-maker
+
+                domain restriction should be 'localhost, transparentgov.net', without this, I will get warning '[MapKit] Authorization token without origin restriction is not recommended in production environments.'
+
+
+
+2) short-term signed apple token, is required, without this, I will get warning "mapkit need verify token later"
+
+     this is get token url, 
+            "http://localhost:3000/services/jwt"
+            "https://transparentgov.net:3200/services/jwt"
+
+      I create endpoint on server, these 2 url should return a token
+           in js, use  "await setupMapKitJs();"
+           for signed token.
+
+
+
+warning: 
+            when loading apple mapkit,  I found lots of Error message "DevTools failed to load SourceMap: Could not load content for ......
+            https://stackoverflow.com/questions/61339968/error-message-devtools-failed-to-load-sourcemap-could-not-load-content-for-chr
+            This is because of chrome, developer tool, I can turn off warning by 
+            Go to the developer tools (F12 in the browser), then select the three dots in the upper right corner, and go to Settings.
+            Then, look for Sources, and disable the options:
+            "Enable JavaScript source maps"
+            "Enable CSS source maps"
+
+/**/
+// --- end --- apple map only -------
+/**/
+  
