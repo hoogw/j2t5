@@ -22,101 +22,54 @@
 <body>
 
              
-  <div class="flex-container">
+  <div class="horizontal-left-right-width-undefined-container" style="width:1527px;">
 
-                    <div class='dashboard-box'>
+    <div class="flex-container">
 
-                            <div  style="width:740px;">
-                               
-                                             
-                                <input id='pac-input' type='search' style='width: 257px;' placeholder='common name,zipcode,address'/>  
+      <div class='dashboard-horizontal-row-flow-box'>
+          <span id="layer-info-vertical">Layer Name</span>
+          
+          <input id='pac-input' type='search' style='width: 257px;' placeholder='(google) common name,zipcode,address'/>  
 
-                                <span id="layer-info-vertical">Layer Name</span>
+          <small>visible:</small><b id="feature-on-map">...</b>
+          <small>total:</small><b id="total-feature">...</b>
+          <span id="lat-lng-zoom" hidden>...</span>
 
-                                
+          
+          
+                                  
+      </div>
 
-                                <br>
+      <div class='map-box' >
+        <div id="map"></div>
+      </div>  
 
+      <div class='dashboard-horizontal-row-flow-box'>
 
-                             
-                                <button type="button" id = "panToCurrent_geolocation_button">my.loc.</button>
+        <input name="click_or_hover_radio" type="radio"  value="hover"/>
+        <span>Hoverable</span>
+        <input name="click_or_hover_radio" type="radio"  value="click"/>
+        <span>Clickable</span>
 
+        <button type="button" id = "panToCurrent_geolocation_button">my.loc.</button>
+        <button type="button" id = "zoomToLayer_button">find.layer</button>
+
+        <span id = "opacitytitle_span">layer-opacity:</span>
+        <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"></input>
+        <label for="overlay_opacity_range" id='overlay_opacity_label'></label>
+
+        <button  id='download_selectedFeatureOnMap_button'><span style="font-size: 10.5px; font-weight: 800;">&#x21e9;  Selected Feature</span></button> 
+        <button  id='download_visibleFeatureOnMap_button'><span style="font-size: 10.9px;">&#x21e9; Visible Feature</span></button>  
+          
         
-                               
-                                <button type="button" id = "zoomToLayer_button">Zoom2Layer</button>
-                               
+      </div>
 
 
-                                
-                                <input name="click_or_hover_radio" type="radio"  value="hover"/>
-                                <span>Hoverable</span>
-                               
-                                <input name="click_or_hover_radio" type="radio"  value="click"/>
-                                <span>Clickable</span>
-                               
-                                <button  id='download_selectedFeatureOnMap_button'><span style="font-size: 10.5px; font-weight: 800;">&#x21e9;  Selected Feature</span></button> 
-                                
-                                <button  id='download_visibleFeatureOnMap_button'><span style="font-size: 10.9px;">&#x21e9; Visible Feature</span></button>  
-                              
+    </div>
 
-                               
-   
-                            </div>
-
-
-                        
-                           
-                              
-                           
-                           
-                          
-
-                             
-
-
-                            <div class='card' style="width:150px;">
-
-                              <div>
-                                <span id = "opacitytitle_span">layer-opacity:</span>
-                                &nbsp;
-                                <label for="overlay_opacity_range" id='overlay_opacity_label'></label>
-                              </div>
-                              <!-- <span id = "opacitytitle_span">opacity</span> -->
-
-                              <div>
-                                <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"></input>
-                              </div>
-                              
-                             
-                            </div>
-
-
-                            <div class='card' style="width:150px;">
-                              <div id="total-feature">...</div>
-                              <div> (Total)</div>
-                            </div>
-
-                            <div class='card' style="width:150px;">
-                              <div id="feature-on-map">...</div>
-                              <div>On Map</div>
-                            </div>
-
-
-                           
-
-
-                            
-                    </div>
-
-                    <div class='map-box' >
-                      <div id="map"></div>
-                    </div>  
-                                           
-                    <div class='info-window-box'>
-                      <div id='info-window-div' class="flex-row" style="font-size: xx-small;"></div> 
-                      
-                    </div> 
-
+    <div class='info-window-box' style="width:300px;">
+      <div id='info-window-div' class="flex-row" style="font-size: xx-small;"></div>
+    </div> 
  </div>
 
 
