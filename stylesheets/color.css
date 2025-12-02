@@ -3871,7 +3871,7 @@ legend {
     flex-direction: row;
     flex-wrap: wrap;
 
-    border: 1px dotted grey;
+    /* border: 1px dotted grey; */
   }
 
 

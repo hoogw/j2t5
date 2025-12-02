@@ -23,62 +23,38 @@
                
  
 
-    <div class="horizontal-left-right-flex-container">
+  <div class="horizontal-left-right-width-undefined-container" style="width:1400px;">
 
-      <div class="vertical-width-undefined-no-border" style="width: 800px;">            
+      <div class="vertical-width-undefined-no-border" style="width: 800px;">
+        
+        
+        <div>
+            <span id="layer-info-vertical">Layer Name</span>
+            
+            <small>visible:</small><b id="feature-on-map">...</b>
+            <small>total:</small><b id="total-feature">...</b>
+            <span id="lat-lng-zoom" hidden>...</span>
+           
+          </div>  
+
         <div id="viewDiv" style="height: 800px;"></div> <!-- override default height -->
+      
+     
+         <div>
+            <small id = "opacitytitle_span">layer-opacity:</small>
+            <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"></input>
+            <b id='opacity_value_text'></b>
+          </div>
+      
       </div>
 
-      <div class="vertical-width-undefined-no-border" style="width: 1000px;">
-
-          
-        <div class='dashboard-horizontal-row-flow-box'>
+      <div class="vertical-width-undefined-no-border" style="width: 600px; height: 800px; overflow: auto; ">
 
           <small>click to <b>select</b></span>
           <small>again for <b>unselect</b></span>
-        
-          <div id="layer-info-vertical" >Layer Name</div>
-                          
-
-
-                            <div class='card' style="width:150px;">
-
-                              <div>
-                                <small id = "opacitytitle_span">layer-opacity:</small>
-                                &nbsp;
-                                <label for="overlay_opacity_range" id='opacity_value_text'></label>
-                              </div>
-                              <!-- <span id = "opacitytitle_span">opacity</span> -->
-                              
-                              <div>
-                                <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"></input>
-                              </div>
-                              
-                            </div>
-
-
-
-                            <div class='card' style="width:150px;">
-                              <div><h1 style="display:inline;" id="total-feature">...</h1></div>
-                              <div> (Total)</div>
-                            </div>
-
-
-                            <div class='card' style="width:150px;">
-                              <div><h2 style="display:inline;" id="feature-on-map">...</h2></div>
-                              <div>On Map</div>
-                            </div>
-
-
-                            
-        </div>
-
-
-        <div class='dashboard-horizontal-row-flow-box'>
-           <button id='UnselectRemoveAll_btn' type='button'>Unselect All</button>
-           <button id='download_selectedFeatureOnMap_button'>Download Selected Feature</button>
-        </div>
-
+          <button id='UnselectRemoveAll_btn' type='button'>Unselect All</button>
+          <button id='download_selectedFeatureOnMap_button'>Download Selected Feature</button>
+       
         <div class='info-window-box-scroll-height-undefined' style='height: 700px;'>
             <div id='info-window-div' class="flex-row" style="font-size: xx-small;"></div> 
         </div> 
