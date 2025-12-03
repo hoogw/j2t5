@@ -414,8 +414,12 @@ difference:
                 // only change this selected overlay color
                 targetOverlay.style = classfiy_overlay_style;
 
+                //console.log('show properties' ,  targetOverlay.data)
+                show_info_outline_Tab(targetOverlay.data)
               
       } else {
+
+         empty_info_outline_Tab()
 
       }
 

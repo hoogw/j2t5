@@ -2379,6 +2379,16 @@ case "embed_3953":
       window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
   break;
+  case "embed_7770":
+      var _newTab_link =  apple_base_url.replace('default.html?', 'click.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_7750":
+      var _newTab_link =  apple_base_url.replace('default.html?', 'click-map-latlng.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
 
 
 //   ^^^^^^^^^^^^^^^^^^^^^   end   ^^^^^^^^^^^^^^^^^^^^^  bing  feature layer     ^^^^^^^^^^^^^^^^^^^^^
