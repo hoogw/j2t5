@@ -23,16 +23,19 @@
                
  
  <div class="horizontal-left-right-width-undefined-container" style="width:1200px;">
-             
+      
+    
+
     <div class="vertical-width-undefined-no-border" style="width: 800px;"> 
     
         <div>
           <span id="layer-info-vertical">Layer Name</span>
-
           <small>total:</small><b id="total-feature">...</b>
           <small>visible:</small><b id="feature-on-map">...</b>
           <span id="lat-lng-zoom" hidden>...</span>
         </div>
+
+        
 
         <arcgis-map popup-disabled id="map-components-id" basemap="hybrid" style="height: 700px;">
         </arcgis-map>
@@ -46,35 +49,22 @@
           <button type='button' id='full_extent_btn'>full.extent</button>
           <!--   --- --- end --- --- back to previous extent --- --- --- ---  -->
          
-         <small id = "opacitytitle_span">layer-opacity:</small>
-        <b id='opacity_value_text'></b>
-        <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"/>
-      
+          <small id = "opacitytitle_span">layer-opacity:</small>
+          <b id='opacity_value_text'></b>
+          <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"/>
+
+          <!-- find address must be at last bottom, otherwise its drop down will conflict with other component below  -->
+          <arcgis-search reference-element="map-components-id" style="z-index:99;">
+          </arcgis-search> 
+
         </div>
 
-     </div> 
-    
+    </div> 
 
-    <div class="vertical-width-undefined-no-border" style="width: 600px; height: 800px; overflow: auto; ">
-
-        <!-- find address must be at last bottom, otherwise its drop down will conflict with other component below  -->
-        <arcgis-search reference-element="map-components-id" style="z-index:99;" >
-        </arcgis-search> 
-
-        <div class='info-window-box'>
-          <div id='info-window-div' class="flex-row" style="font-size: xx-small;"></div> 
-        </div> 
-
+    <div class="vertical-width-undefined-no-border" style="width: 400px; height: 800px; overflow: auto; ">
+        <div id='info-window-div' class="flex-row" style="font-size: xx-small;"></div>
     <div>
-          
-          
-        </div>
-
-
-      
-     
-    </div>
-
+    
 
   </div>
 

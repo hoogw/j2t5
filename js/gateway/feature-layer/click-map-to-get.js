@@ -10,7 +10,8 @@
 
               var backgroundFeatureLayer 
               var native_renderer
-                             
+                       
+              
  							                
                       
 
@@ -18,9 +19,9 @@
               dom_ready_dojo();
 
             // component
-             
+              
               //self-run
-              (async function init_map_component_event(){ // only for base map gallery 
+              (async function init_map_component_event(){ 
 
                 // old "v i e w . xxxxxxx " must all replace with " a r c g i s M a p . xxxxxx", for example, v i e w . g r a p h i c,  v i e w . o n
                 
@@ -71,19 +72,18 @@
                       createFeatureLayer()
                       init_feature_layer_view()
 
-                  // must place after  createa feature layer, other wise view is not ready, will cause error
-                  init_view_ui()
-                  // if don't want google map, just delete this line
-                  init_base_map_galleryComponent() 
-                              
+                      // must place after  createa feature layer, other wise view is not ready, will cause error
+                      init_view_ui()
+                      // if don't want google map, just delete this line
+                      init_base_map_radio() 
+                  
                   // first time zoom to layer must wait until view is ready, otherwise, may not zoom to.
                   // pan to real location is inside function of create feature layer, at last
-                    
+                   
                               
                 })
 
-          })();
-            
+           })();
 
 
 
@@ -199,6 +199,7 @@
 
 
 
+                        
 
 
 
@@ -208,10 +209,7 @@
 
 
             
-      
-                       
-                 
-        
+          
       
 
       async function dom_ready_dojo(){

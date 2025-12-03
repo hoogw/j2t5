@@ -2096,23 +2096,15 @@ break;
     console.log('_newTab_link', _newTab_link)
   break;
 
-  case "embed_5186":
-      var _newTab_link =  url_for_esri_gateway.replace('test.html?', 'click-map-to-get-right.html?') + '&backgroundlayerurl=' + _selected_path[0]  
-      window.open(_newTab_link,'_blank');
-    console.log('_newTab_link', _newTab_link)
-  break;
+ 
 
   case "embed_5187":
-      var _newTab_link =  url_for_esri_gateway.replace('test.html?', 'click-map-to-get-left.html?') + '&backgroundlayerurl=' + _selected_path[0]  
-      window.open(_newTab_link,'_blank');
-    console.log('_newTab_link', _newTab_link)
-  break;
-
-  case "embed_5188":
       var _newTab_link =  url_for_esri_gateway.replace('test.html?', 'click-map-to-get.html?') + '&backgroundlayerurl=' + _selected_path[0]  
       window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
   break;
+
+  
 
 
 case "embed_5328":
