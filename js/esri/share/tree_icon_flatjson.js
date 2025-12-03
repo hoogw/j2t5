@@ -179,7 +179,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                     icon_item = { 
                         "id" :  777,     
                         "parent" : 10,
-                        "text" : apple_svg + "Apple",
+                        "text" : apple_svg + "Apple"  + "<sub><small>2018-now</small></sub>",
                         "icon" : folder_icon,
                         "link_type": "folder",   
                         "state"       : {
@@ -3957,7 +3957,7 @@ icon_flatjson.push(icon_item)
 icon_item = { 
     "id" :  328,     
     "parent" : 327,
-    "text" : yelp_svg + " Yelp POI (free)", 
+    "text" : yelp_svg + " Yelp POI (free)"  + "<sub><small>since 2007</small></sub>", 
     "icon" : folder_icon,
     "link_type": "folder",   
     "state"       : {
@@ -4614,7 +4614,7 @@ icon_flatjson.push(icon_item)
 icon_item = { 
 "id" :  3284,     
 "parent" : 327,
-"text" : apple_svg + "Apple POI (free)",
+"text" : apple_svg + "Apple POI (free)"  + "<sub><small>since 2018</small></sub>",
 "icon" : folder_icon,
 "link_type": "folder",   
 "state"       : {
@@ -4640,7 +4640,7 @@ icon_flatjson.push(icon_item)
 icon_item = { 
     "id" :  3280,     
     "parent" : 327,
-    "text" : google_svg + " Google POI" + paypal_svg + visa_svg + mastercard_svg,
+    "text" : google_svg + " Google POI" + paypal_svg + visa_svg + mastercard_svg + "<sub><small>since 2011</small></sub>",
     "icon" : folder_icon,
     "link_type": "folder",   
     "state"       : {
@@ -5862,7 +5862,7 @@ icon_flatjson.push(icon_item)
 icon_item = { 
     "id" :  7281,     
     "parent" : 327,
-    "text" : microsoft_svg + "&nbsp;" + "Microsoft POI" + visa_svg + mastercard_svg,
+    "text" : microsoft_svg + "&nbsp;" + "Microsoft POI" + visa_svg + mastercard_svg  + "<sub><small>since 2017</small></sub>",
     "icon" : folder_icon,
     "link_type": "folder",   
     "state"       : {
@@ -6530,7 +6530,7 @@ icon_flatjson.push(icon_item)
 icon_item = { 
     "id" :  3283,     
     "parent" : 327,
-    "text" : esri_svg + "  Esri POI" + visa_svg + mastercard_svg ,
+    "text" : esri_svg + "  Esri POI" + visa_svg + mastercard_svg  + "<sub><small>since 2024</small></sub>",
     "icon" : folder_icon,
     "link_type": "folder",   
     "state"       : {
@@ -7321,7 +7321,7 @@ icon_item = {
                 icon_item = { 
                     "id" :  3282,     
                     "parent" : 327,
-                    "text" : "Here POI",
+                    "text" : "Here POI"  + "<sub><small>since 2012</small></sub>",
                     "icon" : folder_icon,
                     "link_type": "folder",   
                     "state"       : {

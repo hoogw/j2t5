@@ -21,89 +21,88 @@
 
 <body>
 
-  <div class="horizontal-left-right-flex-container">
+
+  
+<div class="horizontal-left-right-width-undefined-container" style="width:1300px;">
              
-    <div class="flex-container">
-      <div class='map-box'>
-        <div id="map" style="height:800px;"></div>
-      </div>
+    <div class="vertical-width-undefined-no-border" style="width: 800px;"> 
+
+        <div>
+          <span id="layer-info-vertical">Layer Name</span>
+
+          <small>visible:</small><b id="feature-on-map">...</b>
+          <small>total:</small><b id="total-feature">...</b>
+          <span id="lat-lng-zoom" hidden>...</span>
+        </div> 
+
+        <div id="map"  style="height:700px;"></div> <!-- override default height -->
+
+        <div>
+          <button type="button" id = "zoomToLayer_button">find.layer</button>
+        </div>
+     
     </div>
     
-    <div class="vertical-width-undefined-no-border" style="width: 600px; height: 800px; overflow: auto; ">
+    <div class="vertical-width-undefined-no-border" style="width: 500px; height: 800px; overflow: auto; ">
     
-      <div id='info-window-div' class="flex-row" style="font-size: xx-small;"></div>
-      
+          <!-- apple search place -->
+          <input type='search' id='mapLookup' placeholder='(apple) address or place'/>  
+          <div id='results'></div>
+          <!-- end -- apple search place -->
+
+      <div id='setting_panel'>        
+            <div id='symbol-div'>
+                <fieldset>
+                  <legend>Change feature color</legend>
+                  
+                  <ol>
+
+
+                    <li>
+                        <small>polygon-fill-color</small> 
+                        <input type='text' id='fill_color' name='fill_color' disabled/>
+                        <div id='row_fill_color'></div>
+                    </li>
+
+                    <li>
+                        <small>line-width</small>
+                        <b id='line_width_label'></b>
+                        <input type='range' id='line_width_range' name='line_width_range' min='1' max='50'/>
+                    </li>
+
+                    <li>
+                      <small>line-color</small>
+                      <input type='text' id='symbol_color' name='symbol_color' disabled/>
+                      <div id='row_symbol_color'></div>
+                    </li>
+                  
+                    
+                    <li>
+                        <small>Point Size</small>
+                        <b id='point_radius_label'></b>
+                        <input type='range' id='point_radius_range' name='point_radius_range' min='1' max='50'/>
+                    </li>
+
+                  </ol>
+                  
+                </fieldset>                    
+            </div>
+            
+            
+
+      </div>
 
       <div>
-        <span id="layer-info-vertical">Layer Name</span>
-        <button type="button" id = "zoomToLayer_button">find.layer</button>
-
-        <small>visible:</small><b id="feature-on-map">...</b>
-        <small>total:</small><b id="total-feature">...</b>
-        <span id="lat-lng-zoom" hidden>...</span>
-      </div>
-
-    
-    <!-- apple search place -->
-    <input type='text' id='mapLookup' placeholder='(apple) address or place'/>  
-    <div id='results'></div>
-    <!-- end -- apple search place -->
- 
-    
-
-   <div id='setting_panel'>
-                            
-     
-                                          
-                                        
-                                     
-        <div id='symbol-div'>
-            <fieldset>
-              <legend>Change feature color</legend>
-              
-              <ol>
-
-
-                <li>
-                    <small>polygon-fill-color</small> 
-                    <input type='text' id='fill_color' name='fill_color' disabled/>
-                    <div id='row_fill_color'></div>
-                </li>
-
-                <li>
-                    <small>line-width</small>
-                    <b id='line_width_label'></b>
-                    <input type='range' id='line_width_range' name='line_width_range' min='1' max='50'/>
-                </li>
-
-                <li>
-                  <small>line-color</small>
-                  <input type='text' id='symbol_color' name='symbol_color' disabled/>
-                  <div id='row_symbol_color'></div>
-                </li>
-              
-                
-                <li>
-                    <small>Point Size</small>
-                    <b id='point_radius_label'></b>
-                    <input type='range' id='point_radius_range' name='point_radius_range' min='1' max='50'/>
-                </li>
-
-              </ol>
-              
-            </fieldset>                    
-        </div>
-        
-        <div id='legend-div'>
-        
-        <div id='fields-mask-div'>
-
-      </div>
-
-    
+        <button id='close_info_outline_panel' hidden>&times; close</button>
+      </div> 
+      <div id='info-window-div' class="flex-row" style="font-size: xx-small;"></div>
+       
     </div>
 
-  </div>
+</div>
+      
+
+   
 
    <!-- https://developer.apple.com/documentation/mapkitjs/loading_the_latest_version_of_mapkit_js -->
    <script type='module' src='https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.core.js' crossorigin async data-callback="initMap" data-libraries="services,full-map,overlays,annotations,geojson,user-location" data-initial-token="eyJraWQiOiIyNzVBRk1SWkRBIiwidHlwIjoiSldUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJDNE5YNVM5UTRCIiwiaWF0IjoxNzY0MjA2NzY1LCJleHAiOjE3NjQ4MzUxOTl9.KWeSyWdXECi21otg0IQQPbcgETvkLfG1f-Z6A10yyFwJLmYqEGH6E7xmk-ZoY_9BNulWQGryWRj0CUzV94sD0Q"></script>
