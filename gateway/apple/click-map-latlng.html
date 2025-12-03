@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+     <!--Let browser know website is optimized for mobile-->
+     <meta name="viewport" charset='utf-8' content="initial-scale=1.0, width=device-width"/>
+
+    <title id="title">layer name</title>
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+   
+    <link href="../../stylesheets/color.css" rel="stylesheet" type="text/css"/> 
+    <link rel="stylesheet" href="../../stylesheets/vertical.css">
+
+    
+
+</head>
+
+<body>
+
+
+
+<div class="horizontal-left-right-width-undefined-container" style="width:1200px;">
+             
+    <div class="vertical-width-undefined-no-border" style="width: 800px;"> 
+
+        <div>
+          <span id="layer-info-vertical">Layer Name</span>
+
+          <small>visible:</small><b id="feature-on-map">...</b>
+          <small>total:</small><b id="total-feature">...</b>
+          <span id="lat-lng-zoom" hidden>...</span>
+        </div> 
+
+        <div id="map"  style="height:700px;"></div> <!-- override default height -->
+
+        <div>
+          <button type="button" id = "zoomToLayer_button">back-2-layer</button>
+        </div>
+     
+    </div>
+    
+    <div class="vertical-width-undefined-no-border" style="width: 400px; height: 800px; overflow: auto; ">
+    
+
+        
+          <!-- apple search place -->
+          <input type='search' id='mapLookup' placeholder='(apple) address or place'/>  
+          <div id='results'></div>
+          <!-- end -- apple search place -->
+
+          
+
+      <div>
+        <button id='close_info_outline_panel' hidden>&times; close</button>
+      </div> 
+      <div id='info-window-div' class="flex-row" style="font-size: xx-small;"></div>
+      
+    </div>
+
+</div>
+
+
+
+
+
+    
+   
+ 
+    
+
+
+   <!-- https://developer.apple.com/documentation/mapkitjs/loading_the_latest_version_of_mapkit_js -->
+   <script type='module' src='https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.core.js' crossorigin async data-callback="initMap" data-libraries="services,full-map,overlays,annotations,geojson,user-location" data-initial-token="eyJraWQiOiIyNzVBRk1SWkRBIiwidHlwIjoiSldUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJDNE5YNVM5UTRCIiwiaWF0IjoxNzY0MjA2NzY1LCJleHAiOjE3NjQ4MzUxOTl9.KWeSyWdXECi21otg0IQQPbcgETvkLfG1f-Z6A10yyFwJLmYqEGH6E7xmk-ZoY_9BNulWQGryWRj0CUzV94sD0Q"></script>
+   <!-- this apple token is static long term token get from .env file, after expired, need to re-new one at https://maps.developer.apple.com/token-maker, domain restriction must apply as 'transparentgov.net' -->
+            
+     
+      
+  <script src="../../js/lib/stack.js"></script>
+
+  
+  <script src="../../js/lib/proj4/dist/proj4.js"></script>
+  <script src="../../js/lib/wkt.js"></script>
+  <script src="../../js/lib/reproject/dist/reproject.js"></script>
+  <script src="../../js/lib/wellknown/wellknown.js"></script>
+
+
+  <script   src="../../js/lib/arcgis-to-geojson-utils/dist/arcgis-to-geojson.js"></script> 
+  <script   src="../../js/lib/turf/turf.min.js"></script>
+      
+  <script src="../../js/arcgis/arcgis_common.js" type="text/javascript"></script>
+
+
+  
+  <script src="../../js/gateway/apple/share/apple.js" type="text/javascript"></script>
+  <!-- default.js must load befor common_share.js -->
+  <script src="../../js/gateway/apple/click-map-latlng/default.js" type="text/javascript"></script>
+  <script src="../../js/gateway/apple/click-map-latlng/helper.js" type="text/javascript"></script>
+  <script src="../../js/gateway/apple/click-map-latlng/common_share.js" type="text/javascript"></script>
+
+
+
+  </body>
+</html>
