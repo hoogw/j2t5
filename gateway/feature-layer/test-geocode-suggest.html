@@ -22,82 +22,86 @@
 <body>
                
  
- <div class="horizontal-left-right-flex-container">
-
-    <div class="vertical-width-undefined-no-border" style="width: 900px; height: 855px; overflow: auto; ">
-
-      <div>
-        <span id="layer-info-vertical">Layer Name</span>
-        &nbsp;<small>total:</small><b id="total-feature">...</b>
-        &nbsp;&nbsp;
-        <small>visible:</small><b id="feature-on-map">...</b>
-        &nbsp;&nbsp;
-       
-        <small id = "opacitytitle_span">layer-opacity:</small>
-        <label for="overlay_opacity_range" id='opacity_value_text'></label>
-        <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"></input>
+  
+ <div class="horizontal-left-right-width-undefined-container" style="width:1200px;">
       
-        &nbsp;&nbsp;
-        <button type="button" id = "panToCurrent_geolocation_button">my.loc.</button>
+    
+
+    <div class="vertical-width-undefined-no-border" style="width: 800px;"> 
+    
+        <div>
+          <span id="layer-info-vertical">Layer Name</span>
+          <small>total:</small><b id="total-feature">...</b>
+          <small>visible:</small><b id="feature-on-map">...</b>
+          <span id="lat-lng-zoom" hidden>...</span>
+        </div>
 
         
-        <!--   --- --- --- --- back to previous extent --- --- --- --- -->
-        <button type='button' id='zoom2layer_button'>find.layer</button>
-        <button type='button' id='full_extent_btn'>full.extent</button>
-        <!--   --- --- end --- --- back to previous extent --- --- --- ---  -->
-     
-        <span id="lat-lng-zoom" hidden></span>
-       
+
+        <arcgis-map popup-disabled id="map-components-id" basemap="hybrid" style="height: 700px;">
+        </arcgis-map>
+
+        <span id="radio-basemap-id" style="font-size: xx-small;"></span>
+
+        <div>
+          <button type="button" id = "panToCurrent_geolocation_button">my.loc.</button>
+          <!--   --- --- --- --- back to previous extent --- --- --- --- -->
+          <button type='button' id='zoom2layer_button'>find.layer</button>
+          <button type='button' id='full_extent_btn'>full.extent</button>
+          <!--   --- --- end --- --- back to previous extent --- --- --- ---  -->
+         
+          <small id = "opacitytitle_span">layer-opacity:</small>
+          <b id='opacity_value_text'></b>
+          <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"/>
+
           <!-- find address must be at last bottom, otherwise its drop down will conflict with other component below  -->
-          <arcgis-search reference-element="map-components-id" style="z-index:99;"></arcgis-search> 
+          <arcgis-search reference-element="map-components-id" style="z-index:99;">
+          </arcgis-search> 
 
-          
-      </div>
+        </div>
 
+    </div> 
 
-      <div id="radio-basemap-id" style="font-size: xx-small;"></div>
-      
+    <div class="vertical-width-undefined-no-border" style="width: 400px; height: 800px; overflow: auto; ">
 
       <div>
-        <span>Copy & Paste your geocode-server url endpoint here, then</span>
+        <span>geocode-server url</span>
         <button id="apply-geocode-btn">apply</button>
       </div>
-
       <input id="geocode-server-url-input" placeholder="http://.../GeocodeServer"></input>
-        
-     
        
       <span style="font-size:xx-small;" id="geocode-capabilities-label"></span>
       <span style="font-size:xx-small;" id="geocode-categories-label"></span>
       <span style="font-size:xx-small;" id="geocode-crossstreetconnector-label"></span>
     
-      <input id="geocode-suggest-input" placeholder="e.g. gage/temp, home depot, 6510 miles," style="width:360px"></input>
-          <div>
-            <span style="font-size:large;" id="geocode-total-label"></span>
-            <button id="suggest_btn">refresh</button>
-            <button id="find_btn">zoom2selected</button>
-            <button id="clear_btn">clear</button>
-            <span>zoom2level:</span><input id="zoom2level-input" type="text" size="1"></input>
-          </div>
+      
+      <div>
+        <span style="font-size:large;" id="geocode-total-label"></span>
+        <button id="suggest_btn">refresh</button>
+        <button id="find_btn">zoom2selected</button>
+        <button id="clear_btn">clear</button>
+        <span>zoom2level:</span><input id="zoom2level-input" type="text" size="1"></input>
+      </div>
 
+        <input id="geocode-suggest-input" placeholder="e.g. gage/temp, home depot, 6510 miles," style="width:360px"></input>
 
         <!-- size must be same as var max_suggestion_item_count = 50 -->
         <select size=40 id="suggest-options" hidden></select>
         
     
 
-       <div class='info-window-box'>
-          <!-- -- -- -- only for vertical -- -- -- --  div id='info-window-div'></div --> 
-          <div id='info-window-div' class="flex-row" style="font-size: xx-small;"></div> 
-       </div> 
 
-    </div>
-               
-    <div class="vertical-width-undefined-no-border" style="width: 900px; height: 855px; overflow: auto;">
-        <arcgis-map id="map-components-id" basemap="hybrid" style="height: 855px;">
-        </arcgis-map>
-    </div>
+
+        <div id='info-window-div' class="flex-row" style="font-size: xx-small;"></div>
+    <div>
+    
+
   </div>
+
+
+
+
+      
 
 
        
