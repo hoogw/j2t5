@@ -87,7 +87,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                         "id" :  4907,     
                         "parent" : 10,
                         // google
-                        "text" : google_svg + " Google" + "<small><sub>2010-now</sub></small>",  //v3 
+                        "text" : google_svg + " Google" + "<small><sub>2020-now</sub></small>",  //v3 
                         "icon" : folder_icon,
                         "link_type": "folder",   
                         "state"       : {
@@ -100,22 +100,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                     icon_flatjson.push(icon_item) 
 
 
-
-                       icon_item = { 
-                        "id" :  970,     
-                        "parent" : 10,
-                        "text" : "Legend" + pin_svg,
-                        "icon" : folder_icon,
-                        "link_type": "folder",   
-                        "state"       : {
-                        // use this opened line for always default open this folder
-                                        "opened"    : false,  // is the node open
-                                        // disabled  : boolean  // is the node disabled
-                                        // "selected"  : true   // is the node selected
-                                    }
-                    };
-                    icon_flatjson.push(icon_item)
-
+                  
 
 
                     icon_item = { 
@@ -201,7 +186,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                     icon_item = { 
                         "id" :  577,     
                         "parent" : 10,
-                        "text" : esri_svg + " Esri forever",
+                        "text" : "Esri forever",
                         "icon" : folder_icon,
                         "link_type": "folder",   
                         "state"       : {
@@ -278,43 +263,33 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
 
 
 
-//  ------------------------- end --- top -------- level -----------------------------------------
 
+                      /*  not use legend, replace with individual
 
-
-
-
-
-
-
-
-                    icon_item = {
-                                    "id" :  500,     
-                                    "parent" : 970,
-                                    "text" : esri_svg + "  Esri widget" + '<small><sub>2008.6-2025.2, token 4 restricted</sub></small>',
-                                    "icon" : folder_icon,  
-                                    "link_type": "folder", 
-                                    "state"       : {
-                                    "opened": false,  // iconJstreeNodeOpened,  // is the node open
-                                                    // disabled  : boolean  // is the node disabled
-                                                    // "selected"  : true   // is the node selected
-                                                }
+                       icon_item = { 
+                        "id" :  970,     
+                        "parent" : 10,
+                        "text" : "Legend" + pin_svg,
+                        "icon" : folder_icon,
+                        "link_type": "folder",   
+                        "state"       : {
+                        // use this opened line for always default open this folder
+                                        "opened"    : false,  // is the node open
+                                        // disabled  : boolean  // is the node disabled
+                                        // "selected"  : true   // is the node selected
+                                    }
                     };
-                    icon_flatjson.push(icon_item) 
+                    icon_flatjson.push(icon_item)
+                    */
+
 
 
                     
-                  
-
-
-
-
-
 
                     icon_item = { 
                         "id" :  102222,     
-                        "parent" : 970,
-                        "text" : google_svg +  " Google" + "<small><sub>2005-2021</sub></small>", //v2 
+                        "parent" : 10, //970,
+                        "text" : "Google classic" + "<small><sub>2005-2020</sub></small>", //v2 
                         "icon" : folder_icon,  
                         "link_type": "folder", 
                         "state"       : {
@@ -327,14 +302,29 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
 
 
 
+                    icon_item = {
+                                    "id" :  500,     
+                                    "parent" : 10, //970,
+                                    "text" : "Esri widget classic" + '<small><sub>2008.6-2025.2, token 4 restricted</sub></small>',
+                                    "icon" : folder_icon,  
+                                    "link_type": "folder", 
+                                    "state"       : {
+                                    "opened": false,  // iconJstreeNodeOpened,  // is the node open
+                                                    // disabled  : boolean  // is the node disabled
+                                                    // "selected"  : true   // is the node selected
+                                                }
+                    };
+                    icon_flatjson.push(icon_item) 
+
+
 
 
 
 
                         icon_item = { 
                                         "id" :  200,     
-                                        "parent" : 970,
-                                        "text" : microsoft_svg + " Microsoft BingMap" + "<small><sub>2005-2025</sub></small>",
+                                        "parent" : 10, //970,
+                                        "text" : "Microsoft BingMap" + "<small><sub>2005-2018</sub></small>",
                                         "icon" : folder_icon, 
                                         "link_type": "folder",  
                                         "state"       : {
@@ -350,7 +340,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
 
                         icon_item = { 
                                         "id" :  700,     
-                                        "parent" : 970,
+                                        "parent" : 10, //970,
                                         "text" : "Here Map" + "<small><sub>2012-now</sub></small>",
                                         "icon" : folder_icon,  
                                         "link_type": "folder", 
@@ -373,7 +363,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
 
                         icon_item = { 
                                         "id" :  300,     
-                                        "parent" : 970,
+                                        "parent" : 10, //970,
                                         "text" : "Mapbox" + "<small><sub>2015-now</sub></small>",
                                         "icon" : folder_icon, 
                                         "link_type": "folder",  
@@ -389,8 +379,8 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
 
                         icon_item = { 
                             "id" :  10200,     
-                            "parent" : 970,
-                            "text" : "Apple" + "<small><sub>2012-now</sub></small>",
+                            "parent" : 10, //970,
+                            "text" : "Apple classic" + "<small><sub>2012-2018</sub></small>",
                             "icon" : folder_icon, 
                             "link_type": "folder",  
                             "state"       : {
@@ -405,8 +395,10 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
 
 
 
-
+//  ------------------------- end --- top -------- level -----------------------------------------
 // --- end  --- only  --- top level brand  --- ---
+
+
 
 
 
@@ -2286,7 +2278,7 @@ icon_flatjson.push(icon_item)
             icon_item = { 
                 "id" :  5329,     
                 "parent" : 579,
-                "text" : "TEST your geo-service",
+                "text" : "geocode-network-analysis",
                 "icon" : folder_icon,
                 "link_type": "folder",   
                 "state"       : {
@@ -4625,6 +4617,47 @@ icon_item = {
             }
 };
 icon_flatjson.push(icon_item)
+
+
+
+        /* = = = = sub folder = = = = g o o g l e p o i = = = =  */
+        icon_item = { 
+            "id" :  4011,     
+            "parent" : 3284,
+            "text" : "pan & zoom",
+            "icon" : folder_icon,
+            "link_type": "folder",   
+            "state"       : {
+            // use this opened line for always default open this folder
+                            "opened"    :false, //  iconJstreeforceOpen,   // is the node open
+                            // disabled  : boolean  // is the node disabled
+                            // "selected"  : true   // is the node selected
+                        }
+        };
+        icon_flatjson.push(icon_item)
+
+
+                        
+
+                    icon_item = { 
+                                    "id" :  4012,     
+                                    "parent" : 4011,
+                                    "text" : "4012 everything",
+                                    "layer_name" : _layer_name_,
+                                    "icon" : open_new_tab_icon,
+                                    "link_type": "embed_4012",
+                                    "state"       : {
+                                                    "opened"    : true,  // is the node open
+                                                    // disabled  : boolean  // is the node disabled
+                                                    // "selected"  : true   // is the node selected
+                                                },
+                                    "node_path" : _node_path_, 
+                                    "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                    "server_path" : _map_server_url_,
+                                    "layer_id" :  _layer_id_,            
+                                    "type" : _type_
+                                };
+                    icon_flatjson.push(icon_item)
 
 
 
