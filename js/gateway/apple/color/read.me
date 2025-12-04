@@ -43,7 +43,7 @@ sample :
 1) long-term static token required in script tag when load apple mapkit, 
 
      layout.pug 
-           script(type='module' src='https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.core.js' crossorigin async data-callback="initMap" data-libraries="services,full-map,overlays,annotations,geojson,user-location" data-initial-token= apple_token ) 
+           script(type='module' src='https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.core.js' crossorigin async data-callback="initMap" data-libraries="services,full-map,overlays,annotations,geojson,user-location,look-around" data-initial-token= apple_token ) 
 
            'data-initial-token' attribute must use 'apple_token'
             this is static apple token stored in '.env' file. so far I set it expire in 1 year, which is 2024/2/6

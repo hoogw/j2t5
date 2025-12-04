@@ -189,14 +189,14 @@ var urlParams
                                        need_pan_to_real_location = false
                                     }
 
-                                    param_center_zoom = urlParams.get('center_zoom');  
-                                    if (param_center_zoom) {
-                                      _center_zoom = Number(param_center_zoom)
 
-                                      // as long as url has lat,lng,zm, then do not pan to loc
-                                      
-                                       need_pan_to_real_location = false
-                                    }
+                                    // apple only, apple zoom is not a number, instead it is a encoded string, 1.000%2C1.378,  must decode it to 0.054,0.074
+                                    param_center_zoom = urlParams.get('center_zoom'); 
+                                    // apple only, apple zoom is not a number, instead it is a encoded string, 1.000%2C1.378,  must decode it to 0.054,0.074
+                                    _center_zoom = decodeURIComponent(param_center_zoom)
+                                    // as long as url has lat,lng,zm, then do not pan to loc
+                                    need_pan_to_real_location = false
+                            
 
                                     
                                    
