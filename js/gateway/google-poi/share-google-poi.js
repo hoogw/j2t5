@@ -790,7 +790,6 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
         var poi_name
         
         var poi_phone
-        
         var poi_open
 
         var poi_addressComponents
@@ -798,7 +797,7 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
         var poi_streetName
         var poi_streetNameAbre
 
-
+        var poi_formattedAddress
         
         var streetName_component = []
         var poi_streetPrefix
@@ -928,7 +927,7 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
 
           poi_phone = poi_element.nationalPhoneNumber
           poi_open = poi_element.businessStatus
-
+          poi_formattedAddress = poi_element.formattedAddress
 
           ____feature = {
             "type": "Feature",
@@ -964,7 +963,7 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
               "state1":poi_state,
               "zipCode": poi_zipCode,
 
-              "fmtAddr": poi_element.formattedAddress,
+              "fmtAddr": poi_formattedAddress,
 
               "primaryType": poi_primaryType,
               "type": poi_type,

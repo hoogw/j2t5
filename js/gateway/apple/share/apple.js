@@ -3715,125 +3715,170 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
 
 
-             
-                  /**/
-                  // ------- apple map only  -------
-                  /**/
+
+/**/
+// ------- apple map only  -------
+/**/
 
 
-                            // only use long-term static token( no server side token setup)   sample https://www.createwithswift.com/using-mapkit-js-to-embed-apple-maps-in-websites/
-                            const setupMapKitJs_staticLongTermToken = async() => {
-                                                                
-                              if (!window.mapkit || window.mapkit.loadedLibraries.length === 0) {
-                                  // mapkit.core.js or the libraries are not loaded yet.
-                                  // Set up the callback and wait for it to be called.
-                                  await new Promise(resolve => { window.initMap = resolve });
+        // only use long-term static token( no server side token setup)   sample https://www.createwithswift.com/using-mapkit-js-to-embed-apple-maps-in-websites/
+        const setupMapKitJs_staticLongTermToken = async() => {
+                                            
+          if (!window.mapkit || window.mapkit.loadedLibraries.length === 0) {
+              // mapkit.core.js or the libraries are not loaded yet.
+              // Set up the callback and wait for it to be called.
+              await new Promise(resolve => { window.initMap = resolve });
 
-                                  // Clean up
-                                  delete window.initMap;
-                              }
+              // Clean up
+              delete window.initMap;
+          }
 
-                              // only for test, must comment out in production
-                              //console.log('long term static apple token', _apple_token)
-                              // only for long-lived token, not for signed token
-                                mapkit.init({
-                                  authorizationCallback: function(done) {
-                                      done(_apple_token);
-                                  },
-                                  language: "es"
-                                });
-                            };
-
-
-
+          // only for test, must comment out in production
+          //console.log('long term static apple token', _apple_token)
+          // only for long-lived token, not for signed token
+            mapkit.init({
+              authorizationCallback: function(done) {
+                  done(_apple_token);
+              },
+              language: "es"
+            });
+        };
 
 
 
-                            // use server-side endpoint to get generate a short-term token each time to avoid hard code static token in js file.  https://rajeshlv.medium.com/using-apple-mapkit-js-for-web-applications-15c4cff0e2
-                            const setupMapKitJs_signedLocallyShortTermToken = async() => {
-
-                                                                                      if (!window.mapkit || window.mapkit.loadedLibraries.length === 0) {
-                                                                                          // mapkit.core.js or the libraries are not loaded yet.
-                                                                                          // Set up the callback and wait for it to be called.
-                                                                                          await new Promise(resolve => { window.initMap = resolve });
-
-                                                                                          // Clean up
-                                                                                          delete window.initMap;
-                                                                                      }
-
-                                                                                      
-                                                                                      // only for short term signed token  https://rajeshlv.medium.com/using-apple-mapkit-js-for-web-applications-15c4cff0e2
-                                                                                      mapkit.init({
-                                                                                        authorizationCallback: function(done) {
-
-                                                                                          var appleToken_url
-                                                                                          if (window.location.host == 'localhost'){
-                                                                                            appleToken_url = "http://localhost:3000/services/jwt"
-                                                                                          } else if (window.location.host == 'transparentgov.net'){
-                                                                                            appleToken_url = "https://transparentgov.net:3200/services/jwt"
-                                                                                          }
-                                                                                          console.log('get apple token url ', appleToken_url)
-                                                                                              
-                                                                                                fetch(appleToken_url)
-                                                                                                      .then(res => res.text())
-                                                                                                      .then(done)
-                                                                                                },
-                                                                                                language: "es"
-                                                                                        });
-
-                                                                                    };
 
 
 
-                            // apple does not have 'zoom level' concept, so use (latitudeDelta,longitudeDelta) as zoom level, seperate by comma, "0.2496763450607702,0.34314894976834864"
-                            function set_latlongZoom_for_apple_only(centerlat, centerlong, centerZoomString){
+        // use server-side endpoint to get generate a short-term token each time to avoid hard code static token in js file.  https://rajeshlv.medium.com/using-apple-mapkit-js-for-web-applications-15c4cff0e2
+        const setupMapKitJs_signedLocallyShortTermToken = async() => {
 
-                            // center zoom is encoded from url  '0.2496763450607702%2C0.34314894976834864'
-                            console.log('set latlongZoom for apple only centerZoomString', centerZoomString)
-                            centerZoomString = decodeURIComponent(centerZoomString)
-                            console.log('set latlongZoom for apple only after decoded center zoom', centerZoomString)
-                            var latitudeDelta  = parseFloat(centerZoomString.split(',')[0]);
-                            var longitudeDelta = parseFloat(centerZoomString.split(',')[1]);
-                            console.log('set latlongZoom for apple only  center latitudeDelta ',  latitudeDelta)
-                            console.log('set latlongZoom for apple only  center longitudeDelta ',  longitudeDelta)
+                                                                  if (!window.mapkit || window.mapkit.loadedLibraries.length === 0) {
+                                                                      // mapkit.core.js or the libraries are not loaded yet.
+                                                                      // Set up the callback and wait for it to be called.
+                                                                      await new Promise(resolve => { window.initMap = resolve });
 
-                            if (isNaN(latitudeDelta)){
-                              // Unlike longitudinal distances, which vary based on the latitude, one degree of latitude is always approximately 111 kilometers (69 miles) 
-                              // https://developer.apple.com/documentation/mapkitjs/mapkit/coordinatespan/2973868-latitudedelta
-                              latitudeDelta = 1  // default 1 degree, 111km 69mile
-                            }
-                            if (isNaN(longitudeDelta)){
-                              // The number of kilometers spanned by a longitude range varies based on the current latitude. For example, one degree of longitude spans a distance of approximately 111 kilometers (69 miles) at the equator but shrinks to 0 kilometers at the poles. 
-                              // https://developer.apple.com/documentation/mapkitjs/mapkit/coordinatespan/2973869-longitudedelta
-                              longitudeDelta = 1  // default 1 degree, 111km 69mile
-                            }
+                                                                      // Clean up
+                                                                      delete window.initMap;
+                                                                  }
 
-                            var mapkit_center  = new mapkit.Coordinate(centerlat, centerlong); // latitude, longitude
+                                                                  
+                                                                  // only for short term signed token  https://rajeshlv.medium.com/using-apple-mapkit-js-for-web-applications-15c4cff0e2
+                                                                  mapkit.init({
+                                                                    authorizationCallback: function(done) {
 
-                            var mapkit_span = new mapkit.CoordinateSpan(
-                            latitudeDelta,     //latitudeDelta
-                            longitudeDelta,     //longitudeDelta
-                            )
+                                                                      var appleToken_url
+                                                                      if (window.location.host == 'localhost'){
+                                                                        appleToken_url = "http://localhost:3000/services/jwt"
+                                                                      } else if (window.location.host == 'transparentgov.net'){
+                                                                        appleToken_url = "https://transparentgov.net:3200/services/jwt"
+                                                                      }
+                                                                      console.log('get apple token url ', appleToken_url)
+                                                                          
+                                                                            fetch(appleToken_url)
+                                                                                  .then(res => res.text())
+                                                                                  .then(done)
+                                                                            },
+                                                                            language: "es"
+                                                                    });
 
-
-                            var mapkit_coordinate_region = new mapkit.CoordinateRegion(mapkit_center, mapkit_span)
-                            console.log('set latlongZoom for apple only mapkit coordinate region', mapkit_coordinate_region)
-
-                            // set the map view to our bounding box
-                            map.setRegionAnimated(
-                                              mapkit_coordinate_region,
-                                              false // animate: boolean,  must set false, no animation,  otherwise, animation cause unexpected error, when get map region center
-                                            );
+                                                                };
 
 
 
-                            }
+        // apple does not have 'zoom level' concept, so use (latitudeDelta,longitudeDelta) as zoom level, seperate by comma, "0.2496763450607702,0.34314894976834864"
+        function set_latlongZoom_for_apple_only(centerlat, centerlong, centerZoomString){
 
-                                    
+        // center zoom is encoded from url  '0.2496763450607702%2C0.34314894976834864'
+        console.log('set latlongZoom for apple only centerZoomString', centerZoomString)
+        centerZoomString = decodeURIComponent(centerZoomString)
+        console.log('set latlongZoom for apple only after decoded center zoom', centerZoomString)
+        var latitudeDelta  = parseFloat(centerZoomString.split(',')[0]);
+        var longitudeDelta = parseFloat(centerZoomString.split(',')[1]);
+        console.log('set latlongZoom for apple only  center latitudeDelta ',  latitudeDelta)
+        console.log('set latlongZoom for apple only  center longitudeDelta ',  longitudeDelta)
 
-                  /**/
-                  // --- end --- apple map only -------
-                  /**/
+        if (isNaN(latitudeDelta)){
+          // Unlike longitudinal distances, which vary based on the latitude, one degree of latitude is always approximately 111 kilometers (69 miles) 
+          // https://developer.apple.com/documentation/mapkitjs/mapkit/coordinatespan/2973868-latitudedelta
+          latitudeDelta = 1  // default 1 degree, 111km 69mile
+        }
+        if (isNaN(longitudeDelta)){
+          // The number of kilometers spanned by a longitude range varies based on the current latitude. For example, one degree of longitude spans a distance of approximately 111 kilometers (69 miles) at the equator but shrinks to 0 kilometers at the poles. 
+          // https://developer.apple.com/documentation/mapkitjs/mapkit/coordinatespan/2973869-longitudedelta
+          longitudeDelta = 1  // default 1 degree, 111km 69mile
+        }
+
+        var mapkit_center  = new mapkit.Coordinate(centerlat, centerlong); // latitude, longitude
+
+        var mapkit_span = new mapkit.CoordinateSpan(
+        latitudeDelta,     //latitudeDelta
+        longitudeDelta,     //longitudeDelta
+        )
+
+
+        var mapkit_coordinate_region = new mapkit.CoordinateRegion(mapkit_center, mapkit_span)
+        console.log('set latlongZoom for apple only mapkit coordinate region', mapkit_coordinate_region)
+
+        // set the map view to our bounding box
+        map.setRegionAnimated(
+                          mapkit_coordinate_region,
+                          false // animate: boolean,  must set false, no animation,  otherwise, animation cause unexpected error, when get map region center
+                        );
+
+
+
+        }
+
+
+
+
+                                  
+        // apple does not have 'zoom level' concept, so use (latitudeDelta,longitudeDelta) as zoom level, seperate by comma, "0.2496763450607702,0.34314894976834864"
+        function get_coord_region(_lat, _lng, _zoom_string){
+
+            //zoom is encoded from url  '0.2496763450607702%2C0.34314894976834864'
+            //console.log('get coord region, ', _zoom_string)
+            _zoom_string = decodeURIComponent(_zoom_string)
+            //console.log('get coord region for apple only after decoded', _zoom_string)
+            var latitudeDelta  = parseFloat(_zoom_string.split(',')[0]);
+            var longitudeDelta = parseFloat(_zoom_string.split(',')[1]);
+            console.log('get coord region for apple only latitudeDelta ',  latitudeDelta)
+            console.log('get coord region for apple only longitudeDelta ',  longitudeDelta)
+
+            if (isNaN(latitudeDelta)){
+              // Unlike longitudinal distances, which vary based on the latitude, one degree of latitude is always approximately 111 kilometers (69 miles) 
+              // https://developer.apple.com/documentation/mapkitjs/mapkit/coordinatespan/2973868-latitudedelta
+              latitudeDelta = 1  // default 1 degree, 111km 69mile
+            }
+            if (isNaN(longitudeDelta)){
+              // The number of kilometers spanned by a longitude range varies based on the current latitude. For example, one degree of longitude spans a distance of approximately 111 kilometers (69 miles) at the equator but shrinks to 0 kilometers at the poles. 
+              // https://developer.apple.com/documentation/mapkitjs/mapkit/coordinatespan/2973869-longitudedelta
+              longitudeDelta = 1  // default 1 degree, 111km 69mile
+            }
+
+            var mapkit_region_center  = new mapkit.Coordinate(_lat, _lng); // latitude, longitude
+
+            var mapkit_region_span = new mapkit.CoordinateSpan(
+            latitudeDelta,     //latitudeDelta
+            longitudeDelta,     //longitudeDelta
+            )
+
+
+            var mapkit_coordinate_region = new mapkit.CoordinateRegion(mapkit_region_center, mapkit_region_span)
+            console.log('get coord region for apple only mapkit coordinate region', mapkit_coordinate_region)
+
+          return mapkit_coordinate_region
+
+        }
+
+
+
+
+                
+
+/**/
+// --- end --- apple map only -------
+/**/
 
 
 
