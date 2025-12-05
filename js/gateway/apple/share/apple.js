@@ -3872,7 +3872,43 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
         }
 
 
+        function get_4x_coord_region(_lat, _lng, _zoom_string){
 
+            //zoom is encoded from url  '0.2496763450607702%2C0.34314894976834864'
+            //console.log('get coord region, ', _zoom_string)
+            _zoom_string = decodeURIComponent(_zoom_string)
+            //console.log('get coord region for apple only after decoded', _zoom_string)
+            var latitudeDelta  = parseFloat(_zoom_string.split(',')[0]);
+            var longitudeDelta = parseFloat(_zoom_string.split(',')[1]);
+            console.log('get coord region for apple only latitudeDelta ',  latitudeDelta)
+            console.log('get coord region for apple only longitudeDelta ',  longitudeDelta)
+
+            if (isNaN(latitudeDelta)){
+              // Unlike longitudinal distances, which vary based on the latitude, one degree of latitude is always approximately 111 kilometers (69 miles) 
+              // https://developer.apple.com/documentation/mapkitjs/mapkit/coordinatespan/2973868-latitudedelta
+              latitudeDelta = 1  // default 1 degree, 111km 69mile
+            }
+            if (isNaN(longitudeDelta)){
+              // The number of kilometers spanned by a longitude range varies based on the current latitude. For example, one degree of longitude spans a distance of approximately 111 kilometers (69 miles) at the equator but shrinks to 0 kilometers at the poles. 
+              // https://developer.apple.com/documentation/mapkitjs/mapkit/coordinatespan/2973869-longitudedelta
+              longitudeDelta = 1  // default 1 degree, 111km 69mile
+            }
+
+
+
+            // destination  https://turfjs.org/docs/api/destination
+            var quarter_latDelta = latitudeDelta / 4
+            var quarter_lngDelta = longitudeDelta / 4
+            var half_zoom_span_string = (latitudeDelta / 2) + "," + (longitudeDelta / 2)
+            var sw_region = get_coord_region((_lat - quarter_latDelta), (_lng - quarter_lngDelta), half_zoom_span_string)
+            var nw_region = get_coord_region((_lat + quarter_latDelta), (_lng - quarter_lngDelta), half_zoom_span_string)
+            var ne_region = get_coord_region((_lat + quarter_latDelta), (_lng + quarter_lngDelta), half_zoom_span_string)
+            var se_region = get_coord_region((_lat - quarter_latDelta), (_lng + quarter_lngDelta), half_zoom_span_string)
+
+
+          return [sw_region, nw_region, ne_region, se_region]
+
+        }
 
                 
 
