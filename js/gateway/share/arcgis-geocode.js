@@ -756,6 +756,9 @@ async function reverse_geocode(clicked_lng, clicked_lat){
         var findAddressCandidatesGeocode_url = background_layer_url 
         findAddressCandidatesGeocode_url += "/findAddressCandidates?f=json&outSR=4326" 
 
+        // to show custom output field, must set out fields is *
+        findAddressCandidatesGeocode_url += "&outFields=*"
+
         /* not use, use magic key instead
         // not use because, for example 3 letter as street name, single line text did not work, 
         // only for text
@@ -789,11 +792,10 @@ async function reverse_geocode(clicked_lng, clicked_lat){
 
               var _candidates_html = ''
               for (let i = 0; i < _candidates_array.length; i++) {
-                _candidates_html += '<span style="font-size:7px;font-weight:900">&nbsp;&nbsp;' + (i+1) + '. ' + '</span>'
-                _candidates_html += _candidates_array[i].address
-                _candidates_html += '<sub style="font-size:8px">' + _candidates_array[i].location.x + ', '
-                _candidates_html +=  _candidates_array[i].location.y + '</sub>'
-                _candidates_html += '</br>'
+                var _item = _candidates_array[i]
+                _candidates_html +=  "<b>" + (i+1) + '. ' +  "</b>" 
+                _candidates_html +=  "<mark>" + _item["address"] +  "</mark>" 
+                _candidates_html += json_flex_tip_viewer(_item["attributes"])
               }//for
               $('#info-window-div').html(_candidates_html)
 

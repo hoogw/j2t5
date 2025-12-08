@@ -655,10 +655,21 @@ async function reverse_geocode(clicked_lng, clicked_lat){ // only for test-geoco
 
         var findAddressCandidatesGeocode_url = input_geocode_endpoint_url
         findAddressCandidatesGeocode_url += "/findAddressCandidates?f=json&outSR=4326" 
+
+        // to show custom output field, must set out fields is *
+        findAddressCandidatesGeocode_url += "&outFields=*"
+
+        /* not use, use magic key instead
+        // not use because, for example 3 letter as street name, single line text did not work, 
+        // only for text
         // some city use single line parameter,
         findAddressCandidatesGeocode_url += "&Single+Line+Input=" +  _key_word
         // some city use address parameter,
         findAddressCandidatesGeocode_url += "&Address=" +  _key_word
+        */
+
+        // only for magic key, always works
+        findAddressCandidatesGeocode_url += "&magicKey=" +  _key_word
 
         
         var findAddressCandidatesGeocode_response = await ajax_getjson_common(findAddressCandidatesGeocode_url)
@@ -680,13 +691,13 @@ async function reverse_geocode(clicked_lng, clicked_lat){ // only for test-geoco
 
           var _candidates_html = ''
           for (let i = 0; i < _candidates_array.length; i++) {
-           _candidates_html += '<span style="font-size:7px;font-weight:900">&nbsp;&nbsp;' + (i+1) + '. ' + '</span>'
-           _candidates_html += _candidates_array[i].address
-           _candidates_html += '<sub style="font-size:8px">' + _candidates_array[i].location.x + ', '
-           _candidates_html +=  _candidates_array[i].location.y + '</sub>'
-           _candidates_html += '</br>'
-          }
+            var _item = _candidates_array[i]
+            _candidates_html +=  "<b>" + (i+1) + '. ' +  "</b>" 
+            _candidates_html +=  "<mark>" + _item["address"] +  "</mark>" 
+            _candidates_html += json_flex_tip_viewer(_item["attributes"])
+          }//for
           $('#info-window-div').html(_candidates_html)
+
 
           var candidate_lng = findAddressCandidatesGeocode_json.candidates[0].location.x
           var candidate_lat = findAddressCandidatesGeocode_json.candidates[0].location.y
