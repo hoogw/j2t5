@@ -472,8 +472,17 @@ function geocode_user_interface_event(){
 
 
   $("#find_btn").on("click", function(){
-      console.log(" find button clicked, now selected option text is,  ", $('#suggest-options option:selected').text())
-      find_address_candidate_by($('#suggest-options option:selected').text())
+      
+       /* not use, use magic key instead
+        // not use because, for example 3 letter as street name, single line text did not work, 
+        // only for text
+        console.log(" find button clicked, now selected option text is,  ", $('#suggest-options option:selected').text())
+        find_address_candidate_by($('#suggest-options option:selected').text())
+      */
+
+      // only for magic key, always works
+      console.log(" find button clicked, now selected option value (magic key) is,  ", $('#suggest-options option:selected').val())
+      find_address_candidate_by($('#suggest-options option:selected').val())
   });
 
 

@@ -628,7 +628,14 @@ async function reverse_geocode(clicked_lng, clicked_lat){ // only for test-geoco
               arcgisMap.graphics.removeAll();
 
             
-            find_address_candidate_by(text)
+            /* not use, use magic key instead
+              // not use because, for example 3 letter as street name, single line text did not work, 
+              // only for text
+              //find_address_candidate_by(text)
+              */
+
+              // only for magic key, always works
+              find_address_candidate_by(value)
         });
 
       }
@@ -853,8 +860,17 @@ function firstTime1TimeSearchKeywords(){
   $("#suggest_btn").on("click", suggest);
 
   $("#find_btn").on("click", function(){
-      console.log(" find button clicked, now selected option text is,  ", $('#suggest-options option:selected').text())
-      find_address_candidate_by($('#suggest-options option:selected').text())
+      
+       /* not use, use magic key instead
+        // not use because, for example 3 letter as street name, single line text did not work, 
+        // only for text
+        console.log(" find button clicked, now selected option text is,  ", $('#suggest-options option:selected').text())
+        find_address_candidate_by($('#suggest-options option:selected').text())
+      */
+
+      // only for magic key, always works
+      console.log(" find button clicked, now selected option value (magic key) is,  ", $('#suggest-options option:selected').val())
+      find_address_candidate_by($('#suggest-options option:selected').val())
   });
 
   $("#clear_btn").on("click", function(){

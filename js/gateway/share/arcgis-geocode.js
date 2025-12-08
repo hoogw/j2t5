@@ -457,9 +457,19 @@ function firstTime1TimeSearchKeywords(){
   $("#suggest_btn").on("click", suggest);
 
   $("#find_btn").on("click", function(){
-      console.log(" find button clicked, now selected option text is,  ", $('#suggest-options option:selected').text())
-      find_address_candidate_by($('#suggest-options option:selected').text())
+      
+       /* not use, use magic key instead
+        // not use because, for example 3 letter as street name, single line text did not work, 
+        // only for text
+        console.log(" find button clicked, now selected option text is,  ", $('#suggest-options option:selected').text())
+        find_address_candidate_by($('#suggest-options option:selected').text())
+      */
+
+      // only for magic key, always works
+      console.log(" find button clicked, now selected option value (magic key) is,  ", $('#suggest-options option:selected').val())
+      find_address_candidate_by($('#suggest-options option:selected').val())
   });
+  
 
   $("#clear_btn").on("click", function(){
       clear_geocode()
@@ -745,10 +755,19 @@ async function reverse_geocode(clicked_lng, clicked_lat){
 
         var findAddressCandidatesGeocode_url = background_layer_url 
         findAddressCandidatesGeocode_url += "/findAddressCandidates?f=json&outSR=4326" 
+
+        /* not use, use magic key instead
+        // not use because, for example 3 letter as street name, single line text did not work, 
+        // only for text
         // some city use single line parameter,
         findAddressCandidatesGeocode_url += "&Single+Line+Input=" +  _key_word
         // some city use address parameter,
         findAddressCandidatesGeocode_url += "&Address=" +  _key_word
+        */
+
+        // only for magic key, always works
+        findAddressCandidatesGeocode_url += "&magicKey=" +  _key_word
+
 
         
         var findAddressCandidatesGeocode_response = await ajax_getjson_common(findAddressCandidatesGeocode_url)

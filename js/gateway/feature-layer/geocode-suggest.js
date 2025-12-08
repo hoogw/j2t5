@@ -167,8 +167,14 @@
               // alway clear previous point
                arcgisMap.graphics.removeAll();
 
-              
-              find_address_candidate_by(text)
+              /* not use, use magic key instead
+              // not use because, for example 3 letter as street name, single line text did not work, 
+              // only for text
+              //find_address_candidate_by(text)
+              */
+
+              // only for magic key, always works
+              find_address_candidate_by(value)
           });
 
       }
