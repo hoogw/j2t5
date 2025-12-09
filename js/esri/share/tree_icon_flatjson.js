@@ -15452,7 +15452,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
     geocode_server_item = { 
         "id" :  120,     
         "parent" : 10,
-        "text" : "esri",
+        "text" : esri_svg + " esri",
         "icon" : folder_icon,  
         "link_type": "folder", 
         "state"       : {
@@ -15828,7 +15828,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
     geocode_server_item = { 
         "id" :  100,     
         "parent" : 10,
-        "text" : "street view by google",
+        "text" : google_svg + " google",
         "icon" : folder_icon,  
         "link_type": "folder", 
         "state"       : {
@@ -16302,7 +16302,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
     geocode_server_item = { 
         "id" :  110,     
         "parent" : 10,
-        "text" : "esri official query",
+        "text" : esri_svg + " esri official query",
         "icon" : folder_icon,  
         "link_type": "folder", 
         "state"       : {
