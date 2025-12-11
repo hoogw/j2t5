@@ -641,73 +641,73 @@ var highlighted_color_fill = 'rgba(255,0,255, 0.2)'  // VIOLET
 
 
 /**/
-                // ------- apple map only  -------
-                /**/       
+// ------- apple map only  -------
+/**/       
+
+          
+
+          function add_data_maps(data) {
+
+                                                      
+            // fix SyntaxError: Unexpected token o in JSON at position 1 at JSON.parse (<anonymous>)                      
+            //is already a plain JavaScript object; no need to try to parse it.
+            var arcgis_feature_Set
+            if (typeof data === 'object') {
+                // is object
+                arcgis_feature_Set = data
+            } else {
+                // is string
+                arcgis_feature_Set = JSON.parse(data)
+            }
+
+
+            arcgis_feature_Set = reduce_feature_count(arcgis_feature_Set, limit)  
+
+
+            _current_rendering_feature = arcgis_feature_Set.features.length
+            display_count_info(_layer, _current_area_count_of_feature, _total_count_of_feature, _current_rendering_feature)
+
+
+            // parse an ArcGIS feature set (Geometry) to GeoJSON
+                            
+            // Terraformer.ArcGIS.convert(geoJSON, options),  options default is objectid, FID, if you want use OID, must specify
+            //http://terraformer.io/arcgis-parser/#arcgisconvert
+            //_geojson_object = Terraformer.ArcGIS.parse(arcgis_feature_Set.features[0])
+            _geojson_object = ArcgisToGeojsonUtils.arcgisToGeoJSON(arcgis_feature_Set)
+
+                      
+            console.log('test ArcgisToGeojsonUtils exist ', ArcgisToGeojsonUtils)
                 
-                          
-
-                          function add_data_maps(data) {
-
-                                                                      
-                            // fix SyntaxError: Unexpected token o in JSON at position 1 at JSON.parse (<anonymous>)                      
-                            //is already a plain JavaScript object; no need to try to parse it.
-                            var arcgis_feature_Set
-                            if (typeof data === 'object') {
-                                // is object
-                                arcgis_feature_Set = data
-                            } else {
-                                // is string
-                                arcgis_feature_Set = JSON.parse(data)
-                            }
-
-
-                            arcgis_feature_Set = reduce_feature_count(arcgis_feature_Set, limit)  
-
-
-                            _current_rendering_feature = arcgis_feature_Set.features.length
-                            display_count_info(_layer, _current_area_count_of_feature, _total_count_of_feature, _current_rendering_feature)
-
-
-                            // parse an ArcGIS feature set (Geometry) to GeoJSON
-                                            
-                            // Terraformer.ArcGIS.convert(geoJSON, options),  options default is objectid, FID, if you want use OID, must specify
-                            //http://terraformer.io/arcgis-parser/#arcgisconvert
-                            //_geojson_object = Terraformer.ArcGIS.parse(arcgis_feature_Set.features[0])
-                            _geojson_object = ArcgisToGeojsonUtils.arcgisToGeoJSON(arcgis_feature_Set)
-
-                                      
-                            console.log('test ArcgisToGeojsonUtils exist ', ArcgisToGeojsonUtils)
-                                
-                              
-                                    
-                          //---------------- apple only add new geojson, then remove last geojson --------------------
-                          /**/
               
-                                // remove all previous overlays, warning: each polygon is a overlay, each point or line is a overlay,
-                                /**/
-                                // for polygon and line 
-                                map.removeOverlays(map.overlays);
-                                // for point only
-                                delete_all_apple_annotation();  // remove all annotation then add back search place annotation.
-              
-              
-                                console.log(' geojson object --> ', _geojson_object)
-              
-                                // both works, the same, this is apple's mapkit.importGeoJSON   https://developer.apple.com/documentation/mapkitjs/mapkit/2974044-importgeojson
-                                //mapkit.importGeoJSON(_geojson_object, geoJSONParserDelegate);
-                                // in use, manually convert geojson to apple overlay, annotation,
-                                geojson_to_feature(_geojson_object)
-              
-                          //------------------------end add new geojson, then remove last geojson------------------------- ---------------
-              
-              
-              
-                          }
+                    
+          //---------------- apple only add new geojson, then remove last geojson --------------------
+          /**/
+
+                // remove all previous overlays, warning: each polygon is a overlay, each point or line is a overlay,
+                /**/
+                // for polygon and line 
+                map.removeOverlays(map.overlays);
+                // for point only
+                delete_all_apple_annotation();  // remove all annotation then add back search place annotation.
 
 
-                  /**/
-                  // --- end --- apple map only -------
-                  /**/
+                console.log(' geojson object --> ', _geojson_object)
+
+                // both works, the same, this is apple's mapkit.importGeoJSON   https://developer.apple.com/documentation/mapkitjs/mapkit/2974044-importgeojson
+                //mapkit.importGeoJSON(_geojson_object, geoJSONParserDelegate);
+                // in use, manually convert geojson to apple overlay, annotation,
+                geojson_to_feature(_geojson_object)
+
+          //------------------------end add new geojson, then remove last geojson------------------------- ---------------
+
+
+
+          }
+
+
+  /**/
+  // --- end --- apple map only -------
+  /**/
 
 
           

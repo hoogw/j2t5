@@ -116,7 +116,33 @@ function empty_info_outline_Tab(){
                       console.log('poi geojson', poi_geojson)
 
        
-                      
+                      //  . . efficient core newOnly  . - .
+                            console.log('_this_newOnly_result_array', _this_newOnly_result_array)
+                            _this_newOnly_poi_geojson = poi_to_geojson(_this_newOnly_result_array)
+                            
+                            
+                            // both works, the same, this is apple's mapkit.importGeoJSON   https://developer.apple.com/documentation/mapkitjs/mapkit/2974044-importgeojson
+                            //mapkit.importGeoJSON(_this_newOnly_poi_geojson, geoJSONParserDelegate);
+                            // in use, manually convert geojson to apple overlay, annotation,
+                            poi_geojson_to_feature(_this_newOnly_poi_geojson)
+                            
+                      // . .  end . . efficient core newOnly  . - .   
+
+
+          //---------------- apple only add new geojson, then remove last geojson --------------------
+          /**/
+
+                // remove all previous overlays, warning: each polygon is a overlay, each point or line is a overlay,
+                /**/
+                // for polygon and line 
+                // poi does not have overlays
+                // map.removeOverlays(map.overlays);
+                // for point only
+                //delete_all_apple_annotation();  // remove all annotation then add back search place annotation.
+
+//
+          //------------------------end add new geojson, then remove last geojson------------------------- ---------------
+
 
 
             }//function
