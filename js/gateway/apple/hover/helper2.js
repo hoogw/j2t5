@@ -182,44 +182,6 @@ difference:
 
 
 
-      function reset_all_overlay_style_to_default(){
-        var current_overlay_array = map.overlays
-        for (let i = 0; i < current_overlay_array.length; i++) {
-          current_overlay_array[i].style = default_overlay_style;
-        }
-    }
-  
-    function reset_all_annotation_style_to_default(){
-      console.log(' !!! reset !!! all !!!  annotation !!! style !!! to !!! default !!! ')
-      var current_annotation_array = map.annotations
-      for (let i = 0; i < current_annotation_array.length; i++) {
-        current_annotation_array[i].element.innerHTML= default_icon;
-      }
-    }
-  
-
-    function create_overlay_with_build_in_properties(_properties, points){
-        //console.log('create overlay with build  in  properties',  _properties, points )
-        // create a polygon overlay sample https://developer.apple.com/documentation/mapkitjs/polygonoverlay
-        //var points = [ [41, -109.05], [41, -102.05], [37, -102.05], [37, -109.05] ];
-        // Map the raw coordinate points to MapKit JS Coordinate objects:
-        var coordinate_array = points.map(function(point) {
-
-          // warning:  coordinate(lat ,long), while geojson coordinate (long, lat)
-          return new mapkit.Coordinate(point[1], point[0]);
-        });
-
-        var _polygon_overlay = new mapkit.PolygonOverlay(coordinate_array, default_overlay_style)
-
-        _polygon_overlay.data = _properties
-        map.addOverlay(_polygon_overlay);
-
-
-        // fix bug, without this, always use apple default blue color for circle, until user move mouse on map, trigger mousemove event, then trigger this function. 
-        reset_all_overlay_style_to_default()
-
-
-    }// overlay 
 
 
     // - - - special for circle overlay instead of annotation - - - 
@@ -241,7 +203,7 @@ difference:
 
 
       // - - - special for circle overlay instead of annotation - - - 
-      function geojson_to_feature(single_whole_geojson){
+      function geojson_to_feature_for_circleOverlay(single_whole_geojson){
 
             var features_array = single_whole_geojson.features
             var one_geojson_feature

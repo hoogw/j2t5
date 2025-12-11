@@ -221,6 +221,8 @@ var apple_poi_search_object
 
 
 
+
+    var apple_poi_Annotation
     function poi_create_annotation_with_build_in_properties(_properties, point){
 
         //console.log('create annotation with build  in  properties',  _properties, point )
@@ -290,11 +292,11 @@ var apple_poi_search_object
             enabled: true,
 
         }
-        var annotation = new mapkit.Annotation(coordinate, factory, options);
+        apple_poi_Annotation = new mapkit.Annotation(coordinate, factory, options);
         
         
         // annotation icon image dom click event failed to trigger, use this apple event instead
-        annotation.addEventListener('select', function(event) {  
+        apple_poi_Annotation.addEventListener('select', function(event) {  
 
                 console.log("select overlay. event", event);
 
@@ -308,8 +310,8 @@ var apple_poi_search_object
         });
         
 
-        map.addAnnotation(annotation);
-        return annotation;
+        map.addAnnotation(apple_poi_Annotation);
+        return apple_poi_Annotation;
 
 
         

@@ -1094,8 +1094,6 @@ function update_center_latLngZoom(){  // apple only
 
               var apple_searchPlaceResultSingleAnnotation
 
-
-
               /*
                  How to create a autocomplete lookup in MapKit JS https://stackoverflow.com/questions/58240556/how-to-create-a-autocomplete-lookup-in-mapkit-js-similar-to-googles-place-autoc
               */
@@ -1167,16 +1165,6 @@ function update_center_latLngZoom(){  // apple only
                 }
 
                 
-
-                function delete_all_apple_annotation(){ 
-                  map.removeAnnotations(map.annotations);
-
-                  // fix bug, each map move, get map bound,  apple search place result single annotation get removed as well by remove 'all' annoation, I need to add it back.
-                  if (apple_searchPlaceResultSingleAnnotation){
-                    map.addAnnotation(apple_searchPlaceResultSingleAnnotation);
-                  }
-                }
-
                 
     // ................. end .................  ................. apple map search place .................  .................
 
@@ -3962,6 +3950,8 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
     }// overlay 
 
 
+    var annotation // single point, single annotation
+    var annotation_array = [] // for all point, all annotation as array
     function create_annotation_with_build_in_properties(_properties, point){
 
                             //console.log('create annotation with build  in  properties',  _properties, point )
@@ -4031,7 +4021,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                               enabled: true,
 
                             }
-                            var annotation = new mapkit.Annotation(coordinate, factory, options);
+                            annotation = new mapkit.Annotation(coordinate, factory, options);
                           
                             
                             // annotation icon image dom click event failed to trigger, use this apple event instead
@@ -4044,12 +4034,13 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                                  
                                   // only change this selected overlay color
                                   event.target.element.innerHTML = classfiy_icon;
-                                  show_listTab(event.target.data)
+                                  show_info_outline_Tab(event.target.data)
 
                             });
                             
 
                             map.addAnnotation(annotation);
+                            annotation_array.push(annotation)
                             return annotation;
 
 
@@ -4109,6 +4100,21 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
     }
 
+
+
+    function delete_all_apple_annotation(){ 
+      // not use, this will delete all annotation, include search result, poi, etc... 
+      //map.removeAnnotations(map.annotations);
+      // in use, only delete feature point annotation
+      map.removeAnnotations(annotation_array);
+     
+      
+
+      // fix bug, each map move, get map bound,  apple search place result single annotation get removed as well by remove 'all' annoation, I need to add it back.
+      //if (apple_searchPlaceResultSingleAnnotation){
+        //map.addAnnotation(apple_searchPlaceResultSingleAnnotation);
+      //}
+    }
 
 
 /**/
