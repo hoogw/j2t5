@@ -31,9 +31,9 @@ var default_icon = default_icon_svg.replace('${outline_color}', _default_strokeC
 var highlight_icon = default_icon_svg.replace('${outline_color}', _highlight_strokeColor).replace('${line_width}', _highlight_strokeWeight).replace('${fill_color}', _highlight_color)
 var classfiy_icon = default_icon_svg.replace('${outline_color}', _classfiy_strokeColor).replace('${line_width}', _classfiy_strokeWeight).replace('${fill_color}', _classfiy_color)
 
-console.log('standard default icon svg ',   default_icon)
-console.log('standard highlight icon svg ', highlight_icon)
-console.log('standard classfiy icon svg ',  classfiy_icon)
+//console.log('standard default icon svg ',   default_icon)
+//console.log('standard highlight icon svg ', highlight_icon)
+//console.log('standard classfiy icon svg ',  classfiy_icon)
 
 /**/
 // --- end --- apple map only -------
@@ -192,10 +192,12 @@ var urlParams
 
                                     // apple only, apple zoom is not a number, instead it is a encoded string, 1.000%2C1.378,  must decode it to 0.054,0.074
                                     param_center_zoom = urlParams.get('center_zoom'); 
-                                    // apple only, apple zoom is not a number, instead it is a encoded string, 1.000%2C1.378,  must decode it to 0.054,0.074
-                                    _center_zoom = decodeURIComponent(param_center_zoom)
-                                    // as long as url has lat,lng,zm, then do not pan to loc
-                                    need_pan_to_real_location = false
+                                    if (param_center_zoom) {
+                                      // apple only, apple zoom is not a number, instead it is a encoded string, 1.000%2C1.378,  must decode it to 0.054,0.074
+                                      _center_zoom = decodeURIComponent(param_center_zoom)
+                                      // as long as url has lat,lng,zm, then do not pan to loc
+                                      need_pan_to_real_location = false
+                                    }
                             
 
                                     
