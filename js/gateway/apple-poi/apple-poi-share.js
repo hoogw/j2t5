@@ -265,7 +265,7 @@ var apple_poi_search_object
                 */
                 
                 // not fixed bug, so not highlight svg icon when hover for now
-                //event.target.innerHTML = highlight_icon  // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
+                event.target.innerHTML = highlight_icon  // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
                 
                 show_info_outline_Tab(event.target.data)
             }); 
@@ -273,8 +273,11 @@ var apple_poi_search_object
 
             div.addEventListener("mouseleave", function(event) {
                 console.log("annotation mouse out event, DOM event", event);
-                // not fixed bug, so not highlight svg icon when hover for now
-                //event.target.innerHTML = default_icon // this will cause mouseenter  trigger multiple times and mouseleave failed to fire,                                                                                                                                           
+                // some time, it failed  
+                event.target.innerHTML = default_icon // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
+                //  when it failed, enforce it 
+                reset_all_annotation_style_to_default()
+                                                                                                                                                         
                 empty_info_outline_Tab()
             }); 
 

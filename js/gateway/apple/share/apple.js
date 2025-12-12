@@ -55,6 +55,8 @@ var _sample_count = 10
 var _default_resultRecordCount = 500    
 
 
+var annotation // single point, single annotation
+var annotation_array = [] // for all point, all annotation as array
 
 
 /**/
@@ -3919,9 +3921,9 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
   
     function reset_all_annotation_style_to_default(){
       console.log(' !!! reset !!! all !!!  annotation !!! style !!! to !!! default !!! ')
-      var current_annotation_array = map.annotations
-      for (let i = 0; i < current_annotation_array.length; i++) {
-        current_annotation_array[i].element.innerHTML= default_icon;
+      
+      for (let i = 0; i < annotation_array.length; i++) {
+        annotation_array[i].element.innerHTML= default_icon;
       }
     }
   
@@ -3950,8 +3952,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
     }// overlay 
 
 
-    var annotation // single point, single annotation
-    var annotation_array = [] // for all point, all annotation as array
+   
     function create_annotation_with_build_in_properties(_properties, point){
 
                             //console.log('create annotation with build  in  properties',  _properties, point )
@@ -3994,7 +3995,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                                                                                                                                            */
                                                                                                                                          
                                                                                                                                           // not fixed bug, so not highlight svg icon when hover for now
-                                                                                                                                          //event.target.innerHTML = highlight_icon  // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
+                                                                                                                                          event.target.innerHTML = highlight_icon  // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
                                                                                                                                           
                                                                                                                                           show_info_outline_Tab(event.target.data)
                                                                             }); 
@@ -4002,8 +4003,11 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
                                                                             div.addEventListener("mouseleave", function(event) {
                                                                                                                                   console.log("annotation mouse out event, DOM event", event);
-                                                                                                                                  // not fixed bug, so not highlight svg icon when hover for now
-                                                                                                                                  //event.target.innerHTML = default_icon // this will cause mouseenter  trigger multiple times and mouseleave failed to fire,                                                                                                                                           
+                                                                                                                                  // some time, it failed  
+                                                                                                                                  event.target.innerHTML = default_icon // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
+                                                                                                                                  //  when it failed, enforce it 
+                                                                                                                                  reset_all_annotation_style_to_default()
+                                                                                                                                  
                                                                                                                                   empty_info_outline_Tab()
                                                                             }); 
 
@@ -4107,7 +4111,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
       //map.removeAnnotations(map.annotations);
       // in use, only delete feature point annotation
       map.removeAnnotations(annotation_array);
-     
+      annotation_array = []
       
 
       // fix bug, each map move, get map bound,  apple search place result single annotation get removed as well by remove 'all' annoation, I need to add it back.
