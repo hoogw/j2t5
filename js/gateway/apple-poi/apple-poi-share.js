@@ -21,8 +21,8 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
 
 var apple_poi_search_object
 
-
-
+var apple_poi_annotation
+var apple_poi_annotation_array = []
 
 
     // apple poi only
@@ -199,9 +199,9 @@ var apple_poi_search_object
     function poi_geojson_to_feature_for_hover(single_whole_geojson){
 
       var features_array = single_whole_geojson.features
-      
+      var one_geojson_feature
       for (let i = 0; i < features_array.length; i++) {
-        var one_geojson_feature =  features_array[i]
+        one_geojson_feature =  features_array[i]
         var _coordinate_point = one_geojson_feature.geometry.coordinates
         poi_create_annotation_for_hover(one_geojson_feature.properties, _coordinate_point)
 
@@ -209,7 +209,7 @@ var apple_poi_search_object
         // fix bug, if use annotation, must disable overlay event. otherwise overlay event will overwrite annotation event, cause it failed to function
         // only-for-click-map-latlng
         //document.querySelector("#map").removeEventListener("mousemove", mousemove_on_map_event_handler)
-        document.querySelector("#map").removeEventListener("click",click_on_map_event_handler) 
+        //document.querySelector("#map").removeEventListener("click",click_on_map_event_handler) 
                     
 
       
@@ -222,7 +222,7 @@ var apple_poi_search_object
 
 
 
-    var apple_poi_Annotation
+    
     function poi_create_annotation_for_hover(_properties, point){
 
         //console.log('create annotation with build  in  properties',  _properties, point )
@@ -242,27 +242,7 @@ var apple_poi_search_object
             
             // annotation hover event listener,  DOM element event, not apple mapkit event 
             div.addEventListener("mouseenter", function(event) {
-                /*
-                mouseenter will trigger multiple times and mouseleave failed to fire, 
-                it is not because of I embed a svg image inside.
-                it is because I change svg color by change div innert html content when hover.
-                if do not change to svg highlight color , mouseenter will fire only 1 time, which is what i want.
                 
-                    https://stackoverflow.com/questions/7286532/jquery-mouseenter-vs-mouseover
-                    https://stackoverflow.com/questions/1104344/what-is-the-difference-between-the-mouseover-and-mouseenter-events
-                    https://stackoverflow.com/questions/1638877/difference-between-onmouseover-and-onmouseenter
-                    warning mouseover do not work, because, mouseover fired when mouse is on both 'this' element and its 'children'(in this case, children element is svg icon tag)
-                    mouseover could be target on svg instead of wrapper div element. I only attach .data(property) attribute to div, not svg. 
-                    so event.target.data will be empty if mouseover target at svg. 
-
-                    mouseenter/mouseleave will only target on div element, not its child svg. 
-                    so event.target.data will always be div's data, which I always attached properties to. 
-                
-
-                    console.log("annotation mouseenter hover event, DOM event ", event);
-                    console.log("annotation mouseenter hover event, DOM event  .target", event.target);
-                    console.log("annotation mouseenter hover event, DOM event  .target.innerHTML", event.target.innerHTML);
-                */
                 
                 // not fixed bug, so not highlight svg icon when hover for now
                 event.target.innerHTML = highlight_icon  // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
@@ -276,7 +256,7 @@ var apple_poi_search_object
                 // some time, it failed  
                 event.target.innerHTML = default_icon // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
                 //  when it failed, enforce it 
-                reset_all_annotation_style_to_default()
+                poi_reset_all_annotation_style_to_default()
                                                                                                                                                          
                 empty_info_outline_Tab()
             }); 
@@ -295,29 +275,41 @@ var apple_poi_search_object
             enabled: true,
 
         }
-        apple_poi_Annotation = new mapkit.Annotation(coordinate, factory, options);
+        apple_poi_annotation = new mapkit.Annotation(coordinate, factory, options);
         
         
         // annotation icon image dom click event failed to trigger, use this apple event instead
-        apple_poi_Annotation.addEventListener('select', function(event) {  
+        apple_poi_annotation.addEventListener('select', function(event) {  
 
                 console.log("select overlay. event", event);
 
                 // reset all overlay style to default
-                reset_all_annotation_style_to_default()
+                poi_reset_all_annotation_style_to_default()
                 
                 // only change this selected overlay color
                 event.target.element.innerHTML = classfiy_icon;
-                show_listTab(event.target.data)
+                show_info_outline_Tab(event.target.data)
 
         });
         
 
-        map.addAnnotation(apple_poi_Annotation);
-        return apple_poi_Annotation;
+        map.addAnnotation(apple_poi_annotation);
+        apple_poi_annotation_array.push(apple_poi_annotation)
+        return apple_poi_annotation;
 
 
         
 
 
     }// annotaion
+
+
+
+
+     function poi_reset_all_annotation_style_to_default(){
+      console.log(' !!! reset !!! all !!!  annotation !!! style !!! to !!! default !!! ')
+      
+      for (let i = 0; i < apple_poi_annotation_array.length; i++) {
+        apple_poi_annotation_array[i].element.innerHTML= default_icon;
+      }
+    }

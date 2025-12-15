@@ -3976,27 +3976,6 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                               
                               // annotation hover event listener,  DOM element event, not apple mapkit event 
                               div.addEventListener("mouseenter", function(event) {
-                                  /*
-                                    mouseenter will trigger multiple times and mouseleave failed to fire, 
-                                    it is not because of I embed a svg image inside.
-                                    it is because I change svg color by change div innert html content when hover.
-                                    if do not change to svg highlight color , mouseenter will fire only 1 time, which is what i want.
-                                  
-                                      https://stackoverflow.com/questions/7286532/jquery-mouseenter-vs-mouseover
-                                      https://stackoverflow.com/questions/1104344/what-is-the-difference-between-the-mouseover-and-mouseenter-events
-                                      https://stackoverflow.com/questions/1638877/difference-between-onmouseover-and-onmouseenter
-                                      warning mouseover do not work, because, mouseover fired when mouse is on both 'this' element and its 'children'(in this case, children element is svg icon tag)
-                                      mouseover could be target on svg instead of wrapper div element. I only attach .data(property) attribute to div, not svg. 
-                                      so event.target.data will be empty if mouseover target at svg. 
-
-                                      mouseenter/mouseleave will only target on div element, not its child svg. 
-                                      so event.target.data will always be div's data, which I always attached properties to. 
-                                  
-
-                                      console.log("annotation mouseenter hover event, DOM event ", event);
-                                      console.log("annotation mouseenter hover event, DOM event  .target", event.target);
-                                      console.log("annotation mouseenter hover event, DOM event  .target.innerHTML", event.target.innerHTML);
-                                    */
                                   
                                   // not fixed bug, so not highlight svg icon when hover for now
                                   event.target.innerHTML = highlight_icon  // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
@@ -4006,13 +3985,13 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
 
                               div.addEventListener("mouseleave", function(event) {
-                                                                                    console.log("annotation mouse out event, DOM event", event);
-                                                                                    // some time, it failed  
-                                                                                    event.target.innerHTML = default_icon // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
-                                                                                    //  when it failed, enforce it 
-                                                                                    reset_all_annotation_style_to_default()
-                                                                                    
-                                                                                    empty_info_outline_Tab()
+                                  console.log("annotation mouse out event, DOM event", event);
+                                  // some time, it failed  
+                                  event.target.innerHTML = default_icon // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
+                                  //  when it failed, enforce it 
+                                  reset_all_annotation_style_to_default()
+                                  
+                                  empty_info_outline_Tab()
                               }); 
 
 
