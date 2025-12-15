@@ -221,8 +221,6 @@ difference:
       
 
       //var targetOverlay = map.topOverlayAtPoint(new DOMPoint(event.pageX, event.pageY));
-      console.log("you click : event.pageX event.pageY", event.pageX, event.pageY)
-      console.log("you click : ", new DOMPoint(event.pageX, event.pageY))
       
 
     }
@@ -300,7 +298,7 @@ difference:
                                               if (_the_geom_type == 'point'){
 
                                                           _coordinate_point = one_geojson_feature.geometry.coordinates
-                                                          create_annotation_for_hover(one_geojson_feature.properties, _coordinate_point)
+                                                          create_annotation_for_click(one_geojson_feature.properties, _coordinate_point)
 
                                               } else {
                                                             if ((_the_geom_type == 'linestring') || (_the_geom_type == 'multipoint')){

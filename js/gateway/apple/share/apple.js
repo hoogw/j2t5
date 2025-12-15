@@ -4057,7 +4057,6 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
     }// annotaion
 
-
     function create_annotation_for_click(_properties, point){
 
                             //console.log('create annotation with build  in  properties',  _properties, point )
@@ -4135,6 +4134,69 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
     }// annotaion
 
+     // noHoverClick for click map get lat-lng
+    function create_annotation_noHoverClick(_properties, point){
+
+                            //console.log('create annotation with build  in  properties',  _properties, point )
+
+                            coordinate = new mapkit.Coordinate(point[1], point[0]);
+
+                            // https://developer.apple.com/documentation/mapkitjs/geojsondelegate/2991192-itemforpoint
+
+                            var factory = function(coordinate, options) {
+
+                                var div = document.createElement("svg")
+
+                                div.innerHTML = default_icon
+                                //div.textContent = 'test'
+                                // Using element's data attributes https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes
+                                div.data = _properties
+                                
+                                /*
+                                // annotation click event listener,  DOM element event, not apple mapkit event 
+                                div.addEventListener("click", function(event) {   
+                                  
+                                  console.log("annotation mouse click event, DOM event", event);
+                                  //  when it failed, enforce it 
+                                  reset_all_annotation_style_to_default()
+                                  
+                                  empty_info_outline_Tab()
+                                  
+                                  // not fixed bug, so not highlight svg icon when hover for now
+                                  event.target.innerHTML = highlight_icon  // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
+                                  
+                                  show_info_outline_Tab(event.target.data)
+                                }); 
+                                */
+
+                                return div;
+                              
+                            }; // factory 
+
+                            
+
+                            var options = {
+                              // https://developer.apple.com/documentation/mapkitjs/annotationconstructoroptions             
+                              data: _properties,
+                              //size: { width: 30, height: 30 }, not working,  The desired dimensions of the annotation, in CSS pixels.  https://developer.apple.com/documentation/mapkitjs/annotation/2973833-size
+                              enabled: true,
+
+                            }
+                            annotation = new mapkit.Annotation(coordinate, factory, options);
+                          
+                           
+                            
+
+                            map.addAnnotation(annotation);
+                            annotation_array.push(annotation)
+                            return annotation;
+
+
+                            
+
+
+    }// annotaion
+
 
 
     // for hover only
@@ -4160,7 +4222,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                     // fix bug, if use annotation, must disable overlay event. otherwise overlay event will overwrite annotation event, cause it failed to function
                     // only-for-click-map-latlng
                     //document.querySelector("#map").removeEventListener("mousemove", mousemove_on_map_event_handler)
-                    document.querySelector("#map").removeEventListener("click",click_on_map_event_handler) 
+                    //document.querySelector("#map").removeEventListener("click",click_on_map_event_handler) 
                     
 
         } else {
@@ -4214,7 +4276,60 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                     // fix bug, if use annotation, must disable overlay event. otherwise overlay event will overwrite annotation event, cause it failed to function
                     // only-for-click-map-latlng
                     //document.querySelector("#map").removeEventListener("mousemove", mousemove_on_map_event_handler)
-                    document.querySelector("#map").removeEventListener("click",click_on_map_event_handler) 
+                    //document.querySelector("#map").removeEventListener("click",click_on_map_event_handler) 
+                    
+
+        } else {
+                      if ((_the_geom_type == 'linestring') || (_the_geom_type == 'multipoint')){
+                        _coordinate_array = one_geojson_feature.geometry.coordinates
+                        create_overlay(one_geojson_feature.properties, _coordinate_array)
+                      }//if type = line 
+
+                      if ((_the_geom_type == 'polygon') || (_the_geom_type == 'multilinestring')){
+                        _coordinate_array = one_geojson_feature.geometry.coordinates[0]
+                        create_overlay(one_geojson_feature.properties, _coordinate_array)
+                      }// type = Polygon  
+
+                      if (_the_geom_type == 'multipolygon'){
+                        var polygon_array = one_geojson_feature.geometry.coordinates
+                        for (let i = 0; i < polygon_array.length; i++) {
+                          _coordinate_array = polygon_array[i][0]
+                          create_overlay(one_geojson_feature.properties, _coordinate_array) 
+                        }//for
+                      }// type = multipolygon 
+        }//if
+
+      }
+
+
+
+    }
+
+
+    // noHoverClick for click map get lat-lng
+    function geojson_to_feature_noHoverClick(single_whole_geojson){
+
+      var features_array = single_whole_geojson.features
+      var one_geojson_feature
+      for (let i = 0; i < features_array.length; i++) {
+
+        one_geojson_feature =  features_array[i] 
+        var _the_geom_type = one_geojson_feature.geometry.type
+        _the_geom_type = _the_geom_type.toLowerCase()
+        console.log('controled zoom to real location . . . .  the geom type . . . . . ', _the_geom_type)
+
+        var _coordinate_array
+        var _coordinate_point
+        if (_the_geom_type == 'point'){
+
+                    _coordinate_point = one_geojson_feature.geometry.coordinates
+                    create_annotation_noHoverClick(one_geojson_feature.properties, _coordinate_point)
+
+                    
+                    // fix bug, if use annotation, must disable overlay event. otherwise overlay event will overwrite annotation event, cause it failed to function
+                    // only-for-click-map-latlng
+                    //document.querySelector("#map").removeEventListener("mousemove", mousemove_on_map_event_handler)
+                    //document.querySelector("#map").removeEventListener("click",click_on_map_event_handler) 
                     
 
         } else {

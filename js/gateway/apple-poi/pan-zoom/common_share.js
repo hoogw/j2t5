@@ -696,7 +696,7 @@ var highlighted_color_fill = 'rgba(255,0,255, 0.2)'  // VIOLET
                                 // both works, the same, this is apple's mapkit.importGeoJSON   https://developer.apple.com/documentation/mapkitjs/mapkit/2974044-importgeojson
                                 //mapkit.importGeoJSON(_geojson_object, geoJSONParserDelegate);
                                 // in use, manually convert geojson to apple overlay, annotation,
-                                geojson_to_feature_for_hover(_geojson_object)
+                                geojson_to_feature_for_click(_geojson_object)
               
                           //------------------------end add new geojson, then remove last geojson------------------------- ---------------
               

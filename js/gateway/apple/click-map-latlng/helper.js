@@ -298,7 +298,7 @@ difference:
                                               if (_the_geom_type == 'point'){
 
                                                           _coordinate_point = one_geojson_feature.geometry.coordinates
-                                                          create_annotation_for_click(one_geojson_feature.properties, _coordinate_point)
+                                                          create_annotation_noHoverClick(one_geojson_feature.properties, _coordinate_point)
 
                                               } else {
                                                             if ((_the_geom_type == 'linestring') || (_the_geom_type == 'multipoint')){
@@ -360,6 +360,9 @@ difference:
         console.log("region-change-end   !!! map idle event   !!! ");
         update_center_latLngZoom();
         get_map_bound();
+
+        // only for click, hover does not need because hover, mouse-out will empty info tab
+        empty_info_outline_Tab()
             
       });
     }
