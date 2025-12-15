@@ -188,10 +188,6 @@ difference:
     // noHoverClick
     function mousemove_on_map_event_handler(event){
 
-     
-
-              
-     
 
     }
 
@@ -203,9 +199,6 @@ difference:
       console.log("you click : event.pageX event.pageY", event.pageX, event.pageY)
       console.log("you click : ", new DOMPoint(event.pageX, event.pageY))
       
-      //var targetOverlay = map.topOverlayAtPoint(new DOMPoint(event.pageX, event.pageY));
-      
-
     }
 
     // bug, never fired

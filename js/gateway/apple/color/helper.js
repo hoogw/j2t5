@@ -221,27 +221,6 @@ difference:
       console.log("you click : ", new DOMPoint(event.pageX, event.pageY))
       
 
-      var targetOverlay = map.topOverlayAtPoint(new DOMPoint(event.pageX, event.pageY));
-      // Add special styling to the overlay to indicate its hover state or whatever you want.
-      // ...
-
-      //console.log('targetOverlay' ,  targetOverlay)
-
-      if (targetOverlay){
-                // inside 'if' on click,reset all overlay style to default
-                reset_all_overlay_style_to_default()
-                
-                // only change this selected overlay color
-                targetOverlay.style = classfiy_overlay_style;
-
-                //console.log('show properties' ,  targetOverlay.data)
-                show_info_outline_Tab(targetOverlay.data)
-              
-      } else {
-
-         empty_info_outline_Tab()
-
-      }
 
     }
 

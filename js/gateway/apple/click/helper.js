@@ -185,36 +185,14 @@ difference:
 
 
 
-    // DOM's map-element's hover and click event, only for polygon and line, not for point annotation marker
-    // hover
+   
+    // only for click
     function mousemove_on_map_event_handler(event){
-
-     
-
-                var targetOverlay = map.topOverlayAtPoint(new DOMPoint(event.pageX, event.pageY));
-                // Add special styling to the overlay to indicate its hover state or whatever you want.
-                // ...
-
-                //console.log('targetOverlay' ,  targetOverlay)
-
-                // outside 'if' on hover, reset all overlay style to default
-                reset_all_overlay_style_to_default()
-                if (targetOverlay){
-                          // only change this selected overlay color
-                          targetOverlay.style = highlight_overlay_style;
-
-                          //console.log('show properties' ,  targetOverlay.data)
-                          show_info_outline_Tab(targetOverlay.data)
-                } else {
-                          empty_info_outline_Tab()
-                }
-     
 
     }
 
 
-    // DOM's map-element's hover and click event, only for polygon and line, not for point annotation marker
-    // only-for-click-no-hover
+    // only for click
     function click_on_map_event_handler(event){
 
       console.log("you click : event.pageX event.pageY", event.pageX, event.pageY)
