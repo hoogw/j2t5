@@ -124,7 +124,7 @@ function empty_info_outline_Tab(){
                             // both works, the same, this is apple's mapkit.importGeoJSON   https://developer.apple.com/documentation/mapkitjs/mapkit/2974044-importgeojson
                             //mapkit.importGeoJSON(_this_newOnly_poi_geojson, geoJSONParserDelegate);
                             // in use, manually convert geojson to apple overlay, annotation,
-                            poi_geojson_to_feature_for_hover(_this_newOnly_poi_geojson)
+                            poi_geojson_to_feature(_this_newOnly_poi_geojson)
                             
                       // . .  end . . efficient core newOnly  . - .   
 

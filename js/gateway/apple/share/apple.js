@@ -3976,7 +3976,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                               
                               // annotation hover event listener,  DOM element event, not apple mapkit event 
                               div.addEventListener("mouseenter", function(event) {
-                                  
+                                   console.log("annotation mouse enter event, DOM event", event);
                                   // not fixed bug, so not highlight svg icon when hover for now
                                   event.target.innerHTML = highlight_icon  // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
                                   
@@ -3988,9 +3988,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                                   console.log("annotation mouse out event, DOM event", event);
                                   // some time, it failed  
                                   event.target.innerHTML = default_icon // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
-                                  //  when it failed, enforce it 
-                                  reset_all_annotation_style_to_default()
-                                  
+                                                                   
                                   empty_info_outline_Tab()
                               }); 
 
@@ -4053,23 +4051,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                                 // Using element's data attributes https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes
                                 div.data = _properties
                                 
-                                /*
-                                // annotation click event listener,  DOM element event, not apple mapkit event 
-                                div.addEventListener("click", function(event) {   
-                                  
-                                  console.log("annotation mouse click event, DOM event", event);
-                                  //  when it failed, enforce it 
-                                  reset_all_annotation_style_to_default()
-                                  
-                                  empty_info_outline_Tab()
-                                  
-                                  // not fixed bug, so not highlight svg icon when hover for now
-                                  event.target.innerHTML = highlight_icon  // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
-                                  
-                                  show_info_outline_Tab(event.target.data)
-                                }); 
-                                */
-
+                               
                                 return div;
                               
                             }; // factory 
@@ -4131,23 +4113,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                                 // Using element's data attributes https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes
                                 div.data = _properties
                                 
-                                /*
-                                // annotation click event listener,  DOM element event, not apple mapkit event 
-                                div.addEventListener("click", function(event) {   
-                                  
-                                  console.log("annotation mouse click event, DOM event", event);
-                                  //  when it failed, enforce it 
-                                  reset_all_annotation_style_to_default()
-                                  
-                                  empty_info_outline_Tab()
-                                  
-                                  // not fixed bug, so not highlight svg icon when hover for now
-                                  event.target.innerHTML = highlight_icon  // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
-                                  
-                                  show_info_outline_Tab(event.target.data)
-                                }); 
-                                */
-
+                                
                                 return div;
                               
                             }; // factory 

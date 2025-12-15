@@ -196,14 +196,14 @@ var apple_poi_annotation_array = []
 
 
     // only add poi point geojson to annotation
-    function poi_geojson_to_feature_for_hover(single_whole_geojson){
+    function poi_geojson_to_feature(single_whole_geojson){
 
       var features_array = single_whole_geojson.features
       var one_geojson_feature
       for (let i = 0; i < features_array.length; i++) {
         one_geojson_feature =  features_array[i]
         var _coordinate_point = one_geojson_feature.geometry.coordinates
-        poi_create_annotation_for_hover(one_geojson_feature.properties, _coordinate_point)
+        poi_create_annotation(one_geojson_feature.properties, _coordinate_point)
 
         
         // fix bug, if use annotation, must disable overlay event. otherwise overlay event will overwrite annotation event, cause it failed to function
@@ -223,7 +223,7 @@ var apple_poi_annotation_array = []
 
 
     
-    function poi_create_annotation_for_hover(_properties, point){
+    function poi_create_annotation(_properties, point){
 
         //console.log('create annotation with build  in  properties',  _properties, point )
 
@@ -243,6 +243,7 @@ var apple_poi_annotation_array = []
             // annotation hover event listener,  DOM element event, not apple mapkit event 
             div.addEventListener("mouseenter", function(event) {
                 
+                console.log("poi annotation mouse enter event, DOM event", event);
                 
                 // not fixed bug, so not highlight svg icon when hover for now
                 event.target.innerHTML = highlight_icon  // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
@@ -252,11 +253,11 @@ var apple_poi_annotation_array = []
 
 
             div.addEventListener("mouseleave", function(event) {
-                console.log("annotation mouse out event, DOM event", event);
+                
+                console.log("poi annotation mouse out event, DOM event", event);
+                
                 // some time, it failed  
                 event.target.innerHTML = default_icon // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
-                //  when it failed, enforce it 
-                poi_reset_all_annotation_style_to_default()
                                                                                                                                                          
                 empty_info_outline_Tab()
             }); 
