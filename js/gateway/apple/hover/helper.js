@@ -245,10 +245,9 @@ difference:
 
     }
 
-    // DOM's map-element's hover and click event, only for polygon and line, not for point annotation marker
-    // hover
+    // bug, never fired
     function mouseleave_on_map_event_handler(event){
-                empty_info_outline_Tab()
+      reset_all_overlay_style_to_default()
     }
 
     function add_mapdata_listener(){

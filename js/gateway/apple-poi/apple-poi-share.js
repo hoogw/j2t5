@@ -308,9 +308,14 @@ var apple_poi_annotation_array = []
 
 
      function poi_reset_all_annotation_style_to_default(){
+
+
       console.log(' !!! reset !!! all !!!  annotation !!! style !!! to !!! default !!! ')
       
       for (let i = 0; i < apple_poi_annotation_array.length; i++) {
         apple_poi_annotation_array[i].element.innerHTML= default_icon;
       }
+
+     empty_info_outline_Tab()
+
     }

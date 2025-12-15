@@ -184,28 +184,12 @@ difference:
 
 
     // only for poi,  
+    // noHoverClick
     function mousemove_on_map_event_handler(event){
 
-                var targetOverlay = map.topOverlayAtPoint(new DOMPoint(event.pageX, event.pageY));
-                // Add special styling to the overlay to indicate its hover state or whatever you want.
-                // ...
-
-                //console.log('targetOverlay' ,  targetOverlay)
-
-                // outside 'if' on hover, reset all overlay style to default
                 // only for poi, 
                 poi_reset_all_annotation_style_to_default()
 
-                if (targetOverlay){
-                          // only change this selected overlay color
-                          targetOverlay.style = highlight_overlay_style;
-
-                          //console.log('show properties' ,  targetOverlay.data)
-                          show_info_outline_Tab(targetOverlay.data)
-                } else {
-                          empty_info_outline_Tab()
-                }
-     
 
     }
 
@@ -223,11 +207,12 @@ difference:
 
     }
 
-    // DOM's map-element's hover and click event, only for polygon and line, not for point annotation marker
-    // hover
+    // only for poi,    bug, never fired
     function mouseleave_on_map_event_handler(event){
-                empty_info_outline_Tab()
+      poi_reset_all_annotation_style_to_default()
     }
+
+    
 
     function add_mapdata_listener(){
 

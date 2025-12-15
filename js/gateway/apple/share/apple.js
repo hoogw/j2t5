@@ -3929,6 +3929,8 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
       for (let i = 0; i < annotation_array.length; i++) {
         annotation_array[i].element.innerHTML= default_icon;
       }
+
+       empty_info_outline_Tab()
     }
   
 
@@ -3956,6 +3958,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
     }// overlay 
 
 
+   
    
     function create_annotation_for_hover(_properties, point){
 
