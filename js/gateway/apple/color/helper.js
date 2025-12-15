@@ -314,7 +314,7 @@ difference:
                                               if (_the_geom_type == 'point'){
 
                                                           _coordinate_point = one_geojson_feature.geometry.coordinates
-                                                          create_annotation_with_build_in_properties(one_geojson_feature.properties, _coordinate_point)
+                                                          create_annotation_for_hover(one_geojson_feature.properties, _coordinate_point)
 
                                               } else {
                                                             if ((_the_geom_type == 'linestring') || (_the_geom_type == 'multipoint')){
@@ -329,7 +329,7 @@ difference:
                                                               _coordinate_array = one_geojson_feature.geometry.coordinates[0][0]
                                                             }// type = multipolygon  
                                                           
-                                                            create_overlay_with_build_in_properties(one_geojson_feature.properties, _coordinate_array)
+                                                            create_overlay(one_geojson_feature.properties, _coordinate_array)
                                               }//if
                                             }, 
 
@@ -366,127 +366,7 @@ difference:
 
                                                                       /*  works, but not use,  use map click event instead
                                                                       overlay.addEventListener('select', function(event) { 
-                                                                      
-                                                                            change_operation_mode('click')
-                                                                            console.log("onmouseenter overlay. event", event);
-
-                                                                            // reset all overlay style to default
-                                                                            reset_all_overlay_style_to_default()
-
-
-                                                                            // only change this selected overlay color
-                                                                            event.target.style = classfiy_overlay_style;
-                                                                            // also work
-                                                                            // event.target.style.strokeColor = _classfiy_strokeColor
-
-                                                                      });
-                                                                      * /
-
-                                                                      map.addOverlay(overlay);
-                                                                      return overlay;
-                                                                  },
-
-
-                                              itemForLineString: function(overlay, json) {
-                                                                    console.log( ' LineString overlay ', overlay , json)
-                                                                    // https://developer.apple.com/documentation/mapkitjs/polylineoverlay
-                                                                    overlay.style = default_overlay_style
-                                                                    overlay.visible = true;
-                                                                    overlay.enabled = true;
-                                                                    overlay.data = json;
-
-                                                                    /* works, but not use,  use map click event instead
-                                                                    overlay.addEventListener('select', function(event) {  
-
-                                                                          change_operation_mode('click')
-                                                                          console.log("select overlay. event", event);
-
-                                                                          // reset all overlay style to default
-                                                                          reset_all_overlay_style_to_default()
-
-
-                                                                          // only change this selected overlay color
-                                                                          event.target.style = classfiy_overlay_style;
-                                                                          // also work
-                                                                          // event.target.style.strokeColor = _classfiy_strokeColor
-
-                                                                    });
-                                                                  * /
-
-                                                                    map.addOverlay(overlay);
-                                                                    return overlay;
-                                                                },
-
-                                          */
-
-                                          /* point   
-                                                itemForPoint: function(coordinate, json) {
-
-                                                              console.log( ' Point coordinate ', coordinate , json)
-                                                              // https://developer.apple.com/documentation/mapkitjs/geojsondelegate/2991192-itemforpoint
-
-                                                              var factory = function(coordinate, options) {
-                                                                var div = document.createElement("div")
-                                                                div.innerHTML = default_icon
-                                                                return div;
-                                                              };
-
-                                                              var options = {
-                                                                // https://developer.apple.com/documentation/mapkitjs/annotationconstructoroptions
-                                                              }
-                                                              var annotation = new mapkit.Annotation(coordinate, factory, options);
-
-                                                              annotation.addEventListener('select', function(event) {  
-
-                                                                    console.log("select overlay. event", event);
-
-                                                                    // reset all overlay style to default
-                                                                    reset_all_annotation_style_to_default()
-
-                                                                    // only change this selected overlay color
-                                                                    event.target.element.innerHTML = highlight_icon;
-                                                                  
-
-                                                              });
-
-                                                              map.addAnnotation(annotation);
-                                                              return annotation;
-
-                                                              /*
-                                                                  not use, because circle overlay radius is meter, will becomes smaller and smaller when you zoom out, I need marker/annotation, fixed size. 
-                                                                  //CircleOverlay
-                                                                  var style = new mapkit.Style({
-                                                                                                        strokeColor: _default_strokeColor,
-                                                                                                        strokeOpacity: _default_strokeOpacity,
-                                                                                                        lineWidth: _default_strokeWeight,
-                                                                                                        fillOpacity: _default_fillOpacity,
-                                                                                                        fillColor: _default_fillColor,
-                                                                                                    });
-                                                                  var radius = _default_pointRadius;
-                                                                  var circle = new mapkit.CircleOverlay(coordinate, radius, style);
-                                                                  map.addOverlay(circle);
-                                                                  return circle;
-                                                              * /
-
-
-                                                              /*
-                                                                  not use,
-                                                                  // MarkerAnnotation
-                                                                  var customMarker = new mapkit.MarkerAnnotation(coordinate, {
-                                                                      color: _default_strokeColor,
-                                                                      glyphColor: _default_strokeColor,
-                                                                    // glyphImage: { 1: "glyphImage.png" },
-                                                                    // selectedGlyphImage: { 1: "detailedIcon.png", 2: "detailedIcon_2x.png", 3: "detailedIcon_3x.png" }
-                                                                  });
-                                                                  map.addAnnotation(customMarker);
-                                                                  return customMarker;
-                                                                * /
-
-                                          },
-                                          */
-
-
-
+                                            
 
 
                                             geoJSONDidComplete: function(result, geoJSON) {

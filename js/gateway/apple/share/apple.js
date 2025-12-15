@@ -3674,7 +3674,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
                 // update all overlay including circle overlay to new default color
                 reset_all_overlay_style_to_default()
-                reset_all_annotation_style_to_default()
+                
               }
 
                     
@@ -3917,6 +3917,10 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
         for (let i = 0; i < current_overlay_array.length; i++) {
           current_overlay_array[i].style = default_overlay_style;
         }
+
+
+        // include point annotation
+        reset_all_annotation_style_to_default()
     }
   
     function reset_all_annotation_style_to_default(){
@@ -3928,7 +3932,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
     }
   
 
-    function create_overlay_with_build_in_properties(_properties, points){
+    function create_overlay(_properties, points){
         //console.log('create overlay with build  in  properties',  _properties, points )
         // create a polygon overlay sample https://developer.apple.com/documentation/mapkitjs/polygonoverlay
         //var points = [ [41, -109.05], [41, -102.05], [37, -102.05], [37, -109.05] ];
@@ -3953,7 +3957,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
 
    
-    function create_annotation_with_build_in_properties(_properties, point){
+    function create_annotation_for_hover(_properties, point){
 
                             //console.log('create annotation with build  in  properties',  _properties, point )
 
@@ -3963,56 +3967,56 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
                             var factory = function(coordinate, options) {
 
-                                                                            var div = document.createElement("svg")
+                              var div = document.createElement("svg")
 
-                                                                            div.innerHTML = default_icon
-                                                                            //div.textContent = 'test'
-                                                                            // Using element's data attributes https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes
-                                                                            div.data = _properties
-                                                                            
-                                                                            // annotation hover event listener,  DOM element event, not apple mapkit event 
-                                                                            div.addEventListener("mouseenter", function(event) {
-                                                                                                                                          /*
-                                                                                                                                            mouseenter will trigger multiple times and mouseleave failed to fire, 
-                                                                                                                                            it is not because of I embed a svg image inside.
-                                                                                                                                            it is because I change svg color by change div innert html content when hover.
-                                                                                                                                            if do not change to svg highlight color , mouseenter will fire only 1 time, which is what i want.
-                                                                                                                                         
-                                                                                                                                              https://stackoverflow.com/questions/7286532/jquery-mouseenter-vs-mouseover
-                                                                                                                                              https://stackoverflow.com/questions/1104344/what-is-the-difference-between-the-mouseover-and-mouseenter-events
-                                                                                                                                              https://stackoverflow.com/questions/1638877/difference-between-onmouseover-and-onmouseenter
-                                                                                                                                              warning mouseover do not work, because, mouseover fired when mouse is on both 'this' element and its 'children'(in this case, children element is svg icon tag)
-                                                                                                                                              mouseover could be target on svg instead of wrapper div element. I only attach .data(property) attribute to div, not svg. 
-                                                                                                                                              so event.target.data will be empty if mouseover target at svg. 
+                              div.innerHTML = default_icon
+                              //div.textContent = 'test'
+                              // Using element's data attributes https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes
+                              div.data = _properties
+                              
+                              // annotation hover event listener,  DOM element event, not apple mapkit event 
+                              div.addEventListener("mouseenter", function(event) {
+                                  /*
+                                    mouseenter will trigger multiple times and mouseleave failed to fire, 
+                                    it is not because of I embed a svg image inside.
+                                    it is because I change svg color by change div innert html content when hover.
+                                    if do not change to svg highlight color , mouseenter will fire only 1 time, which is what i want.
+                                  
+                                      https://stackoverflow.com/questions/7286532/jquery-mouseenter-vs-mouseover
+                                      https://stackoverflow.com/questions/1104344/what-is-the-difference-between-the-mouseover-and-mouseenter-events
+                                      https://stackoverflow.com/questions/1638877/difference-between-onmouseover-and-onmouseenter
+                                      warning mouseover do not work, because, mouseover fired when mouse is on both 'this' element and its 'children'(in this case, children element is svg icon tag)
+                                      mouseover could be target on svg instead of wrapper div element. I only attach .data(property) attribute to div, not svg. 
+                                      so event.target.data will be empty if mouseover target at svg. 
 
-                                                                                                                                              mouseenter/mouseleave will only target on div element, not its child svg. 
-                                                                                                                                              so event.target.data will always be div's data, which I always attached properties to. 
-                                                                                                                                         
+                                      mouseenter/mouseleave will only target on div element, not its child svg. 
+                                      so event.target.data will always be div's data, which I always attached properties to. 
+                                  
 
-                                                                                                                                              console.log("annotation mouseenter hover event, DOM event ", event);
-                                                                                                                                              console.log("annotation mouseenter hover event, DOM event  .target", event.target);
-                                                                                                                                              console.log("annotation mouseenter hover event, DOM event  .target.innerHTML", event.target.innerHTML);
-                                                                                                                                           */
-                                                                                                                                         
-                                                                                                                                          // not fixed bug, so not highlight svg icon when hover for now
-                                                                                                                                          event.target.innerHTML = highlight_icon  // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
-                                                                                                                                          
-                                                                                                                                          show_info_outline_Tab(event.target.data)
-                                                                            }); 
-
-
-                                                                            div.addEventListener("mouseleave", function(event) {
-                                                                                                                                  console.log("annotation mouse out event, DOM event", event);
-                                                                                                                                  // some time, it failed  
-                                                                                                                                  event.target.innerHTML = default_icon // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
-                                                                                                                                  //  when it failed, enforce it 
-                                                                                                                                  reset_all_annotation_style_to_default()
-                                                                                                                                  
-                                                                                                                                  empty_info_outline_Tab()
-                                                                            }); 
+                                      console.log("annotation mouseenter hover event, DOM event ", event);
+                                      console.log("annotation mouseenter hover event, DOM event  .target", event.target);
+                                      console.log("annotation mouseenter hover event, DOM event  .target.innerHTML", event.target.innerHTML);
+                                    */
+                                  
+                                  // not fixed bug, so not highlight svg icon when hover for now
+                                  event.target.innerHTML = highlight_icon  // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
+                                  
+                                  show_info_outline_Tab(event.target.data)
+                              }); 
 
 
-                                                                            return div;
+                              div.addEventListener("mouseleave", function(event) {
+                                                                                    console.log("annotation mouse out event, DOM event", event);
+                                                                                    // some time, it failed  
+                                                                                    event.target.innerHTML = default_icon // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
+                                                                                    //  when it failed, enforce it 
+                                                                                    reset_all_annotation_style_to_default()
+                                                                                    
+                                                                                    empty_info_outline_Tab()
+                              }); 
+
+
+                              return div;
                               
                             }; // factory 
 
@@ -4053,7 +4057,88 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
     }// annotaion
 
-    function geojson_to_feature(single_whole_geojson){
+
+    function create_annotation_for_click(_properties, point){
+
+                            //console.log('create annotation with build  in  properties',  _properties, point )
+
+                            coordinate = new mapkit.Coordinate(point[1], point[0]);
+
+                            // https://developer.apple.com/documentation/mapkitjs/geojsondelegate/2991192-itemforpoint
+
+                            var factory = function(coordinate, options) {
+
+                                var div = document.createElement("svg")
+
+                                div.innerHTML = default_icon
+                                //div.textContent = 'test'
+                                // Using element's data attributes https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes
+                                div.data = _properties
+                                
+                                /*
+                                // annotation click event listener,  DOM element event, not apple mapkit event 
+                                div.addEventListener("click", function(event) {   
+                                  
+                                  console.log("annotation mouse click event, DOM event", event);
+                                  //  when it failed, enforce it 
+                                  reset_all_annotation_style_to_default()
+                                  
+                                  empty_info_outline_Tab()
+                                  
+                                  // not fixed bug, so not highlight svg icon when hover for now
+                                  event.target.innerHTML = highlight_icon  // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
+                                  
+                                  show_info_outline_Tab(event.target.data)
+                                }); 
+                                */
+
+                                return div;
+                              
+                            }; // factory 
+
+                            
+
+                            var options = {
+                              // https://developer.apple.com/documentation/mapkitjs/annotationconstructoroptions             
+                              data: _properties,
+                              //size: { width: 30, height: 30 }, not working,  The desired dimensions of the annotation, in CSS pixels.  https://developer.apple.com/documentation/mapkitjs/annotation/2973833-size
+                              enabled: true,
+
+                            }
+                            annotation = new mapkit.Annotation(coordinate, factory, options);
+                          
+                           
+                            
+                            // annotation icon image dom click event failed to trigger, use this apple event instead
+                            annotation.addEventListener('select', function(event) {  
+
+                                  console.log("select overlay. event", event);
+
+                                  // reset all overlay style to default
+                                  reset_all_annotation_style_to_default()
+                                 
+                                  // only change this selected overlay color
+                                  event.target.element.innerHTML = classfiy_icon;
+                                  show_info_outline_Tab(event.target.data)
+
+                            });
+                            
+                            
+
+                            map.addAnnotation(annotation);
+                            annotation_array.push(annotation)
+                            return annotation;
+
+
+                            
+
+
+    }// annotaion
+
+
+
+    // for hover only
+    function geojson_to_feature_for_hover(single_whole_geojson){
 
       var features_array = single_whole_geojson.features
       var one_geojson_feature
@@ -4069,7 +4154,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
         if (_the_geom_type == 'point'){
 
                     _coordinate_point = one_geojson_feature.geometry.coordinates
-                    create_annotation_with_build_in_properties(one_geojson_feature.properties, _coordinate_point)
+                    create_annotation_for_hover(one_geojson_feature.properties, _coordinate_point)
 
                     
                     // fix bug, if use annotation, must disable overlay event. otherwise overlay event will overwrite annotation event, cause it failed to function
@@ -4081,19 +4166,19 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
         } else {
                       if ((_the_geom_type == 'linestring') || (_the_geom_type == 'multipoint')){
                         _coordinate_array = one_geojson_feature.geometry.coordinates
-                        create_overlay_with_build_in_properties(one_geojson_feature.properties, _coordinate_array)
+                        create_overlay(one_geojson_feature.properties, _coordinate_array)
                       }//if type = line 
 
                       if ((_the_geom_type == 'polygon') || (_the_geom_type == 'multilinestring')){
                         _coordinate_array = one_geojson_feature.geometry.coordinates[0]
-                        create_overlay_with_build_in_properties(one_geojson_feature.properties, _coordinate_array)
+                        create_overlay(one_geojson_feature.properties, _coordinate_array)
                       }// type = Polygon  
 
                       if (_the_geom_type == 'multipolygon'){
                         var polygon_array = one_geojson_feature.geometry.coordinates
                         for (let i = 0; i < polygon_array.length; i++) {
                           _coordinate_array = polygon_array[i][0]
-                          create_overlay_with_build_in_properties(one_geojson_feature.properties, _coordinate_array) 
+                          create_overlay(one_geojson_feature.properties, _coordinate_array) 
                         }//for
                       }// type = multipolygon 
         }//if
@@ -4104,6 +4189,59 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
     }
 
+
+
+    // for click only
+    function geojson_to_feature_for_click(single_whole_geojson){
+
+      var features_array = single_whole_geojson.features
+      var one_geojson_feature
+      for (let i = 0; i < features_array.length; i++) {
+
+        one_geojson_feature =  features_array[i] 
+        var _the_geom_type = one_geojson_feature.geometry.type
+        _the_geom_type = _the_geom_type.toLowerCase()
+        console.log('controled zoom to real location . . . .  the geom type . . . . . ', _the_geom_type)
+
+        var _coordinate_array
+        var _coordinate_point
+        if (_the_geom_type == 'point'){
+
+                    _coordinate_point = one_geojson_feature.geometry.coordinates
+                    create_annotation_for_click(one_geojson_feature.properties, _coordinate_point)
+
+                    
+                    // fix bug, if use annotation, must disable overlay event. otherwise overlay event will overwrite annotation event, cause it failed to function
+                    // only-for-click-map-latlng
+                    //document.querySelector("#map").removeEventListener("mousemove", mousemove_on_map_event_handler)
+                    document.querySelector("#map").removeEventListener("click",click_on_map_event_handler) 
+                    
+
+        } else {
+                      if ((_the_geom_type == 'linestring') || (_the_geom_type == 'multipoint')){
+                        _coordinate_array = one_geojson_feature.geometry.coordinates
+                        create_overlay(one_geojson_feature.properties, _coordinate_array)
+                      }//if type = line 
+
+                      if ((_the_geom_type == 'polygon') || (_the_geom_type == 'multilinestring')){
+                        _coordinate_array = one_geojson_feature.geometry.coordinates[0]
+                        create_overlay(one_geojson_feature.properties, _coordinate_array)
+                      }// type = Polygon  
+
+                      if (_the_geom_type == 'multipolygon'){
+                        var polygon_array = one_geojson_feature.geometry.coordinates
+                        for (let i = 0; i < polygon_array.length; i++) {
+                          _coordinate_array = polygon_array[i][0]
+                          create_overlay(one_geojson_feature.properties, _coordinate_array) 
+                        }//for
+                      }// type = multipolygon 
+        }//if
+
+      }
+
+
+
+    }
 
 
     function delete_all_apple_annotation(){ 
@@ -4135,7 +4273,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
     
 
     // - - - special for circle overlay instead of annotation - - - 
-     function create_circleOverlay_with_build_in_properties(_properties, point){
+     function create_overlay_for_circle(_properties, point){
 
           //console.log('create annotation with build  in  properties',  _properties, point )
 
@@ -4170,25 +4308,25 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
             _coordinate_point = one_geojson_feature.geometry.coordinates
             // - - - special for circle overlay instead of annotation - - - 
-            create_circleOverlay_with_build_in_properties(one_geojson_feature.properties, _coordinate_point)
+            create_overlay_for_circle(one_geojson_feature.properties, _coordinate_point)
 
 
             } else {
                               if ((_the_geom_type == 'linestring') || (_the_geom_type == 'multipoint')){
                                 _coordinate_array = one_geojson_feature.geometry.coordinates
-                                create_overlay_with_build_in_properties(one_geojson_feature.properties, _coordinate_array)
+                                create_overlay(one_geojson_feature.properties, _coordinate_array)
                               }//if type = line 
 
                               if ((_the_geom_type == 'polygon') || (_the_geom_type == 'multilinestring')){
                                 _coordinate_array = one_geojson_feature.geometry.coordinates[0]
-                                create_overlay_with_build_in_properties(one_geojson_feature.properties, _coordinate_array)
+                                create_overlay(one_geojson_feature.properties, _coordinate_array)
                               }// type = Polygon  
 
                               if (_the_geom_type == 'multipolygon'){
                                 var polygon_array = one_geojson_feature.geometry.coordinates
                                 for (let i = 0; i < polygon_array.length; i++) {
                                   _coordinate_array = polygon_array[i][0]
-                                  create_overlay_with_build_in_properties(one_geojson_feature.properties, _coordinate_array) 
+                                  create_overlay(one_geojson_feature.properties, _coordinate_array) 
                                 }//for
                               }// type = multipolygon 
             }//if

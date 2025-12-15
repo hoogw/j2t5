@@ -196,14 +196,14 @@ var apple_poi_search_object
 
 
     // only add poi point geojson to annotation
-    function poi_geojson_to_feature(single_whole_geojson){
+    function poi_geojson_to_feature_for_hover(single_whole_geojson){
 
       var features_array = single_whole_geojson.features
       
       for (let i = 0; i < features_array.length; i++) {
         var one_geojson_feature =  features_array[i]
         var _coordinate_point = one_geojson_feature.geometry.coordinates
-        poi_create_annotation_with_build_in_properties(one_geojson_feature.properties, _coordinate_point)
+        poi_create_annotation_for_hover(one_geojson_feature.properties, _coordinate_point)
 
         
         // fix bug, if use annotation, must disable overlay event. otherwise overlay event will overwrite annotation event, cause it failed to function
@@ -223,7 +223,7 @@ var apple_poi_search_object
 
 
     var apple_poi_Annotation
-    function poi_create_annotation_with_build_in_properties(_properties, point){
+    function poi_create_annotation_for_hover(_properties, point){
 
         //console.log('create annotation with build  in  properties',  _properties, point )
 
