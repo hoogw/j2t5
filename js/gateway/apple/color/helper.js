@@ -337,39 +337,6 @@ difference:
                                               }//if
                                             }, 
 
-                                            /*
-
-                                            not use, apple method, because apple does not provide a way to attach geojson properties to overlay object.
-
-                                            styleForOverlay: function(overlay, json) {
-                                                                                        console.log( ' style For Overlay, json not carry properties ', overlay  , json)
-                                                                                      // map.addOverlay(overlay);
-                                                                                        return default_overlay_style
-                                            }, 
-
-                                            // just for test, nothing to do
-                                            itemForFeatureCollection: function(itemCollection, json) {
-                                                                                        console.log( ' Feature itemCollection , only this json have original properties', itemCollection  , json)
-                                                                                        console.log( ' Feature itemCollection , only this json have original properties 11111 .data', itemCollection.data)
-                                                                                        console.log( ' Feature itemCollection , only this json have original properties 22222 .getFlattenedItemList', itemCollection.getFlattenedItemList)
-                                                                                        console.log( ' Feature itemCollection , only this json have original properties 33333 .items', itemCollection.items)
-                                            }, 
-                                          
-                                            */
-
-                                          /*
-                                              not use, because I use styleForOverlay instead for polygon and line
-
-                                              itemForPolygon: function(overlay, json) {
-                                                                      console.log( ' Polygon overlay ', overlay , json)
-                                                                      // https://developer.apple.com/documentation/mapkitjs/polygonoverlay
-                                                                      overlay.style = default_overlay_style
-                                                                      overlay.visible = true;
-                                                                      overlay.enabled = true;
-                                                                      overlay.data = json;
-
-                                                                      /*  works, but not use,  use map click event instead
-                                                                      overlay.addEventListener('select', function(event) { 
                                             
 
 
