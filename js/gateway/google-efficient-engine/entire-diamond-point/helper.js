@@ -1902,35 +1902,7 @@
 function init_user_interface_event(){
 
 
-   /**/
-   //  --- click or hover   --- 
-    /**/
-
-
-    $("#close_info_outline_panel").on("click", function() {
-      empty_info_outline_Tab()
-    });
-
-               if (param_click_or_hover){
-                click_or_hover = param_click_or_hover
-              }
-              // first time set radio
-              $("input[type=radio][name=click_or_hover_radio][value=" + click_or_hover + "]").prop('checked', true);
-              // radio change event
-              $("input[type='radio'][name='click_or_hover_radio']").change(function(){
-                click_or_hover = $("input[type='radio'][name='click_or_hover_radio']:checked").val();
-                console.log(" click_or_hover : --  ", click_or_hover);
-                update_url_parameter('clickorhover', click_or_hover);
-              });
-
-
-
-
-
-       /**/
-       //  --- end  ---  click or hover   --- 
-       /**/
-
+  
 
 
 
