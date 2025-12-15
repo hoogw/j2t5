@@ -216,6 +216,10 @@ difference:
     // only-for-click-map-latlng
     function click_on_map_event_handler(event){
 
+      console.log("you click : event.pageX event.pageY", event.pageX, event.pageY)
+      console.log("you click : ", new DOMPoint(event.pageX, event.pageY))
+      
+
       //var targetOverlay = map.topOverlayAtPoint(new DOMPoint(event.pageX, event.pageY));
       console.log("you click : event.pageX event.pageY", event.pageX, event.pageY)
       console.log("you click : ", new DOMPoint(event.pageX, event.pageY))

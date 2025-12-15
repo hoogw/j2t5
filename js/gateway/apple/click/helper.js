@@ -217,6 +217,10 @@ difference:
     // only-for-click-no-hover
     function click_on_map_event_handler(event){
 
+      console.log("you click : event.pageX event.pageY", event.pageX, event.pageY)
+      console.log("you click : ", new DOMPoint(event.pageX, event.pageY))
+      
+
       var targetOverlay = map.topOverlayAtPoint(new DOMPoint(event.pageX, event.pageY));
       // Add special styling to the overlay to indicate its hover state or whatever you want.
       // ...
@@ -361,7 +365,7 @@ difference:
       
       // only-for-click-no-hover
      // document.querySelector("#map").addEventListener("mousemove", mousemove_on_map_event_handler) 
-      document.querySelector("#map").addEventListener("click", click_on_map_event_handler)
+      //document.querySelector("#map").addEventListener("click", click_on_map_event_handler)
       //fix bug, when mouse leave map, should close info tab window
       // only-for-click-no-hover
       //document.querySelector("#map").addEventListener("mouseleave", mouseleave_on_map_event_handler)
@@ -376,6 +380,11 @@ difference:
         console.log("region-change-end   !!! map idle event   !!! ");
         update_center_latLngZoom();
         get_map_bound();
+
+
+
+        // only for click, hover does not need because hover, mouse-out will empty info tab
+        empty_info_outline_Tab()
             
       });
     }

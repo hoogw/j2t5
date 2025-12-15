@@ -217,9 +217,10 @@ difference:
     // only-for-click-map-latlng
     function click_on_map_event_handler(event){
 
-      //var targetOverlay = map.topOverlayAtPoint(new DOMPoint(event.pageX, event.pageY));
       console.log("you click : event.pageX event.pageY", event.pageX, event.pageY)
       console.log("you click : ", new DOMPoint(event.pageX, event.pageY))
+      
+      //var targetOverlay = map.topOverlayAtPoint(new DOMPoint(event.pageX, event.pageY));
       
 
     }
@@ -297,7 +298,7 @@ difference:
                                               if (_the_geom_type == 'point'){
 
                                                           _coordinate_point = one_geojson_feature.geometry.coordinates
-                                                          create_annotation_for_hover(one_geojson_feature.properties, _coordinate_point)
+                                                          create_annotation_for_click(one_geojson_feature.properties, _coordinate_point)
 
                                               } else {
                                                             if ((_the_geom_type == 'linestring') || (_the_geom_type == 'multipoint')){
@@ -344,7 +345,7 @@ difference:
       
       // only-for-click-map-latlng
      // document.querySelector("#map").addEventListener("mousemove", mousemove_on_map_event_handler) 
-      document.querySelector("#map").addEventListener("click", click_on_map_event_handler)
+     // document.querySelector("#map").addEventListener("click", click_on_map_event_handler)
       //fix bug, when mouse leave map, should close info tab window
       // only-for-click-map-latlng
       //document.querySelector("#map").addEventListener("mouseleave", mouseleave_on_map_event_handler)
