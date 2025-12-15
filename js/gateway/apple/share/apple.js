@@ -10,7 +10,7 @@
 // ------- apple map only  -------
 /**/
 
-var _apple_token = "eyJraWQiOiJRVjlaNkhYMzJYIiwidHlwIjoiSldUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJDNE5YNVM5UTRCIiwiaWF0IjoxNzY0ODcyNTg1LCJleHAiOjE3NjU1MjYzOTl9.kgkrWF0GMKJpz8AB60QOWtl2gjAhZL6gILSQvxOMW9LbKxqW1YC8vUxDIoRi95i-_-Eqkl3cnUS_lkEzKriRvA"
+var _apple_token = "eyJraWQiOiI4WTdHWVBHTVY3IiwidHlwIjoiSldUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJDNE5YNVM5UTRCIiwiaWF0IjoxNzY1ODE3MTM1LCJleHAiOjE3NjY0NzY3OTl9.lSW8Lq4dc6e4RVIRjyGz73EhwQeUGoPqwM8hJesEIxHa-jcy8ZUePrnTVnyxKSAJpsnPO0L-ha3pEZZJG-5_IA"
 
 // must above default icon color
 var   _default_strokeOpacity   =  1  // apple only
@@ -4119,6 +4119,87 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
         //map.addAnnotation(apple_searchPlaceResultSingleAnnotation);
       //}
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    // - - - special for circle overlay instead of annotation - - - 
+     function create_circleOverlay_with_build_in_properties(_properties, point){
+
+          //console.log('create annotation with build  in  properties',  _properties, point )
+
+          coordinate = new mapkit.Coordinate(point[1], point[0]);
+
+          var _circle_overlay = new mapkit.CircleOverlay(coordinate, parseInt(_default_pointRadius) * 2, default_overlay_style);
+
+          _circle_overlay.data = _properties
+          map.addOverlay(_circle_overlay);
+
+          // fix bug, without this, always use apple default blue color for circle, until user move mouse on map, trigger mousemove event, then trigger this function. 
+          reset_all_overlay_style_to_default()
+
+     }// circle overlay
+
+
+      // - - - special for circle overlay instead of annotation - - - 
+      function geojson_to_feature_for_circleOverlay(single_whole_geojson){
+
+            var features_array = single_whole_geojson.features
+            var one_geojson_feature
+            for (let i = 0; i < features_array.length; i++) {
+
+            one_geojson_feature =  features_array[i] 
+            var _the_geom_type = one_geojson_feature.geometry.type
+            _the_geom_type = _the_geom_type.toLowerCase()
+            console.log('controled zoom to real location . . . .  the geom type . . . . . ', _the_geom_type)
+
+            var _coordinate_array
+            var _coordinate_point
+            if (_the_geom_type == 'point'){
+
+            _coordinate_point = one_geojson_feature.geometry.coordinates
+            // - - - special for circle overlay instead of annotation - - - 
+            create_circleOverlay_with_build_in_properties(one_geojson_feature.properties, _coordinate_point)
+
+
+            } else {
+                              if ((_the_geom_type == 'linestring') || (_the_geom_type == 'multipoint')){
+                                _coordinate_array = one_geojson_feature.geometry.coordinates
+                                create_overlay_with_build_in_properties(one_geojson_feature.properties, _coordinate_array)
+                              }//if type = line 
+
+                              if ((_the_geom_type == 'polygon') || (_the_geom_type == 'multilinestring')){
+                                _coordinate_array = one_geojson_feature.geometry.coordinates[0]
+                                create_overlay_with_build_in_properties(one_geojson_feature.properties, _coordinate_array)
+                              }// type = Polygon  
+
+                              if (_the_geom_type == 'multipolygon'){
+                                var polygon_array = one_geojson_feature.geometry.coordinates
+                                for (let i = 0; i < polygon_array.length; i++) {
+                                  _coordinate_array = polygon_array[i][0]
+                                  create_overlay_with_build_in_properties(one_geojson_feature.properties, _coordinate_array) 
+                                }//for
+                              }// type = multipolygon 
+            }//if
+
+            }
+
+
+
+      }
+
+
 
 
 /**/
