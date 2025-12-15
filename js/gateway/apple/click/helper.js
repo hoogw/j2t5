@@ -365,7 +365,7 @@ difference:
       
       // only-for-click-no-hover
      // document.querySelector("#map").addEventListener("mousemove", mousemove_on_map_event_handler) 
-      //document.querySelector("#map").addEventListener("click", click_on_map_event_handler)
+      document.querySelector("#map").addEventListener("click", click_on_map_event_handler)
       //fix bug, when mouse leave map, should close info tab window
       // only-for-click-no-hover
       //document.querySelector("#map").addEventListener("mouseleave", mouseleave_on_map_event_handler)
