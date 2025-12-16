@@ -24,7 +24,7 @@ var _first_time_load = true;
 
 
 //  --- click or hover   --- 
-var click_or_hover = 'hover'   // 'click'
+var click_or_hover = 'click'    //  'hover'
 
 
 
