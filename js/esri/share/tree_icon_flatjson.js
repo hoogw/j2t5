@@ -87,7 +87,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                         "id" :  4907,     
                         "parent" : 10,
                         // google
-                        "text" : google_svg + " Google" + "<small><sub>2020-now</sub></small>",  //v3 
+                        "text" : google_svg + " Google" + "<small><sup>2020-now</sup></small>",  //v3 
                         "icon" : folder_icon,
                         "link_type": "folder",   
                         "state"       : {
@@ -145,7 +145,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                         "id" :  8651,     
                         "parent" : 10,
                         // Microsoft
-                        "text" : microsoft_svg + " Microsoft AzureMap" + "<small><sub>2018-now</sub></small>",
+                        "text" : microsoft_svg + " Microsoft AzureMap" + "<small><sup>2018-now</sup></small>",
                         "icon" : folder_icon,
                         "link_type": "folder",   
                         "state"       : {
@@ -164,7 +164,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                     icon_item = { 
                         "id" :  777,     
                         "parent" : 10,
-                        "text" : apple_svg + "Apple"  + "<sub><small>2018-now</small></sub>",
+                        "text" : apple_svg + "Apple"  + "<sup><small>2018-now</small></sup>",
                         "icon" : folder_icon,
                         "link_type": "folder",   
                         "state"       : {
@@ -204,7 +204,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                     icon_item = { 
                         "id" :  579,     
                         "parent" : 10,
-                        "text" : esri_svg + " Esri component" + "<small><sub>2023.10-now</sub></small>",  //<sup>v4.28-now</sup>
+                        "text" : esri_svg + " Esri component" + "<small><sup>2023.10-now</sup></small>",  //<sup>v4.28-now</sup>
                         "icon" : folder_icon,
                         "link_type": "folder",   
                         "state"       : {
@@ -220,7 +220,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                     icon_item = { 
                         "id" :  4679,     
                         "parent" : 10,
-                        "text" : esri_svg + "  Esri widget" + "<small><sub>2008.6-2025.2</sub></small>", //<sup>v1.2-v4.31</sup>
+                        "text" : esri_svg + "  Esri widget" + "<small><sup>2008.6-2025.2</sup></small>", //<sup>v1.2-v4.31</sup>
                         "icon" : folder_icon,
                         "link_type": "folder",   
                         "state"       : {
@@ -289,7 +289,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                     icon_item = { 
                         "id" :  102222,     
                         "parent" : 10, //970,
-                        "text" : "Google classic" + "<small><sub>2005-2020</sub></small>", //v2 
+                        "text" : "Google classic" + "<small><sup>2005-2020</sup></small>", //v2 
                         "icon" : folder_icon,  
                         "link_type": "folder", 
                         "state"       : {
@@ -305,7 +305,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                     icon_item = {
                                     "id" :  500,     
                                     "parent" : 10, //970,
-                                    "text" : "Esri widget classic" + '<small><sub>2008.6-2025.2, token 4 restricted</sub></small>',
+                                    "text" : "Esri widget classic" + '<small><sup>2008.6-2025.2, token 4 restricted</sup></small>',
                                     "icon" : folder_icon,  
                                     "link_type": "folder", 
                                     "state"       : {
@@ -324,7 +324,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                         icon_item = { 
                                         "id" :  200,     
                                         "parent" : 10, //970,
-                                        "text" : "Microsoft BingMap" + "<small><sub>2005-2018</sub></small>",
+                                        "text" : "Microsoft BingMap" + "<small><sup>2005-2018</sup></small>",
                                         "icon" : folder_icon, 
                                         "link_type": "folder",  
                                         "state"       : {
@@ -341,7 +341,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                         icon_item = { 
                                         "id" :  700,     
                                         "parent" : 10, //970,
-                                        "text" : "Here Map" + "<small><sub>2012-now</sub></small>",
+                                        "text" : "Here Map" + "<small><sup>2012-now</sup></small>",
                                         "icon" : folder_icon,  
                                         "link_type": "folder", 
                                         "state"       : {
@@ -364,7 +364,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                         icon_item = { 
                                         "id" :  300,     
                                         "parent" : 10, //970,
-                                        "text" : "Mapbox" + "<small><sub>2015-now</sub></small>",
+                                        "text" : "Mapbox" + "<small><sup>2015-now</sup></small>",
                                         "icon" : folder_icon, 
                                         "link_type": "folder",  
                                         "state"       : {
@@ -380,7 +380,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                         icon_item = { 
                             "id" :  10200,     
                             "parent" : 10, //970,
-                            "text" : "Apple classic" + "<small><sub>2012-2018</sub></small>",
+                            "text" : "Apple classic" + "<small><sup>2012-2018</sup></small>",
                             "icon" : folder_icon, 
                             "link_type": "folder",  
                             "state"       : {
@@ -3959,7 +3959,7 @@ icon_flatjson.push(icon_item)
 icon_item = { 
     "id" :  328,     
     "parent" : 327,
-    "text" : yelp_svg + " Yelp POI (free)"  + "<sub><small>since 2007</small></sub>", 
+    "text" : yelp_svg + " Yelp POI (free)"  + "<sup><small>since 2007</small></sup>", 
     "icon" : folder_icon,
     "link_type": "folder",   
     "state"       : {
@@ -4616,7 +4616,7 @@ icon_flatjson.push(icon_item)
 icon_item = { 
 "id" :  3284,     
 "parent" : 327,
-"text" : apple_svg + "Apple POI (free)"  + "<sub><small>since 2018</small></sub>",
+"text" : apple_svg + "Apple POI (free)"  + "<sup><small>since 2018</small></sup>",
 "icon" : folder_icon,
 "link_type": "folder",   
 "state"       : {
@@ -4683,7 +4683,7 @@ icon_flatjson.push(icon_item)
 icon_item = { 
     "id" :  3280,     
     "parent" : 327,
-    "text" : google_svg + " Google POI" + paypal_svg + visa_svg + mastercard_svg + "<sub><small>since 2011</small></sub>",
+    "text" : google_svg + " Google POI" + paypal_svg + visa_svg + mastercard_svg + "<sup><small>since 2011</small></sup>",
     "icon" : folder_icon,
     "link_type": "folder",   
     "state"       : {
@@ -5905,7 +5905,7 @@ icon_flatjson.push(icon_item)
 icon_item = { 
     "id" :  7281,     
     "parent" : 327,
-    "text" : microsoft_svg + "&nbsp;" + "Microsoft POI" + visa_svg + mastercard_svg  + "<sub><small>since 2017</small></sub>",
+    "text" : microsoft_svg + "&nbsp;" + "Microsoft POI" + visa_svg + mastercard_svg  + "<sup><small>since 2017</small></sup>",
     "icon" : folder_icon,
     "link_type": "folder",   
     "state"       : {
@@ -6573,7 +6573,7 @@ icon_flatjson.push(icon_item)
 icon_item = { 
     "id" :  3283,     
     "parent" : 327,
-    "text" : esri_svg + "  Esri POI" + visa_svg + mastercard_svg  + "<sub><small>since 2024</small></sub>",
+    "text" : esri_svg + "  Esri POI" + visa_svg + mastercard_svg  + "<sup><small>since 2024</small></sup>",
     "icon" : folder_icon,
     "link_type": "folder",   
     "state"       : {
@@ -7364,7 +7364,7 @@ icon_item = {
                 icon_item = { 
                     "id" :  3282,     
                     "parent" : 327,
-                    "text" : "Here POI"  + "<sub><small>since 2012</small></sub>",
+                    "text" : "Here POI"  + "<sup><small>since 2012</small></sup>",
                     "icon" : folder_icon,
                     "link_type": "folder",   
                     "state"       : {
