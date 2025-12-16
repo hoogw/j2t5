@@ -67,7 +67,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                         "id" :  327,     
                         "parent" : 10,
 
-                        "text" : "911 location platform",
+                        "text" : "911 location for police",
 
                         "icon" : folder_icon,
                         "link_type": "folder",   
@@ -3959,7 +3959,7 @@ icon_flatjson.push(icon_item)
 icon_item = { 
     "id" :  328,     
     "parent" : 327,
-    "text" : yelp_svg + " Yelp POI (free)"  + "<sup><small>since 2007</small></sup>", 
+    "text" : yelp_svg + " Yelp POI (free)"  + "<sup><small>2007-now</small></sup>", 
     "icon" : folder_icon,
     "link_type": "folder",   
     "state"       : {
@@ -4616,7 +4616,7 @@ icon_flatjson.push(icon_item)
 icon_item = { 
 "id" :  3284,     
 "parent" : 327,
-"text" : apple_svg + "Apple POI (free)"  + "<sup><small>since 2018</small></sup>",
+"text" : apple_svg + "Apple POI (free)"  + "<sup><small>2018-now</small></sup>",
 "icon" : folder_icon,
 "link_type": "folder",   
 "state"       : {
@@ -4632,7 +4632,7 @@ icon_flatjson.push(icon_item)
 
         /* = = = = sub folder = = = = g o o g l e p o i = = = =  */
         icon_item = { 
-            "id" :  4011,     
+            "id" :  4010,     
             "parent" : 3284,
             "text" : "pan & zoom",
             "icon" : folder_icon,
@@ -4650,12 +4650,12 @@ icon_flatjson.push(icon_item)
                         
 
                     icon_item = { 
-                                    "id" :  4012,     
-                                    "parent" : 4011,
-                                    "text" : "4012 everything",
+                                    "id" :  4011,     
+                                    "parent" : 4010,
+                                    "text" : "4011 mapkits x1",
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
-                                    "link_type": "embed_4012",
+                                    "link_type": "embed_4011",
                                     "state"       : {
                                                     "opened"    : true,  // is the node open
                                                     // disabled  : boolean  // is the node disabled
@@ -4671,9 +4671,47 @@ icon_flatjson.push(icon_item)
 
 
 
+                    icon_item = { 
+                                    "id" :  4014,     
+                                    "parent" : 4010,
+                                    "text" : "4014 mapkits x4",
+                                    "layer_name" : _layer_name_,
+                                    "icon" : open_new_tab_icon,
+                                    "link_type": "embed_4014",
+                                    "state"       : {
+                                                    "opened"    : true,  // is the node open
+                                                    // disabled  : boolean  // is the node disabled
+                                                    // "selected"  : true   // is the node selected
+                                                },
+                                    "node_path" : _node_path_, 
+                                    "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                    "server_path" : _map_server_url_,
+                                    "layer_id" :  _layer_id_,            
+                                    "type" : _type_
+                                };
+                    icon_flatjson.push(icon_item)
 
 
 
+                    icon_item = { 
+                                    "id" :  4012,     
+                                    "parent" : 4010,
+                                    "text" : "4012 map server api",
+                                    "layer_name" : _layer_name_,
+                                    "icon" : open_new_tab_icon,
+                                    "link_type": "embed_4012",
+                                    "state"       : {
+                                                    "opened"    : true,  // is the node open
+                                                    // disabled  : boolean  // is the node disabled
+                                                    // "selected"  : true   // is the node selected
+                                                },
+                                    "node_path" : _node_path_, 
+                                    "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                    "server_path" : _map_server_url_,
+                                    "layer_id" :  _layer_id_,            
+                                    "type" : _type_
+                                };
+                    icon_flatjson.push(icon_item)
                                      
 
 
@@ -4683,7 +4721,7 @@ icon_flatjson.push(icon_item)
 icon_item = { 
     "id" :  3280,     
     "parent" : 327,
-    "text" : google_svg + " Google POI" + paypal_svg + visa_svg + mastercard_svg + "<sup><small>since 2011</small></sup>",
+    "text" : google_svg + " Google POI" + paypal_svg + visa_svg + mastercard_svg + "<sup><small>2011-now</small></sup>",
     "icon" : folder_icon,
     "link_type": "folder",   
     "state"       : {
@@ -5905,7 +5943,7 @@ icon_flatjson.push(icon_item)
 icon_item = { 
     "id" :  7281,     
     "parent" : 327,
-    "text" : microsoft_svg + "&nbsp;" + "Microsoft POI" + visa_svg + mastercard_svg  + "<sup><small>since 2017</small></sup>",
+    "text" : microsoft_svg + "&nbsp;" + "Microsoft POI" + visa_svg + mastercard_svg  + "<sup><small>2017-now</small></sup>",
     "icon" : folder_icon,
     "link_type": "folder",   
     "state"       : {
@@ -6573,7 +6611,7 @@ icon_flatjson.push(icon_item)
 icon_item = { 
     "id" :  3283,     
     "parent" : 327,
-    "text" : esri_svg + "  Esri POI" + visa_svg + mastercard_svg  + "<sup><small>since 2024</small></sup>",
+    "text" : esri_svg + "  Esri POI" + visa_svg + mastercard_svg  + "<sup><small>2024-now</small></sup>",
     "icon" : folder_icon,
     "link_type": "folder",   
     "state"       : {
@@ -7364,7 +7402,7 @@ icon_item = {
                 icon_item = { 
                     "id" :  3282,     
                     "parent" : 327,
-                    "text" : "Here POI"  + "<sup><small>since 2012</small></sup>",
+                    "text" : "Here POI"  + "<sup><small>2012-now</small></sup>",
                     "icon" : folder_icon,
                     "link_type": "folder",   
                     "state"       : {

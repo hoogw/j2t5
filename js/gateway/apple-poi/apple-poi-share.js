@@ -1,6 +1,14 @@
 
 
 
+// mapkit class use this
+//var apple_nearby = "https://api.apple-mapkit.com/v1/nearbyPoi"
+var apple_nearby = "https://maps-api.apple.com/v1/search"
+var apple_searchText = "https://places.googleapis.com/v1/places:searchText"
+
+
+
+
 var _total_poi = 0
 var _all_poi_flat_array = []
 var _all_poi_uniqueID_array = []
@@ -310,7 +318,7 @@ var apple_poi_annotation_array = []
      function poi_reset_all_annotation_style_to_default(){
 
 
-      console.log(' !!! reset !!! all !!!  annotation !!! style !!! to !!! default !!! ')
+      //console.log(' !!! reset !!! all !!!  annotation !!! style !!! to !!! default !!! ')
       
       for (let i = 0; i < apple_poi_annotation_array.length; i++) {
         apple_poi_annotation_array[i].element.innerHTML= default_icon;

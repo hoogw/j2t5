@@ -2399,6 +2399,18 @@ case "embed_3953":
     console.log('_newTab_link', _newTab_link)
   break;
 
+  case "embed_4011":
+      var _newTab_link =  apple_base_url.replace('apple/default.html?', 'apple-poi/pan-zoom1.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+   case "embed_4014":
+      var _newTab_link =  apple_base_url.replace('apple/default.html?', 'apple-poi/pan-zoom4.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
+
 
 //   ^^^^^^^^^^^^^^^^^^^^^   end   ^^^^^^^^^^^^^^^^^^^^^  bing  feature layer     ^^^^^^^^^^^^^^^^^^^^^
 /**/

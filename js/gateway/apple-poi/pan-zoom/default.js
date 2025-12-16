@@ -27,9 +27,14 @@ function empty_info_outline_Tab(){
 
            
             
-          function nearby_poi(_lat, _lng, _zoom_string){  // apple use lat-lng-region, not circle, but circle is ok
+         async function nearby_poi(_lat, _lng, _zoom_string){  // apple use lat-lng-region, not circle, but circle is ok
 
 
+              if (apple_poi_search_object){
+                
+              } else {
+                    apple_poi_search_object = new mapkit.PointsOfInterestSearch()
+              }
              
 
               /**/
@@ -37,6 +42,7 @@ function empty_info_outline_Tab(){
               /**/
                   _category_string = $("#category-input").val()
                   update_url_parameter("poicategory",_category_string)
+
                   if (_category_string){
                         _category_array = _category_string.split(","); // Splits by comma
                   } else {
@@ -48,31 +54,36 @@ function empty_info_outline_Tab(){
               /**/
 
 
+              var apple_map_server_api_url = apple_nearby + "?"
+              apple_map_server_api_url += "q=police"
 
+              var region_encoded = encodeURIComponent(get_coord_region(_lat, _lng, _zoom_string))
+              console.log("region_encoded", region_encoded)
+              //apple_map_server_api_url += "&mapRegion=" + region_encoded
 
-              if (apple_poi_search_object){
-                
-              } else {
-                    apple_poi_search_object = new mapkit.PointsOfInterestSearch()
-              }
-
-              /*
-              // for 1 x
-              apple_poi_search_object.region = get_coord_region(_lat, _lng, _zoom_string)
-              // .search(callback, option)
-              //apple_poi_search_object.search(apple_poi_result_callback, {"region": get_coord_region(_lat, _lng, _zoom_string)})
-              apple_poi_search_object.search(apple_poi_result_callback)
-              */
-
-
-               // for 4 x
-              var region4x_array = get_4x_coord_region(_lat, _lng, _zoom_string)
-              console.log("region4x_array", region4x_array)
-              for (let r = 0; r < region4x_array.length; r++) {
-                  apple_poi_search_object.region = region4x_array[r]
-                  apple_poi_search_object.search(apple_poi_result_callback)
-              }//for
               
+              var response_raw =  await $.ajax({
+                  url: apple_map_server_api_url,
+                  headers: {
+                  // 'Authorization': 'Bearer ' + _apple_token,  //'Bearer xxxxxx',
+                  'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJtYXBzYXBpIiwidGlkIjoiQzROWDVTOVE0QiIsImFwcGlkIjoiVGVzdCBUb2tlbiIsIml0aSI6ZmFsc2UsImlydCI6ZmFsc2UsImlhdCI6MTc2NTkxMDU0OCwiZXhwIjoxNzY1OTEyMzQ4fQ.YeWnAKQxWwpTjhJLMNJkQU3TWHW5SmlR9CdKV1Sgo6wlURKURCnwog9qAkiiQDeX3ICUp31MtSkmC9FnxspVKQ',
+                  },
+
+                  method: 'GET',
+                  dataType: 'json',
+                  
+                  success: function(data){
+                    console.log('poi search by categories success', data)
+                    apple_poi_result_callback("", data)
+                  }, 
+                  error: function(jqXHR, textStatus, errorThrown) {
+                    // Handle error response
+                    console.error("Error:", textStatus, errorThrown);
+                  }
+                }); 
+                console.log(' place search nearby results : ', response_raw);
+                    
+                
 
 
             }
