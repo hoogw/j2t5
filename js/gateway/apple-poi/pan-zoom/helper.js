@@ -370,6 +370,12 @@ difference:
       function init_user_interface_event(){
 
              
+
+            // only for pan & zoom, not for manual drawing circle
+            $("#start_over_button").on("click", function() {
+                  
+                   clear_all_poi()
+            });
               
       }
 
