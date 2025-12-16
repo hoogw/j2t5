@@ -1757,6 +1757,11 @@ function splitAddressMicrosoft_REST_API(_raw_features_array){
             datasource_highlight.clear();
         }
 
+         // reset to empty geojson template
+          poi_geojson = {
+                            "type": "FeatureCollection",
+                            "features": []
+                        };
 
         _all_poi_uniqueID_array = []
         _all_poi_flat_array = []

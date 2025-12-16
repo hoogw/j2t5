@@ -347,6 +347,11 @@ var apple_poi_annotation_array = []
           // . .  end . . efficient core newOnly  . - .
 
 
+          // reset to empty geojson template
+          poi_geojson = {
+                            "type": "FeatureCollection",
+                            "features": []
+                        };
           
 
         _all_poi_uniqueID_array = []
@@ -358,6 +363,134 @@ var apple_poi_annotation_array = []
       }
         
 
+
+
+
+
+
+
+
+
+      
+            function init_poi_ui_before_map_load(){
+
+           
+
+
+            // only for pan & zoom, not for manual drawing circle
+            $("#start_over_button").on("click", function() {
+                  
+                   clear_all_poi()
+            });
+
+
+
+                
+            
+
+
+
+
+            /**/
+            //  -  -  - category  -  -  - 
+            /**/
+
+            // 1st time, one time run
+            if (_category_string){
+              $("#category-input").val(_category_string)
+              console.log("1st time, one time run, set poi category search", _category_string)
+            }
+            // do not use, cause unwanted click-refresh, close-dev-tool
+            //$("#category-input").on('keyup', update_poi_cat_content);
+           
+
+
+            /**/
+            //  -  -  - end  -  -  -  category    -  -  - 
+            /**/
+
+
+
+                 
+            
+            /**/
+            //  -  -  - search poi keyword  -  -  - 
+            /**/
+
+            // 1st time, one time run
+            if (search_poi_keyword){
+            $("#search_poi_input").val(search_poi_keyword)
+                console.log("1st time, one time run, set poi keyword search", search_poi_keyword)
+            }
+            // do not use, cause unwanted click-refresh, close-dev-tool
+            //$("#search_poi_input").on('keyup', update_poi_keyword_content);
+
+
+            // search bar close icon clicked. clear everything.
+            //$('#clear_poi_button').on('click', remove_current_poi);
+    
+            //$('#search_poi_button').on('click', search_poi);
+          
+            // default search
+            //$('#search_poi_input').on('search', search_poi);
+
+
+            /**/
+            //  -  -  - end  -  -  -  search poi keyword    -  -  - 
+            /**/
+
+
+
+
+
+                          
+                /**/
+            //  - - - download csv  - - - 
+            /**/
+
+
+
+
+            $("#download_csv_button").on("click", function() {
+
+              json_for_csv = geojson_to_csvReadyJsonArray(poi_geojson)
+              
+              /**/
+              //  --- papaparse   --- 
+              /**/
+              var final_csv_string = parse_json_to_csv_string(json_for_csv)
+              /**/
+              //  --- end  ---  papaparse    --- 
+              /**/
+
+              saveStringAsFile('poi.csv', final_csv_string)
+
+          });
+
+
+
+      /**/
+      //  - - -  end  - - -   download csv    - - - 
+      /**/
+
+
+
+
+  /**/
+    // - - - - download poi  - - - - 
+    /**/
+    $("#download_poi_button").on("click", function() {
+      saveJsonAsFile('poi.geojson', poi_geojson)
+  });
+/**/
+//  - - - -  end  - - - -  download poi   - - - - 
+/**/
+
+
+
+  
+            }
+              
 
     
 

@@ -735,6 +735,16 @@ async function initMap() {
               display_count_info(_layer, _current_area_count_of_feature, _total_count_of_feature, _current_rendering_feature)
 
             
+              
+
+            /**/
+            //  ---  apple poi    --- 
+            /**/
+            init_poi_ui_before_map_load()
+            /**/
+            //  --- end  ---  apple poi    --- 
+            /**/
+
         
             /**/
             // ------- apple map only  -------

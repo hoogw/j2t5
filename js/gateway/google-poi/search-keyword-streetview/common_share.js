@@ -1307,6 +1307,12 @@ var highlighted_color = '#1F51FF' // Neon Blue
                        marker_array = []
                        
 
+                        // reset to empty geojson template
+          poi_geojson = {
+                            "type": "FeatureCollection",
+                            "features": []
+                        };
+                        
                       _all_poi_uniqueID_array = []
                       _all_poi_flat_array = []
 

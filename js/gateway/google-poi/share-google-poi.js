@@ -758,7 +758,11 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
           // . .  end . . efficient core newOnly  . - .
 
 
-          
+           // reset to empty geojson template
+          poi_geojson = {
+                            "type": "FeatureCollection",
+                            "features": []
+                        };
 
         _all_poi_uniqueID_array = []
         _all_poi_flat_array = []

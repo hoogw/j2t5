@@ -726,6 +726,11 @@ function remove_without_keyword_from_search_result(__poi_geojson__){
                        }//for
                        marker_array = []
                        
+                        // reset to empty geojson template
+          poi_geojson = {
+                            "type": "FeatureCollection",
+                            "features": []
+                        };
 
                       _all_poi_uniqueID_array = []
                       _all_poi_flat_array = []
@@ -758,7 +763,11 @@ function remove_without_keyword_from_search_result(__poi_geojson__){
                     // . .  end . . efficient core newOnly  . - .
 
 
-                    
+                     // reset to empty geojson template
+          poi_geojson = {
+                            "type": "FeatureCollection",
+                            "features": []
+                        };
 
                     _all_poi_uniqueID_array = []
                     _all_poi_flat_array = []

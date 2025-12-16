@@ -470,6 +470,12 @@ function clear_all_poi(){
 
   graphic_layer.removeAll()
 
+   // reset to empty geojson template
+          poi_geojson = {
+                            "type": "FeatureCollection",
+                            "features": []
+                        };
+
   _all_poi_uniqueID_array = []
   _all_poi_flat_array = []
 

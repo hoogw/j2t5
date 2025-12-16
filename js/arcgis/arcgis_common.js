@@ -5196,6 +5196,9 @@ var json_for_csv
     var _featureObj
     var _csvRowObj = {}
     var _featuresArray = sample_geojson.features
+
+    if (!(_featuresArray.length)){ return _csvReadyJsonArray}
+
     var _featureGeometryType = _featuresArray[0].geometry.type
 
     if (_featureGeometryType.includes('Point')){
