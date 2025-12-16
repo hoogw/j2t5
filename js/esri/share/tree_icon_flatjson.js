@@ -4652,7 +4652,7 @@ icon_flatjson.push(icon_item)
                     icon_item = { 
                                     "id" :  4011,     
                                     "parent" : 4010,
-                                    "text" : "4011 mapkits x1",
+                                    "text" : "4011 nearby x1",
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
                                     "link_type": "embed_4011",
@@ -4674,7 +4674,7 @@ icon_flatjson.push(icon_item)
                     icon_item = { 
                                     "id" :  4014,     
                                     "parent" : 4010,
-                                    "text" : "4014 mapkits x4",
+                                    "text" : "4014 nearby x4",
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
                                     "link_type": "embed_4014",

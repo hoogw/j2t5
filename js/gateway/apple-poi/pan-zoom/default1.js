@@ -26,64 +26,57 @@ function empty_info_outline_Tab(){
 /**/    
 
            
-            
+         // 1 x    
          async function nearby_poi(_lat, _lng, _zoom_string){  // apple use lat-lng-region, not circle, but circle is ok
 
 
               apple_poi_search_object = new mapkit.PointsOfInterestSearch()
               apple_poi_search_object.language = 'en'
             apple_poi_search_object.includePhysicalFeatures = true
-            
              
              
 
               /**/
-              //  -  -  - category  -  -  - 
+              //  -  -  - apple category  -  -  - 
               /**/
                   _category_string = $("#category-input").val()
                   update_url_parameter("poicategory",_category_string)
 
+              
                   if (_category_string){
-                        _category_array = _category_string.split(","); // Splits by comma
-                  } else {
-                        _category_array = []
+                    // capitalize upper case the 1st letter
+                    _category_string = String(_category_string).charAt(0).toUpperCase() + String(_category_string).slice(1)
+                    //var poiFilter = mapkit.PointOfInterestFilter.including([mapkit.PointOfInterestCategory.Hospital])
+                    //var poiFilter = mapkit.PointOfInterestFilter.including([mapkit.PointOfInterestCategory["Hospital"]])
+                    var poiFilter = mapkit.PointOfInterestFilter.including([mapkit.PointOfInterestCategory[_category_string]])
+                    apple_poi_search_object.pointOfInterestFilter = poiFilter
                   }
-                  console.log('category array', _category_array); // Output: ["apple", "banana", "orange"]
+              
               /**/
-              //  -  -  - end  -  -  -  category    -  -  - 
+              //  -  -  - end  -  -  - apple category    -  -  - 
               /**/
 
-
-              var apple_map_server_api_url = apple_nearby + "?"
-              apple_map_server_api_url += "q=police"
-
-              var region_encoded = encodeURIComponent(get_coord_region(_lat, _lng, _zoom_string))
-              console.log("region_encoded", region_encoded)
-              //apple_map_server_api_url += "&mapRegion=" + region_encoded
 
               
-              var response_raw =  await $.ajax({
-                  url: apple_map_server_api_url,
-                  headers: {
-                  // 'Authorization': 'Bearer ' + _apple_token,  //'Bearer xxxxxx',
-                  'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJtYXBzYXBpIiwidGlkIjoiQzROWDVTOVE0QiIsImFwcGlkIjoiVGVzdCBUb2tlbiIsIml0aSI6ZmFsc2UsImlydCI6ZmFsc2UsImlhdCI6MTc2NTkxMDU0OCwiZXhwIjoxNzY1OTEyMzQ4fQ.YeWnAKQxWwpTjhJLMNJkQU3TWHW5SmlR9CdKV1Sgo6wlURKURCnwog9qAkiiQDeX3ICUp31MtSkmC9FnxspVKQ',
-                  },
+         
 
-                  method: 'GET',
-                  dataType: 'json',
-                  
-                  success: function(data){
-                    console.log('poi search by categories success', data)
-                    apple_poi_result_callback("", data)
-                  }, 
-                  error: function(jqXHR, textStatus, errorThrown) {
-                    // Handle error response
-                    console.error("Error:", textStatus, errorThrown);
-                  }
-                }); 
-                console.log(' place search nearby results : ', response_raw);
-                    
-                
+              // for 1 x, works
+              apple_poi_search_object.region = get_coord_region(_lat, _lng, _zoom_string)
+              // .search(callback, option)
+              //apple_poi_search_object.search(apple_poi_result_callback, {"region": get_coord_region(_lat, _lng, _zoom_string)})
+              apple_poi_search_object.search(apple_poi_result_callback)
+
+          /* keep,but not use class, use map server api instead    
+               // for 4 x, works
+              var region4x_array = get_4x_coord_region(_lat, _lng, _zoom_string)
+              console.log("region4x_array", region4x_array)
+              for (let r = 0; r < region4x_array.length; r++) {
+                  apple_poi_search_object.region = region4x_array[r]
+                  apple_poi_search_object.search(apple_poi_result_callback)
+              }//for
+          */
+
+            
 
 
             }
