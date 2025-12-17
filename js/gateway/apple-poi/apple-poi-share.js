@@ -3,10 +3,8 @@
 
 // mapkit class use this
 //var apple_nearby = "https://api.apple-mapkit.com/v1/nearbyPoi"
-var apple_nearby = "https://maps-api.apple.com/v1/search"
-var apple_searchText = "https://places.googleapis.com/v1/places:searchText"
-
-
+var apple_search_api = "https://maps-api.apple.com/v1/search"
+var apple_token_url = "https://maps-api.apple.com/v1/token"
 
 
 var _total_poi = 0
@@ -33,7 +31,7 @@ var apple_poi_annotation
 var apple_poi_annotation_array = []
 
 
-    // apple poi only
+    // apple poi only, for mapkit
     function poi_to_geojson(____poi_array){  // apple poi only  
 
     var ____feature_array = []
@@ -148,6 +146,177 @@ var apple_poi_annotation_array = []
         poi_phone = poi_element.telephone
         poi_url = poi_element.urls[0] // only use 1st url, ignore others
         poi_formattedAddress = poi_element.formattedAddress
+        
+
+        ____feature = {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [poi_lng, poi_lat]
+        },
+        "properties": {
+
+            "poi_id": poi_id,
+            "name": poi_name,
+            
+            "phone": poi_phone,
+            "url": poi_url,
+
+            "stNo": poi_streetNumber,
+            
+
+            //  . . . street name need to further split  . . . 
+            "strName": poi_streetName,
+            "stPrefix" : poi_streetPrefix,
+            "stName" : poi_streetNameOnly,
+            "stType" : poi_streetType,
+            // . . .  end  . . .  street name need to further split
+
+
+            "city": poi_city,
+            "state": poi_stateAbre,
+            "state1":poi_state,
+            "zipCode": poi_zipCode,
+
+            "fmtAddr": poi_formattedAddress,
+
+           
+        
+        }//properties
+        }//feature
+
+        ____feature_array.push(____feature)
+        
+    }//for
+
+    
+    geojson_template =  {
+        "type": "FeatureCollection",
+        "features": ____feature_array
+    };
+
+    return geojson_template
+
+    }
+
+    // apple poi only, for map-server-api
+    function poi_to_geojson_mapServerApi(____poi_array){  // apple poi only  
+
+    var ____feature_array = []
+    var ____feature
+    var poi_element
+
+    var poi_location
+    var poi_lat
+    var poi_lng
+
+
+    var poi_id
+    var poi_muid
+    var poi_name
+    
+    var poi_phone
+    var poi_url
+    
+   
+    
+    var poi_streetNumber
+    var poi_streetName
+    
+    var poi_formattedAddress
+
+    var streetName_component = []
+    var poi_streetPrefix
+    var poi_streetNameOnly
+    var poi_streetType
+
+
+    var poi_city
+  
+    var poi_state
+    var poi_stateAbre
+    var poi_zipCode
+    
+
+    var poi_primaryType
+    var poi_type
+
+
+    for (let i = 0; i < ____poi_array.length; i++) {
+
+        poi_element = ____poi_array[i]
+        //console.log('apple poi item ',i,  poi_element)
+        poi_location = poi_element.coordinate
+        poi_lng = poi_location.longitude
+        poi_lat = poi_location.latitude
+
+        poi_formattedAddress = poi_element.formattedAddressLines.join(', ');
+
+
+        // street number
+        poi_streetNumber = poi_element.structuredAddress.subThoroughfare;
+        // full street name
+        poi_streetName = poi_element.structuredAddress.thoroughfare;
+
+        //  . . . street name need to further split  . . . 
+        // api https://github.com/hassansin/parse-address
+            streetName_component =  parseAddress.parseLocation(poi_streetName);
+            
+            //console.log(' parse street name only  ', poi_streetName,  streetName_component);
+            
+            if ((streetName_component) && (streetName_component.hasOwnProperty('prefix'))){
+                poi_streetPrefix = streetName_component.prefix.toUpperCase();
+            } else {
+                poi_streetPrefix = ''
+            }
+            
+            if ((streetName_component) && (streetName_component.hasOwnProperty('street'))){
+                poi_streetNameOnly = streetName_component.street.toUpperCase();
+            } else {
+                poi_streetNameOnly = ''
+            }
+            
+            if ((streetName_component) && (streetName_component.hasOwnProperty('type'))){
+                poi_streetType = streetName_component.type.toUpperCase();
+            } else {
+                poi_streetType = ''
+        }
+        // . . .  end  . . .  street name need to further split
+
+
+        // city 
+        poi_city = poi_element.structuredAddress.locality;
+              
+                 
+        // state
+        poi_state = poi_element.structuredAddress.administrativeArea;
+        poi_stateAbre = poi_element.structuredAddress.administrativeAreaCode;
+
+        // zip-code 
+        poi_zipCode = poi_element.structuredAddress.postCode;
+              
+
+
+
+        poi_id = poi_element.id
+       
+        poi_name = poi_element.name
+
+
+        
+        // not use, these should be done in arcpro
+        // - - motorola requirement  - - 
+        // 1) remove special char by space
+        //The regular expression /[^a-zA-Z0-9\s]/g matches any character that is NOT an alphabet (a-z, A-Z), a number (0-9), or a whitespace character
+        //poi_name = poi_name.replace(/[^a-zA-Z0-9\s]/g, ' ');
+        // 2) truncate max length 60 char
+        //poi_name = poi_name.substring(0, 60);
+        //  - -  end - - motorola requirement  - - 
+
+
+       
+       
+
         
 
         ____feature = {

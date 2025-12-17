@@ -63,8 +63,8 @@ function empty_info_outline_Tab(){
               // for 1 x, works
               apple_poi_search_object.region = get_coord_region(_lat, _lng, _zoom_string)
               // .search(callback, option)
-              //apple_poi_search_object.search(apple_poi_result_callback, {"region": get_coord_region(_lat, _lng, _zoom_string)})
-              apple_poi_search_object.search(apple_poi_result_callback)
+              //apple_poi_search_object.search(mapkit_poi_result_callback, {"region": get_coord_region(_lat, _lng, _zoom_string)})
+              apple_poi_search_object.search(mapkit_poi_result_callback)
 
           /* keep,but not use class, use map server api instead    
                // for 4 x, works
@@ -72,7 +72,7 @@ function empty_info_outline_Tab(){
               console.log("region4x_array", region4x_array)
               for (let r = 0; r < region4x_array.length; r++) {
                   apple_poi_search_object.region = region4x_array[r]
-                  apple_poi_search_object.search(apple_poi_result_callback)
+                  apple_poi_search_object.search(mapkit_poi_result_callback)
               }//for
           */
 
@@ -82,7 +82,7 @@ function empty_info_outline_Tab(){
             }
 
 
-            function apple_poi_result_callback(_error, _data){
+            function mapkit_poi_result_callback(_error, _data){
 
                 console.log('apple poi search object search call back ', _error, _data)
 

@@ -30,43 +30,51 @@ function empty_info_outline_Tab(){
          async function nearby_poi(_lat, _lng, _zoom_string){  // apple use lat-lng-region, not circle, but circle is ok
 
 
-              apple_poi_search_object = new mapkit.PointsOfInterestSearch()
-              apple_poi_search_object.language = 'en'
-            apple_poi_search_object.includePhysicalFeatures = true
-            
-             
-             
+            /**/
+            //  -  -  - search poi keyword  -  -  - 
+            /**/
+            search_poi_keyword = $("#search_poi_input").val()
+            update_url_parameter('poi', search_poi_keyword);
+            /**/
+            //  -  -  - end  -  -  -  search poi keyword    -  -  - 
+            /**/
 
-              /**/
-              //  -  -  - category  -  -  - 
-              /**/
-                  _category_string = $("#category-input").val()
-                  update_url_parameter("poicategory",_category_string)
+            if (search_poi_keyword){
 
-                  if (_category_string){
-                        _category_array = _category_string.split(","); // Splits by comma
-                  } else {
-                        _category_array = []
+
+             var temp_access_token 
+             var response_token =  await $.ajax({
+                  url: apple_token_url,
+                  headers: {
+                    'Authorization': 'Bearer ' + _apple_token,  //'Bearer xxxxxx',
+                   },
+                  method: 'GET',
+                  dataType: 'json',
+                  success: function(data){
+                     temp_access_token = data.accessToken
+                     console.log('temp_access_token', temp_access_token)
+                  }, 
+                  error: function(jqXHR, textStatus, errorThrown) {
+                    // Handle error response
+                    console.error("Error:", textStatus, errorThrown);
                   }
-                  console.log('category array', _category_array); // Output: ["apple", "banana", "orange"]
-              /**/
-              //  -  -  - end  -  -  -  category    -  -  - 
-              /**/
+                }); 
+                
 
 
-              var apple_map_server_api_url = apple_nearby + "?"
-              apple_map_server_api_url += "q=police"
 
-              var region_encoded = encodeURIComponent(get_coord_region(_lat, _lng, _zoom_string))
-              console.log("region_encoded", region_encoded)
-              //apple_map_server_api_url += "&mapRegion=" + region_encoded
 
+              var apple_map_server_api_url = apple_search_api + "?lang=en-US"
+              apple_map_server_api_url += "&q=" + search_poi_keyword
+
+              // north-latitude,east-longitude,south-latitude,west-longitude
+              apple_map_server_api_url += "&searchRegion=" + get_region_string(_lat, _lng, _zoom_string)
+              
               
               var response_raw =  await $.ajax({
                   url: apple_map_server_api_url,
                   headers: {
-                  // 'Authorization': 'Bearer ' + _apple_token,  //'Bearer xxxxxx',
-                  'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJtYXBzYXBpIiwidGlkIjoiQzROWDVTOVE0QiIsImFwcGlkIjoiVGVzdCBUb2tlbiIsIml0aSI6ZmFsc2UsImlydCI6ZmFsc2UsImlhdCI6MTc2NTkxMDU0OCwiZXhwIjoxNzY1OTEyMzQ4fQ.YeWnAKQxWwpTjhJLMNJkQU3TWHW5SmlR9CdKV1Sgo6wlURKURCnwog9qAkiiQDeX3ICUp31MtSkmC9FnxspVKQ',
+                 'Authorization': 'Bearer ' + temp_access_token,  //'Bearer xxxxxx',
                   },
 
                   method: 'GET',
@@ -74,7 +82,7 @@ function empty_info_outline_Tab(){
                   
                   success: function(data){
                     console.log('poi search by categories success', data)
-                    apple_poi_result_callback("", data)
+                    mapServerApi_poi_result_callback("", data)
                   }, 
                   error: function(jqXHR, textStatus, errorThrown) {
                     // Handle error response
@@ -84,18 +92,19 @@ function empty_info_outline_Tab(){
                 console.log(' place search nearby results : ', response_raw);
                     
                 
-
+              }//if
 
             }
 
 
-            function apple_poi_result_callback(_error, _data){
+            // only for apple map server api
+            function mapServerApi_poi_result_callback(_error, _data){
 
                 console.log('apple poi search object search call back ', _error, _data)
 
                 var places = []
-                if (_data.hasOwnProperty("places") && (_data.places)){
-                  places = _data.places
+                if (_data.hasOwnProperty("results") && (_data.results)){
+                  places = _data.results
                 }
 
                     //  . . efficient core newOnly  . - .
@@ -123,13 +132,13 @@ function empty_info_outline_Tab(){
                     $("#poi_total").html(_total_poi)
 
                       // special version only for google place poi
-                      poi_geojson = poi_to_geojson(_all_poi_flat_array)
+                      poi_geojson = poi_to_geojson_mapServerApi(_all_poi_flat_array)
                       console.log('poi geojson', poi_geojson)
 
        
                       //  . . efficient core newOnly  . - .
                             console.log('_this_newOnly_result_array', _this_newOnly_result_array)
-                            _this_newOnly_poi_geojson = poi_to_geojson(_this_newOnly_result_array)
+                            _this_newOnly_poi_geojson = poi_to_geojson_mapServerApi(_this_newOnly_result_array)
                             
                             
                             // both works, the same, this is apple's mapkit.importGeoJSON   https://developer.apple.com/documentation/mapkitjs/mapkit/2974044-importgeojson

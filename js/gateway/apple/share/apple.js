@@ -10,7 +10,23 @@
 // ------- apple map only  -------
 /**/
 
-var _apple_token = "eyJraWQiOiI4WTdHWVBHTVY3IiwidHlwIjoiSldUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJDNE5YNVM5UTRCIiwiaWF0IjoxNzY1ODE3MTM1LCJleHAiOjE3NjY0NzY3OTl9.lSW8Lq4dc6e4RVIRjyGz73EhwQeUGoPqwM8hJesEIxHa-jcy8ZUePrnTVnyxKSAJpsnPO0L-ha3pEZZJG-5_IA"
+var _apple_token 
+(function() {
+  if (location.hostname.includes("localhost")){
+    // expire 7 days, no restrict, for localhost 
+      _apple_token = "eyJraWQiOiI4WTdHWVBHTVY3IiwidHlwIjoiSldUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJDNE5YNVM5UTRCIiwiaWF0IjoxNzY1ODE3MTM1LCJleHAiOjE3NjY0NzY3OTl9.lSW8Lq4dc6e4RVIRjyGz73EhwQeUGoPqwM8hJesEIxHa-jcy8ZUePrnTVnyxKSAJpsnPO0L-ha3pEZZJG-5_IA"
+      console.log("expire 7 days, no restrict, for localhost")
+  } else {
+    // never expire domain restrict
+    _apple_token = "eyJraWQiOiI3WERaQzc2MjlXIiwidHlwIjoiSldUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJDNE5YNVM5UTRCIiwiaWF0IjoxNzY0MTg2Njc3LCJvcmlnaW4iOiJ0cmFuc3BhcmVudGdvdi5uZXQifQ.y4HioJk5y_0vbI59mX16HPeVmPTssNxGAZehF66QwOxcn56ek1gPI-8gjNyjEXwSvVV86-_lqRuEGF2KUL69cA"
+    console.log("never expire domain restrict")
+  }//if
+})();// self run function
+
+
+
+
+
 
 // must above default icon color
 var   _default_strokeOpacity   =  1  // apple only
@@ -3823,6 +3839,41 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
 
 
+
+        function get_region_string(_lat, _lng, _zoom_string){
+
+            //zoom is encoded from url  '0.2496763450607702%2C0.34314894976834864'
+            //console.log('get coord region, ', _zoom_string)
+            _zoom_string = decodeURIComponent(_zoom_string)
+            //console.log('get coord region for apple only after decoded', _zoom_string)
+            var latitudeDelta  = parseFloat(_zoom_string.split(',')[0]);
+            var longitudeDelta = parseFloat(_zoom_string.split(',')[1]);
+            console.log('get coord region for apple only latitudeDelta ',  latitudeDelta)
+            console.log('get coord region for apple only longitudeDelta ',  longitudeDelta)
+
+            if (isNaN(latitudeDelta)){
+              // Unlike longitudinal distances, which vary based on the latitude, one degree of latitude is always approximately 111 kilometers (69 miles) 
+              // https://developer.apple.com/documentation/mapkitjs/mapkit/coordinatespan/2973868-latitudedelta
+              latitudeDelta = 1  // default 1 degree, 111km 69mile
+            }
+            if (isNaN(longitudeDelta)){
+              // The number of kilometers spanned by a longitude range varies based on the current latitude. For example, one degree of longitude spans a distance of approximately 111 kilometers (69 miles) at the equator but shrinks to 0 kilometers at the poles. 
+              // https://developer.apple.com/documentation/mapkitjs/mapkit/coordinatespan/2973869-longitudedelta
+              longitudeDelta = 1  // default 1 degree, 111km 69mile
+            }
+
+            // north-latitude,east-longitude,south-latitude,west-longitude
+            var north_latitude = _lat + (latitudeDelta / 2)
+            var east_longitude = _lng + (longitudeDelta / 2)
+            var south_latitude = _lat - (latitudeDelta / 2)
+            var west_longitude = _lng - (longitudeDelta / 2)
+            var region_string = north_latitude + ',' + east_longitude + ',' + south_latitude + ',' + west_longitude
+           
+            console.log('region_string', region_string)
+
+          return region_string
+
+        }
 
                                   
         // apple does not have 'zoom level' concept, so use (latitudeDelta,longitudeDelta) as zoom level, seperate by comma, "0.2496763450607702,0.34314894976834864"
