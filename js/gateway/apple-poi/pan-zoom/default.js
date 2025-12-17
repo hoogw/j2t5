@@ -1,6 +1,11 @@
 
 
 
+/**/
+//  --- apple poi      --- 
+/**/    
+
+
 
 function show_info_outline_Tab(___properties){
     // make sure flex_1 is id of column
@@ -19,11 +24,6 @@ function empty_info_outline_Tab(){
 
 
 
-
-
-/**/
-//  --- apple poi      --- 
-/**/    
 
            
             

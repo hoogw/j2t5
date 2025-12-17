@@ -37,9 +37,37 @@
 
 <body onload="getMap()">
 
-    <div class="horizontal-left-right-width-undefined-container" style="width:1327px;">
+    <div class="horizontal-left-right-width-undefined-container" style="width:1427px;">
 
-        <div class="flex-container">
+
+      <div class="vertical-width-undefined-no-border" style="font-size: xx-small;  width: 100px; ">
+            <div>
+                    <input name="azure_basemap_radio" type="radio"  value="azure-hybrid"/>
+                    <span>Microsoft Hybrid</span>
+            </div>
+            <div>
+                    <input name="azure_basemap_radio" type="radio"  value="google-hybrid"/>
+                    <span>Google Hybrid</span>
+            </div>
+            <div>
+                    <input name="azure_basemap_radio" type="radio"  value="here-hybrid"/>
+                    <span>Here Hybrid</span>
+            </div>
+            <div>
+                    <input name="azure_basemap_radio" type="radio"  value="google-road"/>
+                    <span>Google Road</span>
+            </div>
+            <div>
+                    <input name="azure_basemap_radio" type="radio"  value="here-road"/>
+                    <span>Here Road</span>
+            </div>
+            <div>
+                  <input name="azure_basemap_radio" type="radio"  value="open-street-map"/>
+                  <span>OpenStreetMap</span>
+            </div> 
+      </div>
+
+      <div class="vertical-width-undefined-no-border" style="width: 1200px;">
 
           <div class='dashboard-horizontal-row-flow-box'>
 
@@ -61,40 +89,7 @@
             <div id="map"></div>
           </div> 
 
-         <fieldset style="font-size: xx-small;">
-                <legend>Change Background Map</legend>
-
-                <input name="azure_basemap_radio" type="radio"  value="azure-hybrid"/>
-                <span>Microsoft Hybrid(Traffic)</span>
-                &nbsp;&nbsp;
-
-                &nbsp;&nbsp;
-                <input name="azure_basemap_radio" type="radio"  value="google-hybrid"/>
-                <span>Google Hybrid</span>
-                &nbsp;&nbsp;
-                
-                <input name="azure_basemap_radio" type="radio"  value="here-hybrid"/>
-                <span>Here Hybrid</span>
-                &nbsp;&nbsp;
-
-                 <!--
-                <input name="azure_basemap_radio" type="radio"  value="azure-road"/>
-                <span>Microsoft Azure Road</span>
-                -->
-
-                <input name="azure_basemap_radio" type="radio"  value="google-road"/>
-                <span>Google Road</span>
-                &nbsp;&nbsp;
-
-                <input name="azure_basemap_radio" type="radio"  value="here-road"/>
-                <span>Here Road</span>
-                &nbsp;&nbsp;
-
-                <input name="azure_basemap_radio" type="radio"  value="open-street-map"/>
-                <span>OpenStreetMap</span>
-            
-            </fieldset>
-  
+        
 
        <div class='dashboard-horizontal-row-flow-box' >
         <span id="layer-info-vertical">Layer Name</span>
@@ -120,33 +115,13 @@
         </div>
        </div>
 
+        <span id='info-window-div'></span>
 
-            <!--  *** *** *** *** *** *** ***  build in scroll to top popup info window *** *** *** *** *** *** *** **** -->
-            <div id='info_outline'>
-              <!--  can't be 100% width, otherwise scroll bar show up 
-              <button id='close_info_outline_panel' class="setting-button"> 
-                Close &times;
-              </button>
-              -->
-
-              <span id='info-window-div'></span>
-
-            </div>  
-            <!--  *** *** *** end *** *** *** ***  build in scroll to top popup info window *** *** *** *** *** *** *** **** -->
-
-        </div>    
-
-            
+      </div>    
 
 
-
-        <button type='button' id='shoot-it-button' style="width:100px;">Search</button>
+      <button type='button' id='shoot-it-button' style="width:100px;">Search</button>
     
-        <!--
-        <div class="vertical-width-undefined-no-border" style="width: 700px; height: 900px; overflow: auto;">
-        </div>
-        -->
-
     </div>
 
     <script src="../../js/lib/parse-address/parse-address.min.js" type="text/javascript"></script>

@@ -237,18 +237,7 @@
                 $('#info-window-div').html(poi_viewer(___properties))
 
 
-                /**/
-                //  --- side by side   --- 
-                /**/
-                        
-                // for embed at top, right and or left side info window, always scroll to top
-                $("#info_outline").show()
-                $('#flex_1').scrollTop(0); // build in scroll to top popup info window
-
-
-                /**/
-                //   --- end  ---   --- side by side   --- 
-                /**/
+               
                 
               }
 
@@ -257,17 +246,6 @@
 
                 
 
-                /**/
-                //  --- side by side   --- 
-                /**/
-                        
-                $('#info_outline').hide();
-
-
-                /**/
-                //   --- end  ---   --- side by side   --- 
-                /**/
-                              
                 
                 $('#info-window-div').html("")
               }

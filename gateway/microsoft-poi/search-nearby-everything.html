@@ -37,9 +37,9 @@
 
 <body onload="getMap()">
 
-    <div class="horizontal-left-right-width-undefined-container" style="width:1327px;">
+    <div class="horizontal-left-right-width-undefined-container" style="width:1320px;">
 
-        <div class="flex-container">
+        <div class="vertical-width-undefined-no-border" style="width: 1200px;">
 
           <div class='dashboard-horizontal-row-flow-box'>
 
@@ -65,56 +65,38 @@
 
            
 
-       <div class='dashboard-horizontal-row-flow-box' >
-        <span id="layer-info-vertical">Layer Name</span>
-        <span id="total-feature" hidden>...</span>
-        <span id="feature-on-map" hidden>...</span>
-        <span id="lat-lng-zoom" hidden>...</span>
-      
-        <!-- --   --  --  search address only  --   --  --  -->
-        <input id="search-address-input" style="width: 357px;" type="search" placeholder="zipcode,address">
+          <div class='dashboard-horizontal-row-flow-box' >
+            <span id="layer-info-vertical">Layer Name</span>
+            <span id="total-feature" hidden>...</span>
+            <span id="feature-on-map" hidden>...</span>
+            <span id="lat-lng-zoom" hidden>...</span>
+          
+            <!-- --   --  --  search address only  --   --  --  -->
+            <input id="search-address-input" style="width: 357px;" type="search" placeholder="zipcode,address">
 
-        <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"  hidden></input>
-        <b id='overlay_opacity_label' hidden></b>
-        <input type="checkbox" id="show_traffic_checkbox" name="show_traffic_checkbox"  hidden/>
-        <label for="show_traffic_checkbox" hidden>ShowTraffic</label>
-        <span id='radius_div' hidden></span>
+            <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"  hidden></input>
+            <b id='overlay_opacity_label' hidden></b>
+            <input type="checkbox" id="show_traffic_checkbox" name="show_traffic_checkbox"  hidden/>
+            <label for="show_traffic_checkbox" hidden>ShowTraffic</label>
+            <span id='radius_div' hidden></span>
 
-        <div style="margin-left: auto; order: 2;">
-              <span>POI Total</span>
-              <span id="poi_total">...</span>
-              <button id='download_csv_button'>Download poi.csv</button> 
-              <button id='download_poi_button'>Download poi.geojson</button> 
-          <button id='start_over_button'>Clear poi</button> 
-        </div>
-       </div>
+            <div style="margin-left: auto; order: 2;">
+                  <span>POI Total</span>
+                  <span id="poi_total">...</span>
+                  <button id='download_csv_button'>Download poi.csv</button> 
+                  <button id='download_poi_button'>Download poi.geojson</button> 
+              <button id='start_over_button'>Clear poi</button> 
+            </div>
+          </div>
 
-
-            <!--  *** *** *** *** *** *** ***  build in scroll to top popup info window *** *** *** *** *** *** *** **** -->
-            <div id='info_outline'>
-              <!--  can't be 100% width, otherwise scroll bar show up 
-              <button id='close_info_outline_panel' class="setting-button"> 
-                Close &times;
-              </button>
-              -->
-
-              <span id='info-window-div'></span>
-
-            </div>  
-            <!--  *** *** *** end *** *** *** ***  build in scroll to top popup info window *** *** *** *** *** *** *** **** -->
-
-        </div>    
-
+          <span id='info-window-div'></span>
             
-
+        </div>
 
 
         <button type='button' id='shoot-it-button' style="width:100px;">Search</button>
     
-        <!--
-        <div class="vertical-width-undefined-no-border" style="width: 700px; height: 900px; overflow: auto;">
-        </div>
-        -->
+       
 
     </div>
 
