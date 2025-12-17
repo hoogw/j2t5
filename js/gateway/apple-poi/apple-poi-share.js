@@ -44,7 +44,7 @@ var apple_poi_annotation_array = []
 
 
     var poi_id
-    var poi_muid
+    
     var poi_name
     
     var poi_phone
@@ -70,9 +70,8 @@ var apple_poi_annotation_array = []
     var poi_zipCode
     
 
-    var poi_primaryType
-    var poi_type
-
+    var poi_category
+   
 
     for (let i = 0; i < ____poi_array.length; i++) {
 
@@ -125,7 +124,8 @@ var apple_poi_annotation_array = []
         poi_zipCode = poi_element.postCode;
               
 
-
+        // poi category
+        poi_category = poi_element.pointOfInterestCategory;
 
         poi_id = poi_element.id
         poi_muid = poi_element.muid // apple only, not use
@@ -158,6 +158,8 @@ var apple_poi_annotation_array = []
 
             "poi_id": poi_id,
             "name": poi_name,
+
+            "category":poi_category,
             
             "phone": poi_phone,
             "url": poi_url,
@@ -212,7 +214,7 @@ var apple_poi_annotation_array = []
 
 
     var poi_id
-    var poi_muid
+    
     var poi_name
     
     var poi_phone
@@ -238,8 +240,7 @@ var apple_poi_annotation_array = []
     var poi_zipCode
     
 
-    var poi_primaryType
-    var poi_type
+    var poi_category
 
 
     for (let i = 0; i < ____poi_array.length; i++) {
@@ -296,7 +297,8 @@ var apple_poi_annotation_array = []
         poi_zipCode = poi_element.structuredAddress.postCode;
               
 
-
+        // poi category
+        poi_category = poi_element.poiCategory;
 
         poi_id = poi_element.id
        
@@ -329,6 +331,7 @@ var apple_poi_annotation_array = []
 
             "poi_id": poi_id,
             "name": poi_name,
+            "category":poi_category,
             
             "phone": poi_phone,
             "url": poi_url,
