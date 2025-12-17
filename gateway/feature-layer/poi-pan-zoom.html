@@ -20,83 +20,78 @@
 </head>
 
 <body>
-               
-  <div class="flex-container">
-  
-    <div class='dashboard-horizontal-row-flow-box'>
 
-         
-            <img src="../../public/images/visa.svg" alt="visa.svg" height="16" width="24"/>
-            <img src="../../public/images/mastercard.svg" alt="mastercard.svg" height="16" width="24"/>
-            
-            <input type='text' id='esrilocation-key-input' placeholder="esri location api key here"/>
-         
-    
-          
-       
-          <div style="margin-left: auto; order: 2;">
+
+
+<div class="horizontal-left-right-width-undefined-container" style="width:1300px;">
+
+    <div class="vertical-width-undefined-no-border" style="width: 100px;">
+          <span id="radio-basemap-id" style="font-size: xx-small;"></span>
+    </div>
+
+    <div class="vertical-width-undefined-no-border" style="width: 800px;"> 
+
+        <div>
             <span>POI Total</span>
             <span id="poi_total">...</span>
             <button id='download_csv_button'>Download poi.csv</button> 
             <button id='download_poi_button'>Download poi.geojson</button> 
-          </div>
+            <button id='start_over_button'>Clear poi</button>
+
+            <img src="../../public/images/visa.svg" alt="visa.svg" height="16" width="24"/>
+            <img src="../../public/images/mastercard.svg" alt="mastercard.svg" height="16" width="24"/>
+            <input type='text' id='esrilocation-key-input' placeholder="esri location api key here"/>
+        </div>
+
+
+          <arcgis-map popup-disabled id="map-components-id" basemap="hybrid" style="height: 600px;">
+          </arcgis-map>
+
+
+          <div>
+            <span id="layer-info-vertical">Layer Name</span>
+            <small>total:</small><b id="total-feature">...</b>
+            <small>visible:</small><b id="feature-on-map">...</b>
+            <span id="lat-lng-zoom" hidden>...</span>
+
+            <button type="button" id = "panToCurrent_geolocation_button">my-location</button>
+            <!--   --- --- --- --- back to previous extent --- --- --- --- -->
+            <button type='button' id='zoom2layer_button'>back-2-layer</button>
+            <button type='button' id='full_extent_btn'>full.extent</button>
+            <!--   --- --- end --- --- back to previous extent --- --- --- ---  -->
           
-      </div>
+            <small id = "opacitytitle_span">layer-opacity:</small>
+            <b id='opacity_value_text'></b>
+            <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"/>
 
-    <div class='map-box' >
-      <arcgis-map popup-disabled id="map-components-id" basemap="hybrid" style="height: 600px;">
-        
-      </arcgis-map>
-    </div> 
+            
 
-   
+          </div>
 
-    
-   
-    <div id="radio-basemap-id" style="font-size: xx-small;"></div>
-
-    <div class='dashboard-horizontal-row-flow-box'>
-
-      
-     <arcgis-search reference-element="map-components-id" style="z-index:99;"></arcgis-search> 
-
-     &nbsp;&nbsp;&nbsp;
-     <div id="layer-info-vertical">Layer Name</div>
-              
-      &nbsp;&nbsp;&nbsp;
-
-      <small>total:</small><b id="total-feature">...</b>
-      &nbsp;&nbsp;
-      <small>visible:</small><b id="feature-on-map">...</b>
-      &nbsp;&nbsp;
-
-     
-
-      <button type="button" id = "panToCurrent_geolocation_button">my-location</button>
-
-        
-      <!--   --- --- --- --- back to previous extent --- --- --- --- -->
-      &nbsp;
-      <button type='button' id='zoom2layer_button'>back-2-layer</button>
-      &nbsp;
-      <button type='button' id='full_extent_btn'>full.extent</button>
-      <!--   --- --- end --- --- back to previous extent --- --- --- ---  -->
-      &nbsp;
-     <!-- <span id="lat-lng-zoom"></span> -->
-
-      &nbsp;&nbsp;&nbsp;
-
-      <small id = "opacitytitle_span">layer-opacity:</small>
-      <label for="overlay_opacity_range" id='opacity_value_text'></label>
-      <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"></input>
-              
-     
-      
     </div>
 
 
+
+      <div class="vertical-width-undefined-no-border" style="width: 400px; height: 800px; overflow: auto; ">
+
+        <!-- find address must be at last bottom, otherwise its drop down will conflict with other component below  -->
+          <arcgis-search reference-element="map-components-id" style="z-index:99;">
+          </arcgis-search> 
+
+        <div id='info-window-div' class="flex-row" style="font-size: xx-small;"></div> 
+      </div>
+
+</div>
+               
+  
+
+   
+
+   
+
+
     <div class='info-window-box dashboard-horizontal-row-flow-box'>
-      <div id='info-window-div' class="flex-row" style="font-size: xx-small;"></div> 
+      
     </div> 
 
     
