@@ -4584,9 +4584,7 @@ var _google_public_map_only_api_key = "AIzaSyCeIFVL6oxxXNT7NToJjfU4J9TV2J8m4vE"
 
 
       var radio_basemap_html = ''
-      radio_basemap_html += "<fieldset>"
-      radio_basemap_html += "      <legend>Change Background Map</legend>"
-
+      
       var google_map_type_display_name
       for (let i = 0; i < google_map_type_array.length; i++) {
         console.log("google map type array ", google_map_type_array[i]); 
@@ -4606,15 +4604,15 @@ var _google_public_map_only_api_key = "AIzaSyCeIFVL6oxxXNT7NToJjfU4J9TV2J8m4vE"
         }
 
 
-
+        radio_basemap_html += '<div>'
         // value use original name
         radio_basemap_html += '<input name="basemap_radio" type="radio"  value="' + google_map_type_array[i] + '"/>'
         // display name might changed 
         radio_basemap_html += '<span>' + google_map_type_display_name + '</span>'
-        radio_basemap_html += '&nbsp;&nbsp;'
+        radio_basemap_html += '</div>'
 
       }//for
-      radio_basemap_html += "</fieldset>"
+     
       $("#radio-basemap-id").html(radio_basemap_html)
 
 

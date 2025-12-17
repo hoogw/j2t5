@@ -22,14 +22,17 @@
 <body>
 
 
-  <div class="horizontal-left-right-width-undefined-container" style="width:1200px;">
-             
+  <div class="horizontal-left-right-width-undefined-container" style="width:1300px;">
+
+
+    <div class="vertical-width-undefined-no-border" style="width: 100px;">
+          <span id="radio-basemap-id" style="font-size: xx-small;"></span>
+    </div>
+
     <div class="vertical-width-undefined-no-border" style="width: 800px;"> 
 
         <div>
           <span id="layer-info-vertical">Layer Name</span>
-          <input id='pac-input' type='search' placeholder='(google) addr. zip Pl.'/>  
-      
           <small>visible:</small><b id="feature-on-map">...</b>
           <small>total:</small><b id="total-feature">...</b>
           <span id="lat-lng-zoom" hidden>...</span>
@@ -42,7 +45,7 @@
 
         <div id="map"  style="height:700px;"></div> <!-- override default height -->
 
-        <div id="radio-basemap-id" style="font-size: xx-small;"></div>
+     
         
         <div>
             
@@ -64,16 +67,16 @@
     
     <div class="vertical-width-undefined-no-border" style="width: 400px; height: 800px; overflow: auto; ">
 
-     <div>
+      <input id='pac-input' type='search' placeholder='(google) addr. zip Pl.'/>  
+      
+          <div>
               <img src="../../public/images/visa.svg" alt="visa.svg" height="16" width="24"/>
               <img src="../../public/images/mastercard.svg" alt="mastercard.svg" height="16" width="24"/>
               <input type='text' id='nearmap-key-input' placeholder="nearmap api key"/>
               <button type='button' id='nearmap-button'>Start</button>
           </div>
     
-      <div>
-        <button id='close_info_outline_panel' hidden>&times; close</button>
-      </div> 
+      
 
       <div id='info-window-div' class="flex-row" style="font-size: xx-small;"></div>
       
