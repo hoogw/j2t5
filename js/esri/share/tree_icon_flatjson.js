@@ -4652,7 +4652,7 @@ icon_flatjson.push(icon_item)
                     icon_item = { 
                                     "id" :  4011,     
                                     "parent" : 4010,
-                                    "text" : "4011 category x1",
+                                    "text" : "4011 everything (category optional) x1",
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
                                     "link_type": "embed_4011",
@@ -4674,7 +4674,7 @@ icon_flatjson.push(icon_item)
                     icon_item = { 
                                     "id" :  4014,     
                                     "parent" : 4010,
-                                    "text" : "4014 category x4",
+                                    "text" : "4014 everything (category optional) x4",
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
                                     "link_type": "embed_4014",
@@ -4696,7 +4696,7 @@ icon_flatjson.push(icon_item)
                     icon_item = { 
                                     "id" :  4012,     
                                     "parent" : 4010,
-                                    "text" : "4012 keyword",
+                                    "text" : "4012 keyword required",
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
                                     "link_type": "embed_4012",
@@ -4721,7 +4721,7 @@ icon_flatjson.push(icon_item)
 icon_item = { 
     "id" :  3280,     
     "parent" : 327,
-    "text" : google_svg + " Google POI" + paypal_svg + visa_svg + mastercard_svg + "<sup><small>2011-now</small></sup>",
+    "text" : google_svg + " Google POI" + "<sup><small>2011-now</small></sup>",
     "icon" : folder_icon,
     "link_type": "folder",   
     "state"       : {
@@ -5943,7 +5943,7 @@ icon_flatjson.push(icon_item)
 icon_item = { 
     "id" :  7281,     
     "parent" : 327,
-    "text" : microsoft_svg + "&nbsp;" + "Microsoft POI" + visa_svg + mastercard_svg  + "<sup><small>2017-now</small></sup>",
+    "text" : microsoft_svg + "&nbsp;" + "Microsoft POI" + "<sup><small>2017-now</small></sup>",
     "icon" : folder_icon,
     "link_type": "folder",   
     "state"       : {
@@ -6611,7 +6611,7 @@ icon_flatjson.push(icon_item)
 icon_item = { 
     "id" :  3283,     
     "parent" : 327,
-    "text" : esri_svg + "  Esri POI" + visa_svg + mastercard_svg  + "<sup><small>2024-now</small></sup>",
+    "text" : esri_svg + "  Esri POI" + "<sup><small>2024-now</small></sup>",
     "icon" : folder_icon,
     "link_type": "folder",   
     "state"       : {
@@ -6720,7 +6720,7 @@ icon_flatjson.push(icon_item)
         icon_item = { 
             "id" :  4761,     
             "parent" : 476,
-            "text" : google_svg + paypal_svg + visa_svg + mastercard_svg,
+            "text" : google_svg,
             "icon" : folder_icon,
             "link_type": "folder",   
             "state"       : {

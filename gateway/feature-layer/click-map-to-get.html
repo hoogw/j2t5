@@ -24,9 +24,11 @@
 
 
   
- <div class="horizontal-left-right-width-undefined-container" style="width:1200px;">
+ <div class="horizontal-left-right-width-undefined-container" style="width:1300px;">
       
-    
+    <div class="vertical-width-undefined-no-border" style="width: 100px;">
+          <span id="radio-basemap-id" style="font-size: xx-small;"></span>
+    </div>
 
     <div class="vertical-width-undefined-no-border" style="width: 800px;"> 
     
@@ -42,8 +44,7 @@
         <arcgis-map popup-disabled id="map-components-id" basemap="hybrid" style="height: 700px;">
         </arcgis-map>
 
-        <span id="radio-basemap-id" style="font-size: xx-small;"></span>
-
+        
         <div>
           <button type="button" id = "panToCurrent_geolocation_button">my-location</button>
           <!--   --- --- --- --- back to previous extent --- --- --- --- -->
@@ -55,9 +56,7 @@
           <b id='opacity_value_text'></b>
           <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"/>
 
-          <!-- find address must be at last bottom, otherwise its drop down will conflict with other component below  -->
-          <arcgis-search reference-element="map-components-id" style="z-index:99;">
-          </arcgis-search> 
+          
 
         </div>
 
@@ -65,12 +64,16 @@
 
     <div class="vertical-width-undefined-no-border" style="width: 400px; height: 800px; overflow: auto; ">
 
-     <div>
+    
+       
+<!-- find address must be at last bottom, otherwise its drop down will conflict with other component below  -->
+          <arcgis-search reference-element="map-components-id" style="z-index:99;">
+          </arcgis-search> 
+
+           <div>
         <legend>click map to get lat lng : </legend>
         <span id='message'></span>
      </div>
-       
-
         
         <div id='info-window-div' class="flex-row" style="font-size: xx-small;"></div>
     <div>
