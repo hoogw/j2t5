@@ -297,8 +297,6 @@
 
                       var ___properties = event.properties
                         
-                  // make sure flex_1 is id of column
-                  $('#flex_1').scrollTop(0); // build in scroll to top popup info window
                   $('#info-window-div').html(json_flex_tip_viewer(___properties))
 
                       
@@ -311,9 +309,7 @@
 
                         console.log('hovered geojson ', _geojson_hovered)
                         var ___properties = _geojson_hovered.properties
-                        
-                  // make sure flex_1 is id of column
-                  $('#flex_1').scrollTop(0); // build in scroll to top popup info window
+                    
                   $('#info-window-div').html(json_flex_tip_viewer(___properties))
 
                         
@@ -323,8 +319,6 @@
 
                     }//if 
 
-                    // for embed at top, right and or left side info window, always scroll to top
-                    $('#flex_1').scrollTop(0); // build in scroll to top popup info window
                   }
 
               // -- -- --  end -- -- --  google advanced marker replace geojson -- -- -- 

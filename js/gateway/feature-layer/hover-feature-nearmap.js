@@ -475,18 +475,11 @@
 
                         
 function show_info_outline_Tab(___properties){
-
-  $("#info_outline").show()
-  $('#flex_1').scrollTop(0); // build in scroll to top popup info window
-  
-                  // make sure flex_1 is id of column
-                  $('#flex_1').scrollTop(0); // build in scroll to top popup info window
-                  $('#info-window-div').html(json_flex_tip_viewer(___properties))
+   $('#info-window-div').html(json_flex_tip_viewer(___properties))
 }
 
 function empty_info_outline_Tab(){
-$('#info_outline').hide();
-$('#info-window-div').html("")
+    $('#info-window-div').html("")
 }
      
 
