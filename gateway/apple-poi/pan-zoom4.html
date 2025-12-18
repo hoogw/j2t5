@@ -36,7 +36,7 @@
         
 
           <div style="margin-left: auto; order: 2;">
-            <a target="_blank" href="https://developer.apple.com/documentation/applemapsserverapi/poicategory">CategoryList</a>
+            <a target="_blank" href="https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory">CategoryList</a>
             <input type='text' id='category-input' placeholder="optional. Hospital,Police"/>
           </div>
         
@@ -83,15 +83,6 @@
    
  
     
-
-
-   <!-- https://developer.apple.com/documentation/mapkitjs/loading_the_latest_version_of_mapkit_js -->
-   <!-- never expire domain restrict -->
-   <!--script type='module' src='https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.core.js' crossorigin async data-callback="initMap" data-libraries="services,full-map,overlays,annotations,geojson,user-location,look-around" data-initial-token="eyJraWQiOiI3WERaQzc2MjlXIiwidHlwIjoiSldUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJDNE5YNVM5UTRCIiwiaWF0IjoxNzY0MTg2Njc3LCJvcmlnaW4iOiJ0cmFuc3BhcmVudGdvdi5uZXQifQ.y4HioJk5y_0vbI59mX16HPeVmPTssNxGAZehF66QwOxcn56ek1gPI-8gjNyjEXwSvVV86-_lqRuEGF2KUL69cA"></script-->
-   <!-- expire 7 days, no restrict, for localhost -->
-   
-   <script type='module' src='https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.core.js' crossorigin async data-callback="initMap" data-libraries="services,full-map,overlays,annotations,geojson,user-location,look-around" data-initial-token="eyJraWQiOiI4WTdHWVBHTVY3IiwidHlwIjoiSldUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJDNE5YNVM5UTRCIiwiaWF0IjoxNzY1ODE3MTM1LCJleHAiOjE3NjY0NzY3OTl9.lSW8Lq4dc6e4RVIRjyGz73EhwQeUGoPqwM8hJesEIxHa-jcy8ZUePrnTVnyxKSAJpsnPO0L-ha3pEZZJG-5_IA"></script>
-   <!-- this apple token is static long term token get from .env file, after expired, need to re-new one at https://maps.developer.apple.com/token-maker, domain restriction must apply as 'transparentgov.net' -->
             
      
    

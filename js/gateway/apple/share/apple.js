@@ -1,5 +1,4 @@
 
-//  .. ..  from node.js arcgis viewer transition to json2tree  .. ..  
 
 
 // always at top, 
@@ -11,21 +10,72 @@
 /**/
 
 var _apple_token 
+var scriptElement
+const mapkit_cdn_url = "https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.core.js"
+const callback_function_name = "initMap";
+const language = "en";
+const libraries = "services,full-map,overlays,annotations,geojson,user-location,look-around";
+
+// self run function to load mapkit
+// mapkit-loader, load without access html script tag
+// https://github.com/apple/mapkit-loader/blob/main/src/index.ts
 (function() {
-  if (location.hostname.includes("localhost")){
-    // expire 7 days, no restrict, for localhost 
-      _apple_token = "eyJraWQiOiI4WTdHWVBHTVY3IiwidHlwIjoiSldUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJDNE5YNVM5UTRCIiwiaWF0IjoxNzY1ODE3MTM1LCJleHAiOjE3NjY0NzY3OTl9.lSW8Lq4dc6e4RVIRjyGz73EhwQeUGoPqwM8hJesEIxHa-jcy8ZUePrnTVnyxKSAJpsnPO0L-ha3pEZZJG-5_IA"
-      console.log("expire 7 days, no restrict, for localhost")
-  } else {
-    // never expire domain restrict
-    _apple_token = "eyJraWQiOiI3WERaQzc2MjlXIiwidHlwIjoiSldUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJDNE5YNVM5UTRCIiwiaWF0IjoxNzY0MTg2Njc3LCJvcmlnaW4iOiJ0cmFuc3BhcmVudGdvdi5uZXQifQ.y4HioJk5y_0vbI59mX16HPeVmPTssNxGAZehF66QwOxcn56ek1gPI-8gjNyjEXwSvVV86-_lqRuEGF2KUL69cA"
-    console.log("never expire domain restrict")
-  }//if
+
+
+
+    // determine which toke to use, 7 day for localhost none-restricted or never expire domain retricted
+    if (location.hostname.includes("localhost")){
+      // expire 7 days, no restrict, for localhost 
+        _apple_token = "eyJraWQiOiI4WTdHWVBHTVY3IiwidHlwIjoiSldUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJDNE5YNVM5UTRCIiwiaWF0IjoxNzY1ODE3MTM1LCJleHAiOjE3NjY0NzY3OTl9.lSW8Lq4dc6e4RVIRjyGz73EhwQeUGoPqwM8hJesEIxHa-jcy8ZUePrnTVnyxKSAJpsnPO0L-ha3pEZZJG-5_IA"
+        console.log("expire 7 days, no restrict, for localhost")
+    } else {
+      // never expire domain restrict
+      _apple_token = "eyJraWQiOiI3WERaQzc2MjlXIiwidHlwIjoiSldUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJDNE5YNVM5UTRCIiwiaWF0IjoxNzY0MTg2Njc3LCJvcmlnaW4iOiJ0cmFuc3BhcmVudGdvdi5uZXQifQ.y4HioJk5y_0vbI59mX16HPeVmPTssNxGAZehF66QwOxcn56ek1gPI-8gjNyjEXwSvVV86-_lqRuEGF2KUL69cA"
+      console.log("never expire domain restrict")
+    }//if
+
+
+    // Construct a new script tag.
+    scriptElement = document.createElement("script");
+    scriptElement.async = true;
+    scriptElement.crossOrigin = "";
+    scriptElement.src = mapkit_cdn_url;
+    scriptElement.dataset.callback = callback_function_name;
+
+    if (_apple_token) {
+          scriptElement.dataset.token = _apple_token;
+    }
+
+    if (language) {
+      scriptElement.dataset.language = language;
+    }
+
+    if (libraries) {
+      scriptElement.dataset.libraries = libraries;
+    }
+
+    
+    document.head.appendChild(scriptElement);
+
+
+
 })();// self run function
 
 
 
 
+
+
+/**/
+//   -------  end ------- apple map only  -------
+/**/
+
+
+
+
+
+
+//  .. ..  from node.js arcgis viewer transition to json2tree  .. ..  
 
 
 // must above default icon color
