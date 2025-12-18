@@ -650,29 +650,28 @@ function poi_viewer_for_download(___properties){
 
   //in use, customized properties ,  only for side info window, 
   var poi_other_html = ''
-  poi_other_html    +=      '<span style="font-size:22.2px; font-weight:900;">' + ___properties.name + '</span>' + '&nbsp;&nbsp;'
+  poi_other_html    +=      '<b style="font-size:xxx-large">' + ___properties.name + '</b>' + '&nbsp;&nbsp;'
 
-  if (___properties.phone){
-    poi_other_html    +=      '<span style="font-size:16.3px;">' + ___properties.phone + '</span>' + '&nbsp;&nbsp;'
-  }
+  
 
   if (___properties.address){
-    poi_other_html    +=      '<span style="font-size:13.3px;">' + ___properties.address + '</span>' + '&nbsp;&nbsp;'
+    poi_other_html    +=      '<span style="font-size:x-large">' + ___properties.address + '</span>' + '&nbsp;&nbsp;'
   }
 
   // hide poi id
-  //poi_other_html    +=      '<span style="font-size:7.3px;">' + ___properties.poi_id + '</span>' + '&nbsp;&nbsp;'
+  //poi_other_html    +=      '<span  style="font-size:small">' + ___properties.poi_id + '</span>' + '&nbsp;&nbsp;'
 
+  if (___properties.phone){
+    poi_other_html    +=      '<span  style="font-size:small">' + ___properties.phone + '</span>' + '&nbsp;&nbsp;'
+  }
+  
   if (___properties.url){
     poi_other_html    +=      '<a href="' + ___properties.url + '" target="_blank">' + ___properties.url + '</a>' + '&nbsp;&nbsp;'
   }
   
  
-  //poi_other_html    +=      '<span style="font-size:11.3px;">reviews(' + ___properties.poi_reviews + ')</span>' + '&nbsp;&nbsp;'
-  //poi_other_html    +=      '<span style="font-size:8.3px;">' + ___properties.poi_photos + '</span>' + '&nbsp;&nbsp;'
-
-        poi_other_html    +=      '<span style="font-size:12.2px;">primaryType(' + ___properties.primaryType + ')</span>' + '&nbsp;&nbsp;'
-        //poi_other_html    +=    '<span style="font-size:10.2px;">types(' + ___properties.type + ')</span>' + '&nbsp;&nbsp;'
+  poi_other_html    +=      '<span style="font-size:12.2px;">primaryType(' + ___properties.primaryType + ')</span>' + '&nbsp;&nbsp;'
+  
   return  poi_other_html 
    
 }

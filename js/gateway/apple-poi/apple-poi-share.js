@@ -547,6 +547,33 @@ var apple_poi_annotation_array = []
 
 
 
+      
+      function poi_viewer_for_download(___properties){
+
+        //in use, customized properties ,  only for side info window, 
+        var poi_other_html = ''
+        poi_other_html    +=      '<b style="font-size:xxx-large">' + ___properties.name + '</b>' + '&nbsp;&nbsp;'
+        
+        poi_other_html    +=      '<span style="font-size:x-large">' + ___properties.fmtAddr + '</span>' + '&nbsp;&nbsp;'
+        
+        // not use google poi id, too much info
+        //poi_other_html    +=      '<span  style="font-size:small">' + ___properties.poi_id + '</span>' + '&nbsp;&nbsp;'
+        
+        //poi_other_html    +=      '<span  style="font-size:small background-color:#FF8C00">' + ___properties.open + '</span>' + '&nbsp;&nbsp;'
+        if (___properties.phone){
+           poi_other_html    +=      '<span style="font-size:small">phone(' + ___properties.phone + ')</span>' + '&nbsp;&nbsp;'
+        }
+        if (___properties.url){
+           poi_other_html    +=      '<a href="' + ___properties.url + ' target="_blank">' + ___properties.url + '</a>' + '&nbsp;&nbsp;'
+        }
+
+        if (___properties.category){
+            poi_other_html    +=      '<span style="font-size:small">category(' + ___properties.category + ')</span>' + '&nbsp;&nbsp;'
+        }
+
+        return  poi_other_html 
+         
+      }
 
 
 

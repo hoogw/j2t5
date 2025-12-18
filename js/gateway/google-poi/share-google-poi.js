@@ -1003,22 +1003,20 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
 
         //in use, customized properties ,  only for side info window, 
         var poi_other_html = ''
-        poi_other_html    +=      '<span style="font-size:22.2px; font-weight:900;">' + ___properties.name + '</span>' + '&nbsp;&nbsp;'
+        poi_other_html    +=      '<b style="font-size:xxx-large">' + ___properties.name + '</b>' + '&nbsp;&nbsp;'
         
-        poi_other_html    +=      '<span style="font-size:13.3px;">' + ___properties.fmtAddr + '</span>' + '&nbsp;&nbsp;'
+        poi_other_html    +=      '<span style="font-size:x-large">' + ___properties.fmtAddr + '</span>' + '&nbsp;&nbsp;'
         
         // not use google poi id, too much info
-        //poi_other_html    +=      '<span style="font-size:7.3px;">' + ___properties.poi_id + '</span>' + '&nbsp;&nbsp;'
+        //poi_other_html    +=      '<span  style="font-size:small">' + ___properties.poi_id + '</span>' + '&nbsp;&nbsp;'
         
-        poi_other_html    +=      '<span style="font-size:9.3px; background-color:#FF8C00">' + ___properties.open + '</span>' + '&nbsp;&nbsp;'
+        poi_other_html    +=      '<span  style="font-size:small background-color:#FF8C00">' + ___properties.open + '</span>' + '&nbsp;&nbsp;'
        
-        //poi_other_html    +=      '<span style="font-size:11.3px;">reviews(' + ___properties.poi_reviews + ')</span>' + '&nbsp;&nbsp;'
-        //poi_other_html    +=      '<span style="font-size:8.3px;">' + ___properties.poi_photos + '</span>' + '&nbsp;&nbsp;'
-
-        poi_other_html    +=      '<span style="font-size:12.2px;">primaryType(' + ___properties.primaryType + ')</span>' + '&nbsp;&nbsp;'
+        
+        poi_other_html    +=      '<span  style="font-size:small">primaryType(' + ___properties.primaryType + ')</span>' + '&nbsp;&nbsp;'
         
         
-        //poi_other_html    +=    '<span style="font-size:10.2px;">types(' + ___properties.type + ')</span>' + '&nbsp;&nbsp;'
+        //poi_other_html    +=    '<span  style="font-size:small">types(' + ___properties.type + ')</span>' + '&nbsp;&nbsp;'
         return  poi_other_html 
          
       }
