@@ -1010,10 +1010,12 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
         // not use google poi id, too much info
         //poi_other_html    +=      '<span  style="font-size:small">' + ___properties.poi_id + '</span>' + '&nbsp;&nbsp;'
         
-        poi_other_html    +=      '<span  style="font-size:small background-color:#FF8C00">' + ___properties.open + '</span>' + '&nbsp;&nbsp;'
+        if (___properties.open){
+          poi_other_html    +=      '<span  style="font-size:large; background-color:#FF8C00;">' + 'OPEN' + '</span>' + '&nbsp;&nbsp;'
+        }
        
         
-        poi_other_html    +=      '<span  style="font-size:small">primaryType(' + ___properties.primaryType + ')</span>' + '&nbsp;&nbsp;'
+        poi_other_html    +=      '<span  style="font-size:small">category(' + ___properties.primaryType + ')</span>' + '&nbsp;&nbsp;'
         
         
         //poi_other_html    +=    '<span  style="font-size:small">types(' + ___properties.type + ')</span>' + '&nbsp;&nbsp;'

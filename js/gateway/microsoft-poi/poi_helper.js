@@ -662,15 +662,15 @@ function poi_viewer_for_download(___properties){
   //poi_other_html    +=      '<span  style="font-size:small">' + ___properties.poi_id + '</span>' + '&nbsp;&nbsp;'
 
   if (___properties.phone){
-    poi_other_html    +=      '<span  style="font-size:small">' + ___properties.phone + '</span>' + '&nbsp;&nbsp;'
+    poi_other_html    +=      '<span  style="font-size:small">phone(' + ___properties.phone + ')</span>' + '&nbsp;&nbsp;'
   }
-  
+
   if (___properties.url){
     poi_other_html    +=      '<a href="' + ___properties.url + '" target="_blank">' + ___properties.url + '</a>' + '&nbsp;&nbsp;'
   }
   
  
-  poi_other_html    +=      '<span style="font-size:12.2px;">primaryType(' + ___properties.primaryType + ')</span>' + '&nbsp;&nbsp;'
+  poi_other_html    +=      '<span style="font-size:12.2px;">category(' + ___properties.primaryType + ')</span>' + '&nbsp;&nbsp;'
   
   return  poi_other_html 
    

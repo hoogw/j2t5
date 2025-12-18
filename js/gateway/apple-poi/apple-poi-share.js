@@ -559,7 +559,7 @@ var apple_poi_annotation_array = []
         // not use google poi id, too much info
         //poi_other_html    +=      '<span  style="font-size:small">' + ___properties.poi_id + '</span>' + '&nbsp;&nbsp;'
         
-        //poi_other_html    +=      '<span  style="font-size:small background-color:#FF8C00">' + ___properties.open + '</span>' + '&nbsp;&nbsp;'
+        //poi_other_html    +=      '<span  style="font-size:small; background-color:#FF8C00;">' + ___properties.open + '</span>' + '&nbsp;&nbsp;'
         if (___properties.phone){
            poi_other_html    +=      '<span style="font-size:small">phone(' + ___properties.phone + ')</span>' + '&nbsp;&nbsp;'
         }
