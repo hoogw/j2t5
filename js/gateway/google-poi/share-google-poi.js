@@ -1010,13 +1010,14 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
         // not use google poi id, too much info
         //poi_other_html    +=      '<span  style="font-size:small">' + ___properties.poi_id + '</span>' + '&nbsp;&nbsp;'
         
-        if (___properties.open){
-          poi_other_html    +=      '<span  style="font-size:large; background-color:#FF8C00;">' + 'OPEN' + '</span>' + '&nbsp;&nbsp;'
+        poi_other_html    += "<div>"
+        if (___properties.open == "OPERATIONAL"){
+          poi_other_html    +=      '<span  style="font-size:large; background-color:#DFFF00;">' + 'OPEN' + '</span>' + '&nbsp;&nbsp;'
+        } else if (___properties.open){
+          poi_other_html    +=      '<span  style="font-size:large; background-color:#00FFFF;">' + ___properties.open + '</span>' + '&nbsp;&nbsp;'
         }
-       
-        
         poi_other_html    +=      '<span  style="font-size:small">category(' + ___properties.primaryType + ')</span>' + '&nbsp;&nbsp;'
-        
+        poi_other_html    += "</div>"
         
         //poi_other_html    +=    '<span  style="font-size:small">types(' + ___properties.type + ')</span>' + '&nbsp;&nbsp;'
         return  poi_other_html 

@@ -4,6 +4,22 @@
 
 
 
+  .flex-row {
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    /* border: 1px dotted grey; */
+  }
+
+
+ 
+  .flex-column {
+
+    display: flex;
+    flex-direction: column;
+  }
 
 
 
