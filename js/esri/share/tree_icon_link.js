@@ -2412,6 +2412,58 @@ case "embed_3953":
   break;
 
 
+   case "embed_4021":
+      var _newTab_link =  apple_base_url.replace('apple/default.html?', 'apple-poi/pan-zoom4.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0] 
+      _newTab_link += '&poicategory=police'
+      window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_4023":
+      var _newTab_link =  apple_base_url.replace('apple/default.html?', 'apple-poi/pan-zoom4.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0] 
+      _newTab_link += '&poicategory=hospital'
+      window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_4025":
+      var _newTab_link =  apple_base_url.replace('apple/default.html?', 'apple-poi/pan-zoom4.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0] 
+      _newTab_link += '&poicategory=hotel'
+      window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_4027":
+      var _newTab_link =  apple_base_url.replace('apple/default.html?', 'apple-poi/pan-zoom4.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0] 
+      _newTab_link += '&poicategory=nightlife'
+      window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+
+   case "embed_4042":
+      var _newTab_link =  apple_base_url.replace('apple/default.html?', 'apple-poi/pan-zoom.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      _newTab_link += '&poi=police'
+      window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_4044":
+      var _newTab_link =  apple_base_url.replace('apple/default.html?', 'apple-poi/pan-zoom.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      _newTab_link += '&poi=hospital'
+      window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_4046":
+      var _newTab_link =  apple_base_url.replace('apple/default.html?', 'apple-poi/pan-zoom.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      _newTab_link += '&poi=hotel'
+      window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_4048":
+      var _newTab_link =  apple_base_url.replace('apple/default.html?', 'apple-poi/pan-zoom.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      _newTab_link += '&poi=nightlife'
+      window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+
 //   ^^^^^^^^^^^^^^^^^^^^^   end   ^^^^^^^^^^^^^^^^^^^^^  bing  feature layer     ^^^^^^^^^^^^^^^^^^^^^
 /**/
 

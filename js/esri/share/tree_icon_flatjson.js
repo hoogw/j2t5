@@ -4647,71 +4647,273 @@ icon_flatjson.push(icon_item)
         icon_flatjson.push(icon_item)
 
 
+
+
+
+
+
+                    /* = = = = sub folder = = = = g o o g l e p o i = = = =  */
+                    icon_item = { 
+                        "id" :  3310,     
+                        "parent" : 4010,
+                        "text" : "everything",
+                        "icon" : folder_icon,
+                        "link_type": "folder",   
+                        "state"       : {
+                        // use this opened line for always default open this folder
+                                        "opened"    :false, //  iconJstreeforceOpen,   // is the node open
+                                        // disabled  : boolean  // is the node disabled
+                                        // "selected"  : true   // is the node selected
+                                    }
+                    };
+                    icon_flatjson.push(icon_item)
                         
 
+                                icon_item = { 
+                                                "id" :  4011,     
+                                                "parent" : 3310,
+                                                "text" : "4011 category optional x1",
+                                                "layer_name" : _layer_name_,
+                                                "icon" : open_new_tab_icon,
+                                                "link_type": "embed_4011",
+                                                "state"       : {
+                                                                "opened"    : true,  // is the node open
+                                                                // disabled  : boolean  // is the node disabled
+                                                                // "selected"  : true   // is the node selected
+                                                            },
+                                                "node_path" : _node_path_, 
+                                                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                                "server_path" : _map_server_url_,
+                                                "layer_id" :  _layer_id_,            
+                                                "type" : _type_
+                                            };
+                                icon_flatjson.push(icon_item)
+
+
+
+                                icon_item = { 
+                                                "id" :  4014,     
+                                                "parent" : 3310,
+                                                "text" : "4014 category optional x4",
+                                                "layer_name" : _layer_name_,
+                                                "icon" : open_new_tab_icon,
+                                                "link_type": "embed_4014",
+                                                "state"       : {
+                                                                "opened"    : true,  // is the node open
+                                                                // disabled  : boolean  // is the node disabled
+                                                                // "selected"  : true   // is the node selected
+                                                            },
+                                                "node_path" : _node_path_, 
+                                                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                                "server_path" : _map_server_url_,
+                                                "layer_id" :  _layer_id_,            
+                                                "type" : _type_
+                                            };
+                                icon_flatjson.push(icon_item)
+
+
+
+
+                                 icon_item = { 
+                                                "id" :  4021,     
+                                                "parent" : 3310,
+                                                "text" : "police 4021",
+                                                "layer_name" : _layer_name_,
+                                                "icon" : open_new_tab_icon,
+                                                "link_type": "embed_4021",
+                                                "state"       : {
+                                                                "opened"    : true,  // is the node open
+                                                                // disabled  : boolean  // is the node disabled
+                                                                // "selected"  : true   // is the node selected
+                                                            },
+                                                "node_path" : _node_path_, 
+                                                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                                "server_path" : _map_server_url_,
+                                                "layer_id" :  _layer_id_,            
+                                                "type" : _type_
+                                            };
+                                icon_flatjson.push(icon_item)
+                                icon_item = { 
+                                                "id" :  4023,     
+                                                "parent" : 3310,
+                                                "text" : "hospital 4023",
+                                                "layer_name" : _layer_name_,
+                                                "icon" : open_new_tab_icon,
+                                                "link_type": "embed_4023",
+                                                "state"       : {
+                                                                "opened"    : true,  // is the node open
+                                                                // disabled  : boolean  // is the node disabled
+                                                                // "selected"  : true   // is the node selected
+                                                            },
+                                                "node_path" : _node_path_, 
+                                                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                                "server_path" : _map_server_url_,
+                                                "layer_id" :  _layer_id_,            
+                                                "type" : _type_
+                                            };
+                                icon_flatjson.push(icon_item)
+                                icon_item = { 
+                                                "id" :  4025,     
+                                                "parent" : 3310,
+                                                "text" : "hotel 4025",
+                                                "layer_name" : _layer_name_,
+                                                "icon" : open_new_tab_icon,
+                                                "link_type": "embed_4025",
+                                                "state"       : {
+                                                                "opened"    : true,  // is the node open
+                                                                // disabled  : boolean  // is the node disabled
+                                                                // "selected"  : true   // is the node selected
+                                                            },
+                                                "node_path" : _node_path_, 
+                                                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                                "server_path" : _map_server_url_,
+                                                "layer_id" :  _layer_id_,            
+                                                "type" : _type_
+                                            };
+                                icon_flatjson.push(icon_item)
+                                icon_item = { 
+                                                "id" :  4027,     
+                                                "parent" : 3310,
+                                                "text" : "nightlife 4027",
+                                                "layer_name" : _layer_name_,
+                                                "icon" : open_new_tab_icon,
+                                                "link_type": "embed_4027",
+                                                "state"       : {
+                                                                "opened"    : true,  // is the node open
+                                                                // disabled  : boolean  // is the node disabled
+                                                                // "selected"  : true   // is the node selected
+                                                            },
+                                                "node_path" : _node_path_, 
+                                                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                                "server_path" : _map_server_url_,
+                                                "layer_id" :  _layer_id_,            
+                                                "type" : _type_
+                                            };
+                                icon_flatjson.push(icon_item)
+
+
+
+
+
+
+
+
+                   /* = = = = sub folder = = = = g o o g l e p o i = = = =  */
                     icon_item = { 
-                                    "id" :  4011,     
-                                    "parent" : 4010,
-                                    "text" : "4011 everything (category optional) x1",
-                                    "layer_name" : _layer_name_,
-                                    "icon" : open_new_tab_icon,
-                                    "link_type": "embed_4011",
-                                    "state"       : {
-                                                    "opened"    : true,  // is the node open
-                                                    // disabled  : boolean  // is the node disabled
-                                                    // "selected"  : true   // is the node selected
-                                                },
-                                    "node_path" : _node_path_, 
-                                    "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                                    "server_path" : _map_server_url_,
-                                    "layer_id" :  _layer_id_,            
-                                    "type" : _type_
-                                };
-                    icon_flatjson.push(icon_item)
+                        "id" :  3311,     
+                        "parent" : 4010,
+                        "text" : "by keyword",
+                        "icon" : folder_icon,
+                        "link_type": "folder",   
+                        "state"       : {
+                        // use this opened line for always default open this folder
+                                        "opened"    :false, //  iconJstreeforceOpen,   // is the node open
+                                        // disabled  : boolean  // is the node disabled
+                                        // "selected"  : true   // is the node selected
+                                    }
+                    };
+                    icon_flatjson.push(icon_item)        
 
 
 
-                    icon_item = { 
-                                    "id" :  4014,     
-                                    "parent" : 4010,
-                                    "text" : "4014 everything (category optional) x4",
-                                    "layer_name" : _layer_name_,
-                                    "icon" : open_new_tab_icon,
-                                    "link_type": "embed_4014",
-                                    "state"       : {
-                                                    "opened"    : true,  // is the node open
-                                                    // disabled  : boolean  // is the node disabled
-                                                    // "selected"  : true   // is the node selected
-                                                },
-                                    "node_path" : _node_path_, 
-                                    "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                                    "server_path" : _map_server_url_,
-                                    "layer_id" :  _layer_id_,            
-                                    "type" : _type_
-                                };
-                    icon_flatjson.push(icon_item)
+                                    icon_item = { 
+                                                    "id" :  4012,     
+                                                    "parent" : 3311,
+                                                    "text" : "4012 keyword required",
+                                                    "layer_name" : _layer_name_,
+                                                    "icon" : open_new_tab_icon,
+                                                    "link_type": "embed_4012",
+                                                    "state"       : {
+                                                                    "opened"    : true,  // is the node open
+                                                                    // disabled  : boolean  // is the node disabled
+                                                                    // "selected"  : true   // is the node selected
+                                                                },
+                                                    "node_path" : _node_path_, 
+                                                    "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                                    "server_path" : _map_server_url_,
+                                                    "layer_id" :  _layer_id_,            
+                                                    "type" : _type_
+                                                };
+                                    icon_flatjson.push(icon_item)
 
 
 
-                    icon_item = { 
-                                    "id" :  4012,     
-                                    "parent" : 4010,
-                                    "text" : "4012 keyword required",
-                                    "layer_name" : _layer_name_,
-                                    "icon" : open_new_tab_icon,
-                                    "link_type": "embed_4012",
-                                    "state"       : {
-                                                    "opened"    : true,  // is the node open
-                                                    // disabled  : boolean  // is the node disabled
-                                                    // "selected"  : true   // is the node selected
-                                                },
-                                    "node_path" : _node_path_, 
-                                    "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                                    "server_path" : _map_server_url_,
-                                    "layer_id" :  _layer_id_,            
-                                    "type" : _type_
-                                };
-                    icon_flatjson.push(icon_item)
+                                    icon_item = { 
+                                                    "id" :  4042,     
+                                                    "parent" : 3311,
+                                                    "text" : "police 4042",
+                                                    "layer_name" : _layer_name_,
+                                                    "icon" : open_new_tab_icon,
+                                                    "link_type": "embed_4042",
+                                                    "state"       : {
+                                                                    "opened"    : true,  // is the node open
+                                                                    // disabled  : boolean  // is the node disabled
+                                                                    // "selected"  : true   // is the node selected
+                                                                },
+                                                    "node_path" : _node_path_, 
+                                                    "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                                    "server_path" : _map_server_url_,
+                                                    "layer_id" :  _layer_id_,            
+                                                    "type" : _type_
+                                                };
+                                    icon_flatjson.push(icon_item)
+                                    icon_item = { 
+                                                    "id" :  4044,     
+                                                    "parent" : 3311,
+                                                    "text" : "hospital 4044",
+                                                    "layer_name" : _layer_name_,
+                                                    "icon" : open_new_tab_icon,
+                                                    "link_type": "embed_4044",
+                                                    "state"       : {
+                                                                    "opened"    : true,  // is the node open
+                                                                    // disabled  : boolean  // is the node disabled
+                                                                    // "selected"  : true   // is the node selected
+                                                                },
+                                                    "node_path" : _node_path_, 
+                                                    "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                                    "server_path" : _map_server_url_,
+                                                    "layer_id" :  _layer_id_,            
+                                                    "type" : _type_
+                                                };
+                                    icon_flatjson.push(icon_item)
+                                    icon_item = { 
+                                                    "id" :  4046,     
+                                                    "parent" : 3311,
+                                                    "text" : "hotel 4046",
+                                                    "layer_name" : _layer_name_,
+                                                    "icon" : open_new_tab_icon,
+                                                    "link_type": "embed_4046",
+                                                    "state"       : {
+                                                                    "opened"    : true,  // is the node open
+                                                                    // disabled  : boolean  // is the node disabled
+                                                                    // "selected"  : true   // is the node selected
+                                                                },
+                                                    "node_path" : _node_path_, 
+                                                    "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                                    "server_path" : _map_server_url_,
+                                                    "layer_id" :  _layer_id_,            
+                                                    "type" : _type_
+                                                };
+                                    icon_flatjson.push(icon_item)
+                                    icon_item = { 
+                                                    "id" :  4048,     
+                                                    "parent" : 3311,
+                                                    "text" : "nightlife 4048",
+                                                    "layer_name" : _layer_name_,
+                                                    "icon" : open_new_tab_icon,
+                                                    "link_type": "embed_4048",
+                                                    "state"       : {
+                                                                    "opened"    : true,  // is the node open
+                                                                    // disabled  : boolean  // is the node disabled
+                                                                    // "selected"  : true   // is the node selected
+                                                                },
+                                                    "node_path" : _node_path_, 
+                                                    "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                                    "server_path" : _map_server_url_,
+                                                    "layer_id" :  _layer_id_,            
+                                                    "type" : _type_
+                                                };
+                                    icon_flatjson.push(icon_item)
                                      
 
 
