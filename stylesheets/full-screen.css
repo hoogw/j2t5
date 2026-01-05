@@ -1,0 +1,243 @@
+
+
+/* scrollable flexbox sample is here  https://www.bennadel.com/blog/4499-sanity-check-using-overflow-scrolling-on-css-flexbox-panels.htm */
+
+
+/* for different size of screen, sample is here  https://www.w3schools.com/Css/css3_flexbox_responsive.asp */
+
+
+
+
+body {
+  
+  /* default is black for all */
+  background-color:black;
+  color:white;
+  
+  font-family: monospace,system-ui,sans-serif;
+
+}
+
+/* because dark theme set link color as black, now need restore blue color by this line*/
+a {
+  color: revert; /* Restores the default blue color for unvisited links */
+}
+
+
+
+
+.flex-container {
+  
+  display: flex ;
+
+  bottom: 0px ;
+  left: 0px ;
+  position: fixed ;
+  right: 0px ;
+  top: 0px ;
+  z-index: 1 ;
+
+}
+
+
+/*
+  Sanity check that flex "panels" will scroll properly when they have
+  overflow:auto applied to them. And, won't just grow in strange ways when they
+  have too much content.
+*/
+/* for 3 panel */
+.flex-3-left,
+.flex-3-middle,
+.flex-3-right,
+/* for 2 panel */
+.flex-2-left,
+.flex-2-right,
+
+
+/* for map in middle, have left, right, 3 panel */
+.map-3-left,
+.map-3-middle,
+.map-3-right,
+
+
+
+
+.map-3-left-width-undefined,
+.map-3-middle-width-auto,
+.map-3-right-width-undefined
+{
+  overflow: auto ;
+  overscroll-behavior: contain ;
+  
+}
+
+
+    /* default for 2k,4k,5k  more than 2000px */
+    .flex-3-left {
+      flex: 1 1 auto ;
+    }
+    .flex-3-middle {
+      flex: 0 0 auto ;
+      width: 800px ;
+    }
+    .flex-3-right {
+      flex: 0 0 auto ;
+      width: 800px ;
+    }
+
+    .flex-2-left {
+      flex: 1 1 auto ;
+    }
+    .flex-2-right {
+      flex: 0 0 auto ;
+      width: 1500px ;
+    }
+
+
+   
+
+
+
+
+          /* for HD 1920x1080  max 2000px */
+          @media screen and (max-width: 2000px) {
+            .flex-3-middle {
+              width: 600px ;
+            }
+            .flex-3-right {
+              width: 600px ;
+            }
+
+            .flex-2-right {
+              flex: 0 0 auto ;
+              width: 1200px ;
+            }
+          }
+
+          @media screen and (max-width: 1800px) {
+            .flex-3-middle {
+              width: 500px ;
+            }
+            .flex-3-right {
+              width: 500px ;
+            }
+
+
+            .flex-2-right {
+              flex: 0 0 auto ;
+              width: 1000px ;
+            }
+          }
+
+          @media screen and (max-width: 1500px) {
+            .flex-3-middle {
+              width: 400px ;
+            }
+            .flex-3-right {
+              width: 400px ;
+            }
+
+            .flex-2-right {
+              flex: 0 0 auto ;
+              width: 800px ;
+            }
+          }
+          
+          @media screen and (max-width: 1000px) {
+            .flex-3-middle {
+              width: 300px ;
+            }
+            .flex-3-right {
+              width: 300px ;
+            }
+
+            .flex-2-right {
+              flex: 0 0 auto ;
+              width: 600px ;
+            }
+          }
+
+          @media screen and (max-width: 800px) {
+            .flex-3-middle {
+              width: 200px ;
+            }
+            .flex-3-right {
+              width: 200px ;
+            }
+
+            .flex-2-right {
+              flex: 0 0 auto ;
+              width: 400px ;
+            }
+          }
+
+          @media screen and (max-width: 500px) {
+            .flex-3-middle {
+              width: 100px ;
+            }
+            .flex-3-right {
+              width: 100px ;
+            }
+
+            .flex-2-right {
+              flex: 0 0 auto ;
+              width: 200px ;
+            }
+          }
+
+
+
+
+
+
+
+
+
+
+ /* for map tag, height must defined here*/
+    .map-class-height-undefined {
+      height: 100%   /* default 100%, without header,footer line, otherwise should adjust inline style=height 90%     700px; */
+    }
+    .map-3-left-width-undefined {
+      flex: 0 0 auto ;
+    }
+    .map-3-middle-width-auto {
+      flex: 1 1 auto ;
+    }
+    .map-3-right-width-undefined {
+      flex: 0 0 auto ;
+    }
+
+        
+    
+
+
+
+
+
+
+
+
+
+/*  utility always at bottom */
+
+  .flex-row {
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    /* border: 1px dotted grey; */
+  }
+
+
+ 
+  .flex-column {
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  .font-size-xx-small{
+    font-size: xx-small;
+  }

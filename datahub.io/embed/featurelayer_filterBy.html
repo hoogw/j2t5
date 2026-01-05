@@ -18,8 +18,9 @@
       <link href="../../stylesheets/mark.js.css" rel="stylesheet" type="text/css"/>
     <!--  end ---- mark.js  --> 
    
-    <link href="../../stylesheets/color.css" rel="stylesheet" type="text/css"/> 
-    <link rel="stylesheet" href="../../stylesheets/vertical_top_left.css">
+   
+    <link rel="stylesheet" href="../../stylesheets/full-screen.css">
+
 
     
 
@@ -27,153 +28,116 @@
 
 <body>
 
-       <div class="top-left-flex-container">
-
-                <div id='field_list' class="top-flex-box"></div>
+  <div class='flex-container'>
 
 
-                <!--  only for vertial   .. - .. - ... zoom 2 feature  ... - .. - .. -->
-                <div id='zoom2feature_forClassified' class="top-flex-box">
-                  <input type='radio' id='zoom2feature_automatic_zoom_level' name='zoom2feature_radio' value='zoom2feature_automatic_zoom_level'/>
-                  <span style="font-size: 24px; font-weight: 100;">Zoom2location</span> 
-                  <sup>
-                        <mark>
-                          <b>Automatically</b> 
-                        </mark>
-                        <span>But No More Than&nbsp;</span>
-                  </sup>
-                  <input type='range'   id='zoom_to_no_more_than' name='zoom_to_no_more_than' min='1' max='22' step='1'  style='display:inline; width:auto'>
-                  <span id='zoom_to_no_more_than_label' for='zoom_to_no_more_than'></span>
+    <div class='map-3-left-width-undefined' style="width: 200px;">
+      <span id='field_list' class="flex-column font-size-xx-small"></span>
+    </div>
 
-                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &#124;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class='map-3-left-width-undefined' style="width: 250px;">
+      <span id='value_list' class="flex-column font-size-xx-small"></span>
+    </div>
 
-                 
-                  <input type='radio' id='zoom2feature_fixed_zoom_level' name='zoom2feature_radio' value='zoom2feature_fixed_zoom_level'>
-                  <span style="font-size: 24px; font-weight: 100;">Zoom2location</span>
-                  <sup>
-                        <mark> 
-                          <b>Fixed</b>  
-                        </mark>
-                        <span>at&nbsp;</span> 
-                  </sup>
-                  <input type='range'   id='zoom_to_range' name='zoom_to_range' min='1' max='22' step='1'  style='display:inline; width:auto'>
-                  <span id='zoom_to_label' for='zoom_to_range'></span>
-                  
-                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &#124;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <input type='radio' id='donot_zoom2feature' name='zoom2feature_radio' value='donot_zoom2feature'>
-                  
-                  <span style="font-size: 24px; font-weight: 100;">
-                        <mark>Do Not&nbsp;</mark>
-                        <del>Zoom2location</del> 
-                  </span>
-                  
-                </div>           
+    <div class='map-3-middle-width-auto'>
 
-            <!--   only for vertial   ... - .. - ..  end .. - .. - ... zoom 2 feature   ... - .. - ..  -->
-
-
-
-            <!--   only for vertial   .. - .. - ... order by count or value for classified only   ... - .. - ..    -->
-
-              <div id='orderby_forClassified' class="top-flex-box">
-                <input type='radio' id='orderby_count' name='orderby_radio' value='orderby_count' data-field-name='fakeFieldName'/>
-                <span style="font-size: 24px; font-weight: 100;">order by</span>
+        <!--  only for vertial   .. - .. - ... zoom 2 feature  ... - .. - .. -->
+        <div id='zoom2feature_forClassified'  style="font-size: xx-small;">
+          <input type='radio' id='zoom2feature_automatic_zoom_level' name='zoom2feature_radio' value='zoom2feature_automatic_zoom_level'/>
+          <span>Zoom2location</span> 
+          <sup>
                 <mark>
-                    <b>count</b>   
+                  <b>Automatically</b> 
                 </mark>
-                <sup>descending ( groupby )</sup> 
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &#124;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type='radio' id='orderby_value' name='orderby_radio' value='orderby_value' data-field-name='fakeFieldName'/>
-                <span style="font-size: 24px; font-weight: 100;">order by</span>  
-                <mark>
-                      <b>value</b>  
-                </mark> 
-                <sup>alphabetic ascending ( distinct )</sup> 
-              </div>  
-                        
-            <!--   only for vertial   .. - .. end  - ... order by count or value for classified only   ... - .. - ..  -->
+                <span>But No More Than&nbsp;</span>
+          </sup>
+          <input type='range'   id='zoom_to_no_more_than' name='zoom_to_no_more_than' min='1' max='22' step='1'  style='display:inline; width:auto'>
+          <span id='zoom_to_no_more_than_label' for='zoom_to_no_more_than'></span>
+
+        
+          <input type='radio' id='zoom2feature_fixed_zoom_level' name='zoom2feature_radio' value='zoom2feature_fixed_zoom_level'>
+          <span>Zoom2location</span>
+          <sup>
+                <mark> 
+                  <b>Fixed</b>  
+                </mark>
+                <span>at&nbsp;</span> 
+          </sup>
+          <input type='range'   id='zoom_to_range' name='zoom_to_range' min='1' max='22' step='1'  style='display:inline; width:auto'>
+          <span id='zoom_to_label' for='zoom_to_range'></span>
+          
+        
+          <input type='radio' id='donot_zoom2feature' name='zoom2feature_radio' value='donot_zoom2feature'>
+          
+          <span>
+                <mark>Do Not&nbsp;</mark>
+                <del>Zoom2location</del> 
+          </span>
+          
+        </div> 
+        <!--   only for vertial   ... - .. - ..  end .. - .. - ... zoom 2 feature   ... - .. - ..  -->
+
+        <!--   only for vertial   .. - .. - ... order by count or value for classified only   ... - .. - ..    -->
+        <div id='orderby_forClassified'  style="font-size: xx-small;">
+          <input type='radio' id='orderby_count' name='orderby_radio' value='orderby_count' data-field-name='fakeFieldName'/>
+          <span>order by</span>
+          <mark>
+              <b>count</b>   
+          </mark>
+          <sup>descending ( groupby )</sup> 
+        
 
 
-              <div class="horizontal-left-flex-container">
-
-                      <div class="vertical-left-box">
-
-
-                              <div id='value_list' class="left-nav-list"></div>
-                             
-
-
-
-                              <span id="layer-info-vertical">Layer Name</span>
-
-                              <div>
-                                <input name="click_or_hover_radio" type="radio"  value="hover"/>
-                                <span>hoverable</span>
-                                &nbsp;&nbsp;&nbsp;
-                                <input name="click_or_hover_radio" type="radio"  value="click"/>
-                                <span>clickable</span>
-                                &nbsp;&nbsp;
-                                <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"></input>
-                                <label for="overlay_opacity_range" id='opacity_value_text'></label>
-                              </div>
-
-                            
-
-                              <div class='dashboard-box'>
+          <input type='radio' id='orderby_value' name='orderby_radio' value='orderby_value' data-field-name='fakeFieldName'/>
+          <span>order by</span>  
+          <mark>
+                <b>value</b>  
+          </mark> 
+          <sup>alphabetic ascending ( distinct )</sup> 
+        </div>   
+        <!--   only for vertial   .. - .. end  - ... order by count or value for classified only   ... - .. - ..  -->
 
 
-                                      <div class='card' style="width:98px;">
-                                        <div><h3 style="display:inline;" id="feature-on-map">...</h3></div>
-                                        <div>OnMap</div>
-                                      </div>
+        <div id="viewDiv" class="map-class-height-undefined" style="height: 90%;"></div>
 
 
-                                      
+        <div>
+            <span id="layer-info-vertical">Layer Name</span>
+            <small>total:</small><b id="total-feature">...</b>
+            <small>visible:</small><b id="feature-on-map">...</b>
+            <small>filtered:</small><b id="filter-total">...</b>
+            <small>percent:</small><b id="percent">... %</b>
+        </div>
+        <div>
 
-                                      <div class='card' style="width:98px;">
-                                        <div><h3 style="display:inline;" id="filter-total">...</h3></div>
-                                        <div>Filtered</div>
-                                      </div>
+            <input name="click_or_hover_radio" type="radio"  value="hover"/>
+            <span>hoverable</span>
+            
+            <input name="click_or_hover_radio" type="radio"  value="click"/>
+            <span>clickable</span>
+            
+            <small id = "opacitytitle_span">layer-opacity:</small>
+            <b id='opacity_value_text'></b>
+            <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"/>
+          
+                  
+        </div>
 
-                                      <div class='card' style="width:98px;">
-                                        <div><span style="font-size:16px;" id="total-feature">...</span></div>
-                                        <div> (Total)</div>
-                                      </div>
+    </div>
 
-                                      <div class='card' style="width:98px;">
-                                        <div><h3 style="display:inline;" id="percent">... %</h3></div>
-                                        <div>Percent</div>
-                                      </div>
+   
+    
+    <div class='map-3-right-width-undefined' style="width: 400px;">
+      <div id='info-window-div' style="font-size: xx-small;"></div>
+    </div>
 
-                                      
-                              </div>
+  </div>
 
 
-                              
 
-                              
 
-                      </div>
 
-                            
-                      
 
-                      <div class="flex-container">
-                                        <div class='map-box' >
-                                          <div id="viewDiv"></div>
-                                        </div>  
-                                                                                  
-                                        <div class='info-window-box'>
-                                          <div id='info-window-div' class="flex-row" style="font-size: xx-small;"></div> 
-                                        </div> 
-                      </div>
-
-              </div>
-
-      </div>
-
-      
-      
   
 
      <!-- jquery must load first on top header -->

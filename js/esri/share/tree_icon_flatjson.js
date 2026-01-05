@@ -106,7 +106,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                     icon_item = { 
                         "id" :  90,     
                         "parent" : 10,
-                        "text" : "Attribute table" + table_svg,
+                        "text" : "Attribute Table" + table_svg,
                         "icon" : folder_icon,
                         "link_type": "folder",   
                         "state"       : {
@@ -186,7 +186,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                     icon_item = { 
                         "id" :  577,     
                         "parent" : 10,
-                        "text" : "Esri forever",
+                        "text" : "Esri Forever",
                         "icon" : folder_icon,
                         "link_type": "folder",   
                         "state"       : {
@@ -204,7 +204,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                     icon_item = { 
                         "id" :  579,     
                         "parent" : 10,
-                        "text" : esri_svg + " Esri component" + "<small><sup>2023.10-now</sup></small>",  //<sup>v4.28-now</sup>
+                        "text" : esri_svg + " Esri Component" + "<small><sup>2025-now</sup></small>",  //<sup>v4.28-now</sup>
                         "icon" : folder_icon,
                         "link_type": "folder",   
                         "state"       : {
@@ -220,7 +220,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                     icon_item = { 
                         "id" :  4679,     
                         "parent" : 10,
-                        "text" : esri_svg + "  Esri widget" + "<small><sup>2008.6-2025.2</sup></small>", //<sup>v1.2-v4.31</sup>
+                        "text" : esri_svg + "  Esri Widget" + "<small><sup>2018-2024</sup></small>", //<sup>v1.2-v4.31</sup>
                         "icon" : folder_icon,
                         "link_type": "folder",   
                         "state"       : {
@@ -247,7 +247,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                     icon_item = { 
                         "id" :  589,     
                         "parent" : 10,
-                        "text" : esri_svg + " Esri official",
+                        "text" : esri_svg + " Esri Official",
                         "icon" : folder_icon,
                         "link_type": "folder",   
                         "state"       : {
@@ -289,7 +289,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                     icon_item = { 
                         "id" :  102222,     
                         "parent" : 10, //970,
-                        "text" : "Google classic" + "<small><sup>2005-2020</sup></small>", //v2 
+                        "text" : "Google Classic" + "<small><sup>2005-2020</sup></small>", //v2 
                         "icon" : folder_icon,  
                         "link_type": "folder", 
                         "state"       : {
@@ -305,7 +305,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                     icon_item = {
                                     "id" :  500,     
                                     "parent" : 10, //970,
-                                    "text" : "Esri widget classic" + '<small><sup>2008.6-2025.2, token 4 restricted</sup></small>',
+                                    "text" : "Esri Classic Widget" + '<small><sup>2008-2018</sup></small>',
                                     "icon" : folder_icon,  
                                     "link_type": "folder", 
                                     "state"       : {
@@ -380,7 +380,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                         icon_item = { 
                             "id" :  10200,     
                             "parent" : 10, //970,
-                            "text" : "Apple classic" + "<small><sup>2012-2018</sup></small>",
+                            "text" : "Apple Classic" + "<small><sup>2012-2018</sup></small>",
                             "icon" : folder_icon, 
                             "link_type": "folder",  
                             "state"       : {

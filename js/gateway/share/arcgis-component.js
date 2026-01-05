@@ -155,7 +155,7 @@ $("#zoom2level-input").val(zoom2level)
 
 
 
-
+var objectId
 
 
 

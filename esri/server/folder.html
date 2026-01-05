@@ -21,190 +21,198 @@
   </head>
   <body>
     
-    <div class='full_screen_flex_container_column'>
+    <div class='flex-container'>
 
-      
-                <!-- ------- let's go to your REST api  ------- --> 
-                    <div id="let-us-go-to-your-REST-api">  
-                      
-                       <span style="font-size: x-large; font-weight: bolder; font-style: oblique;"><button id="letsgo" class="hover-zoom-not-use">Start</button></span>
+      <div class='flex-3-left'>
 
-                       <span style="font-size: xx-small; font-weight: lighter; font-style: oblique;">
-                        <button id="large-text-button" class="hover-zoom-not-use" type="button">large text</button>
-                        <button id="small-text-button" class="hover-zoom-not-use" type="button">small</button>
-                        <button id="standard-text-button" class="hover-zoom-not-use" type="button">standard</button>
-                        
-                        <button id="dark-button" class="hover-zoom-not-use" type="button">dark</button>
-                        <button id="light-button" class="hover-zoom-not-use" type="button">light</button>
+        <!-- ------- let's go to your REST api  ------- --> 
+        <div id="let-us-go-to-your-REST-api">  
+          
+           <span style="font-size: x-large; font-weight: bolder; font-style: oblique;"><button id="letsgo" class="hover-zoom-not-use">Start</button></span>
 
-                        <button id="iphone-button" class="hover-zoom-not-use" type="button">iphone</button>
-                        <button id="desktop-button" class="hover-zoom-not-use" type="button">ipad</button>
-                        <button id="4k-button" class="hover-zoom-not-use" type="button">4k</button>
-                       </span> 
-                       
-                  <input id="current_rest_api_endpoint" style="width:100%;" type="search" placeholder="e.g. https://xxx.gov/arcgis/rest/services  e.g. https://services.arcgis.com/xxx/ArcGIS/rest/services"/>
-                </div>
-                  
-                <div style="font-size: xx-small; font-weight: lighter; font-style: oblique;"> 
-                  <span>Login:</span><input id="login_name" class="login_name" type="search" placeholder="portal_admin" value="portal_admin"/>
-                  &nbsp;
-                  <span>Password:</span><input id="login_password" class="login_password" type="password" placeholder="password"  value=""/>  
-                  &nbsp;
-                  <input type="radio" id="arcgis_online" name="online_or_portal_radio" value="arcgis_online">
-                  <span for="arcgis_online">Arcgis Online (xxx.arcgis.com)</span>&nbsp;
-                  &nbsp;
-                  <input type="radio" id="arcgis_enterprise_portal" name="online_or_portal_radio" value="arcgis_enterprise_portal">
-                  <span for="arcgis_enterprise_portal">Enterprise Portal (xxx.gov)</span>
-                  &nbsp;&nbsp;
-                  <span>Expire</span><input id="expire_in_days" class="expire_in_days" type="text" placeholder="60" value="60"/><span>days</span>
-                  &nbsp;
-                  <button id="generate_token" type="button" >Generate Token</button>
-                  &nbsp;
-                  <button id="clear_token" type="button" >Clear Token</button>
-                  
-                  &nbsp;
-                
-                
-                  <mark>Token</mark>
-                  <input id="arcgis_online_token" class="arcgis_online_token" type="search" placeholder="arcgis online/portal token"/>
-                  &nbsp;
-                  <span hidden>Token URL:</span><input id="genToken_url" type="text" placeholder="generate token url" value="generate token url" hidden/>
-                 
-                  <span>TimeOut:</span><input id="timeout_millisecond" class="timeout_millisecond" type="text" placeholder="" value=""/><span>milliseconds</span>
+           <span style="font-size: xx-small; font-weight: lighter; font-style: oblique;">
+            <button id="small-text-button" class="hover-zoom-not-use" type="button">small text</button>
+            <button id="standard-text-button" class="hover-zoom-not-use" type="button">standard</button>
+            <button id="large-text-button" class="hover-zoom-not-use" type="button">large text</button>
+           </span> 
 
-             
-
-                </div>
-                <!--  end ------- let's go to your REST api  ------- --> 
+           <textarea style="width:100%;" id="current_rest_api_endpoint" type="search" placeholder="e.g. https://xxx.gov/arcgis/rest/services  e.g. https://services.arcgis.com/xxx/ArcGIS/rest/services">
+           </textarea>
+        </div>
+        
+        <!--  end ------- let's go to your REST api  ------- --> 
 
 
-                <div class='self_define_height_full_screen_flex_container_row' style='height: 93%;'>
+        <div id="message_root_folder"></div>
 
-                      <div class='flex_1' id="sidebar-container">
-                
+        <div id="filter-root-div">
+          <input id='filter_folder_list_by' name='filter_folder_list_by' type='search' placeholder='filter by'/>
+          <!-- button id='search_folder_list_button'>filter</button -->
+          <!-- button id='clear_filter_folder_list_button'> &#9932; clear </button -->
+          <span style="font-size: xx-small; font-weight: lighter; font-style: oblique;"> 
+          <button id="expand_button_folder" type="button" class="hover-zoom-not-use">expand</button>
+          <button id="collapse_button_folder" type="button" class="hover-zoom-not-use">collapse</button>
+          </span>
+         
+        </div>
 
-                        <div id="message_root_folder"></div>
+         
+        
+       
+        <div id="jstree_root_folder"></div>
+            <div id="root-more-info"></div>
+            <div id="json-root"  class="jse-theme-dark"></div>
 
-                        
-                        <div id="filter-root-div">
-                          <input id='filter_folder_list_by' name='filter_folder_list_by' type='search' placeholder='filter by'/>
-                          <!-- button id='search_folder_list_button'>filter</button -->
-                          <!-- button id='clear_filter_folder_list_button'> &#9932; clear </button -->
-                          <span style="font-size: xx-small; font-weight: lighter; font-style: oblique;"> 
-        <button id="expand_button_folder" type="button" class="hover-zoom-not-use">expand</button>
-                          <button id="collapse_button_folder" type="button" class="hover-zoom-not-use">collapse</button>
-        </span>
+      </div>
+
+
+      <div class='flex-3-middle'>
+
+
+
+        <!-- ------- login with token  ------- --> 
+
+        <div style="font-size: xx-small; font-weight: lighter; font-style: oblique; border-style: solid;"> 
+          <span>Login:</span><input id="login_name" class="login_name" type="search" placeholder="portal_admin" value="portal_admin"/>
+          &nbsp;
+          <span>Password:</span><input id="login_password" class="login_password" type="password" placeholder="password"  value=""/>  
+          &nbsp;
+          <input type="radio" id="arcgis_online" name="online_or_portal_radio" value="arcgis_online">
+          <span for="arcgis_online">Arcgis Online (xxx.arcgis.com)</span>&nbsp;
+          <input type="radio" id="arcgis_enterprise_portal" name="online_or_portal_radio" value="arcgis_enterprise_portal">
+          <span for="arcgis_enterprise_portal">Enterprise Portal (xxx.gov)</span>
+          &nbsp;&nbsp;
+          <span>Expire</span><input id="expire_in_days" class="expire_in_days" type="text" placeholder="60" value="60"/><span>days</span>
+          &nbsp;
+          <button id="generate_token" type="button" >Generate Token</button>
+          &nbsp;
+          <button id="clear_token" type="button" >Clear Token</button>
+          
+          &nbsp;
+        
+        
+          <mark>Token</mark>
+          <input id="arcgis_online_token" class="arcgis_online_token" type="search" placeholder="arcgis online/portal token"/>
+          &nbsp;
+          <span hidden>Token URL:</span><input id="genToken_url" type="text" placeholder="generate token url" value="generate token url" hidden/>
+        
+          <span>TimeOut:</span><input id="timeout_millisecond" class="timeout_millisecond" type="text" placeholder="" value=""/><span>milliseconds</span>
+
+        </div>
+
+
+         <!--  ------- end ------- login with token  ------- --> 
+
+
+
+
+        <div id="message_mapserver"></div>
+
+       
+        <div id="filter-server-div">
+          <input id='filter_server_list_by' name='filter_server_list_by' type='search' placeholder='filter by'/>
+          <!-- button id='search_server_list_button'>filter</button -->
+          <!-- button id='clear_filter_server_list_button'>&#9932;clear</button -->
+          <span style="font-size: xx-small; font-weight: lighter; font-style: oblique;">
+          <button id="expand_button_layer" type="button" class="hover-zoom-not-use">expand</button>
+          <button id="collapse_button_layer" type="button" class="hover-zoom-not-use">collapse</button>
+          </span>
+        </div>
+        
+        
+        <div id="jstree_mapserver"></div>
+        <div id="inside_folder_item_list" class="bg-transparent"></div>
+
+        <br>
+
+        <br>
+        <!-- by-default show/hide both case, never add 'hidden' here, because 'hidden' was added in .js function ui_event_register() -->
+        <div id="more_info_panel_for_mapserver">   
+
+
+                  <!-- thumbnail for mapserver  -->
+                  <div id="thumbnail_for_mapserver"></div>
                          
-                        </div>
+
+                  <!-- default show, tile, image, coordinate system, status  -->
+                  <div id="coord-sys-mapserver" style="font-size: small;"></div>
+                  <div id="message_more_info_mapserver" style="font-size: small;"></div>
+                  <div id="json-mapserver" class="jse-theme-dark"></div>
 
 
-                        <div id="jstree_root_folder"></div>
-                        <div id="root-more-info"></div>
-                        <div id="json-root"></div>
-                        
-                      </div>
-                    
-                      <div class='flex_1' id="content-container">
-                              <div id="message_mapserver"></div>
-
-                             
-                              <div id="filter-server-div">
-                                <input id='filter_server_list_by' name='filter_server_list_by' type='search' placeholder='filter by'/>
-                                <!-- button id='search_server_list_button'>filter</button -->
-                                <!-- button id='clear_filter_server_list_button'>&#9932;clear</button -->
-                                <span style="font-size: xx-small; font-weight: lighter; font-style: oblique;">
-                      <button id="expand_button_layer" type="button" class="hover-zoom-not-use">expand</button>
-                                <button id="collapse_button_layer" type="button" class="hover-zoom-not-use">collapse</button>
-                      </span>
-                              </div>
-                              
-                              <div id="jstree_mapserver"></div>
-                              <div id="inside_folder_item_list" class="bg-transparent"></div>
-
-                              <br>
-
-                              <br>
-                              <!-- by-default show/hide both case, never add 'hidden' here, because 'hidden' was added in .js function ui_event_register() -->
-                              <div id="more_info_panel_for_mapserver">   
+        </div>
 
 
-                                        <!-- thumbnail for mapserver  -->
-                                        <div id="thumbnail_for_mapserver"></div>
-                                              
+        
+      </div>
 
-                                        <!-- default show, tile, image, coordinate system, status  -->
-                                        <div id="coord-sys-mapserver" style="font-size: small;"></div>
-                                        <div id="message_more_info_mapserver" style="font-size: small;"></div>
-                                        <div id="json-mapserver"></div>
+    
+      <div class='flex-3-right'>
 
 
-                              </div>
+        
+        
 
+        <div id="message_icon"></div>
 
-                              
-                      </div>
+        
+        <div id="filter-icon-div">
+          <input id='filter_icon_list_by' name='filter_icon_list_by' type='search' placeholder='filter by'/>
+          <!-- button id='search_icon_list_button'>filter</button -->
+          <!-- button id='clear_filter_icon_list_button'>&#9932;clear</button -->
+          <span style="font-size: xx-small; font-weight: lighter; font-style: oblique;">
+          <button id="expand_button_icon" type="button" class="hover-zoom-not-use">expand</button>
+          <button id="collapse_button_icon" type="button" class="hover-zoom-not-use">collapse</button>
+        </span>
+        </div>
 
-                      <div class='flex_1' id="right-sidebar-container">
-                        
-                        
+       
+      
+        <div id="jstree_icon"></div>
 
-                        <div id="message_icon"></div>
+        <div id="view_mapserver_on"> </div>
+        <div id="icon_list"> </div>
 
-                         <div id="filter-icon-div">
-                          <input id='filter_icon_list_by' name='filter_icon_list_by' type='search' placeholder='filter by'/>
-                          <!-- button id='search_icon_list_button'>filter</button -->
-                          <!-- button id='clear_filter_icon_list_button'>&#9932;clear</button -->
-                          <span style="font-size: xx-small; font-weight: lighter; font-style: oblique;">
-                      <button id="expand_button_icon" type="button" class="hover-zoom-not-use">expand</button>
-                          <button id="collapse_button_icon" type="button" class="hover-zoom-not-use">collapse</button>
-                    </span>
-                          
-                        </div>
+       
+        <br>
+        <br>
+        <!-- by-default show/hide both case, never add 'hidden' here, because 'hidden' was added in .js function ui_event_register() -->
+        <div id="more_info_panel_for_icon">  
 
-                                  <div id="jstree_icon"></div>
+          <div id="layer_legend"></div>
+      
+          <!-- default show, geodatabase, legend , fields -->
+          <div id="message_more_info_icon" style="font-size: xx-small;"></div>
+          
 
-                                  <div id="view_mapserver_on"> </div>
-                                  <div id="icon_list"> </div>
-
-                                
-                                  <br>
-                                  <br>
-                                  <!-- by-default show/hide both case, never add 'hidden' here, because 'hidden' was added in .js function ui_event_register() -->
-                                  <div id="more_info_panel_for_icon">  
-
-                                    <div id="layer_legend"></div>
-                                
-                                    <!-- default show, geodatabase, legend , fields -->
-                                    <div id="message_more_info_icon" style="font-size: xx-small;"></div>
-                                    
-
-                                    
-                                    <fieldset id="field_fieldset">
-                                      <legend>Fields</legend>
-                                      <div id="jsoneditor_field"  ></div>
-                                    </fieldset>
+          
+          <fieldset id="field_fieldset">
+            <legend>Fields</legend>
+            <div id="jsoneditor_field"  class="jse-theme-dark"></div>
+          </fieldset>
 
 
 
-                                    <fieldset id="subtype_fieldset">
-                                      <legend>SubType</legend>
-                                      <div id="jsoneditor_subtype" ></div>
-                                    </fieldset>
-                                    
-                                    <fieldset id="domain_fieldset">
-                                      <legend>Domain</legend>
-                                      <div id="jsoneditor_domain"  ></div>
-                                    </fieldset>
-                                    
+          <fieldset id="subtype_fieldset">
+            <legend>SubType</legend>
+            <div id="jsoneditor_subtype" class="jse-theme-dark"></div>
+          </fieldset>
+          
+          <fieldset id="domain_fieldset">
+            <legend>Domain</legend>
+            <div id="jsoneditor_domain"  class="jse-theme-dark"></div>
+          </fieldset>
 
-                                    <div id="layer-more-info"></div>
-                                    <div id="json-layer"></div>
+          
 
-                                </div>
-                      </div>
+                        <div id="layer-more-info"></div>
+                        <div id="json-layer"  class="jse-theme-dark"></div>
 
-                </div>
-</div>
+          
+       </div>
+      </div>
+
+    </div>
 
               
 
@@ -212,7 +220,7 @@
           <!-- new jsoneditor, https://github.com/josdejong/svelte-jsoneditor/issues/265,   https://jsbin.com/yuwapaj/edit?html,output  -->
           <script type="module" src="../../js/esri/module_shared.js"></script>
           <!-- default is light theme, comment out dark theme -->
-          <!-- link href="../../js/lib/new_jsoneditor/jse-theme-dark.css" rel="stylesheet" type="text/css"/ -->
+          <link href="../../js/lib/new_jsoneditor/jse-theme-dark.css" rel="stylesheet" type="text/css"/>
 
            
           <!-- jstree will looks bad if remove this -->
@@ -220,10 +228,8 @@
 
          
         
-          <link href="../../stylesheets/sidenav2.css" rel="stylesheet" type="text/css"/>
-          <link href="../../stylesheets/color.css" rel="stylesheet" type="text/css"/>
-
-         
+          <link href="../../stylesheets/full-screen.css" rel="stylesheet" type="text/css"/>
+          
          
 
 

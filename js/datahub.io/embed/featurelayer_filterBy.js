@@ -949,9 +949,7 @@ require([
                     current_selected_field_value_tag_id = -2
                     _classified_count_of_feature = -1
 
-                  $('.field_name_class').removeClass('selected_style')
-                  $('#fieldname_tag_-1').addClass('selected_style')
-
+                
                   update_url_parameter('select_field', -1);
                   update_url_parameter('select_fieldvalue', -1);
 
@@ -977,9 +975,7 @@ require([
                   current_selected_field_value = 'showall'
                   _classified_count_of_feature = -1
 
-                  $('.field_value_class').removeClass('selected_style')
-                  $('#fieldvalue_tag_-1').addClass('selected_style')
-
+                  
                   update_url_parameter('select_fieldvalue', -1);
 
                   // classified data only,  
@@ -997,13 +993,11 @@ require([
 
 
 
-                  
+                  // ( radio only )
                   async function build_value_list(_fieldName, _field_name_tag_id){
                   
 
-                            $('.field_name_class').removeClass('selected_style')
-                            $('#fieldname_tag_' + _field_name_tag_id).addClass('selected_style')
-
+                            
 
 
                             current_selected_field_value = 'showall'
@@ -1016,7 +1010,7 @@ require([
                             update_url_parameter('select_fieldvalue', -1);
 
                             var _fieldType = field_type[_fieldName]
-          var ____fieldType_lowerCase  = _fieldType.toLowerCase();
+                            var ____fieldType_lowerCase  = _fieldType.toLowerCase();
                             /*
                             if (_fieldType){
                               //nothing to do
@@ -1521,19 +1515,19 @@ require([
 
 
                             var value_html = '';
-                            value_html += '<div>';
+                            
             
                             var _node_display_text 
-                    var _node_groupBy_count = '' 
+                            var _node_groupBy_count = '' 
 
                             if (real_distinct_fieldvalue_array) {
                               if ( real_distinct_fieldvalue_array.length > 0 ) {
                                   
-                                    value_html += '<ol>';
-                                    value_html +=   '<a  id="fieldvalue_tag_-1" class="field_value_class" href="#">';
-                                    value_html +=    '<span style="font-size:24px; font-weight:700;">Show all</span>' 
-                                    value_html +=   '</a>';
-                                    value_html +=   ' {' + total_feature_count + '}'
+                                    value_html += '<div>';
+                                    value_html +=    '<input type="radio" id="-1" name="fieldvalue-radio"  value="' + 'Show-all' + '" checked/>'
+                                    value_html +=    '<span style="font-size:large;">Show all</span>' 
+                                    value_html +=    '{' + total_feature_count + '}'
+                                    value_html += '</div>';
                                     
                                     for (var r = 0; r < real_distinct_fieldvalue_array.length; r++) { 
 
@@ -1560,38 +1554,39 @@ require([
 
 
 
-                                      value_html += '<li>' // css .ordered_list_number{ size font};
-                                      //value_html +=   '<a id="fieldvalue_tag_' + r + '" class="field_value_class" href="#" onclick="filter_result(\'' + _this_field_value + '\', ' + r + ')">';
-                                      value_html +=   '<a id="fieldvalue_tag_' + r + '" class="field_value_class" href="#"  data-field-value="' + _this_field_value +  '" data-tag-id="' + r +  '">';
-                                      value_html +=    _node_display_text  
-                                      value_html +=   '</a>';
+                                      value_html += '<div>' 
+                                      value_html +=   '<input type="radio"  id="' + r + '" name="fieldvalue-radio"   value="' + _this_field_value +  '"/>';
+                                      value_html +=   '<span>' + _node_display_text + '</span>'
                                       value_html +=   _node_groupBy_count;
-
+                                      
                                       // . . . add filtered count  . . .
                                       value_html +=   '<span id="fieldvalue_count_' + r + '">' + '</span>';
                                       // . . . end  . . . add filtered count  . . .
 
-                                      value_html += '</li>';
+                                      value_html += '</div>';
+
                                     }// for
 
-                                    value_html += '</ol>';
-                                    value_html +='</div>'
                                     $('#value_list').html(value_html);
 
                                     // event
-                                    var _fieldvalue_tag_id
-                                    for (var r = 0; r < real_distinct_fieldvalue_array.length; r++) {                               
-                                      _fieldvalue_tag_id = '#fieldvalue_tag_' + r
-                                      $(_fieldvalue_tag_id).on('click', function(){
-                                                                                filter_result($(this).data('field-value'), $(this).data('tag-id'))
-                                                                        });
-                                    }// for
-                                    $("#fieldvalue_tag_-1").on('click', showAll_fieldvalue)
+                                    $('input[name="fieldvalue-radio"]').on('change', function() {
+                                      var selectedValue = $(this).val();
+                                      var selectedRadioID = $(this).attr('id');
+                                      current_selected_field_value_tag_id = selectedRadioID
+                                      console.log("you selected value: " + selectedValue);
+                                      if (selectedRadioID == '-1'){
+                                        showAll_fieldvalue()
+                                      } else {
+                                        filter_result(selectedValue,selectedRadioID)
+                                      }
+                                      
+                                    })
 
 
                               } else {
-                                value_html +=  '<div style="font-size: 18px; font-weight: 100;">' + 'No Value Can Be Selected' +  '</div>' 
-                                value_html +='</div>'
+                                value_html +=  '<span>' + 'No Value Can Be Selected' +  '</span>' 
+                                
                                 $('#value_list').html(value_html);
 
                               }//if  
@@ -1647,66 +1642,60 @@ require([
 
 
               /**/
-              //  ... ... .. ... order by field name  ... ... .. ... 
+              //  ... ... .. ... order by field name ( radio only ) ... ... .. ... 
               /**/
 
                     // only for vertial embed
                     function create_field_html(fieldNameListArray){
 
-                          var field_html = '';
-                          // radio button  - - -  https://uiverse.io/Pradeepsaranbishnoi/bitter-rabbit-96
-                          field_html += '<div class="radio-tile-container">'
-                          field_html +=     '<div class="radio-tile-group">'
-                          field_html +=          '<div style="font-size: 24px; font-weight: 900;">FilterBy</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' 
-
-
+                          var field_html = '' 
+                              
                           if (fieldNameListArray.length > 0) {
                                   // only for vertial embed                                  
-                                  field_html +='<div class="radio-tile-input-container">'
-                                  field_html += '<div class="radio-tile">'
-                                  field_html +=   '<label id="fieldname_tag_-1" class="field_name_class radio-tile-label">';
-                                  field_html +=       '<span style="font-size: 24px; font-weight: 900;">'  +  'No Filter'  + '</span>'
-                                  field_html +=   '</label>'
+                                  
+                                  field_html += '<div>'
+                                  field_html += '<input type="radio" id="-1" name="fieldName-radio" value="' + 'No-Filter' + '" checked/>'
+                                  field_html += '<span style="font-size:large;">'  +  'No Filter'  + '</span>'
                                   field_html += '</div>'
-                                  field_html +='</div>'
+                                 
+                                  
 
                                   
-                                  var i1 = 0
+                                 
                                   for (var i = 0; i < fieldNameListArray.length; ++i) {
-                                    i1 = i + 1   
-                                    field_html +='<div class="radio-tile-input-container">'
-                                    //field_html +=   '<span style="display:inline; font-size: 18px; font-weight: 100;">'  + '<sup>' + i1 +  '</sup>' + '</span>'
-
-                                    field_html +=  '<div class="radio-tile">'
-                                    field_html +=   '<label id="fieldname_tag_' + i + '" class="field_name_class  radio-tile-label" data-field-name="' + fieldNameListArray[i] +  '" data-fdnm-tagid=' + i +  '>';
-                                    field_html +=     fieldNameListArray[i]
-                                    field_html +=   '</label>';
+                                    
+                                    field_html += '<div>'
+                                    field_html += '<input type="radio" id="' + i + '" name="fieldName-radio" value="' + fieldNameListArray[i] + '"/>'
+                                    field_html += '<span>' + fieldNameListArray[i] + '</span>';
                                     field_html += '</div>'
-                                    field_html +='</div>'
-
-                                      
-
+                                    
                                   }// for
 
-                                  //field_html += '</ol>';
-                                  field_html +='</div></div></div>'
-
+                                 
                                   $('#field_list').html(field_html);
 
                                   // event
-                                    var _fieldName_tag_id
-                                    for (var i = 0; i < fieldNameListArray.length; ++i) {                           
-                                      _fieldName_tag_id = '#fieldname_tag_' + i
-                                      $(_fieldName_tag_id).on('click', function(){
-                                                                                   build_value_list($(this).data('field-name'), $(this).data('fdnm-tagid'))
-                                                                                  });
-                                    }// for
-                                    $("#fieldname_tag_-1").on('click', showAll)
+
+                                  $('input[name="fieldName-radio"]').on('change', function() {
+                                    var selectedValue = $(this).val();
+                                    var selectedRadioID = $(this).attr('id');
+                                    current_selected_field_name_tag_id = selectedRadioID
+                                    update_url_parameter('select_field', current_selected_field_name_tag_id);
+                                    console.log("you selected value: " + selectedValue);
+                                    if (selectedRadioID == '-1'){
+                                      showAll()
+                                    } else {
+                                      build_value_list(selectedValue,selectedRadioID)
+                                    }
+                                    
+                                })
+
+
 
 
                           } else {
-                            field_html +=  '<div style="font-size: 18px; font-weight: 100;">' + 'No Column Name or Field name, No Filter Can Be Select' +  '</div>' 
-                            field_html +='</div>'
+                            field_html +=  '<span>' + 'No Column Name or Field name, No Filter Can Be Select' +  '</span>' 
+                            
                             $('#field_list').html(field_html);
                           }//if
                           
@@ -1747,7 +1736,7 @@ require([
                   
 
               /**/
-              //  ... end ... ... .. ... order by field name  ... ... .. ...
+              //  ... end ... ... .. ... order by field name ( radio only ) ... ... .. ...
               /**/
 
 
@@ -1825,9 +1814,7 @@ require([
 
                               function filter_result(____current___selected___field___value, _field_value_tag_id){
                              
-                                $('.field_value_class').removeClass('selected_style')
-                                $('#fieldvalue_tag_' + _field_value_tag_id).addClass('selected_style')
-      
+                                
       
                                 current_selected_field_value = ____current___selected___field___value
                                 /**/
@@ -2210,7 +2197,7 @@ require([
 
 
  /**/
- // ****** pre select by url param  ****** 
+ // ****** pre select by url param ( radio only )****** 
       
             var _first_time_load_for_field = true;
             var _first_time_load_for_fieldvalue = true;
@@ -2237,11 +2224,10 @@ require([
                                   showAll()
                             
                             } else {
-
-                                  var selected_fieldname = $('#fieldname_tag_' + selected_fieldLevel_id).text()
-                                  //var _fieldNameWithAlias = $('#fieldname_tag_' + selected_fieldLevel_id).text()
-                                  //var selected_fieldname = _fieldNameWithAlias.slice(0,_fieldNameWithAlias.indexOf(' {'))
-
+                                  // radio 
+                                  $('input[name="fieldName-radio"][id="' + selected_fieldLevel_id + '"]').prop('checked', true);
+                                  var selected_fieldname = $('input[name="fieldName-radio"]:checked').val();
+                                 
                                   console.log('pre select field by ',  selected_fieldname,  selected_fieldLevel_id)
                                   await build_value_list(selected_fieldname,  selected_fieldLevel_id)
                                   pre_select_fieldvalue_level()
@@ -2285,8 +2271,10 @@ require([
 
                                 } else {
     
-    
-                                    var selected_fieldvalue = $('#fieldvalue_tag_' + selected_fieldvalueLevel_id).text()
+                                  // radio 
+                                  $('input[name="fieldvalue-radio"][id="' + selected_fieldvalueLevel_id + '"]').prop('checked', true);
+                                  var selected_fieldvalue = $('input[name="fieldvalue-radio"]:checked').val();
+                                 
                                     selected_fieldvalue = selected_fieldvalue.split('{')[0]
                                     selected_fieldvalue = selected_fieldvalue.trim()
                                     console.log('pre select field value by selected fieldvalue',  selected_fieldvalue)
@@ -2299,7 +2287,7 @@ require([
 
             }
 
-// ******  end   ******  pre select by url param  ****** 
+// ******  end   ******  pre select by url param  ( radio only ) ****** 
 /**/
 
 

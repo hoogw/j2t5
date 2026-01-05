@@ -13,7 +13,7 @@
     
    
     
-    <link rel="stylesheet" href="../../stylesheets/vertical.css">
+    <link rel="stylesheet" href="../../stylesheets/full-screen.css">
 
     
 
@@ -23,14 +23,14 @@
 
 
 
-  <div class="horizontal-left-right-width-undefined-container" style="width:1300px;">
+  <div class='flex-container'>
 
 
-    <div class="vertical-width-undefined-no-border" style="width: 100px;">
+    <div class='map-3-left-width-undefined' style="width: 150px;">
           <span id="radio-basemap-id" style="font-size: xx-small;"></span>
     </div>
              
-    <div class="vertical-width-undefined-no-border" style="width: 800px;"> 
+    <div class='map-3-middle-width-auto'>
 
         <div>
           <span id="layer-info-vertical">Layer Name</span>
@@ -39,7 +39,7 @@
           <span id="lat-lng-zoom" hidden>...</span>
         </div> 
 
-        <div id="map"  style="height:700px;"></div> <!-- override default height -->
+        <div id="map" class="map-class-height-undefined" style="height: 95%;"></div> <!-- override default height -->
 
         
         <div>
@@ -60,7 +60,7 @@
 
     </div>
     
-    <div class="vertical-width-undefined-no-border" style="width: 400px; height: 800px; overflow: auto; ">
+    <div class='map-3-right-width-undefined' style="width: 500px;">
     
       <input id='pac-input' type='search' placeholder='(google) addr. zip Pl.'/>  
       
