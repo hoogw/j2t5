@@ -2048,7 +2048,7 @@ icon_flatjson.push(icon_item)
                             "parent" : 5127,
                             
                             
-                            "text" : "6122 feature attribute",
+                            "text" : "6122 default",
                             
                             "layer_name" : _layer_name_,
                             "icon" : open_new_tab_icon,
@@ -2104,6 +2104,112 @@ icon_flatjson.push(icon_item)
 
 
 
+
+
+/* = = = = sub folder = = = = Feature Layer = = = =  */
+            icon_item = { 
+                "id" :  5317,     
+                "parent" : 579,
+                "text" : "click",
+                "icon" : folder_icon,
+                "link_type": "folder",   
+                "state"       : {
+                // use this opened line for always default open this folder
+                                "opened"    :false, //  iconJstreeforceOpen,   // is the node open
+                                // disabled  : boolean  // is the node disabled
+                                // "selected"  : true   // is the node selected
+                            }
+            };
+            icon_flatjson.push(icon_item) 
+
+
+            icon_item = { 
+
+                            "id" :  6121,     
+                            "parent" : 5317,
+                            
+                            
+                            "text" : "6121 default",
+                            
+                            "layer_name" : _layer_name_,
+                            "icon" : open_new_tab_icon,
+                            "link_type": "embed_6121",
+                            "state"       : {
+                                            "opened"    : true,  // is the node open
+                                            // disabled  : boolean  // is the node disabled
+                                            // "selected"  : true   // is the node selected
+                                        },
+                                        
+                            "node_path" : _node_path_, 
+                            "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                            "server_path" : _map_server_url_,
+                            "layer_id" :  _layer_id_,            
+                            "type" : _type_
+                            
+                            
+                            
+                            };
+                            
+                            icon_flatjson.push(icon_item) 
+
+
+
+
+    
+/* = = = = sub folder = = = = Feature Layer = = = =  */
+            icon_item = { 
+                "id" :  5226,     
+                "parent" : 579,
+                "text" : "filter",
+                "icon" : folder_icon,
+                "link_type": "folder",   
+                "state"       : {
+                // use this opened line for always default open this folder
+                                "opened"    :false, //  iconJstreeforceOpen,   // is the node open
+                                // disabled  : boolean  // is the node disabled
+                                // "selected"  : true   // is the node selected
+                            }
+            };
+            icon_flatjson.push(icon_item) 
+
+
+            icon_item = { 
+
+                            "id" :  4687,     
+                            "parent" : 5226,
+                            
+                            
+                            "text" : "4687 default",
+                            
+                            "layer_name" : _layer_name_,
+                            "icon" : open_new_tab_icon,
+                            "link_type": "embed_4687",
+                            "state"       : {
+                                            "opened"    : true,  // is the node open
+                                            // disabled  : boolean  // is the node disabled
+                                            // "selected"  : true   // is the node selected
+                                        },
+                                        
+                            "node_path" : _node_path_, 
+                            "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                            "server_path" : _map_server_url_,
+                            "layer_id" :  _layer_id_,            
+                            "type" : _type_
+                            
+                            
+                            
+                            };
+                            
+                            icon_flatjson.push(icon_item) 
+
+
+
+
+
+
+
+
+
   /* = = = = sub folder = = = = Feature Layer = = = =  */
             icon_item = { 
                 "id" :  5129,     
@@ -2126,35 +2232,6 @@ icon_flatjson.push(icon_item)
 
 
 
-
-             icon_item = { 
-
-                            "id" :  6121,     
-                            "parent" : 5129,
-                            
-                            
-                            "text" : "6121 feature attribute",
-                            
-                            "layer_name" : _layer_name_,
-                            "icon" : open_new_tab_icon,
-                            "link_type": "embed_6121",
-                            "state"       : {
-                                            "opened"    : true,  // is the node open
-                                            // disabled  : boolean  // is the node disabled
-                                            // "selected"  : true   // is the node selected
-                                        },
-                                        
-                            "node_path" : _node_path_, 
-                            "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                            "server_path" : _map_server_url_,
-                            "layer_id" :  _layer_id_,            
-                            "type" : _type_
-                            
-                            
-                            
-                            };
-                            
-                            icon_flatjson.push(icon_item) 
 
 
 

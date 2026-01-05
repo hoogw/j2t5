@@ -665,7 +665,7 @@ async function create_vectorTile_basemap(){
     }
     
 
-     // for arcgis basemap gallery component
+    //not use, this is for old base map widget (arcgis basemap gallery component)
     async function init_base_map_galleryComponent(){
       await create_basemap()
       setup_arcgis_basemap_gallery()
