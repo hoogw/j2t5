@@ -32,30 +32,46 @@
 
 
     <div class='map-3-left-width-undefined' style="width: 200px;">
+
+      <!--  (component, classified)   .. - .. - ... zoom 2 feature  ... - .. - .. -->
+        <fieldset style="font-size: xx-small;">
+          <input type='radio' id='zoom2feature_automatic_zoom_level' name='zoom2feature_radio' value='zoom2feature_automatic_zoom_level'/>
+          <span>Zoom2location NoMoreThan</span>
+          <b id='zoom_to_no_more_than_label'></b>
+          <input type='range'   id='zoom_to_no_more_than' name='zoom_to_no_more_than' min='1' max='22' step='1'  style='display:inline; width:auto'>
+          
+          </br>
+
+          <input type='radio' id='zoom2feature_fixed_zoom_level' name='zoom2feature_radio' value='zoom2feature_fixed_zoom_level'>
+          <span>Zoom2location FixAt</span>
+          <b id='zoom_to_label'></b>
+          <input type='range'   id='zoom_to_range' name='zoom_to_range' min='1' max='22' step='1'  style='display:inline; width:auto'>
+          
+          </br>
+        
+          <input type='radio' id='donot_zoom2feature' name='zoom2feature_radio' value='donot_zoom2feature'>
+          <span>NotZoom</span>
+        </fieldset> 
+        <!--   (component, classified)   ... - .. - ..  end .. - .. - ... zoom 2 feature   ... - .. - ..  -->
+
+
       <span id='field_list' class="flex-column font-size-xx-small"></span>
+
+
+
     </div>
 
     <div class='map-3-left-width-undefined' style="width: 250px;">
 
-        <!--   only for vertial   .. - .. - ... order by count or value for classified only   ... - .. - ..    -->
-        <div id='orderby_forClassified'  style="font-size: xx-small;">
+        <!--  .. - .. - ... order by count or value (component, classified)  ... - .. - ..    -->
+        <fieldset style="font-size: xx-small;">
           <input type='radio' id='orderby_count' name='orderby_radio' value='orderby_count' data-field-name='fakeFieldName'/>
-          <span>order by</span>
-          <mark>
-              <b>count</b>   
-          </mark>
-          <sup>descending ( groupby )</sup> 
-        </div>
-        <div id='orderby_forClassified'  style="font-size: xx-small;">
-
+          <span>By <b>count</b>(groupby)</span>
+          </br>
           <input type='radio' id='orderby_value' name='orderby_radio' value='orderby_value' data-field-name='fakeFieldName'/>
-          <span>order by</span>  
-          <mark>
-                <b>value</b>  
-          </mark> 
-          <sup>alphabetic ascending ( distinct )</sup> 
-        </div>   
-        <!--   only for vertial   .. - .. end  - ... order by count or value for classified only   ... - .. - ..  -->
+          <span>By <b>alphabetic ascending</b>(distinct )</span>
+        </fieldset>   
+        <!--  .. - .. end  - ... order by count or value (component, classified)   ... - .. - ..  -->
 
 
       <span id='value_list' class="flex-column font-size-xx-small"></span>
@@ -98,46 +114,6 @@
         </arcgis-map>
 
        
-        
-
-
-        <!--  only for vertial   .. - .. - ... zoom 2 feature  ... - .. - .. -->
-        <div id='zoom2feature_forClassified'  style="font-size: xx-small;">
-          <input type='radio' id='zoom2feature_automatic_zoom_level' name='zoom2feature_radio' value='zoom2feature_automatic_zoom_level'/>
-          <span>Zoom2location</span> 
-          <sup>
-                <mark>
-                  <b>Automatically</b> 
-                </mark>
-                <span>But No More Than&nbsp;</span>
-          </sup>
-          <input type='range'   id='zoom_to_no_more_than' name='zoom_to_no_more_than' min='1' max='22' step='1'  style='display:inline; width:auto'>
-          <span id='zoom_to_no_more_than_label' for='zoom_to_no_more_than'></span>
-
-        
-          <input type='radio' id='zoom2feature_fixed_zoom_level' name='zoom2feature_radio' value='zoom2feature_fixed_zoom_level'>
-          <span>Zoom2location</span>
-          <sup>
-                <mark> 
-                  <b>Fixed</b>  
-                </mark>
-                <span>at&nbsp;</span> 
-          </sup>
-          <input type='range'   id='zoom_to_range' name='zoom_to_range' min='1' max='22' step='1'  style='display:inline; width:auto'>
-          <span id='zoom_to_label' for='zoom_to_range'></span>
-          
-        
-          <input type='radio' id='donot_zoom2feature' name='zoom2feature_radio' value='donot_zoom2feature'>
-          
-          <span>
-                <mark>Do Not&nbsp;</mark>
-                <del>Zoom2location</del> 
-          </span>
-          
-        </div> 
-        <!--   only for vertial   ... - .. - ..  end .. - .. - ... zoom 2 feature   ... - .. - ..  -->
-
-      
       
         <div id="radio-basemap-id" style="font-size: xx-small;" class="flex-row"></div>     
       
