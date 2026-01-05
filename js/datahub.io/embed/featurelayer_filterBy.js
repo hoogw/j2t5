@@ -1981,7 +1981,7 @@ require([
         } else {
 
             //if ((current_selected_field_value.toLowerCase() == 'null') || (current_selected_field_value.length == 0)){
-              if ((current_selected_field_value == null) || (current_selected_field_value == '') || (current_selected_field_value == undefined)){
+            if ((current_selected_field_value == null) || (current_selected_field_value == '') || (current_selected_field_value == undefined)){
                       classified_query.where =   current_selected_field_name + ' is null'     //"STATE_NAME is null ";
             } else { 
 
@@ -2202,6 +2202,7 @@ require([
             var _first_time_load_for_field = true;
             var _first_time_load_for_fieldvalue = true;
             var selected_fieldLevel_id;
+            var selected_fieldvalueLevel_id;
             async function  pre_select_field_level(){
                     var _rightnow_url_params
                     if (_first_time_load_for_field) {
@@ -2217,6 +2218,11 @@ require([
                     }  
                             selected_fieldLevel_id = _rightnow_url_params.get('select_field');                                                  
                             console.log('selected_field_id',  selected_fieldLevel_id)
+
+                            selected_fieldvalueLevel_id = _rightnow_url_params.get('select_fieldvalue');
+                            console.log('selected_fieldvalue_id',  selected_fieldvalueLevel_id)
+
+
                             if ((selected_fieldLevel_id == undefined) || (selected_fieldLevel_id == null) || (selected_fieldLevel_id == '')){
                                 // select folder is null, undefined, nothing to select
                             } else if (selected_fieldLevel_id == -1){
@@ -2234,33 +2240,9 @@ require([
                             }
             }
 
-            var selected_fieldvalueLevel_id;
-            function  pre_select_fieldvalue_level(){
+            
+            async function pre_select_fieldvalue_level(){
 
-
-                                  var _rightnow_url_params
-
-                                  if (_first_time_load_for_fieldvalue) {
-
-                                    // only run 1 time, 1st time, get original url param from init global variable function
-                                    _rightnow_url_params = urlParams
-                                    _first_time_load_for_fieldvalue = false
-
-                                  } else {
-                                      //  re-create instance of url params
-                                      _rightnow_url_params = new URLSearchParams(window.location.search);
-
-                                  }    
-
-
-
-                                selected_fieldvalueLevel_id = _rightnow_url_params.get('select_fieldvalue');
-
-                                
-                                
-                                console.log('selected_fieldvalue_id',  selected_fieldvalueLevel_id)
-
-    
                                 // -1 means show all, do nothing
                                 if ((selected_fieldvalueLevel_id == undefined) || (selected_fieldvalueLevel_id == null) || (selected_fieldvalueLevel_id == '')){
     
@@ -2279,7 +2261,7 @@ require([
                                     selected_fieldvalue = selected_fieldvalue.trim()
                                     console.log('pre select field value by selected fieldvalue',  selected_fieldvalue)
                                     console.log('pre select field value by selected fieldvalueLevel id',   selected_fieldvalueLevel_id)
-                                    filter_result(selected_fieldvalue, selected_fieldvalueLevel_id)
+                                    await filter_result(selected_fieldvalue, selected_fieldvalueLevel_id)
     
                                 }
 
@@ -2289,6 +2271,7 @@ require([
 
 // ******  end   ******  pre select by url param  ( radio only ) ****** 
 /**/
+
 
 
 

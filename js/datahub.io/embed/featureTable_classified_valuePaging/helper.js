@@ -786,31 +786,26 @@
 
 
                                     var selected_fieldLevel_id;
-                                    async function  pre_select_field_level(){
+                                    var selected_fieldvalueLevel_id;
+            async function  pre_select_field_level(){
+                    var _rightnow_url_params
+                    if (_first_time_load_for_field) {
 
+                      // only run 1 time, 1st time, get original url param from init global variable function
+                       _rightnow_url_params = urlParams
+                       _first_time_load_for_field = false
 
-                                            var _rightnow_url_params
+                    } else {
+                        //  re-create instance of url params
+                         _rightnow_url_params = new URLSearchParams(window.location.search);
 
-                                            if (_first_time_load_for_field) {
+                    }  
+                            selected_fieldLevel_id = _rightnow_url_params.get('select_field');                                                  
+                            console.log('selected_field_id',  selected_fieldLevel_id)
 
-                                              // only run 1 time, 1st time, get original url param from init global variable function
-                                              _rightnow_url_params = urlParams
-                                              _first_time_load_for_field = false
+                            selected_fieldvalueLevel_id = _rightnow_url_params.get('select_fieldvalue');
+                            console.log('selected_fieldvalue_id',  selected_fieldvalueLevel_id)
 
-                                            } else {
-                                                //  re-create instance of url params
-                                                _rightnow_url_params = new URLSearchParams(window.location.search);
-
-                                            }    
-
-
-                                                    selected_fieldLevel_id = _rightnow_url_params.get('select_field');
-                                                  
-                                                    
-                                                  
-                                                  
-                                                    console.log('selected_field_id',  selected_fieldLevel_id)
-                        
                                                     if ((selected_fieldLevel_id == undefined) || (selected_fieldLevel_id == null) || (selected_fieldLevel_id == '')){
                                                       
                                                         // select folder is null, undefined, nothing to select

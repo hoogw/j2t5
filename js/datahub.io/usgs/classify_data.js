@@ -3085,6 +3085,7 @@ $('#info-window-div').html("")
             var _first_time_load_for_field = true;
             var _first_time_load_for_fieldvalue = true;
             var selected_fieldLevel_id;
+          var selected_fieldvalueLevel_id;
             async function  pre_select_field_level(){
                     var _rightnow_url_params
                     if (_first_time_load_for_field) {
@@ -3100,6 +3101,10 @@ $('#info-window-div').html("")
                     }  
                             selected_fieldLevel_id = _rightnow_url_params.get('select_field');                                                  
                             console.log('selected_field_id',  selected_fieldLevel_id)
+
+                            selected_fieldvalueLevel_id = _rightnow_url_params.get('select_fieldvalue');
+                            console.log('selected_fieldvalue_id',  selected_fieldvalueLevel_id)
+
                             if ((selected_fieldLevel_id == undefined) || (selected_fieldLevel_id == null) || (selected_fieldLevel_id == '')){
                                 // select folder is null, undefined, nothing to select
                             } else if (selected_fieldLevel_id == -1){

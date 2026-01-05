@@ -181,6 +181,50 @@
             }
 
 
+            // only for vertical classified
+            console.log('get classified count by field name, field value', current_selected_field_name, current_selected_field_value )
+
+            let classified_query = backgroundFeatureLayer.createQuery();
+            // fix blank/null field value,  animal_type='',  current_selected_field_value can be empty string
+            //if ((current_selected_field_name) && (current_selected_field_value)){
+            if ((current_selected_field_name == 'showall') || (current_selected_field_value == 'showall')){
+
+              
+
+
+                        // any showall means no filter, no search parameter
+                        classified_query.where = '1=1'
+            } else {
+
+                //if ((current_selected_field_value.toLowerCase() == 'null') || (current_selected_field_value.length == 0)){
+                  if ((current_selected_field_value == null) || (current_selected_field_value == '') || (current_selected_field_value == undefined)){
+                          classified_query.where =   current_selected_field_name + ' is null'     //"STATE_NAME is null ";
+                } else { 
+
+                          // by default  where condition think it is string
+                          classified_query.where =   current_selected_field_name + ' = ' +   "'" + current_selected_field_value + "'"   //"STATE_NAME = 'Washington'";
+
+                          // string
+                          if (_feature_attributes_string.includes(current_selected_field_name)){  
+                            classified_query.where =   current_selected_field_name + ' = ' +   "'" + current_selected_field_value + "'"   //"STATE_NAME = 'Washington'";
+                          }
+                                                          
+                          // number (integer, double,)
+                          if (_feature_attributes_integer.includes(current_selected_field_name)){
+                            classified_query.where =   current_selected_field_name + ' = ' +   current_selected_field_value    //"STATE_NAME = 12345 ";
+                          }
+
+                          // date 
+                          if (_feature_attributes_date.includes(current_selected_field_name)){
+                            // need to handle date type, so far by default use string, may not work
+                            console.log('need to handle date type, so far by default use string, may not work : ', current_selected_field_name)
+                          }
+
+                } // null         
+                
+                console.log('classified query where clause is: ', classified_query.where )
+
+            } // null  
            
     
             // queryFeatureCount https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-FeatureLayer.html#queryFeatureCount
@@ -213,6 +257,8 @@
 
 
 
+                // only for vertical classified
+                backgroundFeatureLayer_layerView = layerView
 
                 console.log(' first time zoom to layer must wait until view is ready, otherwise, may not zoom to, - - - >  zoom yes or no', zoom_to_1st_feature)
                   if (zoom_to_1st_feature){
@@ -225,14 +271,20 @@
 
 
 
+
+
+/**/
+// -- -- -- Warning: Only for classified  -- -- --  feature layer only  -- -- -- click and or hover   -- -- -- 
+/**/
+
+     var graphic_object_indexAsKey = {}
      // component 
      // component must use e v e n t .  d e t a i l
      async function init_feature_layer_view(){
 
 
 
-      
-               // -- - - - -- - - -   mouse-move -- - - - event -- - - -  
+ // -- - - - -- - - -   mouse-move -- - - - event -- - - -  
        
                   /*
                       mouse-move will fire 100 event each time, which freeze browser, not responsive.  mouse-click don't have such problem. 
@@ -249,7 +301,8 @@
                         // warning: component must use e v e n t .  d e t a i l
                         const debouncedUpdate = promiseUtils.debounce(async (event) => {
     
-    
+                        console.log(' view * click * fire 1 time is fine , hit test ', click_or_hover )
+                        if (click_or_hover == 'hover'){
 
                           // component 
                           // warning: component must use e v e n t .  d e t a i l
@@ -297,38 +350,234 @@
                                       }//if newObjectId
                                         
     
-                        
+                          }// if hover
     
                       });// debounce
 
-    //  --- highlight feature on pointer-move ---    https://developers.arcgis.com/javascript/latest/api-reference/esri-views-layers-FeatureLayerView.html#highlight
-    // component // view . on ( " pointer-move " , function(event){
-    arcgisMap.addEventListener("arcgisViewPointerMove", (event) => {
+            //  --- highlight feature on pointer-move ---    https://developers.arcgis.com/javascript/latest/api-reference/esri-views-layers-FeatureLayerView.html#highlight
+            // component // view . on ( " pointer-move " , function(event){
+            arcgisMap.addEventListener("arcgisViewPointerMove", (event) => {
 
-      console.log('a r c g i s V i e w P o i n t e r M o v e - for - h o v e r')
-                  debouncedUpdate(event).catch((err) => {
-                                                          if (!promiseUtils.isAbortError(err)) {
-                                                            throw err;
+              console.log('a r c g i s V i e w P o i n t e r M o v e - for - h o v e r')
+                          debouncedUpdate(event).catch((err) => {
+                                                                  if (!promiseUtils.isAbortError(err)) {
+                                                                    throw err;
+                                                                  }
+                        });
+
+
+                
+                      // -- - - -  -- - - -  end  -- - - - -- - - -   mouse-move -- - - -  -- - - -  
+            
+                  
+            }); // view . on . hover
+
+
+
+
+        // component // view . on ( " click " , function(event){
+        arcgisMap.addEventListener("arcgisViewClick", (event) => {
+          console.log(' view * click * fire 1 time is fine ', event.detail)
+          console.log('lat:' + event.detail.mapPoint.latitude + '      lng:' +  event.detail.mapPoint.longitude)
+
+          console.log(' view * click * fire 1 time is fine , hit test ', click_or_hover )
+          if (click_or_hover == 'click'){
+
+          // component // must use e v e n t .  d e t a i l
+          arcgisMap.hitTest(event.detail).then(function(response){
+
+                if (response.results.length) {
+
+                   let hitResult = response.results.filter(function (result) {
+                           return result.graphic.layer === backgroundFeatureLayer;
+                   })
+
+                   console.log(' ! * ! hit test ! * ! click ! * ! hitResult hitResult hitResult ', hitResult )
+
+                   graphic_object_indexAsKey = {} 
+                   let graphic                                                        
+                   if (hitResult[0]){
+                                                  var multiple_layer_properties_html = ''
+                                                  var __layer_name
+                                                  var ___properties
+
+                                                  for (let _index = 0; _index < hitResult.length; _index++) {
+
+                                                      graphic = hitResult[_index].graphic;
+                                                      graphic_object_indexAsKey[_index] = graphic
+                                                      console.log(' ! * ! hit test ! * ! result ! * ! add graphic by index ! * ! ', _index, graphic )
+
+                                                     
+
+                                                      
+                                                      
+                                                      __layer_name = ''
+                                                      __layer_name += 'UniqueID(' + graphic.uid + ')' + layerID_NAME_separator + 'OBJECTID ( ' + graphic.attributes.OBJECTID + ' )'
+                                                      __layer_name += layerID_NAME_separator + graphic.layer.title + '(layerID:' + graphic.layer.layerId + ')'
+                                                      
+                                                      ___properties = graphic.attributes
+
+                                                      multiple_layer_properties_html += '</br>'
+
+                                                // build html only
+                                                      if (_index == 0){
+                                                                        multiple_layer_properties_html += '<fieldset>' 
+                                                                        multiple_layer_properties_html +=     '<legend>' + (_index +1) +  ' : ' + __layer_name +'</legend>'
+                                                                        multiple_layer_properties_html +=     '<div class="flex-row selected_highlighted_style attribute_field_set_style"   id="attribute_field_set_0"   >'  // if 0, means need start a new info window
+                                                                        multiple_layer_properties_html +=           json_flex_tip_viewer(___properties)
+                                                                        multiple_layer_properties_html +=     '<div>'
+                                                                        multiple_layer_properties_html += '</fieldset>'
+                                                      } else {
+
+                                                                multiple_layer_properties_html += '<fieldset>'
+                                                                multiple_layer_properties_html +=     '<legend>' + (_index +1) +  ' : ' + __layer_name +'</legend>'
+                                                                multiple_layer_properties_html +=     '<div class="flex-row attribute_field_set_style"   id="attribute_field_set_' + _index +  '"   >' // not 0, means need append to existing info window
+                                                                multiple_layer_properties_html +=         json_flex_tip_viewer(___properties)
+                                                                multiple_layer_properties_html +=     '<div>'
+                                                                multiple_layer_properties_html += '</fieldset>'
+
+                                                      }//if
+                                                      //  . .  end    . .  build html only
+
+ 
+                                                       /**/
+                                                        //  --- zoom to feature or not radio button     --- 
+                                                        /**/
+
+                                                        if ((zoom_to_feature_or_not == 'zoom_to_feature') && (_index == 0)){
+                                                          // only zoom to 1st feature
+                                                          console.log('zoom to feature or not', graphic)
+                                                          arcgisMap.goTo(graphic)
+
+                                                          var ___graphic___geometry___type____ = graphic.geometry.type
+
+                                                          // point only, enforce to zoom level 18
+                                                          if (___graphic___geometry___type____.includes('point')){
+                                                           arcgisMap.zoom = default_zoom_level_for_point;
                                                           }
-                });
+
+                                                       } else {
+
+                                                       }//if
+
+                                                       /**/
+                                                       //  --- end  ---  zoom to feature or not radio button    --- 
+                                                       /**/
 
 
+                                                  }//for
+
+                                                  $('#info-window-div').html(multiple_layer_properties_html)
+
+
+                                                  // add click event to html, everythime, .html() will lose previous event, so must add event from 0 to index
+                                                  for (let _index = 0; _index < hitResult.length; _index++) {
+
+                                                    console.log('add event to element id :  attribute_field_set_', _index)
+                                                    $("#attribute_field_set_" + _index ).on('click', function(){
+                                                                var element_id = $(this).attr('id');
+                                                                var _select_highlight_index = Number(element_id.replace('attribute_field_set_', ''))
+                                                                console.log("you click  index  :   ",  _select_highlight_index)
+                          
+                                                                $(".attribute_field_set_style").removeClass('selected_highlighted_style')
+                                                                $(this).addClass('selected_highlighted_style')
+
+
+                                                                /**/
+                                                                //  --- zoom to feature or not radio button     --- 
+                                                                /**/
+
+                                                                var graphic = graphic_object_indexAsKey[_select_highlight_index]
+                                                                console.log('you click  index graphic ', graphic)
+
+                                                                if (zoom_to_feature_or_not == 'zoom_to_feature'){
+                                                                  // only zoom to 1st feature
+                                                                  arcgisMap.goTo(graphic)
+
+                                                                  var ___graphic___geometry___type____ = graphic.geometry.type
+
+                                                                  // point only, enforce to zoom level 18
+                                                                  if (___graphic___geometry___type____.includes('point')){
+                                                                    arcgisMap.zoom = default_zoom_level_for_point;
+                                                                  }
+
+                                                                } else {
+
+                                                                }//if
+
+                                                              /**/
+                                                              //  --- end  ---  zoom to feature or not radio button    --- 
+                                                              /**/
+
+                                                              if (mouse_pointed_feature_highlight_handle){
+                                                                mouse_pointed_feature_highlight_handle.remove()
+                                                              }
+                                                              mouse_pointed_feature_highlight_handle = layerView.highlight(graphic_object_indexAsKey[_select_highlight_index]);
+                                                 
+                                                      
+                                                                                          
+                          
+                                                     });
+
+                                                  }//for
+
+                    } 
+
+                    // by default, always highlight (first index 0) graphic,   only, not others
+                    if (graphic_object_indexAsKey[0] && graphic_object_indexAsKey[0].layer){
+                          if (mouse_pointed_feature_highlight_handle){
+                            mouse_pointed_feature_highlight_handle.remove()
+                          }
+                          mouse_pointed_feature_highlight_handle = layerView.highlight(graphic_object_indexAsKey[0]);
+                    }// if
+
+
+
+
+                } else {
+
+                     // hit test do not find anything.
+                     /**/
+
+                     // remove highlight graphic on layer view
+                     if (mouse_pointed_feature_highlight_handle){
+                            mouse_pointed_feature_highlight_handle.remove()
+                     }
+
+                     // hide info outline 
+                     empty_info_outline_Tab()
+
+
+                  
+                }// if response results length
+                                 
+                
+
+               
+
+
+
+
+
+
+
+              }); // view . hit test
+
+            }// if click
          
-              // -- - - -  -- - - -  end  -- - - - -- - - -   mouse-move -- - - -  -- - - -  
-    
-          
-         
-        }); // view . on . hover
+        }); // view . on . click
+
+
+
+
+
+
+
+
       }// function
 
-
              
-                 
-
-
-
-
-              
+             
 
 /**/
 // ========== classified  ========== 
@@ -1338,6 +1587,9 @@
                                 if (backgroundFeatureLayer_layerView){
                                       backgroundFeatureLayer_layerView.filter = { where : featureLayerView_filter_where} 
                                 } 
+
+
+
                                  
         
                             }
@@ -1382,7 +1634,7 @@
         } else {
 
             //if ((current_selected_field_value.toLowerCase() == 'null') || (current_selected_field_value.length == 0)){
-              if ((current_selected_field_value == null) || (current_selected_field_value == '') || (current_selected_field_value == undefined)){
+            if ((current_selected_field_value == null) || (current_selected_field_value == '') || (current_selected_field_value == undefined)){
                       classified_query.where =   current_selected_field_name + ' is null'     //"STATE_NAME is null ";
             } else { 
 
@@ -1421,7 +1673,8 @@
               // . . . end  . . . add filtered count  . . .
 
               display_count_info(_layer, total_feature_count, _classified_count_of_feature)
-              
+
+
             }).catch((error) => {
               console.log(' **  ** query last feature of classified return count failed **  ** ', error);                                        
             }); 
@@ -1429,165 +1682,170 @@
 
 
 
-            // zoom to feature
-            if (zoom2feature_yesNo == 'donot_zoom2feature'){
-
-              // do not zoom, but still need to query filtered result currently showing on map, by trigger pan or zoom at same location, when map stationary, will calculate filtered feature on map 
-              view.goTo({
-                         target: view.center,
-                         zoom: view.zoom,
-                        });
 
 
-            } else { 
-              // zoom to feature by query feature layer, then get extent of the query result( not use), instead zoom to first feature result.
-
-              let classified_1st_feature_query = backgroundFeatureLayer.createQuery();
-
-              // query param:  https://developers.arcgis.com/javascript/latest/api-reference/esri-rest-support-Query.html#properties-summary
-              classified_1st_feature_query.returnGeometry = true;  // only need geometry
-
-               /*  
-                              Do not use "num" and "start", because if use any of them, will require 'paging', however, if shapefile as source, 'paging' will not be supported, will get error failed query due to paging not supported
-                              https://developers.arcgis.com/javascript/latest/api-reference/esri-rest-support-Query.html#num
-                              without use them, must use "where 1=1" will return max number of return count
-                              if use "num" and "start", then do not use "where 1=1"
-
-                              num:1,
-                              start:0,
-                          */
-              //classified_1st_feature_query.num = 1;  // do not use.
-
-              classified_1st_feature_query.outFields = ['*'];  // no need attribute, but for console log,keep it. 
-
-              //if ((current_selected_field_value.toLowerCase() == 'null') || (current_selected_field_value.length == 0)){
-              if ((current_selected_field_value == null) || (current_selected_field_value == '') || (current_selected_field_value == undefined)){
-                classified_1st_feature_query.where =   current_selected_field_name + ' is null'  //"STATE_NAME is null ";
-              } else{ 
-
-                        // by default  where condition think it is string
-                        classified_1st_feature_query.where =   current_selected_field_name + ' = ' +   "'" + current_selected_field_value + "'"   //"STATE_NAME = 'Washington'";
-
-                        // string
-                        if (_feature_attributes_string.includes(current_selected_field_name)){ 
-                                  classified_1st_feature_query.where =   current_selected_field_name + ' = ' +   "'" + current_selected_field_value + "'"   //"STATE_NAME = 'Washington'";
-                        }
-                                                      
-                        // number (integer, double,)
-                        if (_feature_attributes_integer.includes(current_selected_field_name)){
-                          classified_1st_feature_query.where =   current_selected_field_name + ' = ' +   current_selected_field_value    //"STATE_NAME = 12345 ";
-                        }
-
-                        // date 
-                        if (_feature_attributes_date.includes(current_selected_field_name)){
-                          // need to handle date type, so far by default use string, may not work
-                          console.log('need to handle date type, so far by default use string, may not work : ', current_selected_field_name)
-                        }
-
-              } // null         
-              
-              console.log('classified 1st feature query where clause is: ', classified_1st_feature_query.where )
-
-              backgroundFeatureLayer.queryFeatures(classified_1st_feature_query)
-                .then(function(results){
 
 
-                  console.log("zoom to 1st valid feature, if not find valid, zoom to all feature array(full extent) : ",results.features)
-                  // goto(geometry) https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html#goTo
-                  var found_1_valid_geometry = false
-                  for (let i = 0; i < results.features.length; i++) {
+
+              // zoom to feature
+                if (zoom2feature_yesNo == 'donot_zoom2feature'){
+
+             
+                  // do not zoom, but still need to query filtered result currently showing on map, by trigger pan or zoom at same location, when map stationary, will calculate filtered feature on map 
+                  arcgisMap.goTo({
+                            target: arcgisMap.center,
+                            zoom: arcgisMap.zoom,
+                            });
+
+
+                } else { 
+                  // zoom to feature by query feature layer, then get extent of the query result( not use), instead zoom to first feature result.
+
+                  let classified_1st_feature_query = backgroundFeatureLayer.createQuery();
+
+                  // query param:  https://developers.arcgis.com/javascript/latest/api-reference/esri-rest-support-Query.html#properties-summary
+                  classified_1st_feature_query.returnGeometry = true;  // only need geometry
+
+                  /*  
+                                  Do not use "num" and "start", because if use any of them, will require 'paging', however, if shapefile as source, 'paging' will not be supported, will get error failed query due to paging not supported
+                                  https://developers.arcgis.com/javascript/latest/api-reference/esri-rest-support-Query.html#num
+                                  without use them, must use "where 1=1" will return max number of return count
+                                  if use "num" and "start", then do not use "where 1=1"
+
+                                  num:1,
+                                  start:0,
+                              */
+                  //classified_1st_feature_query.num = 1;  // do not use.
+
+                  classified_1st_feature_query.outFields = ['*'];  // no need attribute, but for console log,keep it. 
+
+                  //if ((current_selected_field_value.toLowerCase() == 'null') || (current_selected_field_value.length == 0)){
+                  if ((current_selected_field_value == null) || (current_selected_field_value == '') || (current_selected_field_value == undefined)){
+                    classified_1st_feature_query.where =   current_selected_field_name + ' is null'  //"STATE_NAME is null ";
+                  } else{ 
+
+                            // by default  where condition think it is string
+                            classified_1st_feature_query.where =   current_selected_field_name + ' = ' +   "'" + current_selected_field_value + "'"   //"STATE_NAME = 'Washington'";
+
+                            // string
+                            if (_feature_attributes_string.includes(current_selected_field_name)){ 
+                                      classified_1st_feature_query.where =   current_selected_field_name + ' = ' +   "'" + current_selected_field_value + "'"   //"STATE_NAME = 'Washington'";
+                            }
+                                                          
+                            // number (integer, double,)
+                            if (_feature_attributes_integer.includes(current_selected_field_name)){
+                              classified_1st_feature_query.where =   current_selected_field_name + ' = ' +   current_selected_field_value    //"STATE_NAME = 12345 ";
+                            }
+
+                            // date 
+                            if (_feature_attributes_date.includes(current_selected_field_name)){
+                              // need to handle date type, so far by default use string, may not work
+                              console.log('need to handle date type, so far by default use string, may not work : ', current_selected_field_name)
+                            }
+
+                  } // null         
+                  
+                  console.log('classified 1st feature query where clause is: ', classified_1st_feature_query.where )
+
+                  backgroundFeatureLayer
+                  .queryFeatures(classified_1st_feature_query)
+                    .then((results) => {
+
+
+                      console.log("zoom to 1st valid feature, if not find valid, zoom to all feature array(full extent) : ",results.features)
+                      // goto(geometry) https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html#goTo
+                      var found_1_valid_geometry = false
+                      for (let i = 0; i < results.features.length; i++) {
                         if (results.features[i].geometry){
-                            console.log(' go to the 1st valid feature, index, geometry  ', i, results.features[i].geometry)
-                            found_1_valid_geometry = true
+                          console.log(' go to the 1st valid feature, index, geometry  ', i, results.features[i].geometry)
+                          found_1_valid_geometry = true
 
-                            // polygon, line works fine, but point, would not zoom to point (closer), is because for point,geometry,extent is null. However polygon's geometry's extent have value. 
-                            console.log('(point, extent is null) (polygon or line, extent has somevalue) test 1st geometry, type, and extent  :   ', results.features[i].geometry.type, results.features[i].geometry.extent  )
-                            
+                          // polygon, line works fine, but point, would not zoom to point (closer), is because for point,geometry,extent is null. However polygon's geometry's extent have value. 
+                          console.log('(point, extent is null) (polygon or line, extent has somevalue) test 1st geometry, type, and extent  :   ', results.features[i].geometry.type, results.features[i].geometry.extent  )
+                          
 
-                            
-                                                    view.goTo(results.features[i].geometry).then(function(goto_results){
+                          console.log("arcgisMap.center", arcgisMap.center)
+                          console.log("arcgisMap.zoom", arcgisMap.zoom)
+                          console.log("arcgisMap", arcgisMap)
 
-                              
-                              
+                          arcgisMap.goTo(results.features[i].geometry).then(function(goto_results){
 
+                                if (zoom2feature_yesNo == 'zoom2feature_automatic_zoom_level'){
+                          
+                                        console.log('- -- - zoom now - -- -  no more than - -- -   ', arcgisMap.zoom, zoom2feature_noMoreThan)
+                                        if (arcgisMap.zoom > zoom2feature_noMoreThan ){
 
+                                          arcgisMap.center = arcgisMap.center
+                                          arcgisMap.zoom = zoom2feature_noMoreThan
+                                            
+                                        }//if
 
-                                                                        if (zoom2feature_yesNo == 'zoom2feature_automatic_zoom_level'){
-                                                                  
-                                                                                console.log('- -- - zoom now - -- -  no more than - -- -   ', view.zoom, zoom2feature_noMoreThan)
-                                                                                if (view.zoom > zoom2feature_noMoreThan ){
-                                                                                    // view zoom https://developers.arcgis.com/javascript/latest/api-reference/esri-views-View.html#properties-summary
-                                                                                    view.goTo({
-                                                                                      target: view.center,
-                                                                                      zoom: zoom2feature_noMoreThan
-                                                                                    });
-                                                                                }//if
+                                        // fix for ( point is always has null extent), enforce to zoom to level 20 (zoom2feature_noMoreThan)
+                                        if (results.features[i].geometry.type == 'point'){
+                                          arcgisMap.center = arcgisMap.center
+                                          arcgisMap.zoom = zoom2feature_noMoreThan
+                                        } 
 
-                                                                                // fix for ( point is always has null extent), enforce to zoom to level 20 (zoom2feature_noMoreThan)
-                                                                                if (results.features[i].geometry.type == 'point'){
-                                                                                  view.goTo({
-                                                                                    target: view.center,
-                                                                                    zoom: zoom2feature_noMoreThan
-                                                                                  });
-                                                                                } 
-
-                                                                        } else if (zoom2feature_yesNo == 'zoom2feature_fixed_zoom_level'){
+                                } else if (zoom2feature_yesNo == 'zoom2feature_fixed_zoom_level'){
+            
+                                          console.log(' - -- -  zoom now - -- -  fix at - -- -   ', arcgisMap.zoom, zoom2feature_zoomLevel)
+                                          arcgisMap.center =  arcgisMap.center,
+                                          arcgisMap.zoom =  zoom2feature_zoomLevel
                                                     
-                                                                                                console.log(' - -- -  zoom now - -- -  fix at - -- -   ', view.zoom, zoom2feature_zoomLevel)
-                                                                                                view.goTo({
-                                                                                                  target: view.center,
-                                                                                                  zoom: zoom2feature_zoomLevel
-                                                                                                });
-                                                                        }//if
-                                                                })// view goto
-                                                                .catch((error) => {
-                                                                  console.log('-- -- go to classified 1st valid feature failed -- -- ', error);                                        
-                                                                }); // view goto
+                                }//if
+                       
+                          })// view goto
+                          .catch((error) => {
+                            console.log('-- -- go to classified 1st valid feature failed -- -- ', error);                                        
+                          }); // view goto
+                    
+                          break; // break for loop
 
-                            break; // break for loop
-                        }
-                  }//for 
-                  if (! found_1_valid_geometry){
-                        console.log('not find a valid feature geometry, so zoom to all features array (full extent)')
-                        // goto full extent, always works
-                        view.goTo(results.features).then(function(goto_results){
+                        }//if
+                      }//for 
+                      if (! found_1_valid_geometry){
+                            console.log('not find a valid feature geometry, so zoom to all features array (full extent)')
+                            // goto full extent, always works
+                            arcgisMap.goTo(results.features).then(function(goto_results){
 
-                                                                        if (zoom2feature_yesNo == 'zoom2feature_automatic_zoom_level'){
-                                                                  
-                                                                                console.log('- -- - zoom now - -- -  no more than - -- -   ', view.zoom, zoom2feature_noMoreThan)
-                                                                                if (view.zoom > zoom2feature_noMoreThan ){
-                                                                                    // view zoom https://developers.arcgis.com/javascript/latest/api-reference/esri-views-View.html#properties-summary
-                                                                                    view.goTo({
-                                                                                      target: view.center,
-                                                                                      zoom: zoom2feature_noMoreThan
-                                                                                    });
-                                                                                }//if
+                              if (zoom2feature_yesNo == 'zoom2feature_automatic_zoom_level'){
+                        
+                                console.log('- -- - zoom now - -- -  no more than - -- -   ', arcgisMap.zoom, zoom2feature_noMoreThan)
+                                if (arcgisMap.zoom > zoom2feature_noMoreThan ){
+                                    // view zoom https://developers.arcgis.com/javascript/latest/api-reference/esri-views-View.html#properties-summary
+                                    arcgisMap.center =  arcgisMap.center,
+                                    arcgisMap.zoom =  zoom2feature_noMoreThan
+                                    
+                                }//if
 
-                                                                        } else if (zoom2feature_yesNo == 'zoom2feature_fixed_zoom_level'){
+                              } else if (zoom2feature_yesNo == 'zoom2feature_fixed_zoom_level'){
+          
+                                console.log(' - -- -  zoom now - -- -  fix at - -- -   ', arcgisMap.zoom, zoom2feature_zoomLevel)
+                                arcgisMap.center = arcgisMap.center,
+                                arcgisMap.zoom =   zoom2feature_zoomLevel
                                                     
-                                                                                                console.log(' - -- -  zoom now - -- -  fix at - -- -   ', view.zoom, zoom2feature_zoomLevel)
-                                                                                                view.goTo({
-                                                                                                  target: view.center,
-                                                                                                  zoom: zoom2feature_zoomLevel
-                                                                                                });
-                                                                        }//if
-                                                                })// view goto
-                                                                .catch((error) => {
-                                                                  console.log('-- -- go to classified 1st valid feature failed -- -- ', error);                                        
-                                                                }); // view goto
-                  }//if
+                              }//if
+                        
+                            })// view goto
+                            .catch((error) => {
+                              console.log('-- -- go to classified 1st valid feature failed -- -- ', error);                                        
+                            }); // view goto
+                                                                    
+                      }//if
 
 
-                }).catch((error) => {
-                  console.log('-- -- query classified 1st valid feature failed -- -- ', error);                                        
-                }); 
-            }// zoom to feature
+                    }).catch((error) => {
+                      console.log('-- -- query classified 1st valid feature failed -- -- ', error);                                        
+                    }); 
+                }// zoom to feature
+
+
+
+
 
 
 
         } //if name
-
-
 
 
       }  
@@ -1603,6 +1861,7 @@
             var _first_time_load_for_field = true;
             var _first_time_load_for_fieldvalue = true;
             var selected_fieldLevel_id;
+            var selected_fieldvalueLevel_id;
             async function  pre_select_field_level(){
                     var _rightnow_url_params
                     if (_first_time_load_for_field) {
@@ -1618,6 +1877,11 @@
                     }  
                             selected_fieldLevel_id = _rightnow_url_params.get('select_field');                                                  
                             console.log('selected_field_id',  selected_fieldLevel_id)
+
+                            selected_fieldvalueLevel_id = _rightnow_url_params.get('select_fieldvalue');
+                            console.log('selected_fieldvalue_id',  selected_fieldvalueLevel_id)
+
+
                             if ((selected_fieldLevel_id == undefined) || (selected_fieldLevel_id == null) || (selected_fieldLevel_id == '')){
                                 // select folder is null, undefined, nothing to select
                             } else if (selected_fieldLevel_id == -1){
@@ -1635,33 +1899,9 @@
                             }
             }
 
-            var selected_fieldvalueLevel_id;
-            function  pre_select_fieldvalue_level(){
+            
+            async function pre_select_fieldvalue_level(){
 
-
-                                  var _rightnow_url_params
-
-                                  if (_first_time_load_for_fieldvalue) {
-
-                                    // only run 1 time, 1st time, get original url param from init global variable function
-                                    _rightnow_url_params = urlParams
-                                    _first_time_load_for_fieldvalue = false
-
-                                  } else {
-                                      //  re-create instance of url params
-                                      _rightnow_url_params = new URLSearchParams(window.location.search);
-
-                                  }    
-
-
-
-                                selected_fieldvalueLevel_id = _rightnow_url_params.get('select_fieldvalue');
-
-                                
-                                
-                                console.log('selected_fieldvalue_id',  selected_fieldvalueLevel_id)
-
-    
                                 // -1 means show all, do nothing
                                 if ((selected_fieldvalueLevel_id == undefined) || (selected_fieldvalueLevel_id == null) || (selected_fieldvalueLevel_id == '')){
     
@@ -1680,7 +1920,7 @@
                                     selected_fieldvalue = selected_fieldvalue.trim()
                                     console.log('pre select field value by selected fieldvalue',  selected_fieldvalue)
                                     console.log('pre select field value by selected fieldvalueLevel id',   selected_fieldvalueLevel_id)
-                                    filter_result(selected_fieldvalue, selected_fieldvalueLevel_id)
+                                    await filter_result(selected_fieldvalue, selected_fieldvalueLevel_id)
     
                                 }
 
@@ -1733,6 +1973,8 @@
                           
         update_layer_name(background_layer_url, _layer)  
                           
+
+        
         pre_select_field_level()                 
                           
       } // dom ready

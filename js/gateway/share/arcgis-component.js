@@ -202,7 +202,16 @@ function pan_to_real_location(){
                                   console.log(' go to the 1st valid feature, index, geometry  ', i, results.features[i].geometry)
                                   found_1_valid_geometry = true
                                   
-  arcgisMap.goTo(results.features[i].geometry)
+
+                          console.log("arcgisMap.center", arcgisMap.center)
+                          console.log("arcgisMap.zoom", arcgisMap.zoom)
+                          console.log("arcgisMap", arcgisMap)
+
+
+                          arcgisMap.goTo(results.features[i].geometry)
+
+
+
                                   break; // break for loop
                                   }
                                 }//for 
