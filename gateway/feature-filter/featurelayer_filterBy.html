@@ -45,6 +45,7 @@
             <span id="layer-info-vertical">Layer Name</span>
             <small>total:</small><b id="total-feature">...</b>
             <small>visible:</small><b id="feature-on-map">...</b>
+            <span id="lat-lng-zoom" hidden>...</span>
             <small>filtered:</small><b id="filter-total">...</b>
             <small>percent:</small><b id="percent">... %</b>
         </div>
@@ -63,8 +64,11 @@
                   
         </div>
 
-        <div id="viewDiv" class="map-class-height-undefined" style="height: 90%;"></div>
 
+        <arcgis-map popup-disabled id="map-components-id" basemap="hybrid" style="height: 85%;">
+        </arcgis-map>
+
+       
 
         <!--  only for vertial   .. - .. - ... zoom 2 feature  ... - .. - .. -->
         <div id='zoom2feature_forClassified'  style="font-size: xx-small;">
@@ -122,7 +126,9 @@
         </div>   
         <!--   only for vertial   .. - .. end  - ... order by count or value for classified only   ... - .. - ..  -->
 
-
+      
+        <div id="radio-basemap-id" style="font-size: xx-small;"></div>
+       
     </div>
 
    

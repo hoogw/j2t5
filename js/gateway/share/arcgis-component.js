@@ -686,9 +686,7 @@ async function create_vectorTile_basemap(){
     function setup_radio_basemap(){
 
       var radio_basemap_html = ''
-     // radio_basemap_html += "<fieldset>"
-     // radio_basemap_html += "      <legend>Change Background Map</legend>"
-
+     
       for (let i = 0; i < base_map_source_array.length; i++) {
         console.log("base map source array ", base_map_source_array[i]); // Accessing elements using the index
         radio_basemap_html += '<div>'
@@ -696,7 +694,7 @@ async function create_vectorTile_basemap(){
         radio_basemap_html += '<span>' + base_map_source_array[i].id + '</span>'
         radio_basemap_html += '</div>'
       }//for
-    //  radio_basemap_html += "</fieldset>"
+   
       $("#radio-basemap-id").html(radio_basemap_html)
 
 
