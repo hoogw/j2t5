@@ -36,6 +36,28 @@
     </div>
 
     <div class='map-3-left-width-undefined' style="width: 250px;">
+
+        <!--   only for vertial   .. - .. - ... order by count or value for classified only   ... - .. - ..    -->
+        <div id='orderby_forClassified'  style="font-size: xx-small;">
+          <input type='radio' id='orderby_count' name='orderby_radio' value='orderby_count' data-field-name='fakeFieldName'/>
+          <span>order by</span>
+          <mark>
+              <b>count</b>   
+          </mark>
+          <sup>descending ( groupby )</sup> 
+        </div>
+        <div id='orderby_forClassified'  style="font-size: xx-small;">
+
+          <input type='radio' id='orderby_value' name='orderby_radio' value='orderby_value' data-field-name='fakeFieldName'/>
+          <span>order by</span>  
+          <mark>
+                <b>value</b>  
+          </mark> 
+          <sup>alphabetic ascending ( distinct )</sup> 
+        </div>   
+        <!--   only for vertial   .. - .. end  - ... order by count or value for classified only   ... - .. - ..  -->
+
+
       <span id='value_list' class="flex-column font-size-xx-small"></span>
     </div>
 
@@ -49,7 +71,13 @@
             <small>filtered:</small><b id="filter-total">...</b>
             <small>percent:</small><b id="percent">... %</b>
         </div>
+        
         <div>
+            <button type="button" id = "panToCurrent_geolocation_button" style="font-size: xx-small;">my-location</button>
+            <!--   --- --- --- --- back to previous extent --- --- --- --- -->
+            <button type='button' id='zoom2layer_button' style="font-size: xx-small;">back-2-layer</button>
+            <button type='button' id='full_extent_btn' style="font-size: xx-small;">full.extent</button>
+            <!--   --- --- end --- --- back to previous extent --- --- --- ---  -->
 
             <input name="click_or_hover_radio" type="radio"  value="hover"/>
             <span>hoverable</span>
@@ -57,18 +85,21 @@
             <input name="click_or_hover_radio" type="radio"  value="click"/>
             <span>clickable</span>
             
+            &nbsp;&nbsp;
+
             <small id = "opacitytitle_span">layer-opacity:</small>
             <b id='opacity_value_text'></b>
             <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"/>
-          
-                  
         </div>
 
+          
 
         <arcgis-map popup-disabled id="map-components-id" basemap="hybrid" style="height: 85%;">
         </arcgis-map>
 
        
+        
+
 
         <!--  only for vertial   .. - .. - ... zoom 2 feature  ... - .. - .. -->
         <div id='zoom2feature_forClassified'  style="font-size: xx-small;">
@@ -106,34 +137,21 @@
         </div> 
         <!--   only for vertial   ... - .. - ..  end .. - .. - ... zoom 2 feature   ... - .. - ..  -->
 
-        <!--   only for vertial   .. - .. - ... order by count or value for classified only   ... - .. - ..    -->
-        <div id='orderby_forClassified'  style="font-size: xx-small;">
-          <input type='radio' id='orderby_count' name='orderby_radio' value='orderby_count' data-field-name='fakeFieldName'/>
-          <span>order by</span>
-          <mark>
-              <b>count</b>   
-          </mark>
-          <sup>descending ( groupby )</sup> 
-        
-
-
-          <input type='radio' id='orderby_value' name='orderby_radio' value='orderby_value' data-field-name='fakeFieldName'/>
-          <span>order by</span>  
-          <mark>
-                <b>value</b>  
-          </mark> 
-          <sup>alphabetic ascending ( distinct )</sup> 
-        </div>   
-        <!--   only for vertial   .. - .. end  - ... order by count or value for classified only   ... - .. - ..  -->
-
       
-        <div id="radio-basemap-id" style="font-size: xx-small;"></div>
+      
+        <div id="radio-basemap-id" style="font-size: xx-small;" class="flex-row"></div>     
+      
        
     </div>
 
    
     
     <div class='map-3-right-width-undefined' style="width: 400px;">
+
+      <!-- find address must be at last bottom, otherwise its drop down will conflict with other component below  -->
+      <arcgis-search reference-element="map-components-id" style="z-index:99;">
+      </arcgis-search> 
+
       <div id='info-window-div' style="font-size: xx-small;"></div>
     </div>
 
