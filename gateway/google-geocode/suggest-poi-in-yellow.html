@@ -23,59 +23,58 @@
 <body>
           
   
-  
-  <div class="horizontal-left-right-flex-container">
+  <div class='flex-container'>
 
+   <div class='map-3-left-width-undefined' style="width: 600px;">
+    <div id='street_view' style="height: 100%;"></div>
+   </div>
 
-    <div id='street_view' class="vertical-width-undefined-box" style="width: 800px; height: 900px;">
-    </div>
+    <div class='map-3-middle-width-auto'>
 
-     <div class="vertical-width-undefined-no-border" style="width: 600px; height: 890px; overflow: auto;">
-      <div>
+      <div class='flex-row'>
         <span id="layer-info-vertical">Layer Name</span>
-        <input id='pac-input' type='search' placeholder='(google) addr. zip Pl.'/> 
+        <input id='pac-input' type='search' placeholder='(google) addr. zip Pl.'/>
         <button type="button" id = "panToCurrent_geolocation_button">my-location</button>
       </div>
 
-      <div class='map-box'>
-          <div id="map" style="height: 865px;"></div>
-      </div>
-    </div>
-      
-    <div class="vertical-width-undefined-no-border"  style="width: 400px; height: 900px;">
+      <div id="map" style="height: 94%;"></div>
 
-      <b>POI business is <span style="background-color: yellow;">YELLOW</span>. Real address & fake street address has no color</b>
+    </div>
+
+    <div class='map-3-right-width-undefined' style="width: 450px;">
+
+      <div class='flex-column'>
+          <b>POI business is <span style="background-color: yellow;">YELLOW</span>. Real address & fake street address has no color</b>
+       
           
-      
-           
+          <input id="geocode-suggest-input" placeholder="e.g. gage/temp, home depot, 6510 miles,"/>
+          
+          <div>
+            <span style="font-size:large;" id="geocode-total-label"></span>
+            <button id="suggest_btn">suggest</button>
+            <button id="find_btn">find selected</button>
+            <span>zoom2level:</span><input id="zoom2level-input" type="text" size="1"></input>
+            <button id="clear_btn">clear</button>
+          </div>
+
+          <!-- size must be same as var max_suggestion_item_count = 50 -->
+          <select size=50 id="suggest-options" hidden></select>
+
+          </div>
+    </div>
+
+    <div class='map-3-right-width-undefined' style="width: 250px;">
+
       <span style="font-size:xx-small;" id="geocode-capabilities-label"></span>
       <span style="font-size:xx-small;" id="geocode-categories-label"></span>
-          <span style="font-size:xx-small;" id="geocode-crossstreetconnector-label"></span>
+      <span style="font-size:xx-small;" id="geocode-crossstreetconnector-label"></span>
           
-            
-      <input id="geocode-suggest-input" placeholder="e.g. gage/temp, home depot, 6510 miles,"></input>
-      <div>
-        <span style="font-size:large;" id="geocode-total-label"></span>
-        <button id="suggest_btn">suggest</button>
-        <button id="find_btn">find selected</button>
-        <span>zoom2level:</span><input id="zoom2level-input" type="text" size="1"></input>
-        <button id="clear_btn">clear</button>
-      </div>
-
-    
-      <!-- size must be same as var max_suggestion_item_count = 50 -->
-      <select size=50 id="suggest-options" hidden></select>
-        
-      <div class='info-window-box'>
-        <!-- -- -- -- only for vertical -- -- -- --  div id='info-window-div'></div --> 
-        <div id='info-window-div' style="font-size: xx-small;"></div> 
-      </div> 
-
+      <div id='info-window-div' style="font-size: xx-small;"></div> 
     </div>
 
   </div>
-      
-      
+          
+    
   
   <script src="../../js/lib/proj4/dist/proj4.js"></script>
   <script src="../../js/lib/wkt.js"></script>
