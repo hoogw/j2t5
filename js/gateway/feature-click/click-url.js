@@ -1,8 +1,6 @@
 
 
 
-
-
     
      
 
@@ -21,7 +19,9 @@
               // any document ready function is in here
               dom_ready_dojo();
 
-            // component
+
+                          
+              // component
               
               //self-run
               (async function init_map_component_event(){ 
@@ -86,7 +86,7 @@
                               
                 })
 
-               })();
+             })();
 
 
 
@@ -182,119 +182,207 @@
                 // must be here after featurelayer fully loaded
                 enforce_yellow_linepointpolygon(backgroundFeatureLayer)
 
-
-
-
-
-                console.log(' first time zoom to layer must wait until view is ready, otherwise, may not zoom to, - - - >  zoom yes or no', zoom_to_1st_feature)
+                // first time zoom to layer must wait until view is ready, otherwise, may not zoom to.
+                  console.log(' first time zoom to layer must wait until view is ready, otherwise, may not zoom to, - - - >  zoom yes or no', zoom_to_1st_feature)
                   if (zoom_to_1st_feature){
                                               // only zoom 1 time, first time, never zoom again
                                               zoom_to_1st_feature = false; 
                                               //first time pan to real location, or zoom to last feature of max return count(zoom to 1st feature), must wait until view is ready, inside v i e w . w h e n ( ) here
                                               pan_to_real_location()
-                  }//if  
+                  }//if 
           } 
 
 
 
+
+     var graphic_object_indexAsKey = {}
      // component 
      // component must use e v e n t .  d e t a i l
      async function init_feature_layer_view(){
 
 
 
-      
-               // -- - - - -- - - -   mouse-move -- - - - event -- - - -  
-       
-                  /*
-                      mouse-move will fire 100 event each time, which freeze browser, not responsive.  mouse-click don't have such problem. 
-                      for best performance, place inside layerView scope,  
+        // component // view . on ( " click " , function(event){
+        arcgisMap.addEventListener("arcgisViewClick", (event) => {
+          console.log(' view * click * fire 1 time is fine ', event.detail)
+          console.log('lat:' + event.detail.mapPoint.latitude + '      lng:' +  event.detail.mapPoint.longitude)
 
-                        esri sample solution to improve, not solve the 100+ mouse-move event each time, 
-                        https://developers.arcgis.com/javascript/latest/sample-code/sandbox/?sample=widgets-feature-sidepanel
 
-                        Map flickering on mouse move, because fire 100+ mouse-move event each time, down stream operation will pile up, jamed.
-                        https://community.esri.com/t5/net-maps-sdk-questions/map-flickering-on-mouse-move/m-p/542909#M6637
-                  */
-                        
-                        // component 
-                        // warning: component must use e v e n t .  d e t a i l
-                        const debouncedUpdate = promiseUtils.debounce(async (event) => {
-    
-    
+          // component // must use e v e n t .  d e t a i l
+          arcgisMap.hitTest(event.detail).then(function(response){
 
-                          // component 
-                          // warning: component must use e v e n t .  d e t a i l
-                                      const hitTest = await arcgisMap.hitTest(event.detail, { include: backgroundFeatureLayer});
-                                      let hitResult = hitTest.results.filter(function (result) {
-                                                                              return result.graphic.layer === backgroundFeatureLayer;
-                                                                            })
-    
-                                      let graphic      
-                                      
-                                      // && logical AND assignment,  only when hitResult[0] is truthy, same as : 
-                                      // var newObjectId
-                                      // if (hitResult[0]) { newObjectId = hitResult[0].graphic.attributes[backgroundFeatureLayer.objectIdField]; } else { newObjectId = undefined }
-                                      var newObjectId = hitResult[0] && hitResult[0].graphic.attributes[backgroundFeatureLayer.objectIdField];
-                                                          
-                                       
-                                      //console.log('hover new Object Id vs old object Id : ', newObjectId, objectId);
-                                      // fix bug, object id could be 0,  if (0) is false, actually, 0 is real id, should be true here.
-                                      //if (!newObjectId) {
-                                      if (newObjectId == undefined) {
-                                                                if (mouse_pointed_feature_highlight_handle){
-                                                                  mouse_pointed_feature_highlight_handle.remove()
-                                                                }
-                                                                objectId = undefined
-                                                                // hide info outline 
-                                                                empty_info_outline_Tab()
-                                                            
-                                      } else if (objectId !== newObjectId) {
-                              
-                                                                if (mouse_pointed_feature_highlight_handle){
-                                                                  mouse_pointed_feature_highlight_handle.remove()
-                                                                }
-                                                                objectId = newObjectId;
-                                                                graphic = hitResult[0].graphic;
-    
-                                                                // if outside scope of layer View, must need get layer v  i e w. For single layer, if inside scrope, it is optional. For multi layer, even inside scope, still must get layer view
-                                                                // to be safe, I always get layer view here, even it is single layer, inside scope.
-                                                             
-                                                                          mouse_pointed_feature_highlight_handle = layerView.highlight(graphic);
-                                                               
-    
-                                                                console.log('newObjectId', newObjectId)
-                                                                console.log(' ! * ! hit test ! * ! result ! * ! graphic ! * ! ', graphic )
-                                                                show_info_outline_Tab(graphic.attributes)
-                                      }//if newObjectId
-                                        
-    
-                        
-    
-                      });// debounce
+                if (response.results.length) {
 
-    //  --- highlight feature on pointer-move ---    https://developers.arcgis.com/javascript/latest/api-reference/esri-views-layers-FeatureLayerView.html#highlight
-    // component // view . on ( " pointer-move " , function(event){
-    arcgisMap.addEventListener("arcgisViewPointerMove", (event) => {
+                   let hitResult = response.results.filter(function (result) {
+                           return result.graphic.layer === backgroundFeatureLayer;
+                   })
 
-      console.log('a r c g i s V i e w P o i n t e r M o v e - for - h o v e r')
-                  debouncedUpdate(event).catch((err) => {
-                                                          if (!promiseUtils.isAbortError(err)) {
-                                                            throw err;
+                   console.log(' ! * ! hit test ! * ! click ! * ! hitResult hitResult hitResult ', hitResult )
+
+                   graphic_object_indexAsKey = {} 
+                   let graphic                                                        
+                   if (hitResult[0]){
+                                                  var multiple_layer_properties_html = ''
+                                                  var __layer_name
+                                                  var ___properties
+
+
+/**/
+// -------------- htmlpopup --------------
+/**/
+  // click only show top first item, not show multiple item for simple
+  //for (let _index = 0; _index < hitResult.length; _index++) {
+  let _index = 0
+
+/**/
+//  -------------- end  -------------- htmlpopup --------------
+/**/
+                                                      graphic = hitResult[_index].graphic;
+                                                      graphic_object_indexAsKey[_index] = graphic
+                                                      console.log(' ! * ! hit test ! * ! result ! * ! add graphic by index ! * ! ', _index, graphic )
+
+                                                     
+
+                                                      
+                                                      
+                                                      __layer_name = ''
+                                                      __layer_name += 'UniqueID(' + graphic.uid + ')' + layerID_NAME_separator + 'OBJECTID ( ' + graphic.attributes.OBJECTID + ' )'
+                                                      __layer_name += layerID_NAME_separator + graphic.layer.title + '(layerID:' + graphic.layer.layerId + ')'
+                                                      
+                                                      ___properties = graphic.attributes
+
+                                                      multiple_layer_properties_html += '</br>'
+
+                                               
+                                                      /**/
+                                                      // -------------- htmlpopup --------------
+                                                      // click only show top first item, not show multiple item for simple
+                                                      /**/
+
+                                                      
+
+                                                      var html_for_properties = json_flex_tip_viewer(___properties)
+                                                      $('#info-window-div').html(html_for_properties)
+
+                                                      
+                                                      /**/
+                                                      //   . .     . . url link field display as embeded iframe tag   . .     . .
+                                                      /**/ 
+                                                      var html_for_urlAsIframe = json_flex_tip_viewer_urlAsIframe(___properties)
+                                                      $('#html-for-urlAsIframe-div').html(html_for_urlAsIframe)
+                    
+
+                                                      /**/
+                                                      //   . .   . .  end    . .    . . url link field display as embeded iframe tag   . .     . . 
+                                                      /**/
+
+                                                      
+
+
+
+                                                       /**/
+                                                      //  -------------- end  -------------- htmlpopup --------------
+                                                      /**/
+
+
+                                                  
+
+ 
+                                                       /**/
+                                                        //  --- zoom to feature or not radio button     --- 
+                                                        /**/
+
+                                                        if ((zoom_to_feature_or_not == 'zoom_to_feature') && (_index == 0)){
+                                                          // only zoom to 1st feature
+                                                          console.log('zoom to feature or not', graphic)
+                                                          arcgisMap.goTo(graphic)
+
+                                                          var ___graphic___geometry___type____ = graphic.geometry.type
+
+                                                          // point only, enforce to zoom level 18
+                                                          if (___graphic___geometry___type____.includes('point')){
+                                                           arcgisMap.zoom = default_zoom_level_for_point;
                                                           }
-                });
+
+                                                       } else {
+
+                                                       }//if
+
+                                                       /**/
+                                                       //  --- end  ---  zoom to feature or not radio button    --- 
+                                                       /**/
 
 
+                     
+/**/
+// -------------- htmlpopup --------------
+/**/                             
+
+      //}//for
+
+/**/
+//  -------------- end  -------------- htmlpopup --------------
+/**/
+
+
+
+                    } 
+
+                    // by default, always highlight (first index 0) graphic,   only, not others
+                    if (graphic_object_indexAsKey[0] && graphic_object_indexAsKey[0].layer){
+                          if (mouse_pointed_feature_highlight_handle){
+                            mouse_pointed_feature_highlight_handle.remove()
+                          }
+                          mouse_pointed_feature_highlight_handle = layerView.highlight(graphic_object_indexAsKey[0]);
+                    }// if
+
+
+
+
+                } else {
+
+                     // hit test do not find anything.
+                     /**/
+
+                     // remove highlight graphic on layer view
+                     if (mouse_pointed_feature_highlight_handle){
+                            mouse_pointed_feature_highlight_handle.remove()
+                     }
+
+                     // hide info outline 
+                     empty_info_outline_Tab()
+
+
+                  
+                }// if response results length
+                                 
+                
+
+               
+
+
+
+
+
+
+
+              }); // view . hit test
          
-              // -- - - -  -- - - -  end  -- - - - -- - - -   mouse-move -- - - -  -- - - -  
-    
-          
-         
-        }); // view . on . hover
+        }); // view . on . click
       }// function
 
 
-             
+
+
+
+
+
+
+
+
+            
+      
+                       
                  
         
       
@@ -324,7 +412,6 @@
                                                        
          init_user_interface_event()
          init_user_interface_for_component()
-         
                           
          update_layer_name(background_layer_url, _layer)  
                           
@@ -367,49 +454,55 @@
           function init_user_interface_event(){
          
 
+
+             $('#close_info_outline_panel').on('click', function(event) {
+
+              // remove highlight graphic on layer view
+              if (mouse_pointed_feature_highlight_handle){
+                            mouse_pointed_feature_highlight_handle.remove()
+              }
+
+              empty_info_outline_Tab()
+
+            });
+
+    
+              /**/
+              //  --- zoom to feature or not radio button     --- 
+              /**/
+                  if (param_zoom_to_feature_or_not){
+                    zoom_to_feature_or_not = param_zoom_to_feature_or_not
+                  }
+                  // first time set radio
+                  $("input[type=radio][name=zoom_to_feature_or_not_radio][value=" + zoom_to_feature_or_not + "]").prop('checked', true);
+                  // radio change event
+                  $("input[type='radio'][name='zoom_to_feature_or_not_radio']").change(function(){
+                    zoom_to_feature_or_not = $("input[type='radio'][name='zoom_to_feature_or_not_radio']:checked").val();
+                    console.log(" zoom_to_feature_or_not : --  ", zoom_to_feature_or_not);
+                    update_url_parameter('zoom2feature', zoom_to_feature_or_not);
+                  });
+
+              /**/
+              //  --- end  ---  zoom to feature or not radio button    --- 
+              /**/
+
+
+
                 
           }
 
 
 
 
-      
-    /**/
-    // -------------- htmlpopup --------------
-    /**/
-         
-              
 
-              async function show_info_outline_Tab(___properties){
-                console.log('show info window  properties : ', ___properties )
-
-                var html_for_properties = json_flex_tip_viewer(___properties)
-                 $('#info-window-div').html(html_for_properties)
-
-                    /**/
-                    //   . .     . . url link field display as embeded iframe tag   . .     . .
-                    /**/ 
-                    var html_for_urlAsIframe = json_flex_tip_viewer_urlAsIframe(___properties)
-                    $('#html-for-urlAsIframe-div').html(html_for_urlAsIframe)
-                    /**/
-                    //   . .   . .  end    . .    . . url link field display as embeded iframe tag   . .     . . 
-                    /**/
-                 
-
-                 
-              }
-
-
- /**/
- //  -------------- end  -------------- htmlpopup --------------
- /**/
+           
 
 function empty_info_outline_Tab(){
+$('#info_outline').hide();
 $('#info-window-div').html("")
 }
-     
+              
 
-                 
 
 
           
@@ -579,6 +672,11 @@ $('#info-window-div').html("")
 
 
  
+
+            
+
+
+
 
 
 

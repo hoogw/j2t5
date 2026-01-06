@@ -2077,7 +2077,7 @@ break;
   break;
 
   case "embed_6910":
-      var _newTab_link =  url_for_esri_gateway.replace('feature-layer/test.html?', 'feature-hover/hover-feature.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+      var _newTab_link =  url_for_esri_gateway.replace('feature-layer/test.html?', 'feature-hover/hover-url.html?') + '&backgroundlayerurl=' + _selected_path[0]  
       window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
   break;
@@ -2085,6 +2085,12 @@ break;
 
    case "embed_6121":
       var _newTab_link =  url_for_esri_gateway.replace('feature-layer/test.html?', 'feature-click/click-feature.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+      window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+  case "embed_6911":
+      var _newTab_link =  url_for_esri_gateway.replace('feature-layer/test.html?', 'feature-click/click-url.html?') + '&backgroundlayerurl=' + _selected_path[0]  
       window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
   break;
