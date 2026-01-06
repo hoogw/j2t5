@@ -2048,7 +2048,7 @@ icon_flatjson.push(icon_item)
                             "parent" : 5127,
                             
                             
-                            "text" : "6122 default",
+                            "text" : "6122 Default",
                             
                             "layer_name" : _layer_name_,
                             "icon" : open_new_tab_icon,
@@ -2129,7 +2129,7 @@ icon_flatjson.push(icon_item)
                             "parent" : 5317,
                             
                             
-                            "text" : "6121 default",
+                            "text" : "6121 Default",
                             
                             "layer_name" : _layer_name_,
                             "icon" : open_new_tab_icon,
@@ -2179,7 +2179,7 @@ icon_flatjson.push(icon_item)
                             "parent" : 5226,
                             
                             
-                            "text" : "4687 default",
+                            "text" : "4687 Default",
                             
                             "layer_name" : _layer_name_,
                             "icon" : open_new_tab_icon,
@@ -5428,7 +5428,7 @@ icon_flatjson.push(icon_item)
                                         "id" :  3832,     
                                         "parent" : 3386,
                                         
-                                        "text" : "3832 default",
+                                        "text" : "3832 Default",
                                         
                                         "layer_name" : _layer_name_,
                                         "icon" : open_new_tab_icon,
@@ -5858,7 +5858,7 @@ icon_flatjson.push(icon_item)
                                     "id" :  3817,     
                                     "parent" : 3275,
                                     
-                                    "text" : "3817 default",
+                                    "text" : "3817 Default",
                                     
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
@@ -6044,7 +6044,7 @@ icon_flatjson.push(icon_item)
                                     "id" :  3829,     
                                     "parent" : 3479,
                                     
-                                    "text" : "3829 default",
+                                    "text" : "3829 Default",
                                     
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
@@ -15804,7 +15804,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
                     "id" :  2631,     
                     "parent" : 120,
                     
-                    "text" : "2631 default,stock",
+                    "text" : "2631 Default",
                     
                     "layer_name" : _layer_name_,
                     "icon" : open_new_tab_icon,
@@ -15832,7 +15832,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
                     "id" :  2632,     
                     "parent" : 120,
                     
-                    "text" : "2632 advanced.number.search",
+                    "text" : "2632 Number-Search",
                     
                     "layer_name" : _layer_name_,
                     "icon" : open_new_tab_icon,
@@ -15864,7 +15864,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
                     "id" :  2640,     
                     "parent" : 120,
                     
-                    "text" : "2640 motorola-flex-replica",
+                    "text" : "2640 Motorola-Flex-Replica",
                     
                     "layer_name" : _layer_name_,
                     "icon" : open_new_tab_icon,
@@ -15895,7 +15895,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
     geocode_server_item = { 
         "id" :  2510,     
         "parent" : 120,
-        "text" : "only address,no street",
+        "text" : "Address-Only",
         "icon" : folder_icon,  
         "link_type": "folder", 
         "state"       : {
@@ -15916,7 +15916,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
                     "id" :  2610,     
                     "parent" : 2510,
                     
-                    "text" : "2610 only real addr",
+                    "text" : "2610 Real-Address-Only",
                     
                     "layer_name" : _layer_name_,
                     "icon" : open_new_tab_icon,
@@ -15952,7 +15952,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
                     "id" :  2653,     
                     "parent" : 2510,
                     
-                    "text" : "2653" + red_square_icon + "fake str.addr(RED)",
+                    "text" : "2653" + " Fake-Street-Address" + red_square_icon + "red",
                     
                     "layer_name" : _layer_name_,
                     "icon" : open_new_tab_icon,
@@ -15979,7 +15979,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
                     "id" :  2655,     
                     "parent" : 2510,
                     
-                    "text" : "2655" + yellow_square_icon + "POI(yellow)",
+                    "text" : "2655" + " POI" + yellow_square_icon + "yellow",
                     
                     "layer_name" : _layer_name_,
                     "icon" : open_new_tab_icon,
@@ -16007,7 +16007,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
                     "id" :  2657,     
                     "parent" : 2510,
                     
-                    "text" : "2657" + yellow_square_icon + "POI(yellow) &" + red_square_icon + "fake str.addr(RED)",
+                    "text" : "2657" + " POI" + yellow_square_icon + "&" + " Fake-Street-Address" + red_square_icon,
                     
                     "layer_name" : _layer_name_,
                     "icon" : open_new_tab_icon,
@@ -16040,7 +16040,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
                     "id" :  2633,     
                     "parent" : 120,
                     
-                    "text" : "2633 advanced.POI.search",
+                    "text" : "2633 Undo-POI-Limit",
                     
                     "layer_name" : _layer_name_,
                     "icon" : open_new_tab_icon,
@@ -16069,7 +16069,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
                     "id" :  2625,     
                     "parent" : 120,
                     
-                    "text" : "2625" + " advanced" + yellow_square_icon + "POI(yellow)",
+                    "text" : "2625" + " Undo-POI" + yellow_square_icon + "-Limit",
                     
                     "layer_name" : _layer_name_,
                     "icon" : open_new_tab_icon,
@@ -16096,7 +16096,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
                     "id" :  2613,     
                     "parent" : 120,
                     
-                    "text" : "2613" + " only advanced POI, no addr, no street",
+                    "text" : "2613 POI-Only",
                     
                     "layer_name" : _layer_name_,
                     "icon" : open_new_tab_icon,
@@ -16126,7 +16126,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
                     "id" :  2641,     
                     "parent" : 120,
                     
-                    "text" : "2641" + pink_square_icon + "Parcel number(pink)",
+                    "text" : "2641" + "Parcel-Number" + pink_square_icon + "pink",
                     
                     "layer_name" : _layer_name_,
                     "icon" : open_new_tab_icon,
@@ -16179,7 +16179,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
                     "id" :  1631,     
                     "parent" : 100,
                     
-                    "text" : "1631 default,stock",
+                    "text" : "1631 Default",
                     
                     "layer_name" : _layer_name_,
                     "icon" : open_new_tab_icon,
@@ -16207,7 +16207,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
                     "id" :  1632,     
                     "parent" : 100,
                     
-                    "text" : "1632 advanced.number.search",
+                    "text" : "1632 Number-Search",
                     
                     "layer_name" : _layer_name_,
                     "icon" : open_new_tab_icon,
@@ -16237,7 +16237,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
                     "id" :  1640,     
                     "parent" : 100,
                     
-                    "text" : "1640 motorola-flex-replica",
+                    "text" : "1640 Motorola-Flex-Replica",
                     
                     "layer_name" : _layer_name_,
                     "icon" : open_new_tab_icon,
@@ -16266,7 +16266,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
     geocode_server_item = { 
         "id" :  2511,     
         "parent" : 100,
-        "text" : "only address,no street",
+        "text" : "Address-Only",
         "icon" : folder_icon,  
         "link_type": "folder", 
         "state"       : {
@@ -16289,7 +16289,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
                     "id" :  1610,     
                     "parent" : 2511,
                     
-                    "text" : "1610 only real addr",
+                    "text" : "1610 Real-Address-Only",
                     
                     "layer_name" : _layer_name_,
                     "icon" : open_new_tab_icon,
@@ -16316,7 +16316,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
                     "id" :  1653,     
                     "parent" : 2511,
                     
-                    "text" : "1653" + red_square_icon + "fake str.addr(RED)",
+                    "text" : "1653" + " Fake-Street-Address" + red_square_icon + "red",
                     
                     "layer_name" : _layer_name_,
                     "icon" : open_new_tab_icon,
@@ -16343,7 +16343,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
                     "id" :  1655,     
                     "parent" : 2511,
                     
-                    "text" : "1655" + yellow_square_icon + "POI(yellow)",
+                    "text" : "1655" + " POI" + yellow_square_icon + "yellow",
                     
                     "layer_name" : _layer_name_,
                     "icon" : open_new_tab_icon,
@@ -16370,7 +16370,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
                     "id" :  1657,     
                     "parent" : 2511,
                     
-                    "text" : "1657" + yellow_square_icon + "POI(yellow) &" + red_square_icon + "fake str.addr(RED)",
+                    "text" : "1657" + " POI" + yellow_square_icon + "&" + " Fake-Street-Address" + red_square_icon,
                     
                     "layer_name" : _layer_name_,
                     "icon" : open_new_tab_icon,
@@ -16404,7 +16404,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
                     "id" :  1633,     
                     "parent" : 100,
                     
-                    "text" : "1633 advanced.POI.search",
+                    "text" : "1633 Undo-POI-Limit",
                     
                     "layer_name" : _layer_name_,
                     "icon" : open_new_tab_icon,
@@ -16436,7 +16436,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
                     "id" :  1625,     
                     "parent" : 100,
                     
-                    "text" : "1625" + " advanced" + yellow_square_icon + "POI(yellow)",
+                    "text" : "1625" + " Undo-POI" + yellow_square_icon + "-Limit",
                     
                     "layer_name" : _layer_name_,
                     "icon" : open_new_tab_icon,
@@ -16463,7 +16463,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
                     "id" :  1613,     
                     "parent" : 100,
                     
-                    "text" : "1613" + " only advanced POI, no addr, no street",
+                    "text" : "1613 POI-Only",
                     
                     "layer_name" : _layer_name_,
                     "icon" : open_new_tab_icon,
@@ -16491,7 +16491,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
                     "id" :  1641,     
                     "parent" : 100,
                     
-                    "text" : "1641" + pink_square_icon + "Parcel number(pink)",
+                    "text" : "1641" + "Parcel-Number" + pink_square_icon + "pink",
                     
                     "layer_name" : _layer_name_,
                     "icon" : open_new_tab_icon,

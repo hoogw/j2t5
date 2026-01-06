@@ -13,57 +13,47 @@
 
 
    
-     
-    <link rel="stylesheet" href="../../stylesheets/vertical.css">
+    
+    <link rel="stylesheet" href="../../stylesheets/full-screen.css">
 
     
 
 </head>
 
 <body>
-               
- 
- <div class="horizontal-left-right-flex-container">
+       
+  
 
-    <div class="vertical-width-undefined-no-border" style="width: 900px; height: 855px; overflow: auto;">
+  
+  <div class='flex-container'>
 
-      
-      <div style="display: flex; flex-direction: row;">
-          <span id="layer-info-vertical">Layer Name</span>
-          &nbsp;&nbsp;
-           <arcgis-search style="z-index:9;" reference-element="map-components-id"></arcgis-search>
-           &nbsp;&nbsp;
-           <button type="button" id = "panToCurrent_geolocation_button">my-location</button>
+    <div class='map-3-middle-width-auto'>
 
-        
-           &nbsp;&nbsp;
-           <span id="lat-lng-zoom" hidden></span>
+      <div class='flex-row'>
+        <span id="layer-info-vertical">Layer Name</span>
+        <arcgis-search style="z-index:9;" reference-element="map-components-id"></arcgis-search>
+        <button type="button" id = "panToCurrent_geolocation_button">my-location</button>
+        <span id="lat-lng-zoom" hidden></span>
       </div>
 
-      <div class='map-box' >
-        <arcgis-map id="map-components-id" basemap="hybrid" style="height:770px;">
-        </arcgis-map>
-      </div>
+      <arcgis-map id="map-components-id" basemap="hybrid" style="height: 90%;">
+      </arcgis-map>
 
-       <div class='dashboard-horizontal-row-flow-box' id="radio-basemap-id" style="font-size: xx-small;"></div> 
-      
+      <div id="radio-basemap-id" class='flex-row font-size-xx-small'></div>
 
     </div>
 
+    <div class='map-3-right-width-undefined' style="width: 600px;">
 
-
-    <div class="vertical-width-undefined-no-border" style="width: 500px; height: 855px; overflow: auto;">
-
-      <b>Real address & Real POI only. No fake</b>
+      <div class='flex-column'>
          
+       <b>Duplicate Motorola Flex CAD</b>
+       <b>What you see here is exactly what you see in Motorola Flex CAD</b>
+       <b>POI is always at bottom. Real and fake address is always on top. Add special char such as @ or single quote or !,# etc..will enforce Flex popup POI on top</b>
 
-
-          <span style="font-size:xx-small;" id="geocode-capabilities-label"></span>
-          <span style="font-size:xx-small;" id="geocode-categories-label"></span>
-          <span style="font-size:xx-small;" id="geocode-crossstreetconnector-label"></span>
           
+          <input id="geocode-suggest-input" placeholder="e.g. gage/temp, home depot, 6510 miles,"/>
           
-          <input id="geocode-suggest-input" placeholder="e.g. gage/temp, home depot, 6510 miles,"></input>
           <div>
             <span style="font-size:large;" id="geocode-total-label"></span>
             <button id="suggest_btn">suggest</button>
@@ -74,26 +64,22 @@
 
           <!-- size must be same as var max_suggestion_item_count = 50 -->
           <select size=50 id="suggest-options" hidden></select>
-        
 
+          </div>
     </div>
+
+    <div class='map-3-right-width-undefined' style="width: 400px;">
+
+      <span style="font-size:xx-small;" id="geocode-capabilities-label"></span>
+      <span style="font-size:xx-small;" id="geocode-categories-label"></span>
+      <span style="font-size:xx-small;" id="geocode-crossstreetconnector-label"></span>
           
-    
-    
-    <div class="vertical-width-undefined-no-border" style="width: 400px; height: 855px; overflow: auto;">
-
-
-      <div class='info-window-box'>
-        <!-- -- -- -- only for vertical -- -- -- --  div id='info-window-div'></div --> 
-        <div id='info-window-div' style="font-size: xx-small;"></div> 
-      </div> 
-
+      <div id='info-window-div' style="font-size: xx-small;"></div> 
     </div>
-     
-    
+
   </div>
-
-
+        
+ 
      <!-- jquery must load first on top header -->
      <!-- esri dojo conflict with jquery, must load after jquery, at bottom of page -->
      <!-- my.js must load after esri dojo load -->
@@ -110,7 +96,7 @@
     <script src="../../js/arcgis/arcgis_common.js" type="text/javascript"></script>
     <script src="../../js/gateway/share/arcgis-component.js" type="text/javascript"></script>
     <script src="../../js/gateway/share/arcgis-geocode.js" type="text/javascript"></script>
-    <script src="../../js/gateway/feature-layer/geocode-suggest-real-addr.js" type="text/javascript"></script>
+    <script src="../../js/gateway/feature-geocode/geocode-suggest-motorola.js" type="text/javascript"></script>
 
   </body>
 </html>

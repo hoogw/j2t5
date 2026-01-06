@@ -3762,67 +3762,67 @@ break;
 
 
 case "geocodeServer_2631":
-var _newTab_link =  url_for_esri_gateway.replace('test.html?', 'geocode-suggest.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+var _newTab_link =  url_for_esri_gateway.replace('/feature-layer/test.html?', '/feature-geocode/geocode-suggest.html?') + '&backgroundlayerurl=' + _selected_path[0]  
      window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
 break;
 
 case "geocodeServer_2632":
-var _newTab_link =  url_for_esri_gateway.replace('test.html?', 'geocode-suggest-advanced-number-search.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+var _newTab_link =  url_for_esri_gateway.replace('/feature-layer/test.html?', '/feature-geocode/geocode-suggest-advanced-number-search.html?') + '&backgroundlayerurl=' + _selected_path[0]  
      window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
 break;
 
 case "geocodeServer_2633":
-var _newTab_link =  url_for_esri_gateway.replace('test.html?', 'geocode-suggest-advanced-poi-search.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+var _newTab_link =  url_for_esri_gateway.replace('/feature-layer/test.html?', '/feature-geocode/geocode-suggest-advanced-poi-search.html?') + '&backgroundlayerurl=' + _selected_path[0]  
      window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
 break;
 
 case "geocodeServer_2625":
-var _newTab_link =  url_for_esri_gateway.replace('test.html?', 'geocode-suggest-advanced-poi-yellow.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+var _newTab_link =  url_for_esri_gateway.replace('/feature-layer/test.html?', '/feature-geocode/geocode-suggest-advanced-poi-yellow.html?') + '&backgroundlayerurl=' + _selected_path[0]  
      window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
 break;
 
 case "geocodeServer_2613":
-var _newTab_link =  url_for_esri_gateway.replace('test.html?', 'geocode-suggest-advanced-poi-only.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+var _newTab_link =  url_for_esri_gateway.replace('/feature-layer/test.html?', '/feature-geocode/geocode-suggest-advanced-poi-only.html?') + '&backgroundlayerurl=' + _selected_path[0]  
      window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
 break;
 
 case "geocodeServer_2641":
-var _newTab_link =  url_for_esri_gateway.replace('test.html?', 'geocode-suggest-parcel-pink.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+var _newTab_link =  url_for_esri_gateway.replace('/feature-layer/test.html?', '/feature-geocode/geocode-suggest-parcel-pink.html?') + '&backgroundlayerurl=' + _selected_path[0]  
      window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
 break;
 
 case "geocodeServer_2653":
-var _newTab_link =  url_for_esri_gateway.replace('test.html?', 'geocode-suggest-street-address-in-red.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+var _newTab_link =  url_for_esri_gateway.replace('/feature-layer/test.html?', '/feature-geocode/geocode-suggest-street-address-in-red.html?') + '&backgroundlayerurl=' + _selected_path[0]  
      window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
 break;
 
 case "geocodeServer_2655":
-var _newTab_link =  url_for_esri_gateway.replace('test.html?', 'geocode-suggest-poi-in-yellow.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+var _newTab_link =  url_for_esri_gateway.replace('/feature-layer/test.html?', '/feature-geocode/geocode-suggest-poi-in-yellow.html?') + '&backgroundlayerurl=' + _selected_path[0]  
      window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
 break;
 
 case "geocodeServer_2657":
-var _newTab_link =  url_for_esri_gateway.replace('test.html?', 'geocode-suggest-poi-yellow-street-addr-red.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+var _newTab_link =  url_for_esri_gateway.replace('/feature-layer/test.html?', '/feature-geocode/geocode-suggest-poi-yellow-street-addr-red.html?') + '&backgroundlayerurl=' + _selected_path[0]  
      window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
 break;
 
 case "geocodeServer_2640":
-var _newTab_link =  url_for_esri_gateway.replace('test.html?', 'geocode-suggest-motorola.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+var _newTab_link =  url_for_esri_gateway.replace('/feature-layer/test.html?', '/feature-geocode/geocode-suggest-motorola.html?') + '&backgroundlayerurl=' + _selected_path[0]  
      window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
 break;
 
 case "geocodeServer_2610":
-var _newTab_link =  url_for_esri_gateway.replace('test.html?', 'geocode-suggest-real-addr.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+var _newTab_link =  url_for_esri_gateway.replace('/feature-layer/test.html?', '/feature-geocode/geocode-suggest-real-addr.html?') + '&backgroundlayerurl=' + _selected_path[0]  
      window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
 break;
