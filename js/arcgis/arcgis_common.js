@@ -5065,15 +5065,8 @@ async function here_map_geocode_api_reverseGeocode_compact_for_compare(_lat_comm
                 
                 // only find url link as vale, ignore other field
                 if (isValidURL(value)){
-                  // access ArcMap's HTML popup from the JS https://community.esri.com/t5/arcgis-javascript-maps-sdk-questions/is-it-possible-to-access-arcmap-s-html-popup-from/td-p/187445
-                  
-                  // break a new line in flex box
-                  attribute_html += '<div class="break-a-new-line-in-flex-box"></div>'
-
-                  attribute_html += '<fieldset>' 
-                  attribute_html +=     '<legend style="margin:0 auto;padding: 4px;">' + key + '&nbsp;&nbsp;&nbsp;'
                   attribute_html +=     '<a target="_blank" href="' + value + '">' + value + '</a>' + '&nbsp;&nbsp;&nbsp;'
-                  attribute_html +=     '</legend>'
+                
 
                       if (isValidImageURL(value)){
 
@@ -5097,8 +5090,6 @@ async function here_map_geocode_api_reverseGeocode_compact_for_compare(_lat_comm
                                 
                       }// if image
 
-                  attribute_html += '</fieldset>'
-                 
                 }//if valid url
                 
               }// for 

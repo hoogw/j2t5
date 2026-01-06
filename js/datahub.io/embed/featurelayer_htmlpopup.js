@@ -673,7 +673,10 @@ require([
                                                   var __layer_name
                                                   var ___properties
 
-                                                  for (let _index = 0; _index < hitResult.length; _index++) {
+
+                                                  // click only show top first item, not show multiple item for simple
+                                                  //for (let _index = 0; _index < hitResult.length; _index++) {
+                                                  let _index = 0
 
                                                       graphic = hitResult[_index].graphic;
                                                       graphic_object_indexAsKey[_index] = graphic
@@ -695,93 +698,21 @@ require([
 
                                                       /**/
                                                       // -------------- htmlpopup --------------
+                                                      // click only show top first item, not show multiple item for simple
                                                       /**/
 
+                                                      
+
                                                       var html_for_properties = json_flex_tip_viewer(___properties)
-                                                      var html_for_htmlpopup = ''
+                                                      $('#info-window-div').html(html_for_properties)
 
-                                                      var _feature_id = ___properties[backgroundFeatureLayer.objectIdField];
-
-                                                      // rest api, https://developers.arcgis.com/rest/services-reference/enterprise/html-popup-feature-service/
-                                                      var htmlpopup_url = background_layer_url + '/' +  _feature_id + '/htmlPopup'
-                                                       
-
-                                                      var htmlpopup
-                                                      try {
-                                                        htmlpopup = await arcgis_ajax_cross_origin(htmlpopup_url, _cross);
-
-                                                            console.log(' htmlpopup ', htmlpopup) 
-                                                              
-                                                            var _htmlPopupType =  htmlpopup['htmlPopupType'];
-                                                            var _htmlPopupContent =  htmlpopup['content'];
-
-                                                            if (_htmlPopupType){
-                                                            } else {
-                                                              _htmlPopupType = 'No ArcPro/ArcMap Html Popup'
-                                                              _htmlPopupContent = ''
-                                                            }
-                                                            
-                                                            
-                                                            html_for_htmlpopup += '<fieldset>'
-                                                            html_for_htmlpopup += '<legend style="margin:0 auto;padding: 4px;">' + _htmlPopupType + '</legend>'
-                                                            html_for_htmlpopup +=   _htmlPopupContent
-                                                            html_for_htmlpopup += '</fieldset>'
-                                                          
-                                                          } catch(error){
-                                                            console.log('htmlpopup not supported ')
-                                                          }
-
-
-
-
+                                                      
                                                       /**/
                                                       //   . .     . . url link field display as embeded iframe tag   . .     . .
                                                       /**/ 
                                                       var html_for_urlAsIframe = json_flex_tip_viewer_urlAsIframe(___properties)
-
-                                                      
-                                                     
-
-                                                      // build html only
-                                                      if (_index == 0){
-                                                                        multiple_layer_properties_html += '<fieldset>' 
-                                                                        multiple_layer_properties_html +=     '<legend>' + (_index +1) +  ' : ' + __layer_name +'</legend>'
-
-                                                                        multiple_layer_properties_html +=           html_for_urlAsIframe
-                                                                        multiple_layer_properties_html +=           '<div class="break-a-new-line-in-flex-box"></div>'
-
-                                                                        multiple_layer_properties_html +=     '<div class="flex-row selected_highlighted_style attribute_field_set_style"   id="attribute_field_set_0"   >'  // if 0, means need start a new info window
-                                                                        multiple_layer_properties_html +=           html_for_properties 
-                                                                        multiple_layer_properties_html +=     '</div>'
-
-                                                                        multiple_layer_properties_html +=           '<div class="break-a-new-line-in-flex-box"></div>'
-                                                                        multiple_layer_properties_html +=           html_for_htmlpopup 
-                                                                        
-                                                                        
-                                                                        multiple_layer_properties_html +=     '</div>'
-                                                                        multiple_layer_properties_html += '</fieldset>'
-                                                      } else {
-
-                                                                multiple_layer_properties_html += '<fieldset>'
-                                                                multiple_layer_properties_html +=     '<legend>' + (_index +1) +  ' : ' + __layer_name +'</legend>'
-
-                                                                multiple_layer_properties_html +=           html_for_urlAsIframe
-                                                                multiple_layer_properties_html +=           '<div class="break-a-new-line-in-flex-box"></div>'
-
-                                                                multiple_layer_properties_html +=     '<div class="flex-row attribute_field_set_style"   id="attribute_field_set_' + _index +  '"   >' // not 0, means need append to existing info window
-                                                                multiple_layer_properties_html +=           html_for_properties 
-                                                                multiple_layer_properties_html +=     '</div>'
-
-                                                                multiple_layer_properties_html +=           '<div class="break-a-new-line-in-flex-box"></div>'
-                                                                multiple_layer_properties_html +=           html_for_htmlpopup 
-                                                                
-                                                                
-                                                                multiple_layer_properties_html +=     '</div>'
-                                                                multiple_layer_properties_html += '</fieldset>'
-
-                                                      }//if
-                                                      //  . .  end    . .  build html only
-
+                                                      $('#html-for-urlAsIframe-div').html(html_for_urlAsIframe)
+                    
 
                                                       /**/
                                                       //   . .   . .  end    . .    . . url link field display as embeded iframe tag   . .     . . 
@@ -798,40 +729,13 @@ require([
 
                                                     
 
-                                                  }//for
+                                                  //}//for
 
-                                                  $('#info-window-div').html(multiple_layer_properties_html)
-
-
-                                                  // add click event to html, everythime, .html() will lose previous event, so must add event from 0 to index
-                                                  for (let _index = 0; _index < hitResult.length; _index++) {
-
-                                                    console.log('add event to element id :  attribute_field_set_', _index)
-                                                    $("#attribute_field_set_" + _index ).on('click', function(){
-                                                                var element_id = $(this).attr('id');
-                                                                var _select_highlight_index = Number(element_id.replace('attribute_field_set_', ''))
-                                                                console.log("you click  index  :   ",  _select_highlight_index)
-                          
-                                                                $(".attribute_field_set_style").removeClass('selected_highlighted_style')
-                                                                $(this).addClass('selected_highlighted_style')
+                                             
+                  
 
 
-
-                                                              
-                                                      
-                                                                                          if (mouse_pointed_feature_highlight_handle){
-                                                                                            mouse_pointed_feature_highlight_handle.remove()
-                                                                                          }
-                                                                                          mouse_pointed_feature_highlight_handle = layerView.highlight(graphic_object_indexAsKey[_select_highlight_index]);
-                                                              
-                          
-                                                     });
-
-                                                  }//for
-
-
-
-                                               
+                                                 
 
 
 
@@ -1210,61 +1114,19 @@ require([
                 console.log('show info window  properties : ', ___properties )
 
                 var html_for_properties = json_flex_tip_viewer(___properties)
-                var html_for_htmlpopup = ''
-
-                var _feature_id = ___properties[backgroundFeatureLayer.objectIdField];
-                
-                // rest api, https://developers.arcgis.com/rest/services-reference/enterprise/html-popup-feature-service/
-                var htmlpopup_url = background_layer_url + '/' +  _feature_id + '/htmlPopup'
-                                                       
-
-                
-
-                var htmlpopup
-                try {
-                      htmlpopup = await arcgis_ajax_cross_origin(htmlpopup_url, _cross);
-
-                      console.log(' htmlpopup ', htmlpopup) 
-
-                      var _htmlPopupType =  htmlpopup['htmlPopupType'];
-                      var _htmlPopupContent =  htmlpopup['content'];
-
-                      if (_htmlPopupType){
-                      } else {
-                        _htmlPopupType = 'No ArcPro/ArcMap Html Popup'
-                        _htmlPopupContent = ''
-                      }
-
-                        
-                        html_for_htmlpopup += '<fieldset>'
-                        html_for_htmlpopup += '<legend style="margin:0 auto;padding: 4px;">' + _htmlPopupType + '</legend>'
-                        html_for_htmlpopup +=   _htmlPopupContent
-                        html_for_htmlpopup += '</fieldset>'
-                     
-                    
-                    } catch(error){
-                      console.log('htmlpopup not supported ')
-                    }
+                 $('#info-window-div').html(html_for_properties)
 
                     /**/
                     //   . .     . . url link field display as embeded iframe tag   . .     . .
                     /**/ 
                     var html_for_urlAsIframe = json_flex_tip_viewer_urlAsIframe(___properties)
-
-                
-                    var _html_everything = ''
-                    _html_everything +=           html_for_urlAsIframe 
-                    _html_everything +=           '<div class="break-a-new-line-in-flex-box"></div>'
-                    _html_everything +=           html_for_properties 
-                    _html_everything +=           '<div class="break-a-new-line-in-flex-box"></div>'
-                    _html_everything +=           html_for_htmlpopup
-
+                    $('#html-for-urlAsIframe-div').html(html_for_urlAsIframe)
                     /**/
                     //   . .   . .  end    . .    . . url link field display as embeded iframe tag   . .     . . 
                     /**/
                  
 
-                  $('#info-window-div').html(_html_everything)
+                 
               }
 
 
