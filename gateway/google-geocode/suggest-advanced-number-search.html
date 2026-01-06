@@ -14,13 +14,66 @@
 
    
      
-    <link rel="stylesheet" href="../../stylesheets/vertical.css">
+    <link rel="stylesheet" href="../../stylesheets/full-screen.css">
 
-    
 
 </head>
 
 <body>
+      
+  
+  
+  
+  <div class='flex-container'>
+
+   <div class='map-3-left-width-undefined' style="width: 600px;">
+    <div id='street_view' style="height: 100%;"></div>
+   </div>
+
+    <div class='map-3-middle-width-auto'>
+
+      <div class='flex-row'>
+        <span id="layer-info-vertical">Layer Name</span>
+        <input id='pac-input' type='search' placeholder='(google) addr. zip Pl.'/>
+        <button type="button" id = "panToCurrent_geolocation_button">my-location</button>
+      </div>
+
+      <div id="map" style="height: 94%;"></div>
+
+    </div>
+
+    <div class='map-3-right-width-undefined' style="width: 450px;">
+
+      <div class='flex-column'>
+          <b>Esri ArcPro locator limit the number of search results(default 15 or 5). This model undo the limit </b>
+          <b>List all everything has this number</b>
+          
+          <input id="geocode-suggest-input" placeholder="e.g. gage/temp, home depot, 6510 miles,"/>
+          
+          <div>
+            <span style="font-size:large;" id="geocode-total-label"></span>
+            <button id="suggest_btn">suggest</button>
+            <button id="find_btn">find selected</button>
+            <span>zoom2level:</span><input id="zoom2level-input" type="text" size="1"></input>
+            <button id="clear_btn">clear</button>
+          </div>
+
+          <!-- size must be same as var max_suggestion_item_count = 50 -->
+          <select size=50 id="suggest-options" hidden></select>
+
+          </div>
+    </div>
+
+    <div class='map-3-right-width-undefined' style="width: 250px;">
+
+      <span style="font-size:xx-small;" id="geocode-capabilities-label"></span>
+      <span style="font-size:xx-small;" id="geocode-categories-label"></span>
+      <span style="font-size:xx-small;" id="geocode-crossstreetconnector-label"></span>
+          
+      <div id='info-window-div' style="font-size: xx-small;"></div> 
+    </div>
+
+  </div>
           
   
   
@@ -44,8 +97,7 @@
       
     <div class="vertical-width-undefined-no-border"  style="width: 400px; height: 900px;">
 
-      <b>Esri ArcPro locator limit the number of search results(default 15 or 5). This model undo the limit </b>
-      <b>List all everything has this number</b>
+      
           
       <span style="font-size:xx-small;" id="geocode-capabilities-label"></span>
       <span style="font-size:xx-small;" id="geocode-categories-label"></span>
