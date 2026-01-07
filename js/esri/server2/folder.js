@@ -262,12 +262,15 @@ var icon_flatjson = [];
                                         function jstree_root_folder(root_allfolders_flatjson, root_url, root_url_organization, root_url_hostname){
 
                                                   
-                                            // org name
-                                            var _html_org = '<h3 style="display:inline;"><b><a target="_blank" id="_orgnization_link" href="'+ root_url + '">&nbsp;' + root_url_organization +  '</a></b></h3>'
-                                            // https://domain 
-                                            _html_org    += '<br><h5 style="display:inline;"><sup><a target="_blank" id="_orgnization_link2" href="'+ root_url +'">https://' + root_url_hostname    + '</a></sup></h5>' 
+                                            var _html_org = ""
                                             // arcgis version number
-                                            _html_org    += '&nbsp;&nbsp;ArcgisEnterprise<h3 style="display:inline;"> v<b><big>' + currentVersion + '</big></b></h3>'
+                                            var _html_version = '<span style="font-size:x-large">ArcGIS Enterprise V.<b><big>' + currentVersion + '</big></b></span>'
+                                            _html_org += '<a target="_blank" id="_orgnization_link" href="'+ root_url + '">' + _html_version +  '</a>'
+                                            // org name, not use, but keep here for future use 
+                                            //_html_org += '<a target="_blank" id="_orgnization_link" href="'+ root_url + '">' + root_url_organization +  '</a>'
+                                            // domain, not use, but keep here for future use 
+                                            //_html_org += '<a target="_blank" id="_orgnization_link2" href="'+ root_url +'">' + root_url_hostname    + '</a>' 
+                                            
 
                                             $('#message_root_folder').html(_html_org);
                                             
