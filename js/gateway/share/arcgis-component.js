@@ -36,6 +36,9 @@ var Basemap
 var WebTileLayer
 var BasemapStyle
 
+// legend
+var Legend
+
 
 // dynamic import is async(return promise)
 // case 1. even use "a w a i t     a r c g i s _ i m p o r t ()" also put it inside a s y n c function, sometime still cause module not define error,
@@ -78,6 +81,10 @@ var BasemapStyle
     // base-map 
     // these import must move to base map function 
     // because sometime, not always, get error as webTileLayer not available
+    
+    // legend
+    Legend = await $arcgis.import("@arcgis/core/widgets/Legend.js");
+
     
 
 })(); // self-run
