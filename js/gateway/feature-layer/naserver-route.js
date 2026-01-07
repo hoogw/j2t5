@@ -366,10 +366,7 @@ async function create_route(____start____point,   ____end____point){
                function init_view_ui(){  // component
 
               
-                   // init set all esri widget opacity
-                   set_my_widget_opacity()
-                   init_esri_widget_opacity()
-                   // all ui need set opacity
+                   
 
 
       }// init ui

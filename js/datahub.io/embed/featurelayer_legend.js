@@ -84,9 +84,14 @@ require([
            
             ) {
     
-    
-
+    /**/
+    //  --- original color or yellow   --- 
+    /**/
             
+            original_color_or_yellow = 'original_color' 
+    /**/
+    //  --- end  ---  original color or yellow   --- 
+    /**/
 
               
               // feature layer opacity
@@ -273,6 +278,10 @@ require([
                     //========  end =========== toggle basemap ============================
                 
 
+
+                /**/
+                //  --- original color or yellow   --- 
+                /**/
               /**/ 
               //=================== legend outside map ============================
 
@@ -292,6 +301,10 @@ require([
                   console.log('legend outside mapview is created', legend_outside_mapview)
               //======= end ============ legend outside map ============================
               /**/ 
+
+               /**/
+                //  --- end  ---  original color or yellow   --- 
+                /**/
                    
 
 

@@ -186,10 +186,7 @@
 
 
 
-                   // init set all esri widget opacity
-                   set_my_widget_opacity()
-                   init_esri_widget_opacity()
-                   // all ui need set opacity
+                   
 
 
               }// init ui

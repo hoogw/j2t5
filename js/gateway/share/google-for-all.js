@@ -1552,9 +1552,7 @@ var _google_public_map_only_api_key = "AIzaSyCeIFVL6oxxXNT7NToJjfU4J9TV2J8m4vE"
                                             $('#widget_opacity_label').text(widget_opacity * 10);
                                             update_url_parameter('widgetopacity', widget_opacity)
 
-                                            set_my_widget_opacity()
-                                            set_google_widget_opacity()
-
+                                          
                                             
 
                                           });
@@ -1562,10 +1560,7 @@ var _google_public_map_only_api_key = "AIzaSyCeIFVL6oxxXNT7NToJjfU4J9TV2J8m4vE"
                                     /**/
 
 
-                                    // init set all esri widget opacity
-                                    set_my_widget_opacity()
-                                    
-
+                                 
 
 
 
@@ -1594,22 +1589,7 @@ var _google_public_map_only_api_key = "AIzaSyCeIFVL6oxxXNT7NToJjfU4J9TV2J8m4vE"
 
                   }
                             
-                  function set_my_widget_opacity(){
-                      $('.title_div').css({'opacity': widget_opacity})  //  .css({object})
-                      $('.legend-div').css({'opacity': widget_opacity})  //  .css({object})
-                      $('.dynamic-legend').css({'opacity': widget_opacity})  //  .css({object})
-
-                      $('#opacity_div').css({'opacity': widget_opacity})  //  .css({object})
-                      $('#zoom_level_id').css({'opacity': widget_opacity})  //  .css({object})
-                      $('#pac-input').css({'opacity': widget_opacity})  //  .css({object})
-                      $('#zoomToLayer_button').css({'opacity': widget_opacity})  //  .css({object})
-                      $('#panToCurrent_geolocation_button').css({'opacity': widget_opacity})  //  .css({object})
-
-                  }          
-
-                  function set_google_widget_opacity(){
-                    // you can't change opacity of native google widget, maybe use flutter plugin.... too complicated. not doing it. 
-                  }
+                 
 
                           // .............. legend panel  .............. 
 
