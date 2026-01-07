@@ -3,12 +3,11 @@
 /* scrollable flexbox sample is here  https://www.bennadel.com/blog/4499-sanity-check-using-overflow-scrolling-on-css-flexbox-panels.htm */
 
 
-/* for different size of screen, sample is here  https://www.w3schools.com/Css/css3_flexbox_responsive.asp */
 
 
+/* - - - -  full page dark theme - - - -   always at top - - - -   */
 
-
-body {
+body, button {
   
   /* default is black for all */
   background-color:black;
@@ -18,10 +17,45 @@ body {
 
 }
 
+
+
+button {
+  border: 1px solid white;
+  font-size: xx-small;
+  
+  /* default is black for all */
+  background-color:black;
+  color:white;
+  font-family: monospace,system-ui,sans-serif;
+}
+button:hover {
+   background-color:rgb(109, 109, 109);
+}
+
+
 /* because dark theme set link color as black, now need restore blue color by this line*/
 a {
   color: revert; /* Restores the default blue color for unvisited links */
 }
+
+
+
+/*   - - - -    end - - - -  full page dark theme - - - -   always at top - - - -   */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* for different size of screen, sample is here  https://www.w3schools.com/Css/css3_flexbox_responsive.asp */
 
 
 

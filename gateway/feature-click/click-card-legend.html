@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+     <!--Let browser know website is optimized for mobile-->
+     <meta name="viewport" charset='utf-8' content="initial-scale=1.0, width=device-width"/>
+
+    <title id="title">feature layer</title>
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+   
+     
+    <link rel="stylesheet" href="../../stylesheets/vertical.css">
+
+    
+
+</head>
+
+<body>
+               
+ 
+ <div class="horizontal-left-right-width-undefined-container" style="width:1400px;">
+      
+    <div class="vertical-width-undefined-no-border" style="width: 300px; height: 750px; overflow: auto;">
+
+      <div>
+            <input name="original_color_or_yellow_radio" type="radio"  value="yellow"/>
+            <span>Yellow</span>
+      </div>
+      <div>
+            <input name="original_color_or_yellow_radio" type="radio"  value="original_color"/>
+            <span>Original color</span>
+      </div>
+       
+      <!-- legend outside of map must use r e f e r e n c e, e l e m e n t, i d -->
+       <arcgis-legend reference-element="map-components-id"   class="calcite-mode-dark" legend-style="card" card-style-layout="stack"></arcgis-legend>
+      
+
+    </div>
+
+
+    <div class="vertical-width-undefined-no-border" style="width: 800px;"> 
+    
+        <div>
+          <span id="layer-info-vertical">Layer Name</span>
+          <small>total:</small><b id="total-feature">...</b>
+          <small>visible:</small><b id="feature-on-map">...</b>
+          <span id="lat-lng-zoom" hidden>...</span>
+        </div>
+
+        
+
+        <arcgis-map popup-disabled id="map-components-id" basemap="hybrid" style="height: 700px;">
+        </arcgis-map>
+
+         <div id="radio-basemap-id" class='flex-row font-size-xx-small'></div>
+
+        <div>
+          <button type="button" id = "panToCurrent_geolocation_button">my-location</button>
+          <!--   --- --- --- --- back to previous extent --- --- --- --- -->
+          <button type='button' id='zoom2layer_button'>back-2-layer</button>
+          <button type='button' id='full_extent_btn'>full.extent</button>
+          <!--   --- --- end --- --- back to previous extent --- --- --- ---  -->
+
+          <small id = "opacitytitle_span">layer-opacity:</small>
+          <b id='opacity_value_text'></b>
+          <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"/>
+
+          
+        </div>
+
+    </div> 
+
+    <div class="vertical-width-undefined-no-border" style="width: 300px; height: 750px; overflow: auto;">
+
+        <!-- find address must be at last bottom, otherwise its drop down will conflict with other component below  -->
+        <arcgis-search reference-element="map-components-id" style="z-index:99;" class="calcite-mode-dark">
+        </arcgis-search> 
+
+        <div>
+          <input class="radio-input" name="zoom_to_feature_or_not_radio" type="radio"  value="zoom_to_feature"/>
+          <span>Click-2-Zoom</span>
+          <input name="zoom_to_feature_or_not_radio" type="radio"  value="not_zoom2feature"/>
+          <span>Not-zoom</span> 
+
+          <button id='close_info_outline_panel'>Close &times;</button>
+        </div>
+
+        <div id='info-window-div' style="font-size: xx-small;">
+          
+        </div>
+    <div>
+    
+
+  </div>
+
+     
+ <script src="../../js/lib/papaparse.js" type="text/javascript"></script>
+ 
+
+     <!-- jquery must load first on top header -->
+     <!-- esri dojo conflict with jquery, must load after jquery, at bottom of page -->
+     <!-- my.js must load after esri dojo load -->
+                  
+                
+    <link rel="stylesheet" href="https://js.arcgis.com/4.34/esri/themes/dark/main.css"/>
+    <script src="https://js.arcgis.com/4.34/"></script>
+    <!-- Load Map components from CDN-->
+    <script type="module" src="https://js.arcgis.com/4.34/map-components/"></script>
+    
+    <!-- 4 . 3 3 bug without calcite, search component will disappear (height:0px)-->
+    <script type="module" src="https://js.arcgis.com/calcite-components/3.3.3/calcite.esm.js"></script>
+    
+     
+    <script src="../../js/arcgis/arcgis_common.js" type="text/javascript"></script>
+    <script src="../../js/gateway/share/arcgis-component.js" type="text/javascript"></script>
+    <script src="../../js/gateway/feature-click/click-card-legend.js" type="text/javascript"></script>
+
+  </body>
+</html>
