@@ -635,9 +635,13 @@ async function get_mapserver_info_html(mapserver_url){
     /**/
     var _html_for_f_json = ''
     _html_for_f_json += "</br>"
-    _html_for_f_json += '<h5 style="display:inline;"  ><b>  <a target="_blank" id="_mapserver_link" href="'+  mapserver_url + '?f=json">'  
-    _html_for_f_json += "f=json" + '</a></b></h5>'
-    _html_for_f_json += '<br> <h6 style="display:inline;"  ><sup><a target="_blank" id="_mapserver_link2" href="'+  mapserver_url + '?f=json">' + mapserver_url + '?f=json' + '</a></sup></h6>'
+    _html_for_f_json += '<a target="_blank" id="_mapserver_link" href="'+  mapserver_url + '?f=json">'  
+    _html_for_f_json +=   "f=json" 
+    _html_for_f_json += '</a>'
+    _html_for_f_json += '<br>'
+    _html_for_f_json += '<a target="_blank" id="_mapserver_link2" href="'+  mapserver_url + '?f=json">'
+    _html_for_f_json +=    mapserver_url + '?f=json' 
+    _html_for_f_json += '</a>'
                 
     $("#json-mapserver").show();
     editor_json_mapserver.set({json:mapServerRootJson})
@@ -1321,9 +1325,16 @@ async function get_mapserver_info_html(mapserver_url){
     /**/
     var _html_for_f_json = ''
     _html_for_f_json += "</br>"
-    _html_for_f_json += '<h5 style="display:inline;"  ><b>  <a target="_blank" id="___thislayerurl____link" href="'+  ___thislayerurl___ + '?f=json">'  
-    _html_for_f_json += "f=json" + '</a></b></h5>'
-    _html_for_f_json += '<br> <h6 style="display:inline;"  ><sup><a target="_blank" id="___thislayerurl____link2" href="'+  ___thislayerurl___ + '?f=json">' + ___thislayerurl___ + '?f=json' + '</a></sup></h6>'
+    _html_for_f_json += '<a target="_blank" id="___thislayerurl____link" href="'+  ___thislayerurl___ + '?f=json">'  
+    _html_for_f_json +=     "f=json" 
+    _html_for_f_json += '</a>'
+
+    _html_for_f_json += '<br>'
+
+    _html_for_f_json += '<a target="_blank" id="___thislayerurl____link2" href="'+  ___thislayerurl___ + '?f=json">' 
+    _html_for_f_json += ___thislayerurl___ + '?f=json' 
+    _html_for_f_json += '</a>'
+    
     $("#layer-more-info").html(_html_for_f_json)         
 
     $("#json-layer").show();

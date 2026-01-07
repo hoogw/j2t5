@@ -436,10 +436,17 @@
                             // top, name, link
                             var _html_for_message_icon  = ''
                             // must attach '?f=html' at end of url, otherwise vectortile , scene url will use f=json by default 
-                            _html_for_message_icon     = '<h3 style="display:inline;"  ><b>  <a target="_blank" id="_mapserver_link" href="'+  mapserver_url + '?f=html">'  
-                            //_html_for_message_icon    += "<span class='" + open_new_tab_icon +"' aria-hidden='true'></span>&nbsp;"  
-                            _html_for_message_icon    += mapserver_url_display_text + '</a></b></h3>'
-                            _html_for_message_icon    += '<br> <h6 style="display:inline;"  ><sup><a target="_blank" id="_mapserver_link2" href="'+  mapserver_url + '?f=html">' + mapserver_url + '</a></sup></h6>'
+                            _html_for_message_icon     = '<a target="_blank" id="_mapserver_link" href="'+  mapserver_url + '?f=html" style="font-size:large; font-weight: bolder;">'  
+                            _html_for_message_icon    +=   mapserver_url_display_text 
+                            _html_for_message_icon    += '</a>'
+
+                            _html_for_message_icon    += '<br>'
+
+                            _html_for_message_icon    += '<a target="_blank" id="_mapserver_link2" href="'+  mapserver_url + '?f=html" style="font-size:xx-small; font-weight: lighter;">' 
+                            _html_for_message_icon    +=    mapserver_url 
+                            _html_for_message_icon    += '</a>'
+                            
+                            
                             $('#message_icon').html( _html_for_message_icon);
 
                             // for 2 panel, load server info on icon panel

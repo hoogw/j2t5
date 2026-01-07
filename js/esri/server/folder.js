@@ -275,7 +275,7 @@ var icon_flatjson = [];
 
                                             var _html_org = ""
                                             // arcgis version number
-                                            var _html_version = '<span style="font-size:x-large">ArcGIS Enterprise V.<b><big>' + currentVersion + '</big></b></span>'
+                                            var _html_version = '<span style="font-size:large; font-weight: bolder;">ArcGIS Enterprise Version <b><big>' + currentVersion + '</big></b></span>'
                                             _html_org += '<a target="_blank" id="_orgnization_link" href="'+ root_url + '">' + _html_version +  '</a>'
                                             // org name, not use, but keep here for future use 
                                             //_html_org += '<a target="_blank" id="_orgnization_link" href="'+ root_url + '">' + root_url_organization +  '</a>'
@@ -1544,10 +1544,13 @@ var icon_flatjson = [];
                                                 console.log("parent_folder_itself", parent_folder_itself)
 
                                                 // must attach '?f=html' at end of url, otherwise vectortile , scene url will use f=json by default 
-                                                var _html_for_message_mapserver = '     <h3 style="display:inline;"  ><b>  <a target="_blank" id="_mapserver_link" href="' + parent_folder_full_url + '?f=html">'  
-                                                //_html_for_message_mapserver    +=  "<span class='" + open_new_tab_icon +"' aria-hidden='true'></span>&nbsp;"  
-                                                _html_for_message_mapserver    += parent_folder_display_text + '</a></b></h3>'
-                                                _html_for_message_mapserver    += '<br> <h6 style="display:inline;"  ><sup><a target="_blank" id="_mapserver_link2" href="' + parent_folder_full_url + '?f=html">' + parent_folder_full_url + '</a></sup></h6>'
+                                                var _html_for_message_mapserver = '<a target="_blank" id="_mapserver_link" href="' + parent_folder_full_url + '?f=html">' 
+                                                _html_for_message_mapserver    +=   parent_folder_display_text 
+                                                _html_for_message_mapserver    += '</a>'
+                                                _html_for_message_mapserver    += '<br>'
+                                                _html_for_message_mapserver    += '<a target="_blank" id="_mapserver_link2" href="' + parent_folder_full_url + '?f=html">' 
+                                                _html_for_message_mapserver    +=   parent_folder_full_url 
+                                                _html_for_message_mapserver    += '</a>'
                                                
                                                 $('#message_mapserver').html( _html_for_message_mapserver);
 
