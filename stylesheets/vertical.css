@@ -3,49 +3,54 @@
 
 /* - - - -  full page dark theme - - - -   always at top - - - -   */
 
-body {
-  
-  /* default is black for all */
-  background-color:black;
-  color:white;
-  
-  font-family: monospace,system-ui,sans-serif;
 
+:root {
+  color-scheme: dark;
+  font-family: monospace,sans-serif;
 }
 
-
-input {
-  border: 1px solid white;
+input,button {
   font-size: xx-small;
-  
-  /* default is black for all */
-  background-color:black;
-  color:yellow;
-  font-family: monospace,system-ui,sans-serif;
 }
 
-button {
-  border: 1px solid white;
-  font-size: xx-small;
-  
-  /* default is black for all */
-  background-color:black;
-  color:white;
-  font-family: monospace,system-ui,sans-serif;
-}
-button:hover {
-   background-color:rgb(109, 109, 109);
-}
-
-
-/* because dark theme set link color as black, now need restore blue color by this line*/
+/* dark theme set link color white, for blue color use this line*/
 a {
   color: revert; /* Restores the default blue color for unvisited links */
 }
 
 
 
+#letsgo {
+  font-size:x-large; 
+  font-weight: bolder; 
+  font-family: monospace; 
+  font-style: oblique; 
+ 
+  color:yellow;
+}
+
+
+
+#current_rest_api_endpoint {
+  font-size: x-large; 
+  font-weight: bolder; 
+  font-family: monospace; 
+  font-style: oblique; 
+ 
+  color:yellow;
+}
+
+
 /*   - - - -    end - - - -  full page dark theme - - - -   always at top - - - -   */
+
+
+
+
+
+
+
+
+
 
 
 
