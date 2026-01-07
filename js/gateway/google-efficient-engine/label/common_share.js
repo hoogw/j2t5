@@ -1499,7 +1499,7 @@ console.log('  object id field name ', objectid_field_name)
 
 
  // set dark mode by default
- document.querySelector('body').classList.add('dark')
+ //document.querySelector('body').classList.add('dark')
                                 
                                 
                           

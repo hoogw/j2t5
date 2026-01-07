@@ -3629,7 +3629,7 @@ async function render_mapserver(_parent_id){
 
 
     // iframe version, comment out,  do not set dark mode by default
-    // document.querySelector('body').classList.add('dark')
+    // //document.querySelector('body').classList.add('dark')
 
 
 })(jQuery);

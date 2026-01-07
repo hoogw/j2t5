@@ -1656,7 +1656,7 @@ function ajax_GeoJSON_16x(_apiURI_16x) {
 
 
                                  // set dark mode by default
-                                 document.querySelector('body').classList.add('dark')
+                                 //document.querySelector('body').classList.add('dark')
                                 
                           
 

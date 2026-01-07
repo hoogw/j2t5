@@ -1330,7 +1330,7 @@ function pan_to_sample(_sample_arcgis_feature_Set){
                                  
                                 
                                 // set dark mode by default
-                                document.querySelector('body').classList.add('dark')
+                                //document.querySelector('body').classList.add('dark')
                           
 
                   }// function initMap

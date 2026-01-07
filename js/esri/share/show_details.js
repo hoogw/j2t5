@@ -1861,7 +1861,7 @@ async function get_mapserver_info_html(mapserver_url){
             // compact system use light theme, expand system use dark theme
             if (window.location.href.includes('/folder2.html?')){
                 // this is expand system, apply dark theme
-                document.querySelector('body').classList.add('dark')
+                //document.querySelector('body').classList.add('dark')
             }
 
 
@@ -1931,7 +1931,7 @@ var small_text = "50%"
 
 
             $("#dark-button").on('click',function(){
-               document.querySelector('body').classList.add('dark')             
+               //document.querySelector('body').classList.add('dark')             
             }); 
              $("#light-button").on('click',function(){
                document.querySelector('body').classList.remove('dark')             
