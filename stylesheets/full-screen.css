@@ -7,7 +7,7 @@
 
 /* - - - -  full page dark theme - - - -   always at top - - - -   */
 
-body, button {
+body {
   
   /* default is black for all */
   background-color:black;
@@ -18,6 +18,15 @@ body, button {
 }
 
 
+input {
+  border: 1px solid white;
+  font-size: xx-small;
+  
+  /* default is black for all */
+  background-color:black;
+  color:yellow;
+  font-family: monospace,system-ui,sans-serif;
+}
 
 button {
   border: 1px solid white;
