@@ -1645,7 +1645,7 @@ jstree_root_folder(folder_structure_flatjson, ___url_string,  _organization, ___
                                                                                             
                                                                                         
                                                                                      // List group with transparent background  https://github.com/twbs/bootstrap/issues/29318
-                                                                                            var _html_tag   = "<a class='list-group-item bg-transparent  list-group-item-action' href='javascript:;' onclick='selectFolderLevelItem(" + folder_structure_flatjson[f].id + ");'>";
+                                                                                            var _html_tag   = "<a href='javascript:;' onclick='selectFolderLevelItem(" + folder_structure_flatjson[f].id + ");'>";
 
                                                                                             _html_tag  +=       "<span class='" + folder_structure_flatjson[f].icon + "' aria-hidden='true'></span>"  
                                                                                             _html_tag  +=       "  " +  folder_structure_flatjson[f].text
@@ -1662,7 +1662,7 @@ jstree_root_folder(folder_structure_flatjson, ___url_string,  _organization, ___
                                                                                             
 
 
-                                                                                                var _html_tag   = "<a class='list-group-item bg-transparent  list-group-item-action' href='javascript:;' onclick='selectFolderLevelItem(" + folder_structure_flatjson[f].id + ");'>";
+                                                                                                var _html_tag   = "<a href='javascript:;' onclick='selectFolderLevelItem(" + folder_structure_flatjson[f].id + ");'>";
 
                                                                                                 _html_tag  +=       "<span class='" + folder_structure_flatjson[f].icon + "' aria-hidden='true'></span>"  
                                                                                                 _html_tag  +=       "  " + folder_structure_flatjson[f].text 

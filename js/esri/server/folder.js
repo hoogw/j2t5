@@ -1474,7 +1474,7 @@ var icon_flatjson = [];
                                                                                             
                                                                                         
                                                                                      // List group with transparent background  https://github.com/twbs/bootstrap/issues/29318
-                                                                                            var _html_tag   = "<a class='list-group-item bg-transparent  list-group-item-action' href='javascript:;' onclick='selectFolderLevelItem(" + folder_structure_flatjson[f].id + ");'>";
+                                                                                            var _html_tag   = "<a href='javascript:;' onclick='selectFolderLevelItem(" + folder_structure_flatjson[f].id + ");'>";
 
                                                                                             _html_tag  +=       "<span class='" + folder_structure_flatjson[f].icon + "' aria-hidden='true'></span>"  
                                                                                             _html_tag  +=       "  " +  folder_structure_flatjson[f].text
@@ -1491,7 +1491,7 @@ var icon_flatjson = [];
                                                                                             
 
 
-                                                                                                var _html_tag   = "<a class='list-group-item bg-transparent  list-group-item-action' href='javascript:;' onclick='selectFolderLevelItem(" + folder_structure_flatjson[f].id + ");'>";
+                                                                                                var _html_tag   = "<a href='javascript:;' onclick='selectFolderLevelItem(" + folder_structure_flatjson[f].id + ");'>";
 
                                                                                                 _html_tag  +=       "<span class='" + folder_structure_flatjson[f].icon + "' aria-hidden='true'></span>"  
                                                                                                 _html_tag  +=       "  " + folder_structure_flatjson[f].text 
@@ -2640,7 +2640,7 @@ async function render_mapserver(_parent_id){
                                             switch (group_layer_item_type){
 
                                                 case 'Group Layer':
-                                                                    var _html_tag   = "<a class='list-group-item bg-transparent  list-group-item-action' href='javascript:;' onclick='selectLayerLevelItem(" + mapserver_flatjson[f].id + ");'>";
+                                                                    var _html_tag   = "<a href='javascript:;' onclick='selectLayerLevelItem(" + mapserver_flatjson[f].id + ");'>";
 
                                                                     _html_tag  +=       "<span class='" + mapserver_flatjson[f].icon + "' aria-hidden='true'></span>"  
                                                                     _html_tag  +=       "  " +  mapserver_flatjson[f].text
@@ -2653,7 +2653,7 @@ async function render_mapserver(_parent_id){
                                                             
                                                 case 'Feature Layer':
 
-                                                            var _html_tag   = "<a class='list-group-item bg-transparent  list-group-item-action' href='javascript:;' onclick='selectLayerLevelItem(" + mapserver_flatjson[f].id + ");'>";
+                                                            var _html_tag   = "<a href='javascript:;' onclick='selectLayerLevelItem(" + mapserver_flatjson[f].id + ");'>";
 
                                                             _html_tag  +=       "<span class='" + mapserver_flatjson[f].icon + "' aria-hidden='true'></span>"  
                                                             _html_tag  +=       "  " +  mapserver_flatjson[f].text
@@ -2667,7 +2667,7 @@ async function render_mapserver(_parent_id){
 
                                                 case 'Table':
             
-                                                                        var _html_tag   = "<a class='list-group-item bg-transparent  list-group-item-action' href='javascript:;' onclick='selectLayerLevelItem(" + mapserver_flatjson[f].id + ");'>";
+                                                                        var _html_tag   = "<a href='javascript:;' onclick='selectLayerLevelItem(" + mapserver_flatjson[f].id + ");'>";
             
                                                                         _html_tag  +=       "<span class='" + mapserver_flatjson[f].icon + "' aria-hidden='true'></span>"  
                                                                         _html_tag  +=       "  " +  mapserver_flatjson[f].text
@@ -2684,7 +2684,7 @@ async function render_mapserver(_parent_id){
                                                 default: 
 
 
-                                                            var _html_tag   = "<a class='list-group-item bg-transparent  list-group-item-action' href='javascript:;' onclick='selectLayerLevelItem(" + mapserver_flatjson[f].id + ");'>";
+                                                            var _html_tag   = "<a href='javascript:;' onclick='selectLayerLevelItem(" + mapserver_flatjson[f].id + ");'>";
             
                                                             _html_tag  +=       "<span class='" + mapserver_flatjson[f].icon + "' aria-hidden='true'></span>"  
                                                             _html_tag  +=       "  " +  mapserver_flatjson[f].text
