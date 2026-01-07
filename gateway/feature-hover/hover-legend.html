@@ -35,7 +35,9 @@
             <span>Original color</span>
       </div>
        
-       <div id="legend-outside-mapview-div"></div>
+      <!-- legend outside of map must use r e f e r e n c e, e l e m e n t, i d -->
+       <arcgis-legend reference-element="map-components-id"></arcgis-legend>
+      
 
     </div>
 
@@ -95,7 +97,7 @@
      <!-- my.js must load after esri dojo load -->
                   
                 
-    <link rel="stylesheet" href="https://js.arcgis.com/4.33/esri/themes/light/main.css"/>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.33/esri/themes/dark/main.css"/>
     <script src="https://js.arcgis.com/4.33/"></script>
     <!-- Load Map components from CDN-->
     <script type="module" src="https://js.arcgis.com/4.33/map-components/"></script>

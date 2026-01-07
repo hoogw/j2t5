@@ -36,8 +36,6 @@ var Basemap
 var WebTileLayer
 var BasemapStyle
 
-// legend
-var Legend
 
 
 // dynamic import is async(return promise)
@@ -82,9 +80,7 @@ var Legend
     // these import must move to base map function 
     // because sometime, not always, get error as webTileLayer not available
     
-    // legend
-    Legend = await $arcgis.import("@arcgis/core/widgets/Legend.js");
-
+    
     
 
 })(); // self-run
