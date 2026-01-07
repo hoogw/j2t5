@@ -22,9 +22,9 @@
 <body>
                
  
- <div class="horizontal-left-right-width-undefined-container" style="width:1350px;">
+ <div class="horizontal-left-right-width-undefined-container" style="width:1400px;">
       
-    <div class="vertical-width-undefined-no-border" style="width: 250px; height: 750px; overflow: auto;">
+    <div class="vertical-width-undefined-no-border" style="width: 300px; height: 750px; overflow: auto;">
 
       <div>
             <input name="original_color_or_yellow_radio" type="radio"  value="yellow"/>
@@ -36,7 +36,7 @@
       </div>
        
       <!-- legend outside of map must use r e f e r e n c e, e l e m e n t, i d -->
-       <arcgis-legend reference-element="map-components-id"></arcgis-legend>
+       <arcgis-legend reference-element="map-components-id" class="calcite-mode-dark" legend-style="classic" card-style-layout="stack"></arcgis-legend>
       
 
     </div>
@@ -77,7 +77,7 @@
     <div class="vertical-width-undefined-no-border" style="width: 300px; height: 750px; overflow: auto;">
 
         <!-- find address must be at last bottom, otherwise its drop down will conflict with other component below  -->
-        <arcgis-search reference-element="map-components-id" style="z-index:99;">
+        <arcgis-search reference-element="map-components-id" style="z-index:99;" class="calcite-mode-dark">
         </arcgis-search> 
 
         <div id='info-window-div' style="font-size: xx-small;">

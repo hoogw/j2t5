@@ -2101,6 +2101,12 @@ break;
     console.log('_newTab_link', _newTab_link)
   break;
 
+   case "embed_7351":
+      var _newTab_link =  url_for_esri_gateway.replace('feature-layer/test.html?', 'feature-click/click-card-legend.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+      window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
+
   case "embed_6911":
       var _newTab_link =  url_for_esri_gateway.replace('feature-layer/test.html?', 'feature-click/click-url.html?') + '&backgroundlayerurl=' + _selected_path[0]  
       window.open(_newTab_link,'_blank');
