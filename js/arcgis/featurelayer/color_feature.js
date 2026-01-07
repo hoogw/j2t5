@@ -1122,7 +1122,7 @@ function init_feature_layer_view(){
 
 
                                             $("#info_outline").show()
-                                                  
+                                                  $('#flex_1').scrollTop(0); // build in scroll to top popup info window
                                                  
                                             $('#info-window-div').html(multiple_layer_properties_html)
 
@@ -2243,14 +2243,14 @@ function init_feature_layer_view(){
               function show_info_outline_Tab(___properties){
 
                   $("#info_outline").show()
-                                                  
+                                                  $('#flex_1').scrollTop(0); // build in scroll to top popup info window
                                                  
                   // ===== ==== === == field mask ===== ==== === == 
                   var fieldMasked_properties = removeFieldsByFieldMask(___properties)
                   //  ===== ==== === == end  ===== ==== === == field mask ===== ==== === ==
                   
-                  
-                  
+                  // make sure flex_1 is id of column
+                  $('#flex_1').scrollTop(0); // build in scroll to top popup info window
                   $('#info-window-div').html(json_flex_tip_viewer(___properties))
               }
 

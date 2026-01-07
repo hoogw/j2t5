@@ -1302,8 +1302,8 @@ require([
                 //$('#info-window-div').html(JSON.stringify(___properties))
 
                 
-                  
-                  
+                  // make sure flex_1 is id of column
+                  $('#flex_1').scrollTop(0); // build in scroll to top popup info window
                   $('#info-window-div').html(json_flex_tip_viewer(___properties))
 
               }

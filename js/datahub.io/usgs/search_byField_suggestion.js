@@ -1814,8 +1814,8 @@ reactiveUtils.watch(
       function show_info_outline_Tab(___properties){
         $('#info_outline').show();
         
-                  
-                  
+                  // make sure flex_1 is id of column
+                  $('#flex_1').scrollTop(0); // build in scroll to top popup info window
                   $('#info-window-div').html(json_flex_tip_viewer(___properties))
         console.log('current_selected_field_value', current_selected_field_value)
         highlight_keywords_markjs(current_selected_field_value)
