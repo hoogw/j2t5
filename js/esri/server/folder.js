@@ -275,7 +275,7 @@ var icon_flatjson = [];
 
                                             var _html_org = ""
                                             // arcgis version number
-                                            var _html_version = '<span style="font-size:large; font-weight: bolder;">ArcGIS Enterprise Version <b><big>' + currentVersion + '</big></b></span>'
+                                            var _html_version = '<span style="font-size:x-large; font-weight: bolder;">ArcGIS Enterprise Version <b><big>' + currentVersion + '</big></b></span>'
                                             _html_org += '<a target="_blank" id="_orgnization_link" href="'+ root_url + '">' + _html_version +  '</a>'
                                             // org name, not use, but keep here for future use 
                                             //_html_org += '<a target="_blank" id="_orgnization_link" href="'+ root_url + '">' + root_url_organization +  '</a>'

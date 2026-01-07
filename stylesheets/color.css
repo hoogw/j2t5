@@ -19,25 +19,29 @@ a {
 
 
 
+
+
 #letsgo {
   font-size:x-large; 
   font-weight: bolder; 
   font-family: monospace; 
   font-style: oblique; 
- 
   color:yellow;
 }
-
-
-
 #current_rest_api_endpoint {
-  font-size: x-large; 
+  font-size: xx-large; 
   font-weight: bolder; 
   font-family: monospace; 
-  font-style: oblique; 
- 
+  font-style: oblique;
   color:yellow;
 }
+#login-token {
+  font-size: xx-small; 
+  font-weight: lighter; 
+  font-style: oblique; 
+}
+
+
 
 
 /*   - - - -    end - - - -  full page dark theme - - - -   always at top - - - -   */
@@ -48,50 +52,6 @@ a {
 
 
 
-
-
-
-
-
-/* ------------- esri widget ------------- */
-
-   /*  
-       change widget opacity
-           https://community.esri.com/t5/arcgis-javascript-maps-sdk-questions/widget-opacity/m-p/275531#M25425
-       inspect element, then use css set opacity  
-       works, but not use, move to use js, jquery to change widget opacity  
-  
-          .esri-widget{
-            opacity: 0.8;
-          }
-
-
-
-          css class selector not working, because you can't change css class property, but you can change dom element css property
-          Change CSS class properties with jQuery
-          https://stackoverflow.com/questions/11474430/change-css-class-properties-with-jquery
-          CSS class once loaded, you can't change css class content, you can only change individual element (by id) css style
-          
-          2 solution,  
-          Dynamically Load CSS from a File ( not use )
-          Dynamically Add a Style Element ( in use )
-
-
- */
-
-
-
-
-  
-/* ------------- end ------------- esri widget ------------- */
-
-
-
-
-
-/*  
-      :::::::: ESRI only ::::::::    warning   ::::::::  ::::::::  for json2tree ( ESRI arcgis/featurelayer ... etc) only  ::::::::  :::::::: ::::::::  :::::::: 
-*/
 
 
 
@@ -254,279 +214,6 @@ a {
 
 
 
-
-
-
-
-
-
-                /*
-                
-                     ***  *** dark mode  *** *** customized for folder.js *** *** ***
-                     using color code https://htmlcolorcodes.com/colors/
-
-
-
-                    original
-                    https://codepen.io/j_holtslander/pen/MRbpLX
-                    https://codepen.io/j_holtslander/embed/MRbpLX?height=467&theme-id=dark&default-tab=result
-
-
-                    fork
-                    https://codepen.io/hoogw/pen/xxZePPY
-
-
-
-
-
-                                      ---------    scss (uncompiled)  ---------  
-
-                                      $transition-effects: color 1s ease, background-color 1s ease;
-
-                                      body {
-                                        background-color: #eee;
-                                        transition: $transition-effects;
-                                        &.dark {
-                                          background-color: #202123;
-                                          color: #fff;
-                                          nav {
-                                            background-color: #26A69A;
-                                          }
-                                          .card {
-                                            background-color: rgba(255,255,255,0.2);
-                                          }
-                                          .btn {
-                                            background-color: rgba(255, 254, 253, 0.233); 
-                                          }
-                                          .divider {
-                                            opacity: 0.2;
-                                          }
-                                          .sidenav {
-                                            background-color: #2D2D31;
-                                            li {
-                                              a {
-                                                &:not(.subheader){
-                                                  color: #89B2F5;
-                                                  &:hover {
-                                                    background-color: #3B4043;
-                                                  }
-                                                }
-                                                &.subheader {
-                                                  color:#9AA0A6; 
-                                                }
-                                                .material-icons {
-                                                  color: #9AA0A6;
-                                                }
-                                              }
-                                            }
-                                          }
-                                          .collection {
-                                            border: 1px solid rgba(255,255,255,0.2);
-                                            .collection-item {
-                                              background-color: rgba(255,255,255,0.2);
-                                              border-bottom: 1px solid rgba(255,255,255,0.2);
-                                            }
-                                            
-                                            
-                                            .active {
-                                              background-color: rgba(233, 30, 99, 0.5);
-                                              
-                                            }
-                                          }
-
-
-
-
-
-
-
-
-                                          .tabs {
-                                            background-color: #2D2D31;
-                                            .tab {
-                                              
-                                              
-                                            }
-                                          }
-                    
-
-
-
-
-
-
-
-
-                                        }
-                                      }
-
-                                    ---------   end -----  scss (uncompiled)  ---------  
-
-
-
-                */
-
-                              body {
-                                background-color: #eee;
-                                -webkit-transition: color 1s ease, background-color 1s ease;
-                                transition: color 1s ease, background-color 1s ease;
-                              }
-                              body.dark {
-                                background-color: #202123;
-                                color: #fff;
-                              }
-
-                              body.dark button{
-                                background-color: #202123;
-                                color: #fff;
-                                border: 1.1px solid #fff;
-                              }
-
-                              body.dark input{
-                                background-color: #202123;
-                                color: #fff;
-                                border: 1.1px solid #fff;
-                              }
-
-
-                                                          
-                              body.dark textarea{
-                                background-color: #483C32;
-                                color: #fff;
-                                border: 1.1px solid #fff;
-                              }
-
-                              body.dark nav {
-                                background-color: #26A69A;
-                              }
-                              body.dark .card {
-                                background-color: rgba(255, 255, 255, 0.2);
-                              }
-
-
-                             
-                              body.dark .btn {
-                                background-color: rgba(255, 254, 253, 0.233);  
-                              }
-                              body.dark .divider {
-                                opacity: 0.2;
-                              }
-                              
-                              body.dark .sidenav li a:not(.subheader) {
-                                color: #89B2F5;
-                              }
-                              body.dark .sidenav li a:not(.subheader):hover {
-                                background-color: #3B4043;
-                              }
-                              body.dark .sidenav li a.subheader {
-                                color: #9AA0A6;
-                              }
-                              body.dark .sidenav li a .material-icons {
-                                color: #9AA0A6;
-                              }
-                              body.dark .collection {
-                                border: 1px solid rgba(255, 255, 255, 0.2);
-                              }
-                              body.dark .collection .collection-item {
-                                background-color: rgba(255, 255, 255, 0.2);
-                                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-                              }
-
-
-                              body.dark .collection .active {
-                                background-color: rgba(233, 30, 99, 0.5);
-                              }
-
-
-                              body.dark .tabs {
-                                background-color: #2D2D31;
-                              }
-
-                              body.dark a {
-                                color: #CCCCFF;
-                              }
-                              body a {
-                                color: #0e0ed4;
-                              }
-
-
-                              body.dark .sidebar-container {
-                                    background-color: rgba(40, 40, 43, .96);
-                              }
-                
-                              body.dark .content-container {
-                                    background-color: rgba(54, 69, 79, .96);
-                              }
-                
-                              body.dark .right-sidebar-container {
-                                background-color: DarkSlateGray;
-                              }
-
-
-                              body.dark .setting_panel {
-                          background-color: rgba(71, 71, 71, .96);
-                  }
-
-                  body.dark .browse_arcgis_server_panel {
-                    background-color: rgba(0, 0, 0, .96);
-                  }
-
-                  body.dark .browse_tree_panel {
-                    background-color: rgba(0, 0, 0, .96);
-                  }
-
-                  body.dark .browse_list_panel {
-                    background-color: rgba(0, 0, 0, .96);
-                  }
-
-
-
-                  body.dark .sidebar-container-embeded {
-                    background-color: rgba(0, 0, 0, .96);
-                  }
-                  body.dark .content-container-embeded {
-                    background-color: rgba(71, 71, 71, .96);
-                  }
-                  body.dark .right-sidebar-container-embeded {
-                    background-color: rgba(54, 69, 79, .96);
-                  }
-
-
-                  body.dark .browse_list_panel {
-                    background-color: rgba(0, 0, 0, .96);
-                  }
-
-                  body.dark .btn-light {
-
-
-                    background-color: rgba(0, 0, 0, .96);
-                    color: #fff;
-
-                  }
-
-
-
-
-                                  
-                  
-                  body.dark legend {
-                    background-color: #202123;
-                    color: #fff;
-                    
-                  }
-
-
-                  body.dark span {
-                    background-color: #202123;
-                    color: #fff;
-                    
-                  }
-
-                /*
-
-                ----  End  ----  dark mode
-
-                */
 
 
 

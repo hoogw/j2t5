@@ -20,28 +20,33 @@ a {
 
 
 
+
+
 #letsgo {
   font-size:x-large; 
   font-weight: bolder; 
   font-family: monospace; 
   font-style: oblique; 
- 
   color:yellow;
 }
-
-
-
 #current_rest_api_endpoint {
-  font-size: x-large; 
+  font-size: xx-large; 
   font-weight: bolder; 
   font-family: monospace; 
-  font-style: oblique; 
- 
+  font-style: oblique;
   color:yellow;
 }
+#login-token {
+  font-size: xx-small; 
+  font-weight: lighter; 
+  font-style: oblique; 
+}
+
+
 
 
 /*   - - - -    end - - - -  full page dark theme - - - -   always at top - - - -   */
+
 
 
 
