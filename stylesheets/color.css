@@ -1,4 +1,5 @@
 
+
 /* - - - -  full page dark theme - - - -   always at top - - - -   */
 
 body {
@@ -18,7 +19,7 @@ input {
   
   /* default is black for all */
   background-color:black;
-  color:white;
+  color:yellow;
   font-family: monospace,system-ui,sans-serif;
 }
 
@@ -28,7 +29,7 @@ button {
   
   /* default is black for all */
   background-color:black;
-  color:yellow;
+  color:white;
   font-family: monospace,system-ui,sans-serif;
 }
 button:hover {
@@ -44,6 +45,7 @@ a {
 
 
 /*   - - - -    end - - - -  full page dark theme - - - -   always at top - - - -   */
+
 
 
 
