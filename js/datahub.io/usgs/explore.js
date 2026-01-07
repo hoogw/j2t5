@@ -1083,7 +1083,7 @@ require([
 
 
                                         $('#info_outline').show();
-                                        $('#flex_1').scrollTop(0); // build in scroll to top popup info window
+                                        
                                         $('#info-window-div').html(multiple_layer_properties_html)
 
 
@@ -1374,10 +1374,10 @@ require([
             
             function show_info_outline_Tab(___properties){
                 $('#info_outline').show();
-                $('#flex_1').scrollTop(0); // build in scroll to top popup info window
                 
-                  // make sure flex_1 is id of column
-                  $('#flex_1').scrollTop(0); // build in scroll to top popup info window
+                
+                  
+                  
                   $('#info-window-div').html(json_flex_tip_viewer(___properties))
             }
             

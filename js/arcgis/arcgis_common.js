@@ -5328,9 +5328,7 @@ var small_text = "50%"
 
 
             $("#large-text-button").on('click',function(){
-                if (document.getElementById("flex_1")){
-                    document.getElementById("flex_1").style.zoom = large_text;
-                }   
+                 
                 
                 // only for excel like feature table
                 if (document.getElementById("tableDiv")){
@@ -5339,9 +5337,7 @@ var small_text = "50%"
             }); 
 
              $("#standard-text-button").on('click',function(){
-                if (document.getElementById("flex_1")){
-                    document.getElementById("flex_1").style.zoom = standard_text;
-                }   
+                 
                 if (document.getElementById("tableDiv")){
                     document.getElementById("tableDiv").style.zoom = standard_text;
                 }        
@@ -5349,9 +5345,7 @@ var small_text = "50%"
 
 
              $("#small-text-button").on('click',function(){
-                if (document.getElementById("flex_1")){
-                    document.getElementById("flex_1").style.zoom = small_text;
-                }   
+                   
                 if (document.getElementById("tableDiv")){
                     document.getElementById("tableDiv").style.zoom = small_text;
                 }        
