@@ -40,7 +40,7 @@ require([
   "esri/widgets/BasemapGallery",
 
  
-  
+  "esri/widgets/Legend",
   
   "esri/core/Handles",
   "esri/widgets/Track",
@@ -66,7 +66,7 @@ require([
             Expand, 
             BasemapGallery, 
             
-            
+            Legend, 
             
             
             Handles,
@@ -267,6 +267,26 @@ require([
                 
 
                       
+
+              /**/ 
+              //=================== legend outside map ============================
+
+                  var legend_outside_mapview = new Legend(
+                                                            // new Legend({view}, legend-container-dom-id)
+                                                            {
+                                                                  view: view,
+                                                                  id: "legend-id-outside_mapview",
+                                                            }, 
+                                                            
+                                                            // Render Legend Widget outside MapView https://community.esri.com/t5/arcgis-javascript-maps-sdk-questions/render-legend-widget-outside-mapview/td-p/215473
+                                                            "legend-outside-mapview-div"
+                                                          );
+
+                  // comment this line, if you want legend outside of mapView. This line will enforce add legend on mapView
+                  //view.ui.add(legend, "top-left");  // for print move from left to right
+                  console.log('legend outside mapview is created', legend_outside_mapview)
+              //======= end ============ legend outside map ============================
+              /**/ 
                    
 
 

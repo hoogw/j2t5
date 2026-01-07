@@ -2027,7 +2027,7 @@ case "embed_9391":
     console.log('_newTab_link', _newTab_link)
   break;
   case "embed_9007":
-      var _newTab_link =  url_template_base_embed.replace('featurelayer.html?', 'featurelayer_googlebase.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+      var _newTab_link =  url_template_base_embed.replace('featurelayer.html?', 'featurelayer_legend.html?') + '&backgroundlayerurl=' + _selected_path[0]  
       window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
   break;

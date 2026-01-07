@@ -1783,7 +1783,7 @@ icon_flatjson.push(icon_item)
                             "parent" : 539,
                             
                             
-                            "text" : "9007 googleMap as baseMap",
+                            "text" : "9007 legend",
                             
                             "layer_name" : _layer_name_,
                             "icon" : open_new_tab_icon,
