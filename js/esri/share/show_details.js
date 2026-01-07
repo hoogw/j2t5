@@ -2174,8 +2174,15 @@ var small_text = "50%"
                                             var _link_display_text = _layer_name_ + ' ( ' + _type_ + ' ) '
 
                                              // must attach '?f=html' at end of url, otherwise vectortile , scene url will use f=json by default 
-                                            _html_for_message_icon = '     <h3 style="display:inline;"  ><b>  <a target="_blank" id="_layer_link" href="'+ _link_url + '?f=html'  +'">'  + "<span class='" + open_new_tab_icon +"' aria-hidden='true'></span>&nbsp;"  + _link_display_text + '</a></b></h3>'
-                                            _html_for_message_icon    += '<br> <h6 style="display:inline;"  ><span><a target="_blank" id="_layer_link2" href="'+ _link_url + '?f=html">' + _link_url + '</a></span></h6>'
+                                            _html_for_message_icon = '<a target="_blank" id="_layer_link" href="'+ _link_url + '?f=html" style="font-size:x-large; font-weight: bolder;">'  
+                                            _html_for_message_icon +=  _link_display_text 
+                                            _html_for_message_icon += '</a>'
+
+                                            _html_for_message_icon    += '<br>' 
+
+                                            _html_for_message_icon    += '<a target="_blank" id="_layer_link2" href="'+ _link_url + '?f=html" style="font-size:xx-small; font-weight: lighter;">' 
+                                            _html_for_message_icon    +=   _link_url 
+                                            _html_for_message_icon    += '</a>'
 
                                             $('#message_icon').html(_html_for_message_icon);
 
