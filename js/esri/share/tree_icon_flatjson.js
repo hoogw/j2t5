@@ -220,7 +220,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                     icon_item = { 
                         "id" :  4679,     
                         "parent" : 10,
-                        "text" : esri_svg + "  Esri Widget" + "<small><sup>2018-2024</sup></small>", //<sup>v1.2-v4.31</sup>
+                        "text" : esri_svg + "  Esri Classic Widget" + "<small><sup>2018-2024</sup></small>", //<sup>v1.2-v4.31</sup>
                         "icon" : folder_icon,
                         "link_type": "folder",   
                         "state"       : {
@@ -305,7 +305,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                     icon_item = {
                                     "id" :  500,     
                                     "parent" : 10, //970,
-                                    "text" : "Esri Classic Widget" + '<small><sup>2008-2018</sup></small>',
+                                    "text" : "Esri Legacy Widget" + '<small><sup>2008-2018</sup></small>',
                                     "icon" : folder_icon,  
                                     "link_type": "folder", 
                                     "state"       : {
