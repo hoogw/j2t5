@@ -1572,9 +1572,10 @@ jstree_root_folder(folder_structure_flatjson, ___url_string,  _organization, ___
     /**/
     var _html_for_f_json = ''
     _html_for_f_json += "</br>"
-    _html_for_f_json += '<h5 style="display:inline;"  ><b>  <a target="_blank" id="root_url_link" href="'+  root_url + '?f=json">'  
-    _html_for_f_json += "f=json" + '</a></b></h5>'
-    _html_for_f_json += '<br> <h6 style="display:inline;"  ><sup><a target="_blank" id="root_url_link2" href="'+  root_url + '?f=json">' + root_url + '?f=json' + '</a></sup></h6>'
+    _html_for_f_json += '<a target="_blank" id="root_url_link2" href="'+  root_url + '?f=json" style="font-size:xx-small; font-weight: lighter;">'  
+    _html_for_f_json += root_url + '?f=json' 
+    _html_for_f_json += '</a>'
+    
     $("#root-more-info").html(_html_for_f_json)         
 
     $("#json-root").show();

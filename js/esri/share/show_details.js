@@ -1324,14 +1324,8 @@ async function get_mapserver_info_html(mapserver_url){
     //   = = = = =   f=json  = = = = =  = = = = =
     /**/
     var _html_for_f_json = ''
-    _html_for_f_json += "</br>"
-    _html_for_f_json += '<a target="_blank" id="___thislayerurl____link" href="'+  ___thislayerurl___ + '?f=json">'  
-    _html_for_f_json +=     "f=json" 
-    _html_for_f_json += '</a>'
-
     _html_for_f_json += '<br>'
-
-    _html_for_f_json += '<a target="_blank" id="___thislayerurl____link2" href="'+  ___thislayerurl___ + '?f=json">' 
+    _html_for_f_json += '<a target="_blank" id="___thislayerurl____link2" href="'+  ___thislayerurl___ + '?f=json" style="font-size:xx-small; font-weight: lighter;">'  
     _html_for_f_json += ___thislayerurl___ + '?f=json' 
     _html_for_f_json += '</a>'
     
