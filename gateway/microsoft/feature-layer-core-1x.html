@@ -37,107 +37,114 @@
 
 <body onload="getMap()">
 
-    <div class="horizontal-left-right-flex-container">
-
-           
-        <div id="map" style="width:1200px;height:900px;"></div><!-- microsoft must define w i d t h   h e i g h t -->
-   
-          
-        <div class="vertical-width-undefined-no-border"  style="width: 600px; height: 800px;">
-
-          <div>
-            <span id="layer-info-vertical">Layer Name</span>
-          </div>
-    
-         <div>
-            <small>visible:</small><b id="feature-on-map">...</b>
-            &nbsp;
-            <small>total:</small><b id="total-feature">...</b>
-          </div>
-           <fieldset>
-        <legend>efficient engine 1x core</legend>
-
-          <span>add+</span> <span style="font-size: 12px;" id="adding-feature">...</span>
-          &nbsp;
-          <span>delete-</span> <span style="font-size: 12px;" id="deleting-feature">...</span>
-          &nbsp;
-          <span>display=</span> <span style="font-size: 12px;" id="rendering-feature">...</span>
-        
 
 
-                <div> 
-                  <span class="tick-title">Browser display limit:</span>
-                  <label class="tick-title-value" for="browser_limit_range" id='browser_limit_label'></label>
-                </div> 
 
-                  <!-- range tick - use inline style tag at bottom of html -->
-                  <input  class="tick-slider" type='range' id='browser_limit_range' name='browser_limit'  list="browser_limit_steplist"  min="0" max="22000" step="1" />
-                  
-                  <datalist class="vertical-datalist" id="browser_limit_steplist">
-                       <option value="0" label="0"></option>
-
-                       <option value="1000" label="1k"></option>
-                       <option value="2000" label="2k"></option>
-                       <option value="3000" label="3k"></option>
-                       <option value="4000" label="4k"></option>
-                       <option value="5000" label="5k"></option> 
-                       <option value="6000" label="6k"></option>
-                       <option value="7000" label="7k"></option>
-                       <option value="8000" label="8k"></option>
-                       <option value="9000" label="9k"></option>
-                      <option value="10000" label="10k"></option>  
-
-                      
-                       <option value="11000" label="11k"></option>
-                       <option value="12000" label="12k"></option>
-                       <option value="13000" label="13k"></option>
-                       <option value="14000" label="14k"></option>
-                       <option value="15000" label="15k"></option> 
-                       <option value="16000" label="16k"></option>
-                       <option value="17000" label="17k"></option>
-                       <option value="18000" label="18k"></option>
-                       <option value="19000" label="19k"></option>
-                      <option value="20000" label="20k"></option> 
-
-                      <option value="21000" label="21k"></option>
-                      <option value="22000" label="22k"></option>
-                      
-                  </datalist>
-
-                 
-        
-          
-      </fieldset>
-    
-          <div>
-            <span id="lat-lng-zoom" hidden>...</span>
-          </div>
-
-          <div> 
-              <small id = "opacitytitle_span">layer-opacity:</small>
-              <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"></input>
-              <b id='overlay_opacity_label'></b>
-          </div>
-
+   <div class="horizontal-left-right-width-undefined-container" style="width:1300px;">
+      
+    <div class="vertical-width-undefined-no-border" style="width: 100px;">
          
-
-          <div>
-               <input type="checkbox" id="show_traffic_checkbox" name="show_traffic_checkbox" hidden/>
-               <label for="show_traffic_checkbox" hidden>Microsoft-Traffic</label>
-          </div> 
-
-          <!-- --   --  --  search address only  --   --  --  -->
-          <input id="search-address-input" type="search" placeholder="zipcode,address"/>
-    
-          <br>
-
-          <div id='info-window-div' style="font-size: xx-small;"></div>  
-
-        </div>
-       
-
     </div>
+  
+    
 
+    <div class="vertical-width-undefined-no-border" style="width: 800px;"> 
+    
+        <div>
+          <span id="layer-info-vertical">Layer Name</span>
+          <small>total:</small><b id="total-feature">...</b>
+          <small>visible:</small><b id="feature-on-map">...</b>
+          <span id="lat-lng-zoom" hidden>...</span>
+        </div>
+
+        
+
+       <div id="map" style="width:800px;height:700px;"></div><!-- microsoft must define w i d t h   h e i g h t -->
+   
+
+        
+        <div>
+          <input type="checkbox" id="show_traffic_checkbox" name="show_traffic_checkbox" hidden/>
+          <label for="show_traffic_checkbox" hidden>Microsoft-Traffic</label>
+         
+          <small id = "opacitytitle_span">layer-opacity:</small>
+          <b id='opacity_value_text'></b>
+          <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"/>
+        </div>
+
+    </div> 
+
+    <div class="vertical-width-undefined-no-border" style="width: 400px; height: 800px; overflow: auto; ">
+
+            
+      <fieldset>
+              <legend>efficient engine 1x core</legend>
+
+                <span>add+</span> <span style="font-size: 12px;" id="adding-feature">...</span>
+                &nbsp;
+                <span>delete-</span> <span style="font-size: 12px;" id="deleting-feature">...</span>
+                &nbsp;
+                <span>display=</span> <span style="font-size: 12px;" id="rendering-feature">...</span>
+              
+
+
+                      <div> 
+                        <span class="tick-title">Browser display limit:</span>
+                        <label class="tick-title-value" for="browser_limit_range" id='browser_limit_label'></label>
+                      </div> 
+
+                        <!-- range tick - use inline style tag at bottom of html -->
+                        <input  class="tick-slider" type='range' id='browser_limit_range' name='browser_limit'  list="browser_limit_steplist"  min="0" max="22000" step="1" />
+                        
+                        <datalist class="vertical-datalist" id="browser_limit_steplist">
+                            <option value="0" label="0"></option>
+
+                            <option value="1000" label="1k"></option>
+                            <option value="2000" label="2k"></option>
+                            <option value="3000" label="3k"></option>
+                            <option value="4000" label="4k"></option>
+                            <option value="5000" label="5k"></option> 
+                            <option value="6000" label="6k"></option>
+                            <option value="7000" label="7k"></option>
+                            <option value="8000" label="8k"></option>
+                            <option value="9000" label="9k"></option>
+                            <option value="10000" label="10k"></option>  
+
+                            
+                            <option value="11000" label="11k"></option>
+                            <option value="12000" label="12k"></option>
+                            <option value="13000" label="13k"></option>
+                            <option value="14000" label="14k"></option>
+                            <option value="15000" label="15k"></option> 
+                            <option value="16000" label="16k"></option>
+                            <option value="17000" label="17k"></option>
+                            <option value="18000" label="18k"></option>
+                            <option value="19000" label="19k"></option>
+                            <option value="20000" label="20k"></option> 
+
+                            <option value="21000" label="21k"></option>
+                            <option value="22000" label="22k"></option>
+                            
+                        </datalist>
+
+                      
+              
+                
+      </fieldset>
+          
+     
+      <!-- --   --  --  search address only  --   --  --  -->
+      <input id="search-address-input" type="search" placeholder="zipcode,address"/>
+      <div id='info-window-div' style="font-size: xx-small;"></div>
+    <div>
+    
+
+  </div>
+
+
+
+
+    
 
     <script src="../../js/lib/proj4/dist/proj4.js"></script>
   <script src="../../js/lib/wkt.js"></script>
