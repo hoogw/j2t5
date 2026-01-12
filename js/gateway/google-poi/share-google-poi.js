@@ -208,13 +208,13 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
         _formatted_address = results_array[i].formatted_address
         _place_id = results_array[i].place_id
                   
-        if (i < 2){
+        if (i < 1){
          
-          // Place Details (New) requests https://developers.google.com/maps/documentation/places/web-service/place-details
-          var _place_details_by_google_url = 'https://places.googleapis.com/v1/places/' + _place_id + '?fields=id,displayName,photos&key=' +  your_google_api_key
-          
-          
-          var _response_place_details = await ajax_getjson_common(_place_details_by_google_url)
+              // Place Details (New) requests https://developers.google.com/maps/documentation/places/web-service/place-details
+              var _place_details_by_google_url = 'https://places.googleapis.com/v1/places/' + _place_id + '?fields=id,displayName,photos&key=' +  your_google_api_key
+              
+              
+              var _response_place_details = await ajax_getjson_common(_place_details_by_google_url)
               if (typeof _response_place_details === 'object') {
                               // is object
                               _place_details = _response_place_details
@@ -230,15 +230,11 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
               }
 
 
-              // place name 
-                address_value_html += '<span style="font-size:19.3px; font-weight:800;">' + _place_displayName + '</span>'  
-                address_value_html += "&nbsp;"
+                // place name 
+                address_value_html += '<span style="font-size:xx-large; font-weight:bolder;">' + _place_displayName + '</span>'
                 // address 
-                address_value_html += '<span style="font-size:11px;">' + _formatted_address +   '</span>'
-                // place id 
-                //address_value_html += '<sup style="font-size:7px;">' + _place_id +   '</sup>'
-                //address_value_html += "<br>"
-
+                address_value_html += '<span  style="font-size:large;">' + _formatted_address +   '</span>'
+               
               // photos
               if (_place_details.hasOwnProperty('photos')){
 
@@ -253,13 +249,11 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
               }//if
 
 
-              //address_value_html += "<br>"
-
         } else{    
          
-                      //address_value_html += "<br>"
-                      address_value_html += '<span style="font-size:11px;">' + _formatted_address +   '</span>'  
-                      address_value_html += '<sup style="font-size:7px;">' + _place_id +   '</sup>'
+                     
+                     // address_value_html += '<span  style="font-size:large;">' + _formatted_address +   '</span>'  
+                     // address_value_html += '<sup style="font-size:small;">' + _place_id +   '</sup>'
         }// if
     }// for
                                   
@@ -318,7 +312,7 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
                           _formatted_address = results_array[i].formatted_address
                           _place_id = results_array[i].place_id
                                     
-                          if (i < 2){
+                          if (i < 1){
                           
                             // Place Details (New) requests https://developers.google.com/maps/documentation/places/web-service/place-details
                             var _place_details_by_google_url = 'https://places.googleapis.com/v1/places/' + _place_id + '?fields=id,displayName,photos&key=' +  your_google_api_key
@@ -340,17 +334,10 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
                                   _place_displayName =  _place_details.displayName.text
                                 }
 
-
-                                // place name 
-                                address_value_html += '<span style="font-size:19.3px; font-weight:800;">' + _place_displayName + '</span>'  
-                                address_value_html += "&nbsp;"
-                                // address 
-                                address_value_html += '<span style="font-size:11px;">' + _formatted_address +   '</span>'
-                                // place id 
-                                //address_value_html += '<sup style="font-size:7px;">' + _place_id +   '</sup>'
-                                address_value_html += "&nbsp;"
-                                // photo conflict with street view, do not show photo to keep street view
-                                //address_value_html += "<br>"
+                                  // place name 
+                                  address_value_html += '<span style="font-size:xx-large; font-weight:bolder;">' + _place_displayName + '</span>'
+                                  // address 
+                                  address_value_html += '<span  style="font-size:large;">' + _formatted_address +   '</span>'
 
 
                                  // photos
@@ -367,15 +354,11 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
                                   }//if
 
 
-                                  //address_value_html += "<br>"
-
                           } else{    
                             
                             
-                              
-                                      //address_value_html += "<br>"
-                                      address_value_html += '<span style="font-size:11px;">' + _formatted_address +   '</span>'  
-                                      address_value_html += '<sup style="font-size:7px;">' + _place_id +   '</sup>'
+                                    //  address_value_html += '<span  style="font-size:large;">' + _formatted_address +   '</span>'  
+                                    //  address_value_html += '<sup style="font-size:small;">' + _place_id +   '</sup>'
                           }// if
                       }// for
                                                     
