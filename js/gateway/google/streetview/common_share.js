@@ -1099,9 +1099,6 @@ var highlighted_color = '#1F51FF' // Neon Blue
                                 
 
 
-                                 // set dark mode by default
-                                 ////document.querySelector('body').classList.add('dark')
-                          
 
                   }// function initMap
 

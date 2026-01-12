@@ -354,9 +354,7 @@ var highlighted_color = '#1F51FF' // Neon Blue
                                  // due to street view use map object, should after map object created.                             
                                  init_user_interface_event()
 
-                                  
-                          // set dark mode by default
-                          document.querySelector('body').classList.add('blue')
+                        
 
                   }// function initMap
 

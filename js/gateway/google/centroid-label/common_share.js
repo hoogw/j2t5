@@ -1308,11 +1308,7 @@ var highlighted_color = '#1F51FF' // Neon Blue
 
 
 
-                                
-                                
- // set teal mode by default
- document.querySelector('body').classList.add('teal')
-             
+            
                           
 
                   }// function initMap

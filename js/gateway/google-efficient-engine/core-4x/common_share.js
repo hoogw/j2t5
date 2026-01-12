@@ -1209,8 +1209,7 @@ function ajax_GeoJSON_4x(_apiURI_4x) {
 
 
                                 
-                                 // set dark mode by default
-                                 //document.querySelector('body').classList.add('dark')
+                                 
                           
 
                   }// function initMap

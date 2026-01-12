@@ -5371,13 +5371,6 @@ var small_text = "50%"
             }); 
 
 
-            $("#dark-button").on('click',function(){
-               //document.querySelector('body').classList.add('dark')             
-            }); 
-             $("#light-button").on('click',function(){
-               document.querySelector('body').classList.remove('dark')             
-            }); 
-
 
             
             $("#iphone-button").on('click',function(){

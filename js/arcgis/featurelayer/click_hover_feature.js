@@ -3026,8 +3026,7 @@ $('#info-window-div').html("")
 
               
 
- // set dark mode by default
- //document.querySelector('body').classList.add('dark')
+ 
 
 }); // require, everything should be inside
 

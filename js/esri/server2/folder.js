@@ -2927,9 +2927,6 @@ jstree_root_folder(folder_structure_flatjson, ___url_string,  _organization, ___
     //pre_select_folder_level()
 
 
-    // iframe version, comment out,  do not set dark mode by default
-    // //document.querySelector('body').classList.add('dark')
-
 
 })(jQuery);
 

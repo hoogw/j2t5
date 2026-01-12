@@ -37,52 +37,26 @@
 
 <body onload="getMap()">
 
-    <div class="horizontal-left-right-flex-container">
-
-      <div id="map" style="width:1200px;height:900px;"></div><!-- microsoft must define w i d t h   h e i g h t -->
-   
 
 
-        <div class="vertical-width-undefined-no-border"  style="width: 600px; height: 800px;">
-
-          <div> 
-            <span id="layer-info-vertical">Layer Name</span>
-          </div> 
-    
-          <div>
-            <small>total:</small><b id="total-feature">...</b>
-            &nbsp;
-            <small>visible:</small><b id="feature-on-map">...</b>
-          </div>
-
-          <div> 
-              <small id = "opacitytitle_span">layer-opacity:</small>
-              <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"></input>
-              <b id='overlay_opacity_label'></b>
-          </div>
-          
-          <div>
-            <span id="lat-lng-zoom" hidden>...</span>
-          </div>
-
-
-
-          <fieldset style="font-size: xx-small;">
-            <legend>Change Background Map</legend>
-
+  
+  
+ <div class="horizontal-left-right-width-undefined-container" style="width:1320px;">
+      
+    <div class="vertical-width-undefined-no-border" style="width: 120px; font-size: xx-small;">
+         <div>
             <input name="azure_basemap_radio" type="radio"  value="azure-hybrid"/>
-            <span>Microsoft Hybrid(Traffic)</span>
-            &nbsp;&nbsp;
-
-            &nbsp;&nbsp;
+            <span>Microsoft Hybrid</span>
+         </div>
+         <div>
             <input name="azure_basemap_radio" type="radio"  value="google-hybrid"/>
             <span>Google Hybrid</span>
-            &nbsp;&nbsp;
-            
+          </div>
+          <div>
             <input name="azure_basemap_radio" type="radio"  value="here-hybrid"/>
             <span>Here Hybrid</span>
-            &nbsp;&nbsp;
-
+         </div>
+         <div>
              <!--
             <input name="azure_basemap_radio" type="radio"  value="azure-road"/>
             <span>Microsoft Azure Road</span>
@@ -90,35 +64,62 @@
 
             <input name="azure_basemap_radio" type="radio"  value="google-road"/>
             <span>Google Road</span>
-            &nbsp;&nbsp;
-
+          </div>
+          <div>
             <input name="azure_basemap_radio" type="radio"  value="here-road"/>
             <span>Here Road</span>
-            &nbsp;&nbsp;
-            
+          </div>
+          <div>
             <input name="azure_basemap_radio" type="radio"  value="open-street-map"/>
             <span>OpenStreetMap</span>
+             </div>
+       
+    </div>
+  
+    
+
+    <div class="vertical-width-undefined-no-border" style="width: 800px;"> 
+    
+        <div>
+          <span id="layer-info-vertical">Layer Name</span>
+          <small>total:</small><b id="total-feature">...</b>
+          <small>visible:</small><b id="feature-on-map">...</b>
+          <span id="lat-lng-zoom" hidden>...</span>
+        </div>
+
         
 
-          </fieldset>
-          
+       <div id="map" style="width:800px;height:700px;"></div><!-- microsoft must define w i d t h   h e i g h t -->
+   
 
-          <div>
-               <input type="checkbox" id="show_traffic_checkbox" name="show_traffic_checkbox" hidden/>
-               <label for="show_traffic_checkbox" hidden>Microsoft-Traffic</label>
-          </div> 
-
-          <!-- --   --  --  search address only  --   --  --  -->
-          <input id="search-address-input" type="search" placeholder="zipcode,address"/>
-    
-          <br>
-
-          <div id='info-window-div' style="font-size: xx-small;"></div> 
-
+        
+        <div>
+          <input type="checkbox" id="show_traffic_checkbox" name="show_traffic_checkbox" hidden/>
+          <label for="show_traffic_checkbox" hidden>Microsoft-Traffic</label>
+         
+          <small id = "opacitytitle_span">layer-opacity:</small>
+          <b id='opacity_value_text'></b>
+          <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"/>
         </div>
-       
 
-    </div>
+    </div> 
+
+    <div class="vertical-width-undefined-no-border" style="width: 400px; height: 800px; overflow: auto; ">
+      <!-- --   --  --  search address only  --   --  --  -->
+      <input id="search-address-input" type="search" placeholder="zipcode,address"/>
+      <div id='info-window-div' style="font-size: xx-small;">
+        
+      </div>
+    <div>
+    
+
+  </div>
+
+
+
+
+
+
 
 
   <script src="../../js/lib/proj4/dist/proj4.js"></script>

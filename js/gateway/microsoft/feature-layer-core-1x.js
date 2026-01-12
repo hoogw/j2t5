@@ -1725,8 +1725,7 @@ function  add_dataSource_searchLayer(){
 
 
                
-                                // set dark mode by default
-                                document.querySelector('body').classList.add('red')
+                                
 
 
 

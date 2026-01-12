@@ -3630,9 +3630,6 @@ async function render_mapserver(_parent_id){
     //pre_select_folder_level()
 
 
-    // iframe version, comment out,  do not set dark mode by default
-    // //document.querySelector('body').classList.add('dark')
-
 
 })(jQuery);
 
