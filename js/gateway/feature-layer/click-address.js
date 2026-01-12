@@ -206,7 +206,7 @@
           console.log("reverse geocode address results :  ", addressResult_string)
           var addressResult = convert_to_json(addressResult_string)
           console.log('LongLabel address', addressResult.address.LongLabel)
-          address_value_html = '<span style="font-size:21px;">' + addressResult.address.LongLabel +   '</span>' 
+          address_value_html = '<span style="font-size:xx-large;">' + addressResult.address.LongLabel +   '</span>' 
           $('#message').html(address_value_html)
 
 

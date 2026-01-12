@@ -1624,7 +1624,7 @@ function splitAddressMicrosoft_REST_API(_raw_features_array){
               
 
                   // address 
-                  address_value_html += '<span style="font-size:21px;">' + _freeformAddress +   '</span>'
+                  address_value_html += '<span style="font-size:xx-large;">' + _freeformAddress +   '</span>'
                   // place id 
                   //address_value_html += '<sup style="font-size:7px;">' + _place_id +   '</sup>'
                   address_value_html += "<br>"

@@ -1996,13 +1996,6 @@ break;
   break;
 
 
-  case "embed_8237":
-    var _newTab_link =  url_for_here.replace('basemap.html?', 'basemap.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
-    window.open(_newTab_link,'_blank');
-    console.log('_newTab_link', _newTab_link)
-  break;
-
-
 
 
 
@@ -2136,12 +2129,7 @@ break;
     console.log('_newTab_link', _newTab_link)
   break;
 
-  case "embed_5136":
-      var _newTab_link =  url_for_esri_gateway.replace('test.html?', 'click-address-compare.html?') + '&backgroundlayerurl=' + _selected_path[0]  
-      window.open(_newTab_link,'_blank');
-    console.log('_newTab_link', _newTab_link)
-  break;
-
+ 
  
 
   case "embed_5187":

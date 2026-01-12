@@ -67,7 +67,27 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                         "id" :  327,     
                         "parent" : 10,
 
-                        "text" : "911 location for police",
+                        "text" : "911 POI for Police",
+
+                        "icon" : folder_icon,
+                        "link_type": "folder",   
+                        "state"       : {
+                        // use this opened line for always default open this folder
+                                        "opened"    :false, //  iconJstreeforceOpen,   // is the node open
+                                        // disabled  : boolean  // is the node disabled
+                                        // "selected"  : true   // is the node selected
+                                    }
+                    };
+                    icon_flatjson.push(icon_item) 
+
+
+
+
+                    icon_item = { 
+                        "id" :  325,     
+                        "parent" : 10,
+
+                        "text" : "911 Address for Police",
 
                         "icon" : folder_icon,
                         "link_type": "folder",   
@@ -2415,94 +2435,6 @@ icon_flatjson.push(icon_item)
 
 
             
-
-
-
-
-
-
-
-                            icon_item = { 
-
-                            "id" :  5126,     
-                            "parent" : 5129,
-                            
-                            
-                            "text" : "5126 address (Esri)",
-                            
-                            "layer_name" : _layer_name_,
-                            "icon" : open_new_tab_icon,
-                            "link_type": "embed_5126",
-                            "state"       : {
-                                            "opened"    : true,  // is the node open
-                                            // disabled  : boolean  // is the node disabled
-                                            // "selected"  : true   // is the node selected
-                                        },
-                                        
-                            "node_path" : _node_path_, 
-                            "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                            "server_path" : _map_server_url_,
-                            "layer_id" :  _layer_id_,            
-                            "type" : _type_
-                            
-                            
-                            
-                            };
-                            
-                            icon_flatjson.push(icon_item) 
-
-
-
-                            icon_item = { 
-
-                            "id" :  5136,     
-                            "parent" : 5129,
-                            
-                            
-                            "text" : "5136 address (Google vs. Esri vs. Microsoft)",
-                            
-                            "layer_name" : _layer_name_,
-                            "icon" : open_new_tab_icon,
-                            "link_type": "embed_5136",
-                            "state"       : {
-                                            "opened"    : true,  // is the node open
-                                            // disabled  : boolean  // is the node disabled
-                                            // "selected"  : true   // is the node selected
-                                        },
-                                        
-                            "node_path" : _node_path_, 
-                            "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                            "server_path" : _map_server_url_,
-                            "layer_id" :  _layer_id_,            
-                            "type" : _type_
-                            
-                            
-                            
-                            };
-                            
-                            icon_flatjson.push(icon_item) 
-
-
-                           
-
-
-
-
-
-
-
-
-
-                      
-
-
-
-
-
-
-
-
-
             
 
 
@@ -3578,7 +3510,7 @@ icon_flatjson.push(icon_item)
                 "parent" : 649,
                 
                 
-                "text" : "6885" + esri_svg,
+                "text" : "6885 Esri" + esri_svg,
                 
                 "layer_name" : _layer_name_,
                 "icon" : open_new_tab_icon,
@@ -7159,8 +7091,8 @@ icon_flatjson.push(icon_item)
 
 icon_item = { 
     "id" :  476,     
-    "parent" : 327,
-    "text" : "click map show POI",
+    "parent" : 325,
+    "text" : "Address & POI (click map show)",
     "icon" : folder_icon,
     "link_type": "folder",   
     "state"       : {
@@ -7407,66 +7339,44 @@ icon_flatjson.push(icon_item)
         icon_flatjson.push(icon_item) 
 
 
+                           
 
 
-                         icon_item = { 
+                            icon_item = { 
 
-                        "id" :  4765136,     
-                        "parent" : 4764,
-                        
-                        
-                        "text" : "5136 compare",
-                        
-                        "layer_name" : _layer_name_,
-                        "icon" : open_new_tab_icon,
-                        "link_type": "embed_5136",
-                        "state"       : {
-                                        "opened"    : true,  // is the node open
-                                        // disabled  : boolean  // is the node disabled
-                                        // "selected"  : true   // is the node selected
-                                    },
-                                    
-                        "node_path" : _node_path_, 
-                        "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                        "server_path" : _map_server_url_,
-                        "layer_id" :  _layer_id_,            
-                        "type" : _type_
-                        
-                        
-                        
-                        };
-                        
-                        icon_flatjson.push(icon_item)
+                            "id" :  5126,     
+                            "parent" : 4764,
+                            
+                            
+                            "text" : "5126",
+                            
+                            "layer_name" : _layer_name_,
+                            "icon" : open_new_tab_icon,
+                            "link_type": "embed_5126",
+                            "state"       : {
+                                            "opened"    : true,  // is the node open
+                                            // disabled  : boolean  // is the node disabled
+                                            // "selected"  : true   // is the node selected
+                                        },
+                                        
+                            "node_path" : _node_path_, 
+                            "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                            "server_path" : _map_server_url_,
+                            "layer_id" :  _layer_id_,            
+                            "type" : _type_
+                            
+                            
+                            
+                            };
+                            
+                            icon_flatjson.push(icon_item) 
 
 
-                         icon_item = { 
 
-                        "id" :  4765126,     
-                        "parent" : 4764,
-                        
-                        
-                        "text" : "5126",
-                        
-                        "layer_name" : _layer_name_,
-                        "icon" : open_new_tab_icon,
-                        "link_type": "embed_5126",
-                        "state"       : {
-                                        "opened"    : true,  // is the node open
-                                        // disabled  : boolean  // is the node disabled
-                                        // "selected"  : true   // is the node selected
-                                    },
-                                    
-                        "node_path" : _node_path_, 
-                        "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                        "server_path" : _map_server_url_,
-                        "layer_id" :  _layer_id_,            
-                        "type" : _type_
-                        
-                        
-                        
-                        };
-                        
-                        icon_flatjson.push(icon_item)
+                       
+
+
+                       
 
 
 
@@ -7475,8 +7385,8 @@ icon_flatjson.push(icon_item)
 
 icon_item = { 
     "id" :  3172,     
-    "parent" : 327,
-    "text" : "Speed Limit" + speed_limit_svg,
+    "parent" : 325,
+    "text" : "Speed Limit",  // + speed_limit_svg,
     "icon" : folder_icon,
     "link_type": "folder",   
     "state"       : {
@@ -7500,7 +7410,7 @@ icon_flatjson.push(icon_item)
                         "parent" : 3172,
                         
                         
-                        "text" : "31728" + microsoft_svg,
+                        "text" : "31728 click map show speed limit" + microsoft_svg,
                         
                         "layer_name" : _layer_name_,
                         "icon" : open_new_tab_icon,
@@ -7624,8 +7534,8 @@ icon_flatjson.push(icon_item)
                    
 icon_item = { 
     "id" :  5372,     
-    "parent" : 327,
-    "text" : "One Way" + one_way_svg,
+    "parent" : 325,
+    "text" : "One Way", // + one_way_svg,
     "icon" : folder_icon,
     "link_type": "folder",   
     "state"       : {
@@ -7707,13 +7617,26 @@ icon_flatjson.push(icon_item)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*  = = = =  = = = = sub folder = = = = Download Map = = = =  */
 
 
 icon_item = { 
     "id" :  3271,     
     "parent" : 327,
-    "text" : "POI geojson viewer",
+    "text" : "POI GeoJSON Viewer",
     "icon" : folder_icon,
     "link_type": "folder",   
     "state"       : {
@@ -7735,7 +7658,7 @@ icon_item = {
     "parent" : 3271,
     
     
-    "text" : "6885" + esri_svg,
+    "text" : "6885 Esri" + esri_svg,
     
     "layer_name" : _layer_name_,
     "icon" : open_new_tab_icon,
@@ -7767,7 +7690,7 @@ icon_item = {
     "parent" : 3271,
     
     
-    "text" : "6883 mapbox (official)",
+    "text" : "6883 Mapbox",
     
     "layer_name" : _layer_name_,
     "icon" : open_new_tab_icon,
@@ -7800,7 +7723,7 @@ icon_item = {
         "parent" : 3271,
         
         
-        "text" : "6887 new" + google_svg,
+        "text" : "6887 Google" + google_svg,
         
         "layer_name" : _layer_name_,
         "icon" : open_new_tab_icon,
@@ -7831,7 +7754,7 @@ icon_item = {
         "parent" : 3271,
         
         
-        "text" : "6888 old" + google_svg,
+        "text" : "6888 Google classic" + google_svg,
         
         "layer_name" : _layer_name_,
         "icon" : open_new_tab_icon,
@@ -7858,57 +7781,6 @@ icon_item = {
 
 
 
-
-
-
-
-
-
-                /* = = = = sub folder = = = = here poi = = = =  */
-                icon_item = { 
-                    "id" :  3282,     
-                    "parent" : 327,
-                    "text" : "Here POI"  + "<sup><small>2012-now</small></sup>",
-                    "icon" : folder_icon,
-                    "link_type": "folder",   
-                    "state"       : {
-                    // use this opened line for always default open this folder
-                                    "opened"    :false, //  iconJstreeforceOpen,   // is the node open
-                                    // disabled  : boolean  // is the node disabled
-                                    // "selected"  : true   // is the node selected
-                                }
-                };
-                icon_flatjson.push(icon_item) 
-
-
-
-                icon_item = { 
-
-                    "id" :  8237,     
-                    "parent" : 3282,
-                    
-                    "text" : "8237 basemap",
-                    
-                    "layer_name" : _layer_name_,
-                    "icon" : open_new_tab_icon,
-                    "link_type": "embed_8237",
-                    "state"       : {
-                                    "opened"    : true,  // is the node open
-                                    // disabled  : boolean  // is the node disabled
-                                    // "selected"  : true   // is the node selected
-                                },
-                                
-                    "node_path" : _node_path_, 
-                    "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                    "server_path" : _map_server_url_,
-                    "layer_id" :  _layer_id_,            
-                    "type" : _type_
-                    
-                    
-                    
-                    };
-                    
-                    icon_flatjson.push(icon_item)
 
 
 
