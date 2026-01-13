@@ -507,7 +507,7 @@
                        
                          // .............. click to show street view  ..............
                               // photo conflict with street view, do not show photo to keep street view 
-                              google_place_api_reverseGeocode_streetview(lat_comma_lng)
+                              google_place_api_reverseGeocode(lat_comma_lng)
                          // .............. end   ..............  click to show street view  .............. 
                   /**/
                   //  --- end  ---  google place geocode    --- 
@@ -889,7 +889,7 @@
 
                               // .............. click to show street view  ..............
                               // photo conflict with street view, do not show photo to keep street view 
-                              google_place_api_reverseGeocode_streetview(lat_comma_lng)
+                              google_place_api_reverseGeocode(lat_comma_lng)
                               // .............. end   ..............  click to show street view  .............. 
                           /**/
                           //  --- end  ---  google place geocode    --- 
