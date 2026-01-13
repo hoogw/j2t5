@@ -30,11 +30,22 @@
 
         <div>
           <span id="layer-info-vertical">Layer Name</span>
-          <input id='pac-input' type='search' placeholder='(google) addr. zip Pl.'/>  
+          <!-- input id='pac-input' type='search' placeholder='(google) addr. zip Pl.'/ -->
+          
       
           <small>visible:</small><b id="feature-on-map">...</b>
           <small>total:</small><b id="total-feature">...</b>
           <span id="lat-lng-zoom" hidden>...</span>
+
+          
+
+      
+            <img src="../../public/images/paypal.svg" alt="paypal.svg" height="16" width="16"/>
+            <img src="../../public/images/visa.svg" alt="visa.svg" height="16" width="24"/>
+            <img src="../../public/images/mastercard.svg" alt="mastercard.svg" height="16" width="24"/>
+            <input type='text' id='googlemap-key-input' placeholder="google api key"/>
+
+
         </div> 
 
         <div id="map"  style="height:700px;"></div> <!-- override default height -->
@@ -51,13 +62,13 @@
     </div>
     
     <div class="vertical-width-undefined-no-border" style="width: 400px; height: 800px; overflow: auto; ">
-     
-       <div>
-            <img src="../../public/images/paypal.svg" alt="paypal.svg" height="16" width="16"/>
-            <img src="../../public/images/visa.svg" alt="visa.svg" height="16" width="24"/>
-            <img src="../../public/images/mastercard.svg" alt="mastercard.svg" height="16" width="24"/>
-      </div>
-      <input type='text' id='googlemap-key-input' placeholder="google api key"/>
+
+      <gmp-basic-place-autocomplete slot="control-inline-start-block-start"></gmp-basic-place-autocomplete>
+      <gmp-place-details-compact hidden>
+            <gmp-place-details-place-request></gmp-place-details-place-request>
+            <gmp-place-standard-content></gmp-place-standard-content>
+      </gmp-place-details-compact>
+
         
       <div id='info-window-div' style="font-size: xx-small;" class="flex-column"></div>
 

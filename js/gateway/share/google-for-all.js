@@ -1567,10 +1567,10 @@ var _google_public_map_only_api_key = "AIzaSyCeIFVL6oxxXNT7NToJjfU4J9TV2J8m4vE"
                                   var title_div_DOMobject =document.getElementById("title_div")
                                   map.controls[google.maps.ControlPosition.TOP_LEFT].push(title_div_DOMobject);
 
-                                  const legend_div_DOMobject =document.getElementById("legend-div")
+                                  var legend_div_DOMobject =document.getElementById("legend-div")
                                   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(legend_div_DOMobject);
 
-                                  const dynamicLegend_div_DOMobject =document.getElementById("dynamic-legend")
+                                  var dynamicLegend_div_DOMobject =document.getElementById("dynamic-legend")
                                   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(dynamicLegend_div_DOMobject);
 
 
@@ -1646,7 +1646,7 @@ var _google_public_map_only_api_key = "AIzaSyCeIFVL6oxxXNT7NToJjfU4J9TV2J8m4vE"
                 var elevation_value_html
 
                 // Converting Metres to Feet and Feet to Metres
-                const meter_feet_conversion = 3.281
+                var meter_feet_conversion = 3.281
                 var elevation_in_meter
                 var elevation_in_meter_int
                 var elevation_in_meter_decimal
@@ -1989,7 +1989,7 @@ var _google_public_map_only_api_key = "AIzaSyCeIFVL6oxxXNT7NToJjfU4J9TV2J8m4vE"
                                 })
                                 .then(plotElevation)
                                 .catch((e) => {
-                                  const chartDiv = document.getElementById("elevation_chart");
+                                  var chartDiv = document.getElementById("elevation_chart");
                             
                                   // Show the error code inside the chartDiv.
                                   chartDiv.innerHTML = "Cannot show elevation: request failed because " + e;
@@ -2006,14 +2006,14 @@ var _google_public_map_only_api_key = "AIzaSyCeIFVL6oxxXNT7NToJjfU4J9TV2J8m4vE"
                 // Takes an array of ElevationResult objects, draws the path on the map
                 // and plots the elevation profile on a Visualization API ColumnChart.
                 function plotElevation({ results }) {
-                  const chartDiv = document.getElementById("elevation_chart");
+                  var chartDiv = document.getElementById("elevation_chart");
                   // Create a new chart in the elevation_chart DIV.
-                  const chart = new google.visualization.ColumnChart(chartDiv);
+                  var chart = new google.visualization.ColumnChart(chartDiv);
                   // Extract the data from which to populate the chart.
                   // Because the samples are equidistant, the 'Sample'
                   // column here does double duty as distance along the
                   // X axis.
-                  const data = new google.visualization.DataTable();
+                  var data = new google.visualization.DataTable();
                 
                   data.addColumn("string", "Sample");
                   data.addColumn("number", "Elevation");
@@ -2337,7 +2337,7 @@ var _google_public_map_only_api_key = "AIzaSyCeIFVL6oxxXNT7NToJjfU4J9TV2J8m4vE"
                   var _propertiesObj_aliasAdded = {}
                   var _fieldName_aliasAdded = ''
     
-                  for (const [key, value] of Object.entries(_propertiesObj)) {
+                  for (var [key, value] of Object.entries(_propertiesObj)) {
                     //console.log(`${key}: ${value}`);
                     if (_fieldAliasObj.hasOwnProperty(key)){
                             _fieldName_aliasAdded = key + ' (' + _fieldAliasObj[key] + ')' 
@@ -2377,13 +2377,68 @@ var _google_public_map_only_api_key = "AIzaSyCeIFVL6oxxXNT7NToJjfU4J9TV2J8m4vE"
 
   // ..... google search place ......outside of map only...........  current location ....   ...   ....
            
-      var infowindow_googleMap;
-
-      var new_place_marker
-
+      
+      // sample https://github.com/googlemaps-samples/js-api-samples/blob/b22b22221d35e3d8e3d4b0e20ab4cd9191dbc2be/dist/samples/place-autocomplete-basic-map/docs/index.html
+      // sample https://developers.google.com/maps/documentation/javascript/places-ui-kit/basic-autocomplete#maps_place_autocomplete_basic_map-html
       function add_search_place(){
 
-        infowindow_googleMap = new google.maps.InfoWindow();
+          var placeAutocompleteElement = document.querySelector('gmp-basic-place-autocomplete');
+          //Restrict place search to map bounds
+          placeAutocompleteElement.locationRestriction = map.getBounds()
+          placeAutocompleteElement.includedRegionCodes = ['us', 'au']
+          //Bias place search results
+          // placeAutocompleteElement.locationBias= {radius: 100, center: {lat: 50.064192, lng: -130.605469}},
+          // Restrict place search results to certain types
+          //placeAutocompleteElement.includedPrimaryTypes =['establishment'],
+      
+
+          // Create an advanced marker to show the location of a selected place.
+          var new_place_marker = new google.maps.marker.AdvancedMarkerElement({
+              map: map,
+              collisionBehavior: google.maps.CollisionBehavior.REQUIRED_AND_HIDES_OPTIONAL,
+          });
+          var placeDetailsElement = document.querySelector('gmp-place-details-compact');
+          var placeDetailsParent = placeDetailsElement.parentElement;
+         
+          // Event listener for when a place is selected from the autocomplete list.
+          placeAutocompleteElement.addEventListener('gmp-select', (event) => {
+
+                console.log('gmp-select', event)
+                // Request details for the selected place.
+                var placeDetailsRequest = placeDetailsElement.querySelector('gmp-place-details-place-request');
+                placeDetailsRequest.place = event.place.id;
+
+                // Reset marker and InfoWindow, and prepare the details element.
+                placeDetailsParent.appendChild(placeDetailsElement);
+                
+                placeDetailsElement.style.display = 'block'
+                
+                new_place_marker.position = null;
+            });
+
+
+
+            // Event listener for when the place details have finished loading.
+            placeDetailsElement.addEventListener('gmp-load', () => {
+
+                var  __location = placeDetailsElement.place.location;
+                // Position the marker 
+                new_place_marker.position = __location;
+                map.setCenter(__location);
+
+                // hidden 
+                 placeDetailsElement.style.display = 'none' 
+            });
+
+      }
+
+
+
+
+      
+      function add_search_place_oldSearchBox(){
+
+        var infowindow_googleMap = new google.maps.InfoWindow();
 
         // Create the search box and link it to the UI element.
             var  place_input = document.getElementById('pac-input');
@@ -2436,7 +2491,7 @@ var _google_public_map_only_api_key = "AIzaSyCeIFVL6oxxXNT7NToJjfU4J9TV2J8m4vE"
                   };
 
                   // Create a marker for each place.
-                  new_place_marker = new google.maps.marker.AdvancedMarkerElement({
+                  var new_place_marker = new google.maps.marker.AdvancedMarkerElement({
                     map: map,
                     
                     title: place.name,
@@ -2460,6 +2515,7 @@ var _google_public_map_only_api_key = "AIzaSyCeIFVL6oxxXNT7NToJjfU4J9TV2J8m4vE"
 
 
       }
+              
 
   // ..... end ..... google search place ........outside of map only.........
 
