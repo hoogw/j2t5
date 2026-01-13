@@ -163,6 +163,7 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
             
   // poi only(with restriction),   not work for compare google poi( require no-referal-restriction) 
   var _google_place_api_key = 'AIzaSyAUaELIu9LUeqRZAkyxbOQN8CmGtW_gDmY'
+  var need_google_photo = true
   
 
   // with photo, without street view
@@ -202,62 +203,72 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
     var _photos_widthPx
 
     var results_array = addressResult.results
-                
-    for (let i = 0; i < results_array.length; i++) {
 
-        _formatted_address = results_array[i].formatted_address
-        _place_id = results_array[i].place_id
-                  
-        if (i < 1){
-         
-              // Place Details (New) requests https://developers.google.com/maps/documentation/places/web-service/place-details
-              var _place_details_by_google_url = 'https://places.googleapis.com/v1/places/' + _place_id + '?fields=id,displayName,photos&key=' +  your_google_api_key
-              
-              
-              var _response_place_details = await ajax_getjson_common(_place_details_by_google_url)
-              if (typeof _response_place_details === 'object') {
-                              // is object
-                              _place_details = _response_place_details
-              } else {
-                              // is string
-                              _place_details = JSON.parse(_response_place_details)
-              }
-              console.log('_place_details', _place_details)
+   
+      
+   if (results_array.length){
 
-
-              if (_place_details.hasOwnProperty('displayName')){
-                _place_displayName =  _place_details.displayName.text
-              }
-
-
-                // place name 
-                address_value_html += '<span style="font-size:xx-large; font-weight:bolder;">' + _place_displayName + '</span>'
-                // address 
-                address_value_html += '<span  style="font-size:large;">' + _formatted_address +   '</span>'
-               
-              // photos
-              if (_place_details.hasOwnProperty('photos')){
-
-                _photos_array = _place_details.photos
-                for (let p = 0; p < _photos_array.length; p++) {
-                  _photos_name =  _photos_array[p].name
-                  _photos_heightPx = _photos_array[p].heightPx
-                  _photos_widthPx = _photos_array[p].widthPx
-                    address_value_html += '<img src="https://places.googleapis.com/v1/' + _photos_name + '/media?maxHeightPx=400&maxWidthPx=400&key=' + your_google_api_key + '" >'
-                }// for photo
-
-              }//if
+      // only need top first result, ignore others
+      var i = 0
+    
+      _formatted_address = results_array[i].formatted_address
+      _place_id = results_array[i].place_id
+                    
+        
+      // Place Details (New) requests https://developers.google.com/maps/documentation/places/web-service/place-details
+      var _place_details_by_google_url = 'https://places.googleapis.com/v1/places/' + _place_id + '?fields=id,displayName,photos&key=' +  your_google_api_key
+      
+      
+      var _response_place_details = await ajax_getjson_common(_place_details_by_google_url)
+      if (typeof _response_place_details === 'object') {
+                      // is object
+                      _place_details = _response_place_details
+      } else {
+                      // is string
+                      _place_details = JSON.parse(_response_place_details)
+      }
+      console.log('_place_details', _place_details)
 
 
-        } else{    
-         
-                     
-                     // address_value_html += '<span  style="font-size:large;">' + _formatted_address +   '</span>'  
-                     // address_value_html += '<sup style="font-size:small;">' + _place_id +   '</sup>'
-        }// if
-    }// for
-                                  
-    $('#info-window-div').html(address_value_html)
+      if (_place_details.hasOwnProperty('displayName')){
+        _place_displayName =  _place_details.displayName.text
+      }
+
+
+      // place name 
+      address_value_html += '<span style="font-size:xx-large; font-weight:bolder;">' + _place_displayName + '</span>'
+      // address 
+      address_value_html += '<span  style="font-size:large;">' + _formatted_address +   '</span>'
+        
+
+      // photos
+      if ((need_google_photo) && (_place_details.hasOwnProperty('photos'))){
+
+        _photos_array = _place_details.photos
+        for (let p = 0; p < _photos_array.length; p++) {
+          _photos_name =  _photos_array[p].name
+          _photos_heightPx = _photos_array[p].heightPx
+          _photos_widthPx = _photos_array[p].widthPx
+            address_value_html += '<img src="https://places.googleapis.com/v1/' + _photos_name + '/media?maxHeightPx=400&maxWidthPx=400&key=' + your_google_api_key + '" >'
+        }// for photo
+
+      }//if photo
+                      
+      $('#info-window-div').html(address_value_html)
+
+
+   } else {
+
+
+    // no result
+     if (addressResult.error_message){
+        $('#info-window-div').html(addressResult.error_message)
+     } else {
+        $('#info-window-div').html('Nothing found')
+     }//if
+
+   }//if 
+
 
   }
 

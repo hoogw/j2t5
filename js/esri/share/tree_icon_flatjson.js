@@ -7105,6 +7105,34 @@ icon_flatjson.push(icon_item)
 
 
 
+                icon_item = { 
+
+                    "id" :  6790,     
+                    "parent" : 4761,
+                    
+                    
+                    "text" : "6790 default",
+                    
+                    "layer_name" : _layer_name_,
+                    "icon" : open_new_tab_icon,
+                    "link_type": "embed_6790",
+                    "state"       : {
+                                    "opened"    : true,  // is the node open
+                                    // disabled  : boolean  // is the node disabled
+                                    // "selected"  : true   // is the node selected
+                                },
+                                
+                    "node_path" : _node_path_, 
+                    "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                    "server_path" : _map_server_url_,
+                    "layer_id" :  _layer_id_,            
+                    "type" : _type_
+                    
+                    
+                    
+                    };
+                    
+                    icon_flatjson.push(icon_item)
 
 
                     icon_item = { 
@@ -7200,7 +7228,7 @@ icon_flatjson.push(icon_item)
                 "parent" : 4762,
                 
                 
-                "text" : "3326",
+                "text" : "3326 default",
                 
                 "layer_name" : _layer_name_,
                 "icon" : open_new_tab_icon,
@@ -7262,7 +7290,7 @@ icon_flatjson.push(icon_item)
                             "parent" : 4764,
                             
                             
-                            "text" : "5126",
+                            "text" : "5126 default",
                             
                             "layer_name" : _layer_name_,
                             "icon" : open_new_tab_icon,
@@ -7324,7 +7352,7 @@ icon_flatjson.push(icon_item)
                         "parent" : 3172,
                         
                         
-                        "text" : "31728 click map show speed limit" + microsoft_svg,
+                        "text" : microsoft_svg + "31728 click map show speed limit",
                         
                         "layer_name" : _layer_name_,
                         "icon" : open_new_tab_icon,
@@ -7349,15 +7377,33 @@ icon_flatjson.push(icon_item)
                             
 
 
+                                            
+                    /*  = = = =  = = = = sub folder = = = = speed limit = = = =  */
+
+
+                    icon_item = { 
+                        "id" :  3171,     
+                        "parent" : 3172,
+                        "text" : "HereMap",  // + speed_limit_svg,
+                        "icon" : folder_icon,
+                        "link_type": "folder",   
+                        "state"       : {
+                        // use this opened line for always default open this folder
+                                        "opened"    :false, //  iconJstreeforceOpen,   // is the node open
+                                        // disabled  : boolean  // is the node disabled
+                                        // "selected"  : true   // is the node selected
+                                    }
+                    };
+                    icon_flatjson.push(icon_item) 
 
 
                         icon_item = { 
 
                                     "id" :  31720,     
-                                    "parent" : 3172,
+                                    "parent" : 3171,
                                     
                                     
-                                    "text" : "31720 Here (by map view)",
+                                    "text" : "31720 Map-View",
                                     
                                     "layer_name" : _layer_name_,
                                     "icon" : open_new_tab_icon,
@@ -7385,10 +7431,10 @@ icon_flatjson.push(icon_item)
                                     icon_item = { 
                     
                                         "id" :  31722,     
-                                        "parent" : 3172,
+                                        "parent" : 3171,
                                         
                                         
-                                        "text" : "31722 Here (by route)",
+                                        "text" : "31722 Route",
                                         
                                         "layer_name" : _layer_name_,
                                         "icon" : open_new_tab_icon,
@@ -7416,10 +7462,10 @@ icon_flatjson.push(icon_item)
                                         icon_item = { 
                     
                                             "id" :  31724,     
-                                            "parent" : 3172,
+                                            "parent" : 3171,
                                             
                                             
-                                            "text" : "31724 Here (by lat lng)",
+                                            "text" : "31724 Lat-Lng",
                                             
                                             "layer_name" : _layer_name_,
                                             "icon" : open_new_tab_icon,
@@ -7474,7 +7520,7 @@ icon_flatjson.push(icon_item)
                             "parent" : 5372,
                             
                             
-                            "text" : "31729" + microsoft_svg,
+                            "text" : microsoft_svg + "31729 RoadMap",
                             
                             "layer_name" : _layer_name_,
                             "icon" : open_new_tab_icon,
