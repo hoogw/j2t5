@@ -57,7 +57,7 @@
     </div>
 
     <div>
-      <!-- input id='pac-input' type='search' placeholder='(google) addr. zip Pl.'/ --> 
+    
       <input type="checkbox" id="show_traffic_checkbox" name="show_traffic_checkbox"  hidden />
       <label for="show_traffic_checkbox"   hidden>ShowTraffic</label>
       <span id="lat-lng-zoom"   hidden>...</span>
@@ -68,6 +68,17 @@
         
       <button type="button" id = "zoomToLayer_button">back-2-layer</button>
     </div> 
+
+
+    
+    <!-- input id='pac-input' type='search' placeholder='(google) addr. zip Pl.'/ -->  
+      <gmp-basic-place-autocomplete slot="control-inline-start-block-start"></gmp-basic-place-autocomplete>
+      <gmp-place-details-compact hidden>
+            <gmp-place-details-place-request></gmp-place-details-place-request>
+            <gmp-place-standard-content></gmp-place-standard-content>
+      </gmp-place-details-compact>
+
+
 
     <div>
             <span>POI Total</span>

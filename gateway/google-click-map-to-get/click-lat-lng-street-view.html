@@ -56,6 +56,13 @@
     </div>
     
     <div class="vertical-width-undefined-no-border" style="width: 300px; height: 800px; overflow: auto; ">
+
+      <gmp-basic-place-autocomplete slot="control-inline-start-block-start"></gmp-basic-place-autocomplete>
+      <gmp-place-details-compact hidden>
+            <gmp-place-details-place-request></gmp-place-details-place-request>
+            <gmp-place-standard-content></gmp-place-standard-content>
+      </gmp-place-details-compact>
+
       <span>Step 1. click map to get latitude, longitude</span>
       <div>
         <button id='close_info_outline_panel' hidden>&times; close</button>

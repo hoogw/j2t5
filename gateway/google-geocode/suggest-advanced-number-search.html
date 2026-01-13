@@ -27,14 +27,21 @@
   <div class='flex-container'>
 
    <div class='map-3-left-width-undefined' style="width: 600px;">
-    <div id='street_view' style="height: 100%;"></div>
+     <!-- input id='pac-input' type='search' placeholder='(google) addr. zip Pl.'/ -->  
+      <gmp-basic-place-autocomplete slot="control-inline-start-block-start"></gmp-basic-place-autocomplete>
+      <gmp-place-details-compact hidden>
+            <gmp-place-details-place-request></gmp-place-details-place-request>
+            <gmp-place-standard-content></gmp-place-standard-content>
+      </gmp-place-details-compact>
+
+    <div id='street_view' style="height: 91%;"></div>
    </div>
 
     <div class='map-3-middle-width-auto'>
 
       <div class='flex-row'>
         <span id="layer-info-vertical">Layer Name</span>
-        <!-- input id='pac-input' type='search' placeholder='(google) addr. zip Pl.'/ -->
+       
         <button type="button" id = "panToCurrent_geolocation_button">my-location</button>
       </div>
 

@@ -27,7 +27,7 @@
 
         <div>
           <span id="layer-info-vertical">Layer Name</span>
-          <!-- input id='pac-input' type='search' placeholder='(google) addr. zip Pl.'/ -->  
+         
       
           <small>visible:</small><b id="feature-on-map">...</b>
           <small>total:</small><b id="total-feature">...</b>
@@ -51,7 +51,12 @@
     
     <div class="vertical-width-undefined-no-border" style="width: 600px; height: 800px; overflow: auto; ">
     
-      
+      <!-- input id='pac-input' type='search' placeholder='(google) addr. zip Pl.'/ -->  
+      <gmp-basic-place-autocomplete slot="control-inline-start-block-start"></gmp-basic-place-autocomplete>
+      <gmp-place-details-compact hidden>
+            <gmp-place-details-place-request></gmp-place-details-place-request>
+            <gmp-place-standard-content></gmp-place-standard-content>
+      </gmp-place-details-compact>
 
       <fieldset>
         <legend>efficient engine 1x core</legend>

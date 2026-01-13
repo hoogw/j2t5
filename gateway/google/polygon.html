@@ -42,8 +42,6 @@
       </div>
 
 
-    <!-- input id='pac-input' type='search' placeholder='(google) addr. zip Pl.'/ --> 
-
 
 
       <div> 
@@ -67,7 +65,15 @@
       </div> 
 
    
-       </br>
+       
+    <!-- input id='pac-input' type='search' placeholder='(google) addr. zip Pl.'/ -->  
+      <gmp-basic-place-autocomplete slot="control-inline-start-block-start"></gmp-basic-place-autocomplete>
+      <gmp-place-details-compact hidden>
+            <gmp-place-details-place-request></gmp-place-details-place-request>
+            <gmp-place-standard-content></gmp-place-standard-content>
+      </gmp-place-details-compact>
+
+
 
        <div>
         <input type="checkbox" id="click_map_draw_square_checkbox" name="click_map_draw_square_checkbox" checked disabled/>

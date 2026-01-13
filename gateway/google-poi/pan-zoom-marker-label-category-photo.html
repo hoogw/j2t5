@@ -29,6 +29,14 @@
 
     <div class="vertical-width-undefined-no-border" style="width: 600px; height: 700px; overflow: auto; ">
       
+    <!-- input id='pac-input' type='search' placeholder='(google) addr. zip Pl.'/ -->  
+      <gmp-basic-place-autocomplete slot="control-inline-start-block-start"></gmp-basic-place-autocomplete>
+      <gmp-place-details-compact hidden>
+            <gmp-place-details-place-request></gmp-place-details-place-request>
+            <gmp-place-standard-content></gmp-place-standard-content>
+      </gmp-place-details-compact>
+
+      
                 <span id='info-window-div'></span>
 
                 <span id='google-photo-div'></span>
@@ -73,7 +81,7 @@
 
         <span id="layer-info-vertical">Layer Name</span>
         <input type="checkbox" id="show_traffic_checkbox" name="show_traffic_checkbox"  hidden/>
-        <!-- input id='pac-input' type='search' placeholder='(google) addr. zip Pl.'/ --> 
+       
         <span id="lat-lng-zoom" hidden>...</span>
        
         <button type="button" id = "panToCurrent_geolocation_button">my-location</button>
