@@ -23,12 +23,15 @@
 <body>
           
   
-  <div class="horizontal-left-right-width-undefined-container" style="width:1330px;">
-     <div class="vertical-width-undefined-no-border" style="width: 130px;">
-       <div id="radio-basemap-id" style="font-size: xx-small;"></div>
-     </div>
-             
-    <div class="vertical-width-undefined-no-border" style="width: 800px;"> 
+  <div class="horizontal-left-right-width-undefined-container" style="width:1800px;">
+  
+
+    <div class="vertical-width-undefined-no-border"  style="width: 800px; height: 800px;">
+        <div id='street_view' class="vertical-width-undefined-box" style="width: 790px; height: 800px;"></div>
+    </div>
+
+
+    <div class="vertical-width-undefined-no-border" style="width: 700px;"> 
 
         <div>
           <span id="layer-info-vertical">Layer Name</span>
@@ -52,7 +55,7 @@
      
     </div>
     
-    <div class="vertical-width-undefined-no-border" style="width: 400px; height: 800px; overflow: auto; ">
+    <div class="vertical-width-undefined-no-border" style="width: 300px; height: 800px; overflow: auto; ">
 
       <gmp-basic-place-autocomplete style="height: 25px;" slot="control-inline-start-block-start"></gmp-basic-place-autocomplete>
       <gmp-place-details-compact hidden>
@@ -60,18 +63,17 @@
             <gmp-place-standard-content></gmp-place-standard-content>
       </gmp-place-details-compact>
 
-      
       <span>Step 1. click map to get latitude, longitude</span>
-      
-      <div id='info-window-div' style="font-size: xx-small;"></div>
+      <div>
+        <button id='close_info_outline_panel' hidden>&times; close</button>
+      </div> 
+      <div id='info-window-div' style="font-size: xx-small;" class="flex-column"></div>
       
     </div>
+   
 
   </div>
-
-  
-
-
+      
       
   
   <script src="../../js/lib/proj4/dist/proj4.js"></script>
@@ -88,9 +90,9 @@
 
   <script src="../../js/gateway/share/google-for-all.js" type="text/javascript"></script>
   <!-- default.js must load befor common_share.js -->
-  <script src="../../js/gateway/google-click-map-to-get/click-lat-lng/default.js" type="text/javascript"></script>
-  <script src="../../js/gateway/google-click-map-to-get/click-lat-lng/helper.js" type="text/javascript"></script>
-  <script src="../../js/gateway/google-click-map-to-get/click-lat-lng/common_share.js" type="text/javascript"></script>
+  <script src="../../js/gateway/google-click-map-to-get/lat-lng-street-view/default.js" type="text/javascript"></script>
+  <script src="../../js/gateway/google-click-map-to-get/lat-lng-street-view/helper.js" type="text/javascript"></script>
+  <script src="../../js/gateway/google-click-map-to-get/lat-lng-street-view/common_share.js" type="text/javascript"></script>
 
 
   

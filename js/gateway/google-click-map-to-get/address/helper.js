@@ -14,6 +14,12 @@
 
 
  
+ 
+ /**/
+ 
+ 
+
+ /**/
 
            
                 function get_map_bound(){
@@ -230,20 +236,13 @@
                                           
                             }
        
-                          
-          
-          
-   
-   
-                            
-                            
+                           
                             
                   ajax_GeoJSON(_url_returncountonly, _url_returngeojson);
                             
 
 
-
-                  }// if map.getBounds()
+              }// if map.getBounds()
                                   
                                   
                 }// function get map bound
@@ -458,11 +457,70 @@
                       );
                       groundoverlay.setMap(map);
   
-  
+                        
+                      /**/
+                      //  --- google speed limit   --- 
+                      /**/
+                      add_ground_overlay_listener_click()
+
+                      /**/
+                      //  --- end  ---  google speed limit    --- 
+                      /**/
+
+
   
   
                 }
   
+
+
+
+ 
+
+
+          // only for google speed limit
+          // ground overlay will block map, map click event will not fire, so must attach click event to ground overlay object, instead of map object  
+          function add_ground_overlay_listener_click(){
+            // only for click map as starting point
+                               
+  
+              var listener_ground_overlay_click =  groundoverlay.addListener('click', function(click_event) {   
+  
+                console.log(' * * * * click overlay map image layer  event * * * ', click_event )
+                var click_lat = Number(click_event.latLng.lat());
+                var click_lng = Number(click_event.latLng.lng());
+                var click_lat_lng_point = { lng : click_lng, lat : click_lat }
+
+                console.log(' **** clicked ground overlay image *** >>> lng, lat ', click_lng, click_lat)
+  
+              
+
+                                  
+
+
+                  /**/
+                  //  --- google place geocode    --- 
+                  /**/
+                         var lat_comma_lng = click_lat  + ',' + click_lng
+                         google_reverseGeocode(lat_comma_lng)
+                  /**/
+                  //  --- end  ---  google place geocode    --- 
+                  /**/
+
+
+  
+              })// click event
+  
+  
+  
+  
+          }
+
+
+
+
+
+
 
                     function reduce_feature_count(___arcgis_feature_Set, ___reduced_feature_count){
                 
@@ -796,61 +854,36 @@
                     // click listener
                     map.data.addListener('click', function(event) {
 
-                      /**/
-                      //  --- google poi      --- 
-                      /**/
-                              
-                            event.feature.toGeoJson(function(_geojson_hovered){ 
-                              console.log('hovered geojson ', _geojson_hovered)
-                              var ___properties = _geojson_hovered.properties
-
-                              if (___properties.poi_id){
-
-                                show_info_outline_Tab(___properties)
+                        console.log(' geojson data layer get clicked event ', event)
+                        console.log(' geojson data layer get clicked event lat lng ', event.latLng.lat(), event.latLng.lng())
 
 
+                        
+                        var click_lat = Number(event.latLng.lat());
+                        var click_lng = Number(event.latLng.lng());
+                        var click_lat_lng_point = { lng : click_lng, lat : click_lat }
+                        console.log(' **** clicked ground overlay image *** >>> lng, lat ', click_lng, click_lat)
 
-                                map.data.revertStyle();    
-                                map.data.overrideStyle(event.feature, {
-                                  
-                                  // icon only affect point 
-                                  icon        : {
-                                    path: google.maps.SymbolPath.CIRCLE,
-                                    scale: _highlight_pointRadius,
-                                    strokeColor: _classfiy_strokeColor, 
-                                    strokeOpacity: _default_pointStrokeOpacity, 
-                                    strokeWeight: _classfiy_strokeWeight
-                                  },
+                      
 
-                                  // affect polygon and polyline
-                                  strokeWeight: _classfiy_strokeWeight,
-                                  strokeColor: _classfiy_strokeColor,
-                                  fillOpacity: _classfiy_fillOpacity
-                                  //fillColor:''
-                              });
+
+
+                          /**/
+                          //  --- google place geocode    --- 
+                          /**/
+                              var lat_comma_lng = click_lat  + ',' + click_lng
+                              google_reverseGeocode(lat_comma_lng)
+                          /**/
+                          //  --- end  ---  google place geocode    --- 
+                          /**/
 
 
 
 
-
-
-                              } else {
-
-                                // poi only ignore feature layer popup, never highlight
-                               
-                  $('#info-window-div').html(json_flex_tip_viewer(___properties))
-
-                              }
-
-                            });  // e v e n t . f e a t u r e
-
-                              
-/**/
-//  --- end  ---  google poi    --- 
-/**/
 
                               
                     });    
+
 
 
 
@@ -872,6 +905,7 @@
               /**/
               //  --- end  ---  google poi    --- only for new marker
               /**/
+
 
 
 
@@ -903,67 +937,12 @@
               update_center_latLngZoom();
             
               get_map_bound();
-              
-
-                  /**/
-                  //  --- google poi   --- 
-                  /**/
-
-
-                   // . .   limit by bound, lat lng with minium radius
-                  _center_radius_in_meter = get_center_radius_in_map_bound()
-                  
-                  //. . . only for browsing ...  remove last circle . . .  
-                  clear_all_circle()
-
-
-                  // only d r a w   c i r c l e when radius large than max 
-                  if (_center_radius_in_meter < max_google_poi_radius_meter){
-                    clear_circle_guideRing()
-                  }//if
-                  
-                  nearby_poi(_center_radius_in_meter, _center_long, _center_lat)
-
-                  /**/
-                  //  --- end  ---  google poi    --- 
-                  /**/
-
-
-                             
+     
             });
 
 
 
-                        
-            /**/
-            // -- -- --  POI marker replace point geojson  -- -- -- 
-                          // delete  set poi style                   
-            // -- -- --  end -- -- --  POI marker replace point geojson -- -- -- 
-            /**/
-
-
-
-                        
-                        
-
-            /**/
-            //  -  -  - guided ring for pan and zoom  -  -  - 
-            /**/
-                // all should works,  bounds_changed, center_changed, drag
-                map.addListener("bounds_changed", (event) => {
-
-                  update_center_latLngZoom()
-                  // . .   limit by bound, lat lng with minium radius
-                  _center_radius_in_meter = get_center_radius_in_map_bound()
-
-
-                  drawing_circle_guideRing_for_pan_zoom(_center_radius_in_meter, _center_long, _center_lat)
-
-                });
-
-            /**/
-            //  -  -  - end  -  -  -  guided ring for pan and zoom    -  -  - 
-            /**/
+           
 
 
 
@@ -1963,19 +1942,11 @@ function init_user_interface_after_map_load(){
 
 
 
-
-
-
 // only for pan & zoom, not for manual drawing circle
  $("#start_over_button").on("click", function() {
-      clear_all_circle()
-      clear_circle_guideRing()
       clear_all_poi_advancedMarker()
  });
 
-
-
-   
 
   
 //  .......  opacity   ....... 
