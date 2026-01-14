@@ -1452,7 +1452,7 @@ var highlighted_color = '#1F51FF' // Neon Blue
                                   add_map_listener_idle()
 
                                   
-
+                                init_google_base_map()           
                                                                   
                                 // due to street view use map object, should after map object created.                             
                                  init_user_interface_after_map_load()

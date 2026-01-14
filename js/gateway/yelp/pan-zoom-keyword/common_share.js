@@ -1187,7 +1187,7 @@ var highlighted_color = '#1F51FF' // Neon Blue
 
                                   
 
-                                                                  
+                                 init_google_base_map()                                 
                                 
 
 
