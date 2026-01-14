@@ -166,7 +166,7 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
   var need_google_photo = true
   
 
-  // with photo, without street view
+
   async function google_place_api_reverseGeocode(_lat_comma_lng_string){
 
     your_google_api_key = $('#googlemap-key-input').val(); 
@@ -273,7 +273,117 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
   }
 
 
-                  
+     
+  
+  // will create multiple address point geojson
+  async function google_reverseGeocode(_lat_comma_lng_string){
+
+    your_google_api_key = $('#googlemap-key-input').val(); 
+    update_url_parameter('yourGoogleKey', your_google_api_key)
+
+    // billing https://developers.google.com/maps/documentation/geocoding/usage-and-billing
+    // https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=your_api_key
+    // for this kind of place,geocode api call with &key=xxx,Google not allow use website restrict(localhost,referer restrict is not allowed), can only use IP restrict (hp-police)localhost ip: 167.224.97.162  production server ip: 116.221.167.72
+    // different from google map api key,  which is website restrict to transparentgov.net only
+
+    var _reverseGeocode_by_google_url = 'https://maps.googleapis.com/maps/api/geocode/json?key=' + your_google_api_key +  '&latlng=' + _lat_comma_lng_string;
+    console.log(' _reverseGeocode_by_google_url ', _reverseGeocode_by_google_url)
+                 
+    
+    var _response_reverseGeocode = await ajax_getjson_common(_reverseGeocode_by_google_url)
+    if (typeof _response_reverseGeocode === 'object') {
+                    // is object
+                    addressResult = _response_reverseGeocode
+    } else {
+                    // is string
+                    addressResult = JSON.parse(_response_reverseGeocode)
+    }
+    console.log('address result', addressResult)
+
+
+
+    var _this_newOnly_counter = 0
+    var _location_type
+    var _place_id = ''
+    var results_array = addressResult.results
+
+    //  . . efficient core newOnly  . - .
+    _this_newOnly_result_array = []
+
+      
+   if (results_array.length){
+
+       
+
+      for (let i = 0; i < results_array.length; i++) {
+    
+        _place_id = results_array[i].place_id
+        _location_type = results_array[i].geometry.location_type
+
+          
+        if (_all_poi_uniqueID_array.includes(_place_id)){
+                            // already exist, skip
+        } else {
+          
+                  //if ((_location_type == "ROOFTOP") || (_location_type == "RANGE_INTERPOLATED")){
+                  if (_location_type == "ROOFTOP"){
+
+                          _this_newOnly_counter += 1
+
+                          _all_poi_uniqueID_array.push(_place_id)
+                          _all_poi_flat_array.push(results_array[i])
+
+                          //  . . efficient core newOnly  . - .
+                          _this_newOnly_result_array.push(results_array[i])
+
+                  }//if
+
+        }//if
+
+
+      }// for
+
+
+      $('#info-window-div').html('<div>add <span style="font-size: xx-large;">' + _this_newOnly_counter + '</span> new</div>' )
+
+    _total_poi = Number(_all_poi_flat_array.length)
+    $("#poi_total").html(_total_poi)
+
+
+    // special version only for google place poi
+    poi_geojson = address_to_geojson(_all_poi_flat_array)
+    console.log('poi geojson', poi_geojson)
+
+
+   
+    /**/
+    // -- -- --  google advanced marker replace geojson  -- -- -- 
+
+          //  . . efficient core newOnly  . - .
+          console.log('_this_newOnly_result_array', _this_newOnly_result_array)
+          _this_newOnly_poi_geojson = address_to_geojson(_this_newOnly_result_array)
+          // parameter is geojson.features array only
+          poi_geojsonPointFeature_to_marker_label(_this_newOnly_poi_geojson.features, 'name')
+          
+          // . .  end . . efficient core newOnly  . - .                    
+    // -- -- --  end -- -- --  google advanced marker replace geojson -- -- -- 
+    /**/
+
+
+   } else {
+
+
+    // no result
+     if (addressResult.error_message){
+        $('#info-window-div').html(addressResult.error_message)
+     } else {
+        $('#info-window-div').html('Nothing found')
+     }//if
+
+   }//if 
+
+
+  }             
 
                   
 
@@ -667,7 +777,7 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
 
 
             
-      // special version only for google place poi
+      // POI only for google place poi
       function poi_to_geojson(____poi_array){
 
         var ____feature_array = []
@@ -884,6 +994,203 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
 
       }
 
+
+
+
+       // Address only for google reverse geocode api
+      function address_to_geojson(____poi_array){
+
+        var ____feature_array = []
+        var ____feature
+        var poi_element
+
+        var poi_location
+        var poi_lat
+        var poi_lng
+
+
+        var poi_id
+        var poi_name
+        
+      
+
+        var poi_addressComponents
+        var poi_streetNumber
+        var poi_streetName
+        var poi_streetNameAbre
+
+        var poi_formattedAddress
+        
+        var streetName_component = []
+        var poi_streetPrefix
+        var poi_streetNameOnly
+        var poi_streetType
+
+
+        var poi_city
+        var poi_county
+        var poi_state
+        var poi_stateAbre
+        var poi_zipCode
+        
+
+        var poi_primaryType // for location_type
+        var poi_type
+
+
+        for (let i = 0; i < ____poi_array.length; i++) {
+
+            poi_element = ____poi_array[i]
+            //console.log('google place item ',i,  poi_element)
+            poi_primaryType = poi_element.geometry.location_type
+
+            //if ((poi_primaryType == "ROOFTOP") || (poi_primaryType == "RANGE_INTERPOLATED")){
+            if (poi_primaryType == "ROOFTOP"){
+
+                    poi_id = poi_element.place_id
+                    poi_name = poi_element.formatted_address
+                    poi_type = poi_element.types
+                    poi_formattedAddress = poi_element.formatted_address
+
+                    poi_location = poi_element.geometry.location
+                    poi_lng = poi_location.lng
+                    poi_lat = poi_location.lat
+
+                    //console.log('test address component type ',i,  poi_element.addressComponents[1].types[0])
+                    poi_addressComponents = poi_element.address_components
+
+                    for (let c = 0; c < poi_addressComponents.length; c++) {
+
+                      if (poi_addressComponents[c].hasOwnProperty("types")){   // some do not have "types"
+
+                        switch (poi_addressComponents[c].types[0]) {
+                          case 'street_number':
+                              poi_streetNumber = poi_addressComponents[c].long_name;
+                              break;
+
+                          // street name    
+                          case 'route':
+                              poi_streetName = poi_addressComponents[c].long_name;
+                              poi_streetNameAbre = poi_addressComponents[c].short_name;
+
+
+                              //  . . . street name need to further split  . . . 
+                              // api https://github.com/hassansin/parse-address
+                              streetName_component =  parseAddress.parseLocation(poi_streetName);
+                              
+                              //console.log(' parse street name only  ', poi_streetName,  streetName_component);
+                              
+                              if ((streetName_component) && (streetName_component.hasOwnProperty('prefix'))){
+                                poi_streetPrefix = streetName_component.prefix.toUpperCase();
+                              } else {
+                                poi_streetPrefix = ''
+                              }
+                              
+                              if ((streetName_component) && (streetName_component.hasOwnProperty('street'))){
+                                poi_streetNameOnly = streetName_component.street.toUpperCase();
+                              } else {
+                                poi_streetNameOnly = ''
+                              }
+                              
+                              if ((streetName_component) && (streetName_component.hasOwnProperty('type'))){
+                                poi_streetType = streetName_component.type.toUpperCase();
+                              } else {
+                                poi_streetType = ''
+                              }
+                              // . . .  end  . . .  street name need to further split
+
+
+
+
+
+
+                              break;
+
+                          // city    
+                          case "locality":
+                              poi_city = poi_addressComponents[c].long_name;
+                              break;
+
+                          // county    
+                          case 'administrative_area_level_2':
+                                poi_county = poi_addressComponents[c].long_name;
+                                break;
+
+                          // state
+                          case 'administrative_area_level_1':
+                              poi_state = poi_addressComponents[c].long_name;
+                              poi_stateAbre = poi_addressComponents[c].short_name;
+                              break;
+
+                          // zip-code    
+                          case 'postal_code':
+                              poi_zipCode = poi_addressComponents[c].long_name;
+                              break;
+                        
+                          default:
+                          
+                            break;
+                        }//switch
+
+                      }//if
+                    }//for
+
+                    ____feature = {
+                      "type": "Feature",
+                      "geometry": {
+                        "type": "Point",
+                        "coordinates": [poi_lng, poi_lat]
+                      },
+                      "properties": {
+
+                        "poi_id": poi_id,
+                        "name": poi_name,
+                        
+                        "stNo": poi_streetNumber,
+                        
+
+                        //  . . . street name need to further split  . . . 
+                        "strName": poi_streetName,
+                        "stPrefix" : poi_streetPrefix,
+                        "stName" : poi_streetNameOnly,
+                        "stType" : poi_streetType,
+                        // . . .  end  . . .  street name need to further split
+
+
+
+                        "stNmAbre": poi_streetNameAbre,
+                      
+                        "county": poi_county,
+                        "city": poi_city,
+                        "state": poi_stateAbre,
+                        "state1":poi_state,
+                        "zipCode": poi_zipCode,
+
+                        "fmtAddr": poi_formattedAddress,
+
+                        "primaryType": poi_primaryType,
+                        "type": poi_type,
+
+                      
+                      
+                      }//properties
+                    }//feature
+
+                    ____feature_array.push(____feature)
+
+           }//if
+          
+        }//for
+
+        
+        geojson_template =  {
+          "type": "FeatureCollection",
+          "features": ____feature_array
+        };
+
+        return geojson_template
+
+      }
 
 
 
