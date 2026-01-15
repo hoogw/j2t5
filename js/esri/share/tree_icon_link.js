@@ -1335,7 +1335,7 @@ case "embed_6392":
 
   // google map + here geocode 
    case "embed_6782":
-    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-click-map-to-get/here-address.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-click-map-to-get/here-download-address.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
   break;
@@ -1351,7 +1351,7 @@ case "embed_6392":
 
 
   case "embed_6793":
-    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-click-map-to-get/address.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-click-map-to-get/download-address.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
   break;
@@ -1415,7 +1415,7 @@ case "embed_6392":
 
 
   case "embed_3325":
-    var _newTab_link =  url_for_microsoft.replace('/microsoft/basemap.html?', '/microsoft-click-map-to-get/address.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_microsoft.replace('/microsoft/basemap.html?', '/microsoft-click-map-to-get/download-address.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
     window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
   break;

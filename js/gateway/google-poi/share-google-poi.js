@@ -384,539 +384,7 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
 
         
 
-/**/
-//  --- end  ---  google place geocode    --- 
-/**/
-
-
-
-
-
-
-
-
-
-/**/
-//  --- here map geocode  --- 
-/**/
-
-async function here_reverseGeocode_show_1_address(_lat_comma_lng_string){
-
-
-    your_google_api_key = $('#googlemap-key-input').val(); 
-    update_url_parameter('yourGoogleKey', your_google_api_key)
-    if (your_google_api_key){
-      heremap_api_key = your_google_api_key
-    }
-    
-    // old api key works
-    var _reverseGeocode_by_here_url = 'https://revgeocode.search.hereapi.com/v1/revgeocode?apikey=' + heremap_api_key
-
-
-     _reverseGeocode_by_here_url +=  '&at=' + _lat_comma_lng_string
-     
-    // default is 1, max is 100
-    _reverseGeocode_by_here_url +=  '&limit=1' // 1-100
-
-    // api doc https://www.here.com/docs/bundle/geocoding-and-search-api-v7-api-reference/page/index.html#/paths/~1revgeocode/get
-    // "Unsupported value: 'place'. Supported values: 'address', 'area', 'city', 'street'",
-    // default type is everything included 
-    //_reverseGeocode_by_here_url +=  '&types=address';  
-    //address type will restricting results to result types: 
-    // "houseNumber", "street", "postalCodePoint", or "addressBlock". 
-    // Result type "intersection" is excluded from this list because it is not supported in reverse geocoder.
-    // I only need "houseNumber", others type must filter out
-
-    console.log(' _reverseGeocode_by_here_url ', _reverseGeocode_by_here_url)
-                 
-    
-    var _response_reverseGeocode = await ajax_getjson_common(_reverseGeocode_by_here_url)
-    if (typeof _response_reverseGeocode === 'object') {
-                    // is object
-                    addressResult = _response_reverseGeocode
-    } else {
-                    // is string
-                    addressResult = JSON.parse(_response_reverseGeocode)
-    }
-    console.log('Here map address result', addressResult)
-
-        var results_array = addressResult.items
-        var _place_displayName
-        var _formatted_address
-        var address_value_html = ''
-
-        for (let i = 0; i < results_array.length; i++) {
-            _formatted_address = results_array[i].address.label
-            _place_displayName = results_array[i].title
-
-            // place name 
-            address_value_html += '<span style="font-size:xx-large; font-weight:bolder;">' + _place_displayName + '</span>'
-            // address 
-            address_value_html += '<span  style="font-size:large;">' + _formatted_address +   '</span>'
-        
-        }//for
-
-         //  --- here map geocode   ( for esri compare only )   --- 
-         $('#info-window-div').html(address_value_html)      
-
-}
-
-
-
-
-async function here_reverseGeocode_multi_addr_2_pin(_lat_comma_lng_string){
-
-
-    your_google_api_key = $('#googlemap-key-input').val(); 
-    update_url_parameter('yourGoogleKey', your_google_api_key)
-    if (your_google_api_key){
-      heremap_api_key = your_google_api_key
-    }
-    
-    // old api key works
-    var _reverseGeocode_by_here_url = 'https://revgeocode.search.hereapi.com/v1/revgeocode?apikey=' + heremap_api_key
-
-
-     _reverseGeocode_by_here_url +=  '&at=' + _lat_comma_lng_string
-     
-   // default is 1, max is 100
-    _reverseGeocode_by_here_url +=  '&limit=100' // 1-100
-
-    // api doc https://www.here.com/docs/bundle/geocoding-and-search-api-v7-api-reference/page/index.html#/paths/~1revgeocode/get
-    // "Unsupported value: 'place'. Supported values: 'address', 'area', 'city', 'street'",
-    // only download address type, ignore others, like street name, etc.
-    _reverseGeocode_by_here_url +=  '&types=address';  
-    //address type will restricting results to result types: 
-    // "houseNumber", "street", "postalCodePoint", or "addressBlock". 
-    // Result type "intersection" is excluded from this list because it is not supported in reverse geocoder.
-    // I only need "houseNumber", others type must filter out
-
-    console.log(' _reverseGeocode_by_here_url ', _reverseGeocode_by_here_url)
-                 
-    
-    var _response_reverseGeocode = await ajax_getjson_common(_reverseGeocode_by_here_url)
-    if (typeof _response_reverseGeocode === 'object') {
-                    // is object
-                    addressResult = _response_reverseGeocode
-    } else {
-                    // is string
-                    addressResult = JSON.parse(_response_reverseGeocode)
-    }
-    console.log('Here map address result', addressResult)
-
-
-
-    
-        var results_array = addressResult.items
-        var _place_displayName
-        var _formatted_address
-        var address_value_html = ''
-
-        for (let i = 0; i < results_array.length; i++) {
-            _formatted_address = results_array[i].address.label
-            _place_displayName = results_array[i].title
-
-            
-            // place name 
-            address_value_html += '<span style="font-size:xx-large; font-weight:bolder;">' + _place_displayName + '</span>'
-            // address 
-            address_value_html += '<span  style="font-size:large;">' + _formatted_address +   '</span>'
-        
-
-
-        }//for
-
-         //  --- here map geocode   ( for esri compare only )   --- 
-         $('#info-window-div').html(address_value_html)      
-
-}
-
-
-
-/**/
-//  --- end  ---  here map    --- 
-/**/
-
-
-
-
-
-
-            var circle_range
-            var circle_array = []
-            
-            function drawing_circle(_radiusMeter, _centerLng, _centerLat){
-              //console.log('drawing circle at _radiusMeter, _centerLng, _centerLat', _radiusMeter, _centerLng, _centerLat)
-
-               circle_range = 
-               new google.maps.Circle({
-                 strokeColor: 'rgba(255, 0, 0, 1)',
-                 strokeOpacity: 0.877,
-                 strokeWeight: 1.45,
-                 fillColor: 'rgba(255, 0, 0, 1)',
-                 fillOpacity: 0.171,
-                 map,
-                 center: { lat: _centerLat, lng: _centerLng },
-                 radius: _radiusMeter,
-               });
-              
-               circle_array.push(circle_range)
-              
-            }
-
-
-            function clear_all_circle(){
-              for (let i = 0; i < circle_array.length; i++) {
-                if (circle_array[i]) { circle_array[i].setMap(null)}
-              }
-              circle_array = []
-            }
-
-
-
-
-            
-
-
-
-/**/
-//  -  -  - guided ring for manual drawing circle or square  -  -  - 
-/**/
-            var circle_guideRing
-
-            // only for manual, circle has click event 
-            function drawing_circle_guideRing_for_manual_draw(_radiusMeter, _centerLng, _centerLat){
-
-              clear_circle_guideRing()
-
-              //console.log('drawing guide ring at ', _radiusMeter, _centerLng, _centerLat)
-
-                /*
-              // red solid line
-               circle_guideRing = 
-               new google.maps.Circle({
-                 strokeColor: 'rgba(255, 0, 0, 1)',
-                 strokeOpacity: 0.877,
-                 strokeWeight: 3.45,
-                 fillColor: 'rgba(255, 0, 0, 0)', // ring, is empty fill
-                 fillOpacity: 0.171,
-                 map,
-                 center: { lat: _centerLat, lng: _centerLng },
-                 radius: _radiusMeter,
-               });
-              */
-
-               // red dash line 
-
-
-                // dotted line https://stackoverflow.com/questions/41967862/dashed-polygons-google-maps
-                dottedlineSymbol = {
-                    path: google.maps.SymbolPath.CIRCLE,
-                    fillOpacity: 0.97,
-                    scale: 4,
-                };
-
-
-                // dash line https://developers.google.com/maps/documentation/javascript/examples/overlay-symbol-dashed
-                dashlineSymbol = {
-                  path: "M 0,-1 0,1",
-                  strokeOpacity: 1,
-                  scale: 4,
-                };
-
-                var _centerLngLatPoint = { lat: _centerLat, lng: _centerLng }
-
-              circle_guideRing = new google.maps.Polyline({
-                                  strokeColor: '#fc0404ff',
-                                  strokeOpacity: 0,
-                                  icons: [{
-                                    //icon: dottedlineSymbol,
-                                    icon: dashlineSymbol,
-                                    offset: '0',
-                                    //repeat: '13px', // for dotted line
-                                    repeat: '20px',   // for dash line
-                                  }],
-                                  path: [
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 0),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 10),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 20),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 30),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 40),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 50),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 60),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 70),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 80),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 90),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 100),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 110),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 120),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 130),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 140),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 150),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 160),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 170),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 180),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 190),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 200),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 210),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 220),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 230),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 240),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 250),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 260),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 270),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 280),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 290),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 300),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 310),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 320),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 330),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 340),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 350),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 360),
-
-                                        ],
-                                  map: map
-                              });
-
-               // . . . end   . . .  red dash line   . . . 
-
-
-
-
-              // only for manual, guide ring has click event 
-               google.maps.event.addListener(circle_guideRing, 'click', function(event) {
-
-                // This function will be executed when the guide ring is clicked
-                console.log('guide ring clicked at:', event.latLng.lat(), event.latLng.lng());
-                
-
-                        /**/
-                        //  --- google manual drawing circle   --- 
-                        /**/
-                        var click_lat = Number(event.latLng.lat());
-                        var click_lng = Number(event.latLng.lng());
-                        var click_lat_lng_point = { lng : click_lng, lat : click_lat }
-                        console.log(' circle get clicked . . .  lng, lat ', click_lng, click_lat)
-
-                        nearby_poi(current_circle_radius, click_lng, click_lat)
-
-                        /**/
-                        //  --- end  ---  google manual drawing circle    --- 
-                        /**/
-
-
-              });
-
-
-
-               google.maps.event.addListener(circle_guideRing, 'mousemove', function(event) {
-                
-                
-                console.log('guide ring mouse move at:', event.latLng.lat(), event.latLng.lng());
-                
-                        /**/
-                        //  --- google manual drawing circle   --- 
-                        /**/
-                        var mouse_lat = Number(event.latLng.lat());
-                        var mouse_lng = Number(event.latLng.lng());
-                        console.log('guide ring   ,  catch   ,   mouse move event   , pointer lat, lng',mouse_lng, mouse_lat)
-                        drawing_circle_guideRing_for_manual_draw(current_circle_radius, mouse_lng, mouse_lat)
-                        /**/
-                        //  --- end  ---  google manual drawing circle    --- 
-                        /**/
-                });
-
-
-              
-            }
-
-
-
-            function clear_circle_guideRing(){
-               if (circle_guideRing) { circle_guideRing.setMap(null)}
-            }
-
-/**/
-//  -  -  - end  -  -  -  guided ring for manual drawing circle or square    -  -  - 
-/**/
-
-
-
-
-/**/
-//  -  -  - guided ring for pan and zoom  -  -  - 
-/**/
-            //  circle do not have click event 
-            function drawing_circle_guideRing_for_pan_zoom(_radiusMeter, _centerLng, _centerLat){
-
-              clear_circle_guideRing()
-
-              console.log('drawing guide ring at ', _radiusMeter, _centerLng, _centerLat)
-
-                /*
-              // red solid line
-               circle_guideRing = 
-               new google.maps.Circle({
-                 strokeColor: 'rgba(255, 0, 0, 1)',
-                 strokeOpacity: 0.877,
-                 strokeWeight: 3.45,
-                 fillColor: 'rgba(255, 0, 0, 0)', // ring, is empty fill
-                 fillOpacity: 0.171,
-                 map,
-                 center: { lat: _centerLat, lng: _centerLng },
-                 radius: _radiusMeter,
-               });
-              */
-
-               // red dash line 
-
-
-                // dotted line https://stackoverflow.com/questions/41967862/dashed-polygons-google-maps
-                dottedlineSymbol = {
-                    path: google.maps.SymbolPath.CIRCLE,
-                    fillOpacity: 0.97,
-                    scale: 4,
-                };
-
-
-                // dash line https://developers.google.com/maps/documentation/javascript/examples/overlay-symbol-dashed
-                dashlineSymbol = {
-                  path: "M 0,-1 0,1",
-                  strokeOpacity: 1,
-                  scale: 4,
-                };
-
-                var _centerLngLatPoint = { lat: _centerLat, lng: _centerLng }
-
-              circle_guideRing = new google.maps.Polyline({
-                                  strokeColor: '#fc0404ff',
-                                  strokeOpacity: 0,
-                                  icons: [{
-                                    //icon: dottedlineSymbol,
-                                    icon: dashlineSymbol,
-                                    offset: '0',
-                                    //repeat: '13px', // for dotted line
-                                    repeat: '20px',   // for dash line
-                                  }],
-                                  path: [
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 0),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 10),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 20),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 30),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 40),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 50),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 60),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 70),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 80),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 90),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 100),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 110),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 120),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 130),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 140),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 150),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 160),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 170),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 180),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 190),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 200),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 210),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 220),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 230),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 240),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 250),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 260),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 270),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 280),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 290),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 300),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 310),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 320),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 330),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 340),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 350),
-                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 360),
-
-                                        ],
-                                  map: map
-                              });
-
-               // . . . end   . . .  red dash line   . . . 
-
-
-              
-            }
-/**/
-//  -  -  - end  -  -  -  guided ring for pan and zoom    -  -  - 
-/**/
-
-
-
-
-
-
-
-      function init_poi_ui(){
-
-
-          /**/
-          //  --- side by side   --- 
-          /**/
-
-          $('#info_outline').hide()
-          $('#close_info_outline_panel').on('click', function(event) {
-              empty_info_outline_Tab()
-          });
-          /**/
-          //   --- end  ---   --- side by side   --- 
-          /**/
-
-
-      }
-            
-
-
-
-      //  . . efficient core newOnly  . - .
-      function clear_all_poi(){
-
-          //  . . efficient core newOnly  . - .
-              var _thisNewGeoJsonGoogleHandler
-              if (_this_newOnly_geojsonGoogleHandlerArray){
-                
-                for (var l = 0; l< _this_newOnly_geojsonGoogleHandlerArray.length; l++){
-                  _thisNewGeoJsonGoogleHandler = _this_newOnly_geojsonGoogleHandlerArray[l]
-                  for (var k = 0; k< _thisNewGeoJsonGoogleHandler.length; k++){
-                    map.data.remove(_thisNewGeoJsonGoogleHandler[k]);
-                  }// for
-                }// for
-
-
-              }//if
-              
-                _this_newOnly_geojsonGoogleHandlerArray = []
-          // . .  end . . efficient core newOnly  . - .
-
-
-           // reset to empty geojson template
-          poi_geojson = {
-                            "type": "FeatureCollection",
-                            "features": []
-                        };
-
-        _all_poi_uniqueID_array = []
-        _all_poi_flat_array = []
-
-      _total_poi = 0
-        empty_info_outline_Tab()
-        $("#poi_total").html(_total_poi)
-      }
-                    
-              
-              
-
-
+  
 
             
       // POI only for google place poi
@@ -1333,6 +801,755 @@ async function here_reverseGeocode_multi_addr_2_pin(_lat_comma_lng_string){
         return geojson_template
 
       }
+
+
+
+/**/
+//  --- end  ---  google place geocode    --- 
+/**/
+
+
+
+
+
+
+
+
+
+/**/
+//  --- here map geocode  --- 
+/**/
+
+async function here_reverseGeocode_show_1_address(_lat_comma_lng_string){
+
+
+    your_google_api_key = $('#googlemap-key-input').val(); 
+    update_url_parameter('yourGoogleKey', your_google_api_key)
+    if (your_google_api_key){
+      heremap_api_key = your_google_api_key
+    }
+    
+    // old api key works
+    var _reverseGeocode_by_here_url = 'https://revgeocode.search.hereapi.com/v1/revgeocode?apikey=' + heremap_api_key
+
+
+     _reverseGeocode_by_here_url +=  '&at=' + _lat_comma_lng_string
+     
+    // default is 1, max is 100
+    _reverseGeocode_by_here_url +=  '&limit=1' // 1-100
+
+    // api doc https://www.here.com/docs/bundle/geocoding-and-search-api-v7-api-reference/page/index.html#/paths/~1revgeocode/get
+    // "Unsupported value: 'place'. Supported values: 'address', 'area', 'city', 'street'",
+    // default type is everything included 
+    //_reverseGeocode_by_here_url +=  '&types=address';  
+    //address type will restricting results to result types: 
+    // "houseNumber", "street", "postalCodePoint", or "addressBlock". 
+    // Result type "intersection" is excluded from this list because it is not supported in reverse geocoder.
+    // I only need "houseNumber", others type must filter out
+
+    console.log(' _reverseGeocode_by_here_url ', _reverseGeocode_by_here_url)
+                 
+    
+    var _response_reverseGeocode = await ajax_getjson_common(_reverseGeocode_by_here_url)
+    if (typeof _response_reverseGeocode === 'object') {
+                    // is object
+                    addressResult = _response_reverseGeocode
+    } else {
+                    // is string
+                    addressResult = JSON.parse(_response_reverseGeocode)
+    }
+    console.log('Here map address result', addressResult)
+
+        var results_array = addressResult.items
+        var _place_displayName
+        var _formatted_address
+        var address_value_html = ''
+
+        for (let i = 0; i < results_array.length; i++) {
+            _formatted_address = results_array[i].address.label
+            _place_displayName = results_array[i].title
+
+            // place name 
+            address_value_html += '<span style="font-size:xx-large; font-weight:bolder;">' + _place_displayName + '</span>'
+            // address 
+            address_value_html += '<span  style="font-size:large;">' + _formatted_address +   '</span>'
+        
+        }//for
+
+         //  --- here map geocode   ( for esri compare only )   --- 
+         $('#info-window-div').html(address_value_html)      
+
+}
+
+
+
+
+async function here_reverseGeocode_multi_addr_2_pin(_lat_comma_lng_string){
+
+
+    your_google_api_key = $('#googlemap-key-input').val(); 
+    update_url_parameter('yourGoogleKey', your_google_api_key)
+    if (your_google_api_key){
+      heremap_api_key = your_google_api_key
+    }
+    
+    // old api key works
+    var _reverseGeocode_by_here_url = 'https://revgeocode.search.hereapi.com/v1/revgeocode?apikey=' + heremap_api_key
+
+
+     _reverseGeocode_by_here_url +=  '&at=' + _lat_comma_lng_string
+     
+   // default is 1, max is 100
+    _reverseGeocode_by_here_url +=  '&limit=100' // 1-100
+
+    // api doc https://www.here.com/docs/bundle/geocoding-and-search-api-v7-api-reference/page/index.html#/paths/~1revgeocode/get
+    // "Unsupported value: 'place'. Supported values: 'address', 'area', 'city', 'street'",
+    // only download address type, ignore others, like street name, etc.
+    _reverseGeocode_by_here_url +=  '&types=address';  
+    //address type will restricting results to result types: 
+    // "houseNumber", "street", "postalCodePoint", or "addressBlock". 
+    // Result type "intersection" is excluded from this list because it is not supported in reverse geocoder.
+    // I only need "houseNumber", others type must filter out
+
+    console.log(' _reverseGeocode_by_here_url ', _reverseGeocode_by_here_url)
+                 
+    
+    var _response_reverseGeocode = await ajax_getjson_common(_reverseGeocode_by_here_url)
+    if (typeof _response_reverseGeocode === 'object') {
+                    // is object
+                    addressResult = _response_reverseGeocode
+    } else {
+                    // is string
+                    addressResult = JSON.parse(_response_reverseGeocode)
+    }
+    console.log('Here map address result', addressResult)
+
+
+
+    var _this_newOnly_counter = 0
+    var _location_type
+    var _place_id = ''
+    var results_array = addressResult.items
+
+
+    //  . . efficient core newOnly  . - .
+    _this_newOnly_result_array = []
+
+    
+   if (results_array.length){
+
+
+        for (let i = 0; i < results_array.length; i++) {
+
+          _place_id = results_array[i].id
+          // only want  "houseNumber", ignore "street", etc.
+          _location_type = results_array[i].resultType
+
+          if (_all_poi_uniqueID_array.includes(_place_id)){
+                            // already exist, skip
+          } else {
+            
+                   if (_location_type == "houseNumber"){
+
+                            _this_newOnly_counter += 1
+
+                            _all_poi_uniqueID_array.push(_place_id)
+                            _all_poi_flat_array.push(results_array[i])
+
+                            //  . . efficient core newOnly  . - .
+                            _this_newOnly_result_array.push(results_array[i])
+
+                    }//if
+
+          }//if
+
+
+        }//for
+
+         
+      $('#info-window-div').html('<div>add <span style="font-size: xx-large;">' + _this_newOnly_counter + '</span> new</div>' )
+
+    _total_poi = Number(_all_poi_flat_array.length)
+    $("#poi_total").html(_total_poi)
+
+
+    // special version only for google place poi
+    poi_geojson = here_address_to_geojson(_all_poi_flat_array)
+    console.log('poi geojson', poi_geojson)
+   
+    
+    /**/
+    // -- -- --  google advanced marker replace geojson  -- -- -- 
+
+          //  . . efficient core newOnly  . - .
+          console.log('_this_newOnly_result_array', _this_newOnly_result_array)
+          _this_newOnly_poi_geojson = here_address_to_geojson(_this_newOnly_result_array)
+          // parameter is geojson.features array only
+          poi_geojsonPointFeature_to_marker_label(_this_newOnly_poi_geojson.features, 'name')
+          
+          // . .  end . . efficient core newOnly  . - .                    
+    // -- -- --  end -- -- --  google advanced marker replace geojson -- -- -- 
+    /**/
+
+
+   } else {
+
+
+    
+    // no result
+     if (addressResult.error){
+        $('#info-window-div').html(addressResult.error + " , " + addressResult.error_description )
+     } else {
+        $('#info-window-div').html('Nothing found')
+     }//if
+
+   }//if 
+
+}
+
+
+
+ // only for here  Address reverse geocode api
+      function here_address_to_geojson(____poi_array){
+
+        var ____feature_array = []
+        var ____feature
+        var poi_element
+
+        var poi_location
+        var poi_lat
+        var poi_lng
+
+
+        var poi_id
+        var poi_name
+        
+      
+
+        var poi_addressComponents
+        var poi_streetNumber
+        var poi_streetName
+        var poi_streetNameAbre
+
+        var poi_formattedAddress
+        
+        var streetName_component = []
+        var poi_streetPrefix
+        var poi_streetNameOnly
+        var poi_streetType
+
+
+        var poi_city
+        var poi_county
+        var poi_state
+        var poi_stateAbre
+        var poi_zipCode
+        
+
+        var poi_primaryType // for location_type
+        var poi_type
+
+
+        for (let i = 0; i < ____poi_array.length; i++) {
+
+            poi_element = ____poi_array[i]
+            //console.log('here address result item ',i,  poi_element)
+            poi_primaryType = poi_element.resultType
+
+
+            
+            if (poi_primaryType == "houseNumber"){
+
+                    poi_id = poi_element.id
+                    poi_name = poi_element.title
+                    //poi_type = poi_element.houseNumberType
+                    poi_formattedAddress = poi_element.address.label
+
+                    poi_location = poi_element.position
+                    poi_lng = poi_location.lng
+                    poi_lat = poi_location.lat
+
+                    poi_addressComponents = poi_element.address
+                    poi_streetNumber = poi_addressComponents.houseNumber;
+                    poi_streetName = poi_addressComponents.street;
+                    
+
+                    //  . . . street name need to further split  . . . 
+                    // api https://github.com/hassansin/parse-address
+                    streetName_component =  parseAddress.parseLocation(poi_streetName);
+                    
+                    //console.log(' parse street name only  ', poi_streetName,  streetName_component);
+                    
+                    if ((streetName_component) && (streetName_component.hasOwnProperty('prefix'))){
+                      poi_streetPrefix = streetName_component.prefix.toUpperCase();
+                    } else {
+                      poi_streetPrefix = ''
+                    }
+                    
+                    if ((streetName_component) && (streetName_component.hasOwnProperty('street'))){
+                      poi_streetNameOnly = streetName_component.street.toUpperCase();
+                    } else {
+                      poi_streetNameOnly = ''
+                    }
+                    
+                    if ((streetName_component) && (streetName_component.hasOwnProperty('type'))){
+                      poi_streetType = streetName_component.type.toUpperCase();
+                    } else {
+                      poi_streetType = ''
+                    }
+                    // . . .  end  . . .  street name need to further split
+
+
+                    poi_city = poi_addressComponents.city;
+                    poi_county = poi_addressComponents.county
+                    poi_state = poi_addressComponents.state;
+                    poi_stateAbre = poi_addressComponents.stateCode
+                    poi_zipCode = poi_addressComponents.postalCode;
+                             
+                        
+                          
+                     
+                    
+
+                    ____feature = {
+                      "type": "Feature",
+                      "geometry": {
+                        "type": "Point",
+                        "coordinates": [poi_lng, poi_lat]
+                      },
+                      "properties": {
+
+                        "poi_id": poi_id,
+                        "name": poi_name,
+                        
+                        "stNo": poi_streetNumber,
+                        
+
+                        //  . . . street name need to further split  . . . 
+                        "strName": poi_streetName,
+                        "stPrefix" : poi_streetPrefix,
+                        "stName" : poi_streetNameOnly,
+                        "stType" : poi_streetType,
+                        // . . .  end  . . .  street name need to further split
+
+
+                      
+                        "county": poi_county,
+                        "city": poi_city,
+                        "state": poi_stateAbre,
+                        "state1":poi_state,
+                        "zipCode": poi_zipCode,
+
+                        "fmtAddr": poi_formattedAddress,
+
+                        "primaryType": poi_primaryType,
+                        //"type": poi_type,
+
+                      
+                      
+                      }//properties
+                    }//feature
+
+                    ____feature_array.push(____feature)
+
+           }//if
+          
+        }//for
+
+        
+        geojson_template =  {
+          "type": "FeatureCollection",
+          "features": ____feature_array
+        };
+
+        return geojson_template
+
+      }
+
+/**/
+//  --- end  ---  here map    --- 
+/**/
+
+
+
+
+
+
+            var circle_range
+            var circle_array = []
+            
+            function drawing_circle(_radiusMeter, _centerLng, _centerLat){
+              //console.log('drawing circle at _radiusMeter, _centerLng, _centerLat', _radiusMeter, _centerLng, _centerLat)
+
+               circle_range = 
+               new google.maps.Circle({
+                 strokeColor: 'rgba(255, 0, 0, 1)',
+                 strokeOpacity: 0.877,
+                 strokeWeight: 1.45,
+                 fillColor: 'rgba(255, 0, 0, 1)',
+                 fillOpacity: 0.171,
+                 map,
+                 center: { lat: _centerLat, lng: _centerLng },
+                 radius: _radiusMeter,
+               });
+              
+               circle_array.push(circle_range)
+              
+            }
+
+
+            function clear_all_circle(){
+              for (let i = 0; i < circle_array.length; i++) {
+                if (circle_array[i]) { circle_array[i].setMap(null)}
+              }
+              circle_array = []
+            }
+
+
+
+
+            
+
+
+
+/**/
+//  -  -  - guided ring for manual drawing circle or square  -  -  - 
+/**/
+            var circle_guideRing
+
+            // only for manual, circle has click event 
+            function drawing_circle_guideRing_for_manual_draw(_radiusMeter, _centerLng, _centerLat){
+
+              clear_circle_guideRing()
+
+              //console.log('drawing guide ring at ', _radiusMeter, _centerLng, _centerLat)
+
+                /*
+              // red solid line
+               circle_guideRing = 
+               new google.maps.Circle({
+                 strokeColor: 'rgba(255, 0, 0, 1)',
+                 strokeOpacity: 0.877,
+                 strokeWeight: 3.45,
+                 fillColor: 'rgba(255, 0, 0, 0)', // ring, is empty fill
+                 fillOpacity: 0.171,
+                 map,
+                 center: { lat: _centerLat, lng: _centerLng },
+                 radius: _radiusMeter,
+               });
+              */
+
+               // red dash line 
+
+
+                // dotted line https://stackoverflow.com/questions/41967862/dashed-polygons-google-maps
+                dottedlineSymbol = {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    fillOpacity: 0.97,
+                    scale: 4,
+                };
+
+
+                // dash line https://developers.google.com/maps/documentation/javascript/examples/overlay-symbol-dashed
+                dashlineSymbol = {
+                  path: "M 0,-1 0,1",
+                  strokeOpacity: 1,
+                  scale: 4,
+                };
+
+                var _centerLngLatPoint = { lat: _centerLat, lng: _centerLng }
+
+              circle_guideRing = new google.maps.Polyline({
+                                  strokeColor: '#fc0404ff',
+                                  strokeOpacity: 0,
+                                  icons: [{
+                                    //icon: dottedlineSymbol,
+                                    icon: dashlineSymbol,
+                                    offset: '0',
+                                    //repeat: '13px', // for dotted line
+                                    repeat: '20px',   // for dash line
+                                  }],
+                                  path: [
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 0),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 10),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 20),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 30),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 40),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 50),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 60),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 70),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 80),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 90),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 100),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 110),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 120),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 130),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 140),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 150),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 160),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 170),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 180),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 190),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 200),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 210),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 220),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 230),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 240),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 250),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 260),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 270),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 280),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 290),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 300),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 310),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 320),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 330),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 340),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 350),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 360),
+
+                                        ],
+                                  map: map
+                              });
+
+               // . . . end   . . .  red dash line   . . . 
+
+
+
+
+              // only for manual, guide ring has click event 
+               google.maps.event.addListener(circle_guideRing, 'click', function(event) {
+
+                // This function will be executed when the guide ring is clicked
+                console.log('guide ring clicked at:', event.latLng.lat(), event.latLng.lng());
+                
+
+                        /**/
+                        //  --- google manual drawing circle   --- 
+                        /**/
+                        var click_lat = Number(event.latLng.lat());
+                        var click_lng = Number(event.latLng.lng());
+                        var click_lat_lng_point = { lng : click_lng, lat : click_lat }
+                        console.log(' circle get clicked . . .  lng, lat ', click_lng, click_lat)
+
+                        nearby_poi(current_circle_radius, click_lng, click_lat)
+
+                        /**/
+                        //  --- end  ---  google manual drawing circle    --- 
+                        /**/
+
+
+              });
+
+
+
+               google.maps.event.addListener(circle_guideRing, 'mousemove', function(event) {
+                
+                
+                console.log('guide ring mouse move at:', event.latLng.lat(), event.latLng.lng());
+                
+                        /**/
+                        //  --- google manual drawing circle   --- 
+                        /**/
+                        var mouse_lat = Number(event.latLng.lat());
+                        var mouse_lng = Number(event.latLng.lng());
+                        console.log('guide ring   ,  catch   ,   mouse move event   , pointer lat, lng',mouse_lng, mouse_lat)
+                        drawing_circle_guideRing_for_manual_draw(current_circle_radius, mouse_lng, mouse_lat)
+                        /**/
+                        //  --- end  ---  google manual drawing circle    --- 
+                        /**/
+                });
+
+
+              
+            }
+
+
+
+            function clear_circle_guideRing(){
+               if (circle_guideRing) { circle_guideRing.setMap(null)}
+            }
+
+/**/
+//  -  -  - end  -  -  -  guided ring for manual drawing circle or square    -  -  - 
+/**/
+
+
+
+
+/**/
+//  -  -  - guided ring for pan and zoom  -  -  - 
+/**/
+            //  circle do not have click event 
+            function drawing_circle_guideRing_for_pan_zoom(_radiusMeter, _centerLng, _centerLat){
+
+              clear_circle_guideRing()
+
+              console.log('drawing guide ring at ', _radiusMeter, _centerLng, _centerLat)
+
+                /*
+              // red solid line
+               circle_guideRing = 
+               new google.maps.Circle({
+                 strokeColor: 'rgba(255, 0, 0, 1)',
+                 strokeOpacity: 0.877,
+                 strokeWeight: 3.45,
+                 fillColor: 'rgba(255, 0, 0, 0)', // ring, is empty fill
+                 fillOpacity: 0.171,
+                 map,
+                 center: { lat: _centerLat, lng: _centerLng },
+                 radius: _radiusMeter,
+               });
+              */
+
+               // red dash line 
+
+
+                // dotted line https://stackoverflow.com/questions/41967862/dashed-polygons-google-maps
+                dottedlineSymbol = {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    fillOpacity: 0.97,
+                    scale: 4,
+                };
+
+
+                // dash line https://developers.google.com/maps/documentation/javascript/examples/overlay-symbol-dashed
+                dashlineSymbol = {
+                  path: "M 0,-1 0,1",
+                  strokeOpacity: 1,
+                  scale: 4,
+                };
+
+                var _centerLngLatPoint = { lat: _centerLat, lng: _centerLng }
+
+              circle_guideRing = new google.maps.Polyline({
+                                  strokeColor: '#fc0404ff',
+                                  strokeOpacity: 0,
+                                  icons: [{
+                                    //icon: dottedlineSymbol,
+                                    icon: dashlineSymbol,
+                                    offset: '0',
+                                    //repeat: '13px', // for dotted line
+                                    repeat: '20px',   // for dash line
+                                  }],
+                                  path: [
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 0),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 10),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 20),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 30),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 40),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 50),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 60),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 70),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 80),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 90),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 100),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 110),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 120),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 130),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 140),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 150),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 160),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 170),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 180),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 190),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 200),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 210),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 220),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 230),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 240),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 250),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 260),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 270),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 280),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 290),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 300),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 310),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 320),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 330),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 340),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 350),
+                                          google.maps.geometry.spherical.computeOffset(_centerLngLatPoint, _radiusMeter, 360),
+
+                                        ],
+                                  map: map
+                              });
+
+               // . . . end   . . .  red dash line   . . . 
+
+
+              
+            }
+/**/
+//  -  -  - end  -  -  -  guided ring for pan and zoom    -  -  - 
+/**/
+
+
+
+
+
+
+
+      function init_poi_ui(){
+
+
+          /**/
+          //  --- side by side   --- 
+          /**/
+
+          $('#info_outline').hide()
+          $('#close_info_outline_panel').on('click', function(event) {
+              empty_info_outline_Tab()
+          });
+          /**/
+          //   --- end  ---   --- side by side   --- 
+          /**/
+
+
+      }
+            
+
+
+
+      //  . . efficient core newOnly  . - .
+      function clear_all_poi(){
+
+          //  . . efficient core newOnly  . - .
+              var _thisNewGeoJsonGoogleHandler
+              if (_this_newOnly_geojsonGoogleHandlerArray){
+                
+                for (var l = 0; l< _this_newOnly_geojsonGoogleHandlerArray.length; l++){
+                  _thisNewGeoJsonGoogleHandler = _this_newOnly_geojsonGoogleHandlerArray[l]
+                  for (var k = 0; k< _thisNewGeoJsonGoogleHandler.length; k++){
+                    map.data.remove(_thisNewGeoJsonGoogleHandler[k]);
+                  }// for
+                }// for
+
+
+              }//if
+              
+                _this_newOnly_geojsonGoogleHandlerArray = []
+          // . .  end . . efficient core newOnly  . - .
+
+
+           // reset to empty geojson template
+          poi_geojson = {
+                            "type": "FeatureCollection",
+                            "features": []
+                        };
+
+        _all_poi_uniqueID_array = []
+        _all_poi_flat_array = []
+
+      _total_poi = 0
+        empty_info_outline_Tab()
+        $("#poi_total").html(_total_poi)
+      }
+                    
+              
+              
+
+
 
 
 
