@@ -1311,7 +1311,7 @@ var unknow_geometry_icon = "bi bi-triangle"
 
 
 /**/
-//  --- here map    --- 
+//  --- here map  --- 
 /**/
 
 
@@ -1329,9 +1329,16 @@ var unknow_geometry_icon = "bi bi-triangle"
  
  // in use org-id
  // org229655706 (public)
- var heremap_api_key = 'GMpSt1gPW1tti328T2v-7TtJ0-FW6B-c07tqd_kCH6Y'
+ //var heremap_api_key  = 'GMpSt1gPW1tti328T2v-7TtJ0-FW6B-c07tqd_kCH6Y'
+ //var heremap_api_key2 = 'EFAUnxjoMYOd69D0OqfkV3zdvIz2rQekBWr-5EMoPF8'
  // org229655706 (loc)
- // var heremap_api_key = 'Dy5HHz1lCOyP5z4tHb0BRVVdiLwgDXPzHBqvXc6NCXs'
+ var heremap_api_key = 'Dy5HHz1lCOyP5z4tHb0BRVVdiLwgDXPzHBqvXc6NCXs'
+
+
+ // OAuth 2.0
+var here_access_key_ID = '6GOy4Cfu8l5obgT2ckxNvw'
+var here_access_key_secret = 'pwIMT1pnm7xfW1Jlbd6L8Fs8c9i4eZwOqX_DctOprbhr3m9CJjMc_wl-_VaglIJOTfXmQ-7t96kHvtDFnTwCkA'
+
 
   // here xyz tile https://www.here.com/docs/bundle/raster-tile-api-migration-guide/page/README.html
   var here_v2_hybrid_vector = "https://1.aerial.maps.ls.hereapi.com/maptile/2.1/maptile/newest/hybrid.day/{z}/{x}/{y}/256/jpg?apiKey=" + heremap_api_key
@@ -1424,6 +1431,11 @@ var max_esri_poi_radius_meter = 10000
 //  --- google poi   --- 
 /**/
 
+
+// poi only(with restriction),   not work for compare google poi( require no-referal-restriction) 
+  var _google_place_api_key = 'AIzaSyAUaELIu9LUeqRZAkyxbOQN8CmGtW_gDmY'
+  var need_google_photo = true
+  
 
 var max_google_poi_limit = 20  
 var max_google_poi_radius_meter = 50000  
@@ -4797,64 +4809,6 @@ view.goTo({
 
 
 
-
-
-/**/
-//  --- here map    --- 
-/**/
-
-
-async function here_map_geocode_api_reverseGeocode_compact_for_compare(_lat_comma_lng_string){
-
-    
-    // old api key works
-    var _reverseGeocode_by_here_url = 'https://revgeocode.search.hereapi.com/v1/revgeocode?apikey=' + heremap_api_key
-
-
-     _reverseGeocode_by_here_url +=  '&at=' + _lat_comma_lng_string
-     _reverseGeocode_by_here_url +=  '&limit=2'  // 1-100
-    // _reverseGeocode_by_here_url +=  '&types=place';  // "Unsupported value: 'place'. Supported values: 'address', 'area', 'city', 'street'",
-
-    console.log(' _reverseGeocode_by_here_url ', _reverseGeocode_by_here_url)
-                 
-    
-    var _response_reverseGeocode = await ajax_getjson_common(_reverseGeocode_by_here_url)
-    if (typeof _response_reverseGeocode === 'object') {
-                    // is object
-                    addressResult = _response_reverseGeocode
-    } else {
-                    // is string
-                    addressResult = JSON.parse(_response_reverseGeocode)
-    }
-    console.log('Here map address result', addressResult)
-
-
-
-    
-        var results_array = addressResult.items
-        var place_title
-        var address_label
-        var address_value_html = ''
-
-        for (let i = 0; i < results_array.length; i++) {
-            address_label = results_array[i].address.label
-            place_title = results_array[i].title
-
-             address_value_html += '<span style="font-size:15px; font-weight:800;">' + place_title +   '</span>'
-             address_value_html += '<sup style="font-size:10px;">' + address_label +   '</sup>' 
-             address_value_html += '</br>'
-
-        }//for
-
-         //  --- here map geocode   ( for esri compare only )   --- 
-         $('#message4').html(address_value_html)      
-
-}
-
-
-/**/
-//  --- end  ---  here map    --- 
-/**/
 
 
 

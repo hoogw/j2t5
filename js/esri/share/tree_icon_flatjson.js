@@ -7069,7 +7069,7 @@ icon_flatjson.push(icon_item)
 icon_item = { 
     "id" :  477,     
     "parent" : 325,
-    "text" : "Download (Click-Map)",
+    "text" : "Download Address",
     "icon" : folder_icon,
     "link_type": "folder",   
     "state"       : {
@@ -7252,7 +7252,7 @@ icon_flatjson.push(icon_item)
 icon_item = { 
     "id" :  476,     
     "parent" : 325,
-    "text" : "Show (Click-Map)",
+    "text" : "Show one Address or POI",
     "icon" : folder_icon,
     "link_type": "folder",   
     "state"       : {

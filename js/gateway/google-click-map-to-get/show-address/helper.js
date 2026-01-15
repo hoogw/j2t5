@@ -502,7 +502,7 @@
                   //  --- google place geocode    --- 
                   /**/
                          var lat_comma_lng = click_lat  + ',' + click_lng
-                         google_place_api_reverseGeocode(lat_comma_lng)
+                         google_reverseGeocode_show_1_poi_or_addr_with_place_photo(lat_comma_lng)
                   /**/
                   //  --- end  ---  google place geocode    --- 
                   /**/
@@ -872,7 +872,7 @@
                           //  --- google place geocode    --- 
                           /**/
                               var lat_comma_lng = click_lat  + ',' + click_lng
-                              google_place_api_reverseGeocode(lat_comma_lng)
+                              google_reverseGeocode_show_1_poi_or_addr_with_place_photo(lat_comma_lng)
                           /**/
                           //  --- end  ---  google place geocode    --- 
                           /**/

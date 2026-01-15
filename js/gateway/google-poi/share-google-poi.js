@@ -161,13 +161,10 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
 //  --- google place geocode    --- 
 /**/
             
-  // poi only(with restriction),   not work for compare google poi( require no-referal-restriction) 
-  var _google_place_api_key = 'AIzaSyAUaELIu9LUeqRZAkyxbOQN8CmGtW_gDmY'
-  var need_google_photo = true
   
 
 
-  async function google_place_api_reverseGeocode(_lat_comma_lng_string){
+  async function google_reverseGeocode_show_1_poi_or_addr_with_place_photo(_lat_comma_lng_string){
 
     your_google_api_key = $('#googlemap-key-input').val(); 
     update_url_parameter('yourGoogleKey', your_google_api_key)
@@ -276,7 +273,7 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
      
   
   // will create multiple address point geojson
-  async function google_reverseGeocode(_lat_comma_lng_string){
+  async function google_reverseGeocode_multi_addr_2_pin(_lat_comma_lng_string){
 
     your_google_api_key = $('#googlemap-key-input').val(); 
     update_url_parameter('yourGoogleKey', your_google_api_key)
@@ -385,7 +382,7 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
 
   }             
 
-                  
+        
 
 /**/
 //  --- end  ---  google place geocode    --- 
@@ -394,6 +391,151 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
 
 
 
+
+
+
+
+
+/**/
+//  --- here map geocode  --- 
+/**/
+
+async function here_reverseGeocode_show_1_address(_lat_comma_lng_string){
+
+
+    your_google_api_key = $('#googlemap-key-input').val(); 
+    update_url_parameter('yourGoogleKey', your_google_api_key)
+    if (your_google_api_key){
+      heremap_api_key = your_google_api_key
+    }
+    
+    // old api key works
+    var _reverseGeocode_by_here_url = 'https://revgeocode.search.hereapi.com/v1/revgeocode?apikey=' + heremap_api_key
+
+
+     _reverseGeocode_by_here_url +=  '&at=' + _lat_comma_lng_string
+     
+    // default is 1, max is 100
+    _reverseGeocode_by_here_url +=  '&limit=1' // 1-100
+
+    // api doc https://www.here.com/docs/bundle/geocoding-and-search-api-v7-api-reference/page/index.html#/paths/~1revgeocode/get
+    // "Unsupported value: 'place'. Supported values: 'address', 'area', 'city', 'street'",
+    // default type is everything included 
+    //_reverseGeocode_by_here_url +=  '&types=address';  
+    //address type will restricting results to result types: 
+    // "houseNumber", "street", "postalCodePoint", or "addressBlock". 
+    // Result type "intersection" is excluded from this list because it is not supported in reverse geocoder.
+    // I only need "houseNumber", others type must filter out
+
+    console.log(' _reverseGeocode_by_here_url ', _reverseGeocode_by_here_url)
+                 
+    
+    var _response_reverseGeocode = await ajax_getjson_common(_reverseGeocode_by_here_url)
+    if (typeof _response_reverseGeocode === 'object') {
+                    // is object
+                    addressResult = _response_reverseGeocode
+    } else {
+                    // is string
+                    addressResult = JSON.parse(_response_reverseGeocode)
+    }
+    console.log('Here map address result', addressResult)
+
+        var results_array = addressResult.items
+        var _place_displayName
+        var _formatted_address
+        var address_value_html = ''
+
+        for (let i = 0; i < results_array.length; i++) {
+            _formatted_address = results_array[i].address.label
+            _place_displayName = results_array[i].title
+
+            // place name 
+            address_value_html += '<span style="font-size:xx-large; font-weight:bolder;">' + _place_displayName + '</span>'
+            // address 
+            address_value_html += '<span  style="font-size:large;">' + _formatted_address +   '</span>'
+        
+        }//for
+
+         //  --- here map geocode   ( for esri compare only )   --- 
+         $('#info-window-div').html(address_value_html)      
+
+}
+
+
+
+
+async function here_reverseGeocode_multi_addr_2_pin(_lat_comma_lng_string){
+
+
+    your_google_api_key = $('#googlemap-key-input').val(); 
+    update_url_parameter('yourGoogleKey', your_google_api_key)
+    if (your_google_api_key){
+      heremap_api_key = your_google_api_key
+    }
+    
+    // old api key works
+    var _reverseGeocode_by_here_url = 'https://revgeocode.search.hereapi.com/v1/revgeocode?apikey=' + heremap_api_key
+
+
+     _reverseGeocode_by_here_url +=  '&at=' + _lat_comma_lng_string
+     
+   // default is 1, max is 100
+    _reverseGeocode_by_here_url +=  '&limit=100' // 1-100
+
+    // api doc https://www.here.com/docs/bundle/geocoding-and-search-api-v7-api-reference/page/index.html#/paths/~1revgeocode/get
+    // "Unsupported value: 'place'. Supported values: 'address', 'area', 'city', 'street'",
+    // only download address type, ignore others, like street name, etc.
+    _reverseGeocode_by_here_url +=  '&types=address';  
+    //address type will restricting results to result types: 
+    // "houseNumber", "street", "postalCodePoint", or "addressBlock". 
+    // Result type "intersection" is excluded from this list because it is not supported in reverse geocoder.
+    // I only need "houseNumber", others type must filter out
+
+    console.log(' _reverseGeocode_by_here_url ', _reverseGeocode_by_here_url)
+                 
+    
+    var _response_reverseGeocode = await ajax_getjson_common(_reverseGeocode_by_here_url)
+    if (typeof _response_reverseGeocode === 'object') {
+                    // is object
+                    addressResult = _response_reverseGeocode
+    } else {
+                    // is string
+                    addressResult = JSON.parse(_response_reverseGeocode)
+    }
+    console.log('Here map address result', addressResult)
+
+
+
+    
+        var results_array = addressResult.items
+        var _place_displayName
+        var _formatted_address
+        var address_value_html = ''
+
+        for (let i = 0; i < results_array.length; i++) {
+            _formatted_address = results_array[i].address.label
+            _place_displayName = results_array[i].title
+
+            
+            // place name 
+            address_value_html += '<span style="font-size:xx-large; font-weight:bolder;">' + _place_displayName + '</span>'
+            // address 
+            address_value_html += '<span  style="font-size:large;">' + _formatted_address +   '</span>'
+        
+
+
+        }//for
+
+         //  --- here map geocode   ( for esri compare only )   --- 
+         $('#info-window-div').html(address_value_html)      
+
+}
+
+
+
+/**/
+//  --- end  ---  here map    --- 
+/**/
 
 
 

@@ -495,16 +495,79 @@
   
               
 
-                                
+                             
+                       
+     
 
-                          /**/
-                          //  --- here map geocode   --- 
-                          /**/
-                          var lat_comma_lng = click_lat  + ',' + click_lng
+
+                  /**/
+                  //  --- google place geocode    --- 
+                  /**/
+                         var lat_comma_lng = click_lat  + ',' + click_lng
+                       
+                         // .............. click to show street view  ..............
+                              // photo conflict with street view, do not show photo to keep street view 
+                              google_reverseGeocode_show_1_poi_or_addr_with_place_photo_streetview(lat_comma_lng)
+                         // .............. end   ..............  click to show street view  .............. 
+                  /**/
+                  //  --- end  ---  google place geocode    --- 
+                  /**/
+
+
+
+                   // .............. click to show street view  .............. 
+                     turn_on_street_view(click_lat, click_lng, 100)
+                   // .............. end   ..............  click to show street view  .............. 
+
+
+
+
+
+                     
+
+          /**/
+          //  --- esri geocode    --- 
+          /**/
+                esri_geocode_api_reverseGeocode_compact_for_compare(click_lng, click_lat)
+
+          /**/
+          //  --- end  ---  esri geocode    --- 
+          /**/
+
+
+
+          
+
+
+                        /**/
+                        //  --- microsoft geocode    --- 
+                        /**/ 
+                              microsoft_geocode_api_reverseGeocode_compact_for_compare(click_lng, click_lat, radiusMeterForSinglePOI)
+                         
+                        /**/
+                        //  --- end  ---  microsoft geocode    --- 
+                        /**/
+
+
+
+                        
+
+
+
+
+                    /**/
+                    //  --- here map    --- 
+                    /**/
                           here_reverseGeocode_show_1_address(lat_comma_lng)
-                          /**/
-                          //  --- end  ---  here map geocode  --- 
-                          /**/
+
+                    /**/
+                    //  --- end  ---  here map    --- 
+                    /**/
+
+
+                              
+
+  
 
   
               })// click event
@@ -865,14 +928,77 @@
                       
 
 
+                       
+
+
                           /**/
-                          //  --- here map geocode   --- 
+                          //  --- google place geocode    --- 
                           /**/
-                          var lat_comma_lng = click_lat  + ',' + click_lng
+                              var lat_comma_lng = click_lat  + ',' + click_lng
+
+                              // .............. click to show street view  ..............
+                              // photo conflict with street view, do not show photo to keep street view 
+                              google_reverseGeocode_show_1_poi_or_addr_with_place_photo_streetview(lat_comma_lng)
+                              // .............. end   ..............  click to show street view  .............. 
+                          /**/
+                          //  --- end  ---  google place geocode    --- 
+                          /**/
+
+
+
+
+
+                           
+                        // .............. click to show street view  .............. 
+                          turn_on_street_view(click_lat, click_lng, 100)
+                        // .............. end   ..............  click to show street view  .............. 
+
+
+
+                        
+                     
+
+          /**/
+          //  --- esri geocode    --- 
+          /**/
+                esri_geocode_api_reverseGeocode_compact_for_compare(click_lng, click_lat)
+
+          /**/
+          //  --- end  ---  esri geocode    --- 
+          /**/
+
+
+
+          
+
+
+                        /**/
+                        //  --- microsoft geocode    --- 
+                        /**/ 
+                              microsoft_geocode_api_reverseGeocode_compact_for_compare(click_lng, click_lat, radiusMeterForSinglePOI)
+                         
+                        /**/
+                        //  --- end  ---  microsoft geocode    --- 
+                        /**/
+
+
+
+                        
+
+
+
+
+                    /**/
+                    //  --- here map    --- 
+                    /**/
                           here_reverseGeocode_show_1_address(lat_comma_lng)
-                          /**/
-                          //  --- end  ---  here map geocode  --- 
-                          /**/
+
+                    /**/
+                    //  --- end  ---  here map    --- 
+                    /**/
+
+
+  
 
                               
                     });    
@@ -921,15 +1047,18 @@
 
           function add_map_listener_idle(){   
                                                         
-                                                
-                                                        
-            listener_idle =  map.addListener('idle', function() {   
+              listener_idle =  map.addListener('idle', function() {   
 
               console.log('  !!! map idle event   !!! ')
               update_center_latLngZoom();
             
               get_map_bound();
-     
+
+              // .............. click to show street view .............. 
+                // update exsiting street view
+                turn_on_street_view(_center_lat, _center_long, 1000)
+              // .............. end   ..............  click to show street view  .............. 
+
             });
 
 
@@ -1972,8 +2101,8 @@ function init_user_interface_event(){
 
                                 
 /**/
-                //  --- Google traffic    --- 
-                /**/
+//  --- Google traffic    --- 
+/**/
 
                 const trafficLayer = new google.maps.TrafficLayer();
 
@@ -1996,6 +2125,9 @@ function init_user_interface_event(){
 /**/
 //    ---  end  --- Google traffic    --- 
 /**/
+
+
+
 
 
 }

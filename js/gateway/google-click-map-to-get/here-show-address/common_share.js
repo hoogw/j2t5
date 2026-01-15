@@ -3,15 +3,6 @@
 
 
 
-  
-
-
-
-need_google_photo = false
-
-
-
-
 
 var map;
 var _geojson_object;
