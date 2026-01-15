@@ -1334,6 +1334,13 @@ case "embed_6392":
  
 
   // google map + here geocode 
+   case "embed_6782":
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-click-map-to-get/here-address.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+  // google map + here geocode 
    case "embed_6780":
     var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-click-map-to-get/here-show-address.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     window.open(_newTab_link,'_blank');
