@@ -569,7 +569,7 @@
                 /**/
             
                   //   -  -  - normal suggest   -  -  -
-                  await basic_default_suggest_this_category_paint_as_this_color("POI", "yellow")
+                  await basic_default_suggest_this_category_paint_as_this_color("POI", "#8B8000") // dark yellow #8B8000
                   /**/
                   //  -  -  - advanced poi search  -  -  - 
                   /**/

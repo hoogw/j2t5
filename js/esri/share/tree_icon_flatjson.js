@@ -16349,7 +16349,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
                     "id" :  2633,     
                     "parent" : 120,
                     
-                    "text" : "2633 Undo-POI-Limit",
+                    "text" : "2633 List All POI",
                     
                     "layer_name" : _layer_name_,
                     "icon" : open_new_tab_icon,
@@ -16378,7 +16378,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
                     "id" :  2625,     
                     "parent" : 120,
                     
-                    "text" : "2625" + " Undo-POI" + yellow_square_icon + "-Limit",
+                    "text" : "2625" + " List All POI" + yellow_square_icon ,
                     
                     "layer_name" : _layer_name_,
                     "icon" : open_new_tab_icon,
@@ -16713,7 +16713,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
                     "id" :  1633,     
                     "parent" : 100,
                     
-                    "text" : "1633 Undo-POI-Limit",
+                    "text" : "1633 List All POI",
                     
                     "layer_name" : _layer_name_,
                     "icon" : open_new_tab_icon,
@@ -16745,7 +16745,7 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
                     "id" :  1625,     
                     "parent" : 100,
                     
-                    "text" : "1625" + " Undo-POI" + yellow_square_icon + "-Limit",
+                    "text" : "1625" + " List All POI" + yellow_square_icon,
                     
                     "layer_name" : _layer_name_,
                     "icon" : open_new_tab_icon,
