@@ -24,10 +24,23 @@
           
   
   
- <div class="horizontal-left-right-width-undefined-container" style="width:1320px;">
+   <div class="horizontal-left-right-width-undefined-container" style="width:1320px;">
 
-    <div class="vertical-width-undefined-no-border" style="width: 1200px;">
+      <div class="vertical-width-undefined-no-border" style="width: 400px; height: 800px; overflow: auto; ">
+        <!-- input id='pac-input' type='search' placeholder='(google) addr. zip Pl.'/ -->  
+        <gmp-basic-place-autocomplete style="height: 25px;" slot="control-inline-start-block-start"></gmp-basic-place-autocomplete>
+        <gmp-place-details-compact hidden>
+              <gmp-place-details-place-request></gmp-place-details-place-request>
+              <gmp-place-standard-content></gmp-place-standard-content>
+        </gmp-place-details-compact>
 
+
+        <span id='info-window-div'></span>
+      </div>
+
+      
+
+      <div class="vertical-width-undefined-no-border" style="width: 800px;">
 
 
       <div>
@@ -45,9 +58,8 @@
           
       </div>
 
-      <div class='map-box'>
-        <div id="map"></div>
-      </div> 
+     <div id="map"  style="height:700px;"></div> <!-- override default height -->
+
 
 
       
@@ -74,16 +86,6 @@
    
    
 
-    <!-- input id='pac-input' type='search' placeholder='(google) addr. zip Pl.'/ -->  
-      <gmp-basic-place-autocomplete style="height: 25px;" slot="control-inline-start-block-start"></gmp-basic-place-autocomplete>
-      <gmp-place-details-compact hidden>
-            <gmp-place-details-place-request></gmp-place-details-place-request>
-            <gmp-place-standard-content></gmp-place-standard-content>
-      </gmp-place-details-compact>
-
-
-      <span id='info-window-div'></span>
-    
     </div>
 
    
