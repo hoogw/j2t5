@@ -4775,6 +4775,91 @@ icon_flatjson.push(icon_item)
 
 
 
+    
+
+/* = = = = sub folder = = = = here poi = = = =  */
+icon_item = { 
+"id" :  4284,     
+"parent" : 327,
+"text" : here_svg + " POI (free)"  + "<sup><small>2016-now</small></sup>",
+"icon" : folder_icon,
+"link_type": "folder",   
+"state"       : {
+// use this opened line for always default open this folder
+                "opened"    :false, //  iconJstreeforceOpen,   // is the node open
+                // disabled  : boolean  // is the node disabled
+                // "selected"  : true   // is the node selected
+            }
+};
+icon_flatjson.push(icon_item)
+
+
+
+        /* = = = = sub folder = = = = g o o g l e p o i = = = =  */
+        icon_item = { 
+            "id" :  4210,     
+            "parent" : 4284,
+            "text" : "pan & zoom",
+            "icon" : folder_icon,
+            "link_type": "folder",   
+            "state"       : {
+            // use this opened line for always default open this folder
+                            "opened"    :false, //  iconJstreeforceOpen,   // is the node open
+                            // disabled  : boolean  // is the node disabled
+                            // "selected"  : true   // is the node selected
+                        }
+        };
+        icon_flatjson.push(icon_item)
+
+
+
+
+
+
+
+                    /* = = = = sub folder = = = = g o o g l e p o i = = = =  */
+                    icon_item = { 
+                        "id" :  4310,     
+                        "parent" : 4210,
+                        "text" : "everything",
+                        "icon" : folder_icon,
+                        "link_type": "folder",   
+                        "state"       : {
+                        // use this opened line for always default open this folder
+                                        "opened"    :false, //  iconJstreeforceOpen,   // is the node open
+                                        // disabled  : boolean  // is the node disabled
+                                        // "selected"  : true   // is the node selected
+                                    }
+                    };
+                    icon_flatjson.push(icon_item)
+                        
+
+                                icon_item = { 
+                                                "id" :  7411,     
+                                                "parent" : 4310,
+                                                "text" : "7411 category optional x1",
+                                                "layer_name" : _layer_name_,
+                                                "icon" : open_new_tab_icon,
+                                                "link_type": "embed_7411",
+                                                "state"       : {
+                                                                "opened"    : true,  // is the node open
+                                                                // disabled  : boolean  // is the node disabled
+                                                                // "selected"  : true   // is the node selected
+                                                            },
+                                                "node_path" : _node_path_, 
+                                                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                                "server_path" : _map_server_url_,
+                                                "layer_id" :  _layer_id_,            
+                                                "type" : _type_
+                                            };
+                                icon_flatjson.push(icon_item)
+
+
+
+
+
+
+
 
 
 
