@@ -39,7 +39,15 @@
 
     <div class="horizontal-left-right-width-undefined-container" style="width:1320px;">
 
-        <div class="vertical-width-undefined-no-border" style="width: 1200px;">
+        <div class="vertical-width-undefined-no-border" style="width: 400px; height: 800px; overflow: auto; ">
+        <!-- --   --  --  search address only  --   --  --  -->
+        <input id="search-address-input" type="search" placeholder="zipcode,address"/>
+        
+        <div id='info-window-div' style="font-size: xx-small;"></div>
+      </div>
+
+
+        <div class="vertical-width-undefined-no-border" style="width: 800px;">
 
           <div>
 
@@ -59,9 +67,27 @@
           
           </div>
               
-          <div class='map-box'>
-            <div id="map"></div>
-          </div> 
+          <div id="map" style="width:800px;height:700px;"></div><!-- microsoft must define w i d t h   h e i g h t -->
+   
+        <div>
+                <input name="azure_basemap_radio" type="radio"  value="azure-hybrid"/>
+                <span>Microsoft Hybrid</span>
+
+                <input name="azure_basemap_radio" type="radio"  value="google-hybrid"/>
+                <span>Google Hybrid</span>
+
+                <input name="azure_basemap_radio" type="radio"  value="here-hybrid"/>
+                <span>Here Hybrid</span>
+
+                <input name="azure_basemap_radio" type="radio"  value="google-road"/>
+                <span>Google Road</span>
+
+                <input name="azure_basemap_radio" type="radio"  value="here-road"/>
+                <span>Here Road</span>
+
+                <input name="azure_basemap_radio" type="radio"  value="open-street-map"/>
+                <span>OpenStreetMap</span>
+        </div>
 
            
 
@@ -71,9 +97,7 @@
             <span id="feature-on-map" hidden>...</span>
             <span id="lat-lng-zoom" hidden>...</span>
           
-            <!-- --   --  --  search address only  --   --  --  -->
-            <input id="search-address-input" style="width: 357px;" type="search" placeholder="zipcode,address">
-
+          
             <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"  hidden></input>
             <b id='overlay_opacity_label' hidden></b>
             <input type="checkbox" id="show_traffic_checkbox" name="show_traffic_checkbox"  hidden/>
@@ -81,15 +105,15 @@
             <span id='radius_div' hidden></span>
 
           
-                  <span>POI Total</span>
-                  <span id="poi_total">...</span>
-                  <button id='download_csv_button'>Download poi.csv</button> 
-                  <button id='download_poi_button'>Download poi.geojson</button> 
-              <button id='start_over_button'>Clear poi</button> 
+            <span>POI Total</span>
+            <span id="poi_total">...</span>
+            <button id='download_csv_button'>Download poi.csv</button> 
+            <button id='download_poi_button'>Download poi.geojson</button> 
+            <button id='start_over_button'>Clear poi</button> 
         
           </div>
 
-          <span id='info-window-div'></span>
+          
             
         </div>
 
