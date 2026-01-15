@@ -499,12 +499,12 @@
 
 
                   /**/
-                  //  --- google place geocode    --- 
+                  //  --- here geocode    --- 
                   /**/
                          var lat_comma_lng = click_lat  + ',' + click_lng
-                         google_reverseGeocode_multi_addr_2_pin(lat_comma_lng)
+                         here_reverseGeocode_multi_addr_2_pin(lat_comma_lng)
                   /**/
-                  //  --- end  ---  google place geocode    --- 
+                  //  --- end  ---  here geocode    --- 
                   /**/
 
 
@@ -869,12 +869,12 @@
 
 
                           /**/
-                          //  --- google place geocode    --- 
+                          //  --- here geocode    --- 
                           /**/
                               var lat_comma_lng = click_lat  + ',' + click_lng
-                              google_reverseGeocode_multi_addr_2_pin(lat_comma_lng)
+                              here_reverseGeocode_multi_addr_2_pin(lat_comma_lng)
                           /**/
-                          //  --- end  ---  google place geocode    --- 
+                          //  --- end  ---  here geocode    --- 
                           /**/
 
 

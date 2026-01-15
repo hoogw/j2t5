@@ -900,7 +900,8 @@ async function here_reverseGeocode_multi_addr_2_pin(_lat_comma_lng_string){
      _reverseGeocode_by_here_url +=  '&at=' + _lat_comma_lng_string
      
    // default is 1, max is 100
-    _reverseGeocode_by_here_url +=  '&limit=100' // 1-100
+   // 100 is too far away from where user clicked,
+    _reverseGeocode_by_here_url +=  '&limit=5' // 1-100
 
     // api doc https://www.here.com/docs/bundle/geocoding-and-search-api-v7-api-reference/page/index.html#/paths/~1revgeocode/get
     // "Unsupported value: 'place'. Supported values: 'address', 'area', 'city', 'street'",
