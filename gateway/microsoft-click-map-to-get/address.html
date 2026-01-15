@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <title id="title">Microsoft POI</title>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+
+    <!-- Load JQuery UI -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    
+
+    <!-- Add references to the Azure Maps Map control JavaScript and CSS files. -->
+    <link href="https://atlas.microsoft.com/sdk/javascript/mapcontrol/3/atlas.min.css" rel="stylesheet" />
+    <script src="https://atlas.microsoft.com/sdk/javascript/mapcontrol/3/atlas.min.js"></script>
+
+    <!-- Add a reference to the Azure Maps Services Module JavaScript file. -->
+    <script src="https://atlas.microsoft.com/sdk/javascript/service/2/atlas-service.min.js"></script>
+
+     <!-- Add a reference to the Azure Maps Rest Helper JavaScript file. -->
+     <script src="https://samples.azuremaps.com/lib/azure-maps/azure-maps-helper.min.js"></script>
+
+
+
+     
+    <link rel="stylesheet" href="../../stylesheets/vertical.css">
+    
+
+
+</head>
+
+<body onload="getMap()">
+
+
+<div class="horizontal-left-right-width-undefined-container" style="width:1320px;">
+      
+    <div class="vertical-width-undefined-no-border" style="width: 120px; font-size: xx-small;">
+         <div>
+            <input name="azure_basemap_radio" type="radio"  value="azure-hybrid"/>
+            <span>Microsoft Hybrid</span>
+         </div>
+         <div>
+            <input name="azure_basemap_radio" type="radio"  value="google-hybrid"/>
+            <span>Google Hybrid</span>
+          </div>
+          <div>
+            <input name="azure_basemap_radio" type="radio"  value="here-hybrid"/>
+            <span>Here Hybrid</span>
+         </div>
+         <div>
+             <!--
+            <input name="azure_basemap_radio" type="radio"  value="azure-road"/>
+            <span>Microsoft Azure Road</span>
+            -->
+
+            <input name="azure_basemap_radio" type="radio"  value="google-road"/>
+            <span>Google Road</span>
+          </div>
+          <div>
+            <input name="azure_basemap_radio" type="radio"  value="here-road"/>
+            <span>Here Road</span>
+          </div>
+          <div>
+            <input name="azure_basemap_radio" type="radio"  value="open-street-map"/>
+            <span>OpenStreetMap</span>
+             </div>
+       
+    </div>
+  
+    
+
+    <div class="vertical-width-undefined-no-border" style="width: 800px;"> 
+    
+        <div>
+          <span id="layer-info-vertical">Layer Name</span>
+          <small>total:</small><b id="total-feature">...</b>
+          <small>visible:</small><b id="feature-on-map">...</b>
+          <span id="lat-lng-zoom" hidden>...</span>
+        </div>
+
+        
+
+       <div id="map" style="width:800px;height:700px;"></div><!-- microsoft must define w i d t h   h e i g h t -->
+   
+
+        
+        <div>
+          <input type="checkbox" id="show_traffic_checkbox" name="show_traffic_checkbox" hidden/>
+          <label for="show_traffic_checkbox" hidden>Microsoft-Traffic</label>
+         
+          <small id = "opacitytitle_span">layer-opacity:</small>
+          <b id='opacity_value_text'></b>
+          <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min="0" max="10"/>
+        </div>
+
+    </div> 
+
+    <div class="vertical-width-undefined-no-border" style="width: 400px; height: 800px; overflow: auto; ">
+      <!-- --   --  --  search address only  --   --  --  -->
+      <input id="search-address-input" type="search" placeholder="zipcode,address"/>
+      <span id='message3'></span> <!-- microsoft poi only -->
+      <div id='info-window-div' style="font-size: xx-small;">
+      </div>
+    <div>
+    
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="../../js/lib/proj4/dist/proj4.js"></script>
+  <script src="../../js/lib/wkt.js"></script>
+  <script src="../../js/lib/reproject/dist/reproject.js"></script>
+  <script src="../../js/lib/wellknown/wellknown.js"></script>
+
+
+  <script   src="../../js/lib/arcgis-to-geojson-utils/dist/arcgis-to-geojson.js"></script> 
+  <script   src="../../js/lib/turf/turf.min.js"></script>
+      
+  <script src="../../js/lib/stack.js"></script>  
+  <script src="../../js/arcgis/arcgis_common.js" type="text/javascript"></script>
+
+    <script src="../../js/gateway/microsoft/share_for_all_microsoft.js" type="text/javascript"></script>
+    <script src="../../js/gateway/microsoft/nonPOI_helper.js" type="text/javascript"></script>
+    <script src="../../js/gateway/microsoft-poi/poi_helper.js" type="text/javascript"></script>
+    <script src="../../js/gateway/microsoft-click-map-to-get/address.js" type="text/javascript"></script>
+
+</body>
+</html>

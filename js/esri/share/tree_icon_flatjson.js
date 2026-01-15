@@ -361,7 +361,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                         icon_item = { 
                                         "id" :  700,     
                                         "parent" : 10, //970,
-                                        "text" : "Here Map" + "<small><sup>2012-now</sup></small>",
+                                        "text" : here_svg + "<small><sup>2012-now</sup></small>",
                                         "icon" : folder_icon,  
                                         "link_type": "folder", 
                                         "state"       : {
@@ -7069,7 +7069,7 @@ icon_flatjson.push(icon_item)
 icon_item = { 
     "id" :  477,     
     "parent" : 325,
-    "text" : " " + google_svg + " Click-2-Download",
+    "text" : "Download (Click-Map)",
     "icon" : folder_icon,
     "link_type": "folder",   
     "state"       : {
@@ -7082,11 +7082,29 @@ icon_item = {
 icon_flatjson.push(icon_item) 
 
 
+
+                
+            icon_item = { 
+                "id" :  4771,     
+                "parent" : 477,
+                "text" : google_svg,
+                "icon" : folder_icon,
+                "link_type": "folder",   
+                "state"       : {
+                // use this opened line for always default open this folder
+                                "opened"    :false, //  iconJstreeforceOpen,   // is the node open
+                                // disabled  : boolean  // is the node disabled
+                                // "selected"  : true   // is the node selected
+                            }
+            };
+            icon_flatjson.push(icon_item) 
+
+
                                       
                 icon_item = { 
 
                     "id" :  6793,     
-                    "parent" : 477,
+                    "parent" : 4771,
                     
                     
                     "text" : "6793 default",
@@ -7117,6 +7135,53 @@ icon_flatjson.push(icon_item)
 
 
 
+   
+            icon_item = { 
+                "id" :  4772,     
+                "parent" : 477,
+                "text" : microsoft_svg,
+                "icon" : folder_icon,
+                "link_type": "folder",   
+                "state"       : {
+                // use this opened line for always default open this folder
+                                "opened"    :false, //  iconJstreeforceOpen,   // is the node open
+                                // disabled  : boolean  // is the node disabled
+                                // "selected"  : true   // is the node selected
+                            }
+            };
+            icon_flatjson.push(icon_item) 
+
+
+                         
+                                      
+                icon_item = { 
+
+                    "id" :  3325,     
+                    "parent" : 4772,
+                    
+                    
+                    "text" : "3325 default",
+                    
+                    "layer_name" : _layer_name_,
+                    "icon" : open_new_tab_icon,
+                    "link_type": "embed_3325",
+                    "state"       : {
+                                    "opened"    : true,  // is the node open
+                                    // disabled  : boolean  // is the node disabled
+                                    // "selected"  : true   // is the node selected
+                                },
+                                
+                    "node_path" : _node_path_, 
+                    "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                    "server_path" : _map_server_url_,
+                    "layer_id" :  _layer_id_,            
+                    "type" : _type_
+                    
+                    
+                    
+                    };
+                    
+                    icon_flatjson.push(icon_item)
 
 
 
@@ -7130,7 +7195,7 @@ icon_flatjson.push(icon_item)
 icon_item = { 
     "id" :  476,     
     "parent" : 325,
-    "text" : "Click-Map-2-Show",
+    "text" : "Show (Click-Map)",
     "icon" : folder_icon,
     "link_type": "folder",   
     "state"       : {
@@ -7321,7 +7386,53 @@ icon_flatjson.push(icon_item)
 
 
 
+        icon_item = { 
+            "id" :  4763,     
+            "parent" : 476,
+            "text" : here_svg, 
+            "icon" : folder_icon,
+            "link_type": "folder",   
+            "state"       : {
+            // use this opened line for always default open this folder
+                            "opened"    :false, //  iconJstreeforceOpen,   // is the node open
+                            // disabled  : boolean  // is the node disabled
+                            // "selected"  : true   // is the node selected
+                        }
+        };
+        icon_flatjson.push(icon_item) 
+
+
                              
+                           
+
+                 icon_item = { 
+
+                "id" :  6780,     
+                "parent" : 4763,
+                
+                
+                "text" : "6780 default",
+                
+                "layer_name" : _layer_name_,
+                "icon" : open_new_tab_icon,
+                "link_type": "embed_6780",
+                "state"       : {
+                                "opened"    : true,  // is the node open
+                                // disabled  : boolean  // is the node disabled
+                                // "selected"  : true   // is the node selected
+                            },
+                            
+                "node_path" : _node_path_, 
+                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                "server_path" : _map_server_url_,
+                "layer_id" :  _layer_id_,            
+                "type" : _type_
+                
+                
+                
+                };
+                
+                icon_flatjson.push(icon_item)
 
 
 
@@ -13493,7 +13604,7 @@ icon_item = {
                                             "parent" : 90,
 
                                             //"text" : layer_item.type + " (ESRI Grid)",
-                                            "text" : "excel table",
+                                            "text" : "Excel Table",
 
                                             "layer_name" : _layer_name_,
                                             "icon" : open_new_tab_icon,
