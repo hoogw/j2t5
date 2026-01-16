@@ -3931,6 +3931,13 @@ var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-geoc
     console.log('_newTab_link', _newTab_link)
 break;
 
+
+case "geocodeServer_1652":
+var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-geocode/usps-validate-street-address-in-red.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+     window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+break;
+
 case "geocodeServer_1653":
 var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-geocode/suggest-street-address-in-red.html?') + '&backgroundlayerurl=' + _selected_path[0]  
      window.open(_newTab_link,'_blank');

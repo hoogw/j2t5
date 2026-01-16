@@ -16646,6 +16646,33 @@ function create_GeocodeServerFlatjson(_map_server_url_, _layer_id_,  _layer_name
                     geocode_server_flatjson.push(geocode_server_item)
 
 
+                     geocode_server_item = { 
+
+                    "id" :  1652,     
+                    "parent" : 2511,
+                    
+                    "text" : "1652" + " USPS Validate" + red_square_icon + "fake-red",
+                    
+                    "layer_name" : _layer_name_,
+                    "icon" : open_new_tab_icon,
+                    "link_type": "geocodeServer_1652",
+                    "state"       : {
+                                    "opened"    : true,  // is the node open
+                                    // disabled  : boolean  // is the node disabled
+                                    // "selected"  : true   // is the node selected
+                                },
+                                
+                    "node_path" : _node_path_, 
+                    "absolute_path" : _map_server_url_,  // warning image server do not add '/' + _layer_id_,
+                    "server_path" : _map_server_url_,
+                    "layer_id" :  _layer_id_,            
+                    "type" : _type_
+                    };
+                    
+                    geocode_server_flatjson.push(geocode_server_item)
+
+
+
 
                      geocode_server_item = { 
 
