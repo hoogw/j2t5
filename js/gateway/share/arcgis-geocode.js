@@ -512,7 +512,7 @@ function firstTime1TimeSearchKeywords(){
           //_html_capabilities +=  yes_icon
           _html_capabilities += "locator capabilities:(" + geocode_json.capabilities + ")"
         } 
-        _html_capabilities += "<br>" 
+        //_html_capabilities += "<br>" 
         $("#geocode-capabilities-label").html(_html_capabilities)
 
 

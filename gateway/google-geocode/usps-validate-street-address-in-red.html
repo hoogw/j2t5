@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+     <!--Let browser know website is optimized for mobile-->
+     <meta name="viewport" charset='utf-8' content="initial-scale=1.0, width=device-width"/>
+
+    <title id="title">layer name</title>
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+   
+     
+    <link rel="stylesheet" href="../../stylesheets/full-screen.css">
+
+    
+
+</head>
+
+<body>
+          
+  
+  <div class='flex-container'>
+
+   <div class='map-3-left-width-undefined' style="width: 500px;">
+     <!-- input id='pac-input' type='search' placeholder='(google) addr. zip Pl.'/ -->  
+      <gmp-basic-place-autocomplete style="height: 25px;" slot="control-inline-start-block-start"></gmp-basic-place-autocomplete>
+      <gmp-place-details-compact hidden>
+            <gmp-place-details-place-request></gmp-place-details-place-request>
+            <gmp-place-standard-content></gmp-place-standard-content>
+      </gmp-place-details-compact>
+
+    <div id='street_view' style="height: 91%;"></div>
+   </div>
+
+    <div class='map-3-middle-width-auto'>
+
+      <div>
+        <span id="layer-info-vertical">Layer Name</span>
+       
+        <button type="button" id = "panToCurrent_geolocation_button">my-location</button>
+      </div>
+
+      <div id="map" style="height: 94%;"></div>
+
+    </div>
+
+    <div class='map-3-right-width-undefined' style="width: 400px;">
+
+      <div class='flex-column'>
+          <b>Fake street address is <span style="background-color: red;">RED</span>. Real address & Real POI has no color</b>
+      
+          
+          <input id="geocode-suggest-input" placeholder="e.g. gage/temp, home depot, 6510 miles,"/>
+          
+          <div>
+            <span style="font-size:large;" id="geocode-total-label"></span>
+            <button id="suggest_btn">suggest</button>
+            <button id="find_btn">find selected</button>
+            <span>zoom2level:</span><input id="zoom2level-input" type="text" size="1"></input>
+            <button id="clear_btn">clear</button>
+          </div>
+
+          <!-- size must be same as var max_suggestion_item_count = 50 -->
+          <select size=50 id="suggest-options" hidden></select>
+
+          </div>
+    </div>
+
+    <div class='map-3-right-width-undefined' style="width: 400px;">
+
+      <span style="font-size:xx-small;" id="geocode-capabilities-label"></span>
+      <span style="font-size:xx-small;" id="geocode-categories-label"></span>
+      <span style="font-size:xx-small;" id="geocode-crossstreetconnector-label"></span>
+          
+      <a style="font-size:xx-large;" target="_blank" href="https://tools.usps.com/zip-code-lookup.htm?byaddress">USPS address validation</a>
+      <div id='info-window-div' style="font-size: xx-small;"></div> 
+    </div>
+
+  </div>
+          
+  
+        
+  <script src="../../js/lib/parse-address/parse-address.min.js" type="text/javascript"></script>
+
+  
+  <script src="../../js/lib/proj4/dist/proj4.js"></script>
+  <script src="../../js/lib/wkt.js"></script>
+  <script src="../../js/lib/reproject/dist/reproject.js"></script>
+  <script src="../../js/lib/wellknown/wellknown.js"></script>
+
+
+  <script   src="../../js/lib/arcgis-to-geojson-utils/dist/arcgis-to-geojson.js"></script> 
+  <script   src="../../js/lib/turf/turf.min.js"></script>
+      
+  <script src="../../js/lib/stack.js"></script>  
+  <script src="../../js/arcgis/arcgis_common.js" type="text/javascript"></script>
+
+  <script src="../../js/gateway/share/google-geocode.js" type="text/javascript"></script>
+  <script src="../../js/gateway/share/google-for-all.js" type="text/javascript"></script>
+  <!-- default.js must load befor common_share.js -->
+  <script src="../../js/gateway/google-geocode/usps-validate-street-address-in-red/default.js" type="text/javascript"></script>
+  <script src="../../js/gateway/google-geocode/usps-validate-street-address-in-red/helper.js" type="text/javascript"></script>
+  <script src="../../js/gateway/google-geocode/usps-validate-street-address-in-red/common_share.js" type="text/javascript"></script>
+
+
+  
+
+  </body>
+</html>

@@ -1366,6 +1366,9 @@ var here_access_key_secret = 'pwIMT1pnm7xfW1Jlbd6L8Fs8c9i4eZwOqX_DctOprbhr3m9CJj
 /**/
      var usps_consumer_key = 'U9llNRAxuikEg3NZ06zc9TpHs4Ix4o6Q1herRrc8GecyXQnH'
      var usps_consumer_secret = 'G9yqFurJ8BPTGAw6xhMBmuKOyg1og2iC6830v9CU0IY0WTEuW8Gglo1XUirOj79A'
+     var usps_generate_token_url = "https://apis.usps.com/oauth2/v3/token"
+     var usps_token = ""
+     var usps_validate_address_url = "https://apis.usps.com/addresses/v3/address"
 /**/
 //   ---    ---    ---   end --- usps  ---    ---    --- 
 /**/
