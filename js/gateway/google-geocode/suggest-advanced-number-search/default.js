@@ -628,7 +628,7 @@
         
         
 
-  //show_locator_category() // not use to save space
+  show_locator_category() // must use
   set_geocode_server_name_as_layer_name()
 
  $("#geocode-suggest-input").on("keyup", suggest);
