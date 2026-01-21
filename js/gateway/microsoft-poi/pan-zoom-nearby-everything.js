@@ -100,6 +100,18 @@ var circle_datasource;
             var microsoft_search_nearby_response = await ajax_getjson_common(microsoft_search_nearby_url)
             console.log('search nearby result ', microsoft_search_nearby_response)
 
+
+
+
+        if (microsoft_search_nearby_response.error){
+
+            var _error_message_html = microsoft_search_nearby_response.error.code
+            _error_message_html += ", " + microsoft_search_nearby_response.error.message
+            $('#info-window-div').append("<span style='font-size:large;'>" + _error_message_html + "</span>")
+
+        } else {
+
+
             //  . . . street name need to further split  . . . 
             _current_geojson_POI = splitAddressMicrosoft_REST_API(microsoft_search_nearby_response.results)
             console.log('split Address Microsoft  ', _current_geojson_POI)
@@ -157,7 +169,7 @@ var circle_datasource;
             
 
 
-
+            }
                 
 
         }

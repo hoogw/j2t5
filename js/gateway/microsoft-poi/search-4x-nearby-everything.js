@@ -96,6 +96,16 @@ var circle_datasource;
 
 
 
+           
+         microsoft_search_nearby_response = NW_results     
+         if (microsoft_search_nearby_response.error){
+
+            var _error_message_html = microsoft_search_nearby_response.error.code
+            _error_message_html += ", " + microsoft_search_nearby_response.error.message
+            $('#info-window-div').append("<span style='font-size:large;'>" + _error_message_html + "</span>")
+
+        } else {
+
 
 
 
@@ -206,7 +216,7 @@ var circle_datasource;
             
 
 
-
+                }
          
         }
 

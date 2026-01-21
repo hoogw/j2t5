@@ -97,6 +97,19 @@ async function nearby_poi_16circle(_radiusMeter, _centerLng, _centerLat) {
             var NW1_results = await ajax_getjson_common(NW1_search_nearby_url)
             console.log('search nearby NW1_results ', NW1_results)
 
+
+            
+         microsoft_search_nearby_response = NW1_results     
+         if (microsoft_search_nearby_response.error){
+
+            var _error_message_html = microsoft_search_nearby_response.error.code
+            _error_message_html += ", " + microsoft_search_nearby_response.error.message
+            $('#info-window-div').append("<span style='font-size:large;'>" + _error_message_html + "</span>")
+
+        } else {
+
+
+
             var NW2_search_nearby_url =microsoft_search_nearby_url
             NW2_search_nearby_url += '&lat=' + quater_NW2[1]
             NW2_search_nearby_url += '&lon=' + quater_NW2[0]
@@ -368,6 +381,7 @@ async function nearby_poi_16circle(_radiusMeter, _centerLng, _centerLat) {
     
 
 
+                }
 
  
 }

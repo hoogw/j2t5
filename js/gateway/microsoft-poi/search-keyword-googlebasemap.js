@@ -18,6 +18,29 @@ var searchInput
                 
     async function nearby_poi(_centerLng, _centerLat) {
 
+        
+                // localhost bypass key, production enforce use user's key
+                var hostname = window.location.hostname;
+                var port = window.location.port;
+
+                console.log("hostname,port ", hostname, port);
+                if (hostname === "localhost" && port === '10') {
+                  console.log("The current URL is localhost.");
+                  // nothing to do with key
+                } else {
+
+                    // enforce user use their own api key  
+                    console.log("The current URL is not localhost. it is ", hostname);
+                    microsoft_azure_primary_key_restrict = $('#microsoftmap-key-input').val(); 
+                    update_url_parameter('yourMicrosoftKey', microsoft_azure_primary_key_restrict)
+                    if (microsoft_azure_primary_key_restrict){
+                    } else {
+                        $('#info-window-div').html("<span style='font-size:large;'>Must use your Microsoft Map API key !  <br></span>")   
+                    }
+                }//if
+                // . . .  end   . . . localhost bypass key, production enforce use user's key
+
+
         //default
         var microsoft_search_poi_url ="https://atlas.microsoft.com/search/poi/json?api-version=1.0"
 
@@ -47,6 +70,17 @@ var searchInput
         
             var microsoft_search_nearby_response = await ajax_getjson_common(microsoft_search_poi_url)
             console.log('search nearby result ', microsoft_search_nearby_response)
+
+
+    
+        if (microsoft_search_nearby_response.error){
+
+            var _error_message_html = microsoft_search_nearby_response.error.code
+            _error_message_html += ", " + microsoft_search_nearby_response.error.message
+            $('#info-window-div').append("<span style='font-size:large;'>" + _error_message_html + "</span>")
+
+        } else {
+
 
             //  . . . street name need to further split  . . . 
             _current_geojson_POI = splitAddressMicrosoft_REST_API(microsoft_search_nearby_response.results)
@@ -113,7 +147,7 @@ var searchInput
 
             
 
-
+            }
 
         
     }
