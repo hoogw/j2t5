@@ -1512,8 +1512,10 @@ $(document).ready(function() {
 
 
   var hostname = window.location.hostname;
+  var port = window.location.port;
 
-  if (hostname === "localhost" || hostname === "127.0.0.1") {
+  console.log("hostname,port ", hostname, port);
+  if (hostname === "localhost" && port === '10') {
     console.log("The current URL is localhost.");
     
     //for production
@@ -1522,7 +1524,7 @@ $(document).ready(function() {
     //use_your_key()
 
   } else {
-    console.log("The current URL is not localhost.");
+    console.log("The current URL is not localhost. it is ", hostname);
     use_your_key()
   }
        

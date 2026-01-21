@@ -89,7 +89,9 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
         
 
     var hostname = window.location.hostname;
-    if (hostname === "localhost" || hostname === "127.0.0.1") {
+  var port = window.location.port;
+    console.log("hostname,port ", hostname, port);
+  if (hostname === "localhost" && port === '10') {
         console.log("The current URL is localhost.");
         _photo_api_key = _google_place_api_key
     } else {
