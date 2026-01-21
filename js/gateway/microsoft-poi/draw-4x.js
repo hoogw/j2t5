@@ -1640,7 +1640,7 @@ function  add_dataSource_searchLayer(){
 
      
                 //for production
-                load_microsoft_map(microsoft_azure_primary_key_restrict)
+                load_microsoft_map(microsoft_azure_primary_key_public)
                 
 
 

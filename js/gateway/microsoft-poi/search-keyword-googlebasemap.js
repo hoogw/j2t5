@@ -1726,7 +1726,7 @@ function  add_dataSource_searchLayer(){
 
                 //for production
                 // .............. microsoft use google base map ..............
-                load_microsoft_basemap(microsoft_azure_primary_key_restrict)
+                load_microsoft_basemap(microsoft_azure_primary_key_public)
                 
         
 
