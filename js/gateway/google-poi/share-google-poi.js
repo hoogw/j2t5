@@ -168,12 +168,26 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
 
   async function google_reverseGeocode_show_1_poi_or_addr_with_place_photo(_lat_comma_lng_string){
 
-    your_google_api_key = $('#googlemap-key-input').val(); 
-    update_url_parameter('yourGoogleKey', your_google_api_key)
-    if (your_google_api_key){
+
+    var hostname = window.location.hostname;
+    var port = window.location.port;
+
+    console.log("hostname,port ", hostname, port);
+    if (hostname === "localhost" && port === '10') {
+      console.log("The current URL is localhost.");
+      // nothing to do with key
     } else {
-        $('#info-window-div').html("<span style='font-size:large;'>Must use your Google Map API key !</span>")   
-    }
+
+        // enforce user use their own api key  
+        console.log("The current URL is not localhost. it is ", hostname);
+        your_google_api_key = $('#googlemap-key-input').val(); 
+        update_url_parameter('yourGoogleKey', your_google_api_key)
+        if (your_google_api_key){
+        } else {
+            $('#info-window-div').html("<span style='font-size:large;'>Must use your Google Map API key !</span>")   
+        }
+
+    }//if
 
     // billing https://developers.google.com/maps/documentation/geocoding/usage-and-billing
     // https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=your_api_key
@@ -279,12 +293,25 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
   // will create multiple address point geojson
   async function google_reverseGeocode_multi_addr_2_pin(_lat_comma_lng_string){
 
-    your_google_api_key = $('#googlemap-key-input').val(); 
-    update_url_parameter('yourGoogleKey', your_google_api_key)
-    if (your_google_api_key){
+    var hostname = window.location.hostname;
+    var port = window.location.port;
+
+    console.log("hostname,port ", hostname, port);
+    if (hostname === "localhost" && port === '10') {
+      console.log("The current URL is localhost.");
+      // nothing to do with key
     } else {
-        $('#info-window-div').html("<span style='font-size:large;'>Must use your Google Map API key !</span>")   
-    }
+
+        // enforce user use their own api key  
+        console.log("The current URL is not localhost. it is ", hostname);
+        your_google_api_key = $('#googlemap-key-input').val(); 
+        update_url_parameter('yourGoogleKey', your_google_api_key)
+        if (your_google_api_key){
+        } else {
+            $('#info-window-div').html("<span style='font-size:large;'>Must use your Google Map API key !</span>")   
+        }
+
+    }//if
 
     // billing https://developers.google.com/maps/documentation/geocoding/usage-and-billing
     // https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=your_api_key
@@ -824,12 +851,29 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
 async function here_reverseGeocode_show_1_address(_lat_comma_lng_string){
 
 
-    heremap_api_key = $('#googlemap-key-input').val(); 
-    update_url_parameter('yourGoogleKey', heremap_api_key)
-    if (heremap_api_key){
+    var hostname = window.location.hostname;
+    var port = window.location.port;
+
+    console.log("hostname,port ", hostname, port);
+    if (hostname === "localhost" && port === '10') {
+      console.log("The current URL is localhost.");
+      // nothing to do with key
     } else {
-        $('#info-window-div').html("<span style='font-size:large;'>Must use your Here Map API key !</span>")   
-    }
+
+        // enforce user use their own api key  
+        console.log("The current URL is not localhost. it is ", hostname);
+        heremap_api_key = $('#googlemap-key-input').val(); 
+        update_url_parameter('yourGoogleKey', heremap_api_key)
+        if (heremap_api_key){
+        } else {
+            $('#info-window-div').html("<span style='font-size:large;'>Must use your Here Map API key !</span>")   
+        }
+
+    }//if
+
+
+
+
     
     // old api key works
     var _reverseGeocode_by_here_url = 'https://revgeocode.search.hereapi.com/v1/revgeocode?apikey=' + heremap_api_key
@@ -903,13 +947,30 @@ async function here_reverseGeocode_show_1_address(_lat_comma_lng_string){
 
 async function here_reverseGeocode_multi_addr_2_pin(_lat_comma_lng_string){
 
+    var hostname = window.location.hostname;
+    var port = window.location.port;
 
-    heremap_api_key = $('#googlemap-key-input').val(); 
-    update_url_parameter('yourGoogleKey', heremap_api_key)
-    if (heremap_api_key){
+    console.log("hostname,port ", hostname, port);
+    if (hostname === "localhost" && port === '10') {
+      console.log("The current URL is localhost.");
+      // nothing to do with key
     } else {
-        $('#info-window-div').html("<span style='font-size:large;'>Must use your Here Map API key !</span>")   
-    }
+
+        // enforce user use their own api key  
+        console.log("The current URL is not localhost. it is ", hostname);
+        heremap_api_key = $('#googlemap-key-input').val(); 
+        update_url_parameter('yourGoogleKey', heremap_api_key)
+        if (heremap_api_key){
+        } else {
+            $('#info-window-div').html("<span style='font-size:large;'>Must use your Here Map API key !</span>")   
+        }
+
+    }//if
+
+
+
+
+
     
     // old api key works
     var _reverseGeocode_by_here_url = 'https://revgeocode.search.hereapi.com/v1/revgeocode?apikey=' + heremap_api_key
