@@ -598,7 +598,12 @@ async function reverse_geocode(clicked_lng, clicked_lat){
     // error 
     $('#info-window-div').html(reverseGeocode_json.error.details[0] + "   " + reverseGeocode_json.error.message)
   } else {
-    $('#info-window-div').html(json_flex_tip_viewer(reverseGeocode_json.address))
+
+    var _reverse_geocode_html = "<span style='font-size:xx-large;'>"
+    _reverse_geocode_html += reverseGeocode_json.address.Match_addr
+    _reverse_geocode_html += "</span>"
+    $('#info-window-div').html(_reverse_geocode_html)
+    
   }//if 
 
 
