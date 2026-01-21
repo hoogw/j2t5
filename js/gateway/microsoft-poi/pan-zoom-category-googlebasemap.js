@@ -28,6 +28,30 @@ var circle_datasource;
        async function nearby_poi(_radiusMeter, _centerLng, _centerLat) {
 
 
+        
+
+                // localhost bypass key, production enforce use user's key
+                var hostname = window.location.hostname;
+                var port = window.location.port;
+
+                console.log("hostname,port ", hostname, port);
+                if (hostname === "localhost" && port === '10') {
+                  console.log("The current URL is localhost.");
+                  // nothing to do with key
+                } else {
+
+                    // enforce user use their own api key  
+                    console.log("The current URL is not localhost. it is ", hostname);
+                    microsoft_azure_primary_key_restrict = $('#microsoftmap-key-input').val(); 
+                    update_url_parameter('yourMicrosoftKey', microsoft_azure_primary_key_restrict)
+                    if (microsoft_azure_primary_key_restrict){
+                    } else {
+                        $('#info-window-div').html("<span style='font-size:large;'>Must use your Microsoft Map API key !  <br></span>")   
+                    }
+                }//if
+                // . . .  end   . . . localhost bypass key, production enforce use user's key
+
+
 
         //default
         var microsoft_search_poi_url ="https://atlas.microsoft.com/search/poi/category/json?api-version=1.0"

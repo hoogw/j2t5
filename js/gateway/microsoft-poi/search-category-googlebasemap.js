@@ -21,7 +21,7 @@ var searchInput
 
 
         
-/*
+
                 // localhost bypass key, production enforce use user's key
                 var hostname = window.location.hostname;
                 var port = window.location.port;
@@ -31,16 +31,16 @@ var searchInput
                   console.log("The current URL is localhost.");
                   // nothing to do with key
                 } else {
-*/
+
                     // enforce user use their own api key  
-//                    console.log("The current URL is not localhost. it is ", hostname);
+                    console.log("The current URL is not localhost. it is ", hostname);
                     microsoft_azure_primary_key_restrict = $('#microsoftmap-key-input').val(); 
                     update_url_parameter('yourMicrosoftKey', microsoft_azure_primary_key_restrict)
                     if (microsoft_azure_primary_key_restrict){
                     } else {
                         $('#info-window-div').html("<span style='font-size:large;'>Must use your Microsoft Map API key !  <br></span>")   
                     }
-//                }//if
+                }//if
                 // . . .  end   . . . localhost bypass key, production enforce use user's key
 
 
