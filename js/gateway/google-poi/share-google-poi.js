@@ -184,7 +184,7 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
         update_url_parameter('yourGoogleKey', your_google_api_key)
         if (your_google_api_key){
         } else {
-            $('#info-window-div').html("<span style='font-size:large;'>Must use your Google Map API key !</span>")   
+            $('#info-window-div').html("<span style='font-size:large;'>Must use your Google Map API key !  <br></span>")   
         }
 
     }//if
@@ -277,7 +277,7 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
 
     // no result
      if (addressResult.error_message){
-        $('#info-window-div').html("<span style='font-size:large;'>" +addressResult.error_message + "</span>")
+        $('#info-window-div').append("<span style='font-size:large;'>" +addressResult.error_message + "</span>")
      } else {
         $('#info-window-div').html("<span style='font-size:large;'>" + 'Nothing found' + "</span>")
      }//if
@@ -308,7 +308,7 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
         update_url_parameter('yourGoogleKey', your_google_api_key)
         if (your_google_api_key){
         } else {
-            $('#info-window-div').html("<span style='font-size:large;'>Must use your Google Map API key !</span>")   
+            $('#info-window-div').html("<span style='font-size:large;'>Must use your Google Map API key !  <br></span>")   
         }
 
     }//if
@@ -400,7 +400,7 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
 
     // no result
      if (addressResult.error_message){
-        $('#info-window-div').html("<span style='font-size:large;'>" +addressResult.error_message + "</span>")
+        $('#info-window-div').append("<span style='font-size:large;'>" +addressResult.error_message + "</span>")
      } else {
         $('#info-window-div').html("<span style='font-size:large;'>" + 'Nothing found' + "</span>")
      }//if
@@ -934,7 +934,7 @@ async function here_reverseGeocode_show_1_address(_lat_comma_lng_string){
         
         // no result
      if (addressResult.error){
-        $('#info-window-div').html("<span style='font-size:large;'>" + addressResult.error + " , " + addressResult.error_description  + "</span>")
+        $('#info-window-div').append("<span style='font-size:large;'>" + addressResult.error + " , " + addressResult.error_description  + "</span>")
      } else {
         $('#info-window-div').html("<span style='font-size:large;'>" +'Nothing found'  + "</span>")
      }//if
@@ -1071,7 +1071,7 @@ async function here_reverseGeocode_multi_addr_2_pin(_lat_comma_lng_string){
     
     // no result
      if (addressResult.error){
-        $('#info-window-div').html("<span style='font-size:large;'>" + addressResult.error + " , " + addressResult.error_description  + "</span>")
+        $('#info-window-div').append("<span style='font-size:large;'>" + addressResult.error + " , " + addressResult.error_description  + "</span>")
      } else {
         $('#info-window-div').html("<span style='font-size:large;'>" +'Nothing found'  + "</span>")
      }//if

@@ -1487,6 +1487,10 @@ var highlighted_color = '#1F51FF' // Neon Blue
 $(document).ready(function() {
 
 
+    import_google_map_dynamic_library(_google_public_map_only_api_key)
+  
+
+/*
   var hostname = window.location.hostname;
   var port = window.location.port;
 
@@ -1503,6 +1507,8 @@ $(document).ready(function() {
     console.log("The current URL is not localhost. it is ", hostname);
     use_your_key()
   }
+
+  */
        
 });
 
