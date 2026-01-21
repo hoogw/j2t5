@@ -1517,22 +1517,8 @@ var highlighted_color = '#1F51FF' // Neon Blue
 $(document).ready(function() {
 
 
-  var hostname = window.location.hostname;
-  var port = window.location.port;
-
-  console.log("hostname,port ", hostname, port);
-  if (hostname === "localhost" && port === '10') {
-    console.log("The current URL is localhost.");
-    
-    //for production
-    import_google_map_dynamic_library(_google_place_api_key)
-    // for test only
-    //use_your_key()
-
-  } else {
-    console.log("The current URL is not localhost. it is ", hostname);
-    use_your_key()
-  }
+  import_google_map_dynamic_library(_google_public_map_only_api_key)
+  
        
 });
 
