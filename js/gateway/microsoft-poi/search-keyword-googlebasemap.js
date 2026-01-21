@@ -1724,39 +1724,10 @@ function  add_dataSource_searchLayer(){
 
 
 
-
-
-
-
-/**/
-//  --- use your key  --- 
-/**/
-
-
-            var hostname = window.location.hostname;
-  var port = window.location.port;
-
-            console.log("hostname,port ", hostname, port);
-  if (hostname === "localhost" && port === '10') {
-                console.log("The current URL is localhost.");
-                
                 //for production
                 // .............. microsoft use google base map ..............
                 load_microsoft_basemap(microsoft_azure_primary_key_restrict)
-                // for test only
-                //use_your_key()
-
-            } else {
-                console.log("The current URL is not localhost. it is ", hostname);
-                use_your_key("google")
-            }
-
-
-    
-/**/
-//  --- end  ---  use your key    --- 
-/**/
-
+                
         
 
         }// get map function 
