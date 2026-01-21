@@ -418,6 +418,34 @@
                     
             async function nearby_poi_x_circle(_radiusMeter, _centerLng, _centerLat){
 
+
+              
+                          
+
+                // localhost bypass key, production enforce use user's key
+                var hostname = window.location.hostname;
+                var port = window.location.port;
+
+                console.log("hostname,port ", hostname, port);
+                if (hostname === "localhost" && port === '10') {
+                  console.log("The current URL is localhost.");
+                  // nothing to do with key
+                } else {
+
+                    // enforce user use their own api key  
+                    console.log("The current URL is not localhost. it is ", hostname);
+                    _google_place_api_key = $('#googlemap-key-input').val(); 
+                    update_url_parameter('yourGoogleKey', your_google_api_key)
+                    if (your_google_api_key){
+                    } else {
+                        $('#info-window-div').html("<span style='font-size:large;'>Must use your Google Map API key !  <br></span>")   
+                    }
+                }//if
+                // . . .  end   . . . localhost bypass key, production enforce use user's key
+
+
+
+
                 drawing_4circle(_radiusMeter, _centerLng, _centerLat)
 
                       
