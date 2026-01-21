@@ -342,9 +342,10 @@ async function reverse_geocode(clicked_lng, clicked_lat){ // only for test-geoco
       // error 
       $('#info-window-div').html(reverseGeocode_json.error.details[0] + "   " + reverseGeocode_json.error.message)
     } else {
-      
+
       var _reverse_geocode_html = "<span style='font-size:xx-large;'>"
-    _reverse_geocode_html += reverseGeocode_json.address.Match_addr
+    //_reverse_geocode_html += reverseGeocode_json.address.Match_addr
+    _reverse_geocode_html += reverseGeocode_json.address.LongLabel
     _reverse_geocode_html += "</span>"
     $('#info-window-div').html(_reverse_geocode_html)
 
@@ -691,14 +692,10 @@ async function reverse_geocode(clicked_lng, clicked_lat){ // only for test-geoco
 
           if (_candidates_array.length){
 
-          var _candidates_html = ''
-          for (let i = 0; i < _candidates_array.length; i++) {
-            var _item = _candidates_array[i]
-            _candidates_html +=  "<b>" + (i+1) + '. ' +  "</b>" 
-            _candidates_html +=  "<mark>" + _item["address"] +  "</mark>" 
-            _candidates_html += json_flex_tip_viewer(_item["attributes"])
-          }//for
-          $('#info-window-div').html(_candidates_html)
+          var _candidates_html = "<span style='font-size:xx-large;'>"
+             _candidates_html +=  _candidates_array[0].attributes.LongLabel
+             _candidates_html += "</span>"
+             $('#info-window-div').html(_candidates_html)
 
 
           var candidate_lng = findAddressCandidatesGeocode_json.candidates[0].location.x
