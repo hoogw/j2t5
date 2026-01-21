@@ -52,21 +52,27 @@
 
     <div class='map-3-right-width-undefined' style="width: 600px;">
 
-      
-          <input id="geocode-suggest-input" placeholder="e.g. gage/temp, home depot, 6510 miles,"/>
+     
+          
           
          
+          <div class='flex-column'>
+          <div>
+          
             <span style="font-size:large;" id="geocode-total-label"></span>
             <button id="suggest_btn">suggest</button>
             <button id="find_btn">find selected</button>
             <span>zoom2level:</span><input id="zoom2level-input" type="text" size="1"></input>
             <button id="clear_btn">clear</button>
-         
+          </div>
+          <input id="geocode-suggest-input" style="font-size:large; width: 100%;box-sizing: border-box;" placeholder="e.g. gage/temp, home depot, 6510 miles,"/>
+        
 
           <!-- size must be same as var max_suggestion_item_count = 50 -->
           <select size=50 id="suggest-options" hidden></select>
 
-          
+      </div> 
+         
     </div>
 
     <div class='map-3-right-width-undefined' style="width: 300px;">
