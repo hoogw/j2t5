@@ -25,7 +25,7 @@
   
   <div class='flex-container'>
 
-   <div class='map-3-left-width-undefined' style="width: 600px;">
+   <div class='map-3-left-width-undefined' style="width: 500px;">
      <!-- input id='pac-input' type='search' placeholder='(google) addr. zip Pl.'/ -->  
       <gmp-basic-place-autocomplete style="height: 25px;" slot="control-inline-start-block-start"></gmp-basic-place-autocomplete>
       <gmp-place-details-compact hidden>
@@ -41,36 +41,37 @@
 
     <div class='map-3-middle-width-auto'>
 
+      <b>Duplicate Motorola Flex CAD</b>
+          <b>What you see here is exactly what you see in Motorola Flex CAD</b>
+          <b>POI is always at bottom. Real and fake address is always on top. Add special char such as @ or single quote or !,# etc..will enforce Flex popup POI on top</b>
+
       <div id="map" style="height: 86.4%;"></div>
 
     </div>
 
-    <div class='map-3-right-width-undefined' style="width: 450px;">
+    <div class='map-3-right-width-undefined' style="width: 600px;">
 
-      <div class='flex-column'>
-          <b>Duplicate Motorola Flex CAD</b>
-          <b>What you see here is exactly what you see in Motorola Flex CAD</b>
-          <b>POI is always at bottom. Real and fake address is always on top. Add special char such as @ or single quote or !,# etc..will enforce Flex popup POI on top</b>
-
+     
+          
       
           
           <input id="geocode-suggest-input" placeholder="e.g. gage/temp, home depot, 6510 miles,"/>
           
-          <div>
+        
             <span style="font-size:large;" id="geocode-total-label"></span>
             <button id="suggest_btn">suggest</button>
             <button id="find_btn">find selected</button>
             <span>zoom2level:</span><input id="zoom2level-input" type="text" size="1"></input>
             <button id="clear_btn">clear</button>
-          </div>
+         
 
           <!-- size must be same as var max_suggestion_item_count = 50 -->
           <select size=50 id="suggest-options" hidden></select>
 
-          </div>
+          
     </div>
 
-    <div class='map-3-right-width-undefined' style="width: 250px;">
+    <div class='map-3-right-width-undefined' style="width: 300px;">
 
       
       
