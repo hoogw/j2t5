@@ -497,7 +497,141 @@ function firstTime1TimeSearchKeywords(){
         
         
 
+        // check category
+        geocode_json = await ajax_getjson_common(background_layer_url + "?f=json")
+        console.log(' geocode_json ', geocode_json) 
+
+
+        // 1
+        var _html_capabilities = "<b>1.</b> Click map show <b>Address</b>,  "
+        if (geocode_json.capabilities){
+          if (! geocode_json.capabilities.includes("ReverseGeocode")){
+            //_html_capabilities += warning_icon 
+            _html_capabilities += "warning: missing ReverseGeocode capability"
+          } 
+          //_html_capabilities +=  yes_icon
+          _html_capabilities += "locator capabilities:(" + geocode_json.capabilities + ")"
+        } 
+        //_html_capabilities += "<br>" 
+        $("#geocode-capabilities-label").html(_html_capabilities)
+
+
+
+        // 2
+        var _html_categories = "<b>2.</b> Search locator <b>Categories</b>,   "
+        if (! geocode_json.capabilities.includes("Suggest")){
+           _html_categories    += warning_icon
+           _html_categories    += "warning: missing Suggest capability"
+        } 
+        if (geocode_json.categories){
+         for (let j = 0; j < geocode_json.categories.length; j++) {
+
+                    //_html_categories   += yes_icon
+                    _html_categories    +=  "Role#"+ (j+1) + ":<b>" + geocode_json.categories[j].name + "</b>"
+                    standard_categories_flat_array.push(geocode_json.categories[j].name)
+
+
+                    // p-a-r-c-e-l category don't have sub-category
+                    if (geocode_json.categories[j].categories){
+
+                        _html_categories    += "{Cat.( "
+
+                        for (let k = 0; k < geocode_json.categories[j].categories.length; k++) {
+                            
+                          if (geocode_json.categories[j].name == "POI"){
+
+                            // only poi category
+                            poi_cat_flat_array.push(geocode_json.categories[j].categories[k].name)
+
+                          } else {
+
+                            // except POI all other category
+                            standard_categories_flat_array.push(geocode_json.categories[j].categories[k].name)
+                          }
+
+
+                            _html_categories    += geocode_json.categories[j].categories[k].name
+                            _html_categories    += ', '
+                        }//for
+
+                        _html_categories    += ' )'
+                        _html_categories    += ' },  '
+                        
+
+                    }//if
+
+                    _html_categories    += '  '
+                    //_html_categories   += '<br>'
+
+                }//for
+
+
+
+
+               // fake street address warning 
+                var fake_address_found = false
+                for (let f = 0; f < geocode_json.categories.length; f++) {
+
+                    // p-a-r-c-e-l category don't have sub-category
+                    if (geocode_json.categories[f].categories){
+
+                        for (let h = 0; h < geocode_json.categories[f].categories.length; h++) {
+                          if (geocode_json.categories[f].categories[h].name == "Street Address"){
+                            //_html_categories   += warning_icon
+                            _html_categories   += '<span>Warning: fake street address</span>'
+                            fake_address_found = true
+                            //_html_categories   += '<br>'
+                            break;
+                          }//if
+                        }//for
+
+                    }//if
+                }//for
+                if (!(fake_address_found)){
+                   //_html_categories   += info_icon + '<span>street address (estimated,may not real)  NOT present</span>'
+                }
+               // _html_categories   += '<br>'
+              // - -  end  - -  fake street address warning 
+
+
+
+
+
+
+        }//if 
+        _html_categories    += "</br>"
+        $("#geocode-categories-label").html(_html_categories)
+        console.log("standard_categories_flat_array", standard_categories_flat_array)
+        console.log("poi_cat_flat_array", poi_cat_flat_array)
+
+
+
+
+        // 3 
+        var _html_cross_street_connector =  "<b>3.</b> Search <b>Cross Street</b> "  
+        if (geocode_json.locatorProperties.IntersectionConnectors){
+          //_html_cross_street_connector +=  yes_icon
+          _html_cross_street_connector += "use customized:[ <b>" + geocode_json.locatorProperties.IntersectionConnectors 
+        } else {
+                 //https://pro.arcgis.com/en/pro-app/latest/help/data/geocoding/fundamentals-of-intersection-geocoding.htm
+                 if (fake_address_found){
+                  //_html_cross_street_connector  += yes_icon
+                  _html_cross_street_connector  += "Use Default:[ <b>" + '&, |, \\, and, at' 
+                 } else {
+                  //_html_cross_street_connector  += warning_icon
+                  _html_cross_street_connector  += "Either Not Available or Use Default:[ <b>" + '&, |, \\, and, at' 
+                 } 
+        }
+
+        _html_cross_street_connector += "</b> ]between 2 street name"
+        _html_cross_street_connector   += '<br>'
+        $("#geocode-crossstreetconnector-label").html(_html_cross_street_connector)
+        console.log("cross street connector", geocode_json.locatorProperties.IntersectionConnectors)
+      
+
+
       }
+
 
 
 
