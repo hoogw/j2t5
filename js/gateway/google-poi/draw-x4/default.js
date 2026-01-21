@@ -539,7 +539,7 @@
                         // Handle error response
                         console.log("ajax error:", textStatus, errorThrown, jqXHR);
                     var _error_message_html = jqXHR.responseJSON.error.message
-                    $('#info-window-div').append("<span>" + _error_message_html + "</span>")
+                    $('#info-window-div').html("<span style='font-size:large;'>Must use your Microsoft Map API key !  <br></span>")
                       }
                     }); 
                     console.log(' place search nearby results : ', response_raw);

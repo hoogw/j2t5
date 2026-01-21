@@ -18,6 +18,34 @@ var searchInput
                 
     async function nearby_poi(_centerLng, _centerLat) {
 
+
+
+        
+/*
+                // localhost bypass key, production enforce use user's key
+                var hostname = window.location.hostname;
+                var port = window.location.port;
+
+                console.log("hostname,port ", hostname, port);
+                if (hostname === "localhost" && port === '10') {
+                  console.log("The current URL is localhost.");
+                  // nothing to do with key
+                } else {
+*/
+                    // enforce user use their own api key  
+//                    console.log("The current URL is not localhost. it is ", hostname);
+                    microsoft_azure_primary_key_restrict = $('#microsoftmap-key-input').val(); 
+                    update_url_parameter('yourMicrosoftKey', microsoft_azure_primary_key_restrict)
+                    if (microsoft_azure_primary_key_restrict){
+                    } else {
+                        $('#info-window-div').html("<span style='font-size:large;'>Must use your Microsoft Map API key !  <br></span>")   
+                    }
+//                }//if
+                // . . .  end   . . . localhost bypass key, production enforce use user's key
+
+
+
+
         //default
         var microsoft_search_poi_url ="https://atlas.microsoft.com/search/poi/category/json?api-version=1.0"
 
@@ -47,24 +75,35 @@ var searchInput
 
             
         
-            var microsoft_search_nearby_response = await ajax_getjson_common(microsoft_search_poi_url)
-            console.log('search nearby result ', microsoft_search_nearby_response)
-
-            //  . . . street name need to further split  . . . 
-            _current_geojson_POI = splitAddressMicrosoft_REST_API(microsoft_search_nearby_response.results)
-            console.log('split Address Microsoft  ', _current_geojson_POI)
-            // . . .  end  . . .  street name need to further split
+        var microsoft_search_nearby_response = await ajax_getjson_common(microsoft_search_poi_url)
+        console.log('search nearby result ', microsoft_search_nearby_response)
 
 
+        if (microsoft_search_nearby_response.error){
+
+            var _error_message_html = microsoft_search_nearby_response.error.code
+            _error_message_html += ", " + microsoft_search_nearby_response.error.message
+            $('#info-window-div').append("<span style='font-size:large;'>" + _error_message_html + "</span>")
+
+        } else {
 
 
 
-        //  . . efficient core newOnly  . - .
-        _this_newOnly_result_array = []
+                //  . . . street name need to further split  . . . 
+                _current_geojson_POI = splitAddressMicrosoft_REST_API(microsoft_search_nearby_response.results)
+                console.log('split Address Microsoft  ', _current_geojson_POI)
+                // . . .  end  . . .  street name need to further split
 
 
-        //  . . .  test if this new poi already exist  . . . 
-        _this_result_array = _current_geojson_POI.features
+
+
+
+                //  . . efficient core newOnly  . - .
+                _this_newOnly_result_array = []
+
+
+                //  . . .  test if this new poi already exist  . . . 
+                _this_result_array = _current_geojson_POI.features
                 for (let p = 0; p < _this_result_array.length; p++) {
                     _uniqueID = _this_result_array[p].properties.poi_id
                     if (_all_poi_uniqueID_array.includes(_uniqueID)){
@@ -84,7 +123,7 @@ var searchInput
                 console.log('_all_poi_uniqueID_array  ', _all_poi_uniqueID_array)
                 console.log('_all_poi_flat_array  ', _all_poi_flat_array)
 
-                
+
                 // not use, version 1. for single c i r c l e version
                 //datasource.add(poi_geojson);
                 // in use,  version 2. accumulate 
@@ -104,11 +143,11 @@ var searchInput
                     // . .  end . . efficient core newOnly  . - .
 
                 //   . . .  end  . . .  . . .  test if this new poi already exist  . . . 
-                
-
-            
 
 
+
+
+     }//if error
 
         
     }
@@ -1688,36 +1727,9 @@ function  add_dataSource_searchLayer(){
 
 
 
-
-/**/
-//  --- use your key  --- 
-/**/
-
-
-            var hostname = window.location.hostname;
-  var port = window.location.port;
-
-            console.log("hostname,port ", hostname, port);
-  if (hostname === "localhost" && port === '10') {
-                console.log("The current URL is localhost.");
-                
-                //for production
                 // .............. microsoft use google base map ..............
                 load_microsoft_basemap(microsoft_azure_primary_key_restrict)
-                // for test only
-                //use_your_key()
-
-            } else {
-                console.log("The current URL is not localhost. it is ", hostname);
-                use_your_key("google")
-            }
-
-
-    
-/**/
-//  --- end  ---  use your key    --- 
-/**/
-
+                
         
 
         }// get map function 
