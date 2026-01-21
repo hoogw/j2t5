@@ -2459,51 +2459,92 @@ const svg_icon_path_pin3 = "M4.146.146A.5.5 0 0 1 4.5 0h7a.5.5 0 0 1 .5.5c0 .68-
                       // Only for our rest api,https://localhost:3200/restapi/rest_url?select=*&where=
                       //  without _url + '?f=json',  without jsonp
                       // return json, no need parse.
-                      async function ajax_getjson_common(_url){
-                                              // ___url_string = 'https://localhost:3200/restapi/rest_url?select=*&where=type='folder'&orderby=name&asc_desc=asc'
-                                              var ___url_getJson = _url;
-                                              var input;
-                                                
-                         try{                            
-                                          input = await $.ajax({
-                                                                                              timeout:_timeout,
-                                                                                              url:___url_getJson,
-                                                                                              success: function (data) {                                                                                                         
-                                                                                              }, // success
-                                                                                              error: function (error) {
-                                                                                                console.log('ajax json failed ', error)
-                                                                                              }                                                                                              
-                                                              });
-                                        return input                    
-                         } catch{
-                                        return null 
+                      async function ajax_getjson_common(___url_getJson){
+                        
+                        console.log('ajax_getjson_common url is ',___url_getJson) 
+                        var response
+                        var error_response_json
+                        
+                        try{
+                            response = await $.ajax({
+                                    timeout:_timeout,
+                                    type: "get",
+                                    url:___url_getJson,
+                                    
 
-                         }   
+                                    success: function (data) { 
+                                      console.log('ajax json success ', data)
+                                      // return function here only return to ajax response, not return of this whole function
+                                    }, // success
+
+
+
+                                    error: function (jqXHR) {
+                                      console.log('ajax json failed, jqXHR.responseJSON', jqXHR.responseJSON)
+                                      // ajax failed, error
+                                      error_response_json = jqXHR.responseJSON 
+                                    }                                                                                              
+                            });
+
+                        } catch {
+
+                          console.log('catch error for ajax_getjson_common ', error_response_json) 
+                          return error_response_json
+                        }
+
+
+                        if (typeof response === 'object') {
+                          // is object
+                          return response 
+                        } else {
+                          // is string
+                          return (JSON.parse(response))
+                        }  
+                         
+                          
                       }
 
+                      async function ajax_getjson_common_custom_timeout(___url_getJson, custom_timeout){
+                        
+                        console.log('ajax_getjson_common url is ',___url_getJson) 
+                        var response
+                        var error_response_json
+                        
+                        try{
+                            response = await $.ajax({
+                                    timeout: custom_timeout,
+                                    type: "get",
+                                    url:___url_getJson,
+                                    
+
+                                    success: function (data) { 
+                                      console.log('ajax json success ', data)
+                                      // return function here only return to ajax response, not return of this whole function
+                                    }, // success
 
 
 
-                      async function ajax_getjson_common_custom_timeout(_url, custom_timeout){
-                        // ___url_string = 'https://localhost:3200/restapi/rest_url?select=*&where=type='folder'&orderby=name&asc_desc=asc'
-                        var ___url_getJson = _url;
-                        var input;
-                          
-                        try{                            
-                                          input = await $.ajax({
-                                                                                              timeout:custom_timeout,
-                                                                                              url:___url_getJson,
-                                                                                              success: function (data) {                                                                                                         
-                                                                                              }, // success
-                                                                                              error: function (error) {
-                                                                                                console.log('ajax json failed ', error)
-                                                                                              }                                                                                              
-                                                              });
-                                        return input                    
-                        } catch{
-                                        return null 
+                                    error: function (jqXHR) {
+                                      console.log('ajax json failed, jqXHR.responseJSON', jqXHR.responseJSON)
+                                      // ajax failed, error
+                                      error_response_json = jqXHR.responseJSON 
+                                    }                                                                                              
+                            });
 
-                        }   
+                        } catch {
+
+                          console.log('catch error for ajax_getjson_common ', error_response_json) 
+                          return error_response_json
+                        }
+
+
+                        if (typeof response === 'object') {
+                          // is object
+                          return response 
+                        } else {
+                          // is string
+                          return (JSON.parse(response))
+                        }  
                       }
 
 
@@ -4603,13 +4644,13 @@ view.goTo({
 
           var addressResult_string = await ajax_getjson_common(_esri_reverse_geocode_url)
           console.log("reverse geocode address results :  ", addressResult_string)
-          var addressResult = convert_to_json(addressResult_string)
-          console.log('LongLabel address', addressResult.address.LongLabel)
-          address_value_html = '<span style="font-size:13px;">' + addressResult.address.LongLabel +   '</span>' 
+          var addressResult_json = convert_to_json(addressResult_string)
+          console.log('LongLabel address', addressResult_json.address.LongLabel)
+          address_value_html = '<span style="font-size:13px;">' + addressResult_json.address.LongLabel +   '</span>' 
           $('#message').html(address_value_html)
 
 
-          //$('#info-window-div').html(json_flex_tip_viewer(addressResult.address))
+          //$('#info-window-div').html(json_flex_tip_viewer(addressResult_json.address))
 
 
    }

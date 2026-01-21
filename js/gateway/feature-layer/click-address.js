@@ -204,13 +204,13 @@
 
           var addressResult_string = await ajax_getjson_common(_esri_reverse_geocode_url)
           console.log("reverse geocode address results :  ", addressResult_string)
-          var addressResult = convert_to_json(addressResult_string)
-          console.log('LongLabel address', addressResult.address.LongLabel)
-          address_value_html = '<span style="font-size:xx-large;">' + addressResult.address.LongLabel +   '</span>' 
+          var addressResult_json = convert_to_json(addressResult_string)
+          console.log('LongLabel address', addressResult_json.address.LongLabel)
+          address_value_html = '<span style="font-size:xx-large;">' + addressResult_json.address.LongLabel +   '</span>' 
           $('#message').html(address_value_html)
 
 
-          $('#info-window-div').html(json_flex_tip_viewer(addressResult.address))
+          $('#info-window-div').html(json_flex_tip_viewer(addressResult_json.address))
 
 
         }); // view . on . click

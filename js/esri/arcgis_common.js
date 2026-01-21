@@ -2328,86 +2328,98 @@ function init_global_var(){
 
 
 
-                      // Only for our rest api,https://localhost:3200/restapi/rest_url?select=*&where=
+                       // Only for our rest api,https://localhost:3200/restapi/rest_url?select=*&where=
                       //  without _url + '?f=json',  without jsonp
                       // return json, no need parse.
-                      async function ajax_getjson_common(_url){
-
+                      async function ajax_getjson_common(___url_getJson){
                         
-
-                        // ___url_string = 'https://localhost:3200/restapi/rest_url?select=*&where=type='folder'&orderby=name&asc_desc=asc'
-                        var ___url_getJson = _url;
-                        var response_json
-                        var input;             
+                        console.log('ajax_getjson_common url is ',___url_getJson) 
+                        var response
+                        var error_response_json
                         
-                        try{                     
-                                                          
-                              input = await $.ajax({
-                                timeout:_timeout,
-                                 url:___url_getJson,
-                                 success: function (data) {                                              
-                                 }, // success                                              
-                                 error: function (error) {                                     
-                                    console.log('ajax json failed ', error)                                                       
-                                 }                                                            
-                              });                 
-                              if (typeof input === 'object') {
-                                // is object
-                                response_json = input
-                              } else {
-                                        // is string
-                                        response_json = JSON.parse(input)
-                              }        
+                        try{
+                            response = await $.ajax({
+                                    timeout:_timeout,
+                                    type: "get",
+                                    url:___url_getJson,
+                                    
 
-                              return response_json                    
-                         } catch{
-                           return null
-                         }                               
-                                                       
-                                  
-                            
-                            
-
-
-                      
-                      }
+                                    success: function (data) { 
+                                      console.log('ajax json success ', data)
+                                      // return function here only return to ajax response, not return of this whole function
+                                    }, // success
 
 
 
+                                    error: function (jqXHR) {
+                                      console.log('ajax json failed, jqXHR.responseJSON', jqXHR.responseJSON)
+                                      // ajax failed, error
+                                      error_response_json = jqXHR.responseJSON 
+                                    }                                                                                              
+                            });
 
-                      async function ajax_getjson_timeout(_url, custom_timeout){
+                        } catch {
 
-                        // ___url_string = 'https://localhost:3200/restapi/rest_url?select=*&where=type='folder'&orderby=name&asc_desc=asc'
-                        var ___url_getJson = _url;
-                        var input;
-                        var response_json
-                        try{             
-                              input = await $.ajax({
-                                                                      timeout:custom_timeout,
-                                                                      url:___url_getJson,
-                                                                      success: function (data) {
-                                                                      }, // success
-                                                                      
-                                                                      error: function (error) {
-                                                                        console.log('ajax json failed ', error) 
-                                                                      }
-                                      });
+                          console.log('catch error for ajax_getjson_common ', error_response_json) 
+                          return error_response_json
+                        }
 
 
-                              if (typeof input === 'object') {
-                                        // is object
-                                        response_json = input
-                              } else {
-                                        // is string
-                                        response_json = JSON.parse(input)
-                              }        
-
-                              return response_json                    
-                        } catch{
-                                        return null
+                        if (typeof response === 'object') {
+                          // is object
+                          return response 
+                        } else {
+                          // is string
+                          return (JSON.parse(response))
                         }  
-
+                         
+                          
                       }
+
+                      async function ajax_getjson_common_custom_timeout(___url_getJson, custom_timeout){
+                        
+                        console.log('ajax_getjson_common url is ',___url_getJson) 
+                        var response
+                        var error_response_json
+                        
+                        try{
+                            response = await $.ajax({
+                                    timeout: custom_timeout,
+                                    type: "get",
+                                    url:___url_getJson,
+                                    
+
+                                    success: function (data) { 
+                                      console.log('ajax json success ', data)
+                                      // return function here only return to ajax response, not return of this whole function
+                                    }, // success
+
+
+
+                                    error: function (jqXHR) {
+                                      console.log('ajax json failed, jqXHR.responseJSON', jqXHR.responseJSON)
+                                      // ajax failed, error
+                                      error_response_json = jqXHR.responseJSON 
+                                    }                                                                                              
+                            });
+
+                        } catch {
+
+                          console.log('catch error for ajax_getjson_common ', error_response_json) 
+                          return error_response_json
+                        }
+
+
+                        if (typeof response === 'object') {
+                          // is object
+                          return response 
+                        } else {
+                          // is string
+                          return (JSON.parse(response))
+                        }  
+                      }
+
+
 
 
 

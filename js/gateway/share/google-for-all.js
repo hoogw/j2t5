@@ -1903,18 +1903,18 @@ var _google_public_map_only_api_key = "AIzaSyCeIFVL6oxxXNT7NToJjfU4J9TV2J8m4vE"
 
                                 success: function (data) {
 
-                                  var addressResult
+                                  var address__Result
                                   if (typeof data === 'object') {
                                      // is object
-                                     addressResult = data
+                                     address__Result = data
                                   } else {
                                      // is string
-                                     addressResult = JSON.parse(data)
+                                     address__Result = JSON.parse(data)
                                   }
                                 
-                                  console.log('address result', addressResult)
-                                  console.log('1st address', addressResult.results[0].formatted_address)
-                                  address_value_html = '<span style="font-size:64px;">' + addressResult.results[0].formatted_address +   '</span>'  
+                                  console.log('address result', address__Result)
+                                  console.log('1st address', address__Result.results[0].formatted_address)
+                                  address_value_html = '<span style="font-size:64px;">' + address__Result.results[0].formatted_address +   '</span>'  
                                   
                                   $('#address_span').html(address_value_html)
 

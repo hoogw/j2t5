@@ -710,79 +710,53 @@ var _full_geojson_url;
 
 
 
-
-            
-                    // for our rest api,https://localhost:3200/restapi/rest_url?select=*&where=
-                    //  without _url + '?f=json',  without jsonp(regular)
-                    // return json, no need parse.
-                    async function ajax_getjson_common(_url){
+                       // Only for our rest api,https://localhost:3200/restapi/rest_url?select=*&where=
+                      //  without _url + '?f=json',  without jsonp
+                      // return json, no need parse.
+                      async function ajax_getjson_common(___url_getJson){
                         
-                            
-
-                        // ___url_string = 'https://localhost:3200/restapi/rest_url?select=*&where=type='folder'&orderby=name&asc_desc=asc'
-                        var ___url_getJson = _url;
-
-                        console.log('ajax_getjson_common === ',___url_getJson)   
-
-
-
+                        console.log('ajax_getjson_common url is ',___url_getJson) 
+                        var response
+                        var error_response_json
                         
-                        
-                            try {
-                                
-                                // add timeout, because if one ajax pending for ever, it could skip it move to next ajax, instead of stuck for ever.
-                                
-                                var response_string = await $.ajax({
-                                                                    timeout:_timeout,
-                                                                    url:___url_getJson,
-                                                                    success: function (data) {
-                                                                            return data;     
-                                                                    }, // success
-                                                                    
-                                                                    // Type: Function( jqXHR jqXHR, String textStatus, String errorThrown )
-                                                                        error: function (jqXHR, textStatus, errorThrown) {
-                                                                                    // ajax failed
-                                                                            var _error_status = textStatus + ' : ' + errorThrown         
-                                                                            console.log('ajax error  + ', _error_status)
-                                                                        }// error
-                                                                    
-                                                                });
+                        try{
+                            response = await $.ajax({
+                                    timeout:_timeout,
+                                    type: "get",
+                                    url:___url_getJson,
                                     
-                                    
-                                    
-                                // input =  JSON.parse(response_string)
-                                    input = response_string
 
-                                    //console.log('without JSONP..... ',input)
-                                }   
-                                catch(error_1){
-                                    
-                                    
-                                    // http://localhost:10/json2tree/searchlayer.html?url=https://maps.lacity.org/arcgis/rest/services
-                                    // internal folder will failed both ajax call, jsonp and non-jsonp. must catch error.
-                                    //The error is No 'Access-Control-Allow-Origin' header is present, but the problem is not that, 
-                                    // the problem is internal folder is forbidden.
-
-                                    
-                                    console.log('jsonp error .....and non-jsonp error.... url resource is NOT available', error_1)
-                                    
-                                    return null
-                            
-
-                    }// try - catch
+                                    success: function (data) { 
+                                      console.log('ajax json success ', data)
+                                      // return function here only return to ajax response, not return of this whole function
+                                    }, // success
 
 
 
-                    // console.log(input)
+                                    error: function (jqXHR) {
+                                      console.log('ajax json failed, jqXHR.responseJSON', jqXHR.responseJSON)
+                                      // ajax failed, error
+                                      error_response_json = jqXHR.responseJSON 
+                                    }                                                                                              
+                            });
+
+                        } catch {
+
+                          console.log('catch error for ajax_getjson_common ', error_response_json) 
+                          return error_response_json
+                        }
 
 
-
-
-
-                    return input
-                    }// function 
-
-
+                        if (typeof response === 'object') {
+                          // is object
+                          return response 
+                        } else {
+                          // is string
+                          return (JSON.parse(response))
+                        }  
+                         
+                          
+                      }
 
 
 

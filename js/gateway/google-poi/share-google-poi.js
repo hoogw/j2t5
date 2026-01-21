@@ -168,6 +168,10 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
 
     your_google_api_key = $('#googlemap-key-input').val(); 
     update_url_parameter('yourGoogleKey', your_google_api_key)
+    if (your_google_api_key){
+    } else {
+        $('#info-window-div').html("<span style='font-size:large;'>Must use your Google Map API key !</span>")   
+    }
 
     // billing https://developers.google.com/maps/documentation/geocoding/usage-and-billing
     // https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=your_api_key
@@ -178,57 +182,55 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
     console.log(' _reverseGeocode_by_google_url ', _reverseGeocode_by_google_url)
                  
     
-    var _response_reverseGeocode = await ajax_getjson_common(_reverseGeocode_by_google_url)
-    if (typeof _response_reverseGeocode === 'object') {
-                    // is object
-                    addressResult = _response_reverseGeocode
-    } else {
-                    // is string
-                    addressResult = JSON.parse(_response_reverseGeocode)
-    }
+    var addressResult = await ajax_getjson_common(_reverseGeocode_by_google_url)
+   
     console.log('address result', addressResult)
 
-    var _formatted_address = ''
-    var _place_id = ''
-    address_value_html = ''
+    
+   if (addressResult.results.length){
 
-    var _place_details
-    var _place_displayName
-    var _photos_array
-    var _photos_name
-    var _photos_heightPx
-    var _photos_widthPx
 
-    var results_array = addressResult.results
 
-   
-      
-   if (results_array.length){
+      var _formatted_address = ''
+      var _place_id = ''
+      address_value_html = ''
+
+      var _place_details
+      var _place_displayName
+      var _photos_array
+      var _photos_name
+      var _photos_heightPx
+      var _photos_widthPx
+
+      var results_array = addressResult.results
+
+
+
 
       // only need top first result, ignore others
       var i = 0
-    
+
       _formatted_address = results_array[i].formatted_address
       _place_id = results_array[i].place_id
-                    
-        
+                  
+
       // Place Details (New) requests https://developers.google.com/maps/documentation/places/web-service/place-details
       var _place_details_by_google_url = 'https://places.googleapis.com/v1/places/' + _place_id + '?fields=id,displayName,photos&key=' +  your_google_api_key
-      
-      
+
+
       var _response_place_details = await ajax_getjson_common(_place_details_by_google_url)
       if (typeof _response_place_details === 'object') {
-                      // is object
-                      _place_details = _response_place_details
+                    // is object
+                    _place_details = _response_place_details
       } else {
-                      // is string
-                      _place_details = JSON.parse(_response_place_details)
+                    // is string
+                    _place_details = JSON.parse(_response_place_details)
       }
       console.log('_place_details', _place_details)
 
 
       if (_place_details.hasOwnProperty('displayName')){
-        _place_displayName =  _place_details.displayName.text
+      _place_displayName =  _place_details.displayName.text
       }
 
 
@@ -236,21 +238,21 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
       address_value_html += '<span style="font-size:xx-large; font-weight:bolder;">' + _place_displayName + '</span>'
       // address 
       address_value_html += '<span  style="font-size:large;">' + _formatted_address +   '</span>'
-        
+
 
       // photos
       if ((need_google_photo) && (_place_details.hasOwnProperty('photos'))){
 
-        _photos_array = _place_details.photos
-        for (let p = 0; p < _photos_array.length; p++) {
-          _photos_name =  _photos_array[p].name
-          _photos_heightPx = _photos_array[p].heightPx
-          _photos_widthPx = _photos_array[p].widthPx
-            address_value_html += '<img src="https://places.googleapis.com/v1/' + _photos_name + '/media?maxHeightPx=400&maxWidthPx=400&key=' + your_google_api_key + '" >'
-        }// for photo
+      _photos_array = _place_details.photos
+      for (let p = 0; p < _photos_array.length; p++) {
+        _photos_name =  _photos_array[p].name
+        _photos_heightPx = _photos_array[p].heightPx
+        _photos_widthPx = _photos_array[p].widthPx
+          address_value_html += '<img src="https://places.googleapis.com/v1/' + _photos_name + '/media?maxHeightPx=400&maxWidthPx=400&key=' + your_google_api_key + '" >'
+      }// for photo
 
       }//if photo
-                      
+                    
       $('#info-window-div').html(address_value_html)
 
 
@@ -259,9 +261,9 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
 
     // no result
      if (addressResult.error_message){
-        $('#info-window-div').html(addressResult.error_message)
+        $('#info-window-div').html("<span style='font-size:large;'>" +addressResult.error_message + "</span>")
      } else {
-        $('#info-window-div').html('Nothing found')
+        $('#info-window-div').html("<span style='font-size:large;'>" + 'Nothing found' + "</span>")
      }//if
 
    }//if 
@@ -277,6 +279,10 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
 
     your_google_api_key = $('#googlemap-key-input').val(); 
     update_url_parameter('yourGoogleKey', your_google_api_key)
+    if (your_google_api_key){
+    } else {
+        $('#info-window-div').html("<span style='font-size:large;'>Must use your Google Map API key !</span>")   
+    }
 
     // billing https://developers.google.com/maps/documentation/geocoding/usage-and-billing
     // https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=your_api_key
@@ -287,16 +293,11 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
     console.log(' _reverseGeocode_by_google_url ', _reverseGeocode_by_google_url)
                  
     
-    var _response_reverseGeocode = await ajax_getjson_common(_reverseGeocode_by_google_url)
-    if (typeof _response_reverseGeocode === 'object') {
-                    // is object
-                    addressResult = _response_reverseGeocode
-    } else {
-                    // is string
-                    addressResult = JSON.parse(_response_reverseGeocode)
-    }
+    var addressResult = await ajax_getjson_common(_reverseGeocode_by_google_url)
     console.log('address result', addressResult)
 
+
+   if (addressResult.results.length){
 
 
     var _this_newOnly_counter = 0
@@ -308,8 +309,6 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
     _this_newOnly_result_array = []
 
       
-   if (results_array.length){
-
        
 
       for (let i = 0; i < results_array.length; i++) {
@@ -372,9 +371,9 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
 
     // no result
      if (addressResult.error_message){
-        $('#info-window-div').html(addressResult.error_message)
+        $('#info-window-div').html("<span style='font-size:large;'>" +addressResult.error_message + "</span>")
      } else {
-        $('#info-window-div').html('Nothing found')
+        $('#info-window-div').html("<span style='font-size:large;'>" + 'Nothing found' + "</span>")
      }//if
 
    }//if 
@@ -823,10 +822,11 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
 async function here_reverseGeocode_show_1_address(_lat_comma_lng_string){
 
 
-    your_google_api_key = $('#googlemap-key-input').val(); 
-    update_url_parameter('yourGoogleKey', your_google_api_key)
-    if (your_google_api_key){
-      heremap_api_key = your_google_api_key
+    heremap_api_key = $('#googlemap-key-input').val(); 
+    update_url_parameter('yourGoogleKey', heremap_api_key)
+    if (heremap_api_key){
+    } else {
+        $('#info-window-div').html("<span style='font-size:large;'>Must use your Here Map API key !</span>")   
     }
     
     // old api key works
@@ -850,20 +850,22 @@ async function here_reverseGeocode_show_1_address(_lat_comma_lng_string){
     console.log(' _reverseGeocode_by_here_url ', _reverseGeocode_by_here_url)
                  
     
-    var _response_reverseGeocode = await ajax_getjson_common(_reverseGeocode_by_here_url)
-    if (typeof _response_reverseGeocode === 'object') {
-                    // is object
-                    addressResult = _response_reverseGeocode
-    } else {
-                    // is string
-                    addressResult = JSON.parse(_response_reverseGeocode)
-    }
+    var addressResult = await ajax_getjson_common(_reverseGeocode_by_here_url)
     console.log('Here map address result', addressResult)
+
+
+
+    
+
+   if (addressResult.items.length){
+
 
         var results_array = addressResult.items
         var _place_displayName
         var _formatted_address
         var address_value_html = ''
+
+    
 
         for (let i = 0; i < results_array.length; i++) {
             _formatted_address = results_array[i].address.label
@@ -879,6 +881,19 @@ async function here_reverseGeocode_show_1_address(_lat_comma_lng_string){
          //  --- here map geocode   ( for esri compare only )   --- 
          $('#info-window-div').html(address_value_html)      
 
+
+    } else {
+
+
+        
+        // no result
+     if (addressResult.error){
+        $('#info-window-div').html("<span style='font-size:large;'>" + addressResult.error + " , " + addressResult.error_description  + "</span>")
+     } else {
+        $('#info-window-div').html("<span style='font-size:large;'>" +'Nothing found'  + "</span>")
+     }//if
+
+   }//if 
 }
 
 
@@ -887,10 +902,11 @@ async function here_reverseGeocode_show_1_address(_lat_comma_lng_string){
 async function here_reverseGeocode_multi_addr_2_pin(_lat_comma_lng_string){
 
 
-    your_google_api_key = $('#googlemap-key-input').val(); 
-    update_url_parameter('yourGoogleKey', your_google_api_key)
-    if (your_google_api_key){
-      heremap_api_key = your_google_api_key
+    heremap_api_key = $('#googlemap-key-input').val(); 
+    update_url_parameter('yourGoogleKey', heremap_api_key)
+    if (heremap_api_key){
+    } else {
+        $('#info-window-div').html("<span style='font-size:large;'>Must use your Here Map API key !</span>")   
     }
     
     // old api key works
@@ -915,29 +931,22 @@ async function here_reverseGeocode_multi_addr_2_pin(_lat_comma_lng_string){
     console.log(' _reverseGeocode_by_here_url ', _reverseGeocode_by_here_url)
                  
     
-    var _response_reverseGeocode = await ajax_getjson_common(_reverseGeocode_by_here_url)
-    if (typeof _response_reverseGeocode === 'object') {
-                    // is object
-                    addressResult = _response_reverseGeocode
-    } else {
-                    // is string
-                    addressResult = JSON.parse(_response_reverseGeocode)
-    }
+    var addressResult = await ajax_getjson_common(_reverseGeocode_by_here_url)
     console.log('Here map address result', addressResult)
 
 
+   if (addressResult.items.length){
 
-    var _this_newOnly_counter = 0
-    var _location_type
-    var _place_id = ''
-    var results_array = addressResult.items
+        var _this_newOnly_counter = 0
+        var _location_type
+        var _place_id = ''
+        var results_array = addressResult.items
 
 
-    //  . . efficient core newOnly  . - .
-    _this_newOnly_result_array = []
+        //  . . efficient core newOnly  . - .
+        _this_newOnly_result_array = []
 
     
-   if (results_array.length){
 
 
         for (let i = 0; i < results_array.length; i++) {
@@ -967,30 +976,30 @@ async function here_reverseGeocode_multi_addr_2_pin(_lat_comma_lng_string){
 
         }//for
 
-         
-      $('#info-window-div').html('<div>add <span style="font-size: xx-large;">' + _this_newOnly_counter + '</span> new</div>' )
-
-    _total_poi = Number(_all_poi_flat_array.length)
-    $("#poi_total").html(_total_poi)
-
-
-    // special version only for google place poi
-    poi_geojson = here_address_to_geojson(_all_poi_flat_array)
-    console.log('poi geojson', poi_geojson)
-   
-    
-    /**/
-    // -- -- --  google advanced marker replace geojson  -- -- -- 
-
-          //  . . efficient core newOnly  . - .
-          console.log('_this_newOnly_result_array', _this_newOnly_result_array)
-          _this_newOnly_poi_geojson = here_address_to_geojson(_this_newOnly_result_array)
-          // parameter is geojson.features array only
-          poi_geojsonPointFeature_to_marker_label(_this_newOnly_poi_geojson.features, 'name')
           
-          // . .  end . . efficient core newOnly  . - .                    
-    // -- -- --  end -- -- --  google advanced marker replace geojson -- -- -- 
-    /**/
+        $('#info-window-div').html('<div>add <span style="font-size: xx-large;">' + _this_newOnly_counter + '</span> new</div>' )
+
+        _total_poi = Number(_all_poi_flat_array.length)
+        $("#poi_total").html(_total_poi)
+
+
+        // special version only for google place poi
+        poi_geojson = here_address_to_geojson(_all_poi_flat_array)
+        console.log('poi geojson', poi_geojson)
+    
+        
+        /**/
+        // -- -- --  google advanced marker replace geojson  -- -- -- 
+
+              //  . . efficient core newOnly  . - .
+              console.log('_this_newOnly_result_array', _this_newOnly_result_array)
+              _this_newOnly_poi_geojson = here_address_to_geojson(_this_newOnly_result_array)
+              // parameter is geojson.features array only
+              poi_geojsonPointFeature_to_marker_label(_this_newOnly_poi_geojson.features, 'name')
+              
+              // . .  end . . efficient core newOnly  . - .                    
+        // -- -- --  end -- -- --  google advanced marker replace geojson -- -- -- 
+        /**/
 
 
    } else {
@@ -999,9 +1008,9 @@ async function here_reverseGeocode_multi_addr_2_pin(_lat_comma_lng_string){
     
     // no result
      if (addressResult.error){
-        $('#info-window-div').html(addressResult.error + " , " + addressResult.error_description )
+        $('#info-window-div').html("<span style='font-size:large;'>" + addressResult.error + " , " + addressResult.error_description  + "</span>")
      } else {
-        $('#info-window-div').html('Nothing found')
+        $('#info-window-div').html("<span style='font-size:large;'>" +'Nothing found'  + "</span>")
      }//if
 
    }//if 
