@@ -1348,6 +1348,12 @@ case "embed_6392":
   break;
 
 
+  // google map + apple geocode 
+   case "embed_8130":
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-click-map-to-get/apple-show-address.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
 
 
   case "embed_6793":

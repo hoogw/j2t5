@@ -4,6 +4,7 @@
 // mapkit class use this
 //var apple_nearby = "https://api.apple-mapkit.com/v1/nearbyPoi"
 var apple_search_api = "https://maps-api.apple.com/v1/search"
+var apple_reverse_geocode_api = "https://maps-api.apple.com/v1/reverseGeocode"
 var apple_token_url = "https://maps-api.apple.com/v1/token"
 
 

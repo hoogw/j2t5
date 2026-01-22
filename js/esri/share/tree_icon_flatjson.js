@@ -7154,7 +7154,7 @@ icon_flatjson.push(icon_item)
 icon_item = { 
     "id" :  477,     
     "parent" : 325,
-    "text" : "Download Address",
+    "text" : "Download Multiple Address",
     "icon" : folder_icon,
     "link_type": "folder",   
     "state"       : {
@@ -7337,7 +7337,7 @@ icon_flatjson.push(icon_item)
 icon_item = { 
     "id" :  476,     
     "parent" : 325,
-    "text" : "Show one Address or POI",
+    "text" : "Show Single Address and/or POI",
     "icon" : folder_icon,
     "link_type": "folder",   
     "state"       : {
@@ -7527,7 +7527,7 @@ icon_flatjson.push(icon_item)
 
 
 
-
+ /*  = = = =  = = = = sub folder = = = =  = = = =  */
         icon_item = { 
             "id" :  4763,     
             "parent" : 476,
@@ -7580,10 +7580,65 @@ icon_flatjson.push(icon_item)
 
 
 
+
+
+ /*  = = = =  = = = = sub folder = = = =  = = = =  */
+        icon_item = { 
+            "id" :  5763,     
+            "parent" : 476,
+            "text" : apple_svg, 
+            "icon" : folder_icon,
+            "link_type": "folder",   
+            "state"       : {
+            // use this opened line for always default open this folder
+                            "opened"    :false, //  iconJstreeforceOpen,   // is the node open
+                            // disabled  : boolean  // is the node disabled
+                            // "selected"  : true   // is the node selected
+                        }
+        };
+        icon_flatjson.push(icon_item) 
+
+
+                             
+                           
+
+                 icon_item = { 
+
+                "id" :  8130,     
+                "parent" : 5763,
+                
+                
+                "text" : "8130 default",
+                
+                "layer_name" : _layer_name_,
+                "icon" : open_new_tab_icon,
+                "link_type": "embed_8130",
+                "state"       : {
+                                "opened"    : true,  // is the node open
+                                // disabled  : boolean  // is the node disabled
+                                // "selected"  : true   // is the node selected
+                            },
+                            
+                "node_path" : _node_path_, 
+                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                "server_path" : _map_server_url_,
+                "layer_id" :  _layer_id_,            
+                "type" : _type_
+                
+                
+                
+                };
+                
+                icon_flatjson.push(icon_item)
+
+
+
+
+
+
+
                                                     
         /*  = = = =  = = = = sub folder = = = =  = = = =  */
-
-
         icon_item = { 
             "id" :  4764,     
             "parent" : 476,

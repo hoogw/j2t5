@@ -498,12 +498,12 @@
                                 
 
                           /**/
-                          //  --- here map geocode   --- 
+                          //  --- apple map geocode   --- 
                           /**/
                           var lat_comma_lng = click_lat  + ',' + click_lng
-                          here_reverseGeocode_show_1_address(lat_comma_lng)
+                          apple_reverseGeocode_show_1_address(lat_comma_lng)
                           /**/
-                          //  --- end  ---  here map geocode  --- 
+                          //  --- end  ---  apple map geocode  --- 
                           /**/
 
   
@@ -866,12 +866,12 @@
 
 
                           /**/
-                          //  --- here map geocode   --- 
+                          //  --- apple map geocode   --- 
                           /**/
                           var lat_comma_lng = click_lat  + ',' + click_lng
-                          here_reverseGeocode_show_1_address(lat_comma_lng)
+                          apple_reverseGeocode_show_1_address(lat_comma_lng)
                           /**/
-                          //  --- end  ---  here map geocode  --- 
+                          //  --- end  ---  apple map geocode  --- 
                           /**/
 
                               

@@ -1248,6 +1248,425 @@ async function here_reverseGeocode_multi_addr_2_pin(_lat_comma_lng_string){
 
 
 
+
+
+
+
+
+
+
+/**/
+//  --- apple map geocode  --- 
+/**/
+
+async function apple_reverseGeocode_show_1_address(_lat_comma_lng_string){
+
+
+
+    var temp_access_token 
+    var response_token =  await $.ajax({
+        url: apple_token_url,
+        headers: {
+          'Authorization': 'Bearer ' + _apple_token,  //'Bearer xxxxxx',
+          },
+        method: 'GET',
+        dataType: 'json',
+        success: function(data){
+            temp_access_token = data.accessToken
+            console.log('temp_access_token', temp_access_token)
+        }, 
+        error: function(jqXHR, textStatus, errorThrown) {
+          // Handle error response
+          console.error("Error:", textStatus, errorThrown);
+        }
+      }); 
+
+
+      
+    var apple_map_server_api_url = apple_search_api + "?lang=en-US"
+    apple_map_server_api_url += "&loc=" + _lat_comma_lng_string
+
+    
+
+     var response_raw =  await $.ajax({
+      
+            url: apple_map_server_api_url,
+            headers: {
+            'Authorization': 'Bearer ' + temp_access_token,  //'Bearer xxxxxx',
+            },
+
+            method: 'GET',
+            dataType: 'json',
+            
+            success: function(data){
+              console.log('poi search by categories success', data)
+              mapServerApi_poi_result_callback("", data)
+            }, 
+            error: function(jqXHR, textStatus, errorThrown) {
+              // Handle error response
+              console.error("Error:", textStatus, errorThrown);
+            }
+        }); 
+                console.log(' place search nearby results : ', response_raw);
+                    
+
+    var addressResult = await ajax_getjson_common(_reverseGeocode_by_here_url)
+    console.log('Here map address result', addressResult)
+
+
+
+    
+
+   if (addressResult.items.length){
+
+
+        var results_array = addressResult.items
+        var _place_displayName
+        var _formatted_address
+        var address_value_html = ''
+
+    
+
+        for (let i = 0; i < results_array.length; i++) {
+            _formatted_address = results_array[i].address.label
+            _place_displayName = results_array[i].title
+
+            // place name 
+            address_value_html += '<span style="font-size:xx-large; font-weight:bolder;">' + _place_displayName + '</span>'
+            // address 
+            address_value_html += '<span  style="font-size:large;">' + _formatted_address +   '</span>'
+        
+        }//for
+
+         //  --- here map geocode   ( for esri compare only )   --- 
+         $('#info-window-div').html(address_value_html)      
+
+
+    } else {
+
+
+        
+        // no result
+     if (addressResult.error){
+        $('#info-window-div').append("<span style='font-size:large;'>" + addressResult.error + " , " + addressResult.error_description  + "</span>")
+     } else {
+        $('#info-window-div').html("<span style='font-size:large;'>" +'Nothing found'  + "</span>")
+     }//if
+
+   }//if 
+}
+
+
+
+
+async function apple_reverseGeocode_multi_addr_2_pin(_lat_comma_lng_string){
+
+    var hostname = window.location.hostname;
+    var port = window.location.port;
+
+    console.log("hostname,port ", hostname, port);
+    if (hostname === "localhost" && port === '10') {
+      console.log("The current URL is localhost.");
+      // nothing to do with key
+    } else {
+
+        // enforce user use their own api key  
+        console.log("The current URL is not localhost. it is ", hostname);
+        heremap_api_key = $('#googlemap-key-input').val(); 
+        update_url_parameter('yourGoogleKey', heremap_api_key)
+        if (heremap_api_key){
+        } else {
+            $('#info-window-div').html("<span style='font-size:large;'>Must use your Here Map API key !</span>")   
+        }
+
+    }//if
+
+
+
+
+
+    
+    // old api key works
+    var _reverseGeocode_by_here_url = 'https://revgeocode.search.hereapi.com/v1/revgeocode?apikey=' + heremap_api_key
+
+
+     _reverseGeocode_by_here_url +=  '&at=' + _lat_comma_lng_string
+     
+   // default is 1, max is 100
+   // 100 is too far away from where user clicked,
+    _reverseGeocode_by_here_url +=  '&limit=5' // 1-100
+
+    // api doc https://www.here.com/docs/bundle/geocoding-and-search-api-v7-api-reference/page/index.html#/paths/~1revgeocode/get
+    // "Unsupported value: 'place'. Supported values: 'address', 'area', 'city', 'street'",
+    // only download address type, ignore others, like street name, etc.
+    _reverseGeocode_by_here_url +=  '&types=address';  
+    //address type will restricting results to result types: 
+    // "houseNumber", "street", "postalCodePoint", or "addressBlock". 
+    // Result type "intersection" is excluded from this list because it is not supported in reverse geocoder.
+    // I only need "houseNumber", others type must filter out
+
+    console.log(' _reverseGeocode_by_here_url ', _reverseGeocode_by_here_url)
+                 
+    
+    var addressResult = await ajax_getjson_common(_reverseGeocode_by_here_url)
+    console.log('Here map address result', addressResult)
+
+
+   if (addressResult.items.length){
+
+        var _this_newOnly_counter = 0
+        var _location_type
+        var _place_id = ''
+        var results_array = addressResult.items
+
+
+        //  . . efficient core newOnly  . - .
+        _this_newOnly_result_array = []
+
+    
+
+
+        for (let i = 0; i < results_array.length; i++) {
+
+          _place_id = results_array[i].id
+          // only want  "houseNumber", ignore "street", etc.
+          _location_type = results_array[i].resultType
+
+          if (_all_poi_uniqueID_array.includes(_place_id)){
+                            // already exist, skip
+          } else {
+            
+                   if (_location_type == "houseNumber"){
+
+                            _this_newOnly_counter += 1
+
+                            _all_poi_uniqueID_array.push(_place_id)
+                            _all_poi_flat_array.push(results_array[i])
+
+                            //  . . efficient core newOnly  . - .
+                            _this_newOnly_result_array.push(results_array[i])
+
+                    }//if
+
+          }//if
+
+
+        }//for
+
+          
+        $('#info-window-div').html('<div>add <span style="font-size: xx-large;">' + _this_newOnly_counter + '</span> new</div>' )
+
+        _total_poi = Number(_all_poi_flat_array.length)
+        $("#poi_total").html(_total_poi)
+
+
+        // special version only for google place poi
+        poi_geojson = here_address_to_geojson(_all_poi_flat_array)
+        console.log('poi geojson', poi_geojson)
+    
+        
+        /**/
+        // -- -- --  google advanced marker replace geojson  -- -- -- 
+
+              //  . . efficient core newOnly  . - .
+              console.log('_this_newOnly_result_array', _this_newOnly_result_array)
+              _this_newOnly_poi_geojson = here_address_to_geojson(_this_newOnly_result_array)
+              // parameter is geojson.features array only
+              poi_geojsonPointFeature_to_marker_label(_this_newOnly_poi_geojson.features, 'name')
+              
+              // . .  end . . efficient core newOnly  . - .                    
+        // -- -- --  end -- -- --  google advanced marker replace geojson -- -- -- 
+        /**/
+
+
+   } else {
+
+
+    
+    // no result
+     if (addressResult.error){
+        $('#info-window-div').append("<span style='font-size:large;'>" + addressResult.error + " , " + addressResult.error_description  + "</span>")
+     } else {
+        $('#info-window-div').html("<span style='font-size:large;'>" +'Nothing found'  + "</span>")
+     }//if
+
+   }//if 
+
+}
+
+
+
+ // only for apple  Address reverse geocode api
+      function apple_address_to_geojson(____poi_array){
+
+        var ____feature_array = []
+        var ____feature
+        var poi_element
+
+        var poi_location
+        var poi_lat
+        var poi_lng
+
+
+        var poi_id
+        var poi_name
+        
+      
+
+        var poi_addressComponents
+        var poi_streetNumber
+        var poi_streetName
+        var poi_streetNameAbre
+
+        var poi_formattedAddress
+        
+        var streetName_component = []
+        var poi_streetPrefix
+        var poi_streetNameOnly
+        var poi_streetType
+
+
+        var poi_city
+        var poi_county
+        var poi_state
+        var poi_stateAbre
+        var poi_zipCode
+        
+
+        var poi_primaryType // for location_type
+        var poi_type
+
+
+        for (let i = 0; i < ____poi_array.length; i++) {
+
+            poi_element = ____poi_array[i]
+            //console.log('here address result item ',i,  poi_element)
+            poi_primaryType = poi_element.resultType
+
+
+            
+            if (poi_primaryType == "houseNumber"){
+
+                    poi_id = poi_element.id
+                    poi_name = poi_element.title
+                    //poi_type = poi_element.houseNumberType
+                    poi_formattedAddress = poi_element.address.label
+
+                    poi_location = poi_element.position
+                    poi_lng = poi_location.lng
+                    poi_lat = poi_location.lat
+
+                    poi_addressComponents = poi_element.address
+                    poi_streetNumber = poi_addressComponents.houseNumber;
+                    poi_streetName = poi_addressComponents.street;
+                    
+
+                    //  . . . street name need to further split  . . . 
+                    // api https://github.com/hassansin/parse-address
+                    streetName_component =  parseAddress.parseLocation(poi_streetName);
+                    
+                    //console.log(' parse street name only  ', poi_streetName,  streetName_component);
+                    
+                    if ((streetName_component) && (streetName_component.hasOwnProperty('prefix'))){
+                      poi_streetPrefix = streetName_component.prefix.toUpperCase();
+                    } else {
+                      poi_streetPrefix = ''
+                    }
+                    
+                    if ((streetName_component) && (streetName_component.hasOwnProperty('street'))){
+                      poi_streetNameOnly = streetName_component.street.toUpperCase();
+                    } else {
+                      poi_streetNameOnly = ''
+                    }
+                    
+                    if ((streetName_component) && (streetName_component.hasOwnProperty('type'))){
+                      poi_streetType = streetName_component.type.toUpperCase();
+                    } else {
+                      poi_streetType = ''
+                    }
+                    // . . .  end  . . .  street name need to further split
+
+
+                    poi_city = poi_addressComponents.city;
+                    poi_county = poi_addressComponents.county
+                    poi_state = poi_addressComponents.state;
+                    poi_stateAbre = poi_addressComponents.stateCode
+                    poi_zipCode = poi_addressComponents.postalCode;
+                             
+                        
+                          
+                     
+                    
+
+                    ____feature = {
+                      "type": "Feature",
+                      "geometry": {
+                        "type": "Point",
+                        "coordinates": [poi_lng, poi_lat]
+                      },
+                      "properties": {
+
+                        "poi_id": poi_id,
+                        "name": poi_name,
+                        
+                        "stNo": poi_streetNumber,
+                        
+
+                        //  . . . street name need to further split  . . . 
+                        "strName": poi_streetName,
+                        "stPrefix" : poi_streetPrefix,
+                        "stName" : poi_streetNameOnly,
+                        "stType" : poi_streetType,
+                        // . . .  end  . . .  street name need to further split
+
+
+                      
+                        "county": poi_county,
+                        "city": poi_city,
+                        "state": poi_stateAbre,
+                        "state1":poi_state,
+                        "zipCode": poi_zipCode,
+
+                        "fmtAddr": poi_formattedAddress,
+
+                        "primaryType": poi_primaryType,
+                        //"type": poi_type,
+
+                      
+                      
+                      }//properties
+                    }//feature
+
+                    ____feature_array.push(____feature)
+
+           }//if
+          
+        }//for
+
+        
+        geojson_template =  {
+          "type": "FeatureCollection",
+          "features": ____feature_array
+        };
+
+        return geojson_template
+
+      }
+
+/**/
+//  --- end  ---  apple map    --- 
+/**/
+
+
+
+
+
+
+
+
+
+
+
             var circle_range
             var circle_array = []
             
