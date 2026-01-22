@@ -1288,27 +1288,27 @@ async function apple_reverseGeocode_show_1_address(_lat_comma_lng_string){
 
     
 
-     var response_raw =  await $.ajax({
-      
-            url: apple_map_server_api_url,
-            headers: {
-            'Authorization': 'Bearer ' + temp_access_token,  //'Bearer xxxxxx',
-            },
+       
+    var response_raw =  await $.ajax({
+        url: apple_map_server_api_url,
+        headers: {
+        'Authorization': 'Bearer ' + temp_access_token,  //'Bearer xxxxxx',
+        },
 
-            method: 'GET',
-            dataType: 'json',
-            
-            success: function(data){
-              console.log('poi search by categories success', data)
-              mapServerApi_poi_result_callback("", data)
-            }, 
-            error: function(jqXHR, textStatus, errorThrown) {
-              // Handle error response
-              console.error("Error:", textStatus, errorThrown);
-            }
-        }); 
-                console.log(' place search nearby results : ', response_raw);
-                    
+        method: 'GET',
+        dataType: 'json',
+        
+        success: function(data){
+          console.log('poi search by categories success', data)
+          mapServerApi_poi_result_callback("", data)
+        }, 
+        error: function(jqXHR, textStatus, errorThrown) {
+          // Handle error response
+          console.error("Error:", textStatus, errorThrown);
+        }
+      }); 
+      console.log(' place search nearby results : ', response_raw);
+                  
 
     var addressResult = await ajax_getjson_common(_reverseGeocode_by_here_url)
     console.log('Here map address result', addressResult)
