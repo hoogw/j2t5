@@ -63,7 +63,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                         "id" :  325,     
                         "parent" : 10,
 
-                        "text" : "911 Address for Police",
+                        "text" : "911 Address for Police" + police_svg,
 
                         "icon" : folder_icon,
                         "link_type": "folder",   
@@ -85,7 +85,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                         "id" :  327,     
                         "parent" : 10,
 
-                        "text" : "911 POI for Police",
+                        "text" : "911 POI for Police" + police_svg,
 
                         "icon" : folder_icon,
                         "link_type": "folder",   
@@ -122,43 +122,22 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
 
                   
 
-
                     icon_item = { 
-                        "id" :  90,     
-                        "parent" : 10,
-                        "text" : "Attribute Table" + table_svg,
-                        "icon" : folder_icon,
-                        "link_type": "folder",   
+                        "id" :  102222,     
+                        "parent" : 10, //970,
+                        "text" : google_svg + " Google Classic" + "<small><sup>2005-2020</sup></small>", //v2 
+                        "icon" : folder_icon,  
+                        "link_type": "folder", 
                         "state"       : {
-                        // use this opened line for always default open this folder
-                                        "opened"    : false,  // is the node open
-                                        // disabled  : boolean  // is the node disabled
-                                        // "selected"  : true   // is the node selected
-                                    }
-                    };
-                    icon_flatjson.push(icon_item) 
-                    
-                  
-
-
-                    icon_item = { 
-                        "id" :  648,     
-                        "parent" : 10,
-                        "text" : "Download" + download_svg, 
-                        "icon" : folder_icon,
-                        "link_type": "folder",   
-                        "state"       : {
-                        // use this opened line for always default open this folder
-                                        "opened"    : false, //iconJstreeforceOpen, // false,  // is the node open
+                        "opened": false,  // iconJstreeNodeOpened,  // is the node open
                                         // disabled  : boolean  // is the node disabled
                                         // "selected"  : true   // is the node selected
                                     }
                     };
                     icon_flatjson.push(icon_item) 
 
-                  
 
-                    
+
 
 
                     icon_item = { 
@@ -178,6 +157,20 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                     icon_flatjson.push(icon_item) 
 
                   
+                      icon_item = { 
+                                        "id" :  200,     
+                                        "parent" : 10, //970,
+                                        "text" : microsoft_svg + " Microsoft BingMap" + "<small><sup>2005-2018</sup></small>",
+                                        "icon" : folder_icon, 
+                                        "link_type": "folder",  
+                                        "state"       : {
+                                                        "opened": false,  //iconJstreeNodeOpened,  // is the node open
+                                                        // disabled  : boolean  // is the node disabled
+                                                        // "selected"  : true   // is the node selected
+                                                    }
+                                    };
+                        icon_flatjson.push(icon_item) 
+
 
     
                     
@@ -198,6 +191,21 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
 
 
 
+                        icon_item = { 
+                            "id" :  10200,     
+                            "parent" : 10, //970,
+                            "text" : apple_svg + "Apple Classic" + "<small><sup>2012-2018</sup></small>",
+                            "icon" : folder_icon, 
+                            "link_type": "folder",  
+                            "state"       : {
+                                            "opened": false,  //iconJstreeNodeOpened,  // is the node open
+                                            // disabled  : boolean  // is the node disabled
+                                            // "selected"  : true   // is the node selected
+                                        }
+                        };
+                        icon_flatjson.push(icon_item) 
+
+
 
 
 
@@ -206,7 +214,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                     icon_item = { 
                         "id" :  577,     
                         "parent" : 10,
-                        "text" : "Esri Forever",
+                        "text" : esri_svg + " Esri Forever",
                         "icon" : folder_icon,
                         "link_type": "folder",   
                         "state"       : {
@@ -256,7 +264,19 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
 
                    
                                         
-
+                    icon_item = {
+                                    "id" :  500,     
+                                    "parent" : 10, //970,
+                                    "text" : esri_svg + "  Esri Legacy Widget" + '<small><sup>2008-2018</sup></small>',
+                                    "icon" : folder_icon,  
+                                    "link_type": "folder", 
+                                    "state"       : {
+                                    "opened": false,  // iconJstreeNodeOpened,  // is the node open
+                                                    // disabled  : boolean  // is the node disabled
+                                                    // "selected"  : true   // is the node selected
+                                                }
+                    };
+                    icon_flatjson.push(icon_item) 
 
 
 
@@ -306,55 +326,14 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
 
                     
 
-                    icon_item = { 
-                        "id" :  102222,     
-                        "parent" : 10, //970,
-                        "text" : "Google Classic" + "<small><sup>2005-2020</sup></small>", //v2 
-                        "icon" : folder_icon,  
-                        "link_type": "folder", 
-                        "state"       : {
-                        "opened": false,  // iconJstreeNodeOpened,  // is the node open
-                                        // disabled  : boolean  // is the node disabled
-                                        // "selected"  : true   // is the node selected
-                                    }
-                    };
-                    icon_flatjson.push(icon_item) 
-
-
-
-                    icon_item = {
-                                    "id" :  500,     
-                                    "parent" : 10, //970,
-                                    "text" : "Esri Legacy Widget" + '<small><sup>2008-2018</sup></small>',
-                                    "icon" : folder_icon,  
-                                    "link_type": "folder", 
-                                    "state"       : {
-                                    "opened": false,  // iconJstreeNodeOpened,  // is the node open
-                                                    // disabled  : boolean  // is the node disabled
-                                                    // "selected"  : true   // is the node selected
-                                                }
-                    };
-                    icon_flatjson.push(icon_item) 
+                   
 
 
 
 
 
 
-                        icon_item = { 
-                                        "id" :  200,     
-                                        "parent" : 10, //970,
-                                        "text" : "Microsoft BingMap" + "<small><sup>2005-2018</sup></small>",
-                                        "icon" : folder_icon, 
-                                        "link_type": "folder",  
-                                        "state"       : {
-                                                        "opened": false,  //iconJstreeNodeOpened,  // is the node open
-                                                        // disabled  : boolean  // is the node disabled
-                                                        // "selected"  : true   // is the node selected
-                                                    }
-                                    };
-                        icon_flatjson.push(icon_item) 
-
+                      
 
 
 
@@ -384,7 +363,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                         icon_item = { 
                                         "id" :  300,     
                                         "parent" : 10, //970,
-                                        "text" : "Mapbox" + "<small><sup>2015-now</sup></small>",
+                                        "text" : mapbox_svg +  "Mapbox" + "<small><sup>2015-now</sup></small>",
                                         "icon" : folder_icon, 
                                         "link_type": "folder",  
                                         "state"       : {
@@ -397,21 +376,47 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
 
 
 
-                        icon_item = { 
-                            "id" :  10200,     
-                            "parent" : 10, //970,
-                            "text" : "Apple Classic" + "<small><sup>2012-2018</sup></small>",
-                            "icon" : folder_icon, 
-                            "link_type": "folder",  
-                            "state"       : {
-                                            "opened": false,  //iconJstreeNodeOpened,  // is the node open
-                                            // disabled  : boolean  // is the node disabled
-                                            // "selected"  : true   // is the node selected
-                                        }
-                        };
-                        icon_flatjson.push(icon_item) 
 
 
+
+                        
+
+                    icon_item = { 
+                        "id" :  90,     
+                        "parent" : 10,
+                        "text" : "Attribute Table" + table_svg,
+                        "icon" : folder_icon,
+                        "link_type": "folder",   
+                        "state"       : {
+                        // use this opened line for always default open this folder
+                                        "opened"    : false,  // is the node open
+                                        // disabled  : boolean  // is the node disabled
+                                        // "selected"  : true   // is the node selected
+                                    }
+                    };
+                    icon_flatjson.push(icon_item) 
+                    
+                  
+
+
+                    icon_item = { 
+                        "id" :  648,     
+                        "parent" : 10,
+                        "text" : "Download" + download_svg, 
+                        "icon" : folder_icon,
+                        "link_type": "folder",   
+                        "state"       : {
+                        // use this opened line for always default open this folder
+                                        "opened"    : false, //iconJstreeforceOpen, // false,  // is the node open
+                                        // disabled  : boolean  // is the node disabled
+                                        // "selected"  : true   // is the node selected
+                                    }
+                    };
+                    icon_flatjson.push(icon_item) 
+
+                  
+
+                    
 
 
 

@@ -8,8 +8,10 @@
 /**/
 // ------- apple map only  -------
 /**/
-
-var _apple_token 
+// default , expire 7 days, no restrict, for localhost 
+var localhost_apple_token = "eyJraWQiOiI3VDhIWFY3RDVLIiwidHlwIjoiSldUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJDNE5YNVM5UTRCIiwiaWF0IjoxNzY5MTAzNjMxLCJleHAiOjE3Njk3NTk5OTl9.CDy4zUZ-Wqv-LinSdhHYhqX0ojE7IKKi0OSzoRaiqjoOow5lW0BgOCGEHv1wSd39oQ2Rr7Pl_bC4XQI7afoPKg"
+var neverExpireDomainRestricted_apple_token = "eyJraWQiOiI3WERaQzc2MjlXIiwidHlwIjoiSldUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJDNE5YNVM5UTRCIiwiaWF0IjoxNzY0MTg2Njc3LCJvcmlnaW4iOiJ0cmFuc3BhcmVudGdvdi5uZXQifQ.y4HioJk5y_0vbI59mX16HPeVmPTssNxGAZehF66QwOxcn56ek1gPI-8gjNyjEXwSvVV86-_lqRuEGF2KUL69cA"
+var _apple_token     
 var scriptElement
 const mapkit_cdn_url = "https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.core.js"
 const callback_function_name = "initMap";
@@ -26,11 +28,11 @@ const libraries = "services,full-map,overlays,annotations,geojson,user-location,
     // determine which toke to use, 7 day for localhost none-restricted or never expire domain retricted
     if (location.hostname.includes("localhost")){
       // expire 7 days, no restrict, for localhost 
-        _apple_token = "eyJraWQiOiI4WTdHWVBHTVY3IiwidHlwIjoiSldUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJDNE5YNVM5UTRCIiwiaWF0IjoxNzY1ODE3MTM1LCJleHAiOjE3NjY0NzY3OTl9.lSW8Lq4dc6e4RVIRjyGz73EhwQeUGoPqwM8hJesEIxHa-jcy8ZUePrnTVnyxKSAJpsnPO0L-ha3pEZZJG-5_IA"
+        _apple_token = localhost_apple_token
         console.log("expire 7 days, no restrict, for localhost")
     } else {
       // never expire domain restrict
-      _apple_token = "eyJraWQiOiI3WERaQzc2MjlXIiwidHlwIjoiSldUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJDNE5YNVM5UTRCIiwiaWF0IjoxNzY0MTg2Njc3LCJvcmlnaW4iOiJ0cmFuc3BhcmVudGdvdi5uZXQifQ.y4HioJk5y_0vbI59mX16HPeVmPTssNxGAZehF66QwOxcn56ek1gPI-8gjNyjEXwSvVV86-_lqRuEGF2KUL69cA"
+      _apple_token = neverExpireDomainRestricted_apple_token
       console.log("never expire domain restrict")
     }//if
 

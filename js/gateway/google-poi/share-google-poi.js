@@ -169,25 +169,18 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
   async function google_reverseGeocode_show_1_poi_or_addr_with_place_photo(_lat_comma_lng_string){
 
 
-    var hostname = window.location.hostname;
-    var port = window.location.port;
-
-    console.log("hostname,port ", hostname, port);
-    if (hostname === "localhost" && port === '10') {
-      console.log("The current URL is localhost.");
-      // nothing to do with key
-    } else {
-
+   
+        //  - -   google place geocode only, always use user's key, no matter localhost or production  - -  
         // enforce user use their own api key  
-        console.log("The current URL is not localhost. it is ", hostname);
         your_google_api_key = $('#googlemap-key-input').val(); 
         update_url_parameter('yourGoogleKey', your_google_api_key)
         if (your_google_api_key){
         } else {
             $('#info-window-div').html("<span style='font-size:large;'>Must use your Google Map API key !  <br></span>")   
         }
+        // - -  end  - -  google place geocode only, always use user's key, no matter localhost or production
 
-    }//if
+  
 
     // billing https://developers.google.com/maps/documentation/geocoding/usage-and-billing
     // https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=your_api_key
@@ -293,25 +286,17 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
   // will create multiple address point geojson
   async function google_reverseGeocode_multi_addr_2_pin(_lat_comma_lng_string){
 
-    var hostname = window.location.hostname;
-    var port = window.location.port;
-
-    console.log("hostname,port ", hostname, port);
-    if (hostname === "localhost" && port === '10') {
-      console.log("The current URL is localhost.");
-      // nothing to do with key
-    } else {
-
-        // enforce user use their own api key  
-        console.log("The current URL is not localhost. it is ", hostname);
+    
+        //  - -   google place geocode only, always use user's key, no matter localhost or production  - -  
+        // enforce user use their own api key 
         your_google_api_key = $('#googlemap-key-input').val(); 
         update_url_parameter('yourGoogleKey', your_google_api_key)
         if (your_google_api_key){
         } else {
             $('#info-window-div').html("<span style='font-size:large;'>Must use your Google Map API key !  <br></span>")   
         }
+        // - -  end  - -  google place geocode only, always use user's key, no matter localhost or production
 
-    }//if
 
     // billing https://developers.google.com/maps/documentation/geocoding/usage-and-billing
     // https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=your_api_key
@@ -1263,7 +1248,11 @@ async function apple_reverseGeocode_show_1_address(_lat_comma_lng_string){
 
 
 
+  var error_response_json 
+
     var temp_access_token 
+
+  try{       
     var response_token =  await $.ajax({
         url: apple_token_url,
         headers: {
@@ -1275,52 +1264,74 @@ async function apple_reverseGeocode_show_1_address(_lat_comma_lng_string){
             temp_access_token = data.accessToken
             console.log('temp_access_token', temp_access_token)
         }, 
-        error: function(jqXHR, textStatus, errorThrown) {
-          // Handle error response
-          console.error("Error:", textStatus, errorThrown);
-        }
+         error: function(jqXHR, textStatus, errorThrown) {
+              // Handle error response
+              console.log("ajax json failed, jqXHR.responseJSON",jqXHR, textStatus, errorThrown);
+               // ajax failed, error
+              error_response_json = jqXHR.responseJSON.errors
+              $('#info-window-div').append("<span style='font-size:large;'>" + error_response_json.error + " , " + addressResult.error_description  + "</span>")
+            }
       }); 
+
+  } catch {
+
+          
+      return null; // stop here, do not go further
+          
+  }// try
 
 
       
-    var apple_map_server_api_url = apple_search_api + "?lang=en-US"
+    var apple_map_server_api_url = apple_reverse_geocode_api + "?lang=en-US"
     apple_map_server_api_url += "&loc=" + _lat_comma_lng_string
 
-    
+    var addressResult
 
-       
-    var response_raw =  await $.ajax({
-        url: apple_map_server_api_url,
-        headers: {
-        'Authorization': 'Bearer ' + temp_access_token,  //'Bearer xxxxxx',
-        },
-
-        method: 'GET',
-        dataType: 'json',
+    try{      
         
-        success: function(data){
-          console.log('poi search by categories success', data)
-          mapServerApi_poi_result_callback("", data)
-        }, 
-        error: function(jqXHR, textStatus, errorThrown) {
-          // Handle error response
-          console.error("Error:", textStatus, errorThrown);
-        }
-      }); 
-      console.log(' place search nearby results : ', response_raw);
+        addressResult =  await $.ajax({
+            url: apple_map_server_api_url,
+            headers: {
+            'Authorization': 'Bearer ' + temp_access_token,  //'Bearer xxxxxx',
+            },
+
+            method: 'GET',
+            dataType: 'json',
+            
+            success: function(data){
+              console.log('apple reverse geocode success', data)
+              return data;
+            }, 
+            error: function(jqXHR, textStatus, errorThrown) {
+              // Handle error response
+              console.log("ajax json failed, jqXHR.responseJSON",jqXHR, textStatus, errorThrown);
+               // ajax failed, error
+              error_response_json = jqXHR.responseJSON.errors
+              $('#info-window-div').append("<span style='font-size:large;'>" + error_response_json.error + " , " + addressResult.error_description  + "</span>")
+            }
+          }); 
+
+
+        } catch {
+
+          
+           return null; // stop here, do not go further
+          
+        }// try
+
+      
+      
+      
+        console.log(' apple reverse geocode address results : ', addressResult);
                   
 
-    var addressResult = await ajax_getjson_common(_reverseGeocode_by_here_url)
-    console.log('Here map address result', addressResult)
-
-
 
     
 
-   if (addressResult.items.length){
+   if (addressResult.results.length){
 
 
-        var results_array = addressResult.items
+        var results_array = addressResult.results
         var _place_displayName
         var _formatted_address
         var address_value_html = ''
@@ -1328,8 +1339,9 @@ async function apple_reverseGeocode_show_1_address(_lat_comma_lng_string){
     
 
         for (let i = 0; i < results_array.length; i++) {
-            _formatted_address = results_array[i].address.label
-            _place_displayName = results_array[i].title
+            _formatted_address = results_array[i].formattedAddressLines.join(", ")
+
+            _place_displayName = results_array[i].name
 
             // place name 
             address_value_html += '<span style="font-size:xx-large; font-weight:bolder;">' + _place_displayName + '</span>'
@@ -1342,16 +1354,11 @@ async function apple_reverseGeocode_show_1_address(_lat_comma_lng_string){
          $('#info-window-div').html(address_value_html)      
 
 
-    } else {
+   } else {
 
-
-        
         // no result
-     if (addressResult.error){
-        $('#info-window-div').append("<span style='font-size:large;'>" + addressResult.error + " , " + addressResult.error_description  + "</span>")
-     } else {
         $('#info-window-div').html("<span style='font-size:large;'>" +'Nothing found'  + "</span>")
-     }//if
+    
 
    }//if 
 }
