@@ -4914,7 +4914,7 @@ icon_flatjson.push(icon_item)
                     icon_item = { 
                         "id" :  3310,     
                         "parent" : 4010,
-                        "text" : "everything",
+                        "text" : "everything (category optional)",
                         "icon" : folder_icon,
                         "link_type": "folder",   
                         "state"       : {
@@ -4927,10 +4927,32 @@ icon_flatjson.push(icon_item)
                     icon_flatjson.push(icon_item)
                         
 
+
+                                icon_item = { 
+                                                "id" :  4015,     
+                                                "parent" : 3310,
+                                                "text" : "4015 default",
+                                                "layer_name" : _layer_name_,
+                                                "icon" : open_new_tab_icon,
+                                                "link_type": "embed_4015",
+                                                "state"       : {
+                                                                "opened"    : true,  // is the node open
+                                                                // disabled  : boolean  // is the node disabled
+                                                                // "selected"  : true   // is the node selected
+                                                            },
+                                                "node_path" : _node_path_, 
+                                                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                                "server_path" : _map_server_url_,
+                                                "layer_id" :  _layer_id_,            
+                                                "type" : _type_
+                                            };
+                                icon_flatjson.push(icon_item)
+
+
                                 icon_item = { 
                                                 "id" :  4011,     
                                                 "parent" : 3310,
-                                                "text" : "4011 category optional x1",
+                                                "text" : "4011 mapKit class x1",
                                                 "layer_name" : _layer_name_,
                                                 "icon" : open_new_tab_icon,
                                                 "link_type": "embed_4011",
@@ -4952,7 +4974,7 @@ icon_flatjson.push(icon_item)
                                 icon_item = { 
                                                 "id" :  4014,     
                                                 "parent" : 3310,
-                                                "text" : "4014 category optional x4",
+                                                "text" : "4014 mapKit class x4",
                                                 "layer_name" : _layer_name_,
                                                 "icon" : open_new_tab_icon,
                                                 "link_type": "embed_4014",
@@ -5060,7 +5082,7 @@ icon_flatjson.push(icon_item)
                     icon_item = { 
                         "id" :  3311,     
                         "parent" : 4010,
-                        "text" : "by keyword",
+                        "text" : "by keyword (required)",
                         "icon" : folder_icon,
                         "link_type": "folder",   
                         "state"       : {
@@ -5077,7 +5099,7 @@ icon_flatjson.push(icon_item)
                                     icon_item = { 
                                                     "id" :  4012,     
                                                     "parent" : 3311,
-                                                    "text" : "4012 keyword required",
+                                                    "text" : "4012 default",
                                                     "layer_name" : _layer_name_,
                                                     "icon" : open_new_tab_icon,
                                                     "link_type": "embed_4012",

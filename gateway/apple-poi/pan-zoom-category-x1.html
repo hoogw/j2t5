@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+     <!--Let browser know website is optimized for mobile-->
+     <meta name="viewport" charset='utf-8' content="initial-scale=1.0, width=device-width"/>
+
+    <title id="title">layer name</title>
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+    
+    <link rel="stylesheet" href="../../stylesheets/vertical.css">
+
+    
+
+</head>
+
+<body>
+
+
+
+<div class="horizontal-left-right-width-undefined-container" style="width:1200px;">
+             
+    <div class="vertical-width-undefined-no-border" style="width: 800px;"> 
+
+        <div>
+
+        
+              <span id="layer-info-vertical">Layer Name</span>
+              <button type="button" id = "zoomToLayer_button">back-2-layer</button>
+       
+        
+            <a target="_blank" href="https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory">CategoryList</a>
+            <input type='text' id='category-input' placeholder="optional. Hospital,Police"/>
+         
+        
+        </div>
+
+        <div id="map"  style="height:700px;"></div> <!-- override default height -->
+
+        <div>
+
+          
+            <span>POI Total</span>
+            <span id="poi_total">...</span>
+            <button id='download_csv_button'>Download .csv</button> 
+            <button id='download_poi_button'>Download .geojson</button>
+            <button id='start_over_button'>Clear</button> 
+         
+
+        </div>
+     
+    </div>
+    
+    <div class="vertical-width-undefined-no-border" style="width: 400px; height: 800px; overflow: auto; ">
+    
+          <!-- apple search place -->
+          <input type='search' id='mapLookup' placeholder='(apple) address or place'/>  
+          <div id='results'></div>
+          <!-- end -- apple search place -->
+
+          
+
+      <div id='info-window-div' class="flex-column"></div>
+      
+    </div>
+
+</div>
+
+
+
+
+
+    
+   
+ 
+   
+  <script src="../../js/lib/parse-address/parse-address.min.js" type="text/javascript"></script>
+
+  <script src="../../js/lib/papaparse.js" type="text/javascript"></script>
+
+
+      
+  <script src="../../js/lib/stack.js"></script>
+
+  
+  <script src="../../js/lib/proj4/dist/proj4.js"></script>
+  <script src="../../js/lib/wkt.js"></script>
+  <script src="../../js/lib/reproject/dist/reproject.js"></script>
+  <script src="../../js/lib/wellknown/wellknown.js"></script>
+
+
+  <script   src="../../js/lib/arcgis-to-geojson-utils/dist/arcgis-to-geojson.js"></script> 
+  <script   src="../../js/lib/turf/turf.min.js"></script>
+      
+  <script src="../../js/arcgis/arcgis_common.js" type="text/javascript"></script>
+
+
+  
+  <script src="../../js/gateway/apple/share/apple.js" type="text/javascript"></script>
+  <script src="../../js/gateway/apple-poi/apple-poi-share.js" type="text/javascript"></script>
+
+  <!-- default.js must load befor common_share.js -->
+  <script src="../../js/gateway/apple-poi/pan-zoom/default-category-x1.js" type="text/javascript"></script>
+  <script src="../../js/gateway/apple-poi/pan-zoom/helper.js" type="text/javascript"></script>
+  <script src="../../js/gateway/apple-poi/pan-zoom/common_share.js" type="text/javascript"></script>
+
+
+
+  </body>
+</html>

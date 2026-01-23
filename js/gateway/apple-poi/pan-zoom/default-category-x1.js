@@ -20,6 +20,9 @@ function empty_info_outline_Tab(){
          async function nearby_poi(_lat, _lng, _zoom_string){  // apple use lat-lng-region, not circle, but circle is ok
 
 
+              apple_poi_search_object = new mapkit.PointsOfInterestSearch()
+              apple_poi_search_object.language = 'en'
+            apple_poi_search_object.includePhysicalFeatures = true
              
              
 
@@ -29,76 +32,53 @@ function empty_info_outline_Tab(){
                   _category_string = $("#category-input").val()
                   update_url_parameter("poicategory",_category_string)
 
+              
                   if (_category_string){
-                    // capitalize upper case the 1st letter,(apple cat. require)  
+                    // capitalize upper case the 1st letter
                     _category_string = String(_category_string).charAt(0).toUpperCase() + String(_category_string).slice(1)
+                    //var poiFilter = mapkit.PointOfInterestFilter.including([mapkit.PointOfInterestCategory.Hospital])
+                    //var poiFilter = mapkit.PointOfInterestFilter.including([mapkit.PointOfInterestCategory["Hospital"]])
+                    var poiFilter = mapkit.PointOfInterestFilter.including([mapkit.PointOfInterestCategory[_category_string]])
+                    apple_poi_search_object.pointOfInterestFilter = poiFilter
                   }
+              
               /**/
               //  -  -  - end  -  -  - apple category    -  -  - 
               /**/
 
 
               
-             var temp_access_token 
-             var response_token =  await $.ajax({
-                  url: apple_token_url,
-                  headers: {
-                    'Authorization': 'Bearer ' + _apple_token,  //'Bearer xxxxxx',
-                   },
-                  method: 'GET',
-                  dataType: 'json',
-                  success: function(data){
-                     temp_access_token = data.accessToken
-                     console.log('temp_access_token', temp_access_token)
-                  }, 
-                  error: function(jqXHR, textStatus, errorThrown) {
-                    // Handle error response
-                    console.error("Error:", textStatus, errorThrown);
-                  }
-                }); 
          
 
-                
-              var apple_map_server_api_url = apple_nearby_api + "?lang=en-US"
-              apple_map_server_api_url += "&mkjsVersion=5.80.128"
-              apple_map_server_api_url += "&includePoiCategories=" + _category_string
+              // for 1 x, works
+              apple_poi_search_object.region = get_coord_region(_lat, _lng, _zoom_string)
+              // .search(callback, option)
+              //apple_poi_search_object.search(mapkit_poi_result_callback, {"region": get_coord_region(_lat, _lng, _zoom_string)})
+              apple_poi_search_object.search(mapkit_poi_result_callback)
 
-              // north-latitude,east-longitude,south-latitude,west-longitude
-              apple_map_server_api_url += "&mapRegion=" + get_region_string(_lat, _lng, _zoom_string)
-              
-              
-              var response_raw =  await $.ajax({
-                  url: apple_map_server_api_url,
-                  headers: {
-                 'Authorization': 'Bearer ' + temp_access_token,  //'Bearer xxxxxx',
-                  },
+          /* keep,but not use class, use map server api instead    
+               // for 4 x, works
+              var region4x_array = get_4x_coord_region(_lat, _lng, _zoom_string)
+              console.log("region4x_array", region4x_array)
+              for (let r = 0; r < region4x_array.length; r++) {
+                  apple_poi_search_object.region = region4x_array[r]
+                  apple_poi_search_object.search(mapkit_poi_result_callback)
+              }//for
+          */
 
-                  method: 'GET',
-                  dataType: 'json',
-                  
-                  success: function(data){
-                    console.log('poi search by categories success', data)
-                    mapServerApi_poi_result_callback("", data)
-                  }, 
-                  error: function(jqXHR, textStatus, errorThrown) {
-                    // Handle error response
-                    console.error("Error:", textStatus, errorThrown);
-                  }
-                }); 
-                console.log(' place search nearby results : ', response_raw);
-                    
+            
+
 
             }
 
 
-           // only for apple map server api
-            function mapServerApi_poi_result_callback(_error, _data){
+            function mapkit_poi_result_callback(_error, _data){
 
                 console.log('apple poi search object search call back ', _error, _data)
 
                 var places = []
-                if (_data.hasOwnProperty("results") && (_data.results)){
-                  places = _data.results
+                if (_data.hasOwnProperty("places") && (_data.places)){
+                  places = _data.places
                 }
 
                     //  . . efficient core newOnly  . - .
@@ -126,13 +106,13 @@ function empty_info_outline_Tab(){
                     $("#poi_total").html(_total_poi)
 
                       // special version only for google place poi
-                      poi_geojson = poi_to_geojson_mapKitApi(_all_poi_flat_array)
+                      poi_geojson = poi_to_geojson(_all_poi_flat_array)
                       console.log('poi geojson', poi_geojson)
 
        
                       //  . . efficient core newOnly  . - .
                             console.log('_this_newOnly_result_array', _this_newOnly_result_array)
-                            _this_newOnly_poi_geojson = poi_to_geojson_mapKitApi(_this_newOnly_result_array)
+                            _this_newOnly_poi_geojson = poi_to_geojson(_this_newOnly_result_array)
                             
                             
                             // both works, the same, this is apple's mapkit.importGeoJSON   https://developer.apple.com/documentation/mapkitjs/mapkit/2974044-importgeojson
