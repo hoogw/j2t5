@@ -497,11 +497,7 @@
                   //  --- google place geocode    --- 
                   /**/
                          var lat_comma_lng = click_lat  + ',' + click_lng
-                       
-                         // .............. click to show street view  ..............
-                              // photo conflict with street view, do not show photo to keep street view 
-                              google_reverseGeocode_show_1_poi_or_addr_with_place_photo(lat_comma_lng)
-                         // .............. end   ..............  click to show street view  .............. 
+                         google_reverseGeocode_multi_addr_2_pin(lat_comma_lng)
                   /**/
                   //  --- end  ---  google place geocode    --- 
                   /**/
@@ -845,12 +841,7 @@
 
                   function add_mapdata_listener(){
 
-
-
                     set_map_style(_default_strokeColor,_default_strokeWeight, _default_fillColor , _default_pointRadius)
-
-
-
 
                     // click listener
                     map.data.addListener('click', function(event) {
@@ -863,15 +854,12 @@
                         var click_lat_lng_point = { lng : click_lng, lat : click_lat }
                         console.log(' **** clicked ground overlay image *** >>> lng, lat ', click_lng, click_lat)
 
+
                           /**/
                           //  --- google place geocode    --- 
                           /**/
                               var lat_comma_lng = click_lat  + ',' + click_lng
-
-                              // .............. click to show street view  ..............
-                              // photo conflict with street view, do not show photo to keep street view 
-                              google_reverseGeocode_show_1_poi_or_addr_with_place_photo(lat_comma_lng)
-                              // .............. end   ..............  click to show street view  .............. 
+                              google_reverseGeocode_multi_addr_2_pin(lat_comma_lng)
                           /**/
                           //  --- end  ---  google place geocode    --- 
                           /**/
@@ -880,7 +868,7 @@
                         // .............. click to show street view  .............. 
                              turn_on_street_view(click_lat, click_lng, 100)
                         // .............. end   ..............  click to show street view  .............. 
-     
+  
                     });    
 
 
@@ -889,20 +877,21 @@
 
 
 
+              /**/
+              //  --- google poi      --- only for new marker
+              /**/
+
                       // mouse over listener
-                        map.data.addListener('mouseover', function (event) {   
-                          
-                           
+                        map.data.addListener('mouseover', function (event) {
+                          // must empty previous all lines
                         });
-
-
-
-
                           // mouse out listener
                         map.data.addListener('mouseout', function (event) {
-
-
+                          // must empty previous all lines
                         });
+              /**/
+              //  --- end  ---  google poi    --- only for new marker
+              /**/
 
 
 
@@ -927,7 +916,9 @@
 
           function add_map_listener_idle(){   
                                                         
-              listener_idle =  map.addListener('idle', function() {   
+                                                
+                                                        
+            listener_idle =  map.addListener('idle', function() {   
 
               console.log('  !!! map idle event   !!! ')
               update_center_latLngZoom();
@@ -939,6 +930,7 @@
                 turn_on_street_view(_center_lat, _center_long, 1000)
               // .............. end   ..............  click to show street view  .............. 
 
+     
             });
 
 
@@ -1939,8 +1931,14 @@
 
 
 
-function init_user_interface_event(){
+function init_user_interface_after_map_load(){
 
+
+
+// only for pan & zoom, not for manual drawing circle
+ $("#start_over_button").on("click", function() {
+      clear_all_poi_advancedMarker()
+ });
 
 
   
@@ -1981,8 +1979,8 @@ function init_user_interface_event(){
 
                                 
 /**/
-//  --- Google traffic    --- 
-/**/
+                //  --- Google traffic    --- 
+                /**/
 
                 const trafficLayer = new google.maps.TrafficLayer();
 
@@ -2005,9 +2003,6 @@ function init_user_interface_event(){
 /**/
 //    ---  end  --- Google traffic    --- 
 /**/
-
-
-
 
 
 }

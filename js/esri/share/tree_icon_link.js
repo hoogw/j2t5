@@ -1362,6 +1362,12 @@ case "embed_6392":
     console.log('_newTab_link', _newTab_link)
   break;
 
+   case "embed_6795":
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-click-map-to-get/download-address-street-view.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
+
   case "embed_6790":
     var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-click-map-to-get/show-address.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     window.open(_newTab_link,'_blank');

@@ -280,13 +280,16 @@
 
        
 
+
   
 /**/
-//  --- google speed limit      --- 
+//  --- google poi      --- 
 /**/
   
               function show_info_outline_Tab(___properties){
-              
+                
+                $('#info-window-div').html(poi_viewer_for_download(___properties))
+             
               }
 
 
@@ -297,16 +300,13 @@
 
 
 /**/
-//  --- end  ---  google speed limit    --- 
+//  --- end  ---  google poi    --- 
 /**/
 
 
 
-
-
-
-
-
+                             
+                        
 
                             /**/
                             // .............. click to show street view  .............. 
@@ -429,6 +429,36 @@
 
                         // .............. end   ..............  click to show street view  ..............  
                         /**/
+
+                        
+
+
+
+
+
+                        
+
+
+              
+                        
+        
+
+
+                        
+
+
+
+                            
+
+
+
+
+
+
+
+
+
+
 
 
                               
