@@ -183,18 +183,7 @@ difference:
 
 
 
-    // only for poi,  
-    // noHoverClick
-    function mousemove_on_map_event_handler(event){
-
-                // only for poi, 
-              poi_reset_all_annotation_style_to_default()
-
-
-    }
-
-
-    // DOM's map-element's hover and click event, only for polygon and line, not for point annotation marker
+    // only for poi, 
     // only-for-click-map-latlng
     function click_on_map_event_handler(event){
 
@@ -203,10 +192,7 @@ difference:
       
     }
 
-    // only for poi,    bug, never fired
-    function mouseleave_on_map_event_handler(event){
-        poi_reset_all_annotation_style_to_default()
-    }
+    
 
 
 
@@ -320,13 +306,11 @@ difference:
                                       }
           });
        */
-      // DOM's map-element's hover and click event, only for polygon and line, not for point annotation marker
+     
+    // only for poi, 
+    // only-for-click-map-latlng
+      document.querySelector("#map").addEventListener("click", click_on_map_event_handler)
       
-      
-      //document.querySelector("#map").addEventListener("mousemove", mousemove_on_map_event_handler) 
-      //document.querySelector("#map").addEventListener("click", click_on_map_event_handler)
-      //document.querySelector("#map").addEventListener("mouseleave", mouseleave_on_map_event_handler)
-
     } //function 
 
 

@@ -185,14 +185,9 @@ difference:
 
 
 
-    // noHoverClick
-    function mousemove_on_map_event_handler(event){
 
 
-    }
-
-
-    // DOM's map-element's hover and click event, only for polygon and line, not for point annotation marker
+    
     // only-for-click-map-latlng
     function click_on_map_event_handler(event){
 
@@ -201,10 +196,7 @@ difference:
       
     }
 
-    // bug, never fired
-    function mouseleave_on_map_event_handler(event){
-      reset_all_overlay_style_to_default()
-    }
+    
 
     function add_mapdata_listener(){
 
@@ -316,14 +308,10 @@ difference:
                                       }
           });
        */
-      // DOM's map-element's hover and click event, only for polygon and line, not for point annotation marker
-      
-      // DOM's map-element's hover and click event, only for polygon and line, not for point annotation marker
-      document.querySelector("#map").addEventListener("mousemove", mousemove_on_map_event_handler) 
-      document.querySelector("#map").addEventListener("click", click_on_map_event_handler)
-      //fix bug, when mouse leave map, should close info tab window
-      document.querySelector("#map").addEventListener("mouseleave", mouseleave_on_map_event_handler)
 
+     // only-for-click-map-latlng
+     document.querySelector("#map").addEventListener("click", click_on_map_event_handler)
+      
 
     } //function 
 
