@@ -1355,6 +1355,8 @@ case "embed_6392":
     console.log('_newTab_link', _newTab_link)
   break;
 
+  
+
 
   case "embed_6793":
     var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-click-map-to-get/download-address.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
@@ -2472,11 +2474,7 @@ case "embed_3953":
     console.log('_newTab_link', _newTab_link)
   break;
 
-   case "embed_4013":
-      var _newTab_link =  apple_base_url.replace('apple/default.html?', 'apple-poi/pan-zoom-keyword-mapkit.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
-      window.open(_newTab_link,'_blank');
-    console.log('_newTab_link', _newTab_link)
-  break;
+   
 
   
    case "embed_4042":
@@ -2526,6 +2524,12 @@ case "embed_3953":
     console.log('_newTab_link', _newTab_link)
   break;
 
+  // apple mapkit search class 
+   case "embed_8131":
+    var _newTab_link =  apple_base_url.replace('apple/default.html?', 'apple-poi/pan-zoom-address-mapkit.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
   
 
 
