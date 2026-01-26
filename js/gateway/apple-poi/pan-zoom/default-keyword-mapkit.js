@@ -11,6 +11,7 @@ function show_info_outline_Tab(___properties){
     $('#info-window-div').html(poi_viewer_for_download(___properties))
 }
 function empty_info_outline_Tab(){
+  console.log('empty info outline now')
   $('#info-window-div').html("")
 }
     
@@ -19,54 +20,45 @@ function empty_info_outline_Tab(){
          // 1 x    
          async function nearby_poi(_lat, _lng, _zoom_string){  // apple use lat-lng-region, not circle, but circle is ok
 
+          
+            /**/
+            //  -  -  - search poi keyword  -  -  - 
+            /**/
+            search_poi_keyword = $("#search_poi_input").val()
+            update_url_parameter('poi', search_poi_keyword);
+            /**/
+            //  -  -  - end  -  -  -  search poi keyword    -  -  - 
+            /**/
 
-              apple_poi_search_object = new mapkit.PointsOfInterestSearch()
-              apple_poi_search_object.language = 'en'
-              apple_poi_search_object.includePhysicalFeatures = true
+            if (search_poi_keyword){
+
+                apple_search_object = new mapkit.Search()
+                apple_search_object.language = 'en'
+                apple_search_object.includePhysicalFeatures = true
+                apple_search_object.includeAddresses = true
+                //apple_search_object.includePointsOfInterest = true
              
-             
-
-              /**/
-              //  -  -  - apple category  -  -  - 
-              /**/
-                  _category_string = $("#category-input").val()
-                  update_url_parameter("poicategory",_category_string)
-
-              
-                  if (_category_string){
-                    // capitalize upper case the 1st letter
-                    _category_string = String(_category_string).charAt(0).toUpperCase() + String(_category_string).slice(1)
-                    //var poiFilter = mapkit.PointOfInterestFilter.including([mapkit.PointOfInterestCategory.Hospital])
-                    //var poiFilter = mapkit.PointOfInterestFilter.including([mapkit.PointOfInterestCategory["Hospital"]])
-                    var poiFilter = mapkit.PointOfInterestFilter.including([mapkit.PointOfInterestCategory[_category_string]])
-                    apple_poi_search_object.pointOfInterestFilter = poiFilter
-                  }
-              
-              /**/
-              //  -  -  - end  -  -  - apple category    -  -  - 
-              /**/
-
-
-              
-         
 
               // for 1 x, works
-              apple_poi_search_object.region = get_coord_region(_lat, _lng, _zoom_string)
+              apple_search_object.region = get_coord_region(_lat, _lng, _zoom_string)
               // .search(callback, option)
-              //apple_poi_search_object.search(mapkit_poi_result_callback, {"region": get_coord_region(_lat, _lng, _zoom_string)})
-              apple_poi_search_object.search(mapkit_poi_result_callback)
+              //apple_search_object.search(mapkit_poi_result_callback, {"region": get_coord_region(_lat, _lng, _zoom_string)})
+              apple_search_object.search(search_poi_keyword, mapkit_poi_result_callback)
 
           /* keep,but not use class, use map server api instead    
                // for 4 x, works
               var region4x_array = get_4x_coord_region(_lat, _lng, _zoom_string)
               console.log("region4x_array", region4x_array)
               for (let r = 0; r < region4x_array.length; r++) {
-                  apple_poi_search_object.region = region4x_array[r]
-                  apple_poi_search_object.search(mapkit_poi_result_callback)
+                  apple_search_object.region = region4x_array[r]
+                  apple_search_object.search(mapkit_poi_result_callback)
               }//for
           */
 
-            
+
+            } else {
+                $('#info-window-div').html("<span style='font-size:large;'>Missing Keyword (required) !  <br></span>") 
+            }//if
 
 
             }

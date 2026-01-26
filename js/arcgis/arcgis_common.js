@@ -319,13 +319,13 @@ var current_queryFeatureResultsAsGraphic_length
                                   var   _default_strokeColor    =  'rgba(255,255,0, 0.95)';   //'yellow'
                                   var   _default_strokeWeight   =  2
                                   
-                                  var   _highlight_color =       'rgba(255,0,0, 0.1)';   //'red'
-                                  var   _highlight_color_for_esri = [255,0,0, 0.1];   //'red'
+                                  var   _highlight_color =       'rgba(255,0,0, 0.75)';   //'red'
+                                  var   _highlight_color_for_esri = [255,0,0, 0.75];   //'red'
                                   var   _highlight_fillOpacity  =  0
                                   var   _highlight_strokeColor  =  'rgba(255,0,0, 0.75)';   //'red'
                                   var   _highlight_strokeWeight =  5
                                   
-                                  var   _classfiy_color = 'rgba(0,0,255, 0.1)';   //'blue'
+                                  var   _classfiy_color = 'rgba(0,0,255, 0.75)';   //'blue'
                                   var  _classfiy_fillOpacity   =  0
                                   var  _classfiy_strokeColor   =  'rgba(0,0,255, 0.65)';   //'blue'
                                   var   _classfiy_strokeWeight  =  8

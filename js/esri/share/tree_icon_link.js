@@ -2467,9 +2467,15 @@ case "embed_3953":
 
    // apple poi
 
-   // apple poi keyword
+   // apple poi keyword, use map server api
    case "embed_4012":
       var _newTab_link =  apple_base_url.replace('apple/default.html?', 'apple-poi/pan-zoom-keyword.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      window.open(_newTab_link,'_blank');
+    console.log('_newTab_link', _newTab_link)
+  break;
+  // apple poi keyword, use mapkit class
+   case "embed_4013":
+      var _newTab_link =  apple_base_url.replace('apple/default.html?', 'apple-poi/pan-zoom-keyword-mapkit.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
       window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
   break;
@@ -2524,12 +2530,7 @@ case "embed_3953":
     console.log('_newTab_link', _newTab_link)
   break;
 
-  // apple mapkit search class 
-   case "embed_8131":
-    var _newTab_link =  apple_base_url.replace('apple/default.html?', 'apple-poi/pan-zoom-address-mapkit.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
-      window.open(_newTab_link,'_blank');
-    console.log('_newTab_link', _newTab_link)
-  break;
+  
   
 
 

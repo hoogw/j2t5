@@ -5117,6 +5117,27 @@ icon_flatjson.push(icon_item)
                                     icon_flatjson.push(icon_item)
 
 
+                                     icon_item = { 
+                                                    "id" :  4013,     
+                                                    "parent" : 3311,
+                                                    "text" : "4013 phone & url (mapKit) x1",
+                                                    "layer_name" : _layer_name_,
+                                                    "icon" : open_new_tab_icon,
+                                                    "link_type": "embed_4013",
+                                                    "state"       : {
+                                                                    "opened"    : true,  // is the node open
+                                                                    // disabled  : boolean  // is the node disabled
+                                                                    // "selected"  : true   // is the node selected
+                                                                },
+                                                    "node_path" : _node_path_, 
+                                                    "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                                    "server_path" : _map_server_url_,
+                                                    "layer_id" :  _layer_id_,            
+                                                    "type" : _type_
+                                                };
+                                    icon_flatjson.push(icon_item)
+
+
 
                                    
 
@@ -7394,58 +7415,7 @@ icon_flatjson.push(icon_item)
 
 
 
-                    
-                                            
-/*  = = = =  = = = = sub folder = = = =  = = = =  */
-            icon_item = { 
-                "id" :  4775,     
-                "parent" : 477,
-                "text" : apple_svg,
-                "icon" : folder_icon,
-                "link_type": "folder",   
-                "state"       : {
-                // use this opened line for always default open this folder
-                                "opened"    :false, //  iconJstreeforceOpen,   // is the node open
-                                // disabled  : boolean  // is the node disabled
-                                // "selected"  : true   // is the node selected
-                            }
-            };
-            icon_flatjson.push(icon_item) 
-
-
-
-
-                                
-                icon_item = { 
-
-                    "id" :  8131,     
-                    "parent" : 4775,
-                    
-                    
-                    "text" : "8131 default",
-                    
-                    "layer_name" : _layer_name_,
-                    "icon" : open_new_tab_icon,
-                    "link_type": "embed_8131",
-                    "state"       : {
-                                    "opened"    : true,  // is the node open
-                                    // disabled  : boolean  // is the node disabled
-                                    // "selected"  : true   // is the node selected
-                                },
-                                
-                    "node_path" : _node_path_, 
-                    "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                    "server_path" : _map_server_url_,
-                    "layer_id" :  _layer_id_,            
-                    "type" : _type_
-                    
-                    
-                    
-                    };
-                    
-                    icon_flatjson.push(icon_item)
-
-
+                  
 
                                             
 /*  = = = =  = = = = sub folder = = = =  = = = =  */

@@ -86,7 +86,9 @@ function empty_info_outline_Tab(){
                 console.log(' place search nearby results : ', response_raw);
                     
                 
-              }//if
+               } else {
+                $('#info-window-div').html("<span style='font-size:large;'>Missing Keyword (required) !  <br></span>") 
+            }//if
 
             }
 

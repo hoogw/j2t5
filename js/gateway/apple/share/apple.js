@@ -99,9 +99,9 @@ var default_icon = default_icon_svg.replace('${outline_color}', _default_strokeC
 var highlight_icon = default_icon_svg.replace('${outline_color}', _highlight_strokeColor).replace('${line_width}', _highlight_strokeWeight).replace('${fill_color}', _highlight_color)
 var classfiy_icon = default_icon_svg.replace('${outline_color}', _classfiy_strokeColor).replace('${line_width}', _classfiy_strokeWeight).replace('${fill_color}', _classfiy_color)
 
-//console.log('standard default icon svg ',   default_icon)
-//console.log('standard highlight icon svg ', highlight_icon)
-//console.log('standard classfiy icon svg ',  classfiy_icon)
+console.log('standard default icon svg ',   default_icon)
+console.log('standard highlight icon svg ', highlight_icon)
+console.log('standard classfiy icon svg ',  classfiy_icon)
 
 /**/
 // --- end --- apple map only -------
