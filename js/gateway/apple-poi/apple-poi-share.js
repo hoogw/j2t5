@@ -27,7 +27,7 @@ var _this_newOnly_geojsonGoogleHandlerArray = []
 
 
 
-
+var apple_search_object
 var apple_poi_search_object
 
 var apple_poi_annotation
