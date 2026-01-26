@@ -20,6 +20,7 @@ function empty_info_outline_Tab(){
          // 1 x    
          async function nearby_poi(_lat, _lng, _zoom_string){  // apple use lat-lng-region, not circle, but circle is ok
 
+         
           
             /**/
             //  -  -  - search poi keyword  -  -  - 
@@ -31,6 +32,8 @@ function empty_info_outline_Tab(){
             /**/
 
             if (search_poi_keyword){
+
+               $('#info-window-div').html("") 
 
                 apple_search_object = new mapkit.Search()
                 apple_search_object.language = 'en'

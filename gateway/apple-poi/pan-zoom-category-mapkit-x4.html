@@ -28,29 +28,21 @@
     <div class="vertical-width-undefined-no-border" style="width: 800px;"> 
 
         <div>
-
-        
-              <span id="layer-info-vertical">Layer Name</span>
-              <button type="button" id = "zoomToLayer_button">back-2-layer</button>
-       
-        
             <a target="_blank" href="https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory">CategoryList</a>
-            <input type='text' id='category-input' placeholder="optional. Hospital,Police"/>
-       
-        
-        </div>
-
-        <div id="map"  style="height:700px;"></div> <!-- override default height -->
-
-        <div>
+            <input type='text' id='category-input' style="font-size: large;" placeholder="category is optional, Hospital,Police"/>
 
             <span>POI Total</span>
             <span id="poi_total">...</span>
             <button id='download_csv_button'>Download .csv</button> 
             <button id='download_poi_button'>Download .geojson</button>
             <button id='start_over_button'>Clear</button> 
-       
+        </div>
 
+        <div id="map"  style="height:700px;"></div> <!-- override default height -->
+
+        <div>
+            <span id="layer-info-vertical">Layer Name</span>
+            <button type="button" id = "zoomToLayer_button">back-2-layer</button>
         </div>
      
     </div>

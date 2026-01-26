@@ -4033,7 +4033,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
         annotation_array[i].element.innerHTML= default_icon;
       }
 
-       empty_info_outline_Tab()
+      
     }
   
 

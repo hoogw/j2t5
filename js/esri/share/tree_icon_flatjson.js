@@ -4952,7 +4952,7 @@ icon_flatjson.push(icon_item)
                                 icon_item = { 
                                                 "id" :  4011,     
                                                 "parent" : 3310,
-                                                "text" : "4011 phone & url (mapKit) x1",
+                                                "text" : "4011  mapKit x1",
                                                 "layer_name" : _layer_name_,
                                                 "icon" : open_new_tab_icon,
                                                 "link_type": "embed_4011",
@@ -4974,7 +4974,7 @@ icon_flatjson.push(icon_item)
                                 icon_item = { 
                                                 "id" :  4014,     
                                                 "parent" : 3310,
-                                                "text" : "4014 phone & url (mapKit) x4",
+                                                "text" : "4014  mapKit x4",
                                                 "layer_name" : _layer_name_,
                                                 "icon" : open_new_tab_icon,
                                                 "link_type": "embed_4014",
@@ -5120,7 +5120,7 @@ icon_flatjson.push(icon_item)
                                      icon_item = { 
                                                     "id" :  4013,     
                                                     "parent" : 3311,
-                                                    "text" : "4013 phone & url (mapKit) x1",
+                                                    "text" : "4013  mapKit x1",
                                                     "layer_name" : _layer_name_,
                                                     "icon" : open_new_tab_icon,
                                                     "link_type": "embed_4013",
