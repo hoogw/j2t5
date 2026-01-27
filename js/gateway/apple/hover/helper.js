@@ -202,7 +202,7 @@ difference:
                 reset_all_overlay_style_to_default()
                 if (targetOverlay){
                           // only change this selected overlay color
-                          targetOverlay.style = highlight_overlay_style;
+                          targetOverlay.style = hovered_overlay_style;
 
                           //console.log('show properties' ,  targetOverlay.data)
                           show_info_outline_Tab(targetOverlay.data)
@@ -214,22 +214,20 @@ difference:
     }
 
 
-    // DOM's map-element's hover and click event, only for polygon and line, not for point annotation marker
-    function click_on_map_event_handler(event){
+    
 
-      console.log("you click : event.pageX event.pageY", event.pageX, event.pageY)
-      console.log("you click : ", new DOMPoint(event.pageX, event.pageY))
+
+
+    // only for hover
+    function add_mapdata_listener(){
+
+
+      // only for hover
+      // DOM's map-element's hover and click event, only for polygon and line, not for point annotation marker
+      document.querySelector("#map").addEventListener("mousemove", mousemove_on_map_event_handler) 
       
 
-
-    }
-
-    // bug, never fired
-    function mouseleave_on_map_event_handler(event){
-      //reset_all_overlay_style_to_default()
-    }
-
-    function add_mapdata_listener(){
+      /*
 
       // only for annotation point
       var icon_size = 'width="' + (_default_pointRadius * 4) + '" height="' + (_default_pointRadius * 4) + '"'
@@ -258,7 +256,7 @@ difference:
                                                   fillColor: _default_fillColor,
                                               });
 
-      highlight_overlay_style = new mapkit.Style({
+      hovered_overlay_style = new mapkit.Style({
                                                   strokeColor: _highlight_strokeColor,
                                                   strokeOpacity: _highlight_strokeOpacity,
                                                   lineWidth: _highlight_strokeWeight,
@@ -266,7 +264,7 @@ difference:
                                                   fillColor: _highlight_color,
                                             });
 
-      classfiy_overlay_style = new mapkit.Style({
+      clicked_overlay_style = new mapkit.Style({
                                               strokeColor: _classfiy_strokeColor,
                                               strokeOpacity: _classfiy_strokeOpacity,
                                               lineWidth: _classfiy_strokeWeight,
@@ -333,6 +331,9 @@ difference:
                                             }
       }; //geoJSONParserDelegate
 
+
+      */
+
       /*
           not use,  mapkit apple event, instead use DOM element event instead
           // https://developer.apple.com/documentation/mapkitjs/mapkit/overlays/adding_interactivity_to_overlays
@@ -342,12 +343,7 @@ difference:
                                       }
           });
        */
-      // DOM's map-element's hover and click event, only for polygon and line, not for point annotation marker
-      document.querySelector("#map").addEventListener("mousemove", mousemove_on_map_event_handler) 
-      document.querySelector("#map").addEventListener("click", click_on_map_event_handler)
-      //fix bug, when mouse leave map, should close info tab window
-      document.querySelector("#map").addEventListener("mouseleave", mouseleave_on_map_event_handler)
-
+     
     } //function 
 
 

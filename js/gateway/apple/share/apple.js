@@ -88,8 +88,8 @@ var   _classfiy_strokeOpacity   =  1  // apple only
 var geoJSONParserDelegate 
 var geoJSONParserDelegate_for_each_feature
 var default_overlay_style 
-var highlight_overlay_style
-var classfiy_overlay_style
+var hovered_overlay_style
+var clicked_overlay_style
    
 var default_icon_svg  = '<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50">'
     default_icon_svg +=       '<circle cx="25" cy="25" r="20" stroke="${outline_color}" stroke-width="${line_width}" fill="${fill_color}" />'
@@ -4154,19 +4154,22 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                                 //div.textContent = 'test'
                                 // Using element's data attributes https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes
                                 div.data = _properties
-
+/* click event, not work
                 // annotation hover event listener,  DOM element event, not apple mapkit event 
                 div.addEventListener("click", function(event) {
                       console.log("annotation mouse enter event, DOM event", event);
 
                       // reset all overlay style to default
-                      //reset_all_annotation_style_to_default()
+                      reset_all_annotation_style_to_default()
 
                     // not fixed bug, so not highlight svg icon when hover for now
                     event.target.innerHTML = clicked_icon  // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
                     
                     show_info_outline_Tab(event.target.data)
                 }); 
+*/
+
+
 
 
                                                                
@@ -4186,7 +4189,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                             annotation = new mapkit.Annotation(coordinate, factory, options);
                           
                            
-                           /* 
+                           
                             // annotation icon image dom click event failed to trigger, use this apple event instead
                             annotation.addEventListener('select', function(event) {  
 
@@ -4200,7 +4203,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                                   show_info_outline_Tab(event.target.data)
 
                             });
-                            */
+                            
                             
 
                             map.addAnnotation(annotation);
