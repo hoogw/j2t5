@@ -74,7 +74,7 @@ const libraries = "services,full-map,overlays,annotations,geojson,user-location,
 
 
 
-
+var lookAround
 
 
 //  .. ..  from node.js arcgis viewer transition to json2tree  .. ..  
@@ -4103,6 +4103,28 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                     event.target.innerHTML = hovered_icon  // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
                     
                     show_info_outline_Tab(event.target.data)
+
+
+
+                    /**/
+                    //  ---  ---  apple look around    --- 
+                    /**/
+
+                        if (lookAround){
+                             var event_screen_coordinate = map.convertPointOnPageToCoordinate(new DOMPoint(event.pageX, event.pageY));
+                             updateLookAroundCoordinate(event_screen_coordinate)
+
+                        }
+
+                    /**/
+                    //  --- end  ---  apple look around    --- 
+                    /**/
+
+
+
+
+                  
+
                 }); 
 
 
@@ -4267,8 +4289,9 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
 
 
-    // for hover only
-    function geojson_to_feature_for_hover(single_whole_geojson){
+    
+   // for click map get lat-lng, no any event  
+    function geojson_to_feature_withoutHoverClickEvent(single_whole_geojson){
 
       var features_array = single_whole_geojson.features
       var one_geojson_feature
@@ -4284,8 +4307,10 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
         if (_the_geom_type == 'point'){
 
                     _coordinate_point = one_geojson_feature.geometry.coordinates
-                    create_annotation_Hover_MouseEnterLeaveEvent(one_geojson_feature.properties, _coordinate_point)
+                    create_annotation_NoAnyEvent(one_geojson_feature.properties, _coordinate_point)
 
+                 
+                    
 
         } else {
                       if ((_the_geom_type == 'linestring') || (_the_geom_type == 'multipoint')){
@@ -4307,12 +4332,11 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                       }// type = multipolygon 
         }//if
 
-      }//for
+      }
 
 
 
     }
-
 
 
     // for click only
@@ -4364,8 +4388,8 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
     }
 
 
-    // noHoverClick for click map get lat-lng
-    function geojson_to_feature_withoutHoverClickEvent(single_whole_geojson){
+    // for hover only
+    function geojson_to_feature_for_hover(single_whole_geojson){
 
       var features_array = single_whole_geojson.features
       var one_geojson_feature
@@ -4381,10 +4405,8 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
         if (_the_geom_type == 'point'){
 
                     _coordinate_point = one_geojson_feature.geometry.coordinates
-                    create_annotation_NoAnyEvent(one_geojson_feature.properties, _coordinate_point)
+                    create_annotation_Hover_MouseEnterLeaveEvent(one_geojson_feature.properties, _coordinate_point)
 
-                 
-                    
 
         } else {
                       if ((_the_geom_type == 'linestring') || (_the_geom_type == 'multipoint')){
@@ -4406,11 +4428,13 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                       }// type = multipolygon 
         }//if
 
-      }
+      }//for
 
 
 
     }
+
+    
 
 
     function delete_all_apple_annotation(){ 
@@ -4515,4 +4539,61 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
 
 
+
+
+
+
+
+
+
+
+        /**/
+        //  ---  ---  apple look around    --- 
+        /**/
+
+      
+      function init_apple_look_around(){
+
+      // Create an interactive Look Around view.
+        lookAround = new mapkit.LookAround(
+            // html tag
+            document.getElementById("apple-look-around-container"),
+            // location?: Coordinate | Place | LookAroundScene,
+            new mapkit.Coordinate(_center_lat,_center_long),
+            // options?: LookAroundOptions,
+            {
+                // Allow users to expand the view.
+                showsDialogControl: true,
+                //showsCloseControl: true,
+                //isNavigationEnabled: true,
+                //isScrollEnabled: true,
+                showsRoadLabels: true,
+                showsPointsOfInterest: true,
+            }
+        );
+
+
+      }
+
+
+
+      function updateLookAroundCoordinate(newCoordinate) {
+          //if (mapkit.LookAround.isLookAroundAvailable(newCoordinate)) {
+              var request = new mapkit.LookAroundSceneRequest(newCoordinate);
+              request.getSceneWithCompletionHandler(function(scene, error) {
+                  if (scene) {
+                      // Update the current lookAround instance's scene property
+                      lookAround.scene = scene;
+                  } else if (error) {
+                      console.error("Error retrieving Look Around scene:", error);
+                  }
+              });
+          //} else {
+              console.log("Look Around not available at this coordinate.");
+         // }
+      }
+
+        /**/
+        //  --- end  ---  apple look around    --- 
+        /**/
 
