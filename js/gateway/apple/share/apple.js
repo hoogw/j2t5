@@ -4067,14 +4067,14 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
    
     // annotation Mouse Enter Leave Event conflict with overlay's mousemove, mouseleave, click event, 
-    function create_annotation_MouseEnterLeaveEvent(_properties, point){
+    function create_annotation_Hover_MouseEnterLeaveEvent(_properties, point){
 
 
       // - - - annotation Mouse Enter Leave Event conflict with overlay's mousemove, mouseleave, click event,  - - - 
         // fix bug, here use annotation, must disable overlay event. 
         // otherwise overlay event will overwrite annotation event, 
         // cause annotation Mouse Enter Leave Event failed to function
-        //document.querySelector("#map").removeEventListener("mousemove", mousemove_on_map_event_handler)
+        document.querySelector("#map").removeEventListener("mousemove", mousemove_on_map_event_handler)
         //document.querySelector("#map").removeEventListener("click",click_on_map_event_handler) 
         //document.querySelector("#map").removeEventListener("mouseleave", mouseleave_on_map_event_handler)
       //  - - -  end   - - -  annotation Mouse Enter Leave Event conflict with overlay's mousemove, mouseleave, click event,  - - - 
@@ -4142,7 +4142,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
 
     // without annotation's mouse-enter, mouse-leave event,
-    function create_annotation_forClickWithSelectEvent(_properties, point){
+    function create_annotation_Click_AppleSelectEvent(_properties, point){
 
                             //console.log('create annotation with build  in  properties',  _properties, point )
 
@@ -4254,18 +4254,16 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                             }
                             annotation = new mapkit.Annotation(coordinate, factory, options);
                           
-                           
-                            
 
                             map.addAnnotation(annotation);
                             annotation_array.push(annotation)
                             return annotation;
 
 
-                            
-
-
     }// annotaion
+
+
+
 
 
 
@@ -4286,7 +4284,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
         if (_the_geom_type == 'point'){
 
                     _coordinate_point = one_geojson_feature.geometry.coordinates
-                    create_annotation_MouseEnterLeaveEvent(one_geojson_feature.properties, _coordinate_point)
+                    create_annotation_Hover_MouseEnterLeaveEvent(one_geojson_feature.properties, _coordinate_point)
 
 
         } else {
@@ -4309,7 +4307,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                       }// type = multipolygon 
         }//if
 
-      }
+      }//for
 
 
 
@@ -4334,7 +4332,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
         if (_the_geom_type == 'point'){
 
                     _coordinate_point = one_geojson_feature.geometry.coordinates
-                    create_annotation_forClickWithSelectEvent(one_geojson_feature.properties, _coordinate_point)
+                    create_annotation_Click_AppleSelectEvent(one_geojson_feature.properties, _coordinate_point)
 
                     
                     
