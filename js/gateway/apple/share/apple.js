@@ -96,12 +96,12 @@ var default_icon_svg  = '<svg xmlns="http://www.w3.org/2000/svg" width="50" heig
     default_icon_svg += '</svg>'
 
 var default_icon = default_icon_svg.replace('${outline_color}', _default_strokeColor).replace('${line_width}', _default_strokeWeight).replace('${fill_color}', _default_fillColor)
-var highlight_icon = default_icon_svg.replace('${outline_color}', _highlight_strokeColor).replace('${line_width}', _highlight_strokeWeight).replace('${fill_color}', _highlight_color)
-var classfiy_icon = default_icon_svg.replace('${outline_color}', _classfiy_strokeColor).replace('${line_width}', _classfiy_strokeWeight).replace('${fill_color}', _classfiy_color)
+var hovered_icon = default_icon_svg.replace('${outline_color}', _highlight_strokeColor).replace('${line_width}', _highlight_strokeWeight).replace('${fill_color}', _highlight_color)
+var clicked_icon = default_icon_svg.replace('${outline_color}', _classfiy_strokeColor).replace('${line_width}', _classfiy_strokeWeight).replace('${fill_color}', _classfiy_color)
 
 console.log('standard default icon svg ',   default_icon)
-console.log('standard highlight icon svg ', highlight_icon)
-console.log('standard classfiy icon svg ',  classfiy_icon)
+console.log('standard highlight icon svg ', hovered_icon)
+console.log('standard classfiy icon svg ',  clicked_icon)
 
 /**/
 // --- end --- apple map only -------
@@ -3727,14 +3727,14 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
                 var icon_size = 'width="' + (_default_pointRadius * 4) + '" height="' + (_default_pointRadius * 4) + '"'
                 var icon_center_radius = 'cx="' + (_default_pointRadius * 2) + '" cy="' + (_default_pointRadius * 2) + '" r="' + (_default_pointRadius * 1.5) + '"'
-                highlight_icon = default_icon_svg.replace('${outline_color}', _highlight_strokeColor).replace('${line_width}', _highlight_strokeWeight).replace('${fill_color}', _highlight_color).replace('width="50" height="50"', icon_size).replace('cx="25" cy="25" r="20"', icon_center_radius)
-                console.log('set map style  ,   highlight icon svg ', highlight_icon)
+                hovered_icon = default_icon_svg.replace('${outline_color}', _highlight_strokeColor).replace('${line_width}', _highlight_strokeWeight).replace('${fill_color}', _highlight_color).replace('width="50" height="50"', icon_size).replace('cx="25" cy="25" r="20"', icon_center_radius)
+                console.log('set map style  ,   highlight icon svg ', hovered_icon)
 
 
                 var icon_size = 'width="' + (_default_pointRadius * 4) + '" height="' + (_default_pointRadius * 4) + '"'
                 var icon_center_radius = 'cx="' + (_default_pointRadius * 2) + '" cy="' + (_default_pointRadius * 2) + '" r="' + (_default_pointRadius * 1.5) + '"'
-                classfiy_icon = default_icon_svg.replace('${outline_color}', _classfiy_strokeColor).replace('${line_width}', _classfiy_strokeWeight).replace('${fill_color}', _classfiy_color).replace('width="50" height="50"', icon_size).replace('cx="25" cy="25" r="20"', icon_center_radius)
-                console.log('set map style  ,   classfiy icon svg ', classfiy_icon)
+                clicked_icon = default_icon_svg.replace('${outline_color}', _classfiy_strokeColor).replace('${line_width}', _classfiy_strokeWeight).replace('${fill_color}', _classfiy_color).replace('width="50" height="50"', icon_size).replace('cx="25" cy="25" r="20"', icon_center_radius)
+                console.log('set map style  ,   classfiy icon svg ', clicked_icon)
 
 
 
@@ -4062,62 +4062,73 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
 
    
-   
+    // annotation Mouse Enter Leave Event conflict with overlay's mousemove, mouseleave, click event, 
     function create_annotation_MouseEnterLeaveEvent(_properties, point){
 
-                            //console.log('create annotation with build  in  properties',  _properties, point )
 
-                            coordinate = new mapkit.Coordinate(point[1], point[0]);
-
-                            // https://developer.apple.com/documentation/mapkitjs/geojsondelegate/2991192-itemforpoint
-
-                            var factory = function(coordinate, options) {
-
-                              var div = document.createElement("svg")
-
-                              div.innerHTML = default_icon
-                              //div.textContent = 'test'
-                              // Using element's data attributes https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes
-                              div.data = _properties
-                              
-                              // annotation hover event listener,  DOM element event, not apple mapkit event 
-                              div.addEventListener("mouseenter", function(event) {
-                                   console.log("annotation mouse enter event, DOM event", event);
-                                  // not fixed bug, so not highlight svg icon when hover for now
-                                  event.target.innerHTML = highlight_icon  // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
-                                  
-                                  show_info_outline_Tab(event.target.data)
-                              }); 
+      // - - - annotation Mouse Enter Leave Event conflict with overlay's mousemove, mouseleave, click event,  - - - 
+        // fix bug, here use annotation, must disable overlay event. 
+        // otherwise overlay event will overwrite annotation event, 
+        // cause annotation Mouse Enter Leave Event failed to function
+        document.querySelector("#map").removeEventListener("mousemove", mousemove_on_map_event_handler)
+        document.querySelector("#map").removeEventListener("click",click_on_map_event_handler) 
+        document.querySelector("#map").removeEventListener("mouseleave", mouseleave_on_map_event_handler)
+      //  - - -  end   - - -  annotation Mouse Enter Leave Event conflict with overlay's mousemove, mouseleave, click event,  - - - 
 
 
-                              div.addEventListener("mouseleave", function(event) {
-                                  console.log("annotation mouse out event, DOM event", event);
-                                  // some time, it failed  
-                                  event.target.innerHTML = default_icon // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
-                                                                   
-                                  empty_info_outline_Tab()
-                              }); 
+
+              //console.log('create annotation with build  in  properties',  _properties, point )
+
+              coordinate = new mapkit.Coordinate(point[1], point[0]);
+
+              // https://developer.apple.com/documentation/mapkitjs/geojsondelegate/2991192-itemforpoint
+
+              var factory = function(coordinate, options) {
+
+                var div = document.createElement("svg")
+
+                div.innerHTML = default_icon
+                //div.textContent = 'test'
+                // Using element's data attributes https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes
+                div.data = _properties
+                
+                // annotation hover event listener,  DOM element event, not apple mapkit event 
+                div.addEventListener("mouseenter", function(event) {
+                      console.log("annotation mouse enter event, DOM event", event);
+                    // not fixed bug, so not highlight svg icon when hover for now
+                    event.target.innerHTML = hovered_icon  // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
+                    
+                    show_info_outline_Tab(event.target.data)
+                }); 
 
 
-                              return div;
-                              
-                            }; // factory 
+                div.addEventListener("mouseleave", function(event) {
+                    console.log("annotation mouse out event, DOM event", event);
+                    // some time, it failed  
+                    event.target.innerHTML = default_icon // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
+                                                      
+                    empty_info_outline_Tab()
+                }); 
 
-                            
 
-                            var options = {
-                              // https://developer.apple.com/documentation/mapkitjs/annotationconstructoroptions             
-                              data: _properties,
-                              //size: { width: 30, height: 30 }, not working,  The desired dimensions of the annotation, in CSS pixels.  https://developer.apple.com/documentation/mapkitjs/annotation/2973833-size
-                              enabled: true,
+                return div;
+                
+              }; // factory 
 
-                            }
-                            annotation = new mapkit.Annotation(coordinate, factory, options);
-                          
+              
+              var options = {
+                // https://developer.apple.com/documentation/mapkitjs/annotationconstructoroptions             
+                data: _properties,
+                //size: { width: 30, height: 30 }, not working,  The desired dimensions of the annotation, in CSS pixels.  https://developer.apple.com/documentation/mapkitjs/annotation/2973833-size
+                enabled: true,
 
-                            map.addAnnotation(annotation);
-                            annotation_array.push(annotation)
-                            return annotation;
+              }
+              annotation = new mapkit.Annotation(coordinate, factory, options);
+            
+
+              map.addAnnotation(annotation);
+              annotation_array.push(annotation)
+              return annotation;
 
 
                             
@@ -4125,6 +4136,8 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
     }// annotaion
 
+
+    // without annotation's mouse-enter, mouse-leave event,
     function create_annotation_forClickWithSelectEvent(_properties, point){
 
                             //console.log('create annotation with build  in  properties',  _properties, point )
@@ -4141,8 +4154,22 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                                 //div.textContent = 'test'
                                 // Using element's data attributes https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes
                                 div.data = _properties
-                                
-                               
+
+                // annotation hover event listener,  DOM element event, not apple mapkit event 
+                div.addEventListener("click", function(event) {
+                      console.log("annotation mouse enter event, DOM event", event);
+
+                      // reset all overlay style to default
+                      //reset_all_annotation_style_to_default()
+
+                    // not fixed bug, so not highlight svg icon when hover for now
+                    event.target.innerHTML = clicked_icon  // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
+                    
+                    show_info_outline_Tab(event.target.data)
+                }); 
+
+
+                                                               
                                 return div;
                               
                             }; // factory 
@@ -4159,7 +4186,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                             annotation = new mapkit.Annotation(coordinate, factory, options);
                           
                            
-                            
+                           /* 
                             // annotation icon image dom click event failed to trigger, use this apple event instead
                             annotation.addEventListener('select', function(event) {  
 
@@ -4169,11 +4196,11 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                                   reset_all_annotation_style_to_default()
                                  
                                   // only change this selected overlay color
-                                  event.target.element.innerHTML = classfiy_icon;
+                                  event.target.element.innerHTML = clicked_icon;
                                   show_info_outline_Tab(event.target.data)
 
                             });
-                            
+                            */
                             
 
                             map.addAnnotation(annotation);
@@ -4254,13 +4281,6 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                     _coordinate_point = one_geojson_feature.geometry.coordinates
                     create_annotation_MouseEnterLeaveEvent(one_geojson_feature.properties, _coordinate_point)
 
-                    
-                    // fix bug, if use annotation, must disable overlay event. otherwise overlay event will overwrite annotation event, cause it failed to function
-                    // only-for-click-map-latlng
-                    document.querySelector("#map").removeEventListener("mousemove", mousemove_on_map_event_handler)
-                    document.querySelector("#map").removeEventListener("click",click_on_map_event_handler) 
-                    document.querySelector("#map").removeEventListener("mouseenter",click_on_map_event_handler)
-                    
 
         } else {
                       if ((_the_geom_type == 'linestring') || (_the_geom_type == 'multipoint')){

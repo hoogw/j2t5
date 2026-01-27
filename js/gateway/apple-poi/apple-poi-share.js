@@ -611,14 +611,14 @@ var apple_poi_annotation_array = []
             div.addEventListener("mouseenter", function(event) {
                 
                 console.log("poi annotation mouse enter event, DOM event", event);
-                console.log("highlight_icon", highlight_icon);
+                console.log("hovered_icon", hovered_icon);
                 console.log("default_icon", default_icon);
                 console.log("event.target.data", event.target.data);
 
                 show_info_outline_Tab(event.target.data)
                 
                 // not fixed bug, so not highlight svg icon when hover for now
-                event.target.innerHTML = highlight_icon  // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
+                event.target.innerHTML = hovered_icon  // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
                 
                 
             }); 
@@ -660,7 +660,7 @@ var apple_poi_annotation_array = []
                 poi_reset_all_annotation_style_to_default()
                 
                 // only change this selected overlay color
-                event.target.element.innerHTML = classfiy_icon;
+                event.target.element.innerHTML = clicked_icon;
                 show_info_outline_Tab(event.target.data)
 
         });
