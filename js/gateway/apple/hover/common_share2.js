@@ -687,9 +687,7 @@ var highlighted_color_fill = 'rgba(255,0,255, 0.2)'  // VIOLET
                 /**/
                 // for polygon and line 
                 map.removeOverlays(map.overlays);
-                // for point only
-                delete_all_apple_annotation();  // remove all annotation then add back search place annotation.
-
+                
 
                 console.log(' geojson object --> ', _geojson_object)
 
@@ -698,6 +696,9 @@ var highlighted_color_fill = 'rgba(255,0,255, 0.2)'  // VIOLET
                 // in use, manually convert geojson to apple overlay, annotation,
                 
                 // - - - special for circle overlay instead of annotation - - - 
+                //comment out, no annotation, for point only
+                //delete_all_apple_annotation();  // remove all annotation then add back search place annotation.
+
                 geojson_to_feature_for_circleOverlay(_geojson_object)
                 // - - - special for circle overlay instead of annotation - - - 
 

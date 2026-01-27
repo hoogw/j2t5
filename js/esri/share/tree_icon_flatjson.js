@@ -14586,20 +14586,22 @@ icon_flatjson.push(icon_item)
 
                   // . . . . apple  . . . .   
 
-                    icon_item = { 
-                        "id" :  776,     
-                        "parent" : 777,
-                        "text" : "single select",
-                        "icon" : folder_icon,
-                        "link_type": "folder",   
-                        "state"       : {
-                        // use this opened line for always default open this folder
-                                        "opened"    :false, //  iconJstreeforceOpen,   // is the node open
-                                        // disabled  : boolean  // is the node disabled
-                                        // "selected"  : true   // is the node selected
-                                    }
-                    };
-                    icon_flatjson.push(icon_item) 
+                    
+                  
+        icon_item = { 
+            "id" :  776,     
+            "parent" : 777,
+            "text" : "hover",
+            "icon" : folder_icon,
+            "link_type": "folder",   
+            "state"       : {
+            // use this opened line for always default open this folder
+                            "opened"    :false, //  iconJstreeforceOpen,   // is the node open
+                            // disabled  : boolean  // is the node disabled
+                            // "selected"  : true   // is the node selected
+                        }
+        };
+        icon_flatjson.push(icon_item) 
 
 
 
@@ -14607,7 +14609,7 @@ icon_flatjson.push(icon_item)
 
                                 "id" : 7760,     
                                 "parent" : 776,
-                                "text" : "7760 hover",
+                                "text" : "7760 default",
                                 "layer_name" : _layer_name_,
                                 "icon" : open_new_tab_icon,
                                 "link_type": "embed_7760",
@@ -14629,7 +14631,7 @@ icon_flatjson.push(icon_item)
 
                                 "id" : 7762,     
                                 "parent" : 776,
-                                "text" : "7762 hover(zoomable point) ",
+                                "text" : "7762 point (zoomable)",
                                 "layer_name" : _layer_name_,
                                 "icon" : open_new_tab_icon,
                                 "link_type": "embed_7762",
@@ -14652,7 +14654,7 @@ icon_flatjson.push(icon_item)
 
                                 "id" : 7761,     
                                 "parent" : 776,
-                                "text" : "7761 change color",
+                                "text" : "7761 color",
                                 "layer_name" : _layer_name_,
                                 "icon" : open_new_tab_icon,
                                 "link_type": "embed_7761",
@@ -14669,14 +14671,27 @@ icon_flatjson.push(icon_item)
                                 };
                                 icon_flatjson.push(icon_item) 
 
-
+       icon_item = { 
+            "id" :  7769,     
+            "parent" : 777,
+            "text" : "click",
+            "icon" : folder_icon,
+            "link_type": "folder",   
+            "state"       : {
+            // use this opened line for always default open this folder
+                            "opened"    :false, //  iconJstreeforceOpen,   // is the node open
+                            // disabled  : boolean  // is the node disabled
+                            // "selected"  : true   // is the node selected
+                        }
+        };
+        icon_flatjson.push(icon_item) 
 
 
                                 icon_item = { 
 
                                 "id" : 7770,     
-                                "parent" : 776,
-                                "text" : "7770 click",
+                                "parent" : 7769,
+                                "text" : "7770 default",
                                 "layer_name" : _layer_name_,
                                 "icon" : open_new_tab_icon,
                                 "link_type": "embed_7770",
@@ -14694,11 +14709,28 @@ icon_flatjson.push(icon_item)
                                 icon_flatjson.push(icon_item) 
 
 
+
+     icon_item = { 
+            "id" :  7768,     
+            "parent" : 777,
+            "text" : "click map to get",
+            "icon" : folder_icon,
+            "link_type": "folder",   
+            "state"       : {
+            // use this opened line for always default open this folder
+                            "opened"    :false, //  iconJstreeforceOpen,   // is the node open
+                            // disabled  : boolean  // is the node disabled
+                            // "selected"  : true   // is the node selected
+                        }
+        };
+        icon_flatjson.push(icon_item) 
+
+
                                 icon_item = { 
 
                                 "id" : 7750,     
-                                "parent" : 776,
-                                "text" : "7750 click map to get lat-lng",
+                                "parent" : 7768,
+                                "text" : "7750 lat-lng",
                                 "layer_name" : _layer_name_,
                                 "icon" : open_new_tab_icon,
                                 "link_type": "embed_7750",
@@ -14714,11 +14746,14 @@ icon_flatjson.push(icon_item)
                                 "type" : _type_
                                 };
                                 icon_flatjson.push(icon_item) 
+                  
+      // . . . .  end   . . . .    apple  . . . .    
 
 
-                  // . . . .  end   . . . .    apple  . . . .    
 
 
+
+// final return whole thing, always at bottom                                
 return icon_flatjson
 
 

@@ -4063,7 +4063,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
    
    
-    function create_annotation_for_hover(_properties, point){
+    function create_annotation_MouseEnterLeaveEvent(_properties, point){
 
                             //console.log('create annotation with build  in  properties',  _properties, point )
 
@@ -4114,21 +4114,6 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                             }
                             annotation = new mapkit.Annotation(coordinate, factory, options);
                           
-                            
-                            // annotation icon image dom click event failed to trigger, use this apple event instead
-                            annotation.addEventListener('select', function(event) {  
-
-                                  console.log("select overlay. event", event);
-
-                                  // reset all overlay style to default
-                                  reset_all_annotation_style_to_default()
-                                 
-                                  // only change this selected overlay color
-                                  event.target.element.innerHTML = classfiy_icon;
-                                  show_info_outline_Tab(event.target.data)
-
-                            });
-                            
 
                             map.addAnnotation(annotation);
                             annotation_array.push(annotation)
@@ -4140,7 +4125,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
     }// annotaion
 
-    function create_annotation_for_click(_properties, point){
+    function create_annotation_forClickWithSelectEvent(_properties, point){
 
                             //console.log('create annotation with build  in  properties',  _properties, point )
 
@@ -4201,8 +4186,8 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
     }// annotaion
 
-     // noHoverClick for click map get lat-lng
-    function create_annotation_noHoverClick(_properties, point){
+    
+    function create_annotation_NoAnyEvent(_properties, point){
 
                             //console.log('create annotation with build  in  properties',  _properties, point )
 
@@ -4267,13 +4252,14 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
         if (_the_geom_type == 'point'){
 
                     _coordinate_point = one_geojson_feature.geometry.coordinates
-                    create_annotation_for_hover(one_geojson_feature.properties, _coordinate_point)
+                    create_annotation_MouseEnterLeaveEvent(one_geojson_feature.properties, _coordinate_point)
 
                     
                     // fix bug, if use annotation, must disable overlay event. otherwise overlay event will overwrite annotation event, cause it failed to function
                     // only-for-click-map-latlng
-                    //document.querySelector("#map").removeEventListener("mousemove", mousemove_on_map_event_handler)
-                    //document.querySelector("#map").removeEventListener("click",click_on_map_event_handler) 
+                    document.querySelector("#map").removeEventListener("mousemove", mousemove_on_map_event_handler)
+                    document.querySelector("#map").removeEventListener("click",click_on_map_event_handler) 
+                    document.querySelector("#map").removeEventListener("mouseenter",click_on_map_event_handler)
                     
 
         } else {
@@ -4321,13 +4307,9 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
         if (_the_geom_type == 'point'){
 
                     _coordinate_point = one_geojson_feature.geometry.coordinates
-                    create_annotation_for_click(one_geojson_feature.properties, _coordinate_point)
+                    create_annotation_forClickWithSelectEvent(one_geojson_feature.properties, _coordinate_point)
 
                     
-                    // fix bug, if use annotation, must disable overlay event. otherwise overlay event will overwrite annotation event, cause it failed to function
-                    // only-for-click-map-latlng
-                    //document.querySelector("#map").removeEventListener("mousemove", mousemove_on_map_event_handler)
-                    //document.querySelector("#map").removeEventListener("click",click_on_map_event_handler) 
                     
 
         } else {
@@ -4358,7 +4340,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
 
     // noHoverClick for click map get lat-lng
-    function geojson_to_feature_noHoverClick(single_whole_geojson){
+    function geojson_to_feature_withoutHoverClickEvent(single_whole_geojson){
 
       var features_array = single_whole_geojson.features
       var one_geojson_feature
@@ -4374,13 +4356,9 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
         if (_the_geom_type == 'point'){
 
                     _coordinate_point = one_geojson_feature.geometry.coordinates
-                    create_annotation_noHoverClick(one_geojson_feature.properties, _coordinate_point)
+                    create_annotation_NoAnyEvent(one_geojson_feature.properties, _coordinate_point)
 
-                    
-                    // fix bug, if use annotation, must disable overlay event. otherwise overlay event will overwrite annotation event, cause it failed to function
-                    // only-for-click-map-latlng
-                    //document.querySelector("#map").removeEventListener("mousemove", mousemove_on_map_event_handler)
-                    //document.querySelector("#map").removeEventListener("click",click_on_map_event_handler) 
+                 
                     
 
         } else {
@@ -4445,7 +4423,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
           coordinate = new mapkit.Coordinate(point[1], point[0]);
 
-          var _circle_overlay = new mapkit.CircleOverlay(coordinate, parseInt(_default_pointRadius) * 2, default_overlay_style);
+          var _circle_overlay = new mapkit.CircleOverlay(coordinate, parseInt(_default_pointRadius) * 0.6, default_overlay_style);
 
           _circle_overlay.data = _properties
           map.addOverlay(_circle_overlay);
@@ -4459,22 +4437,22 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
       // - - - special for circle overlay instead of annotation - - - 
       function geojson_to_feature_for_circleOverlay(single_whole_geojson){
 
-            var features_array = single_whole_geojson.features
-            var one_geojson_feature
-            for (let i = 0; i < features_array.length; i++) {
+        var features_array = single_whole_geojson.features
+        var one_geojson_feature
+        for (let i = 0; i < features_array.length; i++) {
 
             one_geojson_feature =  features_array[i] 
             var _the_geom_type = one_geojson_feature.geometry.type
             _the_geom_type = _the_geom_type.toLowerCase()
-            console.log('controled zoom to real location . . . .  the geom type . . . . . ', _the_geom_type)
+            //console.log('controled zoom to real location . . . .  the geom type . . . . . ', _the_geom_type)
 
             var _coordinate_array
             var _coordinate_point
             if (_the_geom_type == 'point'){
 
-            _coordinate_point = one_geojson_feature.geometry.coordinates
-            // - - - special for circle overlay instead of annotation - - - 
-            create_overlay_for_circle(one_geojson_feature.properties, _coordinate_point)
+                    _coordinate_point = one_geojson_feature.geometry.coordinates
+                    // - - - special for circle overlay instead of annotation - - - 
+                    create_overlay_for_circle(one_geojson_feature.properties, _coordinate_point)
 
 
             } else {
@@ -4497,7 +4475,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                               }// type = multipolygon 
             }//if
 
-            }
+        }//for
 
 
 
