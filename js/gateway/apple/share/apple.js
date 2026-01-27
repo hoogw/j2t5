@@ -3804,7 +3804,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
               authorizationCallback: function(done) {
                   done(_apple_token);
               },
-              language: "es"
+              language: "en-US"
             });
         };
 

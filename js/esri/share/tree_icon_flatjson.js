@@ -14586,8 +14586,54 @@ icon_flatjson.push(icon_item)
 
                   // . . . . apple  . . . .   
 
+
+
+
+//  . . . . sub-folder . . . . . . . . . . . .           
+        icon_item = { 
+            "id" :  7767,     
+            "parent" : 777,
+            "text" : "look around (street view)",
+            "icon" : folder_icon,
+            "link_type": "folder",   
+            "state"       : {
+            // use this opened line for always default open this folder
+                            "opened"    :false, //  iconJstreeforceOpen,   // is the node open
+                            // disabled  : boolean  // is the node disabled
+                            // "selected"  : true   // is the node selected
+                        }
+        };
+        icon_flatjson.push(icon_item) 
+
+
+
+                                icon_item = { 
+
+                                "id" : 7660,     
+                                "parent" : 7767,
+                                "text" : "7660 hover",
+                                "layer_name" : _layer_name_,
+                                "icon" : open_new_tab_icon,
+                                "link_type": "embed_7660",
+                                "state"       : {
+                                                "opened"    : true,  // is the node open
+                                                // disabled  : boolean  // is the node disabled
+                                                // "selected"  : true   // is the node selected
+                                            },
+                                "node_path" : _node_path_, 
+                                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                "server_path" : _map_server_url_,
+                                "layer_id" :  _layer_id_,            
+                                "type" : _type_
+                                };
+                                icon_flatjson.push(icon_item) 
+
+
+
+
+
                     
-                  
+       //  . . . . sub-folder . . . . . . . . . . . .           
         icon_item = { 
             "id" :  776,     
             "parent" : 777,
