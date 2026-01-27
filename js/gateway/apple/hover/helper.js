@@ -226,7 +226,7 @@ difference:
 
     // bug, never fired
     function mouseleave_on_map_event_handler(event){
-      reset_all_overlay_style_to_default()
+      //reset_all_overlay_style_to_default()
     }
 
     function add_mapdata_listener(){
