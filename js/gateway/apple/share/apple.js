@@ -4070,9 +4070,9 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
         // fix bug, here use annotation, must disable overlay event. 
         // otherwise overlay event will overwrite annotation event, 
         // cause annotation Mouse Enter Leave Event failed to function
-        document.querySelector("#map").removeEventListener("mousemove", mousemove_on_map_event_handler)
-        document.querySelector("#map").removeEventListener("click",click_on_map_event_handler) 
-        document.querySelector("#map").removeEventListener("mouseleave", mouseleave_on_map_event_handler)
+        //document.querySelector("#map").removeEventListener("mousemove", mousemove_on_map_event_handler)
+        //document.querySelector("#map").removeEventListener("click",click_on_map_event_handler) 
+        //document.querySelector("#map").removeEventListener("mouseleave", mouseleave_on_map_event_handler)
       //  - - -  end   - - -  annotation Mouse Enter Leave Event conflict with overlay's mousemove, mouseleave, click event,  - - - 
 
 
