@@ -1130,7 +1130,6 @@ case "embed_6323":
 break;
 
 case "embed_6395":
-case "embed_2481":  
       var _newTab_link =  url_for_google.replace('google.html?', 'basemap.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
       window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)
@@ -1300,7 +1299,6 @@ case "embed_6392":
   
 
   case "embed_7967":
-    case "embed_2485":
       var _newTab_link =  url_for_google.replace('google.html?', 'unselect.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
       window.open(_newTab_link,'_blank');
     console.log('_newTab_link', _newTab_link)

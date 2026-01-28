@@ -4708,9 +4708,9 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
             {
                 // Allow users to expand the view.
                 showsDialogControl: true,
-                //showsCloseControl: true,
-                //isNavigationEnabled: true,
-                //isScrollEnabled: true,
+                showsCloseControl: true,
+                isNavigationEnabled: true,
+                isScrollEnabled: true,
                 showsRoadLabels: true,
                 showsPointsOfInterest: true,
             }

@@ -489,7 +489,38 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
 
 
 
-                               
+                                icon_item = { 
+
+                                    "id" :  2481,     
+                                    "parent" : 629,
+                                    
+                                    
+                                    "text" : "6392" + google_svg + " single select",
+                                    
+                                    "layer_name" : _layer_name_,
+                                    "icon" : open_new_tab_icon,
+                                    "link_type": "embed_6392",
+                                    "state"       : {
+                                                    "opened"    : true,  // is the node open
+                                                    // disabled  : boolean  // is the node disabled
+                                                    // "selected"  : true   // is the node selected
+                                                },
+                                                
+                                    "node_path" : _node_path_, 
+                                    "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                    "server_path" : _map_server_url_,
+                                    "layer_id" :  _layer_id_,            
+                                    "type" : _type_
+                                    
+                                    
+                                    
+                                    };
+
+
+
+
+                                
+                                icon_flatjson.push(icon_item) 
 
                                
 
@@ -614,7 +645,34 @@ icon_flatjson.push(icon_item)
 
 
 
-                          
+                            icon_item = { 
+
+                                "id" :  2485,     
+                                "parent" : 629,
+                                
+                                
+                                "text" : "7967" + google_svg + " multiple select (click-select, again-unselect)",
+                                
+                                "layer_name" : _layer_name_,
+                                "icon" : open_new_tab_icon,
+                                "link_type": "embed_7967",
+                                "state"       : {
+                                                "opened"    : true,  // is the node open
+                                                // disabled  : boolean  // is the node disabled
+                                                // "selected"  : true   // is the node selected
+                                            },
+                                            
+                                "node_path" : _node_path_, 
+                                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                "server_path" : _map_server_url_,
+                                "layer_id" :  _layer_id_,            
+                                "type" : _type_
+                                
+                                
+                                
+                                };
+                                
+                                icon_flatjson.push(icon_item) 
 
 
 
@@ -1686,7 +1744,34 @@ icon_flatjson.push(icon_item)
 
 
 
-                          
+                            icon_item = { 
+
+                                "id" :  2486,     
+                                "parent" : 629,
+                                
+                                
+                                "text" : "9006" + esri_svg + " single select",
+                                
+                                "layer_name" : _layer_name_,
+                                "icon" : open_new_tab_icon,
+                                "link_type": "embed_9006",
+                                "state"       : {
+                                                "opened"    : true,  // is the node open
+                                                // disabled  : boolean  // is the node disabled
+                                                // "selected"  : true   // is the node selected
+                                            },
+                                            
+                                "node_path" : _node_path_, 
+                                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                "server_path" : _map_server_url_,
+                                "layer_id" :  _layer_id_,            
+                                "type" : _type_
+                                
+                                
+                                
+                                };
+                                
+                                icon_flatjson.push(icon_item) 
 
 
                         icon_item = { 
@@ -1903,7 +1988,7 @@ icon_flatjson.push(icon_item)
                                                     icon_item = { 
 
                                                         "id" :  9117,     
-                                                        "parent" : 6291,
+                                                        "parent" : 629,
                                                         
                                                         
                                                         "text" : "5381" + esri_svg + " multiple select(click-select, again-unselect)",
@@ -2876,9 +2961,9 @@ icon_flatjson.push(icon_item)
 
 
 icon_item = { 
-    "id" :  6291,     
+    "id" :  629,     
     "parent" : 648,
-    "text" : "one",
+    "text" : "one & handful",
     "icon" : folder_icon,
     "link_type": "folder",   
     "state"       : {
@@ -2889,114 +2974,6 @@ icon_item = {
                 }
 };
 icon_flatjson.push(icon_item) 
-
-
-                                icon_item = { 
-
-                                    "id" :  2481,     
-                                    "parent" : 6291,
-                                    
-                                    
-                                    "text" : "2481 " + google_svg,
-                                    
-                                    "layer_name" : _layer_name_,
-                                    "icon" : open_new_tab_icon,
-                                    "link_type": "embed_2481",
-                                    "state"       : {
-                                                    "opened"    : true,  // is the node open
-                                                    // disabled  : boolean  // is the node disabled
-                                                    // "selected"  : true   // is the node selected
-                                                },
-                                                
-                                    "node_path" : _node_path_, 
-                                    "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                                    "server_path" : _map_server_url_,
-                                    "layer_id" :  _layer_id_,            
-                                    "type" : _type_
-                                    };
-                                icon_flatjson.push(icon_item) 
-
-
-                               icon_item = { 
-
-                                "id" :  2486,     
-                                "parent" : 6291,
-                                
-                                
-                                "text" : "2486 " + esri_svg,
-                                
-                                "layer_name" : _layer_name_,
-                                "icon" : open_new_tab_icon,
-                                "link_type": "embed_2486",
-                                "state"       : {
-                                                "opened"    : true,  // is the node open
-                                                // disabled  : boolean  // is the node disabled
-                                                // "selected"  : true   // is the node selected
-                                            },
-                                            
-                                "node_path" : _node_path_, 
-                                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                                "server_path" : _map_server_url_,
-                                "layer_id" :  _layer_id_,            
-                                "type" : _type_
-                                
-                                
-                                
-                                };
-                                
-                                icon_flatjson.push(icon_item) 
-
-
-
-
-icon_item = { 
-    "id" :  6292,     
-    "parent" : 648,
-    "text" : "multiple",
-    "icon" : folder_icon,
-    "link_type": "folder",   
-    "state"       : {
-    // use this opened line for always default open this folder
-                    "opened"    :false, //  iconJstreeforceOpen,   // is the node open
-                    // disabled  : boolean  // is the node disabled
-                    // "selected"  : true   // is the node selected
-                }
-};
-icon_flatjson.push(icon_item) 
-
-
-                        icon_item = { 
-
-                                "id" :  2485,     
-                                "parent" : 6292,
-                                
-                                
-                                "text" : "2485 " + google_svg,
-                                
-                                "layer_name" : _layer_name_,
-                                "icon" : open_new_tab_icon,
-                                "link_type": "embed_2485",
-                                "state"       : {
-                                                "opened"    : true,  // is the node open
-                                                // disabled  : boolean  // is the node disabled
-                                                // "selected"  : true   // is the node selected
-                                            },
-                                            
-                                "node_path" : _node_path_, 
-                                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                                "server_path" : _map_server_url_,
-                                "layer_id" :  _layer_id_,            
-                                "type" : _type_
-                                
-                                
-                                
-                                };
-                                
-                                icon_flatjson.push(icon_item) 
-
-
-
-
 
 
           

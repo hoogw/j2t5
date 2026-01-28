@@ -1073,8 +1073,8 @@
                                           "features": []
                                         }
 
-      console.log('you download selected feature object ID as Key ', _geojson_object_selected_feature_objectIDasKey)
-      console.log('you download selected feature array ', _geojson_object_selected_feature_array)
+      console.log('you Download Selected .geojson object ID as Key ', _geojson_object_selected_feature_objectIDasKey)
+      console.log('you Download Selected .geojson array ', _geojson_object_selected_feature_array)
       _selected_feature_geojson.features = _geojson_object_selected_feature_array
 
       saveJsonAsFile('selectedFeatureOnMap.geojson', _selected_feature_geojson)
