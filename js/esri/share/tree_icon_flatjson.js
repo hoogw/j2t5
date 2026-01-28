@@ -3505,37 +3505,6 @@ icon_flatjson.push(icon_item)
 
 
 
-            icon_item = { 
-
-                "id" :  6885,     
-                "parent" : 649,
-                
-                
-                "text" : "6885 Esri" + esri_svg,
-                
-                "layer_name" : _layer_name_,
-                "icon" : open_new_tab_icon,
-                "link_type": "embed_6885",
-                "state"       : {
-                                "opened"    : true,  // is the node open
-                                // disabled  : boolean  // is the node disabled
-                                // "selected"  : true   // is the node selected
-                            },
-                            
-                "node_path" : _node_path_, 
-                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                "server_path" : _map_server_url_,
-                "layer_id" :  _layer_id_,            
-                "type" : _type_
-                
-                
-                
-                };
-                
-                icon_flatjson.push(icon_item) 
-
-
-
 
                 icon_item = { 
 
@@ -3543,7 +3512,7 @@ icon_flatjson.push(icon_item)
                     "parent" : 649,
                     
                     
-                    "text" : "6883 mapbox (official)",
+                    "text" : "6883 " + mapbox_svg + " mapbox",
                     
                     "layer_name" : _layer_name_,
                     "icon" : open_new_tab_icon,
@@ -3576,7 +3545,7 @@ icon_flatjson.push(icon_item)
                         "parent" : 649,
                         
                         
-                        "text" : "6887 new" + google_svg,
+                        "text" : "6887 " + google_svg,
                         
                         "layer_name" : _layer_name_,
                         "icon" : open_new_tab_icon,
@@ -3608,7 +3577,7 @@ icon_flatjson.push(icon_item)
                         "parent" : 649,
                         
                         
-                        "text" : "6888 old" + google_svg,
+                        "text" : "6888 " + google_svg + " classic",
                         
                         "layer_name" : _layer_name_,
                         "icon" : open_new_tab_icon,
@@ -3630,6 +3599,41 @@ icon_flatjson.push(icon_item)
                         };
                         
                         icon_flatjson.push(icon_item) 
+
+
+
+                        
+
+            icon_item = { 
+
+                "id" :  6885,     
+                "parent" : 649,
+                
+                
+                "text" : "6885 " + esri_svg,
+                
+                "layer_name" : _layer_name_,
+                "icon" : open_new_tab_icon,
+                "link_type": "embed_6885",
+                "state"       : {
+                                "opened"    : true,  // is the node open
+                                // disabled  : boolean  // is the node disabled
+                                // "selected"  : true   // is the node selected
+                            },
+                            
+                "node_path" : _node_path_, 
+                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                "server_path" : _map_server_url_,
+                "layer_id" :  _layer_id_,            
+                "type" : _type_
+                
+                
+                
+                };
+                
+                icon_flatjson.push(icon_item) 
+
+
 
 /*  = = = =  end  = = = = sub folder = = = = Download Map = = = =  */
 
