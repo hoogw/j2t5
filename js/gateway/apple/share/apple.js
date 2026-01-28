@@ -4109,14 +4109,10 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                     /**/
                     //  ---  ---  apple look around    --- 
                     /**/
-
-                    
-                        if (lookAround){
                              var event_screen_coordinate = map.convertPointOnPageToCoordinate(new DOMPoint(event.pageX, event.pageY));
                              console.log("event_screen_coordinate", event_screen_coordinate)
                              create_apple_look_around(event_screen_coordinate.latitude, event_screen_coordinate.longitude)
-                        }
-
+                     
                     /**/
                     //  --- end  ---  apple look around    --- 
                     /**/
@@ -4234,14 +4230,8 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                     /**/
                     //  ---  ---  apple look around    --- 
                     /**/
-
-                    
-                        if (lookAround){
-                             var event_screen_coordinate = map.convertPointOnPageToCoordinate(new DOMPoint(event.pageX, event.pageY));
-                             console.log("event_screen_coordinate", event_screen_coordinate)
-                             create_apple_look_around(event_screen_coordinate.latitude, event_screen_coordinate.longitude)
-                        }
-
+                       create_apple_look_around(event.target.coordinate.latitude, event.target.coordinate.longitude)
+                     
                     /**/
                     //  --- end  ---  apple look around    --- 
                     /**/

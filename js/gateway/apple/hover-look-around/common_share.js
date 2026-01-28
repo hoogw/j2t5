@@ -779,7 +779,16 @@ async function initMap() {
             /**/
 
 
-            
+        /**/
+        //  ---  ---  apple look around    --- 
+        /**/
+
+          // only load one time
+          create_apple_look_around(_center_lat,_center_long)
+
+        /**/
+        //  --- end  ---  apple look around    --- 
+        /**/
 
 
 

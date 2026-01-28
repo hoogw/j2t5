@@ -341,20 +341,6 @@ difference:
 
 
 
-        
-
-        /**/
-        //  ---  ---  apple look around    --- 
-        /**/
-
-          create_apple_look_around(_center_lat,_center_long)
-
-        /**/
-        //  --- end  ---  apple look around    --- 
-        /**/
-
-
-
             
       });
     }
