@@ -194,7 +194,9 @@ difference:
       // DOM's map-element's hover and click event, only for polygon and line, not for point annotation marker
       document.querySelector("#map").addEventListener("mousemove", mousemove_on_map_event_handler) 
       
-
+ // only-for-click-map-latlng, use here, for hover, when click map, show lat lng or look around
+      document.querySelector("#map").addEventListener("click", click_on_map_event_handler_for_clickMapToGet)
+      
       
 
       default_overlay_style = new mapkit.Style({

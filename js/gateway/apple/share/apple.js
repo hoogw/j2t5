@@ -4616,7 +4616,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
     }
 
- // only-for-click-map-latlng
+    // only-for-click-map-latlng
     function click_on_map_event_handler_for_clickMapToGet(event){
 
       console.log("you click : event.pageX event.pageY", event.pageX, event.pageY)
@@ -4624,6 +4624,22 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
       
     }
 
+
+    // only-for-apple-look-around
+    function click_on_map_event_handler_for_look_around(event){
+
+      console.log("you click : event.pageX event.pageY", event.pageX, event.pageY)
+      console.log("you click : ", new DOMPoint(event.pageX, event.pageY))
+      /**/
+      //  ---  ---  apple look around    --- 
+      /**/
+                var event_screen_coordinate = map.convertPointOnPageToCoordinate(new DOMPoint(event.pageX, event.pageY));
+                console.log("event_screen_coordinate", event_screen_coordinate)
+                create_apple_look_around(event_screen_coordinate.latitude, event_screen_coordinate.longitude)
+      /**/
+      //  --- end  ---  apple look around    --- 
+      /**/
+    }
 
 
 /**/
