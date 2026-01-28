@@ -4590,8 +4590,16 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
       console.log("you click : event.pageX event.pageY", event.pageX, event.pageY)
       console.log("you click : ", new DOMPoint(event.pageX, event.pageY))
-      
+      console.log("you click : event_screen_coordinate ", map.convertPointOnPageToCoordinate(new DOMPoint(event.pageX, event.pageY)))
+      var event_screen_coordinate = map.convertPointOnPageToCoordinate(new DOMPoint(event.pageX, event.pageY));
+      var you_click_lat = event_screen_coordinate.latitude
+      var you_click_lng = event_screen_coordinate.longitude
+      console.log("you click : lat ", you_click_lat)
+      console.log("you click : lng ", you_click_lng)
 
+      /**/
+      //  ---  ---  click to show info, high-light feature    --- 
+      /**/
       var targetOverlay = map.topOverlayAtPoint(new DOMPoint(event.pageX, event.pageY));
       // Add special styling to the overlay to indicate its hover state or whatever you want.
       // ...
@@ -4614,6 +4622,25 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
       }
 
+      /**/
+      //   --- end  ---  click to show info, high-light feature    --- 
+      /**/
+
+
+
+
+      /**/
+      //  ---  ---  apple look around    --- 
+      /**/
+      if (lookAround){
+                create_apple_look_around(you_click_lat, you_click_lng)
+      }//
+      /**/
+      //  --- end  ---  apple look around    --- 
+      /**/
+
+
+
     }
 
     // only-for-click-map-latlng
@@ -4621,25 +4648,25 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
       console.log("you click : event.pageX event.pageY", event.pageX, event.pageY)
       console.log("you click : ", new DOMPoint(event.pageX, event.pageY))
-      
-    }
+      console.log("you click : event_screen_coordinate ", map.convertPointOnPageToCoordinate(new DOMPoint(event.pageX, event.pageY)))
+      var event_screen_coordinate = map.convertPointOnPageToCoordinate(new DOMPoint(event.pageX, event.pageY));
+      var you_click_lat = event_screen_coordinate.latitude
+      var you_click_lng = event_screen_coordinate.longitude
+      console.log("you click : lat ", you_click_lat)
+      console.log("you click : lng ", you_click_lng)
 
-
-    // only-for-apple-look-around
-    function click_on_map_event_handler_for_look_around(event){
-
-      console.log("you click : event.pageX event.pageY", event.pageX, event.pageY)
-      console.log("you click : ", new DOMPoint(event.pageX, event.pageY))
       /**/
       //  ---  ---  apple look around    --- 
       /**/
-                var event_screen_coordinate = map.convertPointOnPageToCoordinate(new DOMPoint(event.pageX, event.pageY));
-                console.log("event_screen_coordinate", event_screen_coordinate)
-                create_apple_look_around(event_screen_coordinate.latitude, event_screen_coordinate.longitude)
+      if (lookAround){
+                create_apple_look_around(you_click_lat, you_click_lng)
+      }//
       /**/
       //  --- end  ---  apple look around    --- 
       /**/
+      
     }
+
 
 
 /**/

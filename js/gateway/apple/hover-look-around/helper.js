@@ -200,7 +200,7 @@ difference:
       
 
       // only-for-click-map-latlng, use here, for hover, when click map, show lat lng or look around
-      document.querySelector("#map").addEventListener("click", click_on_map_event_handler_for_look_around)
+      document.querySelector("#map").addEventListener("click", click_on_map_event_handler_for_clickMapToGet)
       
       
 
