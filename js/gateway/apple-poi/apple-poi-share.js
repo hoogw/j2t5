@@ -615,10 +615,27 @@ var apple_poi_annotation_array = []
                 console.log("default_icon", default_icon);
                 console.log("event.target.data", event.target.data);
 
+                poi_reset_all_annotation_style_to_default()
+
                 show_info_outline_Tab(event.target.data)
                 
                 // not fixed bug, so not highlight svg icon when hover for now
                 event.target.innerHTML = hovered_icon  // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
+
+
+
+
+                
+                    /**/
+                    //  ---  ---  apple look around    --- 
+                    /**/
+                             var event_screen_coordinate = map.convertPointOnPageToCoordinate(new DOMPoint(event.pageX, event.pageY));
+                             console.log("event_screen_coordinate", event_screen_coordinate)
+                             create_apple_look_around(event_screen_coordinate.latitude, event_screen_coordinate.longitude)
+                     
+                    /**/
+                    //  --- end  ---  apple look around    --- 
+                    /**/
                 
                 
             }); 
@@ -626,12 +643,11 @@ var apple_poi_annotation_array = []
 
             div.addEventListener("mouseleave", function(event) {
                 
-                console.log("poi annotation mouse out event, DOM event", event);
                 
-                // some time, it failed  
-                event.target.innerHTML = default_icon // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
-                                                                                                                                                         
-               empty_info_outline_Tab()
+                    console.log("annotation mouse out event, DOM event", event);
+                    // keep, but do not use, hover leave do not clean or close
+                    // event.target.innerHTML = default_icon // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
+                    // empty_info_outline_Tab()
             }); 
 
 
