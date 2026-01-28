@@ -1900,34 +1900,7 @@ icon_flatjson.push(icon_item)
 
 
 
-                                                    icon_item = { 
-
-                                                        "id" :  9117,     
-                                                        "parent" : 6291,
-                                                        
-                                                        
-                                                        "text" : "5381" + esri_svg + " multiple select(click-select, again-unselect)",
-                                                        
-                                                        "layer_name" : _layer_name_,
-                                                        "icon" : open_new_tab_icon,
-                                                        "link_type": "embed_5381",
-                                                        "state"       : {
-                                                                        "opened"    : true,  // is the node open
-                                                                        // disabled  : boolean  // is the node disabled
-                                                                        // "selected"  : true   // is the node selected
-                                                                    },
-                                                                    
-                                                        "node_path" : _node_path_, 
-                                                        "absolute_path" : _map_server_url_ + '/' + _layer_id_,
-                                                        "server_path" : _map_server_url_,
-                                                        "layer_id" :  _layer_id_,            
-                                                        "type" : _type_
-                                                        
-                                                        
-                                                        
-                                                        };
-                                                        
-                                                        icon_flatjson.push(icon_item) 
+                                                    
 
 /*   = = = =  end  = = = = sub folder = = = = Feature Layer = = = =  */
 
@@ -2996,6 +2969,34 @@ icon_flatjson.push(icon_item)
 
 
 
+                                icon_item = { 
+
+                                "id" :  2484,     
+                                "parent" : 6292,
+                                
+                                
+                                "text" : "2484 " + esri_svg,
+                                
+                                "layer_name" : _layer_name_,
+                                "icon" : open_new_tab_icon,
+                                "link_type": "embed_2484",
+                                "state"       : {
+                                                "opened"    : true,  // is the node open
+                                                // disabled  : boolean  // is the node disabled
+                                                // "selected"  : true   // is the node selected
+                                            },
+                                            
+                                "node_path" : _node_path_, 
+                                "absolute_path" : _map_server_url_ + '/' + _layer_id_,
+                                "server_path" : _map_server_url_,
+                                "layer_id" :  _layer_id_,            
+                                "type" : _type_
+                                
+                                
+                                
+                                };
+                                
+                                icon_flatjson.push(icon_item) 
 
 
 
