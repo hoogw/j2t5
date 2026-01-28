@@ -188,20 +188,14 @@ difference:
 
 
     
-    // only-for-click-map-latlng
-    function click_on_map_event_handler(event){
-
-      console.log("you click : event.pageX event.pageY", event.pageX, event.pageY)
-      console.log("you click : ", new DOMPoint(event.pageX, event.pageY))
-      
-    }
+   
 
     
 
     function add_mapdata_listener(){
 
      // only-for-click-map-latlng
-     document.querySelector("#map").addEventListener("click", click_on_map_event_handler)
+     document.querySelector("#map").addEventListener("click", click_on_map_event_handler_for_clickMapToGet)
       
 
      

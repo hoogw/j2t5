@@ -4475,42 +4475,6 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
     
 
-    // DOM's map-element's hover and click event, only for polygon and line, not for point annotation marker
-    // hover
-    function mousemove_on_map_event_handler(event){
-
-     
-
-                var targetOverlay = map.topOverlayAtPoint(new DOMPoint(event.pageX, event.pageY));
-                // Add special styling to the overlay to indicate its hover state or whatever you want.
-                // ...
-
-                //console.log('targetOverlay' ,  targetOverlay)
-
-                
-                if (targetOverlay){
-
-                  // outside 'if' on hover, reset all overlay style to default
-                  reset_all_overlay_style_to_default()
-
-                          // only change this selected overlay color
-                          targetOverlay.style = hovered_overlay_style;
-
-                          //console.log('show properties' ,  targetOverlay.data)
-                          show_info_outline_Tab(targetOverlay.data)
-                } else {
-                         // empty_info_outline_Tab()
-                }
-     
-
-    }
-
-
-
-
-
-
-
     
 
     // - - - special for circle overlay instead of annotation - - - 
@@ -4587,6 +4551,78 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
 
 
+
+    
+    // only for hover
+    // DOM's map-element's hover and click event, only for polygon and line, not for point annotation marker
+    function mousemove_on_map_event_handler(event){
+
+     
+
+                var targetOverlay = map.topOverlayAtPoint(new DOMPoint(event.pageX, event.pageY));
+                // Add special styling to the overlay to indicate its hover state or whatever you want.
+                // ...
+
+                //console.log('targetOverlay' ,  targetOverlay)
+
+                
+                if (targetOverlay){
+
+                  // outside 'if' on hover, reset all overlay style to default
+                  reset_all_overlay_style_to_default()
+
+                          // only change this selected overlay color
+                          targetOverlay.style = hovered_overlay_style;
+
+                          //console.log('show properties' ,  targetOverlay.data)
+                          show_info_outline_Tab(targetOverlay.data)
+                } else {
+                         // empty_info_outline_Tab()
+                }
+     
+
+    }
+
+
+
+    // only for click
+    function click_on_map_event_handler(event){
+
+      console.log("you click : event.pageX event.pageY", event.pageX, event.pageY)
+      console.log("you click : ", new DOMPoint(event.pageX, event.pageY))
+      
+
+      var targetOverlay = map.topOverlayAtPoint(new DOMPoint(event.pageX, event.pageY));
+      // Add special styling to the overlay to indicate its hover state or whatever you want.
+      // ...
+
+      //console.log('targetOverlay' ,  targetOverlay)
+
+      if (targetOverlay){
+                // inside 'if' on click,reset all overlay style to default
+                reset_all_overlay_style_to_default()
+                
+                // only change this selected overlay color
+                targetOverlay.style = clicked_overlay_style;
+
+                //console.log('show properties' ,  targetOverlay.data)
+                show_info_outline_Tab(targetOverlay.data)
+              
+      } else {
+
+         empty_info_outline_Tab()
+
+      }
+
+    }
+
+ // only-for-click-map-latlng
+    function click_on_map_event_handler_for_clickMapToGet(event){
+
+      console.log("you click : event.pageX event.pageY", event.pageX, event.pageY)
+      console.log("you click : ", new DOMPoint(event.pageX, event.pageY))
+      
+    }
 
 
 
