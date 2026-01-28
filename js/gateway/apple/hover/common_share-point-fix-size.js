@@ -699,6 +699,9 @@ var highlighted_color_fill = 'rgba(255,0,255, 0.2)'  // VIOLET
                 //comment out, no annotation, for point only
                 //delete_all_apple_annotation();  // remove all annotation then add back search place annotation.
 
+                // remaining content will be deleted
+                empty_info_outline_Tab()
+
                 geojson_to_feature_for_circleOverlay(_geojson_object)
                 // - - - special for circle overlay instead of annotation - - - 
 

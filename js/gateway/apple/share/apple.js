@@ -4025,6 +4025,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
           current_overlay_array[i].style = default_overlay_style;
         }
 
+        
 
         // include point annotation
         reset_all_annotation_style_to_default()
@@ -4099,6 +4100,11 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                 // annotation hover event listener,  DOM element event, not apple mapkit event 
                 div.addEventListener("mouseenter", function(event) {
                       console.log("annotation mouse enter event, DOM event", event);
+
+
+                       reset_all_annotation_style_to_default()
+
+
                     // not fixed bug, so not highlight svg icon when hover for now
                     event.target.innerHTML = hovered_icon  // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
                     
@@ -4126,11 +4132,12 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
 
                 div.addEventListener("mouseleave", function(event) {
+
+
                     console.log("annotation mouse out event, DOM event", event);
-                    // some time, it failed  
-                    event.target.innerHTML = default_icon // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
-                                                      
-                    empty_info_outline_Tab()
+                    // keep, but do not use, hover leave do not clean or close
+                    // event.target.innerHTML = default_icon // this will cause mouseenter  trigger multiple times and mouseleave failed to fire, 
+                    // empty_info_outline_Tab()
                 }); 
 
 
@@ -4452,6 +4459,7 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
       map.removeAnnotations(annotation_array);
       annotation_array = []
       
+      
 
       // fix bug, each map move, get map bound,  apple search place result single annotation get removed as well by remove 'all' annoation, I need to add it back.
       //if (apple_searchPlaceResultSingleAnnotation){
@@ -4464,6 +4472,38 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
 
 
+
+    
+
+    // DOM's map-element's hover and click event, only for polygon and line, not for point annotation marker
+    // hover
+    function mousemove_on_map_event_handler(event){
+
+     
+
+                var targetOverlay = map.topOverlayAtPoint(new DOMPoint(event.pageX, event.pageY));
+                // Add special styling to the overlay to indicate its hover state or whatever you want.
+                // ...
+
+                //console.log('targetOverlay' ,  targetOverlay)
+
+                
+                if (targetOverlay){
+
+                  // outside 'if' on hover, reset all overlay style to default
+                  reset_all_overlay_style_to_default()
+
+                          // only change this selected overlay color
+                          targetOverlay.style = hovered_overlay_style;
+
+                          //console.log('show properties' ,  targetOverlay.data)
+                          show_info_outline_Tab(targetOverlay.data)
+                } else {
+                         // empty_info_outline_Tab()
+                }
+     
+
+    }
 
 
 
@@ -4537,6 +4577,15 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
 
       }
+
+
+
+
+
+
+
+
+
 
 
 

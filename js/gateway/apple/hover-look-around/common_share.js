@@ -690,6 +690,8 @@ var highlighted_color_fill = 'rgba(255,0,255, 0.2)'  // VIOLET
                 // for point only
                 delete_all_apple_annotation();  // remove all annotation then add back search place annotation.
 
+                // remaining content will be deleted
+                empty_info_outline_Tab()
 
                 console.log(' geojson object --> ', _geojson_object)
 
