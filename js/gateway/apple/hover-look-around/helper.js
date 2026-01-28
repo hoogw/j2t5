@@ -338,6 +338,23 @@ difference:
         console.log("region-change-end   !!! map idle event   !!! ");
         update_center_latLngZoom();
         get_map_bound();
+
+
+
+        
+
+        /**/
+        //  ---  ---  apple look around    --- 
+        /**/
+
+          create_apple_look_around(_center_lat,_center_long)
+
+        /**/
+        //  --- end  ---  apple look around    --- 
+        /**/
+
+
+
             
       });
     }

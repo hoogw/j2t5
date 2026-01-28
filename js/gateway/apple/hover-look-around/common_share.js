@@ -783,19 +783,6 @@ async function initMap() {
 
 
 
-        /**/
-        //  ---  ---  apple look around    --- 
-        /**/
-
-          init_apple_look_around()
-
-        /**/
-        //  --- end  ---  apple look around    --- 
-        /**/
-
-
-
-
 
 
             init_user_interface_event()

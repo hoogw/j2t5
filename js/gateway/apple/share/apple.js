@@ -4110,10 +4110,11 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                     //  ---  ---  apple look around    --- 
                     /**/
 
+                    
                         if (lookAround){
                              var event_screen_coordinate = map.convertPointOnPageToCoordinate(new DOMPoint(event.pageX, event.pageY));
-                             updateLookAroundCoordinate(event_screen_coordinate)
-
+                             console.log("event_screen_coordinate", event_screen_coordinate)
+                             create_apple_look_around(event_screen_coordinate.latitude, event_screen_coordinate.longitude)
                         }
 
                     /**/
@@ -4227,6 +4228,23 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                                   // only change this selected overlay color
                                   event.target.element.innerHTML = clicked_icon;
                                   show_info_outline_Tab(event.target.data)
+
+
+
+                    /**/
+                    //  ---  ---  apple look around    --- 
+                    /**/
+
+                    
+                        if (lookAround){
+                             var event_screen_coordinate = map.convertPointOnPageToCoordinate(new DOMPoint(event.pageX, event.pageY));
+                             console.log("event_screen_coordinate", event_screen_coordinate)
+                             create_apple_look_around(event_screen_coordinate.latitude, event_screen_coordinate.longitude)
+                        }
+
+                    /**/
+                    //  --- end  ---  apple look around    --- 
+                    /**/
 
                             });
                             
@@ -4551,15 +4569,23 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
         //  ---  ---  apple look around    --- 
         /**/
 
-      
-      function init_apple_look_around(){
+  
+      function create_apple_look_around(lookAround_lat, lookAround_lng){
 
-      // Create an interactive Look Around view.
+
+        if (lookAround){
+          lookAround.destroy()
+        }
+
+
+        // Create an interactive Look Around view.
         lookAround = new mapkit.LookAround(
+        //lookAround = new mapkit.LookAroundPreview(
+
             // html tag
             document.getElementById("apple-look-around-container"),
             // location?: Coordinate | Place | LookAroundScene,
-            new mapkit.Coordinate(_center_lat,_center_long),
+            new mapkit.Coordinate(lookAround_lat, lookAround_lng),
             // options?: LookAroundOptions,
             {
                 // Allow users to expand the view.
@@ -4577,20 +4603,16 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
 
 
+
+
+
       function updateLookAroundCoordinate(newCoordinate) {
-          //if (mapkit.LookAround.isLookAroundAvailable(newCoordinate)) {
-              var request = new mapkit.LookAroundSceneRequest(newCoordinate);
-              request.getSceneWithCompletionHandler(function(scene, error) {
-                  if (scene) {
-                      // Update the current lookAround instance's scene property
-                      lookAround.scene = scene;
-                  } else if (error) {
-                      console.error("Error retrieving Look Around scene:", error);
-                  }
-              });
-          //} else {
-              console.log("Look Around not available at this coordinate.");
-         // }
+         
+
+        console.log("lookAround.scene", lookAround.scene)
+
+             
+          
       }
 
         /**/
