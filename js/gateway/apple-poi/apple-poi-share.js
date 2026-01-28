@@ -1038,3 +1038,13 @@ var apple_poi_annotation_array = []
           /**/
              
 
+
+
+          
+function show_info_outline_Tab(___properties){ 
+    console.log("show_info_outline_Tab", ___properties)   
+    $('#info-window-div').html(poi_viewer_for_download(___properties))
+}
+function empty_info_outline_Tab(){
+  $('#info-window-div').html("")
+}

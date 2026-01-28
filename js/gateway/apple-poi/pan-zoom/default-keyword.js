@@ -6,19 +6,6 @@
 /**/    
 
 
-
-function show_info_outline_Tab(___properties){    
-    $('#info-window-div').html(poi_viewer_for_download(___properties))
-}
-function empty_info_outline_Tab(){
-  $('#info-window-div').html("")
-}
-
-
-
-
-
-
            
             
          async function nearby_poi(_lat, _lng, _zoom_string){  // apple use lat-lng-region, not circle, but circle is ok
@@ -156,4 +143,11 @@ function empty_info_outline_Tab(){
 //  --- end  ---  apple poi    --- 
 /**/
 
+
+
+
+
+function init_default_js(){
+  // nothing to do but must keep here
+}
 

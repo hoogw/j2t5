@@ -785,6 +785,13 @@ async function initMap() {
             /**/
 
 
+            // because I use default-xxx.js to make different model, 
+            init_default_js()
+            // some function need in initMap, 
+            // will be in this function, this function can be empty
+            
+
+
             init_user_interface_event()
 
 

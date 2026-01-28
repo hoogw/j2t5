@@ -5,8 +5,7 @@
 //  --- apple poi      --- 
 /**/    
 
-
-
+    
 
            
          // 1 x    
@@ -140,6 +139,9 @@
 
 
             }//function
+
+
+
 /**/
 //  --- end  ---  apple poi    --- 
 /**/
@@ -147,8 +149,20 @@
 
 
 
-
 function init_default_js(){
-  // nothing to do but must keep here
+  
+
+        /**/
+        //  ---  ---  apple look around    --- 
+        /**/
+
+          // only load one time
+          create_apple_look_around(_center_lat,_center_long)
+
+        /**/
+        //  --- end  ---  apple look around    --- 
+        /**/
+
+
 }
 
