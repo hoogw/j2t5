@@ -4237,7 +4237,9 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
                     /**/
                     //  ---  ---  apple look around    --- 
                     /**/
-                       create_apple_look_around(event.target.coordinate.latitude, event.target.coordinate.longitude)
+                      var selected_annotation_event_lat = event.target.coordinate.latitude
+                      var selected_annotation_event_lng = event.target.coordinate.longitude
+                       create_apple_look_around(selected_annotation_event_lat, selected_annotation_event_lng)
                      
                     /**/
                     //  --- end  ---  apple look around    --- 
@@ -4692,31 +4694,46 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
 
 
         if (lookAround){
-          lookAround.destroy()
-        }
 
+          // destroy not work, after a few times use, eventually will failed loading, 
+          //lookAround.destroy()
 
-        // Create an interactive Look Around view.
-        lookAround = new mapkit.LookAround(
-        //lookAround = new mapkit.LookAroundPreview(
+          // should be able to update existing look around 
+          console.log(" new coord ", new mapkit.Coordinate(lookAround_lat, lookAround_lng))
+          console.log(" lookAround ", lookAround)
+          console.log(" lookAround.scene ", lookAround.scene)
+          console.log(" lookAround.scene.copy ", lookAround.scene.copy)
 
-            // html tag
-            document.getElementById("apple-look-around-container"),
-            // location?: Coordinate | Place | LookAroundScene,
-            new mapkit.Coordinate(lookAround_lat, lookAround_lng),
-            // options?: LookAroundOptions,
-            {
-                // Allow users to expand the view.
-                showsDialogControl: true,
-                showsCloseControl: true,
-                isNavigationEnabled: true,
-                isScrollEnabled: true,
-                showsRoadLabels: true,
-                showsPointsOfInterest: true,
-            }
-        );
+          console.log(" lookAround.scene.copy ", lookAround.scene.copy)
+          //console.log(" lookAround.lookAroundViews ", lookAround.lookAroundViews)// undefined
+          
+          //lookAround.pointOfInterest = new mapkit.Coordinate(lookAround_lat, lookAround_lng)
 
+        } else {
+         
+          // look around not exist, so create a new one
 
+          // Create an interactive Look Around view.
+          lookAround = new mapkit.LookAround(
+          //lookAround = new mapkit.LookAroundPreview(
+
+              // html tag
+              document.getElementById("apple-look-around-container"),
+              // location?: Coordinate | Place | LookAroundScene,
+              new mapkit.Coordinate(lookAround_lat, lookAround_lng),
+              // options?: LookAroundOptions,
+              {
+                  // Allow users to expand the view.
+                  showsDialogControl: true,
+                  showsCloseControl: true,
+                  isNavigationEnabled: true,
+                  isScrollEnabled: true,
+                  showsRoadLabels: true,
+                  showsPointsOfInterest: true,
+              }
+          );
+
+       }
       }
 
 
