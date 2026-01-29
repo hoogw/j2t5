@@ -4585,7 +4585,7 @@ var _google_public_map_only_api_key = "AIzaSyCeIFVL6oxxXNT7NToJjfU4J9TV2J8m4vE"
 
     */
 
-    var google_map_type_id = 'hybrid'  // display name : google-hybrid 
+    var map_type_id = 'hybrid'  // display name : google-hybrid 
     // sample https://developers.google.com/maps/documentation/javascript/examples/maptype-base#maps_maptype_base-javascript
     
 
@@ -4597,7 +4597,7 @@ var _google_public_map_only_api_key = "AIzaSyCeIFVL6oxxXNT7NToJjfU4J9TV2J8m4vE"
 
       // default always to top 2, the others will add after
       // these will be used a base map radio display text
-      var google_map_type_array = [
+      var map_type_array = [
               'hybrid',  // google-hybrid  
               'roadmap', // google-road
               
@@ -4621,30 +4621,30 @@ var _google_public_map_only_api_key = "AIzaSyCeIFVL6oxxXNT7NToJjfU4J9TV2J8m4vE"
 
       var radio_basemap_html = ''
       
-      var google_map_type_display_name
-      for (let i = 0; i < google_map_type_array.length; i++) {
-        console.log("google map type array ", google_map_type_array[i]); 
+      var map_type_display_name
+      for (let i = 0; i < map_type_array.length; i++) {
+        console.log("google map type array ", map_type_array[i]); 
 
-        switch (google_map_type_array[i]) {
+        switch (map_type_array[i]) {
 
           case 'hybrid':
-            google_map_type_display_name = 'google-hybrid'
+            map_type_display_name = 'google-hybrid'
             break;
 
           case 'roadmap':
-            google_map_type_display_name = 'google-road'
+            map_type_display_name = 'google-road'
             break;
          
           default:
-            google_map_type_display_name = google_map_type_array[i]
+            map_type_display_name = map_type_array[i]
         }
 
 
         radio_basemap_html += '<div>'
         // value use original name
-        radio_basemap_html += '<input name="basemap_radio" type="radio"  value="' + google_map_type_array[i] + '"/>'
+        radio_basemap_html += '<input name="basemap_radio" type="radio"  value="' + map_type_array[i] + '"/>'
         // display name might changed 
-        radio_basemap_html += '<span>' + google_map_type_display_name + '</span>'
+        radio_basemap_html += '<span>' + map_type_display_name + '</span>'
         radio_basemap_html += '</div>'
 
       }//for
@@ -4655,20 +4655,20 @@ var _google_public_map_only_api_key = "AIzaSyCeIFVL6oxxXNT7NToJjfU4J9TV2J8m4vE"
 
       //add event to radio
       urlParams = new URLSearchParams(window.location.search);
-      var param_google_map_type_id = urlParams.get('googleMapType'); 
-      if (param_google_map_type_id){
-        google_map_type_id = param_google_map_type_id
+      var param_map_type_id = urlParams.get('googleMapType'); 
+      if (param_map_type_id){
+        map_type_id = param_map_type_id
       }//if
       
       // first time set radio
-      $("input[type=radio][name='basemap_radio'][value=" + google_map_type_id + "]").prop('checked', true);
+      $("input[type=radio][name='basemap_radio'][value=" + map_type_id + "]").prop('checked', true);
       // 1 time, 1st time set base map
       // set google map type https://developers.google.com/maps/documentation/javascript/reference/map#Map
       // directly set google map type is not working, error is 'set' is not a function
-      //map.mapTypes = google_map_type_id
+      //map.mapTypes = map_type_id
       // Instead, working, warning: mapId(required by advanced marker), warning, map style controlled by cloud console.
       map.setOptions({
-                mapTypeId: google_map_type_id,
+                mapTypeId: map_type_id,
 
                
       })// s e t o p t i o n
@@ -4676,15 +4676,15 @@ var _google_public_map_only_api_key = "AIzaSyCeIFVL6oxxXNT7NToJjfU4J9TV2J8m4vE"
 
       // radio change event
       $("input[type='radio'][name='basemap_radio']").change(function(){
-        google_map_type_id = $("input[type='radio'][name='basemap_radio']:checked").val();
-        console.log(" google_map_type_id : --  ", google_map_type_id);
-        update_url_parameter('googleMapType', google_map_type_id);
+        map_type_id = $("input[type='radio'][name='basemap_radio']:checked").val();
+        console.log(" map_type_id : --  ", map_type_id);
+        update_url_parameter('googleMapType', map_type_id);
         // set google map type https://developers.google.com/maps/documentation/javascript/reference/map#Map
         // directly set google map type is not working, error is 'set' is not a function
-        //map.mapTypes = google_map_type_id
+        //map.mapTypes = map_type_id
         // Instead, working, warning: mapId(required by advanced marker), warning, map style controlled by cloud console.
         map.setOptions({
-                mapTypeId: google_map_type_id,
+                mapTypeId: map_type_id,
 
                
         })// s e t o p t i o n

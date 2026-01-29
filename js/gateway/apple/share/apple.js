@@ -4850,6 +4850,88 @@ var is_first_time_lookAround = true // only for 1st time load
         function add_basemap_tile_for_apple(){
 
 
+          var map_type_array = [
+
+            // default is always at top.
+              'apple',
+
+              'google-hybrid',  // google-hybrid  
+              'google-road', // google-road
+              
+              'microsoft-hybrid', 
+              'microsoft-road',
+
+              'here-hybrid',
+              'here-road', 
+                      
+              'esri-hybrid', 
+              'esri-road',
+
+              //'nearmap', // uncomment to add back
+
+              'mapbox-hybrid',
+              'mapbox-road',
+                        
+              'open-street-map'
+            ]
+
+      var radio_basemap_html = ''
+      
+      var map_type_display_name
+      for (let i = 0; i < map_type_array.length; i++) {
+        map_type_display_name = map_type_array[i]
+        radio_basemap_html += '<div>'
+        // value use original name
+        radio_basemap_html += '<input name="basemap_radio" type="radio"  value="' + map_type_display_name + '"/>'
+        // display name might changed 
+        radio_basemap_html += '<span>' + map_type_display_name + '</span>'
+        radio_basemap_html += '</div>'
+      }//for
+      $("#radio-basemap-id").html(radio_basemap_html)
+
+      //add event to radio
+      urlParams = new URLSearchParams(window.location.search);
+      var param_map_type_id = urlParams.get('mapType'); 
+      if (param_map_type_id){
+        map_type_id = param_map_type_id
+      }//if
+      
+      // first time set radio
+      $("input[type=radio][name='basemap_radio'][value=" + google_map_type_id + "]").prop('checked', true);
+      // 1 time, 1st time set base map
+      // set google map type https://developers.google.com/maps/documentation/javascript/reference/map#Map
+      // directly set google map type is not working, error is 'set' is not a function
+      //map.mapTypes = google_map_type_id
+      // Instead, working, warning: mapId(required by advanced marker), warning, map style controlled by cloud console.
+      map.setOptions({
+                mapTypeId: google_map_type_id,
+
+               
+      })// s e t o p t i o n
+
+
+      // radio change event
+      $("input[type='radio'][name='basemap_radio']").change(function(){
+        google_map_type_id = $("input[type='radio'][name='basemap_radio']:checked").val();
+        console.log(" google_map_type_id : --  ", google_map_type_id);
+        update_url_parameter('appleMapType', google_map_type_id);
+        // set google map type https://developers.google.com/maps/documentation/javascript/reference/map#Map
+        // directly set google map type is not working, error is 'set' is not a function
+        //map.mapTypes = google_map_type_id
+        // Instead, working, warning: mapId(required by advanced marker), warning, map style controlled by cloud console.
+        map.setOptions({
+                mapTypeId: google_map_type_id,
+
+               
+        })// s e t o p t i o n
+
+      });// input radio
+      // . . - -  end    . . - -   add event to radio  . . - - 
+
+
+
+
+
            var google_hybrid = new mapkit.TileOverlay(
             "https://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}",
              {}

@@ -2021,8 +2021,8 @@ function init_user_interface_event(){
 
       $('#nearmap-button').on("click", (event) => {
         nearmap_api_key = $('#nearmap-key-input').val()
-        google_map_type_id = 'nearmap'
-        update_url_parameter('googleMapType', google_map_type_id);
+        map_type_id = 'nearmap'
+        update_url_parameter('maptype', map_type_id);
         update_url_parameter('nearmapkey', nearmap_api_key);
         
         function nearmap_MapType(tileSize) {
@@ -2059,7 +2059,7 @@ function init_user_interface_event(){
           map.mapTypes.set('nearmap',  new nearmap_MapType(new google.maps.Size(256,256)));
 
            map.setOptions({
-                mapTypeId: google_map_type_id,
+                mapTypeId: map_type_id,
 
                
         })// s e t o p t i o n
