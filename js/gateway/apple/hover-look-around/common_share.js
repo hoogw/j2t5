@@ -793,7 +793,7 @@ async function initMap() {
         /**/
 
 
-
+            add_basemap_tile_for_apple()
 
 
             init_user_interface_event()

@@ -9,7 +9,8 @@
 // ------- apple map only  -------
 /**/
 // default , expire 7 days, no restrict, for localhost 
-var localhost_apple_token = "eyJraWQiOiI3VDhIWFY3RDVLIiwidHlwIjoiSldUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJDNE5YNVM5UTRCIiwiaWF0IjoxNzY5MTAzNjMxLCJleHAiOjE3Njk3NTk5OTl9.CDy4zUZ-Wqv-LinSdhHYhqX0ojE7IKKi0OSzoRaiqjoOow5lW0BgOCGEHv1wSd39oQ2Rr7Pl_bC4XQI7afoPKg"
+var localhost_apple_token = "eyJraWQiOiI5NDQ0N0FBMzg3IiwidHlwIjoiSldUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJDNE5YNVM5UTRCIiwiaWF0IjoxNzY5NzA4NTE2LCJleHAiOjE3NzAzNjQ3OTl9.gF8D4Ylx-9YSy7GIb12LK6Uga13K8KNZApz2YVRgmrs7xH_pK1wbQq7Vzy1QDufyMuCRFZQ0QZAvlqaYdXl06A"
+
 var neverExpireDomainRestricted_apple_token = "eyJraWQiOiI3WERaQzc2MjlXIiwidHlwIjoiSldUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJDNE5YNVM5UTRCIiwiaWF0IjoxNzY0MTg2Njc3LCJvcmlnaW4iOiJ0cmFuc3BhcmVudGdvdi5uZXQifQ.y4HioJk5y_0vbI59mX16HPeVmPTssNxGAZehF66QwOxcn56ek1gPI-8gjNyjEXwSvVV86-_lqRuEGF2KUL69cA"
 var _apple_token     
 var scriptElement
@@ -73,8 +74,6 @@ const libraries = "services,full-map,overlays,annotations,geojson,user-location,
 /**/
 
 
-
-var lookAround
 
 
 //  .. ..  from node.js arcgis viewer transition to json2tree  .. ..  
@@ -4689,29 +4688,61 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
         //  ---  ---  apple look around    --- 
         /**/
 
+        
+var lookAround
+
+var is_lookAround_load_complete = false
+var is_first_time_lookAround = true // only for 1st time load 
+
   
-      function create_apple_look_around(lookAround_lat, lookAround_lng){
+     function create_apple_look_around(lookAround_lat, lookAround_lng){
+
+        
+
+      /*
+        no way to update coordinate of existing look around object, 
+        have to destroy it before create a new one 
+
+        You have to wait existing look around object load completed, or ready-state change to complete.
+        Then destroy it.
+        Otherwise, if no wait, when ready-state is still loading, to destroy a loading one will crash.
 
 
-        if (lookAround){
 
-          // destroy not work, after a few times use, eventually will failed loading, 
-          //lookAround.destroy()
+        warning:  not fix issue, 
+        if trigger too much look-around in short time,
+        console will get this message:
+                         WARNING: Too many active WebGL contexts. Oldest context will be lost
+        at this point, your apple base map is the oldest webGL contexts, lost means apple base map crash. 
 
-          // should be able to update existing look around 
-          console.log(" new coord ", new mapkit.Coordinate(lookAround_lat, lookAround_lng))
-          console.log(" lookAround ", lookAround)
-          console.log(" lookAround.scene ", lookAround.scene)
-          console.log(" lookAround.scene.copy ", lookAround.scene.copy)
+        https://github.com/mapbox/mapbox-gl-js/issues/7332
 
-          console.log(" lookAround.scene.copy ", lookAround.scene.copy)
-          //console.log(" lookAround.lookAroundViews ", lookAround.lookAroundViews)// undefined
+      */
+        
+        
+        // 3 all works the same,  
+        //if ((is_first_time_lookAround) || (lookAround.readyState == "complete")){ //possible value:  complete destroyed
+        //if ((is_first_time_lookAround) || (is_lookAround_load_complete)){ 
+        if ((is_first_time_lookAround) || ( (is_lookAround_load_complete) && (lookAround.readyState == "complete") )){  
+
           
-          //lookAround.pointOfInterest = new mapkit.Coordinate(lookAround_lat, lookAround_lng)
+            is_first_time_lookAround = false
+       
+            
+            if (lookAround){
+              console.log("- - - Look Around - - - before destroy, lookAround.readyState ", lookAround.readyState)
+              // destroy not work, after a few times use, eventually will failed loading, 
+              lookAround.destroy()
+              is_lookAround_load_complete = false
+              console.log("- - - Look Around - - - after destroy,  lookAround.readyState ", lookAround.readyState)
 
-        } else {
-         
-          // look around not exist, so create a new one
+             
+            }
+            
+        
+     
+
+
 
           // Create an interactive Look Around view.
           lookAround = new mapkit.LookAround(
@@ -4723,17 +4754,71 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
               new mapkit.Coordinate(lookAround_lat, lookAround_lng),
               // options?: LookAroundOptions,
               {
+                
                   // Allow users to expand the view.
-                  showsDialogControl: true,
-                  showsCloseControl: true,
-                  isNavigationEnabled: true,
-                  isScrollEnabled: true,
+                  showsDialogControl:  true,
+                  showsCloseControl: false, //true,
+                  isNavigationEnabled:  true,
+                  isScrollEnabled:  true,
                   showsRoadLabels: true,
                   showsPointsOfInterest: true,
+                  
               }
           );
 
-       }
+
+
+                // 1. Catch the Load Event
+                lookAround.addEventListener('load', (e) => {
+                    console.log("- - - Look Around - - - view loaded successfully, readystate: ", lookAround.readyState, "  event: ", e);
+                    is_lookAround_load_complete = true
+                });
+
+                // 2. Catch the Error Event
+                lookAround.addEventListener('error', (e) => {
+                    console.log("- - - Look Around - - -  error, readystate: ", lookAround.readyState, "  event: ", e);
+                });
+
+                lookAround.addEventListener('readystatechange', (e) => {
+                    console.log("- - - Look Around - - -  readystatechange, readystate: ", lookAround.readyState, "  event: ", e);
+                });
+
+                lookAround.addEventListener('open-dialog', (e) => {
+                    console.log("- - - Look Around - - -  open-dialog, readystate: ", lookAround.readyState, "  event: ", e);
+                });
+
+                lookAround.addEventListener('leave-dialog', (e) => {
+                    console.log("- - - Look Around - - -  leave-dialog, readystate: ", lookAround.readyState, "  event: ", e);
+                });
+
+                // 3. Catch the Close Event
+                lookAround.addEventListener('close', (e) => {
+                    console.log("- - - Look Around - - -  User closed the Look Around view, readystate: ", lookAround.readyState, "  event: ", e);
+                });
+
+        
+
+                /*
+                // should be able to update existing look around 
+                console.log(" new coord ", new mapkit.Coordinate(lookAround_lat, lookAround_lng))
+                console.log(" lookAround ", lookAround)
+                console.log(" lookAround.scene ", lookAround.scene)
+                console.log(" lookAround.scene.copy ", lookAround.scene.copy)
+                console.log(" lookAround.scene.copy ", lookAround.scene.copy)
+                //console.log(" lookAround.lookAroundViews ", lookAround.lookAroundViews)// undefined
+
+                //lookAround.pointOfInterest = new mapkit.Coordinate(lookAround_lat, lookAround_lng)
+
+                */
+
+
+          
+             
+          }//if
+
+      
+
+
       }
 
 
@@ -4754,3 +4839,26 @@ maxRecordCount = _featurelayerJSON.maxRecordCount
         //  --- end  ---  apple look around    --- 
         /**/
 
+
+
+
+
+
+//  - -- - apple basemap  - -- -
+
+
+        function add_basemap_tile_for_apple(){
+
+
+           var google_hybrid = new mapkit.TileOverlay(
+            "https://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}",
+             {}
+           )
+
+           map.addTileOverlay(google_hybrid)
+
+
+        }
+
+
+//  --- end  ---   apple basemap  - -- -
