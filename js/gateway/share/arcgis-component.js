@@ -427,7 +427,7 @@ async function create_rasterTile_basemap(){
           // raster or vector tile set id is here https://learn.microsoft.com/en-us/rest/api/maps/render/get-map-tile?view=rest-maps-2025-01-01&tabs=HTTP#tilesetid
           // must be raster(png), can not be vector(pbf)
          var microsoft_imagery_no_label =  microsoft_base_tile_url + '&tilesetId=' + 'microsoft.imagery'  // no label
-         var microsoft_hybrid =  microsoft_base_tile_url +  '&tilesetId=' + 'microsoft.base.labels.road'  // no imagery, only have label
+         var microsoft_label_only =  microsoft_base_tile_url +  '&tilesetId=' + 'microsoft.base.labels.road'  // no imagery, only have label
          var microsoft_road =  microsoft_base_tile_url +  '&tilesetId=' +  'microsoft.base.road' //'microsoft.base.road'  
 
 
@@ -450,7 +450,7 @@ async function create_rasterTile_basemap(){
             
                 // microsoft has street number label only, no poi place label 
                 new WebTileLayer({
-                  urlTemplate : microsoft_hybrid, 
+                  urlTemplate : microsoft_label_only, 
                   copyright: "&#169;" + (new Date().getFullYear()) + '.' + (new Date().getMonth() + 1) + "Microsoft Hybrid ",
                   
                   id: "layerID_microsoft_label",
