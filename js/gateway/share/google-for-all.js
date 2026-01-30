@@ -4655,7 +4655,7 @@ var _google_public_map_only_api_key = "AIzaSyCeIFVL6oxxXNT7NToJjfU4J9TV2J8m4vE"
 
       //add event to radio
       urlParams = new URLSearchParams(window.location.search);
-      var param_map_type_id = urlParams.get('googleMapType'); 
+      var param_map_type_id = urlParams.get('maptype'); 
       if (param_map_type_id){
         map_type_id = param_map_type_id
       }//if
@@ -4677,8 +4677,8 @@ var _google_public_map_only_api_key = "AIzaSyCeIFVL6oxxXNT7NToJjfU4J9TV2J8m4vE"
       // radio change event
       $("input[type='radio'][name='basemap_radio']").change(function(){
         map_type_id = $("input[type='radio'][name='basemap_radio']:checked").val();
-        console.log(" map_type_id : --  ", map_type_id);
-        update_url_parameter('googleMapType', map_type_id);
+        console.log("you select new map type id : -->  ", map_type_id);
+        update_url_parameter('maptype', map_type_id);
         // set google map type https://developers.google.com/maps/documentation/javascript/reference/map#Map
         // directly set google map type is not working, error is 'set' is not a function
         //map.mapTypes = map_type_id

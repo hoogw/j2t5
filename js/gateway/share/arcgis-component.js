@@ -379,6 +379,27 @@ async function create_rasterTile_basemap(){
       // 4). new Basemap({baseLayers: [new WebTileLayer(...)], referenceLayers: [new WebTileLayer(...)]
 
       // for raster tile, use 4).
+
+
+
+      
+  /*
+      http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}  
+      Subdomains: mt0, mt1, mt2, mt3. 
+      Examples: https://mts1.google.com/vt/x=1325&y=3143&z=13 
+      https://mt1.google.com/vt/lyrs=m&x=1325&y=3143&z=13 
+       Additional info: 
+       - h = roads only 
+       - m = standard roadmap 
+       - p = terrain 
+       - r = somehow altered roadmap 
+       - s = satellite only 
+       - t = terrain only 
+       - y = hybrid
+
+*/
+
+
       
           // Google Hybrid
             google_hybrid = new Basemap({
@@ -396,25 +417,21 @@ async function create_rasterTile_basemap(){
 
 
 
-            
-            // microsoft hybrid
-            var microsoft_tile_url = 'https://atlas.microsoft.com/map/tile?'
-            microsoft_tile_url +=  'subscription-key=' + microsoft_azure_primary_key_public 
-            microsoft_tile_url +=  '&api-version=2024-04-01'
-            // raster or vector tile set id is here https://learn.microsoft.com/en-us/rest/api/maps/render/get-map-tile?view=rest-maps-2025-01-01&tabs=HTTP#tilesetid
-            // must be raster(png), can not be vector(pbf)
-            microsoft_tile_url +=  '&tilesetId=' + 'microsoft.imagery'  // no label
-            microsoft_tile_url +=  '&x={x}' + '&y={y}' + '&zoom={z}'
-            microsoft_tile_url +=  '&tileSize=256'
+          // microsoft hybrid
+          var microsoft_base_tile_url = 'https://atlas.microsoft.com/map/tile?'
+          microsoft_base_tile_url +=  'subscription-key=' + microsoft_azure_primary_key_public 
+          microsoft_base_tile_url +=  '&api-version=2024-04-01'
+          microsoft_base_tile_url +=  '&x={x}' + '&y={y}' + '&zoom={z}'
+          microsoft_base_tile_url +=  '&tileSize=256'
 
-            var microsoft_label_tile_url = 'https://atlas.microsoft.com/map/tile?'
-            microsoft_label_tile_url +=  'subscription-key=' + microsoft_azure_primary_key_public 
-            microsoft_label_tile_url +=  '&api-version=2024-04-01'
-            // raster or vector tile set id is here https://learn.microsoft.com/en-us/rest/api/maps/render/get-map-tile?view=rest-maps-2025-01-01&tabs=HTTP#tilesetid
-            // must be raster(png), can not be vector(pbf)
-            microsoft_label_tile_url +=  '&tilesetId=' + 'microsoft.base.labels.road'  // microsoft has street number label only, no poi place label 
-            microsoft_label_tile_url +=  '&x={x}' + '&y={y}' + '&zoom={z}'
-            microsoft_label_tile_url +=  '&tileSize=256'
+          // raster or vector tile set id is here https://learn.microsoft.com/en-us/rest/api/maps/render/get-map-tile?view=rest-maps-2025-01-01&tabs=HTTP#tilesetid
+          // must be raster(png), can not be vector(pbf)
+         var microsoft_imagery_no_label =  microsoft_base_tile_url + '&tilesetId=' + 'microsoft.imagery'  // no label
+         var microsoft_hybrid =  microsoft_base_tile_url +  '&tilesetId=' + 'microsoft.base.labels.road'  // no imagery, only have label
+         var microsoft_road =  microsoft_base_tile_url +  '&tilesetId=' +  'microsoft.base.road' //'microsoft.base.road'  
+
+
+
 
             microsoft_hybrid = new Basemap({
 
@@ -424,7 +441,7 @@ async function create_rasterTile_basemap(){
 
                 // saterlite only, no label
                 new WebTileLayer({
-                  urlTemplate : microsoft_tile_url, 
+                  urlTemplate : microsoft_imagery_no_label, 
                   copyright: "&#169;" + (new Date().getFullYear()) + '.' + (new Date().getMonth() + 1) + "Microsoft Hybrid ",
                   
                   id: "layerID_microsoft_hybrid",
@@ -433,7 +450,7 @@ async function create_rasterTile_basemap(){
             
                 // microsoft has street number label only, no poi place label 
                 new WebTileLayer({
-                  urlTemplate : microsoft_label_tile_url, 
+                  urlTemplate : microsoft_hybrid, 
                   copyright: "&#169;" + (new Date().getFullYear()) + '.' + (new Date().getMonth() + 1) + "Microsoft Hybrid ",
                   
                   id: "layerID_microsoft_label",

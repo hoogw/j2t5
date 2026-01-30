@@ -4846,98 +4846,198 @@ var is_first_time_lookAround = true // only for 1st time load
 
 //  - -- - apple basemap  - -- -
 
-
+        var map_type_id = 'google-hybrid'  // display name : google-hybrid 
+        
         function add_basemap_tile_for_apple(){
 
 
-          var map_type_array = [
+
+
+
+
+
+          // microsoft hybrid
+          var microsoft_base_tile_url = 'https://atlas.microsoft.com/map/tile?'
+          microsoft_base_tile_url +=  'subscription-key=' + microsoft_azure_primary_key_public 
+          microsoft_base_tile_url +=  '&api-version=2024-04-01'
+          microsoft_base_tile_url +=  '&x={x}' + '&y={y}' + '&zoom={z}'
+          microsoft_base_tile_url +=  '&tileSize=256'
+
+          // raster or vector tile set id is here https://learn.microsoft.com/en-us/rest/api/maps/render/get-map-tile?view=rest-maps-2025-01-01&tabs=HTTP#tilesetid
+          // must be raster(png), can not be vector(pbf)
+         var microsoft_imagery_no_label =  microsoft_base_tile_url + '&tilesetId=' + 'microsoft.imagery'  // no label
+         var microsoft_label_only =  microsoft_base_tile_url +  '&tilesetId=' + 'microsoft.base.labels.road'  
+         var microsoft_road =  microsoft_base_tile_url +  '&tilesetId=' +  'microsoft.base.road' //'microsoft.base.road'  
+
+
+
+          var map_type_object = {
 
             // default is always at top.
-              'apple',
+              'apple': null, 
 
-              'google-hybrid',  // google-hybrid  
-              'google-road', // google-road
+/*
+      http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}  
+      Subdomains: mt0, mt1, mt2, mt3. 
+      Examples: https://mts1.google.com/vt/x=1325&y=3143&z=13 
+      https://mt1.google.com/vt/lyrs=m&x=1325&y=3143&z=13 
+       Additional info: 
+       - h = roads only 
+       - m = standard roadmap 
+       - p = terrain 
+       - r = somehow altered roadmap 
+       - s = satellite only 
+       - t = terrain only 
+       - y = hybrid
+
+*/
+
+// s means add array, microsoft hybrid have 2 layers, one for label, one for imagery.
+
+
+              'google-hybrid':[ 
+                new mapkit.TileOverlay(
+                  "https://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}",
+                  {}
+                )
+              ], 
+
+              'google-road':[ 
+                new mapkit.TileOverlay(
+                  "https://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}",
+                  {}
+                )
+              ], 
               
-              'microsoft-hybrid', 
-              'microsoft-road',
+              'microsoft-hybrid':[ 
 
-              'here-hybrid',
-              'here-road', 
-                      
-              'esri-hybrid', 
-              'esri-road',
+                new mapkit.TileOverlay(
+                  microsoft_imagery_no_label,
+                  {}
+                ),
+
+                new mapkit.TileOverlay(
+                  microsoft_label_only,
+                  {}
+                ),
+
+              ], 
+
+
+             'microsoft-road':[ 
+                new mapkit.TileOverlay(
+                  microsoft_road,
+                  {}
+                )
+              ], 
+
+
+              'here-hybrid':[ 
+                new mapkit.TileOverlay(
+                  here_v3_hybrid_raster,
+                  {}
+                )
+              ], 
+
+              'here-road':[ 
+                new mapkit.TileOverlay(
+                  here_v3_road_raster,
+                  {}
+                )
+              ], 
+
+             // 'esri-hybrid', 
+             // 'esri-road',
 
               //'nearmap', // uncomment to add back
 
-              'mapbox-hybrid',
-              'mapbox-road',
-                        
-              'open-street-map'
-            ]
+              'mapbox-hybrid':[ 
+                new mapkit.TileOverlay(
+                  mapbox_satellite_raster,
+                  {}
+                )
+              ], 
+
+             
+
+
+              'open-street-map':[ 
+                new mapkit.TileOverlay(
+                  "http://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                  {}
+                )
+              ], 
+          }
 
       var radio_basemap_html = ''
       
       var map_type_display_name
-      for (let i = 0; i < map_type_array.length; i++) {
-        map_type_display_name = map_type_array[i]
-        radio_basemap_html += '<div>'
-        // value use original name
-        radio_basemap_html += '<input name="basemap_radio" type="radio"  value="' + map_type_display_name + '"/>'
-        // display name might changed 
-        radio_basemap_html += '<span>' + map_type_display_name + '</span>'
-        radio_basemap_html += '</div>'
+
+      for (const key in map_type_object) {
+        // Check if the property is the object's own property, not an inherited one
+        if (Object.hasOwnProperty.call(map_type_object, key)) {
+          const value = map_type_object[key];
+          console.log(key, value);
+          map_type_display_name = key
+
+          radio_basemap_html += '<div>'
+          // value use original name
+          radio_basemap_html += '<input name="basemap_radio" type="radio"  value="' + map_type_display_name + '"/>'
+          // display name might changed 
+          radio_basemap_html += '<span>' + map_type_display_name + '</span>'
+          radio_basemap_html += '</div>'
+
+        }//if
       }//for
       $("#radio-basemap-id").html(radio_basemap_html)
 
+
+
       //add event to radio
       urlParams = new URLSearchParams(window.location.search);
-      var param_map_type_id = urlParams.get('mapType'); 
+      var param_map_type_id = urlParams.get('maptype'); 
       if (param_map_type_id){
         map_type_id = param_map_type_id
       }//if
       
       // first time set radio
-      $("input[type=radio][name='basemap_radio'][value=" + google_map_type_id + "]").prop('checked', true);
+      $("input[type=radio][name='basemap_radio'][value=" + map_type_id + "]").prop('checked', true);
       // 1 time, 1st time set base map
-      // set google map type https://developers.google.com/maps/documentation/javascript/reference/map#Map
-      // directly set google map type is not working, error is 'set' is not a function
-      //map.mapTypes = google_map_type_id
-      // Instead, working, warning: mapId(required by advanced marker), warning, map style controlled by cloud console.
-      map.setOptions({
-                mapTypeId: google_map_type_id,
-
-               
-      })// s e t o p t i o n
+      if (map_type_object[map_type_id]){
+        // s means add array, microsoft hybrid have 2 layers, one for label, one for imagery.
+               map.addTileOverlays(map_type_object[map_type_id])
+               console.log('after 1st time add tile base map', map.tileOverlays)
+      }
+      
 
 
       // radio change event
       $("input[type='radio'][name='basemap_radio']").change(function(){
-        google_map_type_id = $("input[type='radio'][name='basemap_radio']:checked").val();
-        console.log(" google_map_type_id : --  ", google_map_type_id);
-        update_url_parameter('appleMapType', google_map_type_id);
-        // set google map type https://developers.google.com/maps/documentation/javascript/reference/map#Map
-        // directly set google map type is not working, error is 'set' is not a function
-        //map.mapTypes = google_map_type_id
-        // Instead, working, warning: mapId(required by advanced marker), warning, map style controlled by cloud console.
-        map.setOptions({
-                mapTypeId: google_map_type_id,
+        map_type_id = $("input[type='radio'][name='basemap_radio']:checked").val();
+        console.log("you select new map type id : -->  ", map_type_id);
+        update_url_parameter('maptype', map_type_id);
+        
+         console.log('before you changed tile base map, these need delete', map.tileOverlays)
+         // remove all other tile,
+         // You can set this attribute to a new (possibly empty) array of tile overlays, 
+         // to update or remove all the tile overlays on the map. 
+         // https://developer.apple.com/documentation/mapkitjs/map/tileoverlays?changes=l_7
+         map.tileOverlays = [];
+         console.log('should be empty tile array', map.tileOverlays)
 
-               
-        })// s e t o p t i o n
+         if (map_type_object[map_type_id]){
+               // s means add array, microsoft hybrid have 2 layers, one for label, one for imagery.
+               map.addTileOverlays(map_type_object[map_type_id])
+               console.log('you changed tile base map to', map.tileOverlays)
+         }
+
+
 
       });// input radio
       // . . - -  end    . . - -   add event to radio  . . - - 
 
 
 
-
-
-           var google_hybrid = new mapkit.TileOverlay(
-            "https://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}",
-             {}
-           )
-
-           map.addTileOverlay(google_hybrid)
 
 
         }

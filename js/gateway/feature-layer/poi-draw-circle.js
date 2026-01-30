@@ -999,6 +999,24 @@ if (your_esrilocation_key){
    
     function init_base_map(){
 
+
+      
+  /*
+      http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}  
+      Subdomains: mt0, mt1, mt2, mt3. 
+      Examples: https://mts1.google.com/vt/x=1325&y=3143&z=13 
+      https://mt1.google.com/vt/lyrs=m&x=1325&y=3143&z=13 
+       Additional info: 
+       - h = roads only 
+       - m = standard roadmap 
+       - p = terrain 
+       - r = somehow altered roadmap 
+       - s = satellite only 
+       - t = terrain only 
+       - y = hybrid
+
+*/
+
           // Google Hybrid
           google_hybrid = new Basemap({
             baseLayers: [new WebTileLayer({
