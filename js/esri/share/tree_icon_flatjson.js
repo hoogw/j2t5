@@ -211,6 +211,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
 
 
 
+                /*
                     icon_item = { 
                         "id" :  577,     
                         "parent" : 10,
@@ -225,6 +226,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                                     }
                     };
                     icon_flatjson.push(icon_item) 
+                    */
 
 
 
@@ -287,7 +289,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                     icon_item = { 
                         "id" :  589,     
                         "parent" : 10,
-                        "text" : esri_svg + " Esri Official",
+                        "text" : esri_svg + " Esri EndPoint & Viewer",
                         "icon" : folder_icon,
                         "link_type": "folder",   
                         "state"       : {
@@ -3765,13 +3767,13 @@ icon_flatjson.push(icon_item)
 
 
 
-/*  = = = =  = = = = sub folder = = = = esri official endpoint= = = =  */
+/*  = = = =  = = = = sub folder = = = = esri official e n d p o int= = = =  */
 
 
 icon_item = { 
     "id" :  578,     
     "parent" : 589,
-    "text" : "endpoint",
+    "text" : "EndPoint",
     "icon" : folder_icon,
     "link_type": "folder",   
     "state"       : {
@@ -4041,7 +4043,7 @@ icon_flatjson.push(icon_item)
 icon_item = { 
     "id" :  896,     
     "parent" : 589,
-    "text" : "download file",
+    "text" : "Download File",
     "icon" : folder_icon,
     "link_type": "folder",   
     "state"       : {
