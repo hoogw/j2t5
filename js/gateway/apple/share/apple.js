@@ -4722,8 +4722,8 @@ var is_first_time_lookAround = true // only for 1st time load
         
         // 3 all works the same,  
         //if ((is_first_time_lookAround) || (lookAround.readyState == "complete")){ //possible value:  complete destroyed
-        //if ((is_first_time_lookAround) || (is_lookAround_load_complete)){ 
-        if ((is_first_time_lookAround) || ( (is_lookAround_load_complete) && (lookAround.readyState == "complete") )){  
+        if ((is_first_time_lookAround) || (is_lookAround_load_complete)){ 
+        //if ((is_first_time_lookAround) || ( (is_lookAround_load_complete) && (lookAround.readyState == "complete") )){  
 
           
             is_first_time_lookAround = false
@@ -4777,10 +4777,12 @@ var is_first_time_lookAround = true // only for 1st time load
                 // 2. Catch the Error Event
                 lookAround.addEventListener('error', (e) => {
                     console.log("- - - Look Around - - -  error, readystate: ", lookAround.readyState, "  event: ", e);
+                    is_lookAround_load_complete = true
                 });
 
                 lookAround.addEventListener('readystatechange', (e) => {
                     console.log("- - - Look Around - - -  readystatechange, readystate: ", lookAround.readyState, "  event: ", e);
+                    is_lookAround_load_complete = true
                 });
 
                 lookAround.addEventListener('open-dialog', (e) => {
@@ -4794,6 +4796,7 @@ var is_first_time_lookAround = true // only for 1st time load
                 // 3. Catch the Close Event
                 lookAround.addEventListener('close', (e) => {
                     console.log("- - - Look Around - - -  User closed the Look Around view, readystate: ", lookAround.readyState, "  event: ", e);
+                    is_lookAround_load_complete = true
                 });
 
         
