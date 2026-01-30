@@ -4867,7 +4867,10 @@ var is_first_time_lookAround = true // only for 1st time load
           // must be raster(png), can not be vector(pbf)
          var microsoft_imagery_no_label =  microsoft_base_tile_url + '&tilesetId=' + 'microsoft.imagery'  // no label
          var microsoft_label_only =  microsoft_base_tile_url +  '&tilesetId=' + 'microsoft.base.labels.road'  
-         var microsoft_road =  microsoft_base_tile_url +  '&tilesetId=' +  'microsoft.base.road' //'microsoft.base.road'  
+         // dark road, not use, because missing building block
+         //var microsoft_road =  microsoft_base_tile_url +  '&tilesetId=' +  'microsoft.base.darkgrey' 
+         // light road
+         var microsoft_road =  microsoft_base_tile_url +  '&tilesetId=' +  'microsoft.base.road' 
 
 
 

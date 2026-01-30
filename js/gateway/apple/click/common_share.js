@@ -775,6 +775,10 @@ async function initMap() {
             // --- end --- apple map only -------
             /**/
 
+           //  - -- - apple basemap  - -- -
+            add_basemap_tile_for_apple()
+            //  --- end  ---   apple basemap  - -- -
+
 
             init_user_interface_event()
 

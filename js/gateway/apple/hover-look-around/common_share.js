@@ -781,6 +781,13 @@ async function initMap() {
             /**/
 
 
+
+            //  - -- - apple basemap  - -- -
+            add_basemap_tile_for_apple()
+            //  --- end  ---   apple basemap  - -- -
+
+
+
         /**/
         //  ---  ---  apple look around    --- 
         /**/
