@@ -48,31 +48,31 @@
       <!--  end ------- let's go to your REST api  ------- --> 
 
 
-      <div id="message_root_folder"></div>
+    <div id="message_root_folder"></div>
 
       
 
-                    <div id="filter-root-div">
-                      <input id='filter_folder_list_by' name='filter_folder_list_by' type='search' placeholder='filter by'/>
-                      <button id="expand_button_folder" type="button">Expand</button>
-                      <button id="collapse_button_folder" type="button">Collapse</button>
-                    </div>
+      <div id="filter-root-div">
+        <input id='filter_folder_list_by' name='filter_folder_list_by' type='search' placeholder='filter by'/>
+        <button id="expand_button_folder" type="button">Expand</button>
+        <button id="collapse_button_folder" type="button">Collapse</button>
+      </div>
 
                      
 
       <div id="jstree_root_folder"></div>
-                        <div id="root-more-info"></div>
-                        <div id="json-root"></div>
+      <div id="root-more-info"></div>
+      <div id="json-root"></div>
 
 
-      </div>
+    </div>
 
       <div id='right-sidebar-container' class='flex_1'>
 
      
-<!-- ------- login with token  ------- --> 
+<!-- ------- login with token  -------  hidden for compact, mobile --> 
 
-<fieldset id="login-token"> 
+<fieldset id="login-token" hidden> 
   <span>Login:</span><input id="login_name" class="login_name" type="search" placeholder="portal_admin" value="portal_admin"/>
   &nbsp;
   <span>Password:</span><input id="login_password" class="login_password" type="password" placeholder="password"  value=""/>  
@@ -195,7 +195,8 @@
           <!-- new jsoneditor, https://github.com/josdejong/svelte-jsoneditor/issues/265,   https://jsbin.com/yuwapaj/edit?html,output  -->
           <script type="module" src="../../js/esri/module_shared.js"></script>
           <!-- default is light theme, comment out dark theme -->
-          <!-- link href="../../js/lib/new_jsoneditor/jse-theme-dark.css" rel="stylesheet" type="text/css"/ -->
+          <link href="../../js/lib/new_jsoneditor/jse-theme-dark.css" rel="stylesheet" type="text/css"/>
+
 
            
          <!-- jstree will looks bad if remove this -->
