@@ -7,15 +7,16 @@
 
  1. copy tree_icon_link.js,  paste here, rename as tree_icon_link_iframe.js
 
- 2. replace 'document.getElementById("map-window-iframe").src = _newTab_link;
-    console.log('_newTab_link', _newTab_link)'
-    by 'document.getElementById("map-window-iframe").src = _newTab_link;'
+ 2. replace 
  
- 
+ w i n d o  w.o p e n (_newTab_link,'_blank');
+
+ by 
+
+ document.getElementById("map-window-iframe").src = _newTab_link;
+   
 
 */
-
-
 
 
 
@@ -1130,16 +1131,13 @@ case "embed_6323":
 break;
 
 case "embed_6395":
+case "embed_2481":  
       var _newTab_link =  url_for_google.replace('google.html?', 'basemap.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
       document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
-  case "embed_6396":
-      var _newTab_link =  url_for_google.replace('google.html?', 'basemap-vertical.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
-      document.getElementById("map-window-iframe").src = _newTab_link;
-    console.log('_newTab_link', _newTab_link)
-  break;
+  
 
   case "embed_6397":
       var _newTab_link =  url_for_google.replace('google.html?', 'basemap-nearmap.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
@@ -1286,39 +1284,25 @@ break;
   break;
 
 
-  case "embed_6207":
-    var _newTab_link =  url_for_google.replace('google/google.html?', 'google-efficient-engine/core-vertical.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
-    document.getElementById("map-window-iframe").src = _newTab_link;
-  console.log('_newTab_link', _newTab_link)
-break;
 
 
-
-case "embed_6393":
-      var _newTab_link =  url_template_base_embed.replace('featurelayer.html?', 'google-vertical.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
-      document.getElementById("map-window-iframe").src = _newTab_link;
-    console.log('_newTab_link', _newTab_link)
-  break;
 
 case "embed_6392":
-      var _newTab_link =  url_template_base_embed.replace('featurelayer.html?', 'google.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
-      document.getElementById("map-window-iframe").src = _newTab_link;
+      var _newTab_link =  url_for_google.replace('google.html?', 'hover.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
   case "embed_6391":
-      var _newTab_link =  url_template_base_embed.replace('featurelayer.html?', 'google_streetview.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      var _newTab_link =  url_for_google.replace('google.html?', 'streetview.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
       document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
-  case "embed_6390":
-    var _newTab_link =  url_template_base_embed.replace('featurelayer.html?', 'google_streetview_fullscreen.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
-    document.getElementById("map-window-iframe").src = _newTab_link;
-    console.log('_newTab_link', _newTab_link)
-  break;
+  
 
   case "embed_7967":
-      var _newTab_link =  url_template_base_embed.replace('featurelayer.html?', 'google_unselect.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    case "embed_2485":
+      var _newTab_link =  url_for_google.replace('google.html?', 'unselect.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
       document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
@@ -1352,56 +1336,83 @@ case "embed_6392":
 
  
 
+  // google map + here geocode 
+   case "embed_6782":
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-click-map-to-get/here-download-address.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+  // google map + here geocode 
+   case "embed_6780":
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-click-map-to-get/here-show-address.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+
+  // google map + apple geocode 
+   case "embed_8130":
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-click-map-to-get/apple-show-address.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+  
+
+
+  case "embed_6793":
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-click-map-to-get/download-address.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+   case "embed_6795":
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-click-map-to-get/download-address-street-view.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+  case "embed_6790":
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-click-map-to-get/show-address.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
 
   case "embed_6794":
-    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-click-map-to-get/click-address-photo.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-click-map-to-get/show-address-photo.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
 
     case "embed_6791":
-    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-click-map-to-get/click-address-photo-streetview.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-click-map-to-get/show-address-photo-streetview.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
 
-   case "embed_6795":
-    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-click-map-to-get/click-address-streetview.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
-    document.getElementById("map-window-iframe").src = _newTab_link;
-    console.log('_newTab_link', _newTab_link)
-  break;
 
-
-   case "embed_6796":
-    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-click-map-to-get/click-address-streetview-compare.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
-    document.getElementById("map-window-iframe").src = _newTab_link;
-    console.log('_newTab_link', _newTab_link)
-  break;
 
 
   case "embed_6797":
-    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-click-map-to-get/click-lat-lng-street-view.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-click-map-to-get/lat-lng-street-view.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
   case "embed_6792":
-    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-click-map-to-get/click-lat-lng.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-click-map-to-get/lat-lng.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
-  case "embed_6793":
-    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-click-map-to-get/click-lat-lng-multi-basemap.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
-    document.getElementById("map-window-iframe").src = _newTab_link;
-    console.log('_newTab_link', _newTab_link)
-  break;
+  
 
 
   case "embed_31728":
-    var _newTab_link =  url_for_microsoft.replace('basemap.html?', 'speed_limit.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/speed_limit.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
@@ -1418,8 +1429,16 @@ case "embed_6392":
     console.log('_newTab_link', _newTab_link)
   break;
 
+
+
+  case "embed_3325":
+    var _newTab_link =  url_for_microsoft.replace('/microsoft/basemap.html?', '/microsoft-click-map-to-get/download-address.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+
 case "embed_3326":
-    var _newTab_link =  url_for_microsoft.replace('/microsoft/basemap.html?', '/microsoft-click-map-to-get/click-address.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_microsoft.replace('/microsoft/basemap.html?', '/microsoft-click-map-to-get/show-address.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
@@ -1478,285 +1497,402 @@ break;
   
 
   case "embed_8231":
-      var _newTab_link =  url_for_google.replace('google.html?', 'yelp-search-keyword.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/search-keyword.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
       document.getElementById("map-window-iframe").src = _newTab_link;
       console.log('_newTab_link', _newTab_link)
   break;
 
   case "embed_8251":
-      var _newTab_link =  url_for_google.replace('google.html?', 'yelp-search-keyword-streetview.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/search-keyword-streetview.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
       document.getElementById("map-window-iframe").src = _newTab_link;
       console.log('_newTab_link', _newTab_link)
   break;
 
   case "embed_8233":
-      var _newTab_link =  url_for_google.replace('google.html?', 'yelp-search-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/search-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
       document.getElementById("map-window-iframe").src = _newTab_link;
       console.log('_newTab_link', _newTab_link)
   break;
 
 
   case "embed_8253":
-      var _newTab_link =  url_for_google.replace('google.html?', 'yelp-search-category-streetview.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/search-category-streetview.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
       document.getElementById("map-window-iframe").src = _newTab_link;
       console.log('_newTab_link', _newTab_link)
   break;
 
   case "embed_8341":
-    var _newTab_link =  url_for_google.replace('google.html?', 'yelp_fromToPOI.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/fromToPOI.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
 
+
+
+
+
+
+
+
+  case "embed_8301":// policedepartments
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    _newTab_link += '&poicategory=policedepartments'
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_8302":// jailsandprisons
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    _newTab_link += '&poicategory=jailsandprisons'
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_8303":// courthouses
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    _newTab_link += '&poicategory=courthouses'
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_8304":// hospitals
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    _newTab_link += '&poicategory=hospitals'
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_8305":// medcenters
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    _newTab_link += '&poicategory=medcenters'
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_8306":// emergencyrooms
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    _newTab_link += '&poicategory=emergencyrooms'
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_8307":// urgent_care
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    _newTab_link += '&poicategory=urgent_care'
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_8321":// hostels
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    _newTab_link += '&poicategory=hostels'
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_8322":// resorts
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    _newTab_link += '&poicategory=resorts'
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_8323":// vacation_rentals
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    _newTab_link += '&poicategory=vacation_rentals'
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+
+
+  
+  case "embed_5348":
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/category-list.html')
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+
+
   case "embed_8348":
-    var _newTab_link =  url_for_google.replace('google.html?', 'yelp-pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
   case "embed_8358":
-    var _newTab_link =  url_for_google.replace('google.html?', 'yelp-pan-zoom-marker-label-category-streetview.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/pan-zoom-marker-label-category-streetview.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
   case "embed_8342":
-    var _newTab_link =  url_for_google.replace('google.html?', 'yelp-pan-zoom-keyword.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/pan-zoom-keyword.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
 
    case "embed_8352":
-    var _newTab_link =  url_for_google.replace('google.html?', 'yelp-pan-zoom-keyword-streetview.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/pan-zoom-keyword-streetview.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
-  case "embed_8340":
-    var _newTab_link =  url_for_google.replace('google.html?', 'yelp-pan-zoom-omni.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
-    document.getElementById("map-window-iframe").src = _newTab_link;
-    console.log('_newTab_link', _newTab_link)
-  break;
-
-  case "embed_8350":
-    var _newTab_link =  url_for_google.replace('google.html?', 'yelp-pan-zoom-omni-streetview.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
-    document.getElementById("map-window-iframe").src = _newTab_link;
-    console.log('_newTab_link', _newTab_link)
-  break;
+  
 
   case "embed_8345":
-    var _newTab_link =  url_for_google.replace('google.html?', 'yelp-draw-diamond-point-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/draw-diamond-point-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
   case "embed_8343":
-    var _newTab_link =  url_for_google.replace('google.html?', 'yelp-draw-keyword.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/yelp/draw-keyword.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
 
   case "embed_3832":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-pan-zoom-keyword.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/pan-zoom-keyword.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
 
   case "embed_3842":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-pan-zoom-keyword-photo.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/pan-zoom-keyword-photo.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
 
   case "embed_3852":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-pan-zoom-keyword-streetview.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/pan-zoom-keyword-streetview.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
 
   case "embed_3862":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-pan-zoom-keyword-streetview-photo.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/pan-zoom-keyword-streetview-photo.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
 
-  case "embed_3830":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-pan-zoom-omni.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+
+  
+  case "embed_3903": // jail
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/pan-zoom-keyword.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    _newTab_link += '&poi=jail'
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
-    case "embed_3840":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-pan-zoom-omni-photo.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
-    document.getElementById("map-window-iframe").src = _newTab_link;
-    console.log('_newTab_link', _newTab_link)
-  break;
-
-  case "embed_3850":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-pan-zoom-omni-streetview.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
-    document.getElementById("map-window-iframe").src = _newTab_link;
-    console.log('_newTab_link', _newTab_link)
-  break;
-
-
-  case "embed_3870":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-pan-zoom-omni-streetview-photo.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
-    document.getElementById("map-window-iframe").src = _newTab_link;
-    console.log('_newTab_link', _newTab_link)
-  break;
+  
 
    case "embed_3820":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-draw-auto.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/draw-auto.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
    case "embed_3816":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-draw-x16.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/draw-x16.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
    case "embed_3834":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-draw-x4.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/draw-x4.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
   case "embed_3835":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-draw-diamond-point-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/draw-diamond-point-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
   case "embed_3126":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-draw-diamond-point-keyword.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/draw-diamond-point-keyword.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
 
 
-  case "embed_3836":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-search-marker-category-sub-type.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
-    document.getElementById("map-window-iframe").src = _newTab_link;
-    console.log('_newTab_link', _newTab_link)
-  break;
 
 
-  case "embed_3833":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-search-marker-category-sub-type-photo.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+
+
+
+
+
+
+  case "embed_3827":
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
   case "embed_3837":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/pan-zoom-marker-label-category-label.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
 
   case "embed_3847":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-pan-zoom-marker-label-category-photo.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/pan-zoom-marker-label-category-photo.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
   case "embed_3857":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-pan-zoom-marker-label-category-streetview.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/pan-zoom-marker-label-category-streetview.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
   case "embed_3887":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-pan-zoom-marker-label-category-streetview-photo.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/pan-zoom-marker-label-category-streetview-photo.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+
+
+
+
+
+  case "embed_3901": // police
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    _newTab_link += '&poicategory=police'
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_3902": // courthouse
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    _newTab_link += '&poicategory=courthouse'
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_3904": // motel
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    _newTab_link += '&poicategory=motel'
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_3905": // hotel
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    _newTab_link += '&poicategory=hotel'
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_3906": // inn
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    _newTab_link += '&poicategory=inn'
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_3907": // hospital
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    _newTab_link += '&poicategory=hospital'
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_3908": // bar
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    _newTab_link += '&poicategory=bar'
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_3909": // bar_and_grill
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    _newTab_link += '&poicategory=bar_and_grill'
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_3910": // night_club
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/pan-zoom-marker-label-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    _newTab_link += '&poicategory=night_club'
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+
+
+
+
+
+
+
+
+
+  case "embed_3817":
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/search-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
   case "embed_3867":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-search-category-primary-type.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/search-category-label.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
 
   case "embed_3897":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-search-category-primary-type-photo.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/search-category-photo.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
    case "embed_3877":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-search-category-primary-type-streetview.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/search-category-streetview.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
   case "embed_3875":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-search-category-primary-type-streetview-photo.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/search-category-streetview-photo.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
-  case "embed_3860":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-search-omni.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
-    document.getElementById("map-window-iframe").src = _newTab_link;
-    console.log('_newTab_link', _newTab_link)
-  break;
-
-  case "embed_3861":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-search-omni-photo.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
-    document.getElementById("map-window-iframe").src = _newTab_link;
-    console.log('_newTab_link', _newTab_link)
-  break;
-
-  case "embed_3866":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-search-omni-streetview.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
-    document.getElementById("map-window-iframe").src = _newTab_link;
-    console.log('_newTab_link', _newTab_link)
-  break;
-
-  case "embed_3863":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-search-omni-streetview-photo.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+  case "embed_3829":
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/search-keyword.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
   case "embed_3869":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-search-keyword.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/search-keyword-label.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
     case "embed_3849":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-search-keyword-photo.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/search-keyword-photo.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
   case "embed_3859":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-search-keyword-streetview.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/search-keyword-streetview.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
   case "embed_3839":
-    var _newTab_link =  url_for_google.replace('google.html?', 'poi-search-keyword-streetview-photo.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/search-keyword-streetview-photo.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
 
-
+ case "embed_4347":
+    var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-poi/category-list.html')
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
 
   case "embed_8520":
     var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/draw-auto.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
@@ -1776,21 +1912,30 @@ break;
     console.log('_newTab_link', _newTab_link)
   break;
 
+
+ 
+  
+  case "embed_4348":
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/category-list.html')
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  
   case "embed_8526":
-    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/search-4x-category.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/search-4x-nearby-everything.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
 
   case "embed_8527":
-    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/draw-1x-category.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/draw-1x.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
   case "embed_8523":
-    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/search-1x-keyword.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/search-category-googlebasemap.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
@@ -1802,26 +1947,92 @@ break;
   break;
 
   case "embed_8513":
-    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/search-1x-circle-keyword.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/search-nearby-everything.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
-  case "embed_8522":
-    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/pan-zoom-multiBasemap.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+
+  case "embed_7510":
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/pan-zoom-nearby-everything.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
+
+
+
+
+  case "embed_7322": // police
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/pan-zoom-category-googlebasemap.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    _newTab_link += "&poicategory=police" // police
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_9154": // Prison Jail Correction
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/pan-zoom-category-googlebasemap.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    _newTab_link += "&poicategory=jail" // Prison Jail Correction
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_9363": // Courthouse
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/pan-zoom-category-googlebasemap.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    _newTab_link += "&poicategory=courthouse" // Courthouse
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+  
+  case "embed_7321": // Hospital
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/pan-zoom-category-googlebasemap.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    _newTab_link += "&poicategory=hospital" // Hospital
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_9956": // Emergency Room
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/pan-zoom-category-googlebasemap.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    _newTab_link += "&poicategory=emergency room" // Emergency Room
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_7391": // Emergency Medical Service
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/pan-zoom-category-googlebasemap.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    _newTab_link += "&poicategory=emergency medical service" // Emergency Medical Service
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+
+
+  case "embed_7314": // motel
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/pan-zoom-category-googlebasemap.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    _newTab_link += "&poicategory=motel" // motel
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_9379": // Nightlife
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/pan-zoom-category-googlebasemap.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    _newTab_link += "&poicategory=nightlife" // Nightlife
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+
+
+
+  case "embed_8522":
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/pan-zoom-keyword-googlebasemap.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_6533":
+    var _newTab_link =  url_for_microsoft.replace('microsoft/basemap.html?', 'microsoft-poi/pan-zoom-category-googlebasemap.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
+    document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  
 
   case "embed_8533":
     var _newTab_link =  url_for_microsoft.replace('basemap.html?', 'category.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
-    document.getElementById("map-window-iframe").src = _newTab_link;
-    console.log('_newTab_link', _newTab_link)
-  break;
-
-
-  case "embed_8237":
-    var _newTab_link =  url_for_here.replace('basemap.html?', 'basemap.html?') + '&layer_id=' + _selected_layer_id[0] +  '&url=' + _selected_server_path[0]   
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
@@ -1831,6 +2042,7 @@ break;
 
 
   case "embed_5381":
+  case "embed_2484":
       var _newTab_link =  url_template_base_embed.replace('featurelayer.html?', 'featurelayer_unselect.html?') + '&backgroundlayerurl=' + _selected_path[0]  
       document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
@@ -1846,12 +2058,13 @@ case "embed_9391":
     console.log('_newTab_link', _newTab_link)
   break;
   case "embed_9006":
+  case "embed_2486":
       var _newTab_link =  url_template_base_embed.replace('featurelayer.html?', 'featurelayer_download.html?') + '&backgroundlayerurl=' + _selected_path[0]  
       document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
   case "embed_9007":
-      var _newTab_link =  url_template_base_embed.replace('featurelayer.html?', 'featurelayer_googlebase.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+      var _newTab_link =  url_template_base_embed.replace('featurelayer.html?', 'featurelayer_legend.html?') + '&backgroundlayerurl=' + _selected_path[0]  
       document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
@@ -1888,21 +2101,67 @@ break;
 
 
   case "embed_6123":
-      var _newTab_link =  url_for_esri_gateway.replace('test.html?', 'hover-feature-nearmap.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+      var _newTab_link =  url_for_esri_gateway.replace('feature-layer/test.html?', 'feature-hover/hover-feature-nearmap.html?') + '&backgroundlayerurl=' + _selected_path[0]  
       document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
 
   case "embed_6122":
-      var _newTab_link =  url_for_esri_gateway.replace('test.html?', 'hover-feature.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+      var _newTab_link =  url_for_esri_gateway.replace('feature-layer/test.html?', 'feature-hover/hover-feature.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+      document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+   case "embed_7350":
+      var _newTab_link =  url_for_esri_gateway.replace('feature-layer/test.html?', 'feature-hover/hover-legend.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+      document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+  case "embed_6910":
+      var _newTab_link =  url_for_esri_gateway.replace('feature-layer/test.html?', 'feature-hover/hover-url.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+      document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+  case "embed_6912":
+      var _newTab_link =  url_for_esri_gateway.replace('feature-layer/test.html?', 'feature-hover/hover-attachment.html?') + '&backgroundlayerurl=' + _selected_path[0]  
       document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
 
    case "embed_6121":
-      var _newTab_link =  url_for_esri_gateway.replace('test.html?', 'click-feature.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+      var _newTab_link =  url_for_esri_gateway.replace('feature-layer/test.html?', 'feature-click/click-feature.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+      document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+   case "embed_7351":
+      var _newTab_link =  url_for_esri_gateway.replace('feature-layer/test.html?', 'feature-click/click-card-legend.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+      document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+  case "embed_6911":
+      var _newTab_link =  url_for_esri_gateway.replace('feature-layer/test.html?', 'feature-click/click-url.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+      document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+  case "embed_6913":
+      var _newTab_link =  url_for_esri_gateway.replace('feature-layer/test.html?', 'feature-click/click-attachment.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+      document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+
+  
+
+
+  case "embed_4687":
+      var _newTab_link =  url_for_esri_gateway.replace('feature-layer/test.html?', 'feature-filter/featurelayer_filterBy.html?') + '&backgroundlayerurl=' + _selected_path[0]  
       document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
@@ -1914,29 +2173,16 @@ break;
     console.log('_newTab_link', _newTab_link)
   break;
 
-  case "embed_5136":
-      var _newTab_link =  url_for_esri_gateway.replace('test.html?', 'click-address-compare.html?') + '&backgroundlayerurl=' + _selected_path[0]  
-      document.getElementById("map-window-iframe").src = _newTab_link;
-    console.log('_newTab_link', _newTab_link)
-  break;
-
-  case "embed_5186":
-      var _newTab_link =  url_for_esri_gateway.replace('test.html?', 'click-map-to-get-right.html?') + '&backgroundlayerurl=' + _selected_path[0]  
-      document.getElementById("map-window-iframe").src = _newTab_link;
-    console.log('_newTab_link', _newTab_link)
-  break;
+ 
+ 
 
   case "embed_5187":
-      var _newTab_link =  url_for_esri_gateway.replace('test.html?', 'click-map-to-get-left.html?') + '&backgroundlayerurl=' + _selected_path[0]  
-      document.getElementById("map-window-iframe").src = _newTab_link;
-    console.log('_newTab_link', _newTab_link)
-  break;
-
-  case "embed_5188":
       var _newTab_link =  url_for_esri_gateway.replace('test.html?', 'click-map-to-get.html?') + '&backgroundlayerurl=' + _selected_path[0]  
       document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
+
+  
 
 
 case "embed_5328":
@@ -2168,7 +2414,6 @@ case "embed_3953":
 
 // ^^^^^^^^^^^^^^^^^^^^^  apple  feature layer    ^^^^^^^^^^^^^^^^^^^^^
 
-
   case "apple_a120":
       var _newTab_link =  url_template_base_applemaps.replace('applemaps/default?', 'applemaps120/default?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0] 
       document.getElementById("map-window-iframe").src = _newTab_link;
@@ -2196,6 +2441,149 @@ case "embed_3953":
   break;
 
 
+
+
+
+
+  case "embed_7660":
+      var _newTab_link =  apple_base_url.replace('default.html?', 'hover-look-around.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_7662":
+      var _newTab_link =  apple_base_url.replace('default.html?', 'click-look-around.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_7760":
+      var _newTab_link =  apple_base_url.replace('default.html?', 'hover.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_7762":
+      var _newTab_link =  apple_base_url.replace('default.html?', 'hover-point-fix-size.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_7761":
+      var _newTab_link =  apple_base_url.replace('default.html?', 'hover-color.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_7770":
+      var _newTab_link =  apple_base_url.replace('default.html?', 'click.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_7750":
+      var _newTab_link =  apple_base_url.replace('default.html?', 'click-map-latlng.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+
+
+   // apple poi
+
+   // apple poi keyword, use map server api
+   case "embed_4012":
+      var _newTab_link =  apple_base_url.replace('apple/default.html?', 'apple-poi/pan-zoom-keyword.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  // apple poi keyword, use mapkit class
+   case "embed_4013":
+      var _newTab_link =  apple_base_url.replace('apple/default.html?', 'apple-poi/pan-zoom-keyword-mapkit.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+   
+
+  
+   case "embed_4042":
+      var _newTab_link =  apple_base_url.replace('apple/default.html?', 'apple-poi/pan-zoom-keyword.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      _newTab_link += '&poi=police'
+      document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_4044":
+      var _newTab_link =  apple_base_url.replace('apple/default.html?', 'apple-poi/pan-zoom-keyword.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      _newTab_link += '&poi=hospital'
+      document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_4046":
+      var _newTab_link =  apple_base_url.replace('apple/default.html?', 'apple-poi/pan-zoom-keyword.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      _newTab_link += '&poi=hotel'
+      document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_4048":
+      var _newTab_link =  apple_base_url.replace('apple/default.html?', 'apple-poi/pan-zoom-keyword.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      _newTab_link += '&poi=nightlife'
+      document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+  // - -  end  - -   apple poi keyword
+
+
+  // apple poi category
+  case "embed_4015":
+      var _newTab_link =  apple_base_url.replace('apple/default.html?', 'apple-poi/pan-zoom-category.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+  case "embed_4016":
+      var _newTab_link =  apple_base_url.replace('apple/default.html?', 'apple-poi/pan-zoom-category-look-around.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+  case "embed_4011":
+      var _newTab_link =  apple_base_url.replace('apple/default.html?', 'apple-poi/pan-zoom-category-mapkit.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+  case "embed_4014":
+      var _newTab_link =  apple_base_url.replace('apple/default.html?', 'apple-poi/pan-zoom-category-mapkit-x4.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+  
+  
+
+
+   case "embed_4021":
+      var _newTab_link =  apple_base_url.replace('apple/default.html?', 'apple-poi/pan-zoom-category-x4.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0] 
+      _newTab_link += '&poicategory=police'
+      document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_4023":
+      var _newTab_link =  apple_base_url.replace('apple/default.html?', 'apple-poi/pan-zoom-category-x4.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0] 
+      _newTab_link += '&poicategory=hospital'
+      document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_4025":
+      var _newTab_link =  apple_base_url.replace('apple/default.html?', 'apple-poi/pan-zoom-category-x4.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0] 
+      _newTab_link += '&poicategory=hotel'
+      document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "embed_4027":
+      var _newTab_link =  apple_base_url.replace('apple/default.html?', 'apple-poi/pan-zoom-category-x4.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0] 
+      _newTab_link += '&poicategory=nightlife'
+      document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+
+ //  - -  end  - -  apple poi category
 
 
 //   ^^^^^^^^^^^^^^^^^^^^^   end   ^^^^^^^^^^^^^^^^^^^^^  bing  feature layer     ^^^^^^^^^^^^^^^^^^^^^
@@ -3486,50 +3874,70 @@ break;
 
 // esri based
 
-case "geocodeServer_2630":
-var _newTab_link =  url_for_esri_gateway.replace('test.html?', 'geocode-suggest-zoom2location.html?') + '&backgroundlayerurl=' + _selected_path[0]  
-     document.getElementById("map-window-iframe").src = _newTab_link;
-    console.log('_newTab_link', _newTab_link)
-break;
+
 
 case "geocodeServer_2631":
-var _newTab_link =  url_for_esri_gateway.replace('test.html?', 'geocode-suggest.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+var _newTab_link =  url_for_esri_gateway.replace('/feature-layer/test.html?', '/feature-geocode/geocode-suggest.html?') + '&backgroundlayerurl=' + _selected_path[0]  
      document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
 break;
 
 case "geocodeServer_2632":
-var _newTab_link =  url_for_esri_gateway.replace('test.html?', 'geocode-suggest-advanced-number-search.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+var _newTab_link =  url_for_esri_gateway.replace('/feature-layer/test.html?', '/feature-geocode/geocode-suggest-advanced-number-search.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+     document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+break;
+
+case "geocodeServer_2633":
+var _newTab_link =  url_for_esri_gateway.replace('/feature-layer/test.html?', '/feature-geocode/geocode-suggest-advanced-poi-search.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+     document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+break;
+
+case "geocodeServer_2625":
+var _newTab_link =  url_for_esri_gateway.replace('/feature-layer/test.html?', '/feature-geocode/geocode-suggest-advanced-poi-yellow.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+     document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+break;
+
+case "geocodeServer_2613":
+var _newTab_link =  url_for_esri_gateway.replace('/feature-layer/test.html?', '/feature-geocode/geocode-suggest-advanced-poi-only.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+     document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+break;
+
+case "geocodeServer_2641":
+var _newTab_link =  url_for_esri_gateway.replace('/feature-layer/test.html?', '/feature-geocode/geocode-suggest-parcel-pink.html?') + '&backgroundlayerurl=' + _selected_path[0]  
      document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
 break;
 
 case "geocodeServer_2653":
-var _newTab_link =  url_for_esri_gateway.replace('test.html?', 'geocode-suggest-street-address-in-red.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+var _newTab_link =  url_for_esri_gateway.replace('/feature-layer/test.html?', '/feature-geocode/geocode-suggest-street-address-in-red.html?') + '&backgroundlayerurl=' + _selected_path[0]  
      document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
 break;
 
 case "geocodeServer_2655":
-var _newTab_link =  url_for_esri_gateway.replace('test.html?', 'geocode-suggest-poi-in-yellow.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+var _newTab_link =  url_for_esri_gateway.replace('/feature-layer/test.html?', '/feature-geocode/geocode-suggest-poi-in-yellow.html?') + '&backgroundlayerurl=' + _selected_path[0]  
      document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
 break;
 
 case "geocodeServer_2657":
-var _newTab_link =  url_for_esri_gateway.replace('test.html?', 'geocode-suggest-poi-yellow-estimated-red.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+var _newTab_link =  url_for_esri_gateway.replace('/feature-layer/test.html?', '/feature-geocode/geocode-suggest-poi-yellow-street-addr-red.html?') + '&backgroundlayerurl=' + _selected_path[0]  
      document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
 break;
 
 case "geocodeServer_2640":
-var _newTab_link =  url_for_esri_gateway.replace('test.html?', 'geocode-suggest-motorola.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+var _newTab_link =  url_for_esri_gateway.replace('/feature-layer/test.html?', '/feature-geocode/geocode-suggest-motorola.html?') + '&backgroundlayerurl=' + _selected_path[0]  
      document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
 break;
 
 case "geocodeServer_2610":
-var _newTab_link =  url_for_esri_gateway.replace('test.html?', 'geocode-suggest-point-addr.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+var _newTab_link =  url_for_esri_gateway.replace('/feature-layer/test.html?', '/feature-geocode/geocode-suggest-real-addr.html?') + '&backgroundlayerurl=' + _selected_path[0]  
      document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
 break;
@@ -3538,8 +3946,76 @@ break;
 
 // google based
 
+case "geocodeServer_1633":
+var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-geocode/suggest-advanced-poi-search.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+     document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+break;
+
+case "geocodeServer_1625":
+var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-geocode/suggest-advanced-poi-yellow.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+     document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+break;
+
+case "geocodeServer_1613":
+var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-geocode/suggest-advanced-poi-only.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+     document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+break;
+
+case "geocodeServer_1641":
+var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-geocode/suggest-parcel-pink.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+     document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+break;
+
+case "geocodeServer_1632":
+var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-geocode/suggest-advanced-number-search.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+     document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+break;
+
 case "geocodeServer_1631":
 var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-geocode/suggest.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+     document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+break;
+
+case "geocodeServer_1640":
+var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-geocode/suggest-motorola.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+     document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+break;
+
+case "geocodeServer_1610":
+var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-geocode/suggest-real-addr.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+     document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+break;
+
+
+case "geocodeServer_1652":
+var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-geocode/usps-validate-street-address-in-red.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+     document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+break;
+
+case "geocodeServer_1653":
+var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-geocode/suggest-street-address-in-red.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+     document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+break;
+
+
+case "geocodeServer_1655":
+var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-geocode/suggest-poi-in-yellow.html?') + '&backgroundlayerurl=' + _selected_path[0]  
+     document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+break;
+
+case "geocodeServer_1657":
+var _newTab_link =  url_for_google.replace('/google/google.html?', '/google-geocode/suggest-poi-yellow-street-addr-red.html?') + '&backgroundlayerurl=' + _selected_path[0]  
      document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
 break;
