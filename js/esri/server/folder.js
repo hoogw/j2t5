@@ -1410,7 +1410,7 @@ var icon_flatjson = [];
     
     $("#root-more-info").html(_html_for_f_json)         
 
-    $("#json-root").show();
+    //$("#json-root").show();
     editor_json_root.set({json:root})
 
     

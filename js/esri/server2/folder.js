@@ -1579,7 +1579,7 @@ jstree_root_folder(folder_structure_flatjson, ___url_string,  _organization, ___
     
     $("#root-more-info").html(_html_for_f_json)         
 
-    $("#json-root").show();
+    //$("#json-root").show();
     editor_json_root.set({json:root})
 
     
