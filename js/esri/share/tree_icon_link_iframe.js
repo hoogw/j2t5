@@ -5,7 +5,7 @@
 
  all other js file has no change, only js file need change is this function create_click_link() 
 
- 1. copy tree_icon_link.js,  paste here, rename as tree_icon_link_iframe.js
+ 1. copy function create_click_link(),  paste here, rename as tree_icon_link_iframe.js
 
  2. replace 
  
@@ -14,9 +14,13 @@
  by 
 
  document.getElementById("map-window-iframe").src = _newTab_link;
+
+
+ 3. add "only for mobile" section
    
 
 */
+
 
 
 
@@ -28,6 +32,22 @@
 function create_click_link(event, data) {
   
     
+
+
+//  - -- - only for mobile  - -- -
+
+
+    // user click one layer in map server div 
+    $("#back").show();
+    $("#root-folder-div").hide();
+    $("#map-server-div").hide();
+    $("#app-div").hide();
+    $("#map-window-iframe").show();
+
+//  - -- - end  - -- -   only for mobile  - -- -
+
+
+
 
 
     

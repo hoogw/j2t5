@@ -1844,217 +1844,265 @@ async function get_mapserver_info_html(mapserver_url){
 
 
 
-        // all init button, click event, including collapse expand button, // origianl from folder.js
-        function ui_event_register(){
+    // all init button, click event, including collapse expand button, // origianl from folder.js
+    function ui_event_register(){
 
 
 
-// ------- large text, dark light  ------- 
-var iphone_scale =  "50%" 
-var desktop_hd_scale =  "100%"  
-var desktop_4k_scale =  "150%" 
+        // ------- large text, dark light  ------- 
+        var iphone_scale =  "50%" 
+        var desktop_hd_scale =  "100%"  
+        var desktop_4k_scale =  "150%" 
 
-var large_text = "200%"
-var standard_text = "100%"
-var small_text = "50%"
+        var large_text = "200%"
+        var standard_text = "100%"
+        var small_text = "50%"
+
+
+
+        $("#large-text-button").on('click',function(){
+
+        if (document.getElementById("jstree_root_folder")){
+        document.getElementById("jstree_root_folder").style.zoom = large_text;
+        }
+
+        if (document.getElementById("jstree_mapserver")){
+        document.getElementById("jstree_mapserver").style.zoom = large_text;
+        }
+
+        if (document.getElementById("jstree_icon")){
+        document.getElementById("jstree_icon").style.zoom = large_text;
+        }
+
+        }); 
+
+        $("#standard-text-button").on('click',function(){
+
+        if (document.getElementById("jstree_root_folder")){
+        document.getElementById("jstree_root_folder").style.zoom = standard_text;
+        }
+
+        if (document.getElementById("jstree_mapserver")){
+        document.getElementById("jstree_mapserver").style.zoom = standard_text;
+        }
+
+        if (document.getElementById("jstree_icon")){
+        document.getElementById("jstree_icon").style.zoom = standard_text;
+        }
+
+        }); 
+
+
+        $("#small-text-button").on('click',function(){
+
+        if (document.getElementById("jstree_root_folder")){
+        document.getElementById("jstree_root_folder").style.zoom = small_text;
+        }
+
+        if (document.getElementById("jstree_mapserver")){
+        document.getElementById("jstree_mapserver").style.zoom = small_text;
+        }
+
+        if (document.getElementById("jstree_icon")){
+        document.getElementById("jstree_icon").style.zoom = small_text;
+        }
+
+
+        }); 
+
+
+
+
+
+
+        $("#iphone-button").on('click',function(){
+        document.body.style.zoom = iphone_scale;
+        }); 
+        $("#desktop-button").on('click',function(){
+        document.body.style.zoom = desktop_hd_scale;
+        }); 
+        $("#4k-button").on('click',function(){
+        document.body.style.zoom = desktop_4k_scale;
+        }); 
+
+
+
+
+        //   -------   end ------- large text, dark light  ------- 
+
+
+
+
+
+
+        //  - -- - only for mobile  - -- -
+
+        $("#back").on('click', back_to_previous_screen);
+
+        //  - -- - end  - -- -   only for mobile  - -- -
+
+
+
+
+
+
+
+
+        /**/
+        // - - - filter layer list  - - - 
+        /**/
+
+        $("#filter_folder_list_by").on('keyup', filter_folderList_now);
+        $("#search_folder_list_button").on('click', filter_folderList_now);
+        $('#clear_filter_folder_list_button').on('click', show_all_folder_list);  
+
+        $("#filter_server_list_by").on('keyup', filter_serverList_now);
+        $("#search_server_list_button").on('click', filter_serverList_now);
+        $('#clear_filter_server_list_button').on('click', show_all_server_list); 
+
+        $("#filter_icon_list_by").on('keyup', filter_iconList_now);
+        $("#search_icon_list_button").on('click', filter_iconList_now);
+        $('#clear_filter_icon_list_button').on('click', show_all_icon_list); 
+
+
+
+
+
+        //  - - - when user click x at end of search bar(input type=search)  - - -
+        // so no need filter by button, clear button
+        $('#filter_folder_list_by').on('search', function(event) {
+        if ($('#filter_folder_list_by').val().trim().toLowerCase()){
+        filter_folderList_now()
+        } else {
+        // empty
+        show_all_folder_list()
+        }
+        });
+        $('#filter_server_list_by').on('search', function(event) {
+        if ($('#filter_server_list_by').val().trim().toLowerCase()){
+        filter_serverList_now()
+        } else {
+        // empty
+        show_all_server_list()
+        }
+        });
+        $('#filter_icon_list_by').on('search', function(event) {
+        if ($('#filter_icon_list_by').val().trim().toLowerCase()){
+        filter_iconList_now()
+        } else {
+        // empty
+        show_all_icon_list()
+        }
+        });
+        //  - - -  end  - - - when user click x at end of search bar(input type=search)   - - -
+
+
+        /**/
+        // ... end ...  - - - filter layer list  - - -
+        /**/
+
+
+
+
+
             
 
 
-            $("#large-text-button").on('click',function(){
-
-                if (document.getElementById("jstree_root_folder")){
-                    document.getElementById("jstree_root_folder").style.zoom = large_text;
-                }
-
-                if (document.getElementById("jstree_mapserver")){
-                    document.getElementById("jstree_mapserver").style.zoom = large_text;
-                }
-                  
-                if (document.getElementById("jstree_icon")){
-                    document.getElementById("jstree_icon").style.zoom = large_text;
-                }
-                              
-            }); 
-
-             $("#standard-text-button").on('click',function(){
-
-                if (document.getElementById("jstree_root_folder")){
-                    document.getElementById("jstree_root_folder").style.zoom = standard_text;
-                }
-
-                if (document.getElementById("jstree_mapserver")){
-                    document.getElementById("jstree_mapserver").style.zoom = standard_text;
-                }
-                  
-                if (document.getElementById("jstree_icon")){
-                    document.getElementById("jstree_icon").style.zoom = standard_text;
-                }
-                              
-            }); 
 
 
-            $("#small-text-button").on('click',function(){
-                
-               if (document.getElementById("jstree_root_folder")){
-                    document.getElementById("jstree_root_folder").style.zoom = small_text;
-                }
 
-                if (document.getElementById("jstree_mapserver")){
-                    document.getElementById("jstree_mapserver").style.zoom = small_text;
-                }
-                  
-                if (document.getElementById("jstree_icon")){
-                    document.getElementById("jstree_icon").style.zoom = small_text;
-                }
+        $("#collapse_button_folder").on('click',function(){
+            if ($('#jstree_root_folder').jstree(true)){
+                $('#jstree_root_folder').jstree('close_all');
+            }
+        }); 
 
-
-            }); 
+        $("#expand_button_folder").on('click',function(){
+            if ($('#jstree_root_folder').jstree(true)){
+                $('#jstree_root_folder').jstree('open_all');
+            }
+        }); 
 
 
-           
 
 
+
+        $("#collapse_button_layer").on('click',function(){
+            if ($('#jstree_mapserver').jstree(true)){
+                $('#jstree_mapserver').jstree('close_all');
+            }
+        }); 
+
+        $("#expand_button_layer").on('click',function(){
+            if ($('#jstree_mapserver').jstree(true)){
+                $('#jstree_mapserver').jstree('open_all');
+            }
+        }); 
+
+
+
+
+
+
+
+        $("#collapse_button_icon").on('click',function(){
+            console.log('collapse 3rd icon jstree , clicked')
+            iconJstreeNodeOpened =  false
             
-            $("#iphone-button").on('click',function(){
-                    document.body.style.zoom = iphone_scale;
-            }); 
-            $("#desktop-button").on('click',function(){
-                    document.body.style.zoom = desktop_hd_scale;
-            }); 
-            $("#4k-button").on('click',function(){
-                    document.body.style.zoom = desktop_4k_scale;
-            }); 
+            if ($('#jstree_icon').jstree(true)){
+                $('#jstree_icon').jstree('close_all');
+            }
+        }); 
+        $("#expand_button_icon").on('click',function(){
+            console.log('expand 3rd icon jstree , clicked')
+            iconJstreeNodeOpened =  true
+            
+            if ($('#jstree_icon').jstree(true)){
+                $('#jstree_icon').jstree('open_all');
+            }
+        }); 
+
+    }
+
+
+    // -  end  - all init button, click event, including collapse expand button, // origianl from folder.js
 
 
 
+    
 
-//   -------   end ------- large text, dark light  ------- 
+//  - -- - only for mobile  - -- -
+    function back_to_previous_screen(){
 
+        if ($('#root-folder-div').is(':visible')) {
+            $("#back").hide();
+        } else if ($('#map-server-div').is(':visible')) {
+            $("#back").hide();
+            $("#root-folder-div").show();
+            $("#map-server-div").hide();
+            $("#app-div").hide();
+            $("#map-window-iframe").hide();
+        } else if ($('#app-div').is(':visible')) {
+            $("#back").show();
+            $("#root-folder-div").hide();
+            $("#map-server-div").show();
+            $("#app-div").hide();
+            $("#map-window-iframe").hide();
+        } else if ($('#map-window-iframe').is(':visible')) {
+            $("#back").show();
+            $("#root-folder-div").hide();
+            $("#map-server-div").hide();
+            $("#app-div").show();
+            $("#map-window-iframe").hide();
+        }//if
 
+    }
 
-
-
-                    /**/
-                    // - - - filter layer list  - - - 
-                    /**/
-        
-                        $("#filter_folder_list_by").on('keyup', filter_folderList_now);
-                        $("#search_folder_list_button").on('click', filter_folderList_now);
-                        $('#clear_filter_folder_list_button').on('click', show_all_folder_list);  
-
-                        $("#filter_server_list_by").on('keyup', filter_serverList_now);
-                        $("#search_server_list_button").on('click', filter_serverList_now);
-                        $('#clear_filter_server_list_button').on('click', show_all_server_list); 
-
-                        $("#filter_icon_list_by").on('keyup', filter_iconList_now);
-                        $("#search_icon_list_button").on('click', filter_iconList_now);
-                        $('#clear_filter_icon_list_button').on('click', show_all_icon_list); 
-
-
-
-
-
-                        //  - - - when user click x at end of search bar(input type=search)  - - -
-                        // so no need filter by button, clear button
-                        $('#filter_folder_list_by').on('search', function(event) {
-                            if ($('#filter_folder_list_by').val().trim().toLowerCase()){
-                                filter_folderList_now()
-                            } else {
-                                // empty
-                                show_all_folder_list()
-                            }
-                        });
-                        $('#filter_server_list_by').on('search', function(event) {
-                            if ($('#filter_server_list_by').val().trim().toLowerCase()){
-                                filter_serverList_now()
-                            } else {
-                                // empty
-                                show_all_server_list()
-                            }
-                        });
-                        $('#filter_icon_list_by').on('search', function(event) {
-                            if ($('#filter_icon_list_by').val().trim().toLowerCase()){
-                                filter_iconList_now()
-                            } else {
-                                // empty
-                                show_all_icon_list()
-                            }
-                        });
-                        //  - - -  end  - - - when user click x at end of search bar(input type=search)   - - -
-
-                           
-                    /**/
-                    // ... end ...  - - - filter layer list  - - -
-                    /**/
+//  - -- - end  - -- -   only for mobile  - -- -
 
 
 
-
-
-                                       
-                                    
-
-                                    
-
-
-                                    $("#collapse_button_folder").on('click',function(){
-                                        if ($('#jstree_root_folder').jstree(true)){
-                                            $('#jstree_root_folder').jstree('close_all');
-                                        }
-                                    }); 
-
-                                    $("#expand_button_folder").on('click',function(){
-                                        if ($('#jstree_root_folder').jstree(true)){
-                                            $('#jstree_root_folder').jstree('open_all');
-                                        }
-                                    }); 
-
-
-                                   
-
-
-                                    $("#collapse_button_layer").on('click',function(){
-                                        if ($('#jstree_mapserver').jstree(true)){
-                                            $('#jstree_mapserver').jstree('close_all');
-                                        }
-                                    }); 
-
-                                    $("#expand_button_layer").on('click',function(){
-                                        if ($('#jstree_mapserver').jstree(true)){
-                                            $('#jstree_mapserver').jstree('open_all');
-                                        }
-                                    }); 
-
-
-
-                                   
-
-
-
-                                    $("#collapse_button_icon").on('click',function(){
-                                        console.log('collapse 3rd icon jstree , clicked')
-                                        iconJstreeNodeOpened =  false
-                                       
-                                        if ($('#jstree_icon').jstree(true)){
-                                            $('#jstree_icon').jstree('close_all');
-                                        }
-                                    }); 
-                                    $("#expand_button_icon").on('click',function(){
-                                        console.log('expand 3rd icon jstree , clicked')
-                                        iconJstreeNodeOpened =  true
-                                        
-                                        if ($('#jstree_icon').jstree(true)){
-                                            $('#jstree_icon').jstree('open_all');
-                                        }
-                                    }); 
-
-                                    }
-
-                                    
-                            // -  end  - all init button, click event, including collapse expand button, // origianl from folder.js
-
-
-
+    
 
 
 

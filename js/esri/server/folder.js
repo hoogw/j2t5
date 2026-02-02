@@ -301,6 +301,31 @@ var icon_flatjson = [];
                                                             //.on('select_node.jstree', function (e, data) {
 
 
+
+
+                                                            
+
+
+                                                                    //  - -- - only for mobile  - -- -
+
+                                                                    // user click one item in root folder
+                                                                     $("#back").show();
+                                                                     $("#root-folder-div").hide();
+                                                                     $("#map-server-div").show();
+                                                                     $("#app-div").hide();
+                                                                     $("#map-window-iframe").hide();
+
+                                                                    //  - -- - end  - -- -   only for mobile  - -- -
+
+
+
+
+
+
+
+
+
+
                                                                     console.log(' click select folder node, event ', data)
                                                                     var i, j,  _selected_path = [], _selected_text = [], _selected_id = [], _selected_type = [];
 

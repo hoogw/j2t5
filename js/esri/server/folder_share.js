@@ -355,6 +355,22 @@
 
                                             
 
+                    
+
+                                    //  - -- - only for mobile  - -- -
+
+                                    // user click one layer in map server div 
+                                        $("#back").show();
+                                        $("#root-folder-div").hide();
+                                        $("#map-server-div").hide();
+                                        $("#app-div").show();
+                                        $("#map-window-iframe").hide();
+
+                                    //  - -- - end  - -- -   only for mobile  - -- -
+
+
+
+
 
                                             
                                                     console.log('click select service-layer node event ', data)
