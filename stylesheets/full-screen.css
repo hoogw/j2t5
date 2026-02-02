@@ -1,5 +1,11 @@
 
 
+/* Make Iframe to fit 100% of container's remaining height https://stackoverflow.com/questions/325273/make-iframe-to-fit-100-of-containers-remaining-height */
+body, html {width: 100%; height: 100%; margin: 0; padding: 0}
+
+
+
+
 
 
 /* - - - -  full page dark theme - - - -   always at top - - - -   */
@@ -23,7 +29,7 @@ a {
 
 
 
-#back  {
+.back  {
   font-size:xx-large; 
   font-weight: bolder; 
   font-family: monospace; 
@@ -261,6 +267,37 @@ a {
 
         
     
+
+
+
+
+
+
+
+
+
+
+
+
+/* Make Iframe to fit 100% of container's remaining height https://stackoverflow.com/questions/325273/make-iframe-to-fit-100-of-containers-remaining-height */
+
+.row-container {display: flex; width: 100%; height: 100%; flex-direction: column; }
+/*.first-row {}*/
+.second-row { flex-grow: 1; border: none; margin: 0; padding: 0; }
+
+/* Make Iframe to fit 100% of container's remaining height */
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

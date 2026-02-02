@@ -1937,7 +1937,8 @@ async function get_mapserver_info_html(mapserver_url){
 
         //  - -- - only for mobile  - -- -
 
-        $("#back").on('click', back_to_previous_screen);
+        $("#back-3-panel").on('click', back_3_panel);
+        $("#back-2-panel").on('click', back_2_panel);
 
         //  - -- - end  - -- -   only for mobile  - -- -
 
@@ -2072,26 +2073,46 @@ async function get_mapserver_info_html(mapserver_url){
     
 
 //  - -- - only for mobile  - -- -
-    function back_to_previous_screen(){
+    function back_3_panel(){
 
         if ($('#root-folder-div').is(':visible')) {
-            $("#back").hide();
+            $("#back-3-panel").hide();
         } else if ($('#map-server-div').is(':visible')) {
-            $("#back").hide();
+            $("#back-3-panel").hide();
             $("#root-folder-div").show();
             $("#map-server-div").hide();
             $("#app-div").hide();
             $("#map-window-iframe").hide();
         } else if ($('#app-div').is(':visible')) {
-            $("#back").show();
+            $("#back-3-panel").show();
             $("#root-folder-div").hide();
             $("#map-server-div").show();
             $("#app-div").hide();
             $("#map-window-iframe").hide();
         } else if ($('#map-window-iframe').is(':visible')) {
-            $("#back").show();
+            $("#back-3-panel").show();
             $("#root-folder-div").hide();
             $("#map-server-div").hide();
+            $("#app-div").show();
+            $("#map-window-iframe").hide();
+        }//if
+
+    }
+
+
+
+    function back_2_panel(){
+
+        if ($('#root-folder-div').is(':visible')) {
+            $("#back-2-panel").hide();
+        } else if ($('#app-div').is(':visible')) {
+            $("#back-2-panel").hide();
+            $("#root-folder-div").show();
+            $("#app-div").hide();
+            $("#map-window-iframe").hide();
+        } else if ($('#map-window-iframe').is(':visible')) {
+            $("#back-2-panel").show();
+            $("#root-folder-div").hide();
             $("#app-div").show();
             $("#map-window-iframe").hide();
         }//if

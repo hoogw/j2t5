@@ -309,7 +309,7 @@ var icon_flatjson = [];
                                                                     //  - -- - only for mobile  - -- -
 
                                                                     // user click one item in root folder
-                                                                     $("#back").show();
+                                                                     $("#back-3-panel").show();
                                                                      $("#root-folder-div").hide();
                                                                      $("#map-server-div").show();
                                                                      $("#app-div").hide();

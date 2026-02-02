@@ -38,10 +38,13 @@ function create_click_link(event, data) {
 
 
     // user click one layer in map server div 
-    $("#back").show();
+    $("#back-3-panel").show();
+    $("#back-2-panel").show();
+
     $("#root-folder-div").hide();
     $("#map-server-div").hide();
     $("#app-div").hide();
+
     $("#map-window-iframe").show();
 
 //  - -- - end  - -- -   only for mobile  - -- -

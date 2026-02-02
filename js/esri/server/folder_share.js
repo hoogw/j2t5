@@ -360,7 +360,7 @@
                                     //  - -- - only for mobile  - -- -
 
                                     // user click one layer in map server div 
-                                        $("#back").show();
+                                        $("#back-3-panel").show();
                                         $("#root-folder-div").hide();
                                         $("#map-server-div").hide();
                                         $("#app-div").show();
