@@ -1,0 +1,224 @@
+<!doctype HTML>
+<html>
+  <head>
+    <title id="title">structure of arcgis server</title>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./../../favicon.ico" type="image/x-icon">
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+      <!-- bootstrap 5 icon   -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+           
+     <link href="../../js/lib/jstree-bootstrap-theme/dist/themes/proton/style.min.css" rel="stylesheet" type="text/css"/>  
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.7/themes/default/style.min.css" /> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.7/jstree.min.js"></script>
+    
+   
+  </head>
+  <body>
+
+
+   
+<div class="row-container">
+
+    <button id="back-2-panel" class="back">Back</button>
+ 
+               
+    <div id='root-folder-div'>
+
+      <!-- ------- let's go to your REST api  ------- only for mobile --> 
+      <div id="let-us-go-to-your-REST-api">  
+        
+      <button id="letsgo">Start</button>
+      <textarea style="width:100%;" id="current_rest_api_endpoint" type="search" placeholder="e.g. https://xxx.gov/arcgis/rest/services  e.g. https://services.arcgis.com/xxx/ArcGIS/rest/services">
+      </textarea>
+      
+    </div>
+  
+    <!--  end ------- let's go to your REST api  ------- only for mobile --> 
+
+
+
+    <div id="message_root_folder"></div>
+
+      
+
+      <div id="filter-root-div">
+        <input id='filter_folder_list_by' name='filter_folder_list_by' type='search' placeholder='filter by'/>
+        <button id="expand_button_folder" type="button">Expand</button>
+        <button id="collapse_button_folder" type="button">Collapse</button>
+      </div>
+
+                     
+
+        <div id="jstree_root_folder"></div>
+
+        <!--  hidden json  ------- only for mobile --> 
+        <div id="root-more-info" hidden></div>
+        <div id="json-root"  class="jse-theme-dark" hidden></div>
+        <!-- ------- end ------- hidden json  ------- only for mobile --> 
+                    
+
+
+    </div>
+
+    <div id='app-div' hidden>
+
+    
+<!-- ------- login with token  -------  hidden for compact, mobile --> 
+
+<fieldset id="login-token" hidden> 
+<span>Login:</span><input id="login_name" class="login_name" type="search" placeholder="portal_admin" value="portal_admin"/>
+&nbsp;
+<span>Password:</span><input id="login_password" class="login_password" type="password" placeholder="password"  value=""/>  
+&nbsp;
+<input type="radio" id="arcgis_online" name="online_or_portal_radio" value="arcgis_online">
+<span for="arcgis_online">Arcgis Online (xxx.arcgis.com)</span>&nbsp;
+<input type="radio" id="arcgis_enterprise_portal" name="online_or_portal_radio" value="arcgis_enterprise_portal">
+<span for="arcgis_enterprise_portal">Enterprise Portal (xxx.gov)</span>
+&nbsp;&nbsp;
+<span>Expire</span><input id="expire_in_days" class="expire_in_days" type="text" placeholder="60" value="60"/><span>days</span>
+&nbsp;
+<button id="generate_token" type="button" >Generate Token</button>
+&nbsp;
+<button id="clear_token" type="button" >Clear Token</button>
+
+&nbsp;
+
+
+<mark>Token</mark>
+<input id="arcgis_online_token" class="arcgis_online_token" type="search" placeholder="arcgis online/portal token"/>
+&nbsp;
+<span hidden>Token URL:</span><input id="genToken_url" type="text" placeholder="generate token url" value="generate token url" hidden/>
+
+<span>TimeOut:</span><input id="timeout_millisecond" type="text" placeholder="" value=""/><span>milliseconds</span>
+
+</fieldset>
+
+<!--  ------- end ------- login with token  ------- --> 
+      
+
+      <div id="message_icon"></div>
+
+      
+      
+      <div id="filter-icon-div">
+        <input id='filter_icon_list_by' name='filter_icon_list_by' type='search' placeholder='filter by'/>
+        <button id="expand_button_icon" type="button">Expand</button>
+        <button id="collapse_button_icon" type="button">Collapse</button>
+      </div>
+
+      
+      <div id="jstree_icon"></div>
+      <div id="inside_folder_item_list"></div>
+      
+
+      <div id="view_mapserver_on"> </div>
+      <div id="icon_list"> </div>
+
+      </br>
+      </br>
+
+  <!--  hidden json  ------- only for mobile --> 
+
+        <!-- by-default show/hide both case, never add 'hidden' here, because 'hidden' was added in .js function ui_event_register() -->
+        <div id="more_info_panel_for_icon" hidden>  
+
+                          <div id="layer_legend"></div>
+
+                          <!-- default show, geodatabase, legend , fields -->
+                          <div id="message_more_info_icon" style="font-size: xx-small;"></div>
+
+
+                          
+                          
+
+                          
+                          <fieldset id="field_fieldset">
+                            <legend>Fields</legend>
+                            <div id="jsoneditor_field"  class="jse-theme-dark"></div>
+                          </fieldset>
+
+
+
+                          <fieldset id="subtype_fieldset">
+                            <legend>SubType</legend>
+                            <div id="jsoneditor_subtype" class="jse-theme-dark"></div>
+                          </fieldset>
+                          
+                          <fieldset id="domain_fieldset">
+                            <legend>Domain</legend>
+                            <div id="jsoneditor_domain"  class="jse-theme-dark"></div>
+                          </fieldset>
+
+                          
+
+                                      <div id="layer-more-info"></div>
+                                      <div id="json-layer"  class="jse-theme-dark"></div>
+
+            
+        </div>
+
+
+
+        <!-- by-default show/hide both case, never add 'hidden' here, because 'hidden' was added in .js function ui_event_register() -->
+        <div id="more_info_panel_for_mapserver" hidden> 
+                  <!-- thumbnail for mapserver  -->
+                  <div id="thumbnail_for_mapserver"></div>
+                  <!-- default show, tile, image, coordinate system, status  -->
+                  <div id="coord-sys-mapserver" style="font-size: small;"></div>
+                                          <div id="message_more_info_mapserver" style="font-size: small;"></div>
+                                          <div id="json-mapserver" class="jse-theme-dark"></div> 
+        </div>
+
+  <!-- ------- end ------- hidden json  ------- only for mobile --> 
+
+    </div>
+
+    
+    <!--  i f r a m e  ------- only for mobile --> 
+    <iframe id="map-window-iframe" title="" class="second-row"  hidden>
+    </iframe>
+    <!--  i f r a m e  ------- only for mobile --> 
+      
+              
+    </div>
+     
+
+              
+
+
+          <!-- new jsoneditor, https://github.com/josdejong/svelte-jsoneditor/issues/265,   https://jsbin.com/yuwapaj/edit?html,output  -->
+          <script type="module" src="../../js/esri/module_shared.js"></script>
+          <!-- default is light theme, comment out dark theme -->
+          <link href="../../js/lib/new_jsoneditor/jse-theme-dark.css" rel="stylesheet" type="text/css"/>
+
+
+           
+         <!-- jstree will looks bad if remove this -->
+          <link href="../../js/lib/w3.css" rel="stylesheet" type="text/css"/>
+
+         
+        
+         
+          <link href="../../stylesheets/full-screen.css" rel="stylesheet" type="text/css"/>
+          
+
+
+
+          <script src="../../js/lib/stack.js"></script>   
+          <script src="../../js/esri/arcgis_common.js"></script>
+
+          <script src="../../js/esri/share/show_details.js"></script>
+          <script src="../../js/esri/share/tree_icon_flatjson.js"></script>
+          <script src="../../js/esri/share/tree_icon_link_iframe.js"></script> 
+          <script src="../../js/esri/server2/folder_share.js"></script>
+          <script src="../../js/esri/server2/folder.js"></script>  
+
+
+  
+      </body>
+</html>
