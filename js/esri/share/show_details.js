@@ -2187,6 +2187,9 @@ async function get_mapserver_info_html(mapserver_url){
     /**/
 
 
+    
+
+
 
                 function letsgo_handler(){
 
@@ -2320,8 +2323,60 @@ async function get_mapserver_info_html(mapserver_url){
 
 
 
+ // +++++++++++ helper ++++++++++++++
+
+                                function render_message_service_panel(_msg_){
+
+                                    var list_array = ["<div class='list-group'>"];
+                                   
+                                    list_array.push("<label>" + _msg_ + "</label>")
+                                    list_array.push("</div>")
+                                    $("#inside_folder_item_list").html(list_array.join(""));
+                                }
+
+                                function render_message_icon_panel(_msg_){
+
+                                    var list_array = ["<div class='list-group'>"];
+                                   
+                                    list_array.push("<label>" + _msg_ + "</label>")
+                                    list_array.push("</div>")
+                                    $("#icon_list").html(list_array.join(""));
+
+                                }
+
+                   
 
 
+                                function progressing_info(_which_panel, _signal, _info){
+
+
+                                    console.log(_which_panel, ' ( '+ _signal + ' ) ' + _info)
+                                                    
+                                    switch(_which_panel) {
+
+                                        case 'folder':
+                                            $('#message_root_folder').text(' ('+ _signal + ')' + _info); 
+                                          break;
+
+                                        case 'layer':
+                                            $('#message_mapserver').text(' ('+ _signal + ')' + _info); 
+                                          break;
+
+                                        case 'icon':
+                                            $('#message_icon').text(' ('+ _signal + ')' + _info); 
+                                            break;
+
+
+                                        default:
+                                          // code block
+                                      }
+                                                        
+                                                    
+                                    
+
+                                }
+
+                     // +++++++++++ end ++++++++++  helper ++++++++++++++
 
 
 
