@@ -2506,7 +2506,7 @@ $('#info-window-div').html("")
                     }
 
 
-                    function init_top_bar(){
+                    function init_start_root_input(){
 
 
                         reset_everything()
@@ -2813,7 +2813,7 @@ $('#info-window-div').html("")
                     /**/
                     // ------- let's go to your REST api  -------
                     /**/
-                    init_top_bar()
+                    init_start_root_input()
                     /**/
                     // --- end --- let's go to your REST api -------
                     /**/

@@ -2224,7 +2224,7 @@ async function get_mapserver_info_html(mapserver_url){
                 }
 
     
-                function init_top_bar(){
+                function init_start_root_input(){
     
     
                     reset_everything()
@@ -2332,6 +2332,137 @@ async function get_mapserver_info_html(mapserver_url){
     /**/
     // --- end --- let's go to your REST api -------
     /**/
+
+
+
+
+
+
+
+
+
+    
+
+            function render_single_imageserver_root_folder(_imageServer_root, _imageServer_url){
+
+
+                                    /*
+
+                                          
+                                                  .../rest/services/.../ImageServer
+                                                  https://emapsplus.com/arcgis/rest/services/Orthos/ALBarbour2015/ImageServer
+
+                                                       {
+                                                          advancedQueryCapabilities: {useStandardizedQueries: true, supportsStatistics: true, supportsOrderBy: true, supportsDistinct: true,…}
+                                                          allowComputeTiePoints: false
+                                                          allowRasterFunction: true
+                                                          allowedMosaicMethods: "NorthWest,Center,LockRaster,ByAttribute,Nadir,Viewpoint,Seamline,None"
+                                                          bandCount: 3
+                                                          capabilities: "Image,Metadata,Catalog"
+                                                          copyrightText: ""
+                                                          currentVersion: 10.31
+                                                          defaultCompressionQuality: 75
+                                                          defaultMosaicMethod: "Northwest"
+                                                          defaultResamplingMethod: "Bilinear"
+                                                          description: "Orthos/ALBarbour2015"
+                                                          editFieldsInfo: null
+                                                          exportTilesAllowed: false
+                                                          extent: {xmin: 680085.0512943268, ymin: 383020.5546703398, xmax: 916230.5512943268, ymax: 617293.0546703398,…}
+                                                          fields: [{name: "OBJECTID", type: "esriFieldTypeOID", alias: "OBJECTID", domain: null},…]
+                                                          fullExtent: {xmin: 680085.0512943268, ymin: 383020.5546703398, xmax: 916230.5512943268, ymax: 617293.0546703398,…}
+                                                          hasColormap: false
+                                                          hasHistograms: true
+                                                          hasMultidimensions: false
+                                                          hasRasterAttributeTable: false
+                                                          initialExtent: {xmin: 680085.0512943268, ymin: 383020.5546703398, xmax: 916230.5512943268, ymax: 617293.0546703398,…}
+                                                          maxDownloadImageCount: 20
+                                                          maxDownloadSizeLimit: 2048
+                                                          maxImageHeight: 4100
+                                                          maxImageWidth: 15000
+                                                          maxMosaicImageCount: 20
+                                                          maxPixelSize: 0
+                                                          maxRecordCount: 1000
+                                                          maxScale: 0
+                                                          maxValues: [255, 255, 255]
+                                                          meanValues: [68.50144885956104, 83.65670840420518, 82.23853310654343]
+                                                          mensurationCapabilities: "None"
+                                                          minPixelSize: 0
+                                                          minScale: 0
+                                                          minValues: [0, 0, 0]
+                                                          mosaicOperator: "First"
+                                                          name: "Orthos/ALBarbour2015"
+                                                          objectIdField: "OBJECTID"
+                                                          ownershipBasedAccessControlForRasters: null
+                                                          pixelSizeX: 0.5
+                                                          pixelSizeY: 0.5
+                                                          pixelType: "U8"
+                                                          rasterFunctionInfos: []
+                                                          rasterTypeInfos: [{name: "Raster Dataset", description: "Supports all ArcGIS Raster Datasets", help: ""}]
+                                                          serviceDataType: "esriImageServiceDataTypeRGB"
+                                                          serviceDescription: ""
+                                                          sortField: ""
+                                                          sortValue: null
+                                                          spatialReference: {wkid: 102629, latestWkid: 102629}
+                                                          stdvValues: [54.08312313448168, 61.45362817410963, 59.15355889026894]
+                                                          supportsAdvancedQueries: true
+                                                          supportsStatistics: true
+                                                          useStandardizedQueries: true
+                                                       }
+
+
+                                                       ImageServer have single layer, no nested structure, so just output 1 single layer
+
+
+                                        */
+
+
+                                                       // get center lat, center long, from image-server "extent" , "fullextent" properties
+                                                        // not use, because it slow down the whole process
+                                                       //clientSide_project(_imageServer_root) 
+
+
+
+                                                       folder_structure_flatjson = [ 
+                                                        
+                                                                // root 
+                                                                {
+                                                                    absolute_path: _imageServer_url,
+                                                                    icon: folder_icon,
+                                                                    id: 0,
+                                                                    node_path: "/",
+                                                                    parent: "#",
+                                                                    relative_path: "Root",
+                                                                    state: {opened: true},
+                                                                    text: "Root",
+                                                                    type: "folder",
+
+                                                                }, 
+
+                                                                // image server
+                                                                {
+
+                                                                    absolute_path: _imageServer_url,
+                                                                    icon: ImageServer_icon,
+                                                                    id: 1,
+                                                                    node_path: _imageServer_root.name,                         // "Aerial/La_Quinta_areial_2013",
+                                                                    parent: 0,
+                                                                    relative_path: _imageServer_root.name,                     // "La_Quinta_areial_2013",
+                                                                    state: {},
+                                                                    text:   _imageServer_root.name + ' <sup>ImageServer</sup>',      // "La_Quinta_areial_2013 ( ImageServer ) ",
+                                                                    type: "ImageServer"
+
+                                                                }
+
+
+                                                     ]
+
+
+                                                      jstree_root_folder(folder_structure_flatjson, ___url_string,  _organization, ___hostname )
+
+
+            }
+
+
 
 
 

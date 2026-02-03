@@ -930,7 +930,7 @@ var ___url_getJson
       }
 
 
-      function init_top_bar(){
+      function init_start_root_input(){
 
 
           reset_everything()
