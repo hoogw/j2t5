@@ -225,17 +225,28 @@ var icon_flatjson = [];
                                                                     console.log('Selected node text : ' +  _selected_text[0])
                                                                     console.log('Selected node type : ' +  _selected_type[0])
 
+                                                                    var selected_node_id = _selected_id[0]
+                                                                    var selected_node_path = _selected_path[0]
+                                                                    var selected_node_text = _selected_text[0]
                                                                     var selected_node_type = _selected_type[0]
+
+
+
                                                                     if (selected_node_type){
-                                                                      
+                                                                        
                                                                     }else{
                                                                         //   type: undefined, for v10.5 and before, type is undefined, but it is a featuerServer
                                                                         // _layer_url: "https://gis.anaheim.net/server/rest/services/Hosted/Test_Local_Gov_Scene_WFL1/FeatureServer"
-                                                                        if ((_selected_path[0].includes('FeatureServer')) || ( _selected_path[0].includes('MapServer'))){ 
+                                                                        if ((selected_node_path.includes('FeatureServer')) || ( selected_node_path.includes('MapServer'))){ 
                                                                             selected_node_type = 'FeatureServer'                                                                               
                                                                                 console.log('warning:  .type is undefined, but url is feature server ')
                                                                         }
                                                                     }
+
+
+                                                                    update_url_parameter('select_folder', selected_node_id);
+                                                                    update_url_parameter('select_folder_text', selected_node_text);
+                                                                    update_url_parameter('select_layer', '');
 
 
                                                                     
@@ -243,9 +254,6 @@ var icon_flatjson = [];
                                                                     empty_service_and_icon_panel_all_tag()
 
 
-                                                                    update_url_parameter('select_folder', _selected_id[0]);
-                                                                    update_url_parameter('select_folder_text', _selected_text[0]);
-                                                                    update_url_parameter('select_layer', '');
 
                                                                     switch(selected_node_type) {
 
