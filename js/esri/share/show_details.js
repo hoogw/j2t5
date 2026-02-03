@@ -2663,7 +2663,7 @@ async function get_mapserver_info_html(mapserver_url){
                                             var _link_display_text = _layer_name_ + ' ( ' + _type_ + ' ) '
 
                                              // must attach '?f=html' at end of url, otherwise vectortile , scene url will use f=json by default 
-                                            _html_for_message_icon = '<a target="_blank" id="_layer_link" href="'+ _link_url + '?f=html" style="font-size:x-large; font-weight: bolder;">'  
+                                            _html_for_message_icon = '<a target="_blank" id="_layer_link" href="'+ _link_url + '?f=html" style="font-size:small; font-weight: bolder;">'  
                                             _html_for_message_icon +=  _link_display_text 
                                             _html_for_message_icon += '</a>'
 

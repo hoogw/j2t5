@@ -74,7 +74,7 @@
                                               _html_for_more_info_icon  = ''
   
                                                // must attach '?f=html' at end of url, otherwise vectortile , scene url will use f=json by default 
-                                              _html_for_message_icon     = '<a target="_blank" id="_layer_link" href="'+ _link_url + '?f=html" style="font-size:x-large; font-weight: bolder;">'    
+                                              _html_for_message_icon     = '<a target="_blank" id="_layer_link" href="'+ _link_url + '?f=html" style="font-size:small; font-weight: bolder;">'    
                                               _html_for_message_icon    +=   _link_display_text 
                                               _html_for_message_icon    += '</a>'
 
@@ -324,7 +324,7 @@
                             // top, name, link
                             var _html_for_message_mapserver  = ''
                             // must attach '?f=html' at end of url, otherwise vectortile , scene url will use f=json by default 
-                            _html_for_message_mapserver     = '<a target="_blank" id="_mapserver_link" href="' +  mapserver_url + '?f=html" style="font-size:x-large; font-weight: bolder;">'  
+                            _html_for_message_mapserver     = '<a target="_blank" id="_mapserver_link" href="' +  mapserver_url + '?f=html" style="font-size:small; font-weight: bolder;">'  
                             _html_for_message_mapserver    +=    mapserver_url_display_text 
                             _html_for_message_mapserver    += '</a>'
 
