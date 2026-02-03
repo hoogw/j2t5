@@ -87,8 +87,19 @@ function create_click_link(event, data) {
             // only get 1st selected node, so always use    _selected_xxxxx[0] 
 
             //$('#event_result').html('Selected: ' + r.join(', '));
-            console.log('layer id  : ' + _selected_layer_id[0] + "   + layer name  ->   " + _selected_layer_name[0]  + "    + link type ->   " +  _selected_link_type[0] + "    + absolute_path ->   " + _selected_path[0] + "    + server_path ->   " + _selected_server_path[0])
+            console.log('before verify,   layer id  : ' + _selected_layer_id[0] + "   + layer name  ->   " + _selected_layer_name[0]  + "    + link type ->   " +  _selected_link_type[0] + "    + absolute_path ->   " + _selected_path[0] + "    + server_path ->   " + _selected_server_path[0])
 
+           
+
+if ((_selected_layer_id[0]) && 
+    (_selected_layer_name[0]) && 
+    (_selected_link_type[0] !== "folder") && 
+    (_selected_path[0]) &&
+    (_selected_server_path[0]) 
+  ){
+
+
+     console.log('all these value MUST NOT be undefined,   layer id  : ' + _selected_layer_id[0] + "   + layer name  ->   " + _selected_layer_name[0]  + "    + link type ->   " +  _selected_link_type[0] + "    + absolute_path ->   " + _selected_path[0] + "    + server_path ->   " + _selected_server_path[0])
 
             // token
             var realLayerName_0 
@@ -4159,5 +4170,11 @@ break;
                     
             }// switch
         
+
+
+          } else {
+
+            console.log("you click a model folder, not a actual model, so nothing to do here ")
+                   }//if
         
         }
