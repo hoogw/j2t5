@@ -521,3 +521,168 @@
                               $("#json-layer").hide();
 
                         }
+
+
+
+
+
+
+
+
+
+
+
+
+                        
+
+
+    /**/
+    // ------- let's go to your REST api  -------
+    /**/
+
+
+                 function reset_everything(){
+
+                    empty_icon_panel_all_tag()
+    
+                     // clear left side root tree 
+                     $('#jstree_root_folder').jstree('destroy');
+                     $("#jstree_root_folder").html('');
+                    
+                    $("#message_root_folder").html('');
+    
+                }
+    
+    
+
+
+
+                function letsgo_handler(){
+
+                        ___url_string = $("#current_rest_api_endpoint").val().trim();
+
+                        reset_everything()
+
+                        update_url_parameter('org', ___url_string)
+                        update_url_parameter('url', ___url_string)
+                        _organization = ___url_string
+                        document.getElementById("title").innerHTML = _organization;                        
+
+                        if (___url_string){
+                                    ___url = new URL(___url_string);   // ?url=https://sampleserver3.arcgisonline.com/ArcGIS/rest/services
+                                    ___hostname   = ___url.hostname; //    sampleserver3.arcgisonline.com
+
+                                    scan_folder_structure()
+                        }
+
+                }
+
+    
+                function init_top_bar(){
+    
+    
+                    reset_everything()
+    
+                    $("#current_rest_api_endpoint").val(___url_string)
+    
+                    $('#current_rest_api_endpoint').on('search', letsgo_handler);
+                    $( "#letsgo").click(letsgo_handler);
+
+                    // token
+                    $( "#generate_token").click(generate_token_handler);
+                    $( "#clear_token").click(clear_token_handler);
+    
+                }
+
+
+
+                // token
+                async function generate_token_handler(){
+
+
+                    // Generate Token param : https://developers.arcgis.com/rest/services-reference/enterprise/generate-token.htm
+                    var token_data_param = {}
+
+                    /* working sample
+                    token_data_param.username = 'your-portal-online-account-name'
+                    token_data_param.password = 'Your-pass-word'
+                    token_data_param.client = ''
+                    token_data_param.ip = ''
+                    // 'referer' must be specified."]
+                    token_data_param.referer = 'https://gisnexus.palmspringsca.gov/server/admin'
+                    token_data_param.expiration = 1440
+                    token_data_param.f = 'pjson'
+                    */
+                    token_data_param.username = $("#login_name").val() //'your-portal-online-account-name'
+                    token_data_param.password = $("#login_password").val() //'Your-pass-word'
+                    token_data_param.client = ''
+                    token_data_param.ip = ''
+                    // 'referer' must be specified."]
+                    token_data_param.referer = token_referer  //'http://localhost:10/json2tree'  'https://transparentgov.net/'  'https://gisnexus.palmspringsca.gov/server/admin'
+                    
+                    token_data_param.expiration = parseInt($("#expire_in_days").val()) * 1440
+                    token_data_param.f = 'pjson'
+
+                    var token_response
+
+                    try{
+                        var token_response_raw = await $.ajax({
+                                    type: "POST",
+                                    url: generateTokenUrl,
+                                    data: token_data_param,
+                                    success: function (data) {
+
+                                        console.log(data);
+                                        return data;
+                                    },
+                                    //dataType: dataType
+                                });
+                    } catch(error){
+                        console.log('ajax token failed : ', error)
+                        alert(error)
+                    }// try - catch
+
+                    console.log('token response raw : ', token_response_raw)
+                    // jsonp, usually return object.   cors, proxy, can return both string and object, must handle difference  
+                    if (typeof token_response_raw === 'object') {
+                        // is object
+                        token_response = token_response_raw
+                    } else {
+                        // is string
+                        token_response = JSON.parse(token_response_raw)
+                    }
+                    console.log('token response object : ', token_response)
+
+
+                    if (token_response.token){
+                        arcgis_online_token = token_response.token
+                        $("#arcgis_online_token").val(arcgis_online_token)
+                        // refresh with new token
+                        letsgo_handler()
+                    } 
+                    if (token_response.error){
+                        var error_message = token_response.error.details[0] + ' : ' + token_response.error.message
+                        // do not do this, token should be always empty if no token used.
+                        //$("#arcgis_online_token").val(error_message)
+                        // instead use alert
+                        alert(error_message)
+
+
+                    }
+                   
+
+
+
+                }
+
+                function clear_token_handler(){
+                    arcgis_online_token = ''
+                    $("#arcgis_online_token").val(arcgis_online_token)
+                    update_url_parameter('arcgis_online_token', arcgis_online_token)
+                }
+    
+    
+    
+    /**/
+    // --- end --- let's go to your REST api -------
+    /**/
