@@ -23,14 +23,14 @@ a {
 
 
 #letsgo {
-  font-size:x-large; 
+  font-size:large; 
   font-weight: bolder; 
   font-family: monospace; 
   font-style: oblique; 
   color:yellow;
 }
 #current_rest_api_endpoint {
-  font-size: xx-large; 
+  font-size: large; 
   font-weight: bolder; 
   font-family: monospace; 
   font-style: oblique;
