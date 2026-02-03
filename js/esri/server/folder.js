@@ -290,7 +290,7 @@ var icon_flatjson = [];
 
 
                                                                         case "GeocodeServer":
-                                                                                //render_geocodeServer(_selected_id[0])
+                                                                                
                                                                                 render_singleserver(_selected_id[0])
                                                                         break;
 
@@ -300,7 +300,7 @@ var icon_flatjson = [];
                                                                         case "NAServer":
                                                                                 
                                                                                 render_NAserver(_selected_id[0])
-                                                                                //render_singleserver(_selected_id[0])
+                                                                                
                                                                         break;
 
                                                                     

@@ -343,7 +343,7 @@ var point_icon = "bi bi-geo-alt"
 
 
                                                                   case "GeocodeServer":
-                                                                          //render_geocodeServer(_selected_id[0])
+                                                                          
                                                                           render_singleserver(_selected_id[0])
                                                           
                                                                       break;
