@@ -526,6 +526,18 @@
 
 
 
+                 function reset_everything(){
+
+                    empty_icon_panel_all_tag()
+    
+                     // clear left side root tree 
+                     $('#jstree_root_folder').jstree('destroy');
+                     $("#jstree_root_folder").html('');
+
+                    $("#message_root_folder").html('');
+    
+                }
+    
 
 
 

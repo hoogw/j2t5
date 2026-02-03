@@ -2187,21 +2187,6 @@ async function get_mapserver_info_html(mapserver_url){
     /**/
 
 
-                 function reset_everything(){
-
-                    empty_service_and_icon_panel_all_tag()
-    
-                     // clear left side root tree 
-                     $('#jstree_root_folder').jstree('destroy');
-                     $("#jstree_root_folder").html('');
-
-                    $("#message_root_folder").html('');
-    
-                }
-    
-    
-
-
 
                 function letsgo_handler(){
 
@@ -2465,6 +2450,122 @@ async function get_mapserver_info_html(mapserver_url){
 
 
 
+            
+
+                                            // when user click a folder, find all sub-item which use this _folder_item_id as their parent id, show sub-item (children item) at service panel (center)
+                                            // will not use jstree, only display list collection
+                                            function render_folder(_parent_id){
+
+
+                                                console.log('render  folder  id is ', _parent_id )
+
+                                               
+                                            
+                                                var list_array = ["<div class='list-group'>"];
+
+
+                                                for (f = 0; f < folder_structure_flatjson.length; f++) {
+                                                
+                                                    // if (folder_structure_flatjson[f].parent == _parent_id.toString()) {
+                                                    if (folder_structure_flatjson[f].parent == _parent_id) {
+
+
+                                                                                
+
+                                                                    // no need based on type, always use  onclick='selectFolderLevelItem(id)'
+                                                                    // when user click list-collection any type item(group layer, feature layer, or table), always trigger select correspondent node on jstree, so no mather what type is.
+                                                                    // just like (equal to) user manually click any jstree node, then follow downstream processing. 
+
+                                                        
+
+                                                                    if (folder_structure_flatjson[f].type == 'folder') {
+
+
+                                                                            // folder 
+                                                                                            
+                                                                                        
+                                                                                     // List group with transparent background  https://github.com/twbs/bootstrap/issues/29318
+                                                                                            var _html_tag   = "<a href='javascript:;' onclick='selectFolderLevelItem(" + folder_structure_flatjson[f].id + ");'>";
+
+                                                                                            _html_tag  +=       "<span class='" + folder_structure_flatjson[f].icon + "' aria-hidden='true'></span>"  
+                                                                                            _html_tag  +=       "  " +  folder_structure_flatjson[f].text
+
+                                                                                            _html_tag  +=    "</a>"
+                                                                                            _html_tag  +=    "</br>"
+
+                                                                                            list_array.push(_html_tag);
+                                                                                    
+
+
+                                                                    } else {
+                                                                            // service , mapserver, etc....
+                                                                                            
+
+
+                                                                                                var _html_tag   = "<a href='javascript:;' onclick='selectFolderLevelItem(" + folder_structure_flatjson[f].id + ");'>";
+
+                                                                                                _html_tag  +=       "<span class='" + folder_structure_flatjson[f].icon + "' aria-hidden='true'></span>"  
+                                                                                                _html_tag  +=       "  " + folder_structure_flatjson[f].text 
+
+                                                                                                _html_tag  +=    "</a>"
+                                                                                                _html_tag  +=    "</br>"
+
+                                                                                                list_array.push(_html_tag);
+                                                                    }//if
+
+                                                    }//if
+
+
+
+
+                                                }// for 
+
+
+                                                list_array.push("</div>")
+                                                $("#inside_folder_item_list").html(list_array.join(""));
+                                                
+
+
+
+                                                if (list_array.length > 2) {
+                                                            // not empty, nothing to do
+                                                } else {
+                                                            // empty, insert empty message
+                                                            render_message_service_panel("Empty ( or maybe login to gis portal with password required)")
+                                                }
+
+
+
+
+                                                // at bottom of render folder function, because render folder do not use jstree. 
+                                                // other render xxx use jstree, will place message_xxxx into there jstree_xxxx function
+                                                // wrong
+                                                //var parent_folder_itself = folder_structure_flatjson[_parent_id]
+
+                                                // find the item, item.id = parent id
+                                                var parent_folder_itself = folder_structure_flatjson.find(element => element.id == _parent_id);
+
+                                                                                    
+
+
+                                                var parent_folder_display_text = parent_folder_itself.relative_path
+                                                var parent_folder_full_url = parent_folder_itself.absolute_path
+                                                console.log("parent_folder_itself", parent_folder_itself)
+
+                                                // must attach '?f=html' at end of url, otherwise vectortile , scene url will use f=json by default 
+                                                var _html_for_message_mapserver = '<a target="_blank" id="_mapserver_link" href="' + parent_folder_full_url + '?f=html">' 
+                                                _html_for_message_mapserver    +=   parent_folder_display_text 
+                                                _html_for_message_mapserver    += '</a>'
+                                                _html_for_message_mapserver    += '<br>'
+                                                _html_for_message_mapserver    += '<a target="_blank" id="_mapserver_link2" href="' + parent_folder_full_url + '?f=html">' 
+                                                _html_for_message_mapserver    +=   parent_folder_full_url 
+                                                _html_for_message_mapserver    += '</a>'
+                                               
+                                                $('#message_mapserver').html( _html_for_message_mapserver);
+
+                                                
+
+                                            }
 
 
 
