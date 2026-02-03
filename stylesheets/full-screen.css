@@ -150,8 +150,7 @@ a {
       width: 1500px ;
     }
 
-
-   
+    
 
 
 
@@ -169,6 +168,9 @@ a {
               flex: 0 0 auto ;
               width: 1200px ;
             }
+
+           
+            
           }
 
           @media screen and (max-width: 1800px) {
@@ -184,6 +186,8 @@ a {
               flex: 0 0 auto ;
               width: 1000px ;
             }
+
+           
           }
 
           @media screen and (max-width: 1500px) {
@@ -198,6 +202,8 @@ a {
               flex: 0 0 auto ;
               width: 800px ;
             }
+
+           
           }
           
           @media screen and (max-width: 1000px) {
@@ -212,6 +218,9 @@ a {
               flex: 0 0 auto ;
               width: 600px ;
             }
+
+           
+            
           }
 
           @media screen and (max-width: 800px) {
@@ -226,6 +235,10 @@ a {
               flex: 0 0 auto ;
               width: 400px ;
             }
+
+
+
+
           }
 
           @media screen and (max-width: 500px) {
@@ -240,6 +253,9 @@ a {
               flex: 0 0 auto ;
               width: 200px ;
             }
+
+          
+
           }
 
 
@@ -286,12 +302,6 @@ a {
 .second-row { flex-grow: 1; border: none; margin: 0; padding: 0; }
 
 /* Make Iframe to fit 100% of container's remaining height */
-
-
-
-
-
-
 
 
 
