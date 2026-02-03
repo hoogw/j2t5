@@ -37,21 +37,21 @@ a {
   color:yellow;
 }
 
-#letsgo {
+.letsgo {
   font-size: large; 
   font-weight: bolder; 
   font-family: monospace; 
   font-style: oblique; 
   color:yellow;
 }
-#current_rest_api_endpoint {
+.current_rest_api_endpoint {
   font-size: large; 
   font-weight: bolder; 
   font-family: monospace; 
   font-style: oblique;
   color:yellow;
 }
-#login-token {
+.login-token {
   font-size: xx-small; 
   font-weight: lighter; 
   font-style: oblique; 
