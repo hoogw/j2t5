@@ -693,7 +693,7 @@ var icon_flatjson = [];
 
                                     
                                     // always before await ajax, show ajax url , instead of show progressing bar 
-                                    progressing_info('icon', id_counter, root_url);
+                                    progressing_info('folder', id_counter, root_url);
                                     
 
                                     var root = await arcgis_ajax_cross_origin(root_url, _cross);  // cross origin method 
@@ -897,7 +897,7 @@ if ((root.folders) || (root.services) || (root.layers)) {
         console.log('folder relative name (folder name)', id_counter, _relative_name); 
         console.log('folder (path)', id_counter, absolute_path);
      
-        progressing_info('icon', id_counter, absolute_path);
+        progressing_info('folder', id_counter, absolute_path);
 
        
 
@@ -1148,7 +1148,7 @@ if ((root.folders) || (root.services) || (root.layers)) {
 
 
                         // always before await ajax, show ajax url , instead of show progressing bar
-                        progressing_info('icon', id_counter, absolute_path_service_url);
+                        progressing_info('folder', id_counter, absolute_path_service_url);
                         console.log('service id before ajax', id_counter, absolute_path_service_url)
 
 
@@ -1577,7 +1577,7 @@ jstree_root_folder(folder_structure_flatjson, ___url_string,  _organization, ___
 
             var _error_root = 'Bad request or Blocked by Admin';
 
-            progressing_info('icon', _error_root, JSON.stringify(root));
+            progressing_info('folder', _error_root, JSON.stringify(root));
 
         
             return false;
@@ -1774,7 +1774,7 @@ jstree_root_folder(folder_structure_flatjson, ___url_string,  _organization, ___
 
                                                                                                                     
                                                             // always before await ajax, show ajax url , instead of show progressing bar
-                                                            progressing_info('icon', _parent_id, _url_mapserver);
+                                                            progressing_info('folder', _parent_id, _url_mapserver);
 
 
                                                             raw_mapserver =await arcgis_ajax_cross_origin(_url_mapserver, _cross);  // cross origin method 

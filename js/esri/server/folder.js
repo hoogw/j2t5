@@ -621,7 +621,7 @@ var icon_flatjson = [];
 
                                     
                                     // always before await ajax, show ajax url , instead of show progressing bar 
-                                    progressing_info('icon', id_counter, root_url);
+                                    progressing_info('folder', id_counter, root_url);
                                     var root = await arcgis_ajax_cross_origin(root_url, _cross);  // cross origin method 
                                                 
 
@@ -820,7 +820,7 @@ var icon_flatjson = [];
     // always before await ajax, show ajax url , instead of show progressing bar 
         console.log('folder relative name (folder name)', id_counter, _relative_name); 
         console.log('folder (path)', id_counter, absolute_path);
-        progressing_info('icon', id_counter, absolute_path);
+        progressing_info('folder', id_counter, absolute_path);
 
        
 
@@ -1413,7 +1413,7 @@ var icon_flatjson = [];
 
                                                 
 
-                                                progressing_info('icon', _error_root, JSON.stringify(root));
+                                                progressing_info('folder', _error_root, JSON.stringify(root));
 
                                             
                                                 return false;
@@ -1603,8 +1603,8 @@ async function render_mapserver(_parent_id){
         current_mapServerEndpoint_url = _url_mapserver
         console.log( 'render 2ndTier-mapserver url >>>>>  ', _url_mapserver)
         
-        // always before await ajax, show ajax url , instead of show progressing bar 
-        progressing_info('icon', '(MapServer)', _url_mapserver);
+        // always before await ajax, show ajax url , instead of show progressing bar
+        progressing_info('layer', '(MapServer)', _url_mapserver);
 
         raw_mapserver =await arcgis_ajax_cross_origin(_url_mapserver, _cross);  // cross origin method 
         console.log( 'render 2ndTier-mapserver root response  ', raw_mapserver)
@@ -2079,7 +2079,7 @@ async function render_mapserver(_parent_id){
                                                         console.log( 'render 2ndTier-NAserver url >>>>>  ', _url_NAserver)
    
                                                         // always before await ajax, show ajax url , instead of show progressing bar 
-                                                        progressing_info('icon', '(NAServer)', _url_NAserver);
+                                                        progressing_info('folder', '(NAServer)', _url_NAserver);
                                                         raw_NAserver = await arcgis_ajax_cross_origin(_url_NAserver, _cross);  // cross origin method 
                                                         console.log( 'render 2ndTier-NAserver root response  ', raw_NAserver)
 
@@ -2386,7 +2386,7 @@ async function render_mapserver(_parent_id){
                                                  console.log( 'render single server url >>>>>  ', _url_mapserver)
                                                                                                          
                                                  // always before await ajax, show ajax url , instead of show progressing bar 
-                                                 progressing_info('icon', '(single server)', _url_mapserver);
+                                                 progressing_info('folder', '(single server)', _url_mapserver);
 
                                                             raw_mapserver =await arcgis_ajax_cross_origin(_url_mapserver, _cross);  // cross origin method                                                                                 
                                                             console.log( 'render single-server root response  ', raw_mapserver)
