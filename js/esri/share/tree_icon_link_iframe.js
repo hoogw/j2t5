@@ -34,23 +34,6 @@ function create_click_link(event, data) {
     
 
 
-//  - -- - only for mobile  - -- -
-
-
-    // user click one layer in map server div 
-    $("#back-3-panel").show();
-    $("#back-2-panel").show();
-
-    $("#root-folder-div").hide();
-    $("#map-server-div").hide();
-    $("#app-div").hide();
-
-    $("#map-window-iframe").show();
-
-//  - -- - end  - -- -   only for mobile  - -- -
-
-
-
 
 
     
@@ -100,6 +83,32 @@ if ((_selected_layer_id[0]) &&
 
 
      console.log('all these value MUST NOT be undefined,   layer id  : ' + _selected_layer_id[0] + "   + layer name  ->   " + _selected_layer_name[0]  + "    + link type ->   " +  _selected_link_type[0] + "    + absolute_path ->   " + _selected_path[0] + "    + server_path ->   " + _selected_server_path[0])
+
+
+
+          
+
+      //  - -- - only for mobile  - -- -
+
+
+          // user click one layer in map server div 
+          $("#back-3-panel").show();
+          $("#back-2-panel").show();
+
+          $("#root-folder-div").hide();
+          $("#map-server-div").hide();
+          $("#app-div").hide();
+
+          $("#map-window-iframe").show();
+
+      //  - -- - end  - -- -   only for mobile  - -- -
+
+
+
+
+
+
+
 
             // token
             var realLayerName_0 
