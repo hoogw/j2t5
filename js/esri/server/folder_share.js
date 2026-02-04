@@ -357,20 +357,6 @@
 
                     
 
-                                    //  - -- - only for mobile  - -- -
-
-                                    // user click one layer in map server div 
-                                        $("#back-3-panel").show();
-                                        $("#root-folder-div").hide();
-                                        $("#map-server-div").hide();
-                                        $("#app-div").show();
-                                        $("#map-window-iframe").hide();
-
-                                    //  - -- - end  - -- -   only for mobile  - -- -
-
-
-
-
 
                                             
                                                     console.log('click select service-layer node event ', data)
@@ -411,6 +397,36 @@
 
 
                                                      empty_icon_panel_only_tag()
+
+
+
+
+
+
+                                                     
+
+                                    //  - -- - only for mobile  - -- -
+
+                                    // disable render group layer, because it is too complicated
+                                    if (_____type =="Group Layer"){
+
+                                        console.log(" disable render group layer, because it is too complicated ")
+
+                                    } else {
+
+                                    // user click one layer in map server div 
+                                        $("#back-3-panel").show();
+                                        $("#root-folder-div").hide();
+                                        $("#map-server-div").hide();
+                                        $("#app-div").show();
+                                        $("#map-window-iframe").hide();
+
+                                    }//if
+
+                                    //  - -- - end  - -- -   only for mobile  - -- -
+
+
+
 
 
                                                     //switch(_selected_type[0]) {     // this is true value
@@ -454,6 +470,7 @@
                                                    
                                                           case "Group Layer":
                                                             // show list of child item, no jstree, only list item
+                                                            console.log(" disable render group layer, because it is too complicated ", _selected_id[0])
                                                             // disable render group layer, because it is too complicated
                                                             //render_group_layer(_selected_id[0])
                                                           break;
