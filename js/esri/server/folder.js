@@ -3212,7 +3212,7 @@ async function render_mapserver(_parent_id){
 
 
 
-(async function($){
+(function($){
 
    
     

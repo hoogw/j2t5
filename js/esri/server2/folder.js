@@ -2605,7 +2605,7 @@ jstree_root_folder(folder_structure_flatjson, ___url_string,  _organization, ___
 
 
 
-(async function($){
+(function($){
 
    
     

@@ -2252,7 +2252,7 @@ var currentVersion = '0.0'
   // document ready short hand
   
   
-  (async function($){
+  (function($){
   
              
              init_global_var();
