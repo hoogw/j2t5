@@ -639,9 +639,13 @@ async function get_mapserver_info_html(mapserver_url){
     _html_for_f_json +=    mapserver_url + '?f=json' 
     _html_for_f_json += '</a>'
                 
+    // must show, because it often hidden if user click item on parent panel
     $("#json-mapserver").show();
     console.log('e d i t o r _ j s o n _ m a p s e r v e r ,  mapServerRootJson :', mapServerRootJson)
-    editor_json_mapserver.set({json:mapServerRootJson})
+    if (editor_json_mapserver){
+      editor_json_mapserver.set({json:mapServerRootJson})
+    }
+    
 
     
     /**/
@@ -1328,8 +1332,13 @@ async function get_mapserver_info_html(mapserver_url){
     
     $("#layer-more-info").html(_html_for_f_json)         
 
+
+
+    // must show, because it often hidden if user click item on parent panel
     $("#json-layer").show();
-    editor_json_layer.set({json:_thisLayer_fullJSON})
+    if (editor_json_layer){
+        editor_json_layer.set({json:_thisLayer_fullJSON})
+    }
 
     
     /**/
