@@ -103,12 +103,12 @@ a {
   have too much content.
 */
 /* for 3 panel */
-.flex-3-left,
+.flex-3-left,  /* free */
 .flex-3-middle,
 .flex-3-right,
 
 /* for 2 panel */
-.flex-2-left,
+.flex-2-left, /* free */
 .flex-2-right,
 
 
@@ -116,7 +116,13 @@ a {
 .flex-4-panel-1,
 .flex-4-panel-2,
 .flex-4-panel-3,
-.flex-4-panel-4,
+.flex-4-panel-4, /* free */
+
+/* for 3 panel */
+.flex-3-panel-1,
+.flex-3-panel-2,
+.flex-3-panel-3, /* free */
+
 
 
 /* for map in middle, have left, right, 3 panel */
@@ -179,6 +185,20 @@ a {
       width: 400px ;
     }
 
+    
+
+     .flex-3-panel-3 {
+      flex: 1 1 auto ;
+    }
+    .flex-3-panel-1 {
+      flex: 0 0 auto ;
+      width: 400px ;
+    }
+    .flex-3-panel-2 {
+      flex: 0 0 auto ;
+      width: 400px ;
+    }
+    
 
 
 
@@ -192,24 +212,28 @@ a {
             }
 
             .flex-2-right {
-              flex: 0 0 auto ;
               width: 1200px ;
             }
 
 
              .flex-4-panel-1 {
-                flex: 0 0 auto ;
-                width: 350px ;
+                 width: 350px ;
               }
               .flex-4-panel-2 {
-                flex: 0 0 auto ;
                 width: 350px ;
               }
               .flex-4-panel-3 {
-                flex: 0 0 auto ;
                 width: 350px ;
               }
            
+
+
+              .flex-3-panel-1 {
+                 width: 350px ;
+              }
+              .flex-3-panel-2 {
+                width: 350px ;
+              }
             
           }
 
@@ -223,21 +247,24 @@ a {
 
 
             .flex-2-right {
-              flex: 0 0 auto ;
               width: 1000px ;
             }
 
 
             flex-4-panel-1 {
-                flex: 0 0 auto ;
-                width: 300px ;
+               width: 300px ;
               }
               .flex-4-panel-2 {
-                flex: 0 0 auto ;
-                width: 300px ;
+               width: 300px ;
               }
               .flex-4-panel-3 {
-                flex: 0 0 auto ;
+                width: 300px ;
+              }
+
+              .flex-3-panel-1 {
+                 width: 300px ;
+              }
+              .flex-3-panel-2 {
                 width: 300px ;
               }
            
@@ -252,21 +279,25 @@ a {
             }
 
             .flex-2-right {
-              flex: 0 0 auto ;
               width: 800px ;
             }
 
 
              flex-4-panel-1 {
-                flex: 0 0 auto ;
-                width: 250px ;
+               width: 250px ;
               }
               .flex-4-panel-2 {
-                flex: 0 0 auto ;
-                width: 250px ;
+               width: 250px ;
               }
               .flex-4-panel-3 {
-                flex: 0 0 auto ;
+                width: 250px ;
+              }
+
+
+               .flex-3-panel-1 {
+                 width: 250px ;
+              }
+              .flex-3-panel-2 {
                 width: 250px ;
               }
 
@@ -282,20 +313,24 @@ a {
             }
 
             .flex-2-right {
-              flex: 0 0 auto ;
-              width: 600px ;
+             width: 600px ;
             }
 
              flex-4-panel-1 {
-                flex: 0 0 auto ;
                 width: 200px ;
               }
               .flex-4-panel-2 {
-                flex: 0 0 auto ;
                 width: 200px ;
               }
               .flex-4-panel-3 {
-                flex: 0 0 auto ;
+                width: 200px ;
+              }
+
+
+               .flex-3-panel-1 {
+                 width: 200px ;
+              }
+              .flex-3-panel-2 {
                 width: 200px ;
               }
             
@@ -310,21 +345,25 @@ a {
             }
 
             .flex-2-right {
-              flex: 0 0 auto ;
               width: 400px ;
             }
 
 
               flex-4-panel-1 {
-                flex: 0 0 auto ;
                 width: 150px ;
               }
               .flex-4-panel-2 {
-                flex: 0 0 auto ;
                 width: 150px ;
               }
               .flex-4-panel-3 {
-                flex: 0 0 auto ;
+               width: 150px ;
+              }
+
+
+               .flex-3-panel-1 {
+                 width: 150px ;
+              }
+              .flex-3-panel-2 {
                 width: 150px ;
               }
 
@@ -340,21 +379,25 @@ a {
             }
 
             .flex-2-right {
-              flex: 0 0 auto ;
               width: 200px ;
             }
 
           
             flex-4-panel-1 {
-                flex: 0 0 auto ;
                 width: 50px ;
               }
               .flex-4-panel-2 {
-                flex: 0 0 auto ;
                 width: 50px ;
               }
               .flex-4-panel-3 {
-                flex: 0 0 auto ;
+                width: 50px ;
+              }
+
+
+               .flex-3-panel-1 {
+                 width: 50px ;
+              }
+              .flex-3-panel-2 {
                 width: 50px ;
               }
 

@@ -23,9 +23,9 @@
   <body>
 
 
-    <div class='full_screen_flex_container_row'>
+    <div class='flex-container'>
 
-      <div id='sidebar-container' class='flex_1'>
+       <div class='flex-3-panel-1'>
 
         <!-- ------- let's go to your REST api  ------- --> 
         <div id="let-us-go-to-your-REST-api">  
@@ -43,7 +43,9 @@
               <button id="4k-button">4k-TV</button>
      
                      
-          <input id="current_rest_api_endpoint" class="current_rest_api_endpoint" type="search" placeholder="e.g. https://xxx.gov/arcgis/rest/services  e.g. https://services.arcgis.com/xxx/ArcGIS/rest/services"/>
+          <textarea style="width:100%;" id="current_rest_api_endpoint" class="current_rest_api_endpoint" type="search" placeholder="e.g. https://xxx.gov/arcgis/rest/services  e.g. https://services.arcgis.com/xxx/ArcGIS/rest/services">
+           </textarea>
+        
         </div>
           
        
@@ -67,9 +69,9 @@
       <div id="json-root"  class="jse-theme-dark"></div>
 
 
-    </div>
+       </div>
 
-      <div id='right-sidebar-container' class='flex_1'>
+      <div class='flex-3-panel-2'>
 
      
 <!-- ------- login with token  -------  hidden for compact, mobile --> 
@@ -185,7 +187,7 @@
       </div>
 
      
-      <iframe  class='flex_4' id="map-window-iframe" title=""></iframe>
+      <iframe class='flex-3-panel-3' id="map-window-iframe" title=""></iframe>
       
               
     </div>
@@ -207,8 +209,9 @@
          
         
          
-          <link href="../../stylesheets/color.css" rel="stylesheet" type="text/css"/>
-
+          
+          <link href="../../stylesheets/full-screen.css" rel="stylesheet" type="text/css"/>
+          
          
 
 
