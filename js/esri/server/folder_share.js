@@ -410,6 +410,7 @@
 
 
 
+                                                     empty_icon_panel_only_tag()
 
 
                                                     //switch(_selected_type[0]) {     // this is true value
@@ -453,7 +454,8 @@
                                                    
                                                           case "Group Layer":
                                                             // show list of child item, no jstree, only list item
-                                                            render_group_layer(_selected_id[0])
+                                                            // disable render group layer, because it is too complicated
+                                                            //render_group_layer(_selected_id[0])
                                                           break;
 
                                                         
