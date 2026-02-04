@@ -171,20 +171,6 @@ var icon_flatjson = [];
 
 
 
-                                                            
-
-                                                                    //  - -- - only for mobile  - -- -
-
-                                                                    // user click one item in root folder
-                                                                     $("#back-2-panel").show();
-                                                                     $("#root-folder-div").hide();
-                                                                     $("#app-div").show();
-                                                                     $("#map-window-iframe").hide();
-
-                                                                    //  - -- - end  - -- -   only for mobile  - -- -
-
-
-
 
 
 
@@ -232,6 +218,26 @@ var icon_flatjson = [];
                                                                     update_url_parameter('select_folder_text', selected_node_text);
                                                                     update_url_parameter('select_layer', '');
 
+
+
+
+
+                                                                    
+                                                            
+
+                                                                    //  - -- - only for mobile  - -- -
+
+                                                                    if (selected_node_type == "folder"){
+
+                                                                    } else {
+                                                                                // user click one item in root folder
+                                                                                $("#back-2-panel").show();
+                                                                                $("#root-folder-div").hide();
+                                                                                $("#app-div").show();
+                                                                                $("#map-window-iframe").hide();
+                                                                    }
+
+                                                                    //  - -- - end  - -- -   only for mobile  - -- -
 
 
 
@@ -289,12 +295,14 @@ var icon_flatjson = [];
 
                                                                             // folder and group layer are same thing, both use same render folder function
                                                                             case "folder":
-                                                                                        console.log(' render folder ', _selected_id[0])
-                                                                                        render_folder(_selected_id[0])
+                                                                                        console.log('  disable render folder, because it too complicated ', _selected_id[0])
+                                                                                        // disable render folder, because it too complicated
+                                                                                        //render_folder(_selected_id[0])
                                                                             break;
                                                                             case "Group Layer":
-                                                                                console.log(' render group layer ', _selected_id[0])                                                                               
-                                                                                render_folder(_selected_id[0])
+                                                                                console.log(' disable render group layer, because it too complicated  ', _selected_id[0]) 
+                                                                                // disable render group layer, because it too complicated                                                                              
+                                                                                //render_folder(_selected_id[0])
                                                                             break;
 
 

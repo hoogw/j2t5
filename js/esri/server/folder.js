@@ -182,23 +182,6 @@ var icon_flatjson = [];
 
 
 
-                                                            
-
-
-                                                                    //  - -- - only for mobile  - -- -
-
-                                                                    // user click one item in root folder
-                                                                     $("#back-3-panel").show();
-                                                                     $("#root-folder-div").hide();
-                                                                     $("#map-server-div").show();
-                                                                     $("#app-div").hide();
-                                                                     $("#map-window-iframe").hide();
-
-                                                                    //  - -- - end  - -- -   only for mobile  - -- -
-
-
-
-
 
 
 
@@ -251,6 +234,33 @@ var icon_flatjson = [];
 
                                                                     
 
+                                                                    
+                                                            
+
+
+                                                                    //  - -- - only for mobile  - -- -
+                                                                    if (selected_node_type == "folder"){
+
+                                                                    } else {
+
+                                                                            // user click one item in root folder
+                                                                            $("#back-3-panel").show();
+                                                                            $("#root-folder-div").hide();
+                                                                            $("#map-server-div").show();
+                                                                            $("#app-div").hide();
+                                                                            $("#map-window-iframe").hide();
+
+                                                                          }
+
+                                                                    //  - -- - end  - -- -   only for mobile  - -- -
+
+
+
+
+
+
+
+
                                                                     empty_service_and_icon_panel_all_tag()
 
 
@@ -259,8 +269,10 @@ var icon_flatjson = [];
 
 
                                                                         case "folder":
-                                                                                        console.log(' render folder ', _selected_id[0])
-                                                                                        render_folder(_selected_id[0])
+                                                                                        console.log('disable render folder, because it too complicated', _selected_id[0])
+
+                                                                                    // disable render folder, because it too complicated
+                                                                                       // render_folder(_selected_id[0])
                                                                             break;
 
 
