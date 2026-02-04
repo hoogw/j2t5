@@ -101,8 +101,8 @@ var _timeout_hub_only = 360000;
   // document ready short hand
   (async function($){
   
-             // must be await, to get ___url_string
-             await init_global_var();
+             
+             init_global_var();
 
              init_naming_panel()
    

@@ -1,50 +1,5 @@
 
 
-// this is simple version, server/folder.html, collapse all by default 
-var iconJstreeNodeOpened =  false; // true is expanded all,  false is collapse all 
-var iconJstreeforceOpen = true;
-
-
-
-
-
-
-/*
-
- sample use: 
- 
- http://localhost:10/json2tree/esri/server/folder.html?url=https://maps.lacity.org/arcgis/rest/services&org=Los+Angeles+CA+navigateLA&_center_lat=34.049039&_center_long=-118.246521&_center_zoom=17&select_folder=21&select_layer=3
-
- http://localhost:10/json2tree/esri/server/folder.html?url=https://gisprod10.co.fresno.ca.us/server/rest/services&org=Fresno+County+CA+gisprod10&_center_lat=36.746841&_center_long=-119.772591&_center_zoom=17&select_folder=43&select_layer=4
- 
- http://localhost:10/json2tree/esri/server/folder.html?url=https://exploreajax.ajax.ca/mapajax/rest/services&org=Ajax+Canada&_center_lat=43.8505&_center_long=-79.02115&_center_zoom=17&select_folder=20
-
-    url= mapaserver root url
-    org= title or name
-    _center_lat=
-    _center_long=
-    _center_zoom=
-
-
-      select_folder=20      folder jstree flatjson array, item id
-      select_layer=20       layer jstree flatjson array, item id
-*/
-
-
-
-
-
-
-
-
-       
-
-
-
-
-
-
-
 
 
 
@@ -1367,11 +1322,11 @@ folder_structure_flatjson = [
 
 
 
-(async function($){
+(function($){
 
    
-    // must be await, to get ___url_string
-    await init_global_var();
+    
+    init_global_var();
     
      /**/
     // ------- let's go to your REST api  -------

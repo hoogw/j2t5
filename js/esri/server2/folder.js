@@ -2608,8 +2608,8 @@ jstree_root_folder(folder_structure_flatjson, ___url_string,  _organization, ___
 (async function($){
 
    
-    // must be await, to get ___url_string
-    await init_global_var();
+    
+    init_global_var();
     
         
     /**/

@@ -3215,8 +3215,8 @@ async function render_mapserver(_parent_id){
 (async function($){
 
    
-    // must be await, to get ___url_string
-    await init_global_var();
+    
+    init_global_var();
     
         
     /**/

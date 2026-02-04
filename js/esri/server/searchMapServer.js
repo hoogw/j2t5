@@ -1486,8 +1486,8 @@ var currentVersion = '0.0'
      
 
             
-            // must be await, to get ___url_string
-            await init_global_var();
+            
+            init_global_var();
 
             init_naming_panel_for_mapserver()
             // only for show detail, origin from folder.js

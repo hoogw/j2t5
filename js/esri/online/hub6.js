@@ -115,8 +115,8 @@ async function download_json(_json_url){
   // document ready short hand
   (async function($){
   
-             // must be await, to get ___url_string
-             await init_global_var();
+             
+             init_global_var();
    
              init_naming_panel()
 

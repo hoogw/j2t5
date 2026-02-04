@@ -1567,8 +1567,8 @@ reactiveUtils.watch(
 
         init_base_map()
 
-                    // must be await, to get ___url_string
-                    await init_global_var();
+                    
+                    init_global_var();
 
                     init_user_interface_event()
       
