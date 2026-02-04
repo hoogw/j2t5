@@ -388,6 +388,7 @@ var  base_url = '';
   
   var urlParams;
   var ___url_string;
+  var current_type // can be use for any thing
   
 
 
@@ -1024,17 +1025,7 @@ function init_global_var(){
 
 
 
-                                                                                
-                                          /**/ 
-                                          // ... ... .. .. . category radio ... ... .. .. . 
-                                          var param_category = urlParams.get('category'); 
-                                          if (param_category) {
-                                            current_category = param_category
-                                          } 
-                                          // ... ... end .. .. . category radio ... ... .. .. .
-                                          /**/  
-       
-                                      
+                                         
                                       
                                       
                                       //.................. required parameter .................
@@ -1057,6 +1048,13 @@ function init_global_var(){
                                               _center_long = urlParams.get('_center_long');  
                                               _center_zoom = urlParams.get('_center_zoom');  
 
+
+                                            // can be use for any thing
+                                              var param_type = urlParams.get('type'); 
+                                              if (param_type) {
+                                                current_type = param_type
+                                              } 
+                                         
 
                                               _health = urlParams.get('health'); // health=1,true,yes (anything) will show health check icon
                                               file = urlParams.get('file');   // hub.site.static file=xxx.zip

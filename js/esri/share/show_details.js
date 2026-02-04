@@ -2203,21 +2203,23 @@ async function get_mapserver_info_html(mapserver_url){
 
                 function letsgo_handler(){
 
-                        ___url_string = $("#current_rest_api_endpoint").val().trim();
+                    ___url_string = $("#current_rest_api_endpoint").val().trim();
 
-                        reset_everything()
+                    reset_everything()
 
-                        update_url_parameter('org', ___url_string)
+                    if (___url_string){
+
+                        ___url = new URL(___url_string);   // ?url=https://sampleserver3.arcgisonline.com/ArcGIS/rest/services
+                        ___hostname   = ___url.hostname; //    sampleserver3.arcgisonline.com
+                        _organization = ___hostname
+
+                        update_url_parameter('org', _organization)
                         update_url_parameter('url', ___url_string)
-                        _organization = ___url_string
-                        document.getElementById("title").innerHTML = _organization;                        
-
-                        if (___url_string){
-                                    ___url = new URL(___url_string);   // ?url=https://sampleserver3.arcgisonline.com/ArcGIS/rest/services
-                                    ___hostname   = ___url.hostname; //    sampleserver3.arcgisonline.com
-
-                                    scan_folder_structure()
-                        }
+                        
+                        document.getElementById("title").innerHTML = _organization; 
+                        
+                        scan_folder_structure()
+                    }//if
 
                 }
 
