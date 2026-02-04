@@ -258,8 +258,7 @@ folder_structure_flatjson = [
 
     async function scan_folder_structure(){
 
-    current_rootEndpoint_url = ___url_string
-
+   
 
     folder_structure_flatjson = []
 
@@ -286,58 +285,6 @@ folder_structure_flatjson = [
 
 
 
-
-
-    /**/
-    // token
-    /**/
-    param_arcgis_online_token = $('#arcgis_online_token').val()
-    if (param_arcgis_online_token){
-            arcgis_online_token = param_arcgis_online_token
-    } else {
-                arcgis_online_token = ''
-    }
-    update_url_parameter('arcgis_online_token', arcgis_online_token)
-
-
-
-    // set online or portal radio
-    if (___url_string.includes('.arcgis.com')){
-
-            // arcgis online
-            $("input[name=online_or_portal_radio][value=arcgis_online]").prop('checked', true);
-            generateTokenUrl = arggis_online_genToken_url
-            $("#genToken_url").val(generateTokenUrl);
-
-    } else {
-
-                // arcgis enterprise portal
-                $("input[name=online_or_portal_radio][value=arcgis_enterprise_portal]").prop('checked', true);
-
-                // sample:  https://gisnexus.palmspringsca.gov/portal/sharing/rest/generateToken
-                //Get The Current Domain Name  https://stackoverflow.com/questions/11401897/get-the-current-domain-name-with-javascript-not-the-path-etc
-                // get domain from URL
-                console.log(' gen token from enterprise portal:',  ___url_string)
-                portal_domain = (new URL(___url_string));
-                portal_domain = portal_domain.hostname;
-                generateTokenUrl = 'https://' + portal_domain + arggis_enterprise_portal_genToken_url // https:// +  domain + /portal/sharing/rest/generateToken
-                console.log(' gen token url from enterprise portal:' , generateTokenUrl, portal_domain)
-                $("#genToken_url").val(generateTokenUrl);
-                
-    }
-
-
-
-    // token referer
-    if (window.location.hostname.includes('localhost')){
-    token_referer = local_token_referer
-    } else {
-    token_referer = production_token_referer
-    }
-
-    /**/
-    // . . end .  .  . token
-    /**/
 
 
 
