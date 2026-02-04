@@ -1499,8 +1499,13 @@ jstree_root_folder(folder_structure_flatjson, ___url_string,  _organization, ___
     
     $("#root-more-info").html(_html_for_f_json)         
 
+    // json for root, never hide, so never need show up. But json for map server, for icon (app), often hidden, must run show up  
     //$("#json-root").show();
-    editor_json_root.set({json:root})
+    // knowing issue, editor not yet load completed, then server.html try to set json on it, cause error. 
+    // not fix, how to await json editor load completed, then run other code?
+    if (editor_json_root){
+        editor_json_root.set({json:root})
+    }
 
     
     /**/

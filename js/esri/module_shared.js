@@ -1,13 +1,13 @@
 // warning : this is only for ESRI folder hub use, 
 // not for dynamic layers
 
-
+// knowing issue, editor not yet load completed, then server.html try to set json on it, cause error. 
+// not fix, how to await json editor load completed, then run other code?
 
 
             //import { JSONEditor } from 'https://unpkg.com/vanilla-jsoneditor@0.17.2/index.js'
-            import { JSONEditor } from '../../js/lib/new_jsoneditor/vanilla_jsoneditor_index.js'
-
-
+           import { JSONEditor } from '../../js/lib/new_jsoneditor/vanilla_jsoneditor_index.js'
+           
 
 
             let content_json_root = {
