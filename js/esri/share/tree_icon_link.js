@@ -67,10 +67,10 @@ function create_click_link(event, data) {
             console.log('before verify,   layer id  : ' + _selected_layer_id[0] + "   + layer name  ->   " + _selected_layer_name[0]  + "    + link type ->   " +  _selected_link_type[0] + "    + absolute_path ->   " + _selected_path[0] + "    + server_path ->   " + _selected_server_path[0])
 
            
-
-if ((_selected_layer_id[0]) && 
-    (_selected_layer_name[0]) && 
-    (_selected_link_type[0] !== "folder") && 
+// layer id could be 0, do not use layer id
+//if ((_selected_layer_id[0]) &&    
+//if ((_selected_layer_name[0]) && 
+if ((_selected_link_type[0] !== "folder") && 
     (_selected_path[0]) &&
     (_selected_server_path[0]) 
   ){
