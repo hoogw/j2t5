@@ -209,28 +209,6 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
 
 
 
-
-
-                /*
-                    icon_item = { 
-                        "id" :  577,     
-                        "parent" : 10,
-                        "text" : esri_svg + " Esri Forever",
-                        "icon" : folder_icon,
-                        "link_type": "folder",   
-                        "state"       : {
-                        // use this opened line for always default open this folder
-                                        "opened"    :false, //  iconJstreeforceOpen,   // is the node open
-                                        // disabled  : boolean  // is the node disabled
-                                        // "selected"  : true   // is the node selected
-                                    }
-                    };
-                    icon_flatjson.push(icon_item) 
-                    */
-
-
-
-
                     icon_item = { 
                         "id" :  579,     
                         "parent" : 10,
@@ -302,40 +280,6 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
                     icon_flatjson.push(icon_item) 
                    
 
-
-
-
-
-                      /*  not use legend, replace with individual
-
-                       icon_item = { 
-                        "id" :  970,     
-                        "parent" : 10,
-                        "text" : "Legend" + pin_svg,
-                        "icon" : folder_icon,
-                        "link_type": "folder",   
-                        "state"       : {
-                        // use this opened line for always default open this folder
-                                        "opened"    : false,  // is the node open
-                                        // disabled  : boolean  // is the node disabled
-                                        // "selected"  : true   // is the node selected
-                                    }
-                    };
-                    icon_flatjson.push(icon_item)
-                    */
-
-
-
-                    
-
-                   
-
-
-
-
-
-
-                      
 
 
 
@@ -440,16 +384,7 @@ function feature_layer_flatjson(_map_server_url_, _layer_id_,  _layer_name_ , _t
 
 
 //  ------------------------- end --- top -------- level -----------------------------------------
-// --- end  --- only  --- top level brand  --- ---
 
-
-
-
-
-
-/**/
-// = = = = Embed this map in your website = = = =
-/**/
 
 
 

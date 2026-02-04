@@ -1336,6 +1336,12 @@ case "embed_6392":
     console.log('_newTab_link', _newTab_link)
   break;
 
+  case "mobile_6392":
+      var _newTab_link =  url_for_google.replace('google.html?', 'hover.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+     document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+
   case "embed_6391":
       var _newTab_link =  url_for_google.replace('google.html?', 'streetview.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
       document.getElementById("map-window-iframe").src = _newTab_link;
@@ -2499,6 +2505,11 @@ case "embed_3953":
     console.log('_newTab_link', _newTab_link)
   break;
   case "embed_7760":
+      var _newTab_link =  apple_base_url.replace('default.html?', 'hover.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
+      document.getElementById("map-window-iframe").src = _newTab_link;
+    console.log('_newTab_link', _newTab_link)
+  break;
+  case "mobile_7760":
       var _newTab_link =  apple_base_url.replace('default.html?', 'hover.html?') + '&layer_id=' + _selected_layer_id[0]  + '&url=' + _selected_server_path[0]   
       document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
