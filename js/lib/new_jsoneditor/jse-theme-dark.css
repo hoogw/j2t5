@@ -1,4 +1,31 @@
 .jse-theme-dark {
+
+
+
+  /* custom font size
+      https://github.com/josdejong/svelte-jsoneditor/blob/develop/examples/browser/custom_theme_color.html
+
+
+       <div id="my-jsoneditor"></div>
+        #my-jsoneditor {
+          //define a custom theme color and font size 
+          --jse-theme-color: #ec1897;
+          --jse-theme-color-highlight: #f553b5;
+          --jse-font-size: 24px;
+          --jse-font-size-mono: 24px;
+
+          width: 600px;
+          height: 500px;
+        }
+
+
+  */
+  --jse-font-size: xx-small;
+  --jse-font-size-mono: xx-small;
+
+
+
+
   --jse-theme: dark;
 
   /* over all fonts, sizes, and colors */
