@@ -227,7 +227,13 @@ var icon_flatjson = [];
 
                                                                     //  - -- - only for mobile  - -- -
 
-                                                                    if (selected_node_type == "folder"){
+                                                                    // only for 2 panel 
+                                                                    if ((selected_node_type == "folder") || 
+                                                                        (selected_node_type == "Group Layer"))
+                                                                    {
+
+
+                                                                        console.log('  disable render folder or Group Layer, because it too complicated ')
 
                                                                     } else {
                                                                                 // user click one item in root folder

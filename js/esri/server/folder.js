@@ -239,6 +239,8 @@ var icon_flatjson = [];
 
 
                                                                     //  - -- - only for mobile  - -- -
+
+                                                                    // only for 3 panel
                                                                     if (selected_node_type == "folder"){
 
                                                                              console.log('disable render folder, because it too complicated')
