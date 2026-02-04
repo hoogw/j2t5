@@ -106,9 +106,17 @@ a {
 .flex-3-left,
 .flex-3-middle,
 .flex-3-right,
+
 /* for 2 panel */
 .flex-2-left,
 .flex-2-right,
+
+
+/* for 4 panel */
+.flex-4-panel-1,
+.flex-4-panel-2,
+.flex-4-panel-3,
+.flex-4-panel-4,
 
 
 /* for map in middle, have left, right, 3 panel */
@@ -142,6 +150,9 @@ a {
       width: 800px ;
     }
 
+
+
+
     .flex-2-left {
       flex: 1 1 auto ;
     }
@@ -151,6 +162,22 @@ a {
     }
 
     
+
+    .flex-4-panel-4 {
+      flex: 1 1 auto ;
+    }
+    .flex-4-panel-1 {
+      flex: 0 0 auto ;
+      width: 400px ;
+    }
+    .flex-4-panel-2 {
+      flex: 0 0 auto ;
+      width: 400px ;
+    }
+    .flex-4-panel-3 {
+      flex: 0 0 auto ;
+      width: 400px ;
+    }
 
 
 
@@ -169,6 +196,19 @@ a {
               width: 1200px ;
             }
 
+
+             .flex-4-panel-1 {
+                flex: 0 0 auto ;
+                width: 350px ;
+              }
+              .flex-4-panel-2 {
+                flex: 0 0 auto ;
+                width: 350px ;
+              }
+              .flex-4-panel-3 {
+                flex: 0 0 auto ;
+                width: 350px ;
+              }
            
             
           }
@@ -187,6 +227,19 @@ a {
               width: 1000px ;
             }
 
+
+            flex-4-panel-1 {
+                flex: 0 0 auto ;
+                width: 300px ;
+              }
+              .flex-4-panel-2 {
+                flex: 0 0 auto ;
+                width: 300px ;
+              }
+              .flex-4-panel-3 {
+                flex: 0 0 auto ;
+                width: 300px ;
+              }
            
           }
 
@@ -202,6 +255,20 @@ a {
               flex: 0 0 auto ;
               width: 800px ;
             }
+
+
+             flex-4-panel-1 {
+                flex: 0 0 auto ;
+                width: 250px ;
+              }
+              .flex-4-panel-2 {
+                flex: 0 0 auto ;
+                width: 250px ;
+              }
+              .flex-4-panel-3 {
+                flex: 0 0 auto ;
+                width: 250px ;
+              }
 
            
           }
@@ -219,7 +286,18 @@ a {
               width: 600px ;
             }
 
-           
+             flex-4-panel-1 {
+                flex: 0 0 auto ;
+                width: 200px ;
+              }
+              .flex-4-panel-2 {
+                flex: 0 0 auto ;
+                width: 200px ;
+              }
+              .flex-4-panel-3 {
+                flex: 0 0 auto ;
+                width: 200px ;
+              }
             
           }
 
@@ -237,6 +315,18 @@ a {
             }
 
 
+              flex-4-panel-1 {
+                flex: 0 0 auto ;
+                width: 150px ;
+              }
+              .flex-4-panel-2 {
+                flex: 0 0 auto ;
+                width: 150px ;
+              }
+              .flex-4-panel-3 {
+                flex: 0 0 auto ;
+                width: 150px ;
+              }
 
 
           }
@@ -255,6 +345,18 @@ a {
             }
 
           
+            flex-4-panel-1 {
+                flex: 0 0 auto ;
+                width: 50px ;
+              }
+              .flex-4-panel-2 {
+                flex: 0 0 auto ;
+                width: 50px ;
+              }
+              .flex-4-panel-3 {
+                flex: 0 0 auto ;
+                width: 50px ;
+              }
 
           }
 

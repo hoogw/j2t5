@@ -23,31 +23,29 @@
   <body>
 
 
-    <div class='full_screen_flex_container_row'>
+    <div class='flex-container'>
 
-      <div id='sidebar-container' class='flex_1'>
+      <div class='flex-2-left'>
 
        <!-- ------- let's go to your REST api  ------- --> 
-          <div id="let-us-go-to-your-REST-api">  
-            
-            <button id="letsgo" class="letsgo">Start</button>
+       <div id="let-us-go-to-your-REST-api">  
+          
+        <button id="letsgo" class="letsgo">Start</button>
 
 
-            
-                <button id="small-text-button">small text</button>
-                <button id="standard-text-button">standard</button>
-                <button id="large-text-button">large text</button>
-                
-                <button id="iphone-button">iphone</button>
-                <button id="desktop-button">desktop</button>
-                <button id="4k-button">4k-TV</button>
-        
-                       
-            <input id="current_rest_api_endpoint" class="current_rest_api_endpoint" type="search" placeholder="e.g. https://xxx.gov/arcgis/rest/services  e.g. https://services.arcgis.com/xxx/ArcGIS/rest/services"/>
-          </div>
+      
+          <button id="small-text-button">small text</button>
+          <button id="standard-text-button">standard</button>
+          <button id="large-text-button">large text</button>
+   
+
+        <textarea style="width:100%;" id="current_rest_api_endpoint" class="current_rest_api_endpoint" type="search" placeholder="e.g. https://xxx.gov/arcgis/rest/services  e.g. https://services.arcgis.com/xxx/ArcGIS/rest/services">
+        </textarea>
+     </div>
+     
+     <!--  end ------- let's go to your REST api  ------- --> 
             
          
-        <!--  end ------- let's go to your REST api  ------- --> 
 
 
       <div id="message_root_folder"></div>
@@ -69,7 +67,7 @@
 
       </div>
 
-      <div id='right-sidebar-container' class='flex_1'>
+      <div class='flex-2-right'>
 
          
          <!-- ------- login with token  ------- --> 
@@ -102,8 +100,8 @@
 
         </fieldset>
 
-      <!--  ------- end ------- login with token  ------- --> 
 
+         <!--  ------- end ------- login with token  ------- --> 
 
         
 
@@ -118,9 +116,10 @@
         </div>
 
        
+
         <div id="jstree_icon"></div>
         <div id="inside_folder_item_list"></div>
-       
+        
 
         <div id="view_mapserver_on"> </div>
         <div id="icon_list"> </div>
@@ -203,8 +202,8 @@
          
         
           
-          <link href="../../stylesheets/color.css" rel="stylesheet" type="text/css"/>
-
+          <link href="../../stylesheets/full-screen.css" rel="stylesheet" type="text/css"/>
+          
          
          
 
