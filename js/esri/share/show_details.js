@@ -640,6 +640,7 @@ async function get_mapserver_info_html(mapserver_url){
     _html_for_f_json += '</a>'
                 
     $("#json-mapserver").show();
+    console.log('e d i t o r _ j s o n _ m a p s e r v e r ,  mapServerRootJson :', mapServerRootJson)
     editor_json_mapserver.set({json:mapServerRootJson})
 
     
