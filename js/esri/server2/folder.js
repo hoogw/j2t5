@@ -1676,7 +1676,7 @@ jstree_root_folder(folder_structure_flatjson, ___url_string,  _organization, ___
 
                                                                                                                     
                                                             // always before await ajax, show ajax url , instead of show progressing bar
-                                                            progressing_info('folder', _parent_id, _url_mapserver);
+                                                            //progressing_info('folder', _parent_id, _url_mapserver);
 
 
                                                             raw_mapserver =await arcgis_ajax_cross_origin(_url_mapserver, _cross);  // cross origin method 
