@@ -1010,11 +1010,11 @@
               //if (_value.length == 0){   // layer id could be 0,  (0 == null) (0 == '') are all true, I actually want it be false since 0 is a valid layer id.  undefined/null or empty string is invalid layer id. so use  (layer-id.length == 0)
                        // remove this param from uRL
                           _____searchParams.delete(_field);
-                          console.log("delete url parameter: _field", _field );
+                          console.log("delete url parameter(field)-->", _field );
               } else {
                       // update this param from uRL
                           _____searchParams.set(_field, _value);
-                          console.log("update url parameter: _field _value", _field + " + "+ _value);
+                          console.log("update url parameter(field=value)-->", _field + "="+ _value);
               }
 
               // this cause reload  https://stackoverflow.com/questions/5999118/how-can-i-add-or-update-a-query-string-parameter

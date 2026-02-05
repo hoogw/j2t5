@@ -1832,7 +1832,7 @@ require([
                                                   
                                     // if ((_value) && (_value.length !== 0)) {
 
-                                          console.log("update url parameter: _field _value", _field + " + "+ _value);
+                                          console.log("update url parameter(field=value)-->", _field + "="+ _value);
 
                                           var _____searchParams = new URLSearchParams(window.location.search);
                                           _____searchParams.set(_field, _value);

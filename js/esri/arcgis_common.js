@@ -1343,7 +1343,7 @@ function init_global_var(){
                     
                    // if ((_value) && (_value.length !== 0)) {
 
-                                console.log("update url parameter: _field _value", _field + " + "+ _value);
+                                console.log("update url parameter(field=value)-->", _field + "="+ _value);
 
                                 var searchParams = new URLSearchParams(window.location.search);
                                 searchParams.set(_field, _value);
