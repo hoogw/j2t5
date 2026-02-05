@@ -483,6 +483,37 @@ async function scan_any_single_server(){
     
 
 
+// for GeocodeServer, VectorTileServer, ImageServer  , SceneServer ,.... for 3 panel only, for middle service panel only,  j s t r e e _mapserver() [middle panel]
+            //  ....... add root item  ....... 
+            var singleServer_icon = SceneServer_icon;
+            var layer_item = { 
+
+                "id" :  -1,     // -1 defined by arcgis rest api, they define top level item's parent id is -1, we must follow this rule
+                
+                "parent" : "#",
+                "text" : singleServer_display_text,
+                "icon" : singleServer_icon,
+                "state"       : {
+                                    "opened"    : true,  // is the node open
+                                    // disabled  : boolean  // is the node disabled
+                                    // "selected"  : true   // is the node selected
+                                },
+                "absolute_path" : _url_singleServer,
+            };
+            // 1 time, first time run, add root item
+            singleServer_flatjson.push(layer_item) 
+            //  .......   end ....... add root item  ....... 
+
+
+
+            
+
+
+
+
+
+//  .......   end ....... for GeocodeServer, VectorTileServer, ImageServer  , SceneServer ,.... for 3 panel only, for middle service panel only,  j s t r e e _mapserver() [middle panel]
+ 
 
 
 

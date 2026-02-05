@@ -95,6 +95,28 @@ var mapserver_legend
 
 
 
+
+// top level folder jstree
+var folder_structure_flatjson= [];
+
+// 2nd level service (mapserver) jstree
+var mapserver_flatjson = [];
+var singleServer_flatjson = [];
+
+// 3nd level icon jstree
+var icon_flatjson = [];
+
+
+
+var iconJstreeNodeOpened =  false; // true is expanded all,  false is collapse all 
+var iconJstreeforceOpen = true;
+
+;
+
+
+
+
+
         /**/
         //  ... ... .. ... subtype domain ... ... .. ( new jsoneditor, https://github.com/josdejong/svelte-jsoneditor/issues/265,   https://jsbin.com/yuwapaj/edit?html,output)
         /**/

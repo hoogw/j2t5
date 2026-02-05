@@ -48,20 +48,6 @@ var iconJstreeforceOpen = true;
 
 
 
-// top level folder jstree
-var folder_structure_flatjson= [];
-
-// 2nd level service (mapserver) jstree
-var mapserver_flatjson = [];
-var singleServer_flatjson = [];
-
-// 3nd level icon jstree
-var icon_flatjson = [];
-
-
-
-
-
             // not use, only show as sample, later will re-populate  with real data
             folder_structure_flatjson = [
                                                                 
@@ -2164,7 +2150,7 @@ async function render_mapserver(_parent_id){
                 "type" : singleServiceType                                                    
             };
             // 1 time, first time run, add root item
-            mapserver_flatjson.push(layer_item) 
+            singleServer_flatjson.push(layer_item) 
             //  ....... add  root item  ....... 
 
 
@@ -2173,7 +2159,7 @@ async function render_mapserver(_parent_id){
 
 
             // no other layer, only 1 root item
-            jstree_mapserver(mapserver_flatjson, current_singleServerEndpoint_url, mapserver_display_text)
+            jstree_mapserver(singleServer_flatjson, current_singleServerEndpoint_url, mapserver_display_text)
     }
 
 

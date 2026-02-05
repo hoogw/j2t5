@@ -31,23 +31,6 @@
 
 
 
-var iconJstreeNodeOpened =  false; // true is expanded all,  false is collapse all 
-var iconJstreeforceOpen = true;
-
-
-
-// top level folder jstree
-var folder_structure_flatjson= [];
-
-// 2nd level service (mapserver) jstree
-var mapserver_flatjson = [];
-var singleServer_flatjson = [];
-
-// 3nd level icon jstree
-var icon_flatjson = [];
-
-
-
 
 
             // not use, only show as sample, later will re-populate  with real data
