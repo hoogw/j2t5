@@ -1,8 +1,7 @@
 
 // service (singleServer) jstree
-
-
-
+var singleServer_flatjson = []
+var current_type // can be use for any thing
 
 
 // because raw single server json does not tell me what type of server, so I need to see
@@ -30,10 +29,85 @@ async function scan_any_single_server(){
    // it only have mapName, which maybe same as true map server name, so do not use 
    
 
-    
-    var singleServer_display_text = _organization;
+ 
+   // determine single server type by url 
+   // all-in-1 folder.js can get server type from root folder json, js tree node. 
+   // but this seperated server.js can not do that
+    if (___url_string){
+
+        ___url = new URL(___url_string);   // ?url=https://sampleserver3.arcgisonline.com/ArcGIS/rest/services
+        ___pathname = ___url.pathname; //    /ArcGIS/rest/services
+        ___pathArray = ___pathname.split('/');
+        // https://maps.lacity.org/arcgis/rest/services/Mapping/NavigateLA/GPServer    
+        // ___pathArray = ["", "arcgis", "rest", "services", "Mapping", "NavigateLA", "MapServer"]
+        console.log("url path array", ___pathArray)
+        current_type = ___pathArray[___pathArray.length -1]
+        _organization = ___pathArray[___pathArray.length - 2]
+    }
+
+
+    var service_name_and_type = _organization + ' ' + '<sup>' + current_type + '</sup>';
+
+    var singleServer_icon = mapservice_icon;
+    switch(current_type) {
+        case "MapServer":
+        case "FeatureServer":
+            singleServer_icon = mapservice_icon
+        break;
+
+        
+
+        case "VectorTileServer":
+            singleServer_icon = VectorTileServer_icon
+        break;
+
+        case "ImageServer":
+            singleServer_icon = ImageServer_icon
+        break;
+
+        
+
+
+        case "SceneServer":
+            singleServer_icon = SceneServer_icon
+        break;
+
+
+        case "GeocodeServer":
+            singleServer_icon = GeocodeServer_icon
+        break;
+
+
+        case "NAServer":
+            singleServer_icon = NAServer_icon
+        break;
+
+        default:
+        singleServer_icon = GroupLayer_icon
+    }
     
    
+    //  ....... add root item  ....... 
+
+    // default for all geocode, naServer, imageServer, featureServer, mapServer, all use same icon here.
+    var layer_item = { 
+
+        "id" :  -1,     // -1 defined by arcgis rest api, they define top level item's parent id is -1, we must follow this rule
+        
+        "parent" : "#",
+        "text" : service_name_and_type,
+        "icon" : singleServer_icon,
+        "state"       : {
+                            "opened"    : true,  // is the node open
+                            // disabled  : boolean  // is the node disabled
+                            // "selected"  : true   // is the node selected
+                        },
+        "absolute_path" : _url_singleServer,
+    };
+    // 1 time, first time run, add root item
+    singleServer_flatjson.push(layer_item) 
+    //  .......   end ....... add root item  ....... 
+
 
 
 
@@ -45,27 +119,6 @@ async function scan_any_single_server(){
             console.log(" have .layers array is MapServer or FeatureServer ")
 
 
-
-            
-            //  ....... add root item  ....... 
-            var singleServer_icon = mapservice_icon;
-            var layer_item = { 
-
-                "id" :  -1,     // -1 defined by arcgis rest api, they define top level item's parent id is -1, we must follow this rule
-                
-                "parent" : "#",
-                "text" : singleServer_display_text,
-                "icon" : singleServer_icon,
-                "state"       : {
-                                    "opened"    : true,  // is the node open
-                                    // disabled  : boolean  // is the node disabled
-                                    // "selected"  : true   // is the node selected
-                                },
-                "absolute_path" : _url_singleServer,
-            };
-            // 1 time, first time run, add root item
-            singleServer_flatjson.push(layer_item) 
-            //  .......   end ....... add root item  ....... 
 
 
 
@@ -294,28 +347,6 @@ async function scan_any_single_server(){
 
 
 
-            //  ....... add root item  ....... 
-            var singleServer_icon = table_icon;
-            var layer_item = { 
-
-                "id" :  -1,     // -1 defined by arcgis rest api, they define top level item's parent id is -1, we must follow this rule
-                
-                "parent" : "#",
-                "text" : singleServer_display_text,
-                "icon" : singleServer_icon,
-                "state"       : {
-                                    "opened"    : true,  // is the node open
-                                    // disabled  : boolean  // is the node disabled
-                                    // "selected"  : true   // is the node selected
-                                },
-                "absolute_path" : _url_singleServer,
-            };
-            // 1 time, first time run, add root item
-            singleServer_flatjson.push(layer_item) 
-            //  .......   end ....... add root item  ....... 
-
-
-
             // feature table 
             var mapserver_tables_id, 
                 mapserver_tables_name, 
@@ -484,29 +515,9 @@ async function scan_any_single_server(){
 
 
 // for GeocodeServer, VectorTileServer, ImageServer  , SceneServer ,.... for 3 panel only, for middle service panel only,  j s t r e e _mapserver() [middle panel]
-            //  ....... add root item  ....... 
-            var singleServer_icon = SceneServer_icon;
-            var layer_item = { 
-
-                "id" :  -1,     // -1 defined by arcgis rest api, they define top level item's parent id is -1, we must follow this rule
-                
-                "parent" : "#",
-                "text" : singleServer_display_text,
-                "icon" : singleServer_icon,
-                "state"       : {
-                                    "opened"    : true,  // is the node open
-                                    // disabled  : boolean  // is the node disabled
-                                    // "selected"  : true   // is the node selected
-                                },
-                "absolute_path" : _url_singleServer,
-            };
-            // 1 time, first time run, add root item
-            singleServer_flatjson.push(layer_item) 
-            //  .......   end ....... add root item  ....... 
+           
 
 
-
-            
 
 
 
@@ -519,9 +530,9 @@ async function scan_any_single_server(){
 
 
     // must keep at bottom, if flat json is empty means, this is not supported type of single server
-    if (singleServer_flatjson.length > 1 ){
+    if (singleServer_flatjson.length > 0 ){
                 // flatjson include both layers:[] and tables:[],  tables all attached to table group folder
-                jstree_mapserver_for_mobile(singleServer_flatjson, _url_singleServer, singleServer_display_text)
+                jstree_mapserver_for_mobile(singleServer_flatjson, _url_singleServer, service_name_and_type)
     }else {
         //only have 1 root item, means, no layers:[],  no table:[] , or both are empty, show error,   mapserver url 
         console.log("mapserver url error ...>> ",JSON.stringify(raw_singleServer) )
@@ -551,9 +562,6 @@ function jstree_mapserver_for_mobile(mapserver_alllayers_flatjson, mapserver_url
         // must attach '?f=html' at end of url, otherwise vectortile , scene url will use f=json by default 
         _html_for_message_mapserver     = '<a target="_blank" id="_mapserver_link" href="' +  mapserver_url + '?f=html" style="font-weight: bolder;">'  
         _html_for_message_mapserver    +=    mapserver_url_display_text 
-        if (current_type){
-            _html_for_message_mapserver    +=    '<sup>' + current_type + '</sup>'
-        }
         _html_for_message_mapserver    += '</a>'
 
       

@@ -388,7 +388,7 @@ var  base_url = '';
   
   var urlParams;
   var ___url_string;
-  var current_type // can be use for any thing
+  
   
 
 
