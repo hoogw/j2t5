@@ -2083,7 +2083,7 @@ async function render_mapserver(_parent_id){
     // for GeocodeServer, VectorTileServer, ImageServer  , SceneServer ,.... for 3 panel only, for middle service panel only,  j s t r e e _mapserver() [middle panel]
     async function render_singleserver(_parent_id){
 
-        singleServer_flatjson = []
+        mapserver_flatjson = []
         console.log('render single server  id : ', _parent_id )
         console.log('render single server  node[id] : ', folder_structure_flatjson[_parent_id])
         
@@ -2150,7 +2150,7 @@ async function render_mapserver(_parent_id){
                 "type" : singleServiceType                                                    
             };
             // 1 time, first time run, add root item
-            singleServer_flatjson.push(layer_item) 
+            mapserver_flatjson.push(layer_item) 
             //  ....... add  root item  ....... 
 
 
@@ -2159,7 +2159,7 @@ async function render_mapserver(_parent_id){
 
 
             // no other layer, only 1 root item
-            jstree_mapserver(singleServer_flatjson, current_singleServerEndpoint_url, mapserver_display_text)
+            jstree_mapserver(mapserver_flatjson, current_singleServerEndpoint_url, mapserver_display_text)
     }
 
 
