@@ -1815,9 +1815,6 @@ async function render_mapserver(_parent_id){
                                                         console.log( 'render 2ndTier-NAserver root response  ', raw_NAserver)
 
 
-                                                        var NAserver_display_text = folder_item.text;
-                                                        var NAserver_icon = folder_item.icon;
-
 
 
                                                         //  ....... add mapserver root item  ....... 
@@ -1826,8 +1823,8 @@ async function render_mapserver(_parent_id){
                                                                     "id" :  -1,     // -1 defined by arcgis rest api, they define top level item's parent id is -1, we must follow this rule
                                                                     
                                                                     "parent" : "#",
-                                                                    "text" : NAserver_display_text,
-                                                                    "icon" : NAserver_icon,
+                                                                    "text" : folder_item.text,
+                                                                    "icon" : folder_item.icon,
                                                                     "state"       : {
                                                                                         "opened"    : true,  // is the node open
                                                                                         // disabled  : boolean  // is the node disabled

@@ -57,7 +57,7 @@
             var ImageServer_icon = "bi bi-images"
             var SceneServer_icon = "bi bi-map"
             var GeocodeServer_icon = "bi bi-cursor" //"bi bi-pin-map"
-var NAServer_icon = "bi bi-sign-turn-right"
+            var NAServer_icon = "bi bi-sign-turn-right"
             var unknow_server_icon = "bi bi-stack"
 
             var AnnotationLayer_icon = "bi bi-play-fill taupe"
@@ -85,6 +85,7 @@ var _html_for_more_info_icon  = ''
 
 
 var raw_mapserver  // global var  mapserver json
+var raw_singleServer
 
 // legend
 var mapserver_legend
