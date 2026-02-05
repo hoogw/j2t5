@@ -131,12 +131,15 @@ $('#jstree_icon')
       // listen for event https://www.jstree.com/api/#/?q=.jstree%20Event
       // these 2 line, they will NOT fire event, if you click a already selected node, it only fire event if selected node changed.
       //.on('select_node.jstree', create_click_link) 
-      .on('changed.jstree', create_click_link) 
+      //.on('changed.jstree', create_click_link) 
 
 
       // Warning: if you want to always fire event, even on a already selected node, use this line, 
       // the down stream code also need change, otherwise will not works 
-      //.on('activate_node.jstree', create_click_link) 
+      // also bind selected node changed event is for pre-select, otherwise, will not pre-select layer in service(server) 
+      .on('activate_node.jstree changed.jstree', create_click_link) 
+
+
 
 
 

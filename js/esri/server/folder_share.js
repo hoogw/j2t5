@@ -96,12 +96,13 @@ $('#jstree_icon')
       // listen for event https://www.jstree.com/api/#/?q=.jstree%20Event
       // these 2 line, they will NOT fire event, if you click a already selected node, it only fire event if selected node changed.
       //.on('select_node.jstree', create_click_link) 
-      .on('changed.jstree', create_click_link) 
+      //.on('changed.jstree', create_click_link) 
 
 
       // Warning: if you want to always fire event, even on a already selected node, use this line, 
       // the down stream code also need change, otherwise will not works 
-      //.on('activate_node.jstree', create_click_link) 
+      // also bind selected node changed event is for pre-select, otherwise, will not pre-select layer in service(server) 
+      .on('activate_node.jstree changed.jstree', create_click_link) 
 
 
 
@@ -361,291 +362,282 @@ $('#jstree_icon')
             // listen for event https://www.jstree.com/api/#/?q=.jstree%20Event
             // these 2 line, they will NOT fire event, if you click a already selected node, it only fire event if selected node changed.
             //.on('select_node.jstree', function (e, data) {
-            .on('changed.jstree', function (e, data) {
+            //.on('changed.jstree', function (e, data) {
 
                 
             // Warning: if you want to always fire event, even on a already selected node, use this line, 
             // the down stream code also need change, otherwise will not works
-            //.on('activate_node.jstree', function (e, data) {
+            // also bind selected node changed event is for pre-select, otherwise, will not pre-select layer in service(server) 
+            .on('activate_node.jstree changed.jstree', function (e, data) {
                                             
 
                     
 
 
+
+                console.log('click select service-layer node event ', data)
+
+
+
+                
+
+                var selected_node_id = data.node.original.id
+                var selected_node_path = data.node.original.absolute_path
+                var selected_node_text = data.node.original.text
+                var selected_node_relative_path = data.node.original.relative_path
+                var selected_node_type = data.node.original.type
+
+
+            
+                update_url_parameter('select_layer', selected_node_id);
+                update_url_parameter('select_layer_text', selected_node_text);
+
+
+                var _____type = selected_node_type;
+                
+                //   "Raster Layer",   "Raster Catalog Layer" 
+                if (_____type.includes("Raster")) {
+
+                    _____type = "Raster Layer";
+                }
+
+
+
+                    empty_icon_panel_only_tag()
+
+
+
+
+
+
+                    
+
+        //  - -- - only for mobile  - -- -
+
+        // disable render group layer, because it is too complicated
+        if (_____type =="Group Layer"){
+
+        console.log(" disable render group layer, because it is too complicated ")
+
+        } else {
+
+        // user click one layer in map server div 
+        $("#back-3-panel").show();
+        $("#root-folder-div").hide();
+        $("#map-server-div").hide();
+        $("#app-div").show();
+        $("#map-window-iframe").hide();
+
+        }//if
+
+        //  - -- - end  - -- -   only for mobile  - -- -
+
+
+
+
+
+                //switch(_selected_type[0]) {     // this is true value
+                switch(_____type) {               // this is generalized value
+
+
+                    //  - - - -  feature layer  type  - - - - 
+                    /**/
+                        // Do not confuse with 'FeatureServer'(no space between),  'Feauter Layer'(have space between)
+                        case "Feature Layer": 
+                        case "Annotation Layer":
+                                            console.log('render MapServer(featureServer) -- feature layer --')
+                                            show_icon_tag()
+                                            // show icon , 
+                                            render_feature_layer(selected_node_id)
+                                            // for 3 panel only, because already have map.server.full.json, do not need ajax again show layer legend,  
+                                            show_legend(selected_node_id, mapserver_legend)
+                        break;
+
+
+                        case "Table":
+                            console.log('render MapServer(featureServer) -- table --')
+                            show_icon_tag()
+
+                            // show icon ,
+                            render_table(selected_node_id)
+                    break;
+
+                    case "Raster Layer": 
+                                console.log('render MapServer -- raster layer --')
+                                // show icon , with 
+                                render_raster_layer(selected_node_id)
+                                // for 3 panel only, show layer legend,because already have map.server.full.json, do not need ajax again show layer legend,  
+                                show_legend(selected_node_id, mapserver_legend)
+                    break;
+
+
+                //   - - - -   end - - - -  feature layer  type  - - - - 
+
+                        
+                
+                        case "Group Layer":
+                        // show list of child item, no jstree, only list item
+                        console.log(" disable render group layer, because it is too complicated ", selected_node_id)
+                        // disable render group layer, because it is too complicated
+                        //render_group_layer(selected_node_id)
+                        break;
+
+                    
+                    
+                /**/
+                //  - - - -  map server type  - - - - 
+
+                    
+                    case "MapServer":
+                    case "FeatureServer":
+                                render_viewMapServerOn_layer(selected_node_path, selected_node_text)
                                             
-                                                    console.log('click select service-layer node event ', data)
-                                                    var i, j,  _selected_path = [], _selected_relative_path = [], _selected_text = [], _selected_id = [], _selected_type = [];
+                    break;
 
-                                                    for(i = 0, j = data.selected.length; i < j; i++) {
-                                                        _selected_path.push(data.instance.get_node(data.selected[i]).original.absolute_path);
-                                                        _selected_text.push(data.instance.get_node(data.selected[i]).text);
-            _selected_relative_path.push(data.instance.get_node(data.selected[i]).original.relative_path);
-                                                        _selected_id.push(data.instance.get_node(data.selected[i]).id);
-                                                        // must use .original.type, because re-structured json does not carry our customized field 'type'
-                                                        _selected_type.push(data.instance.get_node(data.selected[i]).original.type);
-                                                    }
-                                                    
-                                                    
-                                                    // only get 1st selected node, so always use    _selected_xxxxx[0] 
+                    
+                    case "VectorTileServer": 
+                            console.log('render vector tile server -- #layer# -- ')
+                            // show icon , with 
+                            render_vectortile_layer(selected_node_id)
+                    break;
 
-                                                    //$('#event_result').html('Selected: ' + r.join(', '));
-                                                    console.log('Selected id  -> ' + _selected_id[0])
-                                                    console.log('Selected text ->' + _selected_text[0] )
-                                                    console.log('Selected type ->' +  _selected_type[0])
-                                                    console.log('Selected absolute_path -> ' + _selected_path[0])
 
-                                                   
+                    case "ImageServer": 
+                                        // show icon , with 
+                                        render_image_layer(selected_node_id)
 
-                                                
-                                                    update_url_parameter('select_layer', _selected_id[0]);
-                                                    update_url_parameter('select_layer_text', _selected_text[0]);
+                                        // show layer legend
+                                        // single server only have 1 layer, selected_node_id is always -1 , 
+                                        // however in legend layers, that single layer id is 0, 
+                                        // can't use selected_node_id which is always -1
+                                        // show_legend(selected_node_id, mapserver_legend)
 
+                                        // single layer id is always 0
+                                        show_legend(0, mapserver_legend)
 
-                                                    var _____type = _selected_type[0];
-                                                    
-                                                    //   "Raster Layer",   "Raster Catalog Layer" 
-                                                    if (_____type.includes("Raster")) {
+                    break;
 
-                                                        _____type = "Raster Layer";
-                                                    }
+                    case "GeocodeServer":
+                                console.log('render geocode server --  -- ')
+                                render_geocode_layer(selected_node_id)
+                    break;
 
+                    
 
 
-                                                     empty_icon_panel_only_tag()
+                    case "SceneServer": 
+                                console.log('render scene server -- #layer# --')
+                                // show icon , with 
+                                render_scene_layer(selected_node_id)
+                    break;
 
 
+                //  - - - -   end   - - - -  map server type  - - - - 
 
 
 
 
-                                                     
 
-                                    //  - -- - only for mobile  - -- -
+                // . . . NAserver  . . .
 
-                                    // disable render group layer, because it is too complicated
-                                    if (_____type =="Group Layer"){
+                        case "route-layer":
+                            case "closest-facility-layer":
+                                case "service-area-layer":
+                                console.log('render network analysis NA server --  -- ')
+                                render_network_analysis_layer(selected_node_id)
+                    break;
 
-                                        console.log(" disable render group layer, because it is too complicated ")
+                    
 
-                                    } else {
+                    //  - - - -   end   - - - - . . . NAserver  . . .
 
-                                    // user click one layer in map server div 
-                                        $("#back-3-panel").show();
-                                        $("#root-folder-div").hide();
-                                        $("#map-server-div").hide();
-                                        $("#app-div").show();
-                                        $("#map-window-iframe").hide();
 
-                                    }//if
+                    
 
-                                    //  - -- - end  - -- -   only for mobile  - -- -
+                    case "unknown": 
+                            render_layer_other(selected_node_id)
+                    break;
 
 
+                    default:
+                        render_layer_other(selected_node_id)   
+                }
+                
+            
 
 
 
-                                                    //switch(_selected_type[0]) {     // this is true value
-                                                    switch(_____type) {               // this is generalized value
 
 
-                                                     //  - - - -  feature layer  type  - - - - 
-                                                     /**/
-                                                         // Do not confuse with 'FeatureServer'(no space between),  'Feauter Layer'(have space between)
-                                                         case "Feature Layer": 
-                                                         case "Annotation Layer":
-                                                                             console.log('render MapServer(featureServer) -- feature layer --')
-                                                                             show_icon_tag()
-                                                                             // show icon , 
-                                                                             render_feature_layer(_selected_id[0])
-                                                                             // for 3 panel only, because already have map.server.full.json, do not need ajax again show layer legend,  
-                                                                             show_legend(_selected_id[0], mapserver_legend)
-                                                         break;
 
+            })
 
-                                                         case "Table":
-                                                             console.log('render MapServer(featureServer) -- table --')
-                                                             show_icon_tag()
 
-                                                             // show icon ,
-                                                             render_table(_selected_id[0])
-                                                        break;
 
-                                                        case "Raster Layer": 
-                                                                    console.log('render MapServer -- raster layer --')
-                                                                    // show icon , with 
-                                                                    render_raster_layer(_selected_id[0])
-                                                                    // for 3 panel only, show layer legend,because already have map.server.full.json, do not need ajax again show layer legend,  
-                                                                    show_legend(_selected_id[0], mapserver_legend)
-                                                        break;
+            .on('ready.jstree', function (e, data) {
 
+                        // only run 1 time, first time when root folder jstree complete loaded
+                        if (firstTime_pre_select_layer){
+                            firstTime_pre_select_layer = false
+                            pre_select_layer_level()
 
-                                                   //   - - - -   end - - - -  feature layer  type  - - - - 
+                        }
+                
 
-                                                          
-                                                   
-                                                          case "Group Layer":
-                                                            // show list of child item, no jstree, only list item
-                                                            console.log(" disable render group layer, because it is too complicated ", _selected_id[0])
-                                                            // disable render group layer, because it is too complicated
-                                                            //render_group_layer(_selected_id[0])
-                                                          break;
+            })
 
-                                                        
-                                                        
-                                                    /**/
-                                                    //  - - - -  map server type  - - - - 
 
-                                                        
-                                                        case "MapServer":
-                                                        case "FeatureServer":
-                                                                    render_viewMapServerOn_layer(_selected_path[0], _selected_text[0])
-                                                                                
-                                                        break;
 
-                                                        
-                                                        case "VectorTileServer": 
-                                                                console.log('render vector tile server -- #layer# -- ')
-                                                                // show icon , with 
-                                                                render_vectortile_layer(_selected_id[0])
-                                                        break;
+            // create the instance $('#xxxx_div').jstree({ })
+            .jstree({ 
+                
 
+                                /**/
+                                // - - - filter layer list  - - - 
+                                /**/
 
-                                                        case "ImageServer": 
-                                                                            // show icon , with 
-                                                                            render_image_layer(_selected_id[0])
+                                        // doc https://www.jstree.com/api/#/?f=$.jstree.defaults.search.show_only_matches_children
+                                        'search': {
+                                            // sample https://codepen.io/JGSpark/pen/VNeRLN
+                                            'fuzzy': false, // default is false,
+                                            'case_sensitive': false, // default,
+                                            // Indicates if the tree should be filtered (by default) to show only matching nodes
+                                            'show_only_matches' : true, //false, 
+                                            //Indicates if the children of matched element are shown (when show_only_matches is true)
+                                            'show_only_matches_children': true, //false,
+                                            //Indicates if all nodes opened to reveal the search result, should be closed when the search is cleared or a new search is performed. 
+                                            'close_opened_onclear': false,   // Default is true,
+                                            // Indicates if only leaf nodes should be included in search results
+                                            'search_leaves_only' : false, // default,
+                                        },
+                                        "plugins" : [ "search" ], // not use "wholerow", it will make line icon disappear 
+                                
+                                /**/
+                                // ... end ...  - - - filter layer list  - - -
+                                /**/
+                
+                
+                'core' : {
 
-                                                                            // show layer legend
-                                                                            // single server only have 1 layer, _selected_id[0] is always -1 , 
-                                                                            // however in legend layers, that single layer id is 0, 
-                                                                            // can't use _selected_id[0] which is always -1
-                                                                            // show_legend(_selected_id[0], mapserver_legend)
+                                    'themes': {
+                                        'name': 'proton',
+                                        'responsive': true
+                                    },
+                            
 
-                                                                            // single layer id is always 0
-                                                                            show_legend(0, mapserver_legend)
+                                'data' : mapserver_alllayers_flatjson
 
-                                                        break;
 
-                                                        case "GeocodeServer":
-                                                                    console.log('render geocode server --  -- ')
-                                                                    render_geocode_layer(_selected_id[0])
-                                                        break;
 
-                                                       
 
 
-                                                        case "SceneServer": 
-                                                                 console.log('render scene server -- #layer# --')
-                                                                 // show icon , with 
-                                                                 render_scene_layer(_selected_id[0])
-                                                        break;
+                        } 
 
 
-                                                    //  - - - -   end   - - - -  map server type  - - - - 
+            })
 
+        }
 
-
-
-
-                                                    // . . . NAserver  . . .
-
-                                                         case "route-layer":
-                                                             case "closest-facility-layer":
-                                                                 case "service-area-layer":
-                                                                    console.log('render network analysis NA server --  -- ')
-                                                                    render_network_analysis_layer(_selected_id[0])
-                                                        break;
-
-                                                        
-
-                                                     //  - - - -   end   - - - - . . . NAserver  . . .
-
-
-                                                        
-
-                                                        case "unknown": 
-                                                               render_layer_other(_selected_id[0])
-                                                        break;
-
-
-                                                        default:
-                                                            render_layer_other(_selected_id[0])   
-                                                    }
-                                                    
-                                                
-
-
-
-
-
-
-                                                })
-
-
-
-                                                .on('ready.jstree', function (e, data) {
-
-                                                            // only run 1 time, first time when root folder jstree complete loaded
-                                                            if (firstTime_pre_select_layer){
-                                                                firstTime_pre_select_layer = false
-                                                                pre_select_layer_level()
-
-                                                            }
-                                                    
-
-                                                })
-
-
-
-                                                // create the instance $('#xxxx_div').jstree({ })
-                                                .jstree({ 
-                                                    
-
-                                                                    /**/
-                                                                    // - - - filter layer list  - - - 
-                                                                    /**/
-
-                                                                            // doc https://www.jstree.com/api/#/?f=$.jstree.defaults.search.show_only_matches_children
-                                                                            'search': {
-                                                                                // sample https://codepen.io/JGSpark/pen/VNeRLN
-                                                                                'fuzzy': false, // default is false,
-                                                                                'case_sensitive': false, // default,
-                                                                                // Indicates if the tree should be filtered (by default) to show only matching nodes
-                                                                                'show_only_matches' : true, //false, 
-                                                                                //Indicates if the children of matched element are shown (when show_only_matches is true)
-                                                                                'show_only_matches_children': true, //false,
-                                                                                //Indicates if all nodes opened to reveal the search result, should be closed when the search is cleared or a new search is performed. 
-                                                                                'close_opened_onclear': false,   // Default is true,
-                                                                                // Indicates if only leaf nodes should be included in search results
-                                                                                'search_leaves_only' : false, // default,
-                                                                            },
-                                                                            "plugins" : [ "search" ], // not use "wholerow", it will make line icon disappear 
-                                                                    
-                                                                    /**/
-                                                                    // ... end ...  - - - filter layer list  - - -
-                                                                    /**/
-                                                    
-                                                    
-                                                    'core' : {
-
-                                                                        'themes': {
-                                                                            'name': 'proton',
-                                                                            'responsive': true
-                                                                        },
-                                                                
-
-                                                                    'data' : mapserver_alllayers_flatjson
-
-
-
-
-
-                                                            } 
-
-
-                                                })
-
-                 }
-                      
 
 
 

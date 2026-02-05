@@ -110,43 +110,23 @@ folder_structure_flatjson = [
             // listen for event https://www.jstree.com/api/#/?q=.jstree%20Event
             // these 2 line, they will NOT fire event, if you click a already selected node, it only fire event if selected node changed.
             //.on('select_node.jstree', function (e, data) {
-            .on('changed.jstree', function (e, data) {
+            //.on('changed.jstree', function (e, data) {
 
                 
             // Warning: if you want to always fire event, even on a already selected node, use this line, 
             // the down stream code also need change, otherwise will not works
-            //.on('activate_node.jstree', function (e, data) {
+            .on('activate_node.jstree', function (e, data) {
 
 
 
 
         console.log(' click select folder node, event ', data)
-        var i, j,  _selected_path = [], _selected_relative_path = [], _selected_text = [], _selected_id = [], _selected_type = [];
 
-        for(i = 0, j = data.selected.length; i < j; i++) {
-            _selected_path.push(data.instance.get_node(data.selected[i]).original.absolute_path);
-            _selected_text.push(data.instance.get_node(data.selected[i]).text);
-            _selected_relative_path.push(data.instance.get_node(data.selected[i]).original.relative_path);
-            _selected_id.push(data.instance.get_node(data.selected[i]).id);
-            // must use .original.type, because re-structured json does not carry our customized field 'type'
-            _selected_type.push(data.instance.get_node(data.selected[i]).original.type);
-        }
-
-
-        // only get 1st selected node, so always use    _selected_xxxxx[0] 
-
-        //$('#event_result').html('Selected: ' + r.join(', '));
-        console.log('Selected node id : ' + _selected_id[0])
-        console.log('Selected node path : ' + _selected_path[0])
-        console.log('Selected node text : ' +  _selected_text[0])
-        console.log('Selected node relative path : ' +  _selected_relative_path[0])
-        console.log('Selected node type : ' +  _selected_type[0])
-
-        var selected_node_id = _selected_id[0]
-        var selected_node_path = _selected_path[0]
-        var selected_node_text = _selected_text[0]
-        var selected_node_relative_path = _selected_relative_path[0]
-        var selected_node_type = _selected_type[0]
+        var selected_node_id = data.node.original.id
+        var selected_node_path = data.node.original.absolute_path
+        var selected_node_text = data.node.original.text
+        var selected_node_relative_path = data.node.original.relative_path
+        var selected_node_type = data.node.original.type
 
 
 

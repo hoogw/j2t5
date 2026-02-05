@@ -163,244 +163,212 @@ $('#jstree_root_folder')
             // listen for event https://www.jstree.com/api/#/?q=.jstree%20Event
             // these 2 line, they will NOT fire event, if you click a already selected node, it only fire event if selected node changed.
             //.on('select_node.jstree', function (e, data) {
-            .on('changed.jstree', function (e, data) {
+            //.on('changed.jstree', function (e, data) {
 
                 
             // Warning: if you want to always fire event, even on a already selected node, use this line, 
             // the down stream code also need change, otherwise will not works
-            //.on('activate_node.jstree', function (e, data) {
+            // also bind selected node changed event is for pre-select, otherwise, will not pre-select layer in service(server) 
+            .on('activate_node.jstree changed.jstree', function (e, data) {
 
 
+                console.log(' click select folder node, event ', data)
 
+                var selected_node_id = data.node.original.id
+                var selected_node_path = data.node.original.absolute_path
+                var selected_node_text = data.node.original.text
+                var selected_node_relative_path = data.node.original.relative_path
+                var selected_node_type = data.node.original.type
 
+                if (selected_node_type){
+                    
+                }else{
+                    //   type: undefined, for v10.5 and before, type is undefined, but it is a featuerServer
+                    // _layer_url: "https://gis.anaheim.net/server/rest/services/Hosted/Test_Local_Gov_Scene_WFL1/FeatureServer"
+                    if ((selected_node_path.includes('FeatureServer')) || ( selected_node_path.includes('MapServer'))){ 
+                        selected_node_type = 'FeatureServer'                                                                               
+                            console.log('warning:  .type is undefined, but url is feature server ')
+                    }
+                }
 
 
+                update_url_parameter('select_folder', selected_node_id);
+                update_url_parameter('select_folder_text', selected_node_text);
+                update_url_parameter('select_layer', '');
 
 
-                                                                    console.log(' click select folder node, event ', data)
-                                                                    var i, j,  _selected_path = [], _selected_relative_path = [], _selected_text = [], _selected_id = [], _selected_type = [];
 
-                                                                    for(i = 0, j = data.selected.length; i < j; i++) {
-                                                                        _selected_path.push(data.instance.get_node(data.selected[i]).original.absolute_path);
-                                                                        _selected_text.push(data.instance.get_node(data.selected[i]).text);
-            _selected_relative_path.push(data.instance.get_node(data.selected[i]).original.relative_path);
-                                                                        _selected_id.push(data.instance.get_node(data.selected[i]).id);
-                                                                        // must use .original.type, because re-structured json does not carry our customized field 'type'
-                                                                        _selected_type.push(data.instance.get_node(data.selected[i]).original.type);
-                                                                    }
+                //  - -- - only for mobile  - -- -
 
+                // only for 3 panel
+                if (selected_node_type == "folder"){
 
-                                                                    // only get 1st selected node, so always use    _selected_xxxxx[0] 
+                            console.log('disable render folder, because it too complicated')
 
-                                                                    //$('#event_result').html('Selected: ' + r.join(', '));
-                                                                    console.log('Selected node id : ' + _selected_id[0])
-                                                                    console.log('Selected node path : ' + _selected_path[0])
-                                                                    console.log('Selected node text : ' +  _selected_text[0])
-        console.log('Selected node relative path : ' +  _selected_relative_path[0])
-                                                                    console.log('Selected node type : ' +  _selected_type[0])
+                } else {
 
-                                                                    var selected_node_id = _selected_id[0]
-                                                                    var selected_node_path = _selected_path[0]
-                                                                    var selected_node_text = _selected_text[0]
-        var selected_node_relative_path = _selected_relative_path[0]
-                                                                    var selected_node_type = _selected_type[0]
+                        // user click one item in root folder
+                        $("#back-3-panel").show();
+                        $("#root-folder-div").hide();
+                        $("#map-server-div").show();
+                        $("#app-div").hide();
+                        $("#map-window-iframe").hide();
 
+                        }
 
+                //  - -- - end  - -- -   only for mobile  - -- -
 
-                                                                    if (selected_node_type){
-                                                                        
-                                                                    }else{
-                                                                        //   type: undefined, for v10.5 and before, type is undefined, but it is a featuerServer
-                                                                        // _layer_url: "https://gis.anaheim.net/server/rest/services/Hosted/Test_Local_Gov_Scene_WFL1/FeatureServer"
-                                                                        if ((selected_node_path.includes('FeatureServer')) || ( selected_node_path.includes('MapServer'))){ 
-                                                                            selected_node_type = 'FeatureServer'                                                                               
-                                                                                console.log('warning:  .type is undefined, but url is feature server ')
-                                                                        }
-                                                                    }
 
 
-                                                                    update_url_parameter('select_folder', selected_node_id);
-                                                                    update_url_parameter('select_folder_text', selected_node_text);
-                                                                    update_url_parameter('select_layer', '');
 
 
-                                                                    
 
-                                                                    
-                                                            
 
 
-                                                                    //  - -- - only for mobile  - -- -
+                empty_service_and_icon_panel_all_tag()
 
-                                                                    // only for 3 panel
-                                                                    if (selected_node_type == "folder"){
 
-                                                                             console.log('disable render folder, because it too complicated')
 
-                                                                    } else {
+                switch(selected_node_type) {
 
-                                                                            // user click one item in root folder
-                                                                            $("#back-3-panel").show();
-                                                                            $("#root-folder-div").hide();
-                                                                            $("#map-server-div").show();
-                                                                            $("#app-div").hide();
-                                                                            $("#map-window-iframe").hide();
 
-                                                                          }
+                    case "folder":
+                                    console.log('disable render folder, because it too complicated', selected_node_id)
 
-                                                                    //  - -- - end  - -- -   only for mobile  - -- -
+                                // disable render folder, because it too complicated
+                                    // render_folder(selected_node_id)
+                        break;
 
 
+                    case "MapServer":
+                    case "FeatureServer":
+                                render_mapserver(selected_node_id)
+                    break;
 
 
 
 
+                    case "VectorTileServer":
+                            render_singleserver(selected_node_id)
+                            
+                
+                    break;
 
 
-                                                                    empty_service_and_icon_panel_all_tag()
 
 
+                    case "ImageServer":
+                        render_singleserver(selected_node_id)
+                        
+                    break;
 
-                                                                    switch(selected_node_type) {
 
+                    case "SceneServer":
+                        render_singleserver(selected_node_id)
+                    break;
 
-                                                                        case "folder":
-                                                                                        console.log('disable render folder, because it too complicated', _selected_id[0])
 
-                                                                                    // disable render folder, because it too complicated
-                                                                                       // render_folder(_selected_id[0])
-                                                                            break;
 
 
-                                                                        case "MapServer":
-                                                                        case "FeatureServer":
-                                                                                    render_mapserver(_selected_id[0])
-                                                                        break;
 
 
 
+                    case "GeocodeServer":
+                            
+                            render_singleserver(selected_node_id)
+                    break;
 
-                                                                        case "VectorTileServer":
-                                                                                render_singleserver(_selected_id[0])
-                                                                               
-                                                                    
-                                                                        break;
 
 
 
+                    case "NAServer":
+                            
+                            render_NAserver(selected_node_id)
+                            
+                    break;
 
-                                                                        case "ImageServer":
-                                                                            render_singleserver(_selected_id[0])
-                                                                            
-                                                                        break;
+                
+                    default:
+                                    render_other(selected_node_id)
+                                    
+                }
+                
+            
 
 
-                                                                        case "SceneServer":
-                                                                            render_singleserver(_selected_id[0])
-                                                                        break;
 
 
 
 
+            })
 
 
 
-                                                                        case "GeocodeServer":
-                                                                                
-                                                                                render_singleserver(_selected_id[0])
-                                                                        break;
 
+            // 'ready.jstree' triggered after all nodes are finished loading
+            // 'loaded.jstree' , triggered after the root node is loaded for the first time
+            .on('ready.jstree', function (e, data) {
 
+                // only run 1 time, first time when root folder jstree complete loaded
+                pre_select_folder_level()
 
+            })
 
-                                                                        case "NAServer":
-                                                                                
-                                                                                render_NAserver(_selected_id[0])
-                                                                                
-                                                                        break;
 
-                                                                    
-                                                                        default:
-                                                                                        render_other(_selected_id[0])
-                                                                                        
-                                                                    }
-                                                                    
-                                                                
+            // create the instance $('#xxxx_div').jstree({ })
+            .jstree({ 
+                
 
+                /**/
+                // - - - filter layer list  - - - 
+                /**/
 
+                        // doc https://www.jstree.com/api/#/?f=$.jstree.defaults.search.show_only_matches_children
+                        'search': {
+                            // sample https://codepen.io/JGSpark/pen/VNeRLN
+                            'fuzzy': false, // default is false,
+                            'case_sensitive': false, // default,
+                            // Indicates if the tree should be filtered (by default) to show only matching nodes
+                            'show_only_matches' : true, //false, 
+                            //Indicates if the children of matched element are shown (when show_only_matches is true)
+                            'show_only_matches_children': true, //false,
+                            //Indicates if all nodes opened to reveal the search result, should be closed when the search is cleared or a new search is performed. 
+                            'close_opened_onclear': false,   // Default is true,
+                            // Indicates if only leaf nodes should be included in search results
+                            'search_leaves_only' : false, // default,
+                        },
+                        "plugins" : [ "search" ], // not use "wholerow", it will make line icon disappear 
+                
+                /**/
+                // ... end ...  - - - filter layer list  - - -
+                /**/
+                
+                
+                'core' : {
 
+                                    'themes': {
+                                        'name': 'proton',
+                                        'responsive': true
+                                    },
+                            
 
+                                'data' : root_allfolders_flatjson
 
 
-                                                                })
 
 
 
+                        } 
 
-                                                                // 'ready.jstree' triggered after all nodes are finished loading
-                                                                // 'loaded.jstree' , triggered after the root node is loaded for the first time
-                                                                .on('ready.jstree', function (e, data) {
 
-                                                                    // only run 1 time, first time when root folder jstree complete loaded
-                                                                    pre_select_folder_level()
+            });
 
-                                                                })
 
 
-                                                                // create the instance $('#xxxx_div').jstree({ })
-                                                                .jstree({ 
-                                                                    
+            
 
-                                                                    /**/
-                                                                    // - - - filter layer list  - - - 
-                                                                    /**/
 
-                                                                            // doc https://www.jstree.com/api/#/?f=$.jstree.defaults.search.show_only_matches_children
-                                                                            'search': {
-                                                                                // sample https://codepen.io/JGSpark/pen/VNeRLN
-                                                                                'fuzzy': false, // default is false,
-                                                                                'case_sensitive': false, // default,
-                                                                                // Indicates if the tree should be filtered (by default) to show only matching nodes
-                                                                                'show_only_matches' : true, //false, 
-                                                                                //Indicates if the children of matched element are shown (when show_only_matches is true)
-                                                                                'show_only_matches_children': true, //false,
-                                                                                //Indicates if all nodes opened to reveal the search result, should be closed when the search is cleared or a new search is performed. 
-                                                                                'close_opened_onclear': false,   // Default is true,
-                                                                                // Indicates if only leaf nodes should be included in search results
-                                                                                'search_leaves_only' : false, // default,
-                                                                            },
-                                                                            "plugins" : [ "search" ], // not use "wholerow", it will make line icon disappear 
-                                                                    
-                                                                    /**/
-                                                                    // ... end ...  - - - filter layer list  - - -
-                                                                    /**/
-                                                                    
-                                                                    
-                                                                    'core' : {
-
-                                                                                        'themes': {
-                                                                                            'name': 'proton',
-                                                                                            'responsive': true
-                                                                                        },
-                                                                                
-
-                                                                                    'data' : root_allfolders_flatjson
-
-
-
-
-
-                                                                            } 
-
-
-                                                                });
-
-                                            
-
-                                                               
-                                
-
-                                        }
+}
 
 
 
