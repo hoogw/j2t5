@@ -1,6 +1,6 @@
 
 // service (singleServer) jstree
-var singleServer_flatjson = [];
+
 
 
 
@@ -33,45 +33,7 @@ async function scan_any_single_server(){
     
     var singleServer_display_text = _organization;
     
-    // default, but need custom change it
-    var singleServer_icon = mapservice_icon;
-    switch(_current_services_type) {
-
-            case "MapServer":
-            case "FeatureServer":
-                singleServer_icon = mapservice_icon
-            break;
-
-
-            case "VectorTileServer":
-                singleServer_icon = VectorTileServer_icon
-            break;
-
-            case "ImageServer":
-                singleServer_icon = ImageServer_icon
-            break;
-
-            
-
-
-            case "SceneServer":
-                singleServer_icon = SceneServer_icon
-            break;
-
-
-            case "GeocodeServer":
-                singleServer_icon = GeocodeServer_icon
-            break;
-
-
-                case "NAServer":
-                singleServer_icon = NAServer_icon
-            break;
-
-            default:
-            singleServer_icon = GroupLayer_icon
-    }//switch
-
+   
 
 
 
@@ -521,6 +483,10 @@ async function scan_any_single_server(){
     
 
 
+
+
+
+
     // must keep at bottom, if flat json is empty means, this is not supported type of single server
     if (singleServer_flatjson.length > 1 ){
                 // flatjson include both layers:[] and tables:[],  tables all attached to table group folder
@@ -530,7 +496,7 @@ async function scan_any_single_server(){
         console.log("mapserver url error ...>> ",JSON.stringify(raw_singleServer) )
 
         // show error message, if empty, will show error message too
-        render_message_service_panel("No layers/tables found or error, check console.log for details ")
+        render_message_service_panel("Not Supported (service type)")
         //render_message_service_panel(JSON.stringify(raw_singleServer))
     }
 

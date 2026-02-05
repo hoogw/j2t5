@@ -61,6 +61,7 @@ var ___service
   var folder_structure_flatjson= [];
   // 2nd level service (mapserver) jstree
   var mapserver_flatjson = [];
+  var singleServer_flatjson = [];
   // 3nd level icon jstree
   var icon_flatjson = [];
   // legend
@@ -3047,7 +3048,7 @@ var point_icon = "bi bi-geo-alt"
 
 
                                                           var _url_mapserver = folder_item.absolute_path
-                                                            current_mapServerEndpoint_url = _url_mapserver
+                                                            current_singleServerEndpoint_url = _url_mapserver
                                                           console.log('  layerBrowser . . .     render 2ndTier-mapserver url >>>>>  ', _url_mapserver)
 
                                                                                                                   
@@ -3732,7 +3733,7 @@ var point_icon = "bi bi-geo-alt"
 
 
                                                var _url_mapserver = folder_item.absolute_path
-                                                            current_mapServerEndpoint_url = _url_mapserver
+                                                            current_singleServerEndpoint_url = _url_mapserver
                                                console.log('  layerBrowser . . .     render single server url >>>>>  ', _url_mapserver)
 
                                                                                                        

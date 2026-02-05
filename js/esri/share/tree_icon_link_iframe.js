@@ -2364,7 +2364,7 @@ break;
 
 
 case "embed_3953":
-    var _newTab_link = current_mapServerEndpoint_url + '?f=jsapi' 
+    var _newTab_link = current_singleServerEndpoint_url + '?f=jsapi' 
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
@@ -2402,13 +2402,13 @@ case "embed_3953":
 
 
   case "embed_6425":
-      var _newTab_link = current_mapServerEndpoint_url  
+      var _newTab_link = current_singleServerEndpoint_url  
       document.getElementById("map-window-iframe").src = _newTab_link;
       console.log('_newTab_link', _newTab_link)
   break;
 
   case "embed_6426":
-      var _newTab_link = current_mapServerEndpoint_url + '?f=pjson'
+      var _newTab_link = current_singleServerEndpoint_url + '?f=pjson'
       document.getElementById("map-window-iframe").src = _newTab_link;
       console.log('_newTab_link', _newTab_link)
   break;
@@ -2434,21 +2434,21 @@ case "embed_3953":
 
 
   case "embed_8967":
-    var _newTab_link = current_mapServerEndpoint_url + '/kml/mapImage.kmz'  
+    var _newTab_link = current_singleServerEndpoint_url + '/kml/mapImage.kmz'  
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
 
   case "embed_8966":
-    var _newTab_link = current_mapServerEndpoint_url + '?f=lyr'  
+    var _newTab_link = current_singleServerEndpoint_url + '?f=lyr'  
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;
 
 
   case "embed_8963":
-    var _newTab_link = current_mapServerEndpoint_url + '?f=pitemx'  
+    var _newTab_link = current_singleServerEndpoint_url + '?f=pitemx'  
     document.getElementById("map-window-iframe").src = _newTab_link;
     console.log('_newTab_link', _newTab_link)
   break;

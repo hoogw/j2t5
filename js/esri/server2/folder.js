@@ -41,7 +41,7 @@ var folder_structure_flatjson= [];
 
 // 2nd level service (mapserver) jstree
 var mapserver_flatjson = [];
-
+var singleServer_flatjson = [];
 
 // 3nd level icon jstree
 var icon_flatjson = [];
@@ -1619,7 +1619,7 @@ jstree_root_folder(folder_structure_flatjson, ___url_string,  _organization, ___
                                                             console.log('folder_item  node[id] : ', folder_item)
 
                                                             var _url_mapserver = folder_item.absolute_path
-                                                            current_mapServerEndpoint_url = _url_mapserver
+                                                            current_singleServerEndpoint_url = _url_mapserver
                                                             console.log( 'you click mapserver url >>>>>  ', _url_mapserver)
 
                                                                                                                     

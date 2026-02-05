@@ -377,7 +377,7 @@ var  base_url = '';
 
 
   var current_layerEndpoint_url
-  var current_mapServerEndpoint_url
+  var current_singleServerEndpoint_url
   var current_rootEndpoint_url
   
   var current_url;

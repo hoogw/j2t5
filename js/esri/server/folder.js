@@ -53,7 +53,7 @@ var folder_structure_flatjson= [];
 
 // 2nd level service (mapserver) jstree
 var mapserver_flatjson = [];
-
+var singleServer_flatjson = [];
 
 // 3nd level icon jstree
 var icon_flatjson = [];
@@ -1330,7 +1330,7 @@ async function render_mapserver(_parent_id){
         console.log('folder_item  node[id] : ', folder_item)
 
         var _url_mapserver = folder_item.absolute_path
-        current_mapServerEndpoint_url = _url_mapserver
+        current_singleServerEndpoint_url = _url_mapserver
         console.log( 'render 2ndTier-mapserver url >>>>>  ', _url_mapserver)
         
         // always before await ajax, show ajax url , instead of show progressing bar
@@ -2094,134 +2094,89 @@ async function render_mapserver(_parent_id){
                                             }
 
 
-                                              
-                                            // for GeocodeServer, VectorTileServer, ImageServer  , SceneServer ,.... for 3 panel only, for middle service panel only,  j s t r e e _mapserver() [middle panel]
-                                            async function render_singleserver(_parent_id){
+        
+    // for GeocodeServer, VectorTileServer, ImageServer  , SceneServer ,.... for 3 panel only, for middle service panel only,  j s t r e e _mapserver() [middle panel]
+    async function render_singleserver(_parent_id){
 
-                                                mapserver_flatjson = []
-                                                console.log('render single server  id : ', _parent_id )
-                                                console.log('render single server  node[id] : ', folder_structure_flatjson[_parent_id])
-                                                
-                                               
+        singleServer_flatjson = []
+        console.log('render single server  id : ', _parent_id )
+        console.log('render single server  node[id] : ', folder_structure_flatjson[_parent_id])
+        
+        
 
 
-                                                // frome array[folder_structure_flatjson],  get item,  item.id = _parent_id
-                                                var folder_item = folder_structure_flatjson.find(element => element.id == _parent_id);
-                                                console.log('folder_item  node[id] : ', folder_item)
+        // frome array[folder_structure_flatjson],  get item,  item.id = _parent_id
+        var folder_item = folder_structure_flatjson.find(element => element.id == _parent_id);
+        console.log('folder_item  node[id] : ', folder_item)
 
-                                                 var _url_mapserver = folder_item.absolute_path
-                                                            current_mapServerEndpoint_url = _url_mapserver
-                                                 console.log( 'render single server url >>>>>  ', _url_mapserver)
-                                                                                                         
-                                                 // always before await ajax, show ajax url , instead of show progressing bar 
-                                                // progressing_info('folder', '(single server)', _url_mapserver);
+            var _url_mapserver = folder_item.absolute_path
+                    current_singleServerEndpoint_url = _url_mapserver
+            console.log( 'render single server url >>>>>  ', _url_mapserver)
+                                                                    
+            // always before await ajax, show ajax url , instead of show progressing bar 
+        // progressing_info('folder', '(single server)', _url_mapserver);
 
-                                                            raw_mapserver =await arcgis_ajax_cross_origin(_url_mapserver, _cross);  // cross origin method                                                                                 
-                                                            console.log( 'render single-server root response  ', raw_mapserver)
+                    raw_mapserver =await arcgis_ajax_cross_origin(_url_mapserver, _cross);  // cross origin method                                                                                 
+                    console.log( 'render single-server root response  ', raw_mapserver)
 
-                                                           //  this mapserver means 2nd level 2nd tier, could be imageServer, vectorTileServer, mapServer, featureServer, as long as it is 2nd tier. 
-                                                           //  VectorTileServer, scene server can't use ..../legend must exclude them
+                    //  this mapserver means 2nd level 2nd tier, could be imageServer, vectorTileServer, mapServer, featureServer, as long as it is 2nd tier. 
+                    //  VectorTileServer, scene server can't use ..../legend must exclude them
 
-                                                           var _lowerCase_mapserverurl = _url_mapserver.toLowerCase();
-                                                           if (_lowerCase_mapserverurl.includes('vectortile')){
-                                                                        console.log( ' Do not do vector tile legend at  2nd tier , server level  ')
-                                                           } else {
-                                                                            var  _url_mapserver_legend = _url_mapserver + '/legend'
-                                                                            mapserver_legend  =await arcgis_ajax_cross_origin(_url_mapserver_legend, _cross);  // cross origin method 
-                                                                            console.log( ' ### single-server ### legend ###  ', mapserver_legend )
-                                                           }
+                    var _lowerCase_mapserverurl = _url_mapserver.toLowerCase();
+                    if (_lowerCase_mapserverurl.includes('vectortile')){
+                                console.log( ' Do not do vector tile legend at  2nd tier , server level  ')
+                    } else {
+                                    var  _url_mapserver_legend = _url_mapserver + '/legend'
+                                    mapserver_legend  =await arcgis_ajax_cross_origin(_url_mapserver_legend, _cross);  // cross origin method 
+                                    console.log( ' ### single-server ### legend ###  ', mapserver_legend )
+                    }
 
-                                                           /*
-                                                              Not use, not delete because it slow down the whole process
+                    
 
-                                                             // --- --- -- calculate every mapserver center lat long --- ---- -- --
-                                                             
-                   
-                                                                                          // only calculate center lat long onceif in URL, no lat,long provided,  arcgis_common_share extract lat lng from URL is null, {_center_lat: null, _center_long: null}
-                                                                                          console.log( 'before calculate mapserver center, center is from mysql rest api table, is :  ', _center)
-
-                                                                                          if (( _center._center_lat == null ) ||  ( _center._center_long == null )
-                                                                                               || ( _center._center_lat == default_center_lat ) ||  ( _center._center_long == default_center_long )
-                                                                                           ){  
-                                                                                                        if  (
-                                                                                                            // bug, not fix, _current_services_type not define error, if user click other like geocode server, or image server.
-                                                                                                            ((_current_services_type == 'MapServer')||(_current_services_type == 'FeatureServer'))                                                                                                    
-                                                                                                            // must not have'SampleWorldCities'
-                                                                                                            // must exclude --- SampleWorldCities ( MapServer ) it always give lat=13 long=-14    https://gismaps.kingcounty.gov/arcgis/rest/services/SampleWorldCities/MapServer
-                                                                                                            && (_relative_name.toLowerCase().indexOf("world") == -1)
-                                                                                                        ){
-                                                                                                                        
-                                                                                                            // server side projection: Not use, not delete because it slow down the whole process
-                                                                                                                                                 // both works 1:   ajax --> geometryServer   arcgis rest api project, ( any geometry server)
-                                                                                                                                                 // _center = await calculate_center_lat_long(raw_mapserver);
-
-                                                                                                                                                  // both works 2:  pro4js --> ajax https://epsg.io/your-wkid-here.js  get definition string,    https://github.com/proj4js/proj4js/issues/369
-                                                                                                                                                  _center = await proj4js_centerLatLong(raw_mapserver);
-
-                                                                                                                                                  console.log(' server side prjection get center ====> ', _center)
-                                                                                                                                                  update_url_parameter('_center_lat', _center._center_lat);
-                                                                                                                                                  update_url_parameter('_center_long', _center._center_long);
-                                                                                                                                                  if ( _center._center_zoom == null ) {
-                                                                                                                                                    update_url_parameter('_center_zoom', default_center_zoom);
-                                                                                                                                                  }
-
-                                                                                                            // Not use, not delete because it slow down the whole process
-                                                                                                                                    // client-side re-projection, no ajax, no geometryServer 
-                                                                                                                                               // will re project all layers, should just project 1 layers, dojo async require() and async load module, 2 step both are asynchronous, they reflect true center later, cause all layers are projected.
-                                                                                                                                               // await does not works,  we manually set it run how many times
-                                                                                                                                               if (runClientProjectTimes < runClientProjectLimit) {
-                                                                                                                                                runClientProjectTimes += 1;
-                                                                                                                                                clientSide_project(raw_mapserver) 
-                                                                                                                                      }
-                                                                                                        }
-                                                                                        }
-                                                             // --- ----- end -- --- --- --- calculate every mapserver center lat long -- --- ---- --
-                                                        */
-
-                                                 var mapserver_display_text = folder_item.text;
-                                                 var mapserver_icon = folder_item.icon;
-                                                 var singleServiceType = folder_item.type
+            var mapserver_display_text = folder_item.text;
+            var mapserver_icon = folder_item.icon;
+            var singleServiceType = folder_item.type
 
 
 
-                                                 
+            
 
 
 
-                                                    //  ....... add  root item  ....... 
-                                                    var layer_item = { 
+            //  ....... add  root item  ....... 
+            var layer_item = { 
 
-                                                        "id" :  -1,     
-                                                        "parent" : "#",
-                                                        "text" : mapserver_display_text,
-                                                        "layer_name" : mapserver_display_text,
-                                                        "icon" : mapserver_icon, 
-                                                                                                               "state"       : {
-                                                                            "opened"    : true,  // is the node open
-                                                                            // disabled  : boolean  // is the node disabled
-                                                                            // "selected"  : true   // is the node selected
-                                                                        },
+                "id" :  -1,     
+                "parent" : "#",
+                "text" : mapserver_display_text,
+                "layer_name" : mapserver_display_text,
+                "icon" : mapserver_icon, 
+                                                                        "state"       : {
+                                    "opened"    : true,  // is the node open
+                                    // disabled  : boolean  // is the node disabled
+                                    // "selected"  : true   // is the node selected
+                                },
 
-                                                    
-                                                        "relative_path": folder_item.relative_path,
-                                                        "node_path" : folder_item.node_path, 
-                                                        "absolute_path" : folder_item.absolute_path,
-                                                        "server_path" : folder_item.absolute_path,  // warning:   must set server path
-                                                        "layer_id" :  -1,  
-                                                        "type" : singleServiceType                                                    
-                                                    };
-                                                    // 1 time, first time run, add root item
-                                                    mapserver_flatjson.push(layer_item) 
-                                                    //  ....... add  root item  ....... 
+            
+                "relative_path": folder_item.relative_path,
+                "node_path" : folder_item.node_path, 
+                "absolute_path" : folder_item.absolute_path,
+                "server_path" : folder_item.absolute_path,  // warning:   must set server path
+                "layer_id" :  -1,  
+                "type" : singleServiceType                                                    
+            };
+            // 1 time, first time run, add root item
+            mapserver_flatjson.push(layer_item) 
+            //  ....... add  root item  ....... 
 
 
 
 
 
 
-                                                    // no other layer, only 1 root item
-                                                    jstree_mapserver(mapserver_flatjson, _url_mapserver, mapserver_display_text)
-                                            }
+            // no other layer, only 1 root item
+            jstree_mapserver(mapserver_flatjson, _url_mapserver, mapserver_display_text)
+    }
 
 
 
