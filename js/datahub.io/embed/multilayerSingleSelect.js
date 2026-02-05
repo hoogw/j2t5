@@ -445,11 +445,17 @@ reactiveUtils.watch(
 
 
                                   
-                  $('#jstree_layerlist')
-                  // listen for event https://www.jstree.com/api/#/?q=.jstree%20Event
-              
-                          .on('changed.jstree', function (e, data) {
-                          //.on('select_node.jstree', function (e, data) {
+ $('#jstree_layerlist')
+                  
+            // listen for event https://www.jstree.com/api/#/?q=.jstree%20Event
+            // not use these 2 line, Because they will NOT fire event, if you click a already selected node, it only fire event if selected node changed.
+            //.on('select_node.jstree', function (e, data) {
+            //.on('changed.jstree', function (e, data) {
+            // if you want to always fire event, even on a already selected node, use this line 
+            .on('activate_node.jstree', function (e, data) {
+
+
+
                               console.log(' click select folder node, event ', data)
                               var i, j, _selected_text = [], _selected_id = [], _selected_type = [];
 
