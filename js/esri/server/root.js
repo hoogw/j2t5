@@ -175,12 +175,32 @@ folder_structure_flatjson = [
             var folder_item = folder_structure_flatjson.find(element => element.id == selected_node_id);
             console.log('find by id is more accurate : ', folder_item)
 
+            // both works the same
             var _url_mapserver = folder_item.absolute_path
-            console.log( '(server) url >>>>>  ', _url_mapserver)
-            console.log( '(server) display name >>>>>  ', selected_node_text)
+           
+
+
+            console.log( '(server) url >>>>> folder_item.absolute_path  ', _url_mapserver)
+            console.log( '(server) url >>>>> selected_node_path ', selected_node_path)
+            console.log( '(server) display name (type) >>>>>  ', selected_node_text)
             console.log( '(server) name >>>>>  ', selected_node_relative_path)
             console.log( '(server) type >>>>>  ', selected_node_type)
-                            
+                
+             console.log( 'window.location  ', window.location)
+
+             
+            var _newTab_link =  window.location.origin + window.location.pathname.replace('/root.html', '/server.html')
+            _newTab_link += '?org=' + selected_node_relative_path  
+            _newTab_link += '&url=' + selected_node_path 
+            _newTab_link += '&type=' + selected_node_type
+            console.log('_newTab_link', _newTab_link)
+
+            //window.open(_newTab_link, "mozillaWindow", "popup");
+            window.open(_newTab_link, "_blank", "popup");
+            
+            
+
+
         }//if
                                                                         
                                                                     

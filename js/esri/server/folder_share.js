@@ -360,7 +360,7 @@
 
                                             
                                                     console.log('click select service-layer node event ', data)
-                                                    var i, j, _selected_path = [], _selected_text = [], _selected_id = [], _selected_type = [];
+                                                    var i, j,  _selected_path = [], _selected_relative_path = [], _selected_text = [], _selected_id = [], _selected_type = [];
 
                                                     for(i = 0, j = data.selected.length; i < j; i++) {
                                                         _selected_path.push(data.instance.get_node(data.selected[i]).original.absolute_path);
