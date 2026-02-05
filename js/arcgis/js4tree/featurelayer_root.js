@@ -1602,7 +1602,7 @@ $('#info-window-div').html("")
 
   var root_url
   var current_map_server_url
-      async function scan_folder_structure(){
+      async function scan_root_folder(){
 
         //  -- -- --  only for featurelayer, not for folder  -- -- --  
         current_map_server_url =  ___url_string
@@ -2504,7 +2504,7 @@ $('#info-window-div').html("")
                                         ___url = new URL(___url_string);   // ?url=https://sampleserver3.arcgisonline.com/ArcGIS/rest/services
                                         ___hostname   = ___url.hostname; //    sampleserver3.arcgisonline.com
 
-                                        scan_folder_structure()
+                                        scan_root_folder()
                             }
 
                     }
@@ -2807,7 +2807,7 @@ $('#info-window-div').html("")
       
                     /**/
                     // -- -- --  scan root server -- -- -- only for featurelayer, not for folder   -- -- --  
-                    scan_folder_structure()        
+                    scan_root_folder()        
                     // -- -- --  end -- -- --  scan root server -- -- -- only for featurelayer, not for folder   -- -- --  
                     /**/
 

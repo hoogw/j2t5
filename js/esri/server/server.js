@@ -4,7 +4,7 @@ var mapserver_flatjson = [];
 
 
 
-async function scan_mapserver(){
+async function scan_any_single_server(){
 
 
 
@@ -930,7 +930,7 @@ function jstree_mapserver_for_mobile(mapserver_alllayers_flatjson, mapserver_url
                             
                             document.getElementById("title").innerHTML = _organization; 
                                    
-                            scan_mapserver()
+                            scan_any_single_server()
                         }//if
 
                 }
@@ -953,7 +953,7 @@ function jstree_mapserver_for_mobile(mapserver_alllayers_flatjson, mapserver_url
     // url means map-server, etc.. path
     // org here means map-server name, or any other server name, image-server, feature-server, geocode-server, NAserver etc.
     if (___url_string){
-         scan_mapserver()
+         scan_any_single_server()
     }
 
 

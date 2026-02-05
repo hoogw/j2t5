@@ -438,7 +438,7 @@ var icon_flatjson = [];
                                 // ........... top level [left panel]  ........ will use jstree --> jstree() [left panel] ...............
 
                                     // first time load(one time run), prepare top level folder (flat json array) --> feed to --> jstree() [left panel]
-                                async function scan_folder_structure(){
+                                async function scan_root_folder(){
 
                                     current_rootEndpoint_url = ___url_string
 
@@ -3173,7 +3173,7 @@ async function render_mapserver(_parent_id){
       
     // first time run 
     if (___url_string){
-                          scan_folder_structure()
+                          scan_root_folder()
     }
 
 

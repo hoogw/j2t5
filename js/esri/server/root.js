@@ -281,7 +281,7 @@ folder_structure_flatjson = [
 
 
 
-    async function scan_folder_structure(){
+    async function scan_root_folder(){
 
    
 
@@ -1250,7 +1250,7 @@ folder_structure_flatjson = [
       
     // first time run 
     if (___url_string){
-                          scan_folder_structure()
+                          scan_root_folder()
     }
 
 

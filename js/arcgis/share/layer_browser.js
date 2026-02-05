@@ -1972,7 +1972,7 @@ var point_icon = "bi bi-geo-alt"
                               // ........... top level [left panel]  ........ will use jstree --> jstree() [left panel] ...............
                                   /**/
                                   // first time load(one time run), prepare top level folder (flat json array) --> feed to --> jstree() [left panel]
-                                  async function scan_folder_structure(){
+                                  async function scan_root_folder(){
 
                                       folder_structure_flatjson = []
   
@@ -5909,7 +5909,7 @@ var point_icon = "bi bi-geo-alt"
 
 
 
-              scan_folder_structure()
+              scan_root_folder()
               // collapse expand button
               ui_event_register() 
 

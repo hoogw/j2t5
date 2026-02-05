@@ -2218,7 +2218,7 @@ async function get_mapserver_info_html(mapserver_url){
                         
                         document.getElementById("title").innerHTML = _organization; 
                         
-                        scan_folder_structure()
+                        scan_root_folder()
                     }//if
 
                 }
