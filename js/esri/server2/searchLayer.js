@@ -1218,50 +1218,7 @@ var currentVersion = '0.0'
                                                                                                   
                                                                                                                   // solid layer,  need to count, add to final flat array 
                                                                                             
-                                                                                                                    /* not use, because it slow down the whole process
-                                                                                    
-                                                                                                                    // ---- only ajax once last map server to calculate center lat long -----
-                                                                                                                      // if in URL, no lat,long provided,  arcgis_common_share extract lat lng from URL is null, {_center_lat: null, _center_long: null}
-                                                                                                                      if (( _center._center_lat == null ) ||  ( _center._center_long == null )
-                                                                                                                            || ( _center._center_lat == default_center_lat ) ||  ( _center._center_long == default_center_long )
-                                                                                                                         ){ 
-                                                                                                                               console.log(' client side project use first layer > ',current_layers[k1] )
-                                                                                                                              // must exclude sample layer like :  Cities, Continent, World
-                                                                                                                              var  _layer__name = current_layers[k1].name
-                                                                                                                              if ((_layer__name.toLowerCase().indexOf("world") == -1) &&
-                                                                                                                                  (_layer__name.toLowerCase().indexOf("cities") == -1) &&
-                                                                                                                                  (_layer__name.toLowerCase().indexOf("continent") == -1)){
-
-                                                                                                                                              // server side projection: (Do not delete, keep)
-                                                                                                                                                 // both works 1:   ajax --> geometryServer   arcgis rest api project, ( any geometry server)
-                                                                                                                                                 // _center = await calculate_center_lat_long(current);
-                                                                                                                                                  // both works 2:  pro4js --> ajax https://epsg.io/your-wkid-here.js  get definition string,    https://github.com/proj4js/proj4js/issues/369
-                                                                                                                                                 // _center = await proj4js_centerLatLong(current);
-                                                                                                                                                 // console.log(' server side prjection get center ====> ', _center)
-                                                                                                                                                 // update_url_parameter('_center_lat', _center._center_lat);
-                                                                                                                                                 // update_url_parameter('_center_long', _center._center_long);
-                                                                                                                                                 // if ( _center._center_zoom == null ) {
-                                                                                                                                                 //   update_url_parameter('_center_zoom', default_center_zoom);
-                                                                                                                                                 // }
-
-                                                                                                                                              // client-side re-projection, no ajax, no geometryServer 
-                                                                                                                                               // will re project all layers, should just project 1 layers, dojo async require() and async load module, 2 step both are asynchronous, they reflect true center later, cause all layers are projected.
-                                                                                                                                               // await does not works,  we manually set it run how many times
-                                                                                                                                              if (runClientProjectTimes < runClientProjectLimit) {
-                                                                                                                                                        runClientProjectTimes += 1;
-                                                                                                                                                        // arcgis js api , load "project" class
-                                                                                                                                                        clientSide_project(current) 
-                                                                                                                                              } 
-                                                                                                                                  }// if
-                                                                                                                      }//if
-                                                                                                                    // ----  ------- end ------------- only ajax once last map server to calculate center lat long -----
-                                                                                    
-                                                                                                                    */
-
-
-
-                                                                                                                    
-
+                                                                                                                 
 
 
                                                                                                                       var _absolute_url = _url;  //  _url(service type) is  xxx/mapserver
