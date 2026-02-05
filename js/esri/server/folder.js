@@ -1572,6 +1572,7 @@ async function render_mapserver(_parent_id){
 
 
                             "node_path" : mapserver_layers_node_path, 
+                            "relative_path" : mapserver_layers_name, // only for layer name (without type)
                             "absolute_path" : mapserver_layers_absolute_path, 
                             "server_path" : current_layer_server_path,
                             "geometryType" :  mapserver_layers_geometryType,               

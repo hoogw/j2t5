@@ -320,8 +320,8 @@ async function scan_any_single_server(){
                                         // "selected"  : true   // is the node selected
                                     },
 
-
-                    
+                   
+                    "relative_path" : mapserver_layers_name, // only for layer name (without type)
                     "absolute_path" : mapserver_layers_absolute_path, 
                     "server_path" : current_layer_server_path,
                     "geometryType" :  mapserver_layers_geometryType,               
@@ -596,7 +596,7 @@ function jstree_mapserver_for_mobile(mapserver_alllayers_flatjson, mapserver_url
                                 for(i = 0, j = data.selected.length; i < j; i++) {
                                     _selected_path.push(data.instance.get_node(data.selected[i]).original.absolute_path);
                                     _selected_text.push(data.instance.get_node(data.selected[i]).text);
-            _selected_relative_path.push(data.instance.get_node(data.selected[i]).original.relative_path);
+                                    _selected_relative_path.push(data.instance.get_node(data.selected[i]).original.relative_path);
                                     _selected_id.push(data.instance.get_node(data.selected[i]).id);
                                     // must use .original.type, because re-structured json does not carry our customized field 'type'
                                     _selected_type.push(data.instance.get_node(data.selected[i]).original.type);
@@ -606,35 +606,28 @@ function jstree_mapserver_for_mobile(mapserver_alllayers_flatjson, mapserver_url
                                 // only get 1st selected node, so always use    _selected_xxxxx[0] 
 
                                 //$('#event_result').html('Selected: ' + r.join(', '));
-                                console.log('Selected id  -> ' + _selected_id[0])
-                                console.log('Selected text ->' + _selected_text[0] )
-                                console.log('Selected type ->' +  _selected_type[0])
-                                console.log('Selected absolute_path -> ' + _selected_path[0])
+                                console.log('Selected node id : ' + _selected_id[0])
+                                console.log('Selected node path : ' + _selected_path[0])
+                                console.log('Selected node text : ' +  _selected_text[0])
+                                console.log('Selected node relative path : ' +  _selected_relative_path[0])
+                                console.log('Selected node type : ' +  _selected_type[0])
 
-                                
+                                var selected_node_id = _selected_id[0]
+                                var selected_node_path = _selected_path[0]
+                                var selected_node_text = _selected_text[0]
+                                var selected_node_relative_path = _selected_relative_path[0]
+                                var selected_node_type = _selected_type[0]
 
-                            
                                 update_url_parameter('select_layer', _selected_id[0]);
                                 update_url_parameter('select_layer_text', _selected_text[0]);
 
-
-                                var _____type = _selected_type[0];
-                                
                                 //   "Raster Layer",   "Raster Catalog Layer" 
-                                if (_____type.includes("Raster")) {
-
-                                    _____type = "Raster Layer";
+                                if (selected_node_type.includes("Raster")) {
+                                    selected_node_type = "Raster Layer";
                                 }
 
-
-
-
-
-
-
-
                                 //switch(_selected_type[0]) {     // this is true value
-                                switch(_____type) {               // this is generalized value
+                                switch(selected_node_type) {               // this is generalized value
 
 
                                     //  - - - -  feature layer  type  - - - - 

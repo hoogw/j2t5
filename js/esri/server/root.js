@@ -499,7 +499,7 @@ folder_structure_flatjson = [
                                                                 // "selected"  : true   // is the node selected
                                                             },
 
-                                            "relative_path":  _relative_name,               
+                                            "relative_path":  _relative_name,    // only for server(service) name (without type)              
                                             "node_path" : node_path, 
                                             "absolute_path" : absolute_path, 
                                             "type" : "folder"
@@ -686,7 +686,7 @@ folder_structure_flatjson = [
                                                                     // "selected"  : true   // is the node selected
                                                                 },
 
-                                                "relative_path": _relative_name,                
+                                                "relative_path": _relative_name,  // only for server(service) name (without type)              
                                                 "node_path" : node_path, 
                                                 "absolute_path" : absolute_path_service_url, 
                                                 "type" : _current_services_type
@@ -973,7 +973,7 @@ folder_structure_flatjson = [
                                                                     // "selected"  : true   // is the node selected
                                                                 },
 
-                                                "relative_path": _relative_name,                
+                                                "relative_path": _relative_name, // only for server(service) name (without type)                  
                                                 "node_path" : node_path, 
                                                 "absolute_path" : absolute_path_service_url, 
                                                 "type" : _current_services_type
