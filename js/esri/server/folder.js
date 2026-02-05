@@ -161,12 +161,14 @@ var iconJstreeforceOpen = true;
 $('#jstree_root_folder')
                                                                 
             // listen for event https://www.jstree.com/api/#/?q=.jstree%20Event
-            // not use these 2 line, Because they will NOT fire event, if you click a already selected node, it only fire event if selected node changed.
+            // these 2 line, they will NOT fire event, if you click a already selected node, it only fire event if selected node changed.
             //.on('select_node.jstree', function (e, data) {
-            //.on('changed.jstree', function (e, data) {
-            // if you want to always fire event, even on a already selected node, use this line 
-            .on('activate_node.jstree', function (e, data) {
+            .on('changed.jstree', function (e, data) {
 
+                
+            // Warning: if you want to always fire event, even on a already selected node, use this line, 
+            // the down stream code also need change, otherwise will not works
+            //.on('activate_node.jstree', function (e, data) {
 
 
 

@@ -105,11 +105,14 @@ function  jstree_folder(_icons_flatjson){
 
     $('#jstree_naming')
       // listen for event https://www.jstree.com/api/#/?q=.jstree%20Event
-      // not use these 2 line, Because they will NOT fire event, if you click a already selected node, it only fire event if selected node changed.
+      // these 2 line, they will NOT fire event, if you click a already selected node, it only fire event if selected node changed.
       //.on('select_node.jstree', create_click_link) 
-      //.on('changed.jstree', create_click_link) 
-      // if you want to always fire event, even on a already selected node, use this line 
-      .on('activate_node.jstree', create_click_link) 
+      .on('changed.jstree', create_click_link) 
+
+
+      // Warning: if you want to always fire event, even on a already selected node, use this line, 
+      // the down stream code also need change, otherwise will not works 
+      //.on('activate_node.jstree', create_click_link)  
                                               
        /**/
        // create the instance $('#xxxx_div').jstree({ })
