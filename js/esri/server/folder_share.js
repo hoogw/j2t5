@@ -365,7 +365,7 @@
                                                     for(i = 0, j = data.selected.length; i < j; i++) {
                                                         _selected_path.push(data.instance.get_node(data.selected[i]).original.absolute_path);
                                                         _selected_text.push(data.instance.get_node(data.selected[i]).text);
-            _selected_relative_path.push(data.instance.get_node(data.selected[i]).relative_path);
+            _selected_relative_path.push(data.instance.get_node(data.selected[i]).original.relative_path);
                                                         _selected_id.push(data.instance.get_node(data.selected[i]).id);
                                                         // must use .original.type, because re-structured json does not carry our customized field 'type'
                                                         _selected_type.push(data.instance.get_node(data.selected[i]).original.type);

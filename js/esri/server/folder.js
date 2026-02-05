@@ -189,12 +189,12 @@ var icon_flatjson = [];
 
 
                                                                     console.log(' click select folder node, event ', data)
-                                                                    var i, j,  _selected_path = [], _selected_text = [], _selected_id = [], _selected_type = [];
+                                                                    var i, j,  _selected_path = [], _selected_relative_path = [], _selected_text = [], _selected_id = [], _selected_type = [];
 
                                                                     for(i = 0, j = data.selected.length; i < j; i++) {
                                                                         _selected_path.push(data.instance.get_node(data.selected[i]).original.absolute_path);
                                                                         _selected_text.push(data.instance.get_node(data.selected[i]).text);
-            _selected_relative_path.push(data.instance.get_node(data.selected[i]).relative_path);
+            _selected_relative_path.push(data.instance.get_node(data.selected[i]).original.relative_path);
                                                                         _selected_id.push(data.instance.get_node(data.selected[i]).id);
                                                                         // must use .original.type, because re-structured json does not carry our customized field 'type'
                                                                         _selected_type.push(data.instance.get_node(data.selected[i]).original.type);
@@ -207,11 +207,13 @@ var icon_flatjson = [];
                                                                     console.log('Selected node id : ' + _selected_id[0])
                                                                     console.log('Selected node path : ' + _selected_path[0])
                                                                     console.log('Selected node text : ' +  _selected_text[0])
+        console.log('Selected node relative path : ' +  _selected_relative_path[0])
                                                                     console.log('Selected node type : ' +  _selected_type[0])
 
                                                                     var selected_node_id = _selected_id[0]
                                                                     var selected_node_path = _selected_path[0]
                                                                     var selected_node_text = _selected_text[0]
+        var selected_node_relative_path = _selected_relative_path[0]
                                                                     var selected_node_type = _selected_type[0]
 
 

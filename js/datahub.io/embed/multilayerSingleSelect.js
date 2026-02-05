@@ -455,7 +455,7 @@ reactiveUtils.watch(
 
                               for(i = 0, j = data.selected.length; i < j; i++) {
                                   _selected_text.push(data.instance.get_node(data.selected[i]).text);
-            _selected_relative_path.push(data.instance.get_node(data.selected[i]).relative_path);
+            _selected_relative_path.push(data.instance.get_node(data.selected[i]).original.relative_path);
                                   _selected_id.push(data.instance.get_node(data.selected[i]).id);
                                   // must use .original.type, because re-structured json does not carry our customized field 'type'
                                   _selected_type.push(data.instance.get_node(data.selected[i]).original.type);
@@ -465,6 +465,7 @@ reactiveUtils.watch(
                               //$('#event_result').html('Selected: ' + r.join(', '));
                               console.log('Selected node id : ' + _selected_id[0])
                                                                     console.log('Selected node text : ' +  _selected_text[0])
+        console.log('Selected node relative path : ' +  _selected_relative_path[0])
                                                                     console.log('Selected node type : ' +  _selected_type[0])
 
                               var layerid_as_key= _selected_id[0]
