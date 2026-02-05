@@ -1367,7 +1367,8 @@ var currentVersion = '0.0'
                                                                                   var _absolute_name = current_services[i1].name
                                                                                   var  _absolute_name_array = _absolute_name.split('/');
                                                                                   var  _relative_name = _absolute_name_array[_absolute_name_array.length-1]; // if have /, only need last part after last /
-                                                                                  var _current_services_type = current_services[i1].type
+                                                                                  var _current_services_type = current_services[i1].type 
+                                                        console.log('_current_services_type', _current_services_type)   
                                                                               //---- end ---- fix bug: absolute service/folder name need to convert to relative service/folder name -----
                                                                               
                                                                               

@@ -504,7 +504,8 @@ var currentVersion = '0.0'
                                                                                 
                                                                                 
                                                                                 
-                                                                                // this is for if the url is a  xxx/MapServer, not the home root xxx/rest/service,  there is special case seattle,   
+                                                                                // this is for if the url is a  xxx/MapServer, not the home root xxx/rest/service,  there is special case seattle, 
+                    // or user input a featureServer url in root textarea then click start button   
                                                                                 if (current.hasOwnProperty('layers')  && (current.layers !== null ) && (current.layers !== '' )) {
 
 
@@ -577,7 +578,8 @@ var currentVersion = '0.0'
                                                                                                 var _absolute_name = current_services[i1].name
                                                                                                 var  _absolute_name_array = _absolute_name.split('/');
                                                                                                 var  _relative_name = _absolute_name_array[_absolute_name_array.length-1]; // if have /, only need last part after last /
-                                                                                                var _current_services_type = current_services[i1].type
+                                                                                                var _current_services_type = current_services[i1].type 
+                                                        console.log('_current_services_type', _current_services_type)   
                                                                                             //---- end ---- fix bug: absolute service/folder name need to convert to relative service/folder name -----
                                                                                             
                                                                                             

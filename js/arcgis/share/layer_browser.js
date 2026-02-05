@@ -2265,7 +2265,8 @@ var point_icon = "bi bi-geo-alt"
                                                                                           var node_path = current_services[i1].name  //      'Utilities/GeocodingTools'
                                                                                           var  node_path_array = node_path.split('/');
                                                                                           var  _relative_name = node_path_array[node_path_array.length-1]; // if have /, only need last part after last /      we only need  'GeocodingTools'
-                                                                                          var _current_services_type = current_services[i1].type                                                                               // 'GPServer'
+                                                                                          var _current_services_type = current_services[i1].type 
+                                                        console.log('_current_services_type', _current_services_type)                                                                                  // 'GPServer'
                                                                                       //---- end ---- fix bug: absolute service/folder name need to convert to relative service/folder name -----
                                                                                       
                                                                                       
@@ -2515,8 +2516,9 @@ var point_icon = "bi bi-geo-alt"
                                                                                       
                                                                                       
                                                                                       
-                                                                                      // if response have 'layers', means it is a xxx/MapServer,  not xxx/rest/service 
-                                                                                      // this is for if the url is a  xxx/MapServer, not the home root xxx/rest/service,  there is special case seattle,   
+                                                                                      // if response have 'layers', means it is a xxx/MapServer or xxx/FeatureServer,  not xxx/rest/service 
+                                                                                      // this is for if the url is a  xxx/MapServer, not the home root xxx/rest/service,  there is special case seattle, 
+                    // or user input a featureServer url in root textarea then click start button   
                                                                                       if ( current.hasOwnProperty('layers')  && ( current.layers !== null ) && ( current.layers !== '' )) {
   
                                                                                           if ( current.layers.length > 0 ) {
@@ -2557,7 +2559,7 @@ var point_icon = "bi bi-geo-alt"
                                                                                                   var node_path = root_url  //      'https://gisrevprxy.seattle.gov/arcgis/rest/services/ext/WM_CityGISLayers/MapServer'
                                                                                                   var  node_path_array = node_path.split('/');
                                                                                                   var  _relative_name = node_path_array[node_path_array.length-2]; //  only need 'WM_CityGISLayers'
-                                                                                                  var _current_services_type = "MapServer"                                                                            
+                                                                                                  var _current_services_type = node_path_array[node_path_array.length-1]; // "FeatureServer" or "MapServer"                                                                            
                                                                                                   //---- end ---- fix bug: absolute service/folder name need to convert to relative service/folder name -----
                                                                                               
                                                                                               

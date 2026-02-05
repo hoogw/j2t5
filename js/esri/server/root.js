@@ -367,495 +367,73 @@ folder_structure_flatjson = [
 
 
             
-            
 
 
-                                // ********* add root item *********
 
-                            
-                                        flatJson_item =  { 
-                                        // "id" : id_counter.toString(), 
-                                            "id" : id_counter, 
-                                            "parent" : "#",   // root parent id is #
-                                            "text" : "Root",
-                                            "icon" : folder_icon,
-                                            "state"       : {
-                                                                "opened"    : true,  // is the node open
-                                                                // disabled  : boolean  // is the node disabled
-                                                            // "selected"  : true   // is the node selected
-                                                            },
+        // ********* add root item *********
 
-                                            "relative_path": "Root",              
-                                            "node_path" : "/", 
-                                            "absolute_path" : root_url, 
-                                            "type" : "folder"
-                                        };
 
+        flatJson_item =  { 
+        // "id" : id_counter.toString(), 
+            "id" : id_counter, 
+            "parent" : "#",   // root parent id is #
+            "text" : "Root",
+            "icon" : folder_icon,
+            "state"       : {
+                                "opened"    : true,  // is the node open
+                                // disabled  : boolean  // is the node disabled
+                            // "selected"  : true   // is the node selected
+                            },
 
-                                        // 1 time, first time run, add root item
-                                        folder_structure_flatjson.push(flatJson_item) 
+            "relative_path": "Root",              
+            "node_path" : "/", 
+            "absolute_path" : root_url, 
+            "type" : "folder"
+        };
 
-                                        root.id = flatJson_item.id
-                            // *******  end  ********* add root item *********
 
+        // 1 time, first time run, add root item
+        folder_structure_flatjson.push(flatJson_item) 
 
+        root.id = flatJson_item.id
+        // *******  end  ********* add root item *********
 
 
 
-                                        // add relative path reference
-                                        root.relative_path = '/';
-                                        root.absolute_path = root_url;
-                                        // build stack
-                                    
-                                    
-                                        var stack = new Stack();
-                                        stack.push(root);
-                                    
-                                    
 
 
+        // add relative path reference
+        root.relative_path = '/';
+        root.absolute_path = root_url;
+        // build stack
 
-                                        // console.log(stack.count);
-                                        
-                                        while(stack.count > 0) {
-                                                    
-                                                
 
+        var stack = new Stack();
+        stack.push(root);
 
 
 
-                                                    // first pop up 'root', because root was first push into the stack(queue), first in stack, first pop up stack 
 
-                                                    var current = stack.pop();
-                                                    
 
-                                                    // console.log('current-------',current);
-                                                    // set current node id as sub-item's parent id
-                                                    current_parent_id_counter = current.id;
+        // console.log(stack.count);
 
-                                                
-                                                    
+        while(stack.count > 0) {
+                    
+                
 
 
 
 
+                    // first pop up 'root', because root was first push into the stack(queue), first in stack, first pop up stack 
 
+                    var current = stack.pop();
+                    
 
+                    // console.log('current-------',current);
+                    // set current node id as sub-item's parent id
+                    current_parent_id_counter = current.id;
 
-
-                                                    
-                                                    
-                                                    // all folders ---> stack
-                                                    if(current.hasOwnProperty('folders')&& (current.folders !== null ) && (current.folders !== '' )) {
-                                                        if(current.folders.length >0) {
-
-
-
-
-
-                                                        var current_folders = current.folders;
-                                                        for (var j2 = 0; j2 < current_folders.length; j2++) {
-                                                            
-                                                            
-                                                            
-                                                            //---- fix bug: absolute service/folder name need to convert to relative service/folder name ----
-                                                            // https://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Portland
-                                                            // service name (Portland/Aerial) is absolute, we only need the "Aerial", not need "Portland/Aerial"
-                                                            // Portland/Aerial (ImageServer)
-
-                                                            // node_path is 'Portland/Aerial'
-                                                            //
-                                                                var  node_path = current_folders[j2]                
-                                                                var  node_path_array = node_path.split('/');
-                                                                var  _relative_name = node_path_array[node_path_array.length-1]; // if have /, only need last part after last /
-
-                                                            //---- end ---- fix bug: absolute service/folder name need to convert to relative service/folder name -----
-                                                        
-
-
-
-
-                                                            
-                                                            // this absolute path is for children's absolute path, do not confuse with current(parent) absolute path
-                                                            var absolute_path = current.absolute_path + '/'+ _relative_name; 
-                                                            
-                                                            
-
-
-                                                            // ********* add folder item *********
-
-                                                                        id_counter += 1;
-
-                                                                        flatJson_item =  { 
-                                                                            //"id" : id_counter.toString(), 
-                                                                            "id" : id_counter, 
-                                                                            //"parent" : current_parent_id_counter.toString(),   // root parent id is #
-                                                                            "parent" : current_parent_id_counter,   // root parent id is #
-                                                                            "text" : _relative_name,
-                                                                            "icon" : folder_icon,
-                                                                            "state"       : {
-                                                                                                "opened"    : true,  // is the node open
-                                                                                                // disabled  : boolean  // is the node disabled
-                                                                                                // "selected"  : true   // is the node selected
-                                                                                            },
-
-                                                                            "relative_path":  _relative_name,               
-                                                                            "node_path" : node_path, 
-                                                                            "absolute_path" : absolute_path, 
-                                                                            "type" : "folder"
-                                                                        };
-                                                                                
-                                                                        
-                                                                            // add folder item
-                                                                            folder_structure_flatjson.push(flatJson_item) 
-
-
-                                                            // ********* end ********** add folder item *********
-                                                            
-
-    // always before await ajax, show ajax url , instead of show progressing bar 
-    console.log('folder relative name (folder name)', id_counter, _relative_name); 
-    console.log('folder (path)', id_counter, absolute_path);
-    progressing_info('folder', id_counter, absolute_path);
-
-
-
-    // this absolute path is for children's absolute path, do not confuse with current(parent) absolute path
-    // var node =await ajax_getjson(absolute_path);
-    var node =await arcgis_ajax_cross_origin(absolute_path, _cross);  // cross origin method 
-
-    if (node !== null)
-    {
-    node.absolute_path = absolute_path;
-    node.relative_path = current.relative_path+ '/'+_relative_name;
-
-    // must carry this id as sub-item's parent id
-    node.id = flatJson_item.id;
-
-    stack.push(node);
-    }// if
-
-
-
-
-
-    }// for
-                                                                
-
-
-
-
-                                                            }  // if folders.length >0    
-                                                        }  // if folders    
-                                                        
-                                                        
-                                                        
-
-
-
-
-
-                                        
-                                        
-                                        
-                                        
-                                                    
-                                                    
-                                                    
-                                                    // all services ---> flat 
-                                                    if ( current.hasOwnProperty('services')  && (current.services !== null ) && (current.services !== '' )){
-
-                                                        if ( current.services.length > 0 ){
-
-
-                                                            var current_services = current.services;
-                                                    
-                                                                console.log('current_services, folder-id ',current_parent_id_counter,  current_services)
-
-                                                            for (var i1 = 0; i1 < current_services.length; i1++) {
-                                                            
-                                                            
-                                                                //console.log('i1-', i1)
-                                                    
-                                                    
-                                                    
-                                                    
-                                                    //---- fix bug: absolute service/folder name need to convert to relative service/folder name ----
-                                                    // https://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Portland
-                                                    // service name (Portland/Aerial) is absolute, we only need the "Aerial", not need "Portland/Aerial"
-                                                    // Portland/Aerial (ImageServer)
-                                                        
-                                                        var node_path = current_services[i1].name  //      'Utilities/GeocodingTools'
-                                                        var  node_path_array = node_path.split('/');
-                                                        var  _relative_name = node_path_array[node_path_array.length-1]; // if have /, only need last part after last /      we only need  'GeocodingTools'
-                                                        var _current_services_type = current_services[i1].type                                                                               // 'GPServer'
-                                                    //---- end ---- fix bug: absolute service/folder name need to convert to relative service/folder name -----
-                                                    
-                                                    
-                                                    
-                                                    
-                                                    
-                                                    
-                                                    // For service:  _url_path/name/type  --->   https://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer
-                                                    
-                                                    
-                                                    // dynamic CMV
-
-                            //http://localhost:10/mapserver1/viewer/?config=viewer_simple1&url=https://maps2.dcgis.dc.gov/dcgis/rest/services/Zoning/MapServer&title=Washington_DC_Zoning&zoom=14&lat=38.917292&long=-77.036420
-
-                            //http://ms.transparentgov.net/?config=viewer_simple1&url=https://maps2.dcgis.dc.gov/dcgis/rest/services/Zoning/MapServer&title=Washington_DC_Zoning&zoom=14&lat=38.917292&long=-77.036420
-
-                                                    
-                            
-                                                        
-                                                        var absolute_path_service_url = current.absolute_path + '/'+ _relative_name +  '/'+_current_services_type
-                                                        
-                                                        
-                                                        var _relative_path = current.relative_path + '/'+ _relative_name +  '/'+_current_services_type;
-                                                    
-                                                        var _mapServer = {"name": current_services[i1].name,  "type": _current_services_type, "absolute_url":absolute_path_service_url, "relative_path":_relative_path, "center_lat":_center._center_lat, "center_long":_center._center_long };
-
-
-                                                        console.log('flat push a  _mapServer ', _mapServer)
-
-                                                        _just_get = []
-                                                        _just_get.push(_mapServer); 
-                                                        _flat = _just_get.concat(_flat);
-
-
-
-
-                                                                // ********* add service item *********
-
-                                                                            id_counter += 1;
-
-                                                                            switch(_current_services_type) {
-
-                                                                                
-
-
-                                                                                case "MapServer":
-                                                                                case "FeatureServer":
-                                                                                    custom_icon = mapservice_icon
-                                                                                break;
-
-
-                                                                                case "VectorTileServer":
-                                                                                    custom_icon = VectorTileServer_icon
-                                                                                break;
-
-                                                                                case "ImageServer":
-                                                                                    custom_icon = ImageServer_icon
-                                                                                break;
-
-                                                                                
-
-
-                                                                                case "SceneServer":
-                                                                                    custom_icon = SceneServer_icon
-                                                                                break;
-
-
-                                                                                case "GeocodeServer":
-                                                                                    custom_icon = GeocodeServer_icon
-                                                                                break;
-
-
-                                                                                    case "NAServer":
-                                                                                    custom_icon = NAServer_icon
-                                                                                break;
-
-                                                                                default:
-                                                                                custom_icon = GroupLayer_icon
-                                                                            }
-                                                                            
-                                                                            
-                                                                            service_name_and_type = _relative_name + ' ' + '<sup>' + _current_services_type + '</sup>';
-
-                                                                            flatJson_item =  { 
-                                                                            // "id" : id_counter.toString(), 
-                                                                                "id" : id_counter, 
-                                                                            // "parent" : current_parent_id_counter.toString(),   // root parent id is #
-                                                                                "parent" : current_parent_id_counter,   // root parent id is #
-                                                                                "text" :  service_name_and_type,
-                                                                                "icon" : custom_icon,
-                                                                                    "state"       : {
-                                                                                                    // "opened"    : true,  // is the node open
-                                                                                                    // disabled  : boolean  // is the node disabled
-                                                                                                    // "selected"  : true   // is the node selected
-                                                                                                },
-
-                                                                                "relative_path": _relative_name,                
-                                                                                "node_path" : node_path, 
-                                                                                "absolute_path" : absolute_path_service_url, 
-                                                                                "type" : _current_services_type
-                                                                            };
-                                                                                    
-                                                                            
-                                                                                // add folder item
-                                                                                folder_structure_flatjson.push(flatJson_item) 
-
-
-                                                                // ********* end ********** add service item *********
-                                                
-
-
-                                                    
-                                                            }// for 
-
-
-                                                        }  // if services.length > 0
-                                                    }  // if services
-                                                    
-                                                    
-                                                    
-                                                    
-                                                    
-                                                    
-                                                    
-                                                    
-                                                    
-                                                    
-                                                    // if response have 'layers', means it is a xxx/MapServer,  not xxx/rest/service 
-                                                    // this is for if the url is a  xxx/MapServer, not the home root xxx/rest/service,  there is special case seattle,   
-                                                    if ( current.hasOwnProperty('layers')  && ( current.layers !== null ) && ( current.layers !== '' )) {
-
-                                                        if ( current.layers.length > 0 ) {
-
-                                                        
-
-                                                        // add 1 item as 'service' mapserver 
-
-
-
-                                                        /*
-
-                                                            sample : current response :   (https://gisrevprxy.seattle.gov/arcgis/rest/services/ext/WM_CityGISLayers/MapServer?f=json)
-
-                                                        
-                                                                layers: [...]
-                                                                documentInfo: {
-                                                                        Title: "WM_CityGISLayers",
-                                                                        Author: "",
-                                                                        Comments: "WM_CityGISLayers",
-                                                                        Subject: "WM_CityGISLayers",
-                                                                        Category: "",
-                                                                        AntialiasingMode: "None",
-                                                                        TextAntialiasingMode: "Force",
-                                                                        Keywords: ""
-                                                                        },
-                                                        
-                                                        */ 
-
-                                                    
-                                                    
-                                                                
-                                                                //---- fix bug: absolute service/folder name need to convert to relative service/folder name ----
-                                                                // https://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Portland
-                                                                // service name (Portland/Aerial) is absolute, we only need the "Aerial", not need "Portland/Aerial"
-                                                                // Portland/Aerial (ImageServer)
-                                                                    
-                                                                var node_path = root_url  //      'https://gisrevprxy.seattle.gov/arcgis/rest/services/ext/WM_CityGISLayers/MapServer'
-                                                                var  node_path_array = node_path.split('/');
-                                                                var  _relative_name = node_path_array[node_path_array.length-2]; //  only need 'WM_CityGISLayers'
-                                                                var _current_services_type = "MapServer"                                                                            
-                                                                //---- end ---- fix bug: absolute service/folder name need to convert to relative service/folder name -----
-                                                            
-                                                            
-                                                    
-                                                                /* not use, because it slow down 
-                                                    
-                                                                        
-                                                                        // ---- only ajax once last map server to calculate center lat long -----
-                                                                        
-                                                                        
-                                                                                    // only can use   .../MapServer or  .../FeatureServer to get _center lat long
-                                                                                    // use first   .../MapServer or  .../FeatureServer have NO accurate, 
-                                                                                    // instead, we use last one, or any one in middle is more accurate. 
-
-
-                                                                                    
-                                                                                    
-                                                                                    if (( _center._center_lat == null ) ||  ( _center._center_long == null )
-                                                                
-                                                                                            || ( _center._center_lat == default_center_lat ) ||  ( _center._center_long == default_center_long )
-                                                                            
-                                                                                        ){  
-                                                                                    
-
-
-
-
-
-
-                                                                                                        var getLatLong_url = root_url
-
-
-                                                                                                            // always before await ajax, show ajax url , instead of show progressing bar 
-                                                                                                            progressing_info('folder', 'getting Lat Long', getLatLong_url);
-                                                                                                    
-
-
-                                                                                                        //var getLatLong_response =await ajax_getjson(getLatLong_url);
-                                                                                                        var getLatLong_response =await arcgis_ajax_cross_origin(getLatLong_url, _cross);  // cross origin method 
-
-
-                                                                                                        console.log('getLatLong_response.....>',getLatLong_url)
-                                                                                                        console.log('getLatLong_response......>',getLatLong_response)
-
-
-
-                                                                                                        if (getLatLong_response !== null){
-
-
-                                                                                                        
-
-
-                                                                                        / *
-                                                                                                                // server side projection: (Do not delete, keep)
-
-                                                                                                                    // both works 1:   ajax --> geometryServer   arcgis rest api project, ( any geometry server)
-                                                                                                                    // _center = await calculate_center_lat_long(getLatLong_response);
-
-                                                                                                                    // both works 2:  pro4js --> ajax https://epsg.io/your-wkid-here.js  get definition string,    https://github.com/proj4js/proj4js/issues/369
-                                                                                                                    _center = await proj4js_centerLatLong(getLatLong_response);
-
-
-                                                                                                                    
-                                                                                                                    console.log(' server side prjection get center ====> ', _center)
-                                                                                                                    update_url_parameter('_center_lat', _center._center_lat);
-                                                                                                                    update_url_parameter('_center_long', _center._center_long);
-                                                                                                                    if ( _center._center_zoom == null ) {
-                                                                                                                    update_url_parameter('_center_zoom', default_center_zoom);
-                                                                                                                    }
-
-
-                                                                                        * /                                                                                                                                          
-
-
-
-
-
-
-
-
-
-
-
-                                                                                        / * not use, because it slow down the whole process
-
-                                                                                                                    // client-side re-projection, no ajax, no geometryServer 
-                                                                                                                            // will re project all layers, should just project 1 layers, dojo async require() and async load module, 2 step both are asynchronous, they reflect true center later, cause all layers are projected.
-                                                                                                                            // await does not works,  we manually set it run how many times
-                                                                                                                    if (runClientProjectTimes < runClientProjectLimit) {
-
-                                                                                                                                runClientProjectTimes += 1;
-                                                                                                                                clientSide_project(getLatLong_response)  
-                                                                                                                    } 
-
-                                                                                            * /
-
-
+                
                     
 
 
@@ -864,150 +442,574 @@ folder_structure_flatjson = [
 
 
 
-                                                                                                        }//if
+
+                    
+                    
+                    // all folders ---> stack
+                    if(current.hasOwnProperty('folders')&& (current.folders !== null ) && (current.folders !== '' )) {
+                        if(current.folders.length >0) {
 
 
-                                                                                        }// if 
-                                                                            
-                                                                        // ----  ------- end ------------- only ajax once last map server to calculate center lat long -----
-                                                                        
-                                                                            
-                                                                        
-                                                            not use, because it slow down 
-                                                            
-                                                            */
-                                                                        
-                                                    
-                                                    
-                                                    
-                                                    
-                                                    
-                                                    
-                                                    
-                                                    // For service:  _url_path/name/type  --->   https://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer
-                                                    
-                                                    
-                                                    // dynamic CMV
 
-                            //http://localhost:10/mapserver1/viewer/?config=viewer_simple1&url=https://maps2.dcgis.dc.gov/dcgis/rest/services/Zoning/MapServer&title=Washington_DC_Zoning&zoom=14&lat=38.917292&long=-77.036420
 
-                            //http://ms.transparentgov.net/?config=viewer_simple1&url=https://maps2.dcgis.dc.gov/dcgis/rest/services/Zoning/MapServer&title=Washington_DC_Zoning&zoom=14&lat=38.917292&long=-77.036420
 
-                                                    
+                        var current_folders = current.folders;
+                        for (var j2 = 0; j2 < current_folders.length; j2++) {
                             
-                                                        
-                                                        var absolute_path_service_url = root_url
-                                                        
-                                                        
-                                                        var _relative_path = root_url;
-                                                    
-                                                        var _mapServer = {"name": _relative_name,  "type": _current_services_type, "absolute_url":absolute_path_service_url, "relative_path":_relative_path, "center_lat":_center._center_lat, "center_long":_center._center_long };
+                            
+                            
+                            //---- fix bug: absolute service/folder name need to convert to relative service/folder name ----
+                            // https://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Portland
+                            // service name (Portland/Aerial) is absolute, we only need the "Aerial", not need "Portland/Aerial"
+                            // Portland/Aerial (ImageServer)
+
+                            // node_path is 'Portland/Aerial'
+                            //
+                                var  node_path = current_folders[j2]                
+                                var  node_path_array = node_path.split('/');
+                                var  _relative_name = node_path_array[node_path_array.length-1]; // if have /, only need last part after last /
+
+                            //---- end ---- fix bug: absolute service/folder name need to convert to relative service/folder name -----
+                        
 
 
-                                                        console.log('flat push a  _mapServer ', _mapServer)
-
-                                                        _just_get = []
-                                                        _just_get.push(_mapServer); 
-                                                        _flat = _just_get.concat(_flat);
 
 
+                            
+                            // this absolute path is for children's absolute path, do not confuse with current(parent) absolute path
+                            var absolute_path = current.absolute_path + '/'+ _relative_name; 
+                            
+                            
 
 
-                                                                // ********* add service item *********
+                            // ********* add folder item *********
 
-                                                                            id_counter += 1;
+                                        id_counter += 1;
 
-                                                                            //console.log('_current_services_type', _current_services_type)
+                                        flatJson_item =  { 
+                                            //"id" : id_counter.toString(), 
+                                            "id" : id_counter, 
+                                            //"parent" : current_parent_id_counter.toString(),   // root parent id is #
+                                            "parent" : current_parent_id_counter,   // root parent id is #
+                                            "text" : _relative_name,
+                                            "icon" : folder_icon,
+                                            "state"       : {
+                                                                "opened"    : true,  // is the node open
+                                                                // disabled  : boolean  // is the node disabled
+                                                                // "selected"  : true   // is the node selected
+                                                            },
 
-                                                                            switch(_current_services_type) {
-                                                                                case "MapServer":
-                                                                                case "FeatureServer":
-                                                                                    custom_icon = mapservice_icon
-                                                                                break;
-
-                                                                                
-
-                                                                                case "VectorTileServer":
-                                                                                    custom_icon = VectorTileServer_icon
-                                                                                break;
-
-                                                                                case "ImageServer":
-                                                                                    custom_icon = ImageServer_icon
-                                                                                break;
-
-                                                                                
-
-
-                                                                                case "SceneServer":
-                                                                                    custom_icon = SceneServer_icon
-                                                                                break;
-
-
-                                                                                case "GeocodeServer":
-                                                                                    custom_icon = GeocodeServer_icon
-                                                                                break;
-
-
-                                                                                case "NAServer":
-                                                                                    custom_icon = NAServer_icon
-                                                                                break;
-
-                                                                                default:
-                                                                                custom_icon = GroupLayer_icon
-                                                                            }
-
-                                                                            service_name_and_type = _relative_name + ' ' + '<sup>' + _current_services_type + '</sup>';
-
-                                                                            flatJson_item =  { 
-                                                                            
-                                                                                "id" : 1, 
-                                                                            
-                                                                                "parent" : 0,   // root parent id is #
-                                                                                "text" :  service_name_and_type,
-                                                                                "icon" : custom_icon,
-                                                                                    "state"       : {
-                                                                                                    // "opened"    : true,  // is the node open
-                                                                                                    // disabled  : boolean  // is the node disabled
-                                                                                                    // "selected"  : true   // is the node selected
-                                                                                                },
-
-                                                                                "relative_path": _relative_name,                
-                                                                                "node_path" : node_path, 
-                                                                                "absolute_path" : absolute_path_service_url, 
-                                                                                "type" : _current_services_type
-                                                                            };
-                                                                                    
-                                                                            
-                                                                                // add folder item
-                                                                                folder_structure_flatjson.push(flatJson_item) 
-
-
-                                                                // ********* end ********** add service item *********
+                                            "relative_path":  _relative_name,               
+                                            "node_path" : node_path, 
+                                            "absolute_path" : absolute_path, 
+                                            "type" : "folder"
+                                        };
                                                 
-
-
-
-                                                            } // if layers.length > 0
-                                                    } // if layers
-                                                    
-                                                    
-                                                    
-                                                
-                                                    
-                                                    
-                                                    
-                                                    
-                                                    
-                                                    
-                                                
-                                                    
-                                                    
-                                            }// while
                                         
+                                            // add folder item
+                                            folder_structure_flatjson.push(flatJson_item) 
+
+
+                            // ********* end ********** add folder item *********
+                            
+
+        // always before await ajax, show ajax url , instead of show progressing bar 
+        console.log('folder relative name (folder name)', id_counter, _relative_name); 
+        console.log('folder (path)', id_counter, absolute_path);
+        progressing_info('folder', id_counter, absolute_path);
+
+
+
+        // this absolute path is for children's absolute path, do not confuse with current(parent) absolute path
+        // var node =await ajax_getjson(absolute_path);
+        var node =await arcgis_ajax_cross_origin(absolute_path, _cross);  // cross origin method 
+
+        if (node !== null)
+        {
+        node.absolute_path = absolute_path;
+        node.relative_path = current.relative_path+ '/'+_relative_name;
+
+        // must carry this id as sub-item's parent id
+        node.id = flatJson_item.id;
+
+        stack.push(node);
+        }// if
+
+
+
+
+
+        }// for
+                                
+
+
+
+
+                            }  // if folders.length >0    
+                        }  // if folders    
+                        
+                        
+                        
+
+
+
+
+
+
+
+
+
+                    
+                    
+                    
+                    // all services ---> flat 
+                    if ( current.hasOwnProperty('services')  && (current.services !== null ) && (current.services !== '' )){
+
+                        if ( current.services.length > 0 ){
+
+
+                            var current_services = current.services;
+                    
+                                console.log('current_services, folder-id ',current_parent_id_counter,  current_services)
+
+                            for (var i1 = 0; i1 < current_services.length; i1++) {
+                            
+                            
+                                //console.log('i1-', i1)
+                    
+                    
+                    
+                    
+                    //---- fix bug: absolute service/folder name need to convert to relative service/folder name ----
+                    // https://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Portland
+                    // service name (Portland/Aerial) is absolute, we only need the "Aerial", not need "Portland/Aerial"
+                    // Portland/Aerial (ImageServer)
+                        
+                        var node_path = current_services[i1].name  //      'Utilities/GeocodingTools'
+                        var  node_path_array = node_path.split('/');
+                        var  _relative_name = node_path_array[node_path_array.length-1]; // if have /, only need last part after last /      we only need  'GeocodingTools'
+                        var _current_services_type = current_services[i1].type 
+                        console.log('_current_services_type', _current_services_type)                                                                              // 'GPServer'
+                    //---- end ---- fix bug: absolute service/folder name need to convert to relative service/folder name -----
+                    
+                    
+                    
+                    
+                    
+                    
+                    // For service:  _url_path/name/type  --->   https://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer
+                    
+                    
+                    // dynamic CMV
+
+        //http://localhost:10/mapserver1/viewer/?config=viewer_simple1&url=https://maps2.dcgis.dc.gov/dcgis/rest/services/Zoning/MapServer&title=Washington_DC_Zoning&zoom=14&lat=38.917292&long=-77.036420
+
+        //http://ms.transparentgov.net/?config=viewer_simple1&url=https://maps2.dcgis.dc.gov/dcgis/rest/services/Zoning/MapServer&title=Washington_DC_Zoning&zoom=14&lat=38.917292&long=-77.036420
+
+                    
+
+                        
+                        var absolute_path_service_url = current.absolute_path + '/'+ _relative_name +  '/'+_current_services_type
+                        
+                        
+                        var _relative_path = current.relative_path + '/'+ _relative_name +  '/'+_current_services_type;
+                    
+                        var _mapServer = {"name": current_services[i1].name,  "type": _current_services_type, "absolute_url":absolute_path_service_url, "relative_path":_relative_path, "center_lat":_center._center_lat, "center_long":_center._center_long };
+
+
+                        console.log('flat push a  _mapServer ', _mapServer)
+
+                        _just_get = []
+                        _just_get.push(_mapServer); 
+                        _flat = _just_get.concat(_flat);
+
+
+
+
+                                // ********* add service item *********
+
+                                            id_counter += 1;
+
+                                            switch(_current_services_type) {
+
+                                                
+
+
+                                                case "MapServer":
+                                                case "FeatureServer":
+                                                    custom_icon = mapservice_icon
+                                                break;
+
+
+                                                case "VectorTileServer":
+                                                    custom_icon = VectorTileServer_icon
+                                                break;
+
+                                                case "ImageServer":
+                                                    custom_icon = ImageServer_icon
+                                                break;
+
+                                                
+
+
+                                                case "SceneServer":
+                                                    custom_icon = SceneServer_icon
+                                                break;
+
+
+                                                case "GeocodeServer":
+                                                    custom_icon = GeocodeServer_icon
+                                                break;
+
+
+                                                    case "NAServer":
+                                                    custom_icon = NAServer_icon
+                                                break;
+
+                                                default:
+                                                custom_icon = GroupLayer_icon
+                                            }
+                                            
+                                            
+                                            service_name_and_type = _relative_name + ' ' + '<sup>' + _current_services_type + '</sup>';
+
+                                            flatJson_item =  { 
+                                            // "id" : id_counter.toString(), 
+                                                "id" : id_counter, 
+                                            // "parent" : current_parent_id_counter.toString(),   // root parent id is #
+                                                "parent" : current_parent_id_counter,   // root parent id is #
+                                                "text" :  service_name_and_type,
+                                                "icon" : custom_icon,
+                                                    "state"       : {
+                                                                    // "opened"    : true,  // is the node open
+                                                                    // disabled  : boolean  // is the node disabled
+                                                                    // "selected"  : true   // is the node selected
+                                                                },
+
+                                                "relative_path": _relative_name,                
+                                                "node_path" : node_path, 
+                                                "absolute_path" : absolute_path_service_url, 
+                                                "type" : _current_services_type
+                                            };
+                                                    
+                                            
+                                                // add folder item
+                                                folder_structure_flatjson.push(flatJson_item) 
+
+
+                                // ********* end ********** add service item *********
+                
+
+
+                    
+                            }// for 
+
+
+                        }  // if services.length > 0
+                    }  // if services
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    // if response have 'layers', means it is a xxx/MapServer or xxx/FeatureServer,  not xxx/rest/service 
+                    // this is for if the url is a  xxx/MapServer, not the home root xxx/rest/service,  there is special case seattle, 
+                    // or user input a featureServer url in root textarea then click start button 
+                    if ( current.hasOwnProperty('layers')  && ( current.layers !== null ) && ( current.layers !== '' )) {
+
+                        if ( current.layers.length > 0 ) {
+
+                        
+
+                        // add 1 item as 'service' mapserver 
+
+
+
+                        /*
+
+                            sample : current response :   (https://gisrevprxy.seattle.gov/arcgis/rest/services/ext/WM_CityGISLayers/MapServer?f=json)
+
+                        
+                                layers: [...]
+                                documentInfo: {
+                                        Title: "WM_CityGISLayers",
+                                        Author: "",
+                                        Comments: "WM_CityGISLayers",
+                                        Subject: "WM_CityGISLayers",
+                                        Category: "",
+                                        AntialiasingMode: "None",
+                                        TextAntialiasingMode: "Force",
+                                        Keywords: ""
+                                        },
+                        
+                        */ 
+
+                    
+                    
+                                
+                                //---- fix bug: absolute service/folder name need to convert to relative service/folder name ----
+                                // https://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Portland
+                                // service name (Portland/Aerial) is absolute, we only need the "Aerial", not need "Portland/Aerial"
+                                // Portland/Aerial (ImageServer)
                                     
+                                var node_path = root_url  //      'https://gisrevprxy.seattle.gov/arcgis/rest/services/ext/WM_CityGISLayers/MapServer'
+                                var  node_path_array = node_path.split('/');
+                                var  _relative_name = node_path_array[node_path_array.length-2]; //  only need 'WM_CityGISLayers'
+                                var _current_services_type = node_path_array[node_path_array.length-1]; // "FeatureServer" or "MapServer"                                                                            
+                                //---- end ---- fix bug: absolute service/folder name need to convert to relative service/folder name -----
+                            
+                            
+                    
+                                /* not use, because it slow down 
+                    
+                                        
+                                        // ---- only ajax once last map server to calculate center lat long -----
+                                        
+                                        
+                                                    // only can use   .../MapServer or  .../FeatureServer to get _center lat long
+                                                    // use first   .../MapServer or  .../FeatureServer have NO accurate, 
+                                                    // instead, we use last one, or any one in middle is more accurate. 
 
 
-                                    jstree_root_folder_for_mobile(folder_structure_flatjson, ___url_string,  _organization, ___hostname )
+                                                    
+                                                    
+                                                    if (( _center._center_lat == null ) ||  ( _center._center_long == null )
+                                
+                                                            || ( _center._center_lat == default_center_lat ) ||  ( _center._center_long == default_center_long )
+                                            
+                                                        ){  
+                                                    
+
+
+
+
+
+
+                                                                        var getLatLong_url = root_url
+
+
+                                                                            // always before await ajax, show ajax url , instead of show progressing bar 
+                                                                            progressing_info('folder', 'getting Lat Long', getLatLong_url);
+                                                                    
+
+
+                                                                        //var getLatLong_response =await ajax_getjson(getLatLong_url);
+                                                                        var getLatLong_response =await arcgis_ajax_cross_origin(getLatLong_url, _cross);  // cross origin method 
+
+
+                                                                        console.log('getLatLong_response.....>',getLatLong_url)
+                                                                        console.log('getLatLong_response......>',getLatLong_response)
+
+
+
+                                                                        if (getLatLong_response !== null){
+
+
+                                                                        
+
+
+                                                        / *
+                                                                                // server side projection: (Do not delete, keep)
+
+                                                                                    // both works 1:   ajax --> geometryServer   arcgis rest api project, ( any geometry server)
+                                                                                    // _center = await calculate_center_lat_long(getLatLong_response);
+
+                                                                                    // both works 2:  pro4js --> ajax https://epsg.io/your-wkid-here.js  get definition string,    https://github.com/proj4js/proj4js/issues/369
+                                                                                    _center = await proj4js_centerLatLong(getLatLong_response);
+
+
+                                                                                    
+                                                                                    console.log(' server side prjection get center ====> ', _center)
+                                                                                    update_url_parameter('_center_lat', _center._center_lat);
+                                                                                    update_url_parameter('_center_long', _center._center_long);
+                                                                                    if ( _center._center_zoom == null ) {
+                                                                                    update_url_parameter('_center_zoom', default_center_zoom);
+                                                                                    }
+
+
+                                                        * /                                                                                                                                          
+
+
+
+
+
+
+
+
+
+
+
+                                                        / * not use, because it slow down the whole process
+
+                                                                                    // client-side re-projection, no ajax, no geometryServer 
+                                                                                            // will re project all layers, should just project 1 layers, dojo async require() and async load module, 2 step both are asynchronous, they reflect true center later, cause all layers are projected.
+                                                                                            // await does not works,  we manually set it run how many times
+                                                                                    if (runClientProjectTimes < runClientProjectLimit) {
+
+                                                                                                runClientProjectTimes += 1;
+                                                                                                clientSide_project(getLatLong_response)  
+                                                                                    } 
+
+                                                            * /
+
+
+
+
+
+
+
+
+
+
+                                                                        }//if
+
+
+                                                        }// if 
+                                            
+                                        // ----  ------- end ------------- only ajax once last map server to calculate center lat long -----
+                                        
+                                            
+                                        
+                            not use, because it slow down 
+                            
+                            */
+                                        
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    // For service:  _url_path/name/type  --->   https://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer
+                    
+                    
+                    // dynamic CMV
+
+        //http://localhost:10/mapserver1/viewer/?config=viewer_simple1&url=https://maps2.dcgis.dc.gov/dcgis/rest/services/Zoning/MapServer&title=Washington_DC_Zoning&zoom=14&lat=38.917292&long=-77.036420
+
+        //http://ms.transparentgov.net/?config=viewer_simple1&url=https://maps2.dcgis.dc.gov/dcgis/rest/services/Zoning/MapServer&title=Washington_DC_Zoning&zoom=14&lat=38.917292&long=-77.036420
+
+                    
+
+                        
+                        var absolute_path_service_url = root_url
+                        
+                        
+                        var _relative_path = root_url;
+                    
+                        var _mapServer = {"name": _relative_name,  "type": _current_services_type, "absolute_url":absolute_path_service_url, "relative_path":_relative_path, "center_lat":_center._center_lat, "center_long":_center._center_long };
+
+
+                        console.log('flat push a  _mapServer ', _mapServer)
+
+                        _just_get = []
+                        _just_get.push(_mapServer); 
+                        _flat = _just_get.concat(_flat);
+
+
+
+
+                                // ********* add service item *********
+
+                                            id_counter += 1;
+
+                                            //console.log('_current_services_type', _current_services_type)
+
+                                            switch(_current_services_type) {
+                                                case "MapServer":
+                                                case "FeatureServer":
+                                                    custom_icon = mapservice_icon
+                                                break;
+
+                                                
+
+                                                case "VectorTileServer":
+                                                    custom_icon = VectorTileServer_icon
+                                                break;
+
+                                                case "ImageServer":
+                                                    custom_icon = ImageServer_icon
+                                                break;
+
+                                                
+
+
+                                                case "SceneServer":
+                                                    custom_icon = SceneServer_icon
+                                                break;
+
+
+                                                case "GeocodeServer":
+                                                    custom_icon = GeocodeServer_icon
+                                                break;
+
+
+                                                case "NAServer":
+                                                    custom_icon = NAServer_icon
+                                                break;
+
+                                                default:
+                                                custom_icon = GroupLayer_icon
+                                            }
+
+                                            service_name_and_type = _relative_name + ' ' + '<sup>' + _current_services_type + '</sup>';
+
+                                            flatJson_item =  { 
+                                            
+                                                "id" : 1, 
+                                            
+                                                "parent" : 0,   // root parent id is #
+                                                "text" :  service_name_and_type,
+                                                "icon" : custom_icon,
+                                                    "state"       : {
+                                                                    // "opened"    : true,  // is the node open
+                                                                    // disabled  : boolean  // is the node disabled
+                                                                    // "selected"  : true   // is the node selected
+                                                                },
+
+                                                "relative_path": _relative_name,                
+                                                "node_path" : node_path, 
+                                                "absolute_path" : absolute_path_service_url, 
+                                                "type" : _current_services_type
+                                            };
+                                                    
+                                            
+                                                // add folder item
+                                                folder_structure_flatjson.push(flatJson_item) 
+
+
+                                // ********* end ********** add service item *********
+                
+
+
+
+                            } // if layers.length > 0
+                    } // if layers
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                    
+                    
+                    
+                
+                    
+                    
+        }// while
+
+
+
+
+        jstree_root_folder_for_mobile(folder_structure_flatjson, ___url_string,  _organization, ___hostname )
 
 
                                     
