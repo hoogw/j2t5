@@ -224,6 +224,7 @@
                       for(i = 0, j = data.selected.length; i < j; i++) {
                         
                         _selected_text.push(data.instance.get_node(data.selected[i]).text);
+            _selected_relative_path.push(data.instance.get_node(data.selected[i]).relative_path);
                         _selected_id.push(data.instance.get_node(data.selected[i]).id);
 
                         
