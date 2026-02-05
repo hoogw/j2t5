@@ -3047,17 +3047,16 @@ var point_icon = "bi bi-geo-alt"
 
 
 
-                                                          var _url_mapserver = folder_item.absolute_path
-                                                            current_singleServerEndpoint_url = _url_mapserver
-                                                          console.log('  layerBrowser . . .     render 2ndTier-mapserver url >>>>>  ', _url_mapserver)
+                                                          current_singleServerEndpoint_url = folder_item.absolute_path
+                                                          console.log('  layerBrowser . . .     render 2ndTier-mapserver url >>>>>  ', current_singleServerEndpoint_url)
 
                                                                                                                   
                                                           // always before await ajax, show ajax url , instead of show progressing bar 
-                                                          progressing_info('layer', 'getting 2ndTier-MapServer...', _url_mapserver);
+                                                          progressing_info('layer', 'getting 2ndTier-MapServer...', current_singleServerEndpoint_url);
 
 
                                                           
-                                                          raw_mapserver =await ajax_jsonp_cors_proxy(_url_mapserver, _timeout_for_tree);
+                                                          raw_mapserver =await ajax_jsonp_cors_proxy(current_singleServerEndpoint_url, _timeout_for_tree);
                                                                               
                                                           console.log('  layerBrowser . . .     render 2ndTier-mapserver root response  ', raw_mapserver)
 
@@ -3066,15 +3065,15 @@ var point_icon = "bi bi-geo-alt"
                                                          //  this mapserver means 2nd level 2nd tier, could be imageServer, vectorTileServer, mapServer, featureServer, as long as it is 2nd tier. 
                                                          //  VectorTileServer, scene server can't use ..../legend must exclude them
 
-                                                         var _lowerCase_mapserverurl = _url_mapserver.toLowerCase();
+                                                         var _lowerCase_mapserverurl = current_singleServerEndpoint_url.toLowerCase();
                                                          if (_lowerCase_mapserverurl.includes('vectortile')){
 
                                                                       console.log('  layerBrowser . . .      Do not do vector tile legend at  2nd tier , server level  ')
                                                          } else {
 
-                                                                       var  _url_mapserver_legend = _url_mapserver + '/legend'
+                                                                       var  current_singleServerEndpoint_url_legend = current_singleServerEndpoint_url + '/legend'
                                                                           
-                                                                          mapserver_legend  =await ajax_jsonp_cors_proxy(_url_mapserver_legend, _timeout_for_tree);
+                                                                          mapserver_legend  =await ajax_jsonp_cors_proxy(current_singleServerEndpoint_urllegend, _timeout_for_tree);
                                                                                               
                                                                           console.log('  layerBrowser . . .      ** mapserver ** legend **  ', mapserver_legend )
 
@@ -3657,7 +3656,7 @@ var point_icon = "bi bi-geo-alt"
                                                   if (mapserver_flatjson.length > 1 ){
 
                                                               // flatjson include both layers:[] and tables:[],  tables all attached to table group folder
-                                                              jstree_mapserver(mapserver_flatjson, _url_mapserver, mapserver_display_text)
+                                                              jstree_mapserver(mapserver_flatjson, current_singleServerEndpoint_url, mapserver_display_text)
 
 
                                                   }else {
@@ -3732,17 +3731,16 @@ var point_icon = "bi bi-geo-alt"
 
 
 
-                                               var _url_mapserver = folder_item.absolute_path
-                                                            current_singleServerEndpoint_url = _url_mapserver
-                                               console.log('  layerBrowser . . .     render single server url >>>>>  ', _url_mapserver)
+                                               current_singleServerEndpoint_url = folder_item.absolute_path
+                                               console.log('  layerBrowser . . .     render single server url >>>>>  ', current_singleServerEndpoint_url)
 
                                                                                                        
                                                // always before await ajax, show ajax url , instead of show progressing bar 
-                                               progressing_info('single server', 'getting single server...', _url_mapserver);
+                                               progressing_info('single server', 'getting single server...', current_singleServerEndpoint_url);
 
 
 
-                                               raw_mapserver =await ajax_jsonp_cors_proxy(_url_mapserver, _timeout_for_tree);
+                                               raw_mapserver =await ajax_jsonp_cors_proxy(current_singleServerEndpoint_url, _timeout_for_tree);
                                                                               
                                                           console.log('  layerBrowser . . .     render single-server root response  ', raw_mapserver)
 
@@ -3754,15 +3752,15 @@ var point_icon = "bi bi-geo-alt"
                                                          //  this mapserver means 2nd level 2nd tier, could be imageServer, vectorTileServer, mapServer, featureServer, as long as it is 2nd tier. 
                                                          //  VectorTileServer, scene server can't use ..../legend must exclude them
 
-                                                         var _lowerCase_mapserverurl = _url_mapserver.toLowerCase();
+                                                         var _lowerCase_mapserverurl = current_singleServerEndpoint_url.toLowerCase();
                                                          if (_lowerCase_mapserverurl.includes('vectortile')){
 
                                                                       console.log('  layerBrowser . . .      Do not do vector tile legend at  2nd tier , server level  ')
                                                          } else {
 
-                                                                       var  _url_mapserver_legend = _url_mapserver + '/legend'
+                                                                       var  current_singleServerEndpoint_url_legend = current_singleServerEndpoint_url + '/legend'
                                                                           
-                                                                          mapserver_legend  =await ajax_jsonp_cors_proxy(_url_mapserver_legend,  _timeout_for_tree);
+                                                                          mapserver_legend  =await ajax_jsonp_cors_proxy(current_singleServerEndpoint_url_legend,  _timeout_for_tree);
                                                                           console.log('  layerBrowser . . .      ### single-server ### legend ###  ', mapserver_legend )
 
 
@@ -3905,7 +3903,7 @@ var point_icon = "bi bi-geo-alt"
                                                   // no other layer, only 1 root item
 
 
-                                                  jstree_mapserver(mapserver_flatjson, _url_mapserver, mapserver_display_text)
+                                                  jstree_mapserver(mapserver_flatjson, current_singleServerEndpoint_url, mapserver_display_text)
 
                                                   
 

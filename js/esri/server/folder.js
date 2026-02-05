@@ -1329,26 +1329,25 @@ async function render_mapserver(_parent_id){
         var folder_item = folder_structure_flatjson.find(element => element.id == _parent_id);
         console.log('folder_item  node[id] : ', folder_item)
 
-        var _url_mapserver = folder_item.absolute_path
-        current_singleServerEndpoint_url = _url_mapserver
-        console.log( 'render 2ndTier-mapserver url >>>>>  ', _url_mapserver)
+        current_singleServerEndpoint_url = folder_item.absolute_path
+        console.log( 'render 2ndTier-mapserver url >>>>>  ', current_singleServerEndpoint_url)
         
         // always before await ajax, show ajax url , instead of show progressing bar
-        progressing_info('layer', '(MapServer)', _url_mapserver);
+        progressing_info('layer', '(MapServer)', current_singleServerEndpoint_url);
 
-        raw_mapserver =await arcgis_ajax_cross_origin(_url_mapserver, _cross);  // cross origin method 
+        raw_mapserver =await arcgis_ajax_cross_origin(current_singleServerEndpoint_url, _cross);  // cross origin method 
         console.log( 'render 2ndTier-mapserver root response  ', raw_mapserver)
 
                 
 
         //  this mapserver means 2nd level 2nd tier, could be imageServer, vectorTileServer, mapServer, featureServer, as long as it is 2nd tier. 
         //  VectorTileServer, scene server can't use ..../legend must exclude them
-        var _lowerCase_mapserverurl = _url_mapserver.toLowerCase();
+        var _lowerCase_mapserverurl = current_singleServerEndpoint_url.toLowerCase();
         if (_lowerCase_mapserverurl.includes('vectortile')){
                     console.log( ' Do not do vector tile legend at  2nd tier , server level  ')
         } else {
-                        var  _url_mapserver_legend = _url_mapserver + '/legend'
-                        mapserver_legend  =await arcgis_ajax_cross_origin(_url_mapserver_legend, _cross);  // cross origin method 
+                        var  current_singleServerEndpoint_url_legend = current_singleServerEndpoint_url + '/legend'
+                        mapserver_legend  =await arcgis_ajax_cross_origin(current_singleServerEndpoint_url_legend, _cross);  // cross origin method 
                         console.log( ' ** mapserver ** legend **  ', mapserver_legend )
         }
 
@@ -1774,7 +1773,7 @@ async function render_mapserver(_parent_id){
         
         if (mapserver_flatjson.length > 1 ){
                     // flatjson include both layers:[] and tables:[],  tables all attached to table group folder
-                    jstree_mapserver(mapserver_flatjson, _url_mapserver, mapserver_display_text)
+                    jstree_mapserver(mapserver_flatjson, current_singleServerEndpoint_url, mapserver_display_text)
         }else {
             //only have 1 root item, means, no layers:[],  no table:[] , or both are empty, show error,   mapserver url 
             console.log("mapserver url error ...>> ",JSON.stringify(raw_mapserver) )
@@ -2109,25 +2108,24 @@ async function render_mapserver(_parent_id){
         var folder_item = folder_structure_flatjson.find(element => element.id == _parent_id);
         console.log('folder_item  node[id] : ', folder_item)
 
-            var _url_mapserver = folder_item.absolute_path
-                    current_singleServerEndpoint_url = _url_mapserver
-            console.log( 'render single server url >>>>>  ', _url_mapserver)
+            current_singleServerEndpoint_url = folder_item.absolute_path
+            console.log( 'render single server url >>>>>  ', current_singleServerEndpoint_url)
                                                                     
             // always before await ajax, show ajax url , instead of show progressing bar 
-        // progressing_info('folder', '(single server)', _url_mapserver);
+        // progressing_info('folder', '(single server)', current_singleServerEndpoint_url);
 
-                    raw_mapserver =await arcgis_ajax_cross_origin(_url_mapserver, _cross);  // cross origin method                                                                                 
+                    raw_mapserver =await arcgis_ajax_cross_origin(current_singleServerEndpoint_url, _cross);  // cross origin method                                                                                 
                     console.log( 'render single-server root response  ', raw_mapserver)
 
                     //  this mapserver means 2nd level 2nd tier, could be imageServer, vectorTileServer, mapServer, featureServer, as long as it is 2nd tier. 
                     //  VectorTileServer, scene server can't use ..../legend must exclude them
 
-                    var _lowerCase_mapserverurl = _url_mapserver.toLowerCase();
+                    var _lowerCase_mapserverurl = current_singleServerEndpoint_url.toLowerCase();
                     if (_lowerCase_mapserverurl.includes('vectortile')){
                                 console.log( ' Do not do vector tile legend at  2nd tier , server level  ')
                     } else {
-                                    var  _url_mapserver_legend = _url_mapserver + '/legend'
-                                    mapserver_legend  =await arcgis_ajax_cross_origin(_url_mapserver_legend, _cross);  // cross origin method 
+                                    var  current_singleServerEndpoint_url_legend = current_singleServerEndpoint_url + '/legend'
+                                    mapserver_legend  =await arcgis_ajax_cross_origin(current_singleServerEndpoint_url_legend, _cross);  // cross origin method 
                                     console.log( ' ### single-server ### legend ###  ', mapserver_legend )
                     }
 
@@ -2175,7 +2173,7 @@ async function render_mapserver(_parent_id){
 
 
             // no other layer, only 1 root item
-            jstree_mapserver(mapserver_flatjson, _url_mapserver, mapserver_display_text)
+            jstree_mapserver(mapserver_flatjson, current_singleServerEndpoint_url, mapserver_display_text)
     }
 
 
